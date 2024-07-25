@@ -1,8 +1,18 @@
 from abc import ABC
 
+
 class HPWL(ABC):
+    """
+    The objective function.
+    Use cvxpy/clarabel?
+    """
+
+    def __init__():
+        pass
+
     ...
-    pass
+
+
 
 class Manhattan(HPWL):
     """
@@ -12,13 +22,13 @@ class Manhattan(HPWL):
 
     """
     ...
-    pass
 
 class Euclidean(HPWL):
     """
     Euclidean Distance Half Perimeter Wire Length.
     - Strictly Convex => Yields unique solution.
     - Differentiable, Quadratic => Can use 1st and 2nd order methods.
+    - Generally worse QoR than Manhattan (?) (Kennings, Markov, 2.2)
 
     HPWL(x, y) = HPWLx(x) + HPWLy(y)
 
@@ -31,5 +41,10 @@ class Euclidean(HPWL):
     
     """
     ...
-    pass
 
+
+class GordianL(HPWL):
+    ...
+
+class BetaRegularization(HPWL):
+    ...
