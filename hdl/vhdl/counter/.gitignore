@@ -1,0 +1,5 @@
+# Ignore non-source files 
+*
+!.gitignore
+!counter.srcs
+
