@@ -1,9 +1,0 @@
-# compile vhdl design source files
-vhdl xil_defaultlib  \
-"../../../../counter.srcs/sources_1/new/counter.vhd" \
-"../../../../counter.srcs/sources_1/new/pps_gen.vhd" \
-"../../../../counter.srcs/sources_1/new/top_level.vhd" \
-"../../../../counter.srcs/sim_1/new/testbench.vhd" \
-
-# Do not sort compile order
-nosort

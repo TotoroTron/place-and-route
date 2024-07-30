@@ -1,2 +1,0 @@
-Time resolution is 1 ps
-$finish called at time : 300025 ns : File "/home/bcheng/workspace/dev/place-and-route/hdl/vhdl/counter/counter.srcs/sim_1/new/testbench.vhd" Line 67
