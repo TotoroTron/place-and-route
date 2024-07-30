@@ -1,0 +1,6 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/bcheng/workspace/dev/place-and-route/hdl/vhdl/counter/counter.srcs/sources_1/new/pps_gen.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'pps_gen'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/bcheng/workspace/dev/place-and-route/hdl/vhdl/counter/counter.srcs/sources_1/new/top_level.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'top_level'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/bcheng/workspace/dev/place-and-route/hdl/vhdl/counter/counter.srcs/sim_1/new/testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'testbench'

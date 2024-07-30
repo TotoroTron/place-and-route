@@ -6,15 +6,14 @@ entity pps_gen is
     port(
         i_clk : in std_logic;
         i_rst : in std_logic;
-        o_pulse : out std_logic
+        o_pulse : out std_logic := '0'
     );
 end pps_gen;
 
 architecture behavioral of pps_gen is
-    constant clk_freq : integer := 125_000_000;
+    constant clk_freq : integer := 10_000_000;
     constant clks_per_pulse : integer := clk_freq / pulse_freq;
-    signal count : integer := 0; 
-    signal count_next : integer := 0; 
+    signal count : integer := 0;
 begin
 
     process(i_clk, i_rst)
