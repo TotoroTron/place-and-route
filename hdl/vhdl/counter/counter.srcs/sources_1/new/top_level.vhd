@@ -32,7 +32,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity top_level is
-    Port (
+    generic (tps : positive := 1); -- ticks per second
+    port (
         i_clk : in std_logic;
         i_rst : in std_logic;
         ov_led : out std_logic_vector (3 downto 0)
@@ -44,7 +45,7 @@ architecture structural of top_level is
 begin
 
     CLOCK_ENABLE_GEN : entity work.pps_gen
-    generic map(pulse_freq => 4) -- pulses per second
+    generic map(pulse_freq => tps) -- pulses per second
     port map(
         i_clk => i_clk,
         i_rst => i_rst,

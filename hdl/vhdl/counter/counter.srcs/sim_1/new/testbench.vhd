@@ -21,6 +21,7 @@
 
 library ieee;
 use ieee.std_logic_1164.all;
+use std.env.finish;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -37,38 +38,33 @@ end testbench;
 
 architecture behavioral of testbench is
     signal tb_clk : std_logic := '0';
-    signal tb_rst : std_logic := '0';
+    signal tb_rst : std_logic := '1';
     signal tb_led : std_logic_vector(3 downto 0) := (others => '0');
-    constant clk_period : time := 10ns;
 begin
     
+    
     UUT : entity work.top_level
+    generic map(tps => 1000000) -- ticks per second
     port map(
-        clk => tb_clk,
-        rst => tb_rst,
-        led => tb_led
+        i_clk => tb_clk,
+        i_rst => tb_rst,
+        ov_led => tb_led
     );
 
-    CLOCK_GEN : process
-    begin
-        tb_clk <= '0';
-        wait for clk_period/2;
-        tb_clk <= '1';
-        wait for clk_period/2;
-    end process;
-    -- https://stackoverflow.com/questions/17904514/vhdl-how-should-i-create-a-clock-in-a-testbench
+    tb_clk <= not tb_clk after 5 ns;
 
     STIMULI : process
     begin
+        tb_rst <= '1';
         wait for 25 ns;
-        rst <= '1';
-        wait for 25 ns;
-        rst <= '0';
+        tb_rst <= '0';
 
-        wait for 1000000 ns;
-        rst <= '1';
-        wait for 1000000 ns;
-        rst <= '0';
+        wait for 100 us;
+        tb_rst <= '1';
+        wait for 100 us;
+        tb_rst <= '0';
+        wait for 100 us;
+        finish;
 
 
     end process;

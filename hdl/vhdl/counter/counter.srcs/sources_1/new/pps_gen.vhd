@@ -24,12 +24,11 @@ begin
             count <= 0; 
             o_pulse <= '0';
         else
-            count_next <= count + 1;
-            if (count_next = clks_per_pulse - 1) then
+            if (count = clks_per_pulse - 1) then
                 count <= 0;
                 o_pulse <= '1';
             else
-                count <= count_next;
+                count <= count + 1;
                 o_pulse <= '0';
             end if;
         end if;
