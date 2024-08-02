@@ -32,7 +32,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity top_level is
-    generic (tps : positive := 1); -- ticks per second
+    generic (tps : positive := 1000000); -- ticks per second
     port (
         i_clk : in std_logic;
         i_rst : in std_logic;
