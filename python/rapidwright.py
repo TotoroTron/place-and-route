@@ -30,13 +30,27 @@ project_dir = "/home/bcheng/workspace/dev/place-and-route/"
 synthesized_dcp = f"{project_dir}/tcl/synthesized.dcp"
 placed_dcp = f"{project_dir}/tcl/placed.dcp"
 
+def calculate_cost(design):
+    # HPWL manhattan
+    cost = 0
+    for net in design.getNets():
+        for pin in net.getPins():
+            # rwroute/RouteNodeInfo.java
+            # design/TileRectangle.java
+            # loc = pin.getCell().getSite().getSiteXY()
+            # cost += abs(loc.X) + abs(loc.Y)
+    return cost
 
 
 
 
 
+design = Design.readCheckpoint(synthesized_dcp)
 
-
+initial_cost = calculate_cost(design)
+current_cost = initial_cost
+best_cost = initial_cost
+# best_design = design.clone()
 
 
 
