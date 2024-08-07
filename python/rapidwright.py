@@ -37,6 +37,7 @@ def calculate_cost(design):
         for pin in net.getPins():
             # rwroute/RouteNodeInfo.java
             # design/TileRectangle.java
+            # placer/BlockPlacer.java <-- uses Simulated Annealing
             # loc = pin.getCell().getSite().getSiteXY()
             # cost += abs(loc.X) + abs(loc.Y)
     return cost

@@ -5,7 +5,7 @@
 
 # project_dir="/home/bcheng/workspace/dev/place-and-route/hdl/vhdl/counter"
 
-set project_dir "/home/bcheng/workspace/dev/place-and-route/"
+project_dir "/home/bcheng/workspace/dev/place-and-route/"
 vivado_synth_tcl = "$project_dir/tcl/vivado_synth.tcl" 
 rapidwright_py = "$project_dir/python/rapidwright.py"
 vivado_route_tcl = "$project_dir/tcl/vivado_route.tcl"
