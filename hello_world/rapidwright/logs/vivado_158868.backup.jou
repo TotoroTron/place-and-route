@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2023.2.2 (64-bit)
+# SW Build 4126759 on Thu Feb  8 23:52:05 MST 2024
+# IP Build 4126054 on Fri Feb  9 11:39:09 MST 2024
+# SharedData Build 4115275 on Tue Jan 30 00:40:57 MST 2024
+# Start of session at: Thu Aug  8 13:05:54 2024
+# Process ID: 158868
+# Current directory: /home/bcheng/workspace/dev/place-and-route/hello_world/rapidwright
+# Command line: vivado -mode tcl
+# Log file: /home/bcheng/workspace/dev/place-and-route/hello_world/rapidwright/vivado.log
+# Journal file: /home/bcheng/workspace/dev/place-and-route/hello_world/rapidwright/vivado.jou
+# Running On: bcheng-HP, OS: Linux, CPU Frequency: 4679.371 MHz, CPU Physical cores: 4, Host memory: 16388 MB
+#-----------------------------------------------------------

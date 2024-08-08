@@ -3,50 +3,38 @@
 # SW Build 4126759 on Thu Feb  8 23:52:05 MST 2024
 # IP Build 4126054 on Fri Feb  9 11:39:09 MST 2024
 # SharedData Build 4115275 on Tue Jan 30 00:40:57 MST 2024
-# Start of session at: Thu Aug  8 12:54:09 2024
-# Process ID: 99666
-# Current directory: /home/bcheng/workspace/dev/place-and-route/tcl
+# Start of session at: Thu Aug  8 13:06:43 2024
+# Process ID: 159281
+# Current directory: /home/bcheng/workspace/dev/place-and-route/hello_world/rapidwright
 # Command line: vivado -mode tcl
-# Log file: /home/bcheng/workspace/dev/place-and-route/tcl/vivado.log
-# Journal file: /home/bcheng/workspace/dev/place-and-route/tcl/vivado.jou
-# Running On: bcheng-HP, OS: Linux, CPU Frequency: 640.238 MHz, CPU Physical cores: 4, Host memory: 16388 MB
+# Log file: /home/bcheng/workspace/dev/place-and-route/hello_world/rapidwright/vivado.log
+# Journal file: /home/bcheng/workspace/dev/place-and-route/hello_world/rapidwright/vivado.jou
+# Running On: bcheng-HP, OS: Linux, CPU Frequency: 1233.608 MHz, CPU Physical cores: 4, Host memory: 16388 MB
 #-----------------------------------------------------------
-open_checkpoint synthesized.dcp 
-Command: open_checkpoint synthesized.dcp
+open_checkpoint or_gate.dcp
+Command: open_checkpoint or_gate.dcp
 
 Starting open_checkpoint Task
 
-Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 1271.625 ; gain = 0.000 ; free physical = 8085 ; free virtual = 28096
-INFO: [Device 21-403] Loading part xc7z020clg400-1
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1640.992 ; gain = 0.000 ; free physical = 7733 ; free virtual = 27744
-INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
-INFO: [Project 1-479] Netlist was created with Vivado 2023.2.2
+Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 1272.566 ; gain = 0.000 ; free physical = 5623 ; free virtual = 25739
+WARNING: [Vivado 12-8410] Design file '/home/bcheng/workspace/dev/place-and-route/hello_world/rapidwright/or_gate.dcp' has failed integrity check (2). There is either a missing chekcsum or mismatch. Please regenerate the DCP file.
+INFO: [Device 21-403] Loading part xc7z020clg400-3
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1656.809 ; gain = 0.000 ; free physical = 5258 ; free virtual = 25374
+INFO: [Project 1-479] Netlist was created with RapidWright 2024.1.1
 INFO: [Project 1-570] Preparing netlist for logic optimization
-Read ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1707.742 ; gain = 0.000 ; free physical = 7642 ; free virtual = 27653
-INFO: [Timing 38-478] Restoring timing data from binary archive.
-INFO: [Timing 38-479] Binary timing data restore complete.
-INFO: [Project 1-856] Restoring constraints from binary archive.
-INFO: [Project 1-853] Binary constraint restore complete.
-INFO: [Designutils 20-5722] Start Reading Physical Databases.
 Reading placement.
-Read Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2167.531 ; gain = 0.000 ; free physical = 7192 ; free virtual = 27203
 Reading placer database...
-Read Device Cache: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2167.531 ; gain = 0.000 ; free physical = 7192 ; free virtual = 27203
-Read PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2167.531 ; gain = 0.000 ; free physical = 7192 ; free virtual = 27203
-Read PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2167.531 ; gain = 0.000 ; free physical = 7192 ; free virtual = 27203
 Reading routing.
-Read RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2167.531 ; gain = 0.000 ; free physical = 7192 ; free virtual = 27203
-Read Physdb Files: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2167.531 ; gain = 0.000 ; free physical = 7192 ; free virtual = 27203
-Restored from archive | CPU: 0.030000 secs | Memory: 1.086288 MB |
-Finished XDEF File Restore: Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2167.531 ; gain = 0.000 ; free physical = 7192 ; free virtual = 27203
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2167.531 ; gain = 0.000 ; free physical = 7192 ; free virtual = 27203
+Read Old XDEF File: Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.08 . Memory (MB): peak = 1743.465 ; gain = 23.812 ; free physical = 5160 ; free virtual = 25276
+Restored from archive | CPU: 0.080000 secs | Memory: 1.084930 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.08 . Memory (MB): peak = 1743.465 ; gain = 23.812 ; free physical = 5160 ; free virtual = 25276
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2095.598 ; gain = 0.000 ; free physical = 4792 ; free virtual = 24919
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-INFO: [Project 1-604] Checkpoint was created with Vivado v2023.2.2 (64-bit) build 4126759
-open_checkpoint: Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2167.566 ; gain = 895.941 ; free physical = 7192 ; free virtual = 27203
-checkpoint_synthesized
+open_checkpoint: Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2095.633 ; gain = 823.066 ; free physical = 4792 ; free virtual = 24919
+checkpoint_or_gate
 start_gui
 WARNING: [Board 49-26] cannot add Board Part xilinx.com:kc705:part0:1.6 available at /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kc705/1.6/board.xml as part xc7k325tffg900-2 specified in board_part file is either invalid or not available
 WARNING: [Board 49-26] cannot add Board Part xilinx.com:kcu105:part0:1.6 available at /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kcu105/1.6/board.xml as part xcku040-ffva1156-2-e specified in board_part file is either invalid or not available
@@ -109,4 +97,4 @@ INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/data/ip'.
 exit
-INFO: [Common 17-206] Exiting Vivado at Thu Aug  8 13:10:32 2024...
+INFO: [Common 17-206] Exiting Vivado at Thu Aug  8 13:10:35 2024...
