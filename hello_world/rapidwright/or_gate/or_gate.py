@@ -43,7 +43,8 @@ LEDs:
 """
 
 # Create and place a 2-input OR gate at the C6LUT in the slice at 50x50y.
-or2 = design.createAndPlaceCell("or2", Unisim.OR2, "SLICE_X50Y50/C6LUT")
+# or2 = design.createAndPlaceCell("or2", Unisim.OR2, "SLICE_X50Y50/C6LUT")
+or2 = design.createAndPlaceCell("or2", Unisim.OR2, "SLICE_X112Y140/C6LUT")
 
 # Place the two button IO buffers
 button0 = design.createAndPlaceIOB("button0", PinType.IN, "D19", "LVCMOS33")
@@ -70,6 +71,20 @@ ledNet = design.createNet("ledNet")
 ledNet.connect(or2, "O")
 ledNet.connect(led, "I")
 
+
+# Print out the design
+cells = design.getCells()
+nets = design.getNets() 
+
+print("CELL :")
+for idx, cell in enumerate(cells):
+    print(f"Cell #{idx}: ", cell)
+
+print("NETS :")
+for idx, net in enumerate(nets):
+    print(f"Net #{idx}: ", net)
+
+
 # Route the connections internal to the sites
 design.routeSites()
 
@@ -78,6 +93,6 @@ router = Router(design)
 router.routeDesign()
 
 # Write the design out to a checkpoint
-design.writeCheckpoint("or_gate.dcp")
+design.writeCheckpoint("routed_or_gate.dcp")
 
 jpype.shutdownJVM()
