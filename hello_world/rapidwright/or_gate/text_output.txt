@@ -1,0 +1,75 @@
+Device Name:  xc7z020
+Design Name:  orGate
+
+CELLS :
+Cell #0:  led(BEL: OUTBUF)
+BEL: OUTBUF(BEL)
+	Site: IOB_X1Y87
+	Tile: RIOB33_X73Y87
+	Row: 65, Column: 186
+	Type: OBUF
+Cell #1:  button0(BEL: INBUF_EN)
+BEL: INBUF_EN(BEL)
+	Site: IOB_X1Y142
+	Tile: RIOB33_X73Y141
+	Row: 9, Column: 186
+	Type: IBUF
+Cell #2:  button1(BEL: INBUF_EN)
+BEL: INBUF_EN(BEL)
+	Site: IOB_X1Y141
+	Tile: RIOB33_X73Y141
+	Row: 9, Column: 186
+	Type: IBUF
+Cell #3:  or2(BEL: C6LUT)
+BEL: C6LUT(BEL)
+	Site: SLICE_X112Y140
+	Tile: CLBLM_R_X71Y140
+	Row: 10, Column: 176
+	Type: LUT2
+
+NETS :
+Net #0:  button1Net
+	logical_net: button1Net
+	module_inst: None
+	Pins: 
+		Pin #0: OUT IOB_X1Y141.I
+		Pin #1: IN SLICE_X112Y140.C6
+	PIPs: 
+	Source Pin: OUT IOB_X1Y141.I
+	Sink Pins: 
+		Sink #0: IN SLICE_X112Y140.C6
+	Net Type: WIRE
+	logical_net: button1Net
+Net #1:  button0Net
+	logical_net: button0Net
+	module_inst: None
+	Pins: 
+		Pin #0: OUT IOB_X1Y142.I
+		Pin #1: IN SLICE_X112Y140.C5
+	PIPs: 
+	Source Pin: OUT IOB_X1Y142.I
+	Sink Pins: 
+		Sink #0: IN SLICE_X112Y140.C5
+	Net Type: WIRE
+	logical_net: button0Net
+Net #2:  GLOBAL_LOGIC0
+	logical_net: None
+	module_inst: None
+	Pins: 
+	PIPs: 
+	Source Pin: None
+	Sink Pins: 
+	Net Type: GND
+	logical_net: None
+Net #3:  ledNet
+	logical_net: ledNet
+	module_inst: None
+	Pins: 
+		Pin #0: OUT SLICE_X112Y140.C
+		Pin #1: IN IOB_X1Y87.O
+	PIPs: 
+	Source Pin: OUT SLICE_X112Y140.C
+	Sink Pins: 
+		Sink #0: IN IOB_X1Y87.O
+	Net Type: WIRE
+	logical_net: ledNet

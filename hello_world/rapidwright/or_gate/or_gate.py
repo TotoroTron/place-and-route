@@ -1,3 +1,9 @@
+import sys
+
+file = open('text_output.txt', 'w')
+console = sys.stdout # save original output to console
+sys.stdout = file # route all print output to text file
+
 
 # import rapidwright
 import jpype
@@ -76,13 +82,55 @@ ledNet.connect(led, "I")
 cells = design.getCells()
 nets = design.getNets() 
 
-print("CELL :")
+print()
+print("CELLS :")
 for idx, cell in enumerate(cells):
+    BEL = cell.getBEL()
+    site = cell.getSite()
+    tile = site.getTile()
+    row = tile.getRow()
+    col = tile.getColumn() 
+    # can use row and col as HPWL X and Y coordinates
+    cell_type = cell.getType() # the UNISIM library cell name
     print(f"Cell #{idx}: ", cell)
+    print(f"BEL: {BEL}")
+    print(f"\tSite: {site}")
+    print(f"\tTile: {tile}")
+    print(f"\tRow: {row}, Column: {col}")
+    print(f"\tType: {cell_type}")
 
+print()
 print("NETS :")
 for idx, net in enumerate(nets):
+    fanout = net.getFanOut()
+    logical_net = net.getLogicalNet()
+    module_inst = net.getModuleInst()
+    pins = net.getPins()
+    pips = net.getPIPs()
+    sink_pins = net.getSinkPins()
+    source = net.getSource()
+    net_type = net.getType()
     print(f"Net #{idx}: ", net)
+    print(f"\tlogical_net: {logical_net}")
+    print(f"\tmodule_inst: {module_inst}")
+
+    print("\tPins: ")
+    for idx, pin in enumerate(pins):
+        print(f"\t\tPin #{idx}: {pin}")
+
+    print("\tPIPs: ")
+    for idx, pip in enumerate(pips):
+        print(f"\t\tPIP #{idx}: {pip}")
+
+    print(f"\tSource Pin: {source}")
+
+    print("\tSink Pins: ")
+    for idx, sink in enumerate(sink_pins):
+        print(f"\t\tSink #{idx}: {sink}")
+
+    print(f"\tNet Type: {net_type}")
+
+    print(f"\tlogical_net: {logical_net}")
 
 
 # Route the connections internal to the sites
