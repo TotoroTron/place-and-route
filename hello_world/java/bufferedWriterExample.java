@@ -25,7 +25,8 @@ public class BufferedWriterExample {
     }
 
     public static void printDeviceInfo(BufferedWriter writer) throws IOException {
-        Site[] sites = device.getAllSitesOfType(SiteTypeEnum.SLICEM);
+        Site[] sites = device.getAllSites();
+        // Site[] sites = device.getAllSitesOfType(SiteTypeEnum.SLICEM);
 
         for (Site site : sites) {
             String name = site.getName();
