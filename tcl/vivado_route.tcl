@@ -1,9 +1,9 @@
 # vivado_route.tcl
 
 set project_dir "/home/bcheng/workspace/dev/place-and-route/"
-set custom_placed_dcp "$proj_dir/placed.dcp"
-set viv_routed_dcp "$proj_dir/routed.dcp"
-set bitstream_file "$proj_dir/output.bit"
+set custom_placed_dcp "$project_dir/tcl/placed.dcp"
+set viv_routed_dcp "$project_dir/tcl/routed.dcp"
+set bitstream_file "$project_dir/tcl/output.bit"
 
 open_checkpoint $custom_placed_dcp
 
