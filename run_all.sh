@@ -16,37 +16,43 @@ SYNTH_TCL="$PROJ_DIR/tcl/synth.tcl"
 ROUTE_TCL="$PROJ_DIR/tcl/route.tcl"
 
 
-echo "Running Vivado synthesis..."
-vivado -mode batch -source $SYNTH_TCL -nolog -nojournal
-if [$? -ne 0]; then
-    echo "Vivado synthesis failed."
-    exit 1
+start_stage=${1:-all} # Use first argument or defaults to all 
+
+check_exit_status() {
+    if [ $? -ne 0 ]; then
+        echo "$1 failed."
+        exit 1
+    fi
+}
+
+# Vivado Synthesis Stage
+if [ "$start_stage" == "synthesis" ] || [ "$start_stage" == "all" ]; then
+    echo "Running Vivado synthesis..."
+    vivado -mode batch -source $SYNTH_TCL -nolog -nojournal
+    check_exit_status "Vivado synthesis"
+    echo "Vivado synthesis completed. Check 'synthesized.dcp'."
 fi
-echo "Vivado synthesis completed. Check 'synthesized.dcp'."
 
-
-echo "Compiling Java files..."
-javac src/*.java
-if [ $? -ne 0 ]; then
-    echo "Compilation failed."
-    exit 1
+# Java Compilation Stage
+if [ "$start_stage" == "java_compile" ] || [ "$start_stage" == "all" ]; then
+    echo "Compiling Java files..."
+    javac src/*.java
+    check_exit_status "Java compilation"
+    echo "Java compilation completed."
 fi
-echo "Java compilation completed."
 
-
-echo "Running Java placement..."
-java -cp "$CLASSPATH:." src.Main
-if [ $? -ne 0 ]; then
-    echo "Java placement execution failed."
-    exit 1
+# Java Placement Stage
+if [ "$start_stage" == "placement" ] || [ "$start_stage" == "all" ]; then
+    echo "Running Java placement..."
+    java -cp "$CLASSPATH:." src.Main
+    check_exit_status "Java placement execution"
+    echo "Java placement executed. Check 'logger.txt' for output."
 fi
-echo "Java placement executed. Check 'logger.txt' for output."
 
-
-echo "Running Vivado route..."
-vivado -mode batch -source $ROUTE_TCL -nolog -nojournal
-if [$? -ne 0]; then
-    echo "Vivado route failed."
-    exit 1
+# Vivado Route Stage
+if [ "$start_stage" == "route" ] || [ "$start_stage" == "all" ]; then
+    echo "Running Vivado route..."
+    vivado -mode batch -source $ROUTE_TCL -nolog -nojournal
+    check_exit_status "Vivado route"
+    echo "Vivado route completed. Check 'routed.dcp'."
 fi
-echo "Vivado route completed. Check 'routed.dcp'."
