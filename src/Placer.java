@@ -13,8 +13,8 @@ public abstract class Placer {
     protected static Design design;
 
     protected static final String rootDir = "/home/bcheng/workspace/dev/place-and-route/";
-    protected static final String synthesizedDcp = rootDir.concat("synthesized.dcp");
-    protected static final String placedDcp = rootDir.concat("placed.dcp");
+    protected static final String synthesizedDcp = rootDir.concat("/outputs/synthesized.dcp");
+    protected static final String placedDcp = rootDir.concat("/outputs/placed.dcp");
 
     public void init(BufferedWriter writer) throws IOException {
         Design design = Design.readCheckpoint(synthesizedDcp);
