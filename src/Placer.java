@@ -10,6 +10,9 @@ import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.Net;
 import com.xilinx.rapidwright.design.Module;
 import com.xilinx.rapidwright.design.ModuleInst;
+import com.xilinx.rapidwright.design.ModuleImpls;
+
+import com.xilinx.rapidwright.edif.EDIFNetlist;
 
 import com.xilinx.rapidwright.device.Device;
 
@@ -33,17 +36,28 @@ public abstract class Placer {
 
 
     public void printDesignInfo(BufferedWriter writer, Design design) throws IOException {
+        Collection<ModuleImpls> mos = design.getModules();
+        writer.write("Printing Module(s)...\n");
+        if (mos.isEmpty()) {
+            writer.write("Collection<Module> is empty!\n");
+        }
+        for (ModuleImpls mo : mos) {
+            String moduleImplName = mo.getName();
+            writer.write("ModuleImpl name: ".concat(moduleImplName));
+        }
+
+
         Collection<ModuleInst> mis = design.getModuleInsts();
         writer.write("Printing ModuleInst(s)...\n");
         if (mis.isEmpty()) {
             writer.write("Collection<ModuleInst> is empty!\n");
-            return;
         }
         for (ModuleInst mi : mis) { 
             Module module = mi.getModule();
             String moduleName = module.getName();
             writer.write("Module name: ".concat(moduleName));
         }
+
     }
 
 
