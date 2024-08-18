@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.2.2 (64-bit)
+# SW Build 4126759 on Thu Feb  8 23:52:05 MST 2024
+# IP Build 4126054 on Fri Feb  9 11:39:09 MST 2024
+# SharedData Build 4115275 on Tue Jan 30 00:40:57 MST 2024
+# Start of session at: Sun Aug 18 15:51:06 2024
+# Process ID: 17230
+# Current directory: /home/bcheng/workspace/dev/place-and-route
+# Command line: vivado -mode tcl
+# Log file: /home/bcheng/workspace/dev/place-and-route/vivado.log
+# Journal file: /home/bcheng/workspace/dev/place-and-route/vivado.jou
+# Running On: bcheng-PC, OS: Linux, CPU Frequency: 800.000 MHz, CPU Physical cores: 12, Host memory: 33454 MB
+#-----------------------------------------------------------
+read_vhdl -help

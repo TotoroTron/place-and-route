@@ -4,7 +4,7 @@ export XILINX_VIVADO=/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2
 export PATH="$PATH:$XILINX_VIVADO/bin"
 
 export JAVA_HOME=/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/tps/lnx64/jre17.0.7_7
-export PATH="$PATH:$JAVA_HOME/bin"
+export PATH="$JAVA_HOME/bin:$PATH"
 
 export RAPIDWRIGHT_PATH=/home/bcheng/workspace/tools/RapidWright
 export PATH="$PATH:$RAPIDWRIGHT_PATH/bin"

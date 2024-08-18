@@ -7,7 +7,7 @@ set bitstream_file "$root_dir/outputs/output.bit"
 
 open_checkpoint $placed_dcp
 
-route_design
+route_design -mode out_of_context
 
 # phys_opt_design
 
@@ -15,6 +15,8 @@ write_checkpoint -force $viv_routed_dcp
 
 # write_bitstream -force $bitstream_file
 
-close_project
+exit
+
+# close_project
 
 # puts "Routing and bitstream generation complete. Check $routed_dcp and $bitstream_file"
