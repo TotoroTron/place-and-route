@@ -1,4 +1,25 @@
+
+Printing EDIFCellInst(s)...
+EDIF Cell name: FDRE
+EDIF Cell name: FDRE
+EDIF Cell name: LUT5
+EDIF Cell name: FDRE
+EDIF Cell name: FDRE
+EDIF Cell name: VCC
+EDIF Cell name: FDRE
+EDIF Cell name: CARRY4
+EDIF Cell name: LUT5
+EDIF Cell name: GND
+EDIF Cell name: LUT1
+EDIF Cell name: FDRE
+EDIF Cell name: LUT3
+EDIF Cell name: LUT4
+EDIF Cell name: FDRE
+EDIF Cell name: FDRE
+EDIF Cell name: FDRE
+EDIF Cell name: LUT2
+EDIF Cell name: LUT1
+Printing Net(s)...
+Printing Cell(s)...
 Printing Module(s)...
-Collection<Module> is empty!
 Printing ModuleInst(s)...
-Collection<ModuleInst> is empty!
