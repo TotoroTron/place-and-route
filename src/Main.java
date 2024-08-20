@@ -18,16 +18,22 @@ public class Main {
     public static void main(String[] args) {
         try {
             // Logger to keep track of execution progress.
-            FileHandler fileHandler = new FileHandler(rootDir.concat("outputs/logger.txt"), true); // 'true' appends to file
+            FileHandler fileHandler = new FileHandler(rootDir+"outputs/logger.txt", true); // 'true' appends to file
             fileHandler.setFormatter(new SimpleFormatter());
             logger.addHandler(fileHandler);
             logger.setLevel(Level.ALL); // Set logging level to record all messages
-
+            
             // BufferedWriter to print data.
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir.concat("outputs/output.txt")))) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir+"outputs/output.txt"))) {
+
+                logger.log(Level.INFO, "Begin RapidWrightBlockPlacer...");
                 RapidWrightBlockPlacer RWPlacer = new RapidWrightBlockPlacer();
-                logger.log(Level.INFO, "Begin placement...\n");
-                RWPlacer.init(writer);
+                RWPlacer.run(writer);
+
+                logger.log(Level.INFO, "Begin SimulatedAnnealingPlacer...");
+                SimulatedAnnealingPlacer SAPlacer = new SimulatedAnnealingPlacer();
+                SAPlacer.run(writer);
+
                 logger.log(Level.INFO, "Data writing complete. Check 'output.txt'");
             } catch (IOException e) {
                 logger.log(Level.SEVERE, "An IOException occurred while writing data.", e);

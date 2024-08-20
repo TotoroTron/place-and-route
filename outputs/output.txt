@@ -1,16 +1,4 @@
 
-
-EDIF Cells: 
-netlist
-netlist
-netlist
-netlist
-netlist
-netlist
-netlist
-netlist
-netlist
-netlist
 Top Cell: top_level
 
 Cell Instances: 
