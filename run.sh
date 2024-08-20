@@ -34,7 +34,7 @@ if [ "$start_stage" == "synthesis" ] || [ "$start_stage" == "all" ]; then
 fi
 
 # Java Compilation Stage
-if [ "$start_stage" == "java_compile" ] || [ "$start_stage" == "all" ]; then
+if [ "$start_stage" == "compile" ] || [ "$start_stage" == "all" ]; then
     echo "Compiling Java files..."
     javac src/*.java
     check_exit_status "Java compilation"

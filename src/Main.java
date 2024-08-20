@@ -13,17 +13,18 @@ import java.io.IOException;
 public class Main {
 
     private static final Logger logger = Logger.getLogger(Main.class.getName());
+    protected static final String rootDir = "/home/bcheng/workspace/dev/place-and-route/";
 
     public static void main(String[] args) {
         try {
             // Logger to keep track of execution progress.
-            FileHandler fileHandler = new FileHandler("logger.txt", true); // 'true' appends to file
+            FileHandler fileHandler = new FileHandler(rootDir.concat("outputs/logger.txt"), true); // 'true' appends to file
             fileHandler.setFormatter(new SimpleFormatter());
             logger.addHandler(fileHandler);
             logger.setLevel(Level.ALL); // Set logging level to record all messages
 
             // BufferedWriter to print data.
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"))) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir.concat("outputs/output.txt")))) {
                 RapidWrightBlockPlacer RWPlacer = new RapidWrightBlockPlacer();
                 logger.log(Level.INFO, "Begin placement...\n");
                 RWPlacer.init(writer);
