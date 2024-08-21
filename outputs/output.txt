@@ -23,22 +23,60 @@ LUT2
 LUT1
 
 Cell Instances with Hierarchy: 
-CLOCK_ENABLE_GEN/count_reg[0]
-CLOCK_ENABLE_GEN/o_pulse_reg
-CLOCK_ENABLE_GEN/count[0]_i_1__0
-CLOCK_ENABLE_GEN/count_reg[3]
-CLOCK_ENABLE_GEN/count_reg[1]
-CLOCK_ENABLE_GEN/VCC
-CLOCK_ENABLE_GEN/count_reg[2]
-CLOCK_ENABLE_GEN/count_reg[0]_i_2
-CLOCK_ENABLE_GEN/o_pulse_i_1
-CLOCK_ENABLE_GEN/GND
-CLOCK_ENABLE_GEN/count[0]_i_3
-COUNTER/count_reg[0]
-COUNTER/count[2]_i_1
-COUNTER/count[3]_i_1
-COUNTER/count_reg[3]
-COUNTER/count_reg[1]
-COUNTER/count_reg[2]
-COUNTER/count[1]_i_1
-COUNTER/count[0]_i_1
+HierarchicalInstName:CLOCK_ENABLE_GEN/count_reg[0]
+	cellName: FDRE
+	Depth: 3
+HierarchicalInstName:CLOCK_ENABLE_GEN/o_pulse_reg
+	cellName: FDRE
+	Depth: 3
+HierarchicalInstName:CLOCK_ENABLE_GEN/count[0]_i_1__0
+	cellName: LUT5
+	Depth: 3
+HierarchicalInstName:CLOCK_ENABLE_GEN/count_reg[3]
+	cellName: FDRE
+	Depth: 3
+HierarchicalInstName:CLOCK_ENABLE_GEN/count_reg[1]
+	cellName: FDRE
+	Depth: 3
+HierarchicalInstName:CLOCK_ENABLE_GEN/VCC
+	cellName: VCC
+	Depth: 3
+HierarchicalInstName:CLOCK_ENABLE_GEN/count_reg[2]
+	cellName: FDRE
+	Depth: 3
+HierarchicalInstName:CLOCK_ENABLE_GEN/count_reg[0]_i_2
+	cellName: CARRY4
+	Depth: 3
+HierarchicalInstName:CLOCK_ENABLE_GEN/o_pulse_i_1
+	cellName: LUT5
+	Depth: 3
+HierarchicalInstName:CLOCK_ENABLE_GEN/GND
+	cellName: GND
+	Depth: 3
+HierarchicalInstName:CLOCK_ENABLE_GEN/count[0]_i_3
+	cellName: LUT1
+	Depth: 3
+HierarchicalInstName:COUNTER/count_reg[0]
+	cellName: FDRE
+	Depth: 3
+HierarchicalInstName:COUNTER/count[2]_i_1
+	cellName: LUT3
+	Depth: 3
+HierarchicalInstName:COUNTER/count[3]_i_1
+	cellName: LUT4
+	Depth: 3
+HierarchicalInstName:COUNTER/count_reg[3]
+	cellName: FDRE
+	Depth: 3
+HierarchicalInstName:COUNTER/count_reg[1]
+	cellName: FDRE
+	Depth: 3
+HierarchicalInstName:COUNTER/count_reg[2]
+	cellName: FDRE
+	Depth: 3
+HierarchicalInstName:COUNTER/count[1]_i_1
+	cellName: LUT2
+	Depth: 3
+HierarchicalInstName:COUNTER/count[0]_i_1
+	cellName: LUT1
+	Depth: 3
