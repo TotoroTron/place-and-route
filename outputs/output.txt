@@ -1,82 +1,135 @@
+Printing EDIFCell(s) in EDIFNetlist: 
+	CARRY4
+	EDIFPortInst(s): 
+		NAME: CI                   FULL NAME: count_reg[0]_i_2/CI            INDEX: -1
+		NAME: CO[0]                FULL NAME: count_reg[0]_i_2/CO[0]         INDEX: 3
+		NAME: CO[1]                FULL NAME: count_reg[0]_i_2/CO[1]         INDEX: 2
+		NAME: CO[2]                FULL NAME: count_reg[0]_i_2/CO[2]         INDEX: 1
+		NAME: CYINIT               FULL NAME: count_reg[0]_i_2/CYINIT        INDEX: -1
+		NAME: DI[0]                FULL NAME: count_reg[0]_i_2/DI[0]         INDEX: 3
+		NAME: DI[1]                FULL NAME: count_reg[0]_i_2/DI[1]         INDEX: 2
+		NAME: DI[2]                FULL NAME: count_reg[0]_i_2/DI[2]         INDEX: 1
+		NAME: DI[3]                FULL NAME: count_reg[0]_i_2/DI[3]         INDEX: 0
+		NAME: O[0]                 FULL NAME: count_reg[0]_i_2/O[0]          INDEX: 3
+		NAME: O[1]                 FULL NAME: count_reg[0]_i_2/O[1]          INDEX: 2
+		NAME: O[2]                 FULL NAME: count_reg[0]_i_2/O[2]          INDEX: 1
+		NAME: O[3]                 FULL NAME: count_reg[0]_i_2/O[3]          INDEX: 0
+		NAME: S[0]                 FULL NAME: count_reg[0]_i_2/S[0]          INDEX: 3
+		NAME: S[1]                 FULL NAME: count_reg[0]_i_2/S[1]          INDEX: 2
+		NAME: S[2]                 FULL NAME: count_reg[0]_i_2/S[2]          INDEX: 1
+		NAME: S[3]                 FULL NAME: count_reg[0]_i_2/S[3]          INDEX: 0
+	LUT4
+	EDIFPortInst(s): 
+		NAME: I0                   FULL NAME: count[3]_i_1/I0                INDEX: -1
+		NAME: I1                   FULL NAME: count[3]_i_1/I1                INDEX: -1
+		NAME: I2                   FULL NAME: count[3]_i_1/I2                INDEX: -1
+		NAME: I3                   FULL NAME: count[3]_i_1/I3                INDEX: -1
+		NAME: O                    FULL NAME: count[3]_i_1/O                 INDEX: -1
+	FDRE
+	EDIFPortInst(s): 
+		NAME: C                    FULL NAME: count_reg[3]/C                 INDEX: -1
+		NAME: CE                   FULL NAME: count_reg[3]/CE                INDEX: -1
+		NAME: D                    FULL NAME: count_reg[3]/D                 INDEX: -1
+		NAME: Q                    FULL NAME: count_reg[3]/Q                 INDEX: -1
+		NAME: R                    FULL NAME: count_reg[3]/R                 INDEX: -1
+	LUT5
+	EDIFPortInst(s): 
+		NAME: I0                   FULL NAME: count[0]_i_1__0/I0             INDEX: -1
+		NAME: I1                   FULL NAME: count[0]_i_1__0/I1             INDEX: -1
+		NAME: I2                   FULL NAME: count[0]_i_1__0/I2             INDEX: -1
+		NAME: I3                   FULL NAME: count[0]_i_1__0/I3             INDEX: -1
+		NAME: I4                   FULL NAME: count[0]_i_1__0/I4             INDEX: -1
+		NAME: O                    FULL NAME: count[0]_i_1__0/O              INDEX: -1
+	LUT3
+	EDIFPortInst(s): 
+		NAME: I0                   FULL NAME: count[2]_i_1/I0                INDEX: -1
+		NAME: I1                   FULL NAME: count[2]_i_1/I1                INDEX: -1
+		NAME: I2                   FULL NAME: count[2]_i_1/I2                INDEX: -1
+		NAME: O                    FULL NAME: count[2]_i_1/O                 INDEX: -1
+	LUT1
+	EDIFPortInst(s): 
+		NAME: I0                   FULL NAME: count[0]_i_1/I0                INDEX: -1
+		NAME: O                    FULL NAME: count[0]_i_1/O                 INDEX: -1
+	FDRE
+	EDIFPortInst(s): 
+		NAME: C                    FULL NAME: count_reg[0]/C                 INDEX: -1
+		NAME: CE                   FULL NAME: count_reg[0]/CE                INDEX: -1
+		NAME: D                    FULL NAME: count_reg[0]/D                 INDEX: -1
+		NAME: Q                    FULL NAME: count_reg[0]/Q                 INDEX: -1
+		NAME: R                    FULL NAME: count_reg[0]/R                 INDEX: -1
+	VCC
+	EDIFPortInst(s): 
+		NAME: P                    FULL NAME: VCC/P                          INDEX: -1
+	FDRE
+	EDIFPortInst(s): 
+		NAME: C                    FULL NAME: count_reg[2]/C                 INDEX: -1
+		NAME: CE                   FULL NAME: count_reg[2]/CE                INDEX: -1
+		NAME: D                    FULL NAME: count_reg[2]/D                 INDEX: -1
+		NAME: Q                    FULL NAME: count_reg[2]/Q                 INDEX: -1
+		NAME: R                    FULL NAME: count_reg[2]/R                 INDEX: -1
+	FDRE
+	EDIFPortInst(s): 
+		NAME: C                    FULL NAME: count_reg[1]/C                 INDEX: -1
+		NAME: CE                   FULL NAME: count_reg[1]/CE                INDEX: -1
+		NAME: D                    FULL NAME: count_reg[1]/D                 INDEX: -1
+		NAME: Q                    FULL NAME: count_reg[1]/Q                 INDEX: -1
+		NAME: R                    FULL NAME: count_reg[1]/R                 INDEX: -1
+	LUT2
+	EDIFPortInst(s): 
+		NAME: I0                   FULL NAME: count[1]_i_1/I0                INDEX: -1
+		NAME: I1                   FULL NAME: count[1]_i_1/I1                INDEX: -1
+		NAME: O                    FULL NAME: count[1]_i_1/O                 INDEX: -1
+	FDRE
+	EDIFPortInst(s): 
+		NAME: C                    FULL NAME: o_pulse_reg/C                  INDEX: -1
+		NAME: CE                   FULL NAME: o_pulse_reg/CE                 INDEX: -1
+		NAME: D                    FULL NAME: o_pulse_reg/D                  INDEX: -1
+		NAME: Q                    FULL NAME: o_pulse_reg/Q                  INDEX: -1
+		NAME: R                    FULL NAME: o_pulse_reg/R                  INDEX: -1
+	GND
+	EDIFPortInst(s): 
+		NAME: G                    FULL NAME: GND/G                          INDEX: -1
+	LUT1
+	EDIFPortInst(s): 
+		NAME: I0                   FULL NAME: count[0]_i_3/I0                INDEX: -1
+		NAME: O                    FULL NAME: count[0]_i_3/O                 INDEX: -1
+	FDRE
+	EDIFPortInst(s): 
+		NAME: C                    FULL NAME: count_reg[0]/C                 INDEX: -1
+		NAME: CE                   FULL NAME: count_reg[0]/CE                INDEX: -1
+		NAME: D                    FULL NAME: count_reg[0]/D                 INDEX: -1
+		NAME: Q                    FULL NAME: count_reg[0]/Q                 INDEX: -1
+		NAME: R                    FULL NAME: count_reg[0]/R                 INDEX: -1
+	FDRE
+	EDIFPortInst(s): 
+		NAME: C                    FULL NAME: count_reg[1]/C                 INDEX: -1
+		NAME: CE                   FULL NAME: count_reg[1]/CE                INDEX: -1
+		NAME: D                    FULL NAME: count_reg[1]/D                 INDEX: -1
+		NAME: Q                    FULL NAME: count_reg[1]/Q                 INDEX: -1
+		NAME: R                    FULL NAME: count_reg[1]/R                 INDEX: -1
+	FDRE
+	EDIFPortInst(s): 
+		NAME: C                    FULL NAME: count_reg[2]/C                 INDEX: -1
+		NAME: CE                   FULL NAME: count_reg[2]/CE                INDEX: -1
+		NAME: D                    FULL NAME: count_reg[2]/D                 INDEX: -1
+		NAME: Q                    FULL NAME: count_reg[2]/Q                 INDEX: -1
+		NAME: R                    FULL NAME: count_reg[2]/R                 INDEX: -1
+	FDRE
+	EDIFPortInst(s): 
+		NAME: C                    FULL NAME: count_reg[3]/C                 INDEX: -1
+		NAME: CE                   FULL NAME: count_reg[3]/CE                INDEX: -1
+		NAME: D                    FULL NAME: count_reg[3]/D                 INDEX: -1
+		NAME: Q                    FULL NAME: count_reg[3]/Q                 INDEX: -1
+		NAME: R                    FULL NAME: count_reg[3]/R                 INDEX: -1
+	LUT5
+	EDIFPortInst(s): 
+		NAME: I0                   FULL NAME: o_pulse_i_1/I0                 INDEX: -1
+		NAME: I1                   FULL NAME: o_pulse_i_1/I1                 INDEX: -1
+		NAME: I2                   FULL NAME: o_pulse_i_1/I2                 INDEX: -1
+		NAME: I3                   FULL NAME: o_pulse_i_1/I3                 INDEX: -1
+		NAME: I4                   FULL NAME: o_pulse_i_1/I4                 INDEX: -1
+		NAME: O                    FULL NAME: o_pulse_i_1/O                  INDEX: -1
 
-Top Cell: top_level
-
-Cell Instances: 
-FDRE
-FDRE
-LUT5
-FDRE
-FDRE
-VCC
-FDRE
-CARRY4
-LUT5
-GND
-LUT1
-FDRE
-LUT3
-LUT4
-FDRE
-FDRE
-FDRE
-LUT2
-LUT1
-
-Cell Instances with Hierarchy: 
-HierarchicalInstName:CLOCK_ENABLE_GEN/count_reg[0]
-	cellName: FDRE
-	Depth: 3
-HierarchicalInstName:CLOCK_ENABLE_GEN/o_pulse_reg
-	cellName: FDRE
-	Depth: 3
-HierarchicalInstName:CLOCK_ENABLE_GEN/count[0]_i_1__0
-	cellName: LUT5
-	Depth: 3
-HierarchicalInstName:CLOCK_ENABLE_GEN/count_reg[3]
-	cellName: FDRE
-	Depth: 3
-HierarchicalInstName:CLOCK_ENABLE_GEN/count_reg[1]
-	cellName: FDRE
-	Depth: 3
-HierarchicalInstName:CLOCK_ENABLE_GEN/VCC
-	cellName: VCC
-	Depth: 3
-HierarchicalInstName:CLOCK_ENABLE_GEN/count_reg[2]
-	cellName: FDRE
-	Depth: 3
-HierarchicalInstName:CLOCK_ENABLE_GEN/count_reg[0]_i_2
-	cellName: CARRY4
-	Depth: 3
-HierarchicalInstName:CLOCK_ENABLE_GEN/o_pulse_i_1
-	cellName: LUT5
-	Depth: 3
-HierarchicalInstName:CLOCK_ENABLE_GEN/GND
-	cellName: GND
-	Depth: 3
-HierarchicalInstName:CLOCK_ENABLE_GEN/count[0]_i_3
-	cellName: LUT1
-	Depth: 3
-HierarchicalInstName:COUNTER/count_reg[0]
-	cellName: FDRE
-	Depth: 3
-HierarchicalInstName:COUNTER/count[2]_i_1
-	cellName: LUT3
-	Depth: 3
-HierarchicalInstName:COUNTER/count[3]_i_1
-	cellName: LUT4
-	Depth: 3
-HierarchicalInstName:COUNTER/count_reg[3]
-	cellName: FDRE
-	Depth: 3
-HierarchicalInstName:COUNTER/count_reg[1]
-	cellName: FDRE
-	Depth: 3
-HierarchicalInstName:COUNTER/count_reg[2]
-	cellName: FDRE
-	Depth: 3
-HierarchicalInstName:COUNTER/count[1]_i_1
-	cellName: LUT2
-	Depth: 3
-HierarchicalInstName:COUNTER/count[0]_i_1
-	cellName: LUT1
-	Depth: 3
+Printing EDIFNet(s): 
+	Net #0: 
+	Top Level EDIFPortInst(s): 
