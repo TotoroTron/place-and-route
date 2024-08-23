@@ -27,6 +27,7 @@ import com.xilinx.rapidwright.edif.EDIFCellInst;
 import com.xilinx.rapidwright.edif.EDIFHierCellInst;
 import com.xilinx.rapidwright.edif.EDIFPort;
 import com.xilinx.rapidwright.edif.EDIFPortInst;
+import com.xilinx.rapidwright.edif.EDIFHierPortInst;
 
 
 import com.xilinx.rapidwright.device.Device;
@@ -56,7 +57,8 @@ public abstract class Placer {
         for (EDIFPortInst epi : epis) {
             String s = String.format(
                 "\n\t\tNAME: %-20s FULL NAME: %-30s INDEX: %d", 
-                epi.getName(), epi.getFullName(), epi.getIndex());
+                epi.getName(), epi.getFullName(), epi.getIndex()
+            );
             writer.write(s);
         }
     }
@@ -83,32 +85,23 @@ public abstract class Placer {
 
         writer.write("\n\nPrinting EDIFHierNet(s): ");
         Map<EDIFHierNet, EDIFHierNet> ehns = netlist.getParentNetMap();
+        // Mapping of net aliases to their corresponding canonical (parental) nets.
+        // Net aliases refer to their canonical nets.
+        // A canonical net is the primary/authoritative net that the alias ultimately refers to.
         for (Map.Entry<EDIFHierNet, EDIFHierNet> entry : ehns.entrySet()) {
-            EDIFHierNet key = entry.getKey();
-            EDIFHierNet value = entry.getValue();
-            String s = String.format(
-                "\n\t %-50s  =>\t\t %-50s",
-                key.getHierarchicalNetName(), value.getHierarchicalNetName()
+            EDIFHierNet alias = entry.getKey();
+            EDIFHierNet net = entry.getValue();
+            String s1 = String.format(
+                "\n\tAlias: %-40s  =>\tCanonical: %-40s",
+                alias.getHierarchicalNetName(), net.getHierarchicalNetName()
             );
-            writer.write(s);
-        }
-
-
-        writer.write("\n\nPrinting EDIFNet(s): ");
-        HashMap<String, EDIFNet> nets = netlist.generateEDIFNetMap(ecis);
-        writer.write("Net map contains "+nets.size()+" nets.");
-        for (int i = 0; i < nets.size(); i++) {
-            EDIFNet net = nets.get(i);
-            writer.write("\n\tNet #"+i+": ");
-            writer.write("\n\tEDIFPortInst(s): ");
-            if (net == null) {
-                writer.write("\n\t\tNet is null!");
-                continue;
+            writer.write(s1);
+            writer.write("\n\t\tLeaf port instances connected to this net: ");
+            List<EDIFHierPortInst> ehpis = net.getLeafHierPortInsts();
+            for (EDIFHierPortInst ehpi : ehpis) {
+                writer.write("\n\t\t\t"+ehpi.getFullHierarchicalInstName());
             }
-            Collection<EDIFPortInst> epis = net.getPortInsts();
-            printEDIFPortInsts(writer, epis);
         }
-
 
         // Keeps track of a set of EDIFCell objects that are part of a netlist.
         EDIFLibrary library = netlist.getHDIPrimitivesLibrary();
@@ -117,6 +110,25 @@ public abstract class Placer {
     protected abstract Design place(Design design); 
 
 }
+
+
+        /*
+         * writer.write("\n\nPrinting EDIFNet(s): ");
+         * HashMap<String, EDIFNet> nets = netlist.generateEDIFNetMap(ecis);
+         * writer.write("Net map contains "+nets.size()+" nets.");
+         * for (int i = 0; i < nets.size(); i++) {
+         *     EDIFNet net = nets.get(i);
+         *     writer.write("\n\tNet #"+i+": ");
+         *     writer.write("\n\tEDIFPortInst(s): ");
+         *     if (net == null) {
+         *         writer.write("\n\t\tNet is null!");
+         *         continue;
+         *     }
+         *     Collection<EDIFPortInst> epis = net.getPortInsts();
+         *     printEDIFPortInsts(writer, epis);
+         * }
+        */
+
 
     // https://www.rapidwright.io/javadoc/overview-tree.html
     // https://www.rapidwright.io/javadoc/com/xilinx/rapidwright/design/Design.html
