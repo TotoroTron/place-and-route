@@ -17,10 +17,11 @@ import com.xilinx.rapidwright.design.ModuleInst;
 import com.xilinx.rapidwright.design.ModuleImpls;
 import com.xilinx.rapidwright.design.Cell;
 
-
+import com.xilinx.rapidwright.edif.EDIFTools;
 import com.xilinx.rapidwright.edif.EDIFLibrary;
 import com.xilinx.rapidwright.edif.EDIFNetlist;
 import com.xilinx.rapidwright.edif.EDIFNet;
+import com.xilinx.rapidwright.edif.EDIFHierNet;
 import com.xilinx.rapidwright.edif.EDIFCell;
 import com.xilinx.rapidwright.edif.EDIFCellInst;
 import com.xilinx.rapidwright.edif.EDIFHierCellInst;
@@ -59,13 +60,15 @@ public abstract class Placer {
             writer.write(s);
         }
     }
+
+    
     
     public void printDesignInfo(BufferedWriter writer, Design design) throws IOException {
 
         // Top level object for a logical EDIF netlist.
         EDIFNetlist netlist = design.getNetlist();
 
-        // Graph G = (HashMap<String, EDIFCellInst>, HashMap<String, EDIFNet>)
+        // Graph G = (cells, nets)
 
         writer.write("Printing EDIFCell(s) in EDIFNetlist: ");
         HashMap<String, EDIFCellInst> ecis = netlist.generateCellInstMap();
@@ -76,13 +79,33 @@ public abstract class Placer {
             printEDIFPortInsts(writer, epis);
         }
 
+        // Map.keySet() vs Map.values() vs Map.entrySet()
+
+        writer.write("\n\nPrinting EDIFHierNet(s): ");
+        Map<EDIFHierNet, EDIFHierNet> ehns = netlist.getParentNetMap();
+        for (Map.Entry<EDIFHierNet, EDIFHierNet> entry : ehns.entrySet()) {
+            EDIFHierNet key = entry.getKey();
+            EDIFHierNet value = entry.getValue();
+            String s = String.format(
+                "\n\t %-50s  =>\t\t %-50s",
+                key.getHierarchicalNetName(), value.getHierarchicalNetName()
+            );
+            writer.write(s);
+        }
+
+
         writer.write("\n\nPrinting EDIFNet(s): ");
         HashMap<String, EDIFNet> nets = netlist.generateEDIFNetMap(ecis);
+        writer.write("Net map contains "+nets.size()+" nets.");
         for (int i = 0; i < nets.size(); i++) {
-            writer.write("\n\tNet #"+i+": ");
-            writer.write("\n\tTop Level EDIFPortInst(s): ");
             EDIFNet net = nets.get(i);
-            List<EDIFPortInst> epis = netlist.getSinksFromNet(net);
+            writer.write("\n\tNet #"+i+": ");
+            writer.write("\n\tEDIFPortInst(s): ");
+            if (net == null) {
+                writer.write("\n\t\tNet is null!");
+                continue;
+            }
+            Collection<EDIFPortInst> epis = net.getPortInsts();
             printEDIFPortInsts(writer, epis);
         }
 

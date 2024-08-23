@@ -130,6 +130,172 @@ Printing EDIFCell(s) in EDIFNetlist:
 		NAME: I4                   FULL NAME: o_pulse_i_1/I4                 INDEX: -1
 		NAME: O                    FULL NAME: o_pulse_i_1/O                  INDEX: -1
 
-Printing EDIFNet(s): 
+Printing EDIFHierNet(s): 
+	 COUNTER/plusOp[3]                                   =>		 COUNTER/plusOp[3]                                 
+	 CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_7               =>		 CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_7             
+	 COUNTER/Q[0]                                        =>		 COUNTER/Q[0]                                      
+	 COUNTER/plusOp[1]                                   =>		 COUNTER/plusOp[1]                                 
+	 ov_led[1]                                           =>		 COUNTER/Q[1]                                      
+	 CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_1               =>		 CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_1             
+	 CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_2               =>		 CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_2             
+	 CLOCK_ENABLE_GEN/<const1>                           =>		 CLOCK_ENABLE_GEN/<const1>                         
+	 CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_5               =>		 CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_5             
+	 COUNTER/E[0]                                        =>		 CLOCK_ENABLE_GEN/E[0]                             
+	 CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_6               =>		 CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_6             
+	 CLOCK_ENABLE_GEN/o_pulse_i_1_n_0                    =>		 CLOCK_ENABLE_GEN/o_pulse_i_1_n_0                  
+	 CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_3               =>		 CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_3             
+	 CLOCK_ENABLE_GEN/count[0]_i_3_n_0                   =>		 CLOCK_ENABLE_GEN/count[0]_i_3_n_0                 
+	 CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_4               =>		 CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_4             
+	 o_pulse                                             =>		 CLOCK_ENABLE_GEN/E[0]                             
+	 COUNTER/i_rst                                       =>		 i_rst                                             
+	 CLOCK_ENABLE_GEN/count_reg[1]                       =>		 CLOCK_ENABLE_GEN/count_reg[1]                     
+	 CLOCK_ENABLE_GEN/count_reg[3]                       =>		 CLOCK_ENABLE_GEN/count_reg[3]                     
+	 COUNTER/Q[2]                                        =>		 COUNTER/Q[2]                                      
+	 i_rst                                               =>		 i_rst                                             
+	 COUNTER/i_clk                                       =>		 i_clk                                             
+	 CLOCK_ENABLE_GEN/E[0]                               =>		 CLOCK_ENABLE_GEN/E[0]                             
+	 ov_led[0]                                           =>		 COUNTER/Q[0]                                      
+	 COUNTER/plusOp[0]                                   =>		 COUNTER/plusOp[0]                                 
+	 ov_led[2]                                           =>		 COUNTER/Q[2]                                      
+	 COUNTER/plusOp[2]                                   =>		 COUNTER/plusOp[2]                                 
+	 CLOCK_ENABLE_GEN/i_rst                              =>		 i_rst                                             
+	 CLOCK_ENABLE_GEN/<const0>                           =>		 CLOCK_ENABLE_GEN/<const0>                         
+	 CLOCK_ENABLE_GEN/count_reg[0]                       =>		 CLOCK_ENABLE_GEN/count_reg[0]                     
+	 i_clk                                               =>		 i_clk                                             
+	 CLOCK_ENABLE_GEN/count_reg[2]                       =>		 CLOCK_ENABLE_GEN/count_reg[2]                     
+	 CLOCK_ENABLE_GEN/count[0]_i_1__0_n_0                =>		 CLOCK_ENABLE_GEN/count[0]_i_1__0_n_0              
+	 CLOCK_ENABLE_GEN/i_clk                              =>		 i_clk                                             
+	 ov_led[3]                                           =>		 COUNTER/Q[3]                                      
+	 COUNTER/Q[1]                                        =>		 COUNTER/Q[1]                                      
+	 COUNTER/Q[3]                                        =>		 COUNTER/Q[3]                                      
+
+Printing EDIFNet(s): Net map contains 43 nets.
 	Net #0: 
-	Top Level EDIFPortInst(s): 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #1: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #2: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #3: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #4: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #5: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #6: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #7: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #8: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #9: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #10: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #11: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #12: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #13: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #14: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #15: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #16: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #17: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #18: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #19: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #20: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #21: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #22: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #23: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #24: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #25: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #26: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #27: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #28: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #29: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #30: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #31: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #32: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #33: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #34: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #35: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #36: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #37: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #38: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #39: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #40: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #41: 
+	EDIFPortInst(s): 
+		Net is null!
+	Net #42: 
+	EDIFPortInst(s): 
+		Net is null!
