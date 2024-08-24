@@ -80,6 +80,28 @@ public abstract class Placer {
             Collection<EDIFPortInst> epis = eci.getPortInsts();
             printEDIFPortInsts(writer, epis);
         }
+        
+        writer.write("\n\n\n");
+
+
+        writer.write("Printing EDIFHierCell(s) in EDIFNetlist: ");
+        List<EDIFHierCellInst> ehcis = netlist.getAllLeafHierCellInstances();
+        for (EDIFHierCellInst ehci : ehcis) {
+            writer.write("\n\t"+ehci.getCellName());
+            writer.write("\n\tEDIFHierPortInst(s): ");
+            List<EDIFHierPortInst> ehpis = ehci.getHierPortInsts();
+            //
+            // implement the prinout
+            //
+            //
+            //
+        }
+
+
+
+
+
+        writer.write("\n\n\n");
 
         // Map.keySet() vs Map.values() vs Map.entrySet()
 
@@ -96,10 +118,12 @@ public abstract class Placer {
                 alias.getHierarchicalNetName(), net.getHierarchicalNetName()
             );
             writer.write(s1);
-            writer.write("\n\t\tLeaf port instances connected to this net: ");
-            List<EDIFHierPortInst> ehpis = net.getLeafHierPortInsts();
+            writer.write("\n\t\tPort instances connected to this net: ");
+            Collection<EDIFHierPortInst> ehpis = net.getPortInsts();
             for (EDIFHierPortInst ehpi : ehpis) {
-                writer.write("\n\t\t\t"+ehpi.getFullHierarchicalInstName());
+                // writer.write("\n\t\t"+ehpi.getFullHierarchicalInstName());
+                writer.write("\n\t\t"+ehpi.toString());
+                // writer.write("\n\t\t"+ehpi.getHierarchicalInstName());
             }
         }
 
