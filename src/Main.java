@@ -22,22 +22,12 @@ public class Main {
             fileHandler.setFormatter(new SimpleFormatter());
             logger.addHandler(fileHandler);
             logger.setLevel(Level.ALL); // Set logging level to record all messages
+
+            logger.log(Level.INFO, "Begin SimulatedAnnealingPlacer...");
+            SimulatedAnnealingPlacer SAPlacer = new SimulatedAnnealingPlacer();
+            SAPlacer.run();
+            logger.log(Level.INFO, "Data writing complete. Check 'output.txt'");
             
-            // BufferedWriter to print data.
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir+"outputs/output.txt"))) {
-
-                logger.log(Level.INFO, "Begin RapidWrightBlockPlacer...");
-                RapidWrightBlockPlacer RWPlacer = new RapidWrightBlockPlacer();
-                RWPlacer.run(writer);
-
-                logger.log(Level.INFO, "Begin SimulatedAnnealingPlacer...");
-                SimulatedAnnealingPlacer SAPlacer = new SimulatedAnnealingPlacer();
-                SAPlacer.run(writer);
-
-                logger.log(Level.INFO, "Data writing complete. Check 'output.txt'");
-            } catch (IOException e) {
-                logger.log(Level.SEVERE, "An IOException occurred while writing data.", e);
-            }
         } catch (IOException e) {
             logger.log(Level.SEVERE, "An IOException occurred while configuring the logger.", e);
         }

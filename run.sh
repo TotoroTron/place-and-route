@@ -26,7 +26,7 @@ check_exit_status() {
 }
 
 # Vivado Synthesis Stage
-if [ "$start_stage" == "synthesis" ] || [ "$start_stage" == "all" ]; then
+if [ "$start_stage" == "synth" ] || [ "$start_stage" == "all" ]; then
     echo "Running Vivado synthesis..."
     vivado -mode batch -source $SYNTH_TCL -nolog -nojournal
     check_exit_status "Vivado synthesis"
@@ -42,7 +42,7 @@ if [ "$start_stage" == "compile" ] || [ "$start_stage" == "all" ]; then
 fi
 
 # Java Placement Stage
-if [ "$start_stage" == "placement" ] || [ "$start_stage" == "all" ]; then
+if [ "$start_stage" == "place" ] || [ "$start_stage" == "all" ]; then
     echo "Running Java placement..."
     java -cp "$CLASSPATH:." src.Main
     check_exit_status "Java placement execution"

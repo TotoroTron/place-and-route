@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import java.io.IOException;
+
 import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.device.Device;
 
@@ -26,7 +28,7 @@ import com.xilinx.rapidwright.edif.EDIFHierCellInst;
 
 public class AnalyticalPlacer extends Placer {
 
-    public AnalyticalPlacer() {
+    public AnalyticalPlacer() throws IOException {
         super();
     }
 
