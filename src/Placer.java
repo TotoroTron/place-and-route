@@ -63,39 +63,40 @@ public abstract class Placer {
         }
     }
 
-    
+    private void printEDIFHierPortInsts(BufferedWriter writer, Collection<EDIFHierPortInst> ehpis) throws IOException {
+        for (EDIFHierPortInst ehpi : ehpis) {
+            writer.write("\n\t\t\t"+ehpi.toString());
+            // writerNets.write("\n\t\t\t"+ehpi.getFullHierarchicalInstName());
+            // writerNets.write("\n\t\t\t"+ehpi.getHierarchicalInstName());
+        }
+    } 
     
     public void printDesignInfo(Design design) throws IOException {
 
-        // Top level object for a logical EDIF netlist.
+        // Graph G = (ports, nets)
+        // nets = Collection<Collection<EDIFHierPortInst>> 
+        
         EDIFNetlist netlist = design.getNetlist();
 
-        // Graph G = (cells, nets)
-
+        // CELLS
         writerCells.write("Printing EDIFHierCell(s) in EDIFNetlist: ");
         List<EDIFHierCellInst> ehcis = netlist.getAllLeafHierCellInstances();
         for (EDIFHierCellInst ehci : ehcis) {
-            writerCells.write("\n\t"+ehci.getCellName());
-            writerCells.write("\n\tEDIFHierPortInst(s) on this cell: ");
+            // writerCells.write("\n\t"+ehci.getCellName());
+            writerCells.write("\n\t"+ehci.getFullHierarchicalInstName());
+            writerCells.write("\n\t\tEDIFHierPortInst(s) on this cell: ");
             List<EDIFHierPortInst> ehpis = ehci.getHierPortInsts();
-            for (EDIFHierPortInst ehpi : ehpis) {
-                writerCells.write("\n\t\t"+ehpi.toString());
-            }
+            printEDIFHierPortInsts(writerCells, ehpis);
         }
 
-        // Map.keySet() vs Map.values() vs Map.entrySet()
-
+        // NETS
         writerNets.write("Printing EDIFHierNet(s): ");
         Map<EDIFHierNet, EDIFHierNet> ehns = netlist.getParentNetMap();
         for (EDIFHierNet ehn : ehns.values()) {
             writerNets.write("\n\t"+ehn.getHierarchicalNetName());
             writerNets.write("\n\t\tEDIFHierPortInst(s) on this net: ");
             Collection<EDIFHierPortInst> ehpis = ehn.getPortInsts();
-            for (EDIFHierPortInst ehpi : ehpis) {
-                writerNets.write("\n\t\t\t"+ehpi.toString());
-                // writerNets.write("\n\t\t"+ehpi.getFullHierarchicalInstName());
-                // writerNets.write("\n\t\t"+ehpi.getHierarchicalInstName());
-            }
+            printEDIFHierPortInsts(writerNets, ehpis);
         }
 
         // Keeps track of a set of EDIFCell objects that are part of a netlist.
