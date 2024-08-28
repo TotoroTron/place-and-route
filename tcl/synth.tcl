@@ -5,6 +5,8 @@ set design_name "top_level"
 set synthesized_dcp "$root_dir/outputs/synthesized.dcp" 
 
 set hdl_dir $root_dir/hdl/vhdl/counter/counter.srcs/sources_1/new
+# set hdl_dir $root_dir/hdl/vhdl/and/and.srcs/sources_1/new
+
 set hdl_files [glob -nocomplain -directory $hdl_dir *.vhd]
 
 

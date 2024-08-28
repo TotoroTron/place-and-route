@@ -76,7 +76,7 @@ public abstract class Placer {
         List<EDIFHierCellInst> ehcis = netlist.getAllLeafHierCellInstances();
         for (EDIFHierCellInst ehci : ehcis) {
             writerCells.write("\n\t"+ehci.getCellName());
-            writerCells.write("\n\tEDIFHierPortInst(s): ");
+            writerCells.write("\n\tEDIFHierPortInst(s) on this cell: ");
             List<EDIFHierPortInst> ehpis = ehci.getHierPortInsts();
             for (EDIFHierPortInst ehpi : ehpis) {
                 writerCells.write("\n\t\t"+ehpi.toString());
@@ -84,30 +84,16 @@ public abstract class Placer {
         }
 
         // Map.keySet() vs Map.values() vs Map.entrySet()
-        
-
-        writerNets.newLine();
-        writerNets.newLine();
-        writerNets.newLine();
 
         writerNets.write("Printing EDIFHierNet(s): ");
         Map<EDIFHierNet, EDIFHierNet> ehns = netlist.getParentNetMap();
-        // Mapping of net aliases to their corresponding canonical (parental) nets.
-        // Net aliases refer to their canonical nets.
-        // A canonical net is the primary/authoritative net that the alias ultimately refers to.
-        for (Map.Entry<EDIFHierNet, EDIFHierNet> entry : ehns.entrySet()) {
-            EDIFHierNet alias = entry.getKey();
-            EDIFHierNet net = entry.getValue();
-            String s1 = String.format(
-                "\n\tAlias: %-40s  =>\tCanonical: %-40s",
-                alias.getHierarchicalNetName(), net.getHierarchicalNetName()
-            );
-            writerNets.write(s1);
-            writerNets.write("\n\t\tPort instances connected to this net: ");
-            Collection<EDIFHierPortInst> ehpis = net.getPortInsts();
+        for (EDIFHierNet ehn : ehns.values()) {
+            writerNets.write("\n\t"+ehn.getHierarchicalNetName());
+            writerNets.write("\n\t\tEDIFHierPortInst(s) on this net: ");
+            Collection<EDIFHierPortInst> ehpis = ehn.getPortInsts();
             for (EDIFHierPortInst ehpi : ehpis) {
+                writerNets.write("\n\t\t\t"+ehpi.toString());
                 // writerNets.write("\n\t\t"+ehpi.getFullHierarchicalInstName());
-                writerNets.write("\n\t\t"+ehpi.toString());
                 // writerNets.write("\n\t\t"+ehpi.getHierarchicalInstName());
             }
         }
@@ -119,6 +105,19 @@ public abstract class Placer {
     protected abstract Design place(Design design); 
 
 }
+
+/*
+ * Map<EDIFHierNet, EDIFHierNet> ehns = netlist.getParentNetMap();
+ * for (Map.Entry<EDIFHierNet, EDIFHierNet> entry : ehns.entrySet()) {
+ *     EDIFHierNet alias = entry.getKey();
+ *     EDIFHierNet net = entry.getValue();
+ *     String s1 = String.format(
+ *         "\n\tAlias: %-40s  =>\tCanonical: %-40s",
+ *         alias.getHierarchicalNetName(), net.getHierarchicalNetName()
+ *     );
+ *     writerNets.write(s1);
+*/
+
 /*
  * writerNets.write("Printing EDIFHierNet(s): ");
  * List<EDIFHierNet> ehns1 = netlist.getNetAliases();

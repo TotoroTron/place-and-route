@@ -1,193 +1,193 @@
 Printing EDIFHierNet(s): 
-	Alias: COUNTER/plusOp[3]                         =>	Canonical: COUNTER/plusOp[3]                       
-		Port instances connected to this net: 
-		COUNTER/count[3]_i_1/O
-		COUNTER/count_reg[3]/D
-	Alias: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_7     =>	Canonical: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_7   
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/count_reg[0]/D
-		CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[0]
-	Alias: COUNTER/Q[0]                              =>	Canonical: COUNTER/Q[0]                            
-		Port instances connected to this net: 
-		COUNTER/Q[0]
-		COUNTER/count[0]_i_1/I0
-		COUNTER/count[1]_i_1/I0
-		COUNTER/count[2]_i_1/I0
-		COUNTER/count[3]_i_1/I1
-		COUNTER/count_reg[0]/Q
-	Alias: COUNTER/plusOp[1]                         =>	Canonical: COUNTER/plusOp[1]                       
-		Port instances connected to this net: 
-		COUNTER/count[1]_i_1/O
-		COUNTER/count_reg[1]/D
-	Alias: ov_led[1]                                 =>	Canonical: COUNTER/Q[1]                            
-		Port instances connected to this net: 
-		COUNTER/Q[1]
-		COUNTER/count[1]_i_1/I1
-		COUNTER/count[2]_i_1/I1
-		COUNTER/count[3]_i_1/I0
-		COUNTER/count_reg[1]/Q
-	Alias: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_1     =>	Canonical: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_1   
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/count_reg[0]_i_2/CO[2]
-	Alias: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_2     =>	Canonical: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_2   
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/count_reg[0]_i_2/CO[1]
-	Alias: CLOCK_ENABLE_GEN/<const1>                 =>	Canonical: CLOCK_ENABLE_GEN/<const1>               
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/VCC/P
-		CLOCK_ENABLE_GEN/count_reg[0]/CE
-		CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[0]
-		CLOCK_ENABLE_GEN/count_reg[1]/CE
-		CLOCK_ENABLE_GEN/count_reg[2]/CE
-		CLOCK_ENABLE_GEN/count_reg[3]/CE
-		CLOCK_ENABLE_GEN/o_pulse_reg/CE
-	Alias: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_5     =>	Canonical: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_5   
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[2]
-		CLOCK_ENABLE_GEN/count_reg[2]/D
-	Alias: COUNTER/E[0]                              =>	Canonical: CLOCK_ENABLE_GEN/E[0]                   
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/E[0]
-		CLOCK_ENABLE_GEN/o_pulse_reg/Q
-	Alias: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_6     =>	Canonical: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_6   
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[1]
-		CLOCK_ENABLE_GEN/count_reg[1]/D
-	Alias: CLOCK_ENABLE_GEN/o_pulse_i_1_n_0          =>	Canonical: CLOCK_ENABLE_GEN/o_pulse_i_1_n_0        
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/o_pulse_i_1/O
-		CLOCK_ENABLE_GEN/o_pulse_reg/D
-	Alias: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_3     =>	Canonical: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_3   
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/count_reg[0]_i_2/CO[0]
-	Alias: CLOCK_ENABLE_GEN/count[0]_i_3_n_0         =>	Canonical: CLOCK_ENABLE_GEN/count[0]_i_3_n_0       
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/count[0]_i_3/O
-		CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[0]
-	Alias: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_4     =>	Canonical: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_4   
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[3]
-		CLOCK_ENABLE_GEN/count_reg[3]/D
-	Alias: o_pulse                                   =>	Canonical: CLOCK_ENABLE_GEN/E[0]                   
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/E[0]
-		CLOCK_ENABLE_GEN/o_pulse_reg/Q
-	Alias: COUNTER/i_rst                             =>	Canonical: i_rst                                   
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/i_rst
-		COUNTER/i_rst
-		i_rst
-	Alias: CLOCK_ENABLE_GEN/count_reg[1]             =>	Canonical: CLOCK_ENABLE_GEN/count_reg[1]           
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/count[0]_i_1__0/I3
-		CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[1]
-		CLOCK_ENABLE_GEN/count_reg[1]/Q
-		CLOCK_ENABLE_GEN/o_pulse_i_1/I2
-	Alias: CLOCK_ENABLE_GEN/count_reg[3]             =>	Canonical: CLOCK_ENABLE_GEN/count_reg[3]           
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/count[0]_i_1__0/I1
-		CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[3]
-		CLOCK_ENABLE_GEN/count_reg[3]/Q
-		CLOCK_ENABLE_GEN/o_pulse_i_1/I3
-	Alias: COUNTER/Q[2]                              =>	Canonical: COUNTER/Q[2]                            
-		Port instances connected to this net: 
-		COUNTER/Q[2]
-		COUNTER/count[2]_i_1/I2
-		COUNTER/count[3]_i_1/I2
-		COUNTER/count_reg[2]/Q
-	Alias: i_rst                                     =>	Canonical: i_rst                                   
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/i_rst
-		COUNTER/i_rst
-		i_rst
-	Alias: COUNTER/i_clk                             =>	Canonical: i_clk                                   
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/i_clk
-		COUNTER/i_clk
-		i_clk
-	Alias: CLOCK_ENABLE_GEN/E[0]                     =>	Canonical: CLOCK_ENABLE_GEN/E[0]                   
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/E[0]
-		CLOCK_ENABLE_GEN/o_pulse_reg/Q
-	Alias: ov_led[0]                                 =>	Canonical: COUNTER/Q[0]                            
-		Port instances connected to this net: 
-		COUNTER/Q[0]
-		COUNTER/count[0]_i_1/I0
-		COUNTER/count[1]_i_1/I0
-		COUNTER/count[2]_i_1/I0
-		COUNTER/count[3]_i_1/I1
-		COUNTER/count_reg[0]/Q
-	Alias: COUNTER/plusOp[0]                         =>	Canonical: COUNTER/plusOp[0]                       
-		Port instances connected to this net: 
-		COUNTER/count[0]_i_1/O
-		COUNTER/count_reg[0]/D
-	Alias: ov_led[2]                                 =>	Canonical: COUNTER/Q[2]                            
-		Port instances connected to this net: 
-		COUNTER/Q[2]
-		COUNTER/count[2]_i_1/I2
-		COUNTER/count[3]_i_1/I2
-		COUNTER/count_reg[2]/Q
-	Alias: COUNTER/plusOp[2]                         =>	Canonical: COUNTER/plusOp[2]                       
-		Port instances connected to this net: 
-		COUNTER/count[2]_i_1/O
-		COUNTER/count_reg[2]/D
-	Alias: CLOCK_ENABLE_GEN/i_rst                    =>	Canonical: i_rst                                   
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/i_rst
-		COUNTER/i_rst
-		i_rst
-	Alias: CLOCK_ENABLE_GEN/<const0>                 =>	Canonical: CLOCK_ENABLE_GEN/<const0>               
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/GND/G
-		CLOCK_ENABLE_GEN/count_reg[0]_i_2/CI
-		CLOCK_ENABLE_GEN/count_reg[0]_i_2/CYINIT
-		CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[1]
-		CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[2]
-		CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[3]
-		CLOCK_ENABLE_GEN/o_pulse_reg/R
-	Alias: CLOCK_ENABLE_GEN/count_reg[0]             =>	Canonical: CLOCK_ENABLE_GEN/count_reg[0]           
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/count[0]_i_1__0/I2
-		CLOCK_ENABLE_GEN/count[0]_i_3/I0
-		CLOCK_ENABLE_GEN/count_reg[0]/Q
-		CLOCK_ENABLE_GEN/o_pulse_i_1/I0
-	Alias: i_clk                                     =>	Canonical: i_clk                                   
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/i_clk
-		COUNTER/i_clk
-		i_clk
-	Alias: CLOCK_ENABLE_GEN/count_reg[2]             =>	Canonical: CLOCK_ENABLE_GEN/count_reg[2]           
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/count[0]_i_1__0/I4
-		CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[2]
-		CLOCK_ENABLE_GEN/count_reg[2]/Q
-		CLOCK_ENABLE_GEN/o_pulse_i_1/I1
-	Alias: CLOCK_ENABLE_GEN/count[0]_i_1__0_n_0      =>	Canonical: CLOCK_ENABLE_GEN/count[0]_i_1__0_n_0    
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/count[0]_i_1__0/O
-		CLOCK_ENABLE_GEN/count_reg[0]/R
-		CLOCK_ENABLE_GEN/count_reg[1]/R
-		CLOCK_ENABLE_GEN/count_reg[2]/R
-		CLOCK_ENABLE_GEN/count_reg[3]/R
-	Alias: CLOCK_ENABLE_GEN/i_clk                    =>	Canonical: i_clk                                   
-		Port instances connected to this net: 
-		CLOCK_ENABLE_GEN/i_clk
-		COUNTER/i_clk
-		i_clk
-	Alias: ov_led[3]                                 =>	Canonical: COUNTER/Q[3]                            
-		Port instances connected to this net: 
-		COUNTER/Q[3]
-		COUNTER/count[3]_i_1/I3
-		COUNTER/count_reg[3]/Q
-	Alias: COUNTER/Q[1]                              =>	Canonical: COUNTER/Q[1]                            
-		Port instances connected to this net: 
-		COUNTER/Q[1]
-		COUNTER/count[1]_i_1/I1
-		COUNTER/count[2]_i_1/I1
-		COUNTER/count[3]_i_1/I0
-		COUNTER/count_reg[1]/Q
-	Alias: COUNTER/Q[3]                              =>	Canonical: COUNTER/Q[3]                            
-		Port instances connected to this net: 
-		COUNTER/Q[3]
-		COUNTER/count[3]_i_1/I3
-		COUNTER/count_reg[3]/Q
+	COUNTER/plusOp[3]
+		EDIFHierPortInst(s) on this net: 
+			COUNTER/count[3]_i_1/O
+			COUNTER/count_reg[3]/D
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_7
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/count_reg[0]/D
+			CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[0]
+	COUNTER/Q[0]
+		EDIFHierPortInst(s) on this net: 
+			COUNTER/Q[0]
+			COUNTER/count[0]_i_1/I0
+			COUNTER/count[1]_i_1/I0
+			COUNTER/count[2]_i_1/I0
+			COUNTER/count[3]_i_1/I1
+			COUNTER/count_reg[0]/Q
+	COUNTER/plusOp[1]
+		EDIFHierPortInst(s) on this net: 
+			COUNTER/count[1]_i_1/O
+			COUNTER/count_reg[1]/D
+	COUNTER/Q[1]
+		EDIFHierPortInst(s) on this net: 
+			COUNTER/Q[1]
+			COUNTER/count[1]_i_1/I1
+			COUNTER/count[2]_i_1/I1
+			COUNTER/count[3]_i_1/I0
+			COUNTER/count_reg[1]/Q
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_1
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/count_reg[0]_i_2/CO[2]
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_2
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/count_reg[0]_i_2/CO[1]
+	CLOCK_ENABLE_GEN/<const1>
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/VCC/P
+			CLOCK_ENABLE_GEN/count_reg[0]/CE
+			CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[0]
+			CLOCK_ENABLE_GEN/count_reg[1]/CE
+			CLOCK_ENABLE_GEN/count_reg[2]/CE
+			CLOCK_ENABLE_GEN/count_reg[3]/CE
+			CLOCK_ENABLE_GEN/o_pulse_reg/CE
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_5
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[2]
+			CLOCK_ENABLE_GEN/count_reg[2]/D
+	CLOCK_ENABLE_GEN/E[0]
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/E[0]
+			CLOCK_ENABLE_GEN/o_pulse_reg/Q
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_6
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[1]
+			CLOCK_ENABLE_GEN/count_reg[1]/D
+	CLOCK_ENABLE_GEN/o_pulse_i_1_n_0
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/o_pulse_i_1/O
+			CLOCK_ENABLE_GEN/o_pulse_reg/D
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_3
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/count_reg[0]_i_2/CO[0]
+	CLOCK_ENABLE_GEN/count[0]_i_3_n_0
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/count[0]_i_3/O
+			CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[0]
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_4
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[3]
+			CLOCK_ENABLE_GEN/count_reg[3]/D
+	CLOCK_ENABLE_GEN/E[0]
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/E[0]
+			CLOCK_ENABLE_GEN/o_pulse_reg/Q
+	i_rst
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/i_rst
+			COUNTER/i_rst
+			i_rst
+	CLOCK_ENABLE_GEN/count_reg[1]
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/count[0]_i_1__0/I3
+			CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[1]
+			CLOCK_ENABLE_GEN/count_reg[1]/Q
+			CLOCK_ENABLE_GEN/o_pulse_i_1/I2
+	CLOCK_ENABLE_GEN/count_reg[3]
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/count[0]_i_1__0/I1
+			CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[3]
+			CLOCK_ENABLE_GEN/count_reg[3]/Q
+			CLOCK_ENABLE_GEN/o_pulse_i_1/I3
+	COUNTER/Q[2]
+		EDIFHierPortInst(s) on this net: 
+			COUNTER/Q[2]
+			COUNTER/count[2]_i_1/I2
+			COUNTER/count[3]_i_1/I2
+			COUNTER/count_reg[2]/Q
+	i_rst
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/i_rst
+			COUNTER/i_rst
+			i_rst
+	i_clk
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/i_clk
+			COUNTER/i_clk
+			i_clk
+	CLOCK_ENABLE_GEN/E[0]
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/E[0]
+			CLOCK_ENABLE_GEN/o_pulse_reg/Q
+	COUNTER/Q[0]
+		EDIFHierPortInst(s) on this net: 
+			COUNTER/Q[0]
+			COUNTER/count[0]_i_1/I0
+			COUNTER/count[1]_i_1/I0
+			COUNTER/count[2]_i_1/I0
+			COUNTER/count[3]_i_1/I1
+			COUNTER/count_reg[0]/Q
+	COUNTER/plusOp[0]
+		EDIFHierPortInst(s) on this net: 
+			COUNTER/count[0]_i_1/O
+			COUNTER/count_reg[0]/D
+	COUNTER/Q[2]
+		EDIFHierPortInst(s) on this net: 
+			COUNTER/Q[2]
+			COUNTER/count[2]_i_1/I2
+			COUNTER/count[3]_i_1/I2
+			COUNTER/count_reg[2]/Q
+	COUNTER/plusOp[2]
+		EDIFHierPortInst(s) on this net: 
+			COUNTER/count[2]_i_1/O
+			COUNTER/count_reg[2]/D
+	i_rst
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/i_rst
+			COUNTER/i_rst
+			i_rst
+	CLOCK_ENABLE_GEN/<const0>
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/GND/G
+			CLOCK_ENABLE_GEN/count_reg[0]_i_2/CI
+			CLOCK_ENABLE_GEN/count_reg[0]_i_2/CYINIT
+			CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[1]
+			CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[2]
+			CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[3]
+			CLOCK_ENABLE_GEN/o_pulse_reg/R
+	CLOCK_ENABLE_GEN/count_reg[0]
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/count[0]_i_1__0/I2
+			CLOCK_ENABLE_GEN/count[0]_i_3/I0
+			CLOCK_ENABLE_GEN/count_reg[0]/Q
+			CLOCK_ENABLE_GEN/o_pulse_i_1/I0
+	i_clk
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/i_clk
+			COUNTER/i_clk
+			i_clk
+	CLOCK_ENABLE_GEN/count_reg[2]
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/count[0]_i_1__0/I4
+			CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[2]
+			CLOCK_ENABLE_GEN/count_reg[2]/Q
+			CLOCK_ENABLE_GEN/o_pulse_i_1/I1
+	CLOCK_ENABLE_GEN/count[0]_i_1__0_n_0
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/count[0]_i_1__0/O
+			CLOCK_ENABLE_GEN/count_reg[0]/R
+			CLOCK_ENABLE_GEN/count_reg[1]/R
+			CLOCK_ENABLE_GEN/count_reg[2]/R
+			CLOCK_ENABLE_GEN/count_reg[3]/R
+	i_clk
+		EDIFHierPortInst(s) on this net: 
+			CLOCK_ENABLE_GEN/i_clk
+			COUNTER/i_clk
+			i_clk
+	COUNTER/Q[3]
+		EDIFHierPortInst(s) on this net: 
+			COUNTER/Q[3]
+			COUNTER/count[3]_i_1/I3
+			COUNTER/count_reg[3]/Q
+	COUNTER/Q[1]
+		EDIFHierPortInst(s) on this net: 
+			COUNTER/Q[1]
+			COUNTER/count[1]_i_1/I1
+			COUNTER/count[2]_i_1/I1
+			COUNTER/count[3]_i_1/I0
+			COUNTER/count_reg[1]/Q
+	COUNTER/Q[3]
+		EDIFHierPortInst(s) on this net: 
+			COUNTER/Q[3]
+			COUNTER/count[3]_i_1/I3
+			COUNTER/count_reg[3]/Q
