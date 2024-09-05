@@ -6,3 +6,4 @@
  */
 
 rootProject.name = 'place-and-route'
+include('src')
