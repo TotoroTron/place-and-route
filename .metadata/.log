@@ -1,170 +1,170 @@
-!SESSION 2024-09-05 17:47:00.835 -----------------------------------------------
+!SESSION 2024-09-05 18:44:13.328 -----------------------------------------------
 eclipse.buildId=unknown
 java.version=17.0.7
 java.vendor=Eclipse Adoptium
 BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
 Command-line arguments:  -data /home/bcheng/workspace/dev/place-and-route
 
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:47:02.254
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:14.621
 !MESSAGE class org.eclipse.jdt.ls.core.internal.JavaLanguageServerPlugin is started
 
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:47:02.462
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:14.811
 !MESSAGE Main thread is waiting
 
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:47:02.488
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:14.849
 !MESSAGE >> initialize
 
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:47:02.490
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:14.851
 !MESSAGE Initializing Java Language Server 1.38.0.202408011337
 
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:47:02.492
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:14.852
 !MESSAGE Started org.eclipse.m2e.core 0ms
 
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:47:03.654
-!MESSAGE ProjectRegistryRefreshJob finished 1161ms
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:15.923
+!MESSAGE ProjectRegistryRefreshJob finished 1069ms
 
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:47:03.683
-!MESSAGE Started org.eclipse.buildship.core 29ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:47:03.703
-!MESSAGE Static Commands: []
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:47:03.704
-!MESSAGE Non-Static Commands: [java.project.import, java.project.changeImportedProjects, java.navigate.openTypeHierarchy, java.project.resolveStackTraceLocation, java.edit.handlePasteEvent, java.edit.stringFormatting, java.project.getSettings, java.project.resolveWorkspaceSymbol, java.project.upgradeGradle, java.project.createModuleInfo, java.vm.getAllInstalls, java.edit.organizeImports, java.project.refreshDiagnostics, java.project.removeFromSourcePath, java.project.listSourcePaths, java.project.updateSettings, java.project.getAll, java.reloadBundles, java.project.isTestFile, java.project.resolveText, java.project.getClasspaths, java.navigate.resolveTypeHierarchy, java.edit.smartSemicolonDetection, java.project.updateSourceAttachment, java.project.updateClassPaths, java.decompile, java.protobuf.generateSources, java.project.resolveSourceAttachment, java.project.updateJdk, java.project.addToSourcePath, java.completion.onDidSelect]
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:47:03.735
-!MESSAGE >> initialized
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:47:03.749
-!MESSAGE RepositoryRegistryUpdateJob finished 0ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:47:03.776
-!MESSAGE Importing Gradle project(s)
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:47:04.674
-!MESSAGE No previous Gradle project at /home/bcheng/workspace/dev/place-and-route, it must be synchronized
-
-!ENTRY org.eclipse.buildship.core 2 1 2024-09-05 17:47:04.702
-!MESSAGE Synchronize project place-and-route failed due to an error while importing the root project.
-!STACK 0
-org.eclipse.buildship.core.internal.ImportRootProjectException: org.eclipse.buildship.core.internal.UnsupportedConfigurationException: Project place-and-route location matches workspace root /home/bcheng/workspace/dev/place-and-route
-	at org.eclipse.buildship.core.internal.workspace.ImportRootProjectOperation.run(ImportRootProjectOperation.java:53)
-	at org.eclipse.buildship.core.internal.DefaultGradleBuild$SynchronizeOperation.runInToolingApi(DefaultGradleBuild.java:230)
-	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager$WorkspaceRunnableAdapter.run(DefaultToolingApiOperationManager.java:58)
-	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
-	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2476)
-	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager.run(DefaultToolingApiOperationManager.java:39)
-	at org.eclipse.buildship.core.internal.DefaultGradleBuild$SynchronizeOperation.run(DefaultGradleBuild.java:197)
-	at org.eclipse.buildship.core.internal.DefaultGradleBuild.synchronize(DefaultGradleBuild.java:105)
-	at org.eclipse.buildship.core.internal.DefaultGradleBuild.synchronize(DefaultGradleBuild.java:86)
-	at org.eclipse.jdt.ls.core.internal.managers.GradleProjectImporter.startSynchronization(GradleProjectImporter.java:463)
-	at org.eclipse.jdt.ls.core.internal.managers.GradleProjectImporter.importDir(GradleProjectImporter.java:339)
-	at org.eclipse.jdt.ls.core.internal.managers.GradleProjectImporter.importToWorkspace(GradleProjectImporter.java:223)
-	at org.eclipse.jdt.ls.core.internal.managers.ProjectsManager.importProjects(ProjectsManager.java:164)
-	at org.eclipse.jdt.ls.core.internal.managers.ProjectsManager.initializeProjects(ProjectsManager.java:126)
-	at org.eclipse.jdt.ls.core.internal.handlers.InitHandler$1.runInWorkspace(InitHandler.java:277)
-	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:43)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
-Caused by: org.eclipse.buildship.core.internal.UnsupportedConfigurationException: Project place-and-route location matches workspace root /home/bcheng/workspace/dev/place-and-route
-	at org.eclipse.buildship.core.internal.workspace.ImportRootProjectOperation.verifyNoWorkspaceRootIsImported(ImportRootProjectOperation.java:77)
-	at org.eclipse.buildship.core.internal.workspace.ImportRootProjectOperation$1.run(ImportRootProjectOperation.java:67)
-	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
-	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2471)
-	at org.eclipse.buildship.core.internal.workspace.ImportRootProjectOperation.runInWorkspace(ImportRootProjectOperation.java:58)
-	at org.eclipse.buildship.core.internal.workspace.ImportRootProjectOperation.run(ImportRootProjectOperation.java:51)
-	... 16 more
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:47:04.714
-!MESSAGE Workspace initialized in 966ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:47:04.724
-!MESSAGE >> initialization job finished
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:47:04.773
-!MESSAGE Creating the Java project jdt.ls-java-project
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:47:04.846
-!MESSAGE Finished creating the Java project jdt.ls-java-project
-
-!ENTRY org.eclipse.jdt.ls.core 4 0 2024-09-05 17:47:05.816
-!MESSAGE Command _java.reloadBundles.command not supported on client
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:47:05.980
-!MESSAGE Reconciled 1. Took 0 ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:47:06.126
-!MESSAGE >> build jobs finished
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:47:06.128
-!MESSAGE >> registerWatchers'
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:47:06.960
-!MESSAGE begin problem for /Placer.java
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:47:06.963
-!MESSAGE 1 problems reported for /Placer.java
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:47:06.970
-!MESSAGE Validated 1. Took 389 ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:05.766
-!MESSAGE >> shutdown
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:05.775
-!MESSAGE >> exit
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:05.784
-!MESSAGE Shutdown received... waking up main thread
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:05.790
-!MESSAGE class org.eclipse.jdt.ls.core.internal.JavaLanguageServerPlugin is stopping:
-!SESSION 2024-09-05 17:49:11.906 -----------------------------------------------
-eclipse.buildId=unknown
-java.version=17.0.7
-java.vendor=Eclipse Adoptium
-BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
-Command-line arguments:  -data /home/bcheng/workspace/dev/place-and-route
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:13.244
-!MESSAGE class org.eclipse.jdt.ls.core.internal.JavaLanguageServerPlugin is started
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:13.436
-!MESSAGE Main thread is waiting
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:13.461
-!MESSAGE >> initialize
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:13.464
-!MESSAGE Initializing Java Language Server 1.38.0.202408011337
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:13.465
-!MESSAGE Started org.eclipse.m2e.core 0ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:14.579
-!MESSAGE ProjectRegistryRefreshJob finished 1114ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:14.603
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:15.946
 !MESSAGE Started org.eclipse.buildship.core 22ms
 
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:14.624
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:15.957
 !MESSAGE Static Commands: []
 
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:14.626
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:15.958
 !MESSAGE Non-Static Commands: [java.project.import, java.project.changeImportedProjects, java.navigate.openTypeHierarchy, java.project.resolveStackTraceLocation, java.edit.handlePasteEvent, java.edit.stringFormatting, java.project.getSettings, java.project.resolveWorkspaceSymbol, java.project.upgradeGradle, java.project.createModuleInfo, java.vm.getAllInstalls, java.edit.organizeImports, java.project.refreshDiagnostics, java.project.removeFromSourcePath, java.project.listSourcePaths, java.project.updateSettings, java.project.getAll, java.reloadBundles, java.project.isTestFile, java.project.resolveText, java.project.getClasspaths, java.navigate.resolveTypeHierarchy, java.edit.smartSemicolonDetection, java.project.updateSourceAttachment, java.project.updateClassPaths, java.decompile, java.protobuf.generateSources, java.project.resolveSourceAttachment, java.project.updateJdk, java.project.addToSourcePath, java.completion.onDidSelect]
 
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:14.659
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:15.978
+!MESSAGE RepositoryRegistryUpdateJob finished 0ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:15.985
+!MESSAGE >> initialized
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:16.004
+!MESSAGE Importing Gradle project(s)
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:16.834
+!MESSAGE No previous Gradle project at /home/bcheng/workspace/dev/place-and-route, it must be synchronized
+
+!ENTRY org.eclipse.buildship.core 2 1 2024-09-05 18:44:16.860
+!MESSAGE Synchronize project place-and-route failed due to an error while importing the root project.
+!STACK 0
+org.eclipse.buildship.core.internal.ImportRootProjectException: org.eclipse.buildship.core.internal.UnsupportedConfigurationException: Project place-and-route location matches workspace root /home/bcheng/workspace/dev/place-and-route
+	at org.eclipse.buildship.core.internal.workspace.ImportRootProjectOperation.run(ImportRootProjectOperation.java:53)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild$SynchronizeOperation.runInToolingApi(DefaultGradleBuild.java:230)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager$WorkspaceRunnableAdapter.run(DefaultToolingApiOperationManager.java:58)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2476)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager.run(DefaultToolingApiOperationManager.java:39)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild$SynchronizeOperation.run(DefaultGradleBuild.java:197)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild.synchronize(DefaultGradleBuild.java:105)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild.synchronize(DefaultGradleBuild.java:86)
+	at org.eclipse.jdt.ls.core.internal.managers.GradleProjectImporter.startSynchronization(GradleProjectImporter.java:463)
+	at org.eclipse.jdt.ls.core.internal.managers.GradleProjectImporter.importDir(GradleProjectImporter.java:339)
+	at org.eclipse.jdt.ls.core.internal.managers.GradleProjectImporter.importToWorkspace(GradleProjectImporter.java:223)
+	at org.eclipse.jdt.ls.core.internal.managers.ProjectsManager.importProjects(ProjectsManager.java:164)
+	at org.eclipse.jdt.ls.core.internal.managers.ProjectsManager.initializeProjects(ProjectsManager.java:126)
+	at org.eclipse.jdt.ls.core.internal.handlers.InitHandler$1.runInWorkspace(InitHandler.java:277)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:43)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.eclipse.buildship.core.internal.UnsupportedConfigurationException: Project place-and-route location matches workspace root /home/bcheng/workspace/dev/place-and-route
+	at org.eclipse.buildship.core.internal.workspace.ImportRootProjectOperation.verifyNoWorkspaceRootIsImported(ImportRootProjectOperation.java:77)
+	at org.eclipse.buildship.core.internal.workspace.ImportRootProjectOperation$1.run(ImportRootProjectOperation.java:67)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2471)
+	at org.eclipse.buildship.core.internal.workspace.ImportRootProjectOperation.runInWorkspace(ImportRootProjectOperation.java:58)
+	at org.eclipse.buildship.core.internal.workspace.ImportRootProjectOperation.run(ImportRootProjectOperation.java:51)
+	... 16 more
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:16.870
+!MESSAGE Workspace initialized in 892ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:16.883
+!MESSAGE >> initialization job finished
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:16.917
+!MESSAGE Creating the Java project jdt.ls-java-project
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:16.968
+!MESSAGE Finished creating the Java project jdt.ls-java-project
+
+!ENTRY org.eclipse.jdt.ls.core 4 0 2024-09-05 18:44:17.879
+!MESSAGE Command _java.reloadBundles.command not supported on client
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:18.084
+!MESSAGE Reconciled 1. Took 0 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:18.176
+!MESSAGE >> build jobs finished
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:18.176
+!MESSAGE >> registerWatchers'
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:18.990
+!MESSAGE begin problem for /Main.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:18.997
+!MESSAGE 1 problems reported for /Main.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:19.009
+!MESSAGE Validated 1. Took 309 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:30.017
+!MESSAGE >> shutdown
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:30.018
+!MESSAGE >> exit
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:30.032
+!MESSAGE Shutdown received... waking up main thread
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:44:30.038
+!MESSAGE class org.eclipse.jdt.ls.core.internal.JavaLanguageServerPlugin is stopping:
+!SESSION 2024-09-05 18:45:57.456 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=17.0.7
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -data /home/bcheng/workspace/dev/place-and-route
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:45:58.797
+!MESSAGE class org.eclipse.jdt.ls.core.internal.JavaLanguageServerPlugin is started
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:45:59.036
+!MESSAGE Main thread is waiting
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:45:59.086
+!MESSAGE >> initialize
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:45:59.088
+!MESSAGE Initializing Java Language Server 1.38.0.202408011337
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:45:59.090
+!MESSAGE Started org.eclipse.m2e.core 1ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:46:00.196
+!MESSAGE ProjectRegistryRefreshJob finished 1106ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:46:00.225
+!MESSAGE Started org.eclipse.buildship.core 28ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:46:00.250
+!MESSAGE Static Commands: []
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:46:00.250
+!MESSAGE Non-Static Commands: [java.project.import, java.project.changeImportedProjects, java.navigate.openTypeHierarchy, java.project.resolveStackTraceLocation, java.edit.handlePasteEvent, java.edit.stringFormatting, java.project.getSettings, java.project.resolveWorkspaceSymbol, java.project.upgradeGradle, java.project.createModuleInfo, java.vm.getAllInstalls, java.edit.organizeImports, java.project.refreshDiagnostics, java.project.removeFromSourcePath, java.project.listSourcePaths, java.project.updateSettings, java.project.getAll, java.reloadBundles, java.project.isTestFile, java.project.resolveText, java.project.getClasspaths, java.navigate.resolveTypeHierarchy, java.edit.smartSemicolonDetection, java.project.updateSourceAttachment, java.project.updateClassPaths, java.decompile, java.protobuf.generateSources, java.project.resolveSourceAttachment, java.project.updateJdk, java.project.addToSourcePath, java.completion.onDidSelect]
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:46:00.271
 !MESSAGE RepositoryRegistryUpdateJob finished 1ms
 
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:14.661
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:46:00.273
 !MESSAGE >> initialized
 
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:14.687
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:46:00.293
 !MESSAGE Importing Gradle project(s)
 
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:15.573
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:46:01.126
 !MESSAGE No previous Gradle project at /home/bcheng/workspace/dev/place-and-route, it must be synchronized
 
-!ENTRY org.eclipse.buildship.core 2 1 2024-09-05 17:49:15.600
+!ENTRY org.eclipse.buildship.core 2 1 2024-09-05 18:46:01.149
 !MESSAGE Synchronize project place-and-route failed due to an error while importing the root project.
 !STACK 0
 org.eclipse.buildship.core.internal.ImportRootProjectException: org.eclipse.buildship.core.internal.UnsupportedConfigurationException: Project place-and-route location matches workspace root /home/bcheng/workspace/dev/place-and-route
@@ -194,302 +194,29 @@ Caused by: org.eclipse.buildship.core.internal.UnsupportedConfigurationException
 	at org.eclipse.buildship.core.internal.workspace.ImportRootProjectOperation.run(ImportRootProjectOperation.java:51)
 	... 16 more
 
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:15.611
-!MESSAGE Workspace initialized in 955ms
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:46:01.166
+!MESSAGE Workspace initialized in 896ms
 
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:15.619
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:46:01.178
 !MESSAGE >> initialization job finished
 
-!ENTRY org.eclipse.jdt.ls.core 4 0 2024-09-05 17:49:16.642
+!ENTRY org.eclipse.jdt.ls.core 4 0 2024-09-05 18:46:02.222
 !MESSAGE Command _java.reloadBundles.command not supported on client
 
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:16.729
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:46:02.224
 !MESSAGE >> build jobs finished
 
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:16.729
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:46:02.225
 !MESSAGE >> registerWatchers'
 
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:16.840
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:46:02.227
 !MESSAGE Reconciled 1. Took 0 ms
 
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:17.541
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:46:02.938
 !MESSAGE begin problem for /Main.java
 
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:17.544
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:46:02.942
 !MESSAGE 1 problems reported for /Main.java
 
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:17.549
-!MESSAGE Validated 1. Took 58 ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:27.950
-!MESSAGE >> shutdown
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:27.951
-!MESSAGE >> exit
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:27.973
-!MESSAGE Shutdown received... waking up main thread
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:49:27.977
-!MESSAGE class org.eclipse.jdt.ls.core.internal.JavaLanguageServerPlugin is stopping:
-!SESSION 2024-09-05 17:50:14.655 -----------------------------------------------
-eclipse.buildId=unknown
-java.version=17.0.7
-java.vendor=Eclipse Adoptium
-BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
-Command-line arguments:  -data /home/bcheng/workspace/dev/place-and-route
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:16.058
-!MESSAGE class org.eclipse.jdt.ls.core.internal.JavaLanguageServerPlugin is started
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:16.248
-!MESSAGE Main thread is waiting
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:16.277
-!MESSAGE >> initialize
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:16.279
-!MESSAGE Initializing Java Language Server 1.38.0.202408011337
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:16.280
-!MESSAGE Started org.eclipse.m2e.core 0ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:17.395
-!MESSAGE ProjectRegistryRefreshJob finished 1114ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:17.421
-!MESSAGE Started org.eclipse.buildship.core 25ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:17.434
-!MESSAGE Static Commands: []
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:17.435
-!MESSAGE Non-Static Commands: [java.project.import, java.project.changeImportedProjects, java.navigate.openTypeHierarchy, java.project.resolveStackTraceLocation, java.edit.handlePasteEvent, java.edit.stringFormatting, java.project.getSettings, java.project.resolveWorkspaceSymbol, java.project.upgradeGradle, java.project.createModuleInfo, java.vm.getAllInstalls, java.edit.organizeImports, java.project.refreshDiagnostics, java.project.removeFromSourcePath, java.project.listSourcePaths, java.project.updateSettings, java.project.getAll, java.reloadBundles, java.project.isTestFile, java.project.resolveText, java.project.getClasspaths, java.navigate.resolveTypeHierarchy, java.edit.smartSemicolonDetection, java.project.updateSourceAttachment, java.project.updateClassPaths, java.decompile, java.protobuf.generateSources, java.project.resolveSourceAttachment, java.project.updateJdk, java.project.addToSourcePath, java.completion.onDidSelect]
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:17.459
-!MESSAGE >> initialized
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:17.462
-!MESSAGE RepositoryRegistryUpdateJob finished 0ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:17.488
-!MESSAGE Importing Gradle project(s)
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:18.113
-!MESSAGE No previous Gradle project at /home/bcheng/workspace/dev/place-and-route, it must be synchronized
-
-!ENTRY org.eclipse.buildship.core 2 1 2024-09-05 17:50:18.134
-!MESSAGE Synchronize project place-and-route failed due to an error while importing the root project.
-!STACK 0
-org.eclipse.buildship.core.internal.ImportRootProjectException: org.eclipse.buildship.core.internal.UnsupportedConfigurationException: Project place-and-route location matches workspace root /home/bcheng/workspace/dev/place-and-route
-	at org.eclipse.buildship.core.internal.workspace.ImportRootProjectOperation.run(ImportRootProjectOperation.java:53)
-	at org.eclipse.buildship.core.internal.DefaultGradleBuild$SynchronizeOperation.runInToolingApi(DefaultGradleBuild.java:230)
-	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager$WorkspaceRunnableAdapter.run(DefaultToolingApiOperationManager.java:58)
-	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
-	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2476)
-	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager.run(DefaultToolingApiOperationManager.java:39)
-	at org.eclipse.buildship.core.internal.DefaultGradleBuild$SynchronizeOperation.run(DefaultGradleBuild.java:197)
-	at org.eclipse.buildship.core.internal.DefaultGradleBuild.synchronize(DefaultGradleBuild.java:105)
-	at org.eclipse.buildship.core.internal.DefaultGradleBuild.synchronize(DefaultGradleBuild.java:86)
-	at org.eclipse.jdt.ls.core.internal.managers.GradleProjectImporter.startSynchronization(GradleProjectImporter.java:463)
-	at org.eclipse.jdt.ls.core.internal.managers.GradleProjectImporter.importDir(GradleProjectImporter.java:339)
-	at org.eclipse.jdt.ls.core.internal.managers.GradleProjectImporter.importToWorkspace(GradleProjectImporter.java:223)
-	at org.eclipse.jdt.ls.core.internal.managers.ProjectsManager.importProjects(ProjectsManager.java:164)
-	at org.eclipse.jdt.ls.core.internal.managers.ProjectsManager.initializeProjects(ProjectsManager.java:126)
-	at org.eclipse.jdt.ls.core.internal.handlers.InitHandler$1.runInWorkspace(InitHandler.java:277)
-	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:43)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
-Caused by: org.eclipse.buildship.core.internal.UnsupportedConfigurationException: Project place-and-route location matches workspace root /home/bcheng/workspace/dev/place-and-route
-	at org.eclipse.buildship.core.internal.workspace.ImportRootProjectOperation.verifyNoWorkspaceRootIsImported(ImportRootProjectOperation.java:77)
-	at org.eclipse.buildship.core.internal.workspace.ImportRootProjectOperation$1.run(ImportRootProjectOperation.java:67)
-	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
-	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2471)
-	at org.eclipse.buildship.core.internal.workspace.ImportRootProjectOperation.runInWorkspace(ImportRootProjectOperation.java:58)
-	at org.eclipse.buildship.core.internal.workspace.ImportRootProjectOperation.run(ImportRootProjectOperation.java:51)
-	... 16 more
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:18.142
-!MESSAGE Workspace initialized in 681ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:18.153
-!MESSAGE >> initialization job finished
-
-!ENTRY org.eclipse.jdt.ls.core 4 0 2024-09-05 17:50:18.862
-!MESSAGE Command _java.reloadBundles.command not supported on client
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:18.865
-!MESSAGE >> build jobs finished
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:18.866
-!MESSAGE >> registerWatchers'
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:18.987
-!MESSAGE Reconciled 1. Took 1 ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:19.682
-!MESSAGE begin problem for /Placer.java
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:19.685
-!MESSAGE 1 problems reported for /Placer.java
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:19.688
-!MESSAGE Validated 1. Took 50 ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:22.680
-!MESSAGE Reconciled 1. Took 3 ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:22.923
-!MESSAGE Reconciled 1. Took 2 ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:23.395
-!MESSAGE begin problem for /Placer.java
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:23.396
-!MESSAGE The declared package "" does not match the expected package "src" is of type PackageIsNotExpectedPackage
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:23.397
-!MESSAGE 2 problems reported for /Placer.java
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:23.397
-!MESSAGE Validated 1. Took 24 ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:26.035
-!MESSAGE Reconciled 1. Took 0 ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:26.512
-!MESSAGE begin problem for /Placer.java
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:26.512
-!MESSAGE 1 problems reported for /Placer.java
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:26.513
-!MESSAGE Validated 1. Took 28 ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:52.519
-!MESSAGE >> shutdown
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:52.520
-!MESSAGE >> exit
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:52.535
-!MESSAGE Shutdown received... waking up main thread
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:50:52.539
-!MESSAGE class org.eclipse.jdt.ls.core.internal.JavaLanguageServerPlugin is stopping:
-!SESSION 2024-09-05 17:51:11.735 -----------------------------------------------
-eclipse.buildId=unknown
-java.version=17.0.7
-java.vendor=Eclipse Adoptium
-BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
-Command-line arguments:  -data /home/bcheng/workspace/dev/place-and-route
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:13.119
-!MESSAGE class org.eclipse.jdt.ls.core.internal.JavaLanguageServerPlugin is started
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:13.331
-!MESSAGE Main thread is waiting
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:13.347
-!MESSAGE >> initialize
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:13.348
-!MESSAGE Initializing Java Language Server 1.38.0.202408011337
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:13.349
-!MESSAGE Started org.eclipse.m2e.core 0ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:14.513
-!MESSAGE ProjectRegistryRefreshJob finished 1163ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:14.540
-!MESSAGE Started org.eclipse.buildship.core 27ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:14.556
-!MESSAGE Static Commands: []
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:14.557
-!MESSAGE Non-Static Commands: [java.project.import, java.project.changeImportedProjects, java.navigate.openTypeHierarchy, java.project.resolveStackTraceLocation, java.edit.handlePasteEvent, java.edit.stringFormatting, java.project.getSettings, java.project.resolveWorkspaceSymbol, java.project.upgradeGradle, java.project.createModuleInfo, java.vm.getAllInstalls, java.edit.organizeImports, java.project.refreshDiagnostics, java.project.removeFromSourcePath, java.project.listSourcePaths, java.project.updateSettings, java.project.getAll, java.reloadBundles, java.project.isTestFile, java.project.resolveText, java.project.getClasspaths, java.navigate.resolveTypeHierarchy, java.edit.smartSemicolonDetection, java.project.updateSourceAttachment, java.project.updateClassPaths, java.decompile, java.protobuf.generateSources, java.project.resolveSourceAttachment, java.project.updateJdk, java.project.addToSourcePath, java.completion.onDidSelect]
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:14.584
-!MESSAGE RepositoryRegistryUpdateJob finished 0ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:14.592
-!MESSAGE >> initialized
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:14.619
-!MESSAGE Importing Gradle project(s)
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:15.506
-!MESSAGE No previous Gradle project at /home/bcheng/workspace/dev/place-and-route, it must be synchronized
-
-!ENTRY org.eclipse.buildship.core 2 1 2024-09-05 17:51:15.531
-!MESSAGE Synchronize project place-and-route failed due to an error while importing the root project.
-!STACK 0
-org.eclipse.buildship.core.internal.ImportRootProjectException: org.eclipse.buildship.core.internal.UnsupportedConfigurationException: Project place-and-route location matches workspace root /home/bcheng/workspace/dev/place-and-route
-	at org.eclipse.buildship.core.internal.workspace.ImportRootProjectOperation.run(ImportRootProjectOperation.java:53)
-	at org.eclipse.buildship.core.internal.DefaultGradleBuild$SynchronizeOperation.runInToolingApi(DefaultGradleBuild.java:230)
-	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager$WorkspaceRunnableAdapter.run(DefaultToolingApiOperationManager.java:58)
-	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
-	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2476)
-	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager.run(DefaultToolingApiOperationManager.java:39)
-	at org.eclipse.buildship.core.internal.DefaultGradleBuild$SynchronizeOperation.run(DefaultGradleBuild.java:197)
-	at org.eclipse.buildship.core.internal.DefaultGradleBuild.synchronize(DefaultGradleBuild.java:105)
-	at org.eclipse.buildship.core.internal.DefaultGradleBuild.synchronize(DefaultGradleBuild.java:86)
-	at org.eclipse.jdt.ls.core.internal.managers.GradleProjectImporter.startSynchronization(GradleProjectImporter.java:463)
-	at org.eclipse.jdt.ls.core.internal.managers.GradleProjectImporter.importDir(GradleProjectImporter.java:339)
-	at org.eclipse.jdt.ls.core.internal.managers.GradleProjectImporter.importToWorkspace(GradleProjectImporter.java:223)
-	at org.eclipse.jdt.ls.core.internal.managers.ProjectsManager.importProjects(ProjectsManager.java:164)
-	at org.eclipse.jdt.ls.core.internal.managers.ProjectsManager.initializeProjects(ProjectsManager.java:126)
-	at org.eclipse.jdt.ls.core.internal.handlers.InitHandler$1.runInWorkspace(InitHandler.java:277)
-	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:43)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
-Caused by: org.eclipse.buildship.core.internal.UnsupportedConfigurationException: Project place-and-route location matches workspace root /home/bcheng/workspace/dev/place-and-route
-	at org.eclipse.buildship.core.internal.workspace.ImportRootProjectOperation.verifyNoWorkspaceRootIsImported(ImportRootProjectOperation.java:77)
-	at org.eclipse.buildship.core.internal.workspace.ImportRootProjectOperation$1.run(ImportRootProjectOperation.java:67)
-	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
-	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2471)
-	at org.eclipse.buildship.core.internal.workspace.ImportRootProjectOperation.runInWorkspace(ImportRootProjectOperation.java:58)
-	at org.eclipse.buildship.core.internal.workspace.ImportRootProjectOperation.run(ImportRootProjectOperation.java:51)
-	... 16 more
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:15.545
-!MESSAGE Workspace initialized in 960ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:15.559
-!MESSAGE >> initialization job finished
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:16.555
-!MESSAGE Reconciled 1. Took 2 ms
-
-!ENTRY org.eclipse.jdt.ls.core 4 0 2024-09-05 17:51:16.624
-!MESSAGE Command _java.reloadBundles.command not supported on client
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:16.678
-!MESSAGE Reconciled 1. Took 0 ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:16.754
-!MESSAGE >> build jobs finished
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:16.755
-!MESSAGE >> registerWatchers'
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:17.401
-!MESSAGE begin problem for /Main.java
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:17.407
-!MESSAGE 1 problems reported for /Main.java
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:17.413
-!MESSAGE Validated 2. Took 84 ms
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:23.489
-!MESSAGE >> shutdown
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:23.490
-!MESSAGE >> exit
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:23.514
-!MESSAGE Shutdown received... waking up main thread
-
-!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 17:51:23.519
-!MESSAGE class org.eclipse.jdt.ls.core.internal.JavaLanguageServerPlugin is stopping:
+!ENTRY org.eclipse.jdt.ls.core 1 0 2024-09-05 18:46:02.946
+!MESSAGE Validated 1. Took 68 ms

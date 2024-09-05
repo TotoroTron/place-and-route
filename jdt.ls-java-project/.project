@@ -20,10 +20,5 @@
 			<type>1</type>
 			<location>//home/bcheng/workspace/dev/place-and-route/src/main/java/Main.java</location>
 		</link>
-		<link>
-			<name>src/Placer.java</name>
-			<type>1</type>
-			<location>/home/bcheng/workspace/dev/place-and-route/src/main/java/Placer.java</location>
-		</link>
 	</linkedResources>
 </projectDescription>
