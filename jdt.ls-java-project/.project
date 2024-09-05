@@ -16,12 +16,12 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>src/src/Main.java</name>
+			<name>src/Main.java</name>
 			<type>1</type>
 			<location>//home/bcheng/workspace/dev/place-and-route/src/main/java/Main.java</location>
 		</link>
 		<link>
-			<name>src/src/Placer.java</name>
+			<name>src/Placer.java</name>
 			<type>1</type>
 			<location>/home/bcheng/workspace/dev/place-and-route/src/main/java/Placer.java</location>
 		</link>
