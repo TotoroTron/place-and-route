@@ -12,3 +12,7 @@ gradle/wrapper/gradle-wrapper.properties
 
 # Xilinx
 .Xil/
+
+# jdtls
+.metadata/
+jdt-ls-java-project/
