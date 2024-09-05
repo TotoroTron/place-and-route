@@ -15,8 +15,7 @@ PROJ_DIR="/home/bcheng/workspace/dev/place-and-route"
 SYNTH_TCL="$PROJ_DIR/tcl/synth.tcl"
 ROUTE_TCL="$PROJ_DIR/tcl/route.tcl"
 
-
-start_stage=${1:-all} # Use first argument or defaults to all 
+start_stage=${1:-all} # Use first argument or defaults to all
 
 check_exit_status() {
     if [ $? -ne 0 ]; then

@@ -1,0 +1,42 @@
+
+EDIFNetlist netlist = design.getNetlist();
+EDIFLibrary library = netlist.getHDIPrimitivesLibrary();
+
+writer.write("\nPrinting EDIFLibrary...");
+for (EDIFCell ec : library) {
+    writer.write("\nEDIFCell name: ")
+}
+
+
+// List<EDIFCellInst> edifCells = netlist.getAllLeafCellInstances();
+writer.write("\nPrinting EDIFCellInst(s)...");
+for (EDIFCellInst eci : netlist.getAllLeafCellInstances()) {
+    writer.write("\nEDIF Cell name: ".concat(eci.getCellName()));
+}
+
+//Collection<Net> nets = design.getNets();
+writer.write("\nPrinting Net(s)...");
+for (Net net : design.getNets()) {
+    writer.write("\nNet name: ".concat(net.getName()));
+}
+
+// Collection<Cell> cells = design.getCells();
+writer.write("\nPrinting Cell(s)...");
+for (Cell cell : design.getCells()) {
+    writer.write("\nCell name: ".concat(cell.getName()));
+}
+
+
+// Collection<ModuleImpls> mos = design.getModules();
+writer.write("\nPrinting Module(s)...");
+for (ModuleImpls mo : design.getModules()) {
+    writer.write("\nModuleImpl name: ".concat(mo.getName()));
+}
+
+
+// Collection<ModuleInst> mis = design.getModuleInsts();
+writer.write("\nPrinting ModuleInst(s)...");
+for (ModuleInst mi : design.getModuleInsts()) { 
+    Module module = mi.getModule();
+    writer.write("Module name: ".concat(module.getName()));
+}

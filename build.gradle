@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Use environment variables to reference external libraries
+    implementation files("${System.getenv('RAPIDWRIGHT_PATH')}/bin")
+    implementation fileTree(dir: "${System.getenv('RAPIDWRIGHT_PATH')}/jars", include: ['*.jar'])
+    // implementation fileTree(dir: "/home/bcheng/workspace/tools/RapidWright/jars", include: ['*.jar'])
+}
+
+tasks.withType(JavaCompile) {
+    options.forkOptions.jvmArgs = ["-Xmx32736m"]
+}
+
+task generateClasspath {
+    doLast {
+        def classpath = configurations.compileClasspath.asPath
+        def file = file("classpath.txt")
+        file.text = classpath
+    }
+}
