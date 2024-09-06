@@ -17,7 +17,6 @@ import com.xilinx.rapidwright.design.ModuleInst;
 import com.xilinx.rapidwright.design.ModuleImpls;
 import com.xilinx.rapidwright.design.Cell;
 
-
 import com.xilinx.rapidwright.edif.EDIFLibrary;
 import com.xilinx.rapidwright.edif.EDIFNetlist;
 import com.xilinx.rapidwright.edif.EDIFCell;
@@ -49,6 +48,5 @@ public class AnalyticalPlacer extends Placer {
 
         return design;
     }
-
 
 }
