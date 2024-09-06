@@ -32,21 +32,42 @@ if [ "$start_stage" == "synth" ] || [ "$start_stage" == "all" ]; then
     echo "Vivado synthesis completed. Check 'synthesized.dcp'."
 fi
 
-# Java Compilation Stage
+# # Java Compilation Stage
+# if [ "$start_stage" == "compile" ] || [ "$start_stage" == "all" ]; then
+#     echo "Compiling Java files..."
+#     javac src/*.java
+#     check_exit_status "Java compilation"
+#     echo "Java compilation completed."
+# fi
+#
+# # Java Placement Stage
+# if [ "$start_stage" == "place" ] || [ "$start_stage" == "all" ]; then
+#     echo "Running Java placement..."
+#     java -cp "$CLASSPATH:." src.Main
+#     check_exit_status "Java placement execution"
+#     echo "Java placement executed. Check 'logger.txt' for output."
+# fi
+
+# Gradle Build Stage (replaces Java Compilation)
 if [ "$start_stage" == "compile" ] || [ "$start_stage" == "all" ]; then
-    echo "Compiling Java files..."
-    javac src/*.java
-    check_exit_status "Java compilation"
-    echo "Java compilation completed."
+    echo "Building Java project with Gradle..."
+    cd $PROJ_DIR/java
+    gradle build
+    check_exit_status "Gradle build"
+    echo "Gradle build completed."
 fi
 
-# Java Placement Stage
+# Gradle Run Stage (replaces Java Placement)
 if [ "$start_stage" == "place" ] || [ "$start_stage" == "all" ]; then
-    echo "Running Java placement..."
-    java -cp "$CLASSPATH:." src.Main
-    check_exit_status "Java placement execution"
+    echo "Running Java placement with Gradle..."
+    cd $PROJ_DIR/java
+    gradle run
+    check_exit_status "Gradle run"
     echo "Java placement executed. Check 'logger.txt' for output."
 fi
+
+# Return to outer dir
+cd $PROJ_DIR
 
 # Vivado Route Stage
 if [ "$start_stage" == "route" ] || [ "$start_stage" == "all" ]; then
