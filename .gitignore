@@ -15,4 +15,4 @@ gradle/wrapper/gradle-wrapper.properties
 
 # jdtls
 .metadata/
-jdt-ls-java-project/
+jdt.ls-java-project/
