@@ -8,7 +8,7 @@
 
 
 \date{}
-\maketitle{}
+\maketitle
 
 \section{Abbreviations}
 \begin{itemize}[label={--}, left=0.25cm] % Adjust label and left indent as desired
@@ -20,6 +20,7 @@
     \item VHDL: VHSIC HDL
     \item HLS: High Level Synthesis
     \item PL-PS: Programmable Logic - Processing System
+    \item EDIF: Electronic Design Interchange Format
 \end{itemize}
 
 \section{Ideas}
@@ -53,17 +54,31 @@
             \item RapidLayout (Hard Block Placer for Systolic Arrays)
             \item RapidStream (HLS Placer)
             \item RapidWright: Semi-open source API that provides backend access to Xilinx Vivado EDA using design checkpoints.
-            
         \end{itemize}
     \end{itemize}
     
     \item \textbf{Synthesis}
     \begin{itemize}[label={--}, left=0.25cm]
-        \item 
-        \item 
-        \item 
-        \item 
+        \item Takes a design written in a high-level HDL like VHDL or Verilog and "synthesizes" a \textbf{logical netlist} out of it. This logical netlist is usually generated as an EDIF, JSON, or a low-level Verilog file. This netlist describes the necessary basic elements of logic (BELs) and the wired connections between them that are necessary to implement the design.
     \end{itemize}
+
+    \item \textbf{Placement}
+    \begin{itemize}[label={--}, left=0.25cm]
+        \item Takes the \textbf{logical netlist} and produces a \textbf{physical netlist}.
+    \end{itemize}
+
+    \item \textbf{Routing}
+    \begin{itemize}[label={--}, left=0.25cm]
+        \item Takes the \textbf{physical netlist} and maps the connections between BELs onto physical switchboxes.
+    \end{itemize}
+
 \end{itemize}
 
+This is a citation for AMFPlacer. \cite{AMFPlacer}
+
+\bibliographystyle{ieeetr}
+\bibliography{references}
+
 \end{document}
+
+
