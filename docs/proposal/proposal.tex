@@ -1,8 +1,69 @@
 \documentclass{article}
 \usepackage{hyperref}
+\usepackage{enumitem}
 
 \begin{document}
+\title{Technical Paper Proposal: \\ Placement Algorithms for Heterogenous FPGAs}
+\author{Brian Cheng \\ Department of Electrical and Computer Engineering}
 
-This is the repository of \href{https://github.com/zslwyuan/AMF-Placer}{AMF-Placer}.
+
+\date{}
+\maketitle{}
+
+\section{Abbreviations}
+\begin{itemize}[label={--}, left=0.25cm] % Adjust label and left indent as desired
+    \item FPGA: Field Programmable Gate Array
+    \item VLSI: Very Large Scale Integration
+    \item EDA: Electronic Design Automation
+    \item VHSIC: Very High Speed Integrated Circuits
+    \item HDL: Hardware Description Language
+    \item VHDL: VHSIC HDL
+    \item HLS: High Level Synthesis
+    \item PL-PS: Programmable Logic - Processing System
+\end{itemize}
+
+\section{Ideas}
+\begin{itemize}[label={\textbullet}, left=0.25cm]
+    \item \textbf{FPGA}: Field Programmable Gate Array
+    \begin{itemize}[label={--}, left=0.25cm]
+        \item FPGA Vendors:
+        \begin{itemize}[label={$\cdot$}, left=0.25cm]
+            \item AMD-Xilinx (~50\% FPGA vendor market share)
+            \item Intel-Altera (~35\% share)
+            \item Lattice
+            \item Microsemi
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{EDA}: Electronic Design Automation
+    \begin{itemize}[label={--}, left=0.25cm]
+        \item Proprietary software for FPGA and VLSI development:
+        \begin{itemize}[label={$\cdot$}, left=0.25cm]
+            \item Xilinx - Vivado (Design + Simulation) + Vitis (HLS + PL-PS codesign)
+            \item Altera - Quartus (Design) + ModelSim (Simulation)
+            \item Synopsis (VLSI)
+            \item Cadence (VLSI)
+        \end{itemize}
+        \item Open source software for FPGA development:
+        \begin{itemize}[label={$\cdot$}, left=0.25cm]
+            \item VTR: a PNR tool popular amongst researchers who study placement techniques
+            \item OSS-CAD: a full-flow software suite that includes ABC synthesis, Yosys synthesis, Yosys nextpnr.
+            \item AMF-Placer (Analytical Placer)
+            \item DREAMPlace (VLSI) + DREAMPlaceFPGA
+            \item RapidLayout (Hard Block Placer)
+            \item RapidStream (Systolic Array Placer)
+            \item RapidWright: Semi-open source API that provides backend access to Xilinx Vivado EDA using design checkpoints.
+            
+        \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{Synthesis}
+    \begin{itemize}[label={--}, left=0.25cm]
+        \item 
+        \item 
+        \item 
+        \item 
+    \end{itemize}
+\end{itemize}
 
 \end{document}
