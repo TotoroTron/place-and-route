@@ -3,52 +3,53 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: proposal.aux
 The style file: ieeetr.bst
 I couldn't open database file .bib
----line 31 of file proposal.aux
- : \bibdata{references/surveys,references/fpga_placement,references/vlsi_placement,
- :                                                                                 }
+---line 32 of file proposal.aux
+ : \bibdata{references/surveys,references/rapidwright,references/fpga_placement,references/vlsi_placement,
+ :                                                                                                        }
 I'm skipping whatever remains of this command
 Database file #1: references/surveys.bib
-Database file #2: references/fpga_placement.bib
-Database file #3: references/vlsi_placement.bib
-You've used 16 entries,
+Database file #2: references/rapidwright.bib
+Database file #3: references/fpga_placement.bib
+Database file #4: references/vlsi_placement.bib
+You've used 20 entries,
             1876 wiz_defined-function locations,
-            595 strings with 7239 characters,
-and the built_in function-call counts, 5281 in all, are:
-= -- 481
-> -- 230
+            621 strings with 8171 characters,
+and the built_in function-call counts, 6455 in all, are:
+= -- 583
+> -- 283
 < -- 0
-+ -- 82
-- -- 66
-* -- 359
-:= -- 712
-add.period$ -- 16
-call.type$ -- 16
-change.case$ -- 16
++ -- 101
+- -- 81
+* -- 441
+:= -- 873
+add.period$ -- 20
+call.type$ -- 20
+change.case$ -- 20
 chr.to.int$ -- 0
-cite$ -- 16
-duplicate$ -- 308
-empty$ -- 504
-format.name$ -- 66
-if$ -- 1329
+cite$ -- 20
+duplicate$ -- 375
+empty$ -- 624
+format.name$ -- 81
+if$ -- 1621
 int.to.chr$ -- 0
-int.to.str$ -- 16
-missing$ -- 16
-newline$ -- 51
-num.names$ -- 16
-pop$ -- 83
+int.to.str$ -- 20
+missing$ -- 20
+newline$ -- 63
+num.names$ -- 20
+pop$ -- 106
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 227
+skip$ -- 270
 stack$ -- 0
-substring$ -- 316
-swap$ -- 138
+substring$ -- 384
+swap$ -- 162
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 44
-width$ -- 18
-write$ -- 154
+while$ -- 54
+width$ -- 22
+write$ -- 190
 (There was 1 error message)

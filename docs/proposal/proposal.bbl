@@ -28,6 +28,27 @@ U.~Farooq, H.~Parvez, H.~Mehrez, and Z.~Marrakchi, ``Exploration of
   heterogeneous fpga architectures,'' {\em Int. J. Reconfig. Comput.},
   vol.~2011, jan 2011.
 
+\bibitem{5694290}
+C.~Lavin, M.~Padilla, S.~Ghosh, B.~Nelson, B.~Hutchings, and M.~Wirthlin,
+  ``Using hard macros to reduce fpga compilation time,'' in {\em 2010
+  International Conference on Field Programmable Logic and Applications},
+  pp.~438--441, 2010.
+
+\bibitem{RW_2018}
+C.~Lavin and A.~Kaviani, ``Rapidwright: Enabling custom crafted implementations
+  for fpgas,'' in {\em 2018 IEEE 26th Annual International Symposium on
+  Field-Programmable Custom Computing Machines (FCCM)}, pp.~133--140, 2018.
+
+\bibitem{RWRoute}
+Y.~Zhou, P.~Maidee, C.~Lavin, A.~Kaviani, and D.~Stroobandt, ``Rwroute: An
+  open-source timing-driven router for commercial fpgas,'' {\em ACM Trans.
+  Reconfigurable Technol. Syst.}, vol.~15, nov 2021.
+
+\bibitem{RW_2023}
+C.~Lavin and E.~Hung, ``Invited paper: Rapidwright: Unleashing the full power
+  of fpga technology with domain-specific tooling,'' in {\em 2023 IEEE/ACM
+  International Conference on Computer Aided Design (ICCAD)}, pp.~1--7, 2023.
+
 \bibitem{AP_2000}
 A.~A. Kennings and I.~L. Markov, ``Analytical minimization of half-perimeter
   wirelength,'' in {\em Proceedings of the 2000 Asia and South Pacific Design

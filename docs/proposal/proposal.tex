@@ -11,6 +11,10 @@
 \date{}
 \maketitle
 
+\section{Proposal}
+
+
+
 \section{Abbreviations}
 \begin{itemize}[label={--}, left=0.25cm] % Adjust label and left indent as desired
     \item FPGA: Field Programmable Gate Array
@@ -58,9 +62,9 @@
             \item OSS-CAD: a full-flow software suite that includes ABC synthesis, Yosys synthesis, Yosys nextpnr.
             \item AMF-Placer (Analytical Placer)
             \item DREAMPlace (VLSI) + DREAMPlaceFPGA
-            \item RapidLayout (Hard Block Placer for Systolic Arrays)
-            \item RapidStream (HLS Placer)
             \item RapidWright: Semi-open source API that provides backend access to Xilinx Vivado EDA using design checkpoints.
+            \item RapidLayout: Hard Block Placer for Systolic Arrays. Built with RapidWright.
+            \item RapidStream: HLS Placer. Built with RapidWright.
         \end{itemize}
     \end{itemize}
     
@@ -106,6 +110,7 @@ This is a citation for AMFPlacer. \cite{AMFPlacer}
 \nocite{*}
 \bibliography{
     references/surveys,
+    references/rapidwright,
     references/fpga_placement,
     references/vlsi_placement,
 }
