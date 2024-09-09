@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{hyperref}
 \usepackage{enumitem}
+\usepackage{graphicx}
 
 \begin{document}
 \title{Technical Paper Proposal: \\ Placement Algorithms for Heterogenous FPGAs}
@@ -21,6 +22,12 @@
     \item HLS: High Level Synthesis
     \item PL-PS: Programmable Logic - Processing System
     \item EDIF: Electronic Design Interchange Format
+    \item HPWL: Half Perimeter Wire Length
+\end{itemize}
+
+\section{Keywords}
+\begin{itemize}
+    \item FPGA, EDA, Synthesis, Placement, Routing, Parallel, Optimization
 \end{itemize}
 
 \section{Ideas}
@@ -59,25 +66,49 @@
     
     \item \textbf{Synthesis}
     \begin{itemize}[label={--}, left=0.25cm]
-        \item Takes a design written in a high-level HDL like VHDL or Verilog and "synthesizes" a \textbf{logical netlist} out of it. This logical netlist is usually generated as an EDIF, JSON, or a low-level Verilog file. This netlist describes the necessary basic elements of logic (BELs) and the wired connections between them that are necessary to implement the design.
+        \item Takes a design written in a high-level HDL like VHDL or Verilog and "synthesizes" a \textbf{logical netlist} out of it. 
+        \item The logical netlist is usually generated as an EDIF, JSON, or a low-level Verilog file. 
+        \item The netlist describes the necessary basic elements of logic (BELs) and the wired connections between them that are necessary to implement the design.
     \end{itemize}
 
     \item \textbf{Placement}
     \begin{itemize}[label={--}, left=0.25cm]
         \item Takes the \textbf{logical netlist} and produces a \textbf{physical netlist}.
+        \item For each BEL in the netlist, assign the BEL to a Cell, Site, and Tile on the physical FPGA device.
+        \item History of the landscape of placement algorithms:
     \end{itemize}
 
     \item \textbf{Routing}
     \begin{itemize}[label={--}, left=0.25cm]
-        \item Takes the \textbf{physical netlist} and maps the connections between BELs onto physical switchboxes.
+        \item Takes the \textbf{physical netlist} and maps the connections between BELs onto wires, interconnects, and switchboxes on the FPGA.
+        \begin{figure}
+            \begin{center}
+                \includegraphics[width=0.75\textwidth]{figures/kraftwerk2.png}
+            \end{center}
+            \caption{Landscape of VLSI placement techniques (Spindler) \cite{kraftwerk2} }
+            \label{fig:}
+        \end{figure}
+        \begin{figure}
+            \begin{center}
+                \includegraphics[width=0.95\textwidth]{figures/ProCha.png}
+            \end{center}
+            \caption{Historical timeline of VLSI placement techniques (Markov) \cite{ProCha} }
+            \label{fig:}
+        \end{figure}
     \end{itemize}
 
 \end{itemize}
 
 This is a citation for AMFPlacer. \cite{AMFPlacer}
 
+\newpage
 \bibliographystyle{ieeetr}
-\bibliography{references}
+\nocite{*}
+\bibliography{
+    references/surveys,
+    references/fpga_placement,
+    references/vlsi_placement,
+}
 
 \end{document}
 

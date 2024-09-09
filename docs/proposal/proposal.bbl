@@ -1,9 +1,91 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{kraftwerk2}
+P.~Spindler, U.~Schlichtmann, and F.~M. Johannes, ``Kraftwerk2—a fast
+  force-directed quadratic placement approach using an accurate net model,''
+  {\em Trans. Comp.-Aided Des. Integ. Cir. Sys.}, vol.~27, p.~1398–1411, aug
+  2008.
+
+\bibitem{ProCha}
+I.~L. Markov, J.~Hu, and M.-C. Kim, ``Progress and challenges in vlsi placement
+  research,'' {\em Proceedings of the IEEE}, vol.~103, no.~11, pp.~1985--2003,
+  2015.
 
 \bibitem{AMFPlacer}
 T.~Liang, G.~Chen, J.~Zhao, S.~Sinha, and W.~Zhang, ``Amf-placer:
   High-performance analytical mixed-size placer for fpga,'' in {\em 2021
   IEEE/ACM International Conference on Computer-Aided Design (ICCAD)},
   pp.~1--6, 2021.
+
+\bibitem{ArchExplore}
+A.~Mishra, N.~Rao, G.~Gore, and X.~Tang, ``Architectural exploration of
+  heterogeneous fpgas for performance enhancement of ml benchmarks,'' in {\em
+  2023 IEEE Asia Pacific Conference on Circuits and Systems (APCCAS)},
+  pp.~232--235, 2023.
+
+\bibitem{ExploreHetero}
+U.~Farooq, H.~Parvez, H.~Mehrez, and Z.~Marrakchi, ``Exploration of
+  heterogeneous fpga architectures,'' {\em Int. J. Reconfig. Comput.},
+  vol.~2011, jan 2011.
+
+\bibitem{AP_2000}
+A.~A. Kennings and I.~L. Markov, ``Analytical minimization of half-perimeter
+  wirelength,'' in {\em Proceedings of the 2000 Asia and South Pacific Design
+  Automation Conference}, ASP-DAC '00, (New York, NY, USA), p.~179–184,
+  Association for Computing Machinery, 2000.
+
+\bibitem{HierPlace}
+S.~Areibi, G.~Grewal, D.~Banerji, and P.~Du, ``Hierarchical fpga placement,''
+  {\em Canadian Journal of Electrical and Computer Engineering}, vol.~32,
+  no.~1, pp.~53--64, 2007.
+
+\bibitem{AP_2012}
+M.~Gort and J.~H. Anderson, ``Analytical placement for heterogeneous fpgas,''
+  in {\em 22nd International Conference on Field Programmable Logic and
+  Applications (FPL)}, pp.~143--150, 2012.
+
+\bibitem{AP_2019}
+J.~Chen, W.~Zhu, J.~Yu, L.~He, and Y.-W. Chang, ``Analytical placement with 3d
+  poisson's equation and admm based optimization for large-scale 2.5d
+  heterogeneous fpgas,'' in {\em 2019 IEEE/ACM International Conference on
+  Computer-Aided Design (ICCAD)}, pp.~1--8, 2019.
+
+\bibitem{FPGAAccel}
+S.~Dhar, L.~Singhal, M.~Iyer, and D.~Pan, ``Fpga accelerated fpga placement,''
+  in {\em 2019 29th International Conference on Field Programmable Logic and
+  Applications (FPL)}, pp.~404--410, 2019.
+
+\bibitem{DREAMPlaceFPGA}
+R.~S. Rajarathnam, M.~B. Alawieh, Z.~Jiang, M.~Iyer, and D.~Z. Pan,
+  ``Dreamplacefpga: An open-source analytical placer for large scale
+  heterogeneous fpgas using deep-learning toolkit,'' in {\em 2022 27th Asia and
+  South Pacific Design Automation Conference (ASP-DAC)}, pp.~300--306, 2022.
+
+\bibitem{SAP_2023}
+H.~Long, Y.~Bai, Y.~Li, J.~Wang, and J.~Lai, ``Optimizing wirelength and delay
+  of fpga tile through floorplanning based on simulated annealing algorithm,''
+  in {\em 2023 IEEE 15th International Conference on ASIC (ASICON)}, pp.~1--4,
+  2023.
+
+\bibitem{AMFPlacer2}
+T.~Liang, G.~Chen, J.~Zhao, S.~Sinha, and W.~Zhang, ``Amf-placer 2.0: Open
+  source timing-driven analytical mixed-size placer for large-scale
+  heterogeneous fpga,'' {\em IEEE Transactions on Computer-Aided Design of
+  Integrated Circuits and Systems}, pp.~1--1, 2024.
+
+\bibitem{VLSI_AP_2014}
+B.~Ray, A.~R. Tripathy, P.~Samal, M.~Das, and P.~Mallik, ``Half-perimeter
+  wirelength model for vlsi analytical placement,'' in {\em 2014 International
+  Conference on Information Technology}, pp.~287--292, 2014.
+
+\bibitem{VLSI_AP_2017}
+B.~N.~B. Ray, S.~K. Mohanty, D.~Sethy, and R.~B. Ray, ``Hpwl formulation for
+  analytical placement using gaussian error function,'' in {\em 2017
+  International Conference on Information Technology (ICIT)}, pp.~56--61, 2017.
+
+\bibitem{DREAMPlace}
+Y.~Lin, S.~Dhar, W.~Li, H.~Ren, B.~Khailany, and D.~Z. Pan, ``Dreampiace: Deep
+  learning toolkit-enabled gpu acceleration for modern vlsi placement,'' in
+  {\em 2019 56th ACM/IEEE Design Automation Conference (DAC)}, pp.~1--6, 2019.
 
 \end{thebibliography}
