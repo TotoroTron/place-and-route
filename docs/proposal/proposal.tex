@@ -12,21 +12,32 @@
 \maketitle
 
 \section{Proposal}
-In the software world, an engineer writes a program in a high-level langauge like C, Java, or Python. 
-Then the engineer compiles the program using some compilation software like gcc or clang. 
-First, the compiler takes the engineer's high-level program, and through multiple stages of lexing, parsing, and optimizations, generates a low-level program in an assembly language like x86 or MIPS. 
-Then, the compiler assembles the assembly code into machine code. 
-The produced machine code is often referred to as a binary and is ready to execute on the machine. 
-Different compilers may have different strategies for this process. 
-For example, LLVM and clang skip the assembly stage and go directly from high-level code to machine code, while gcc sticks to the traditional two-step process. 
-The Java and Python are more complex in that they compile high-level code into an intermediate language as bytecode. 
-In Java, the compiler assembles the bytecode into machine code at runtime in a process called Just-in-Time compilation which allows it to be platform independent. 
-Python offers the choice to assemble the machine code before or at runtime. 
-Simplify this downto 2 sentences.
 
+% In the software world, an engineer writes a program in a high-level langauge like C, Java, or Python. 
+% Then the engineer compiles the program using some compilation software like gcc or clang. 
+% First, the compiler takes the engineer's high-level program, and through multiple stages of lexing, parsing, 
+% and optimizations, generates a low-level program in an assembly language like x86 or MIPS. 
+% Then, the compiler assembles the assembly code into machine code. 
+% The produced machine code is often referred to as a binary and is ready to execute on the machine. 
+% Different compilers may have different strategies for this process. 
+% For example, LLVM and clang skip the assembly stage and go directly from high-level code to machine code, while gcc sticks to the traditional two-step process. 
+% The Java and Python are more complex in that they compile high-level code into an intermediate language as bytecode. 
+% In Java, the compiler assembles the bytecode into machine code at runtime in a process called Just-in-Time compilation which allows it to be platform independent. 
+% Python offers the choice to assemble the machine code before or at runtime. 
+% Simplify this downto 2 sentences.
 
-In the FPGA world, the design entry to product pipeline is despairingly complex by comparison. First, the design entry. The engineer describes a digital system using a high-level HDL like Verilog or VHDL. Then the engineer submits the design entry to an EDA like Vivado or Quartus to perform three stages of automated design. These are: synthesis, placement, and routing. and then yap about NP-hardness and massive search space and hellish runtime.
+In modern software development, the process of compiling high-level languages like C++ or Java into executable machine code is highly efficient and streamlined. 
+The software toolchains only consist of compilers and scripts and are mostly open source and easy to learn. 
+The compilation is where most of the magic happens. The developer can influence a few optimization flags if needed, but for the most part, the developer simply executes the default compiler command. Through multiple stages of lexing, parsing, and optimizations, the compiler takes the developer's program and produces working machine code. All of this happens within milliseconds to seconds, even for large projects. 
 
+In the same way that a compiler takes your high-level C++ file and assembles machine code ready to be executed on a CPU, an Electronic Design Automation (EDA) tool takes your high-level Verilog file and produces a hardware configuration in the form of a bitstream, ready to be deployed onto an FPGA or ASIC. In a superficial way, they perform the same task but for different industries. One for software, the other for hardware.
+
+Dramatic transition.
+
+In the FPGA world, the design entry to product pipeline is despairingly complex by comparison. 
+First, the design entry. The engineer describes a digital system using a high-level HDL like Verilog or VHDL. 
+Then the engineer submits the design entry to an EDA like Vivado or Quartus to perform three stages of automated design. 
+These are: synthesis, placement, and routing. and then yap about NP-hardness and massive search space and hellish runtime.
 
 \section{Abbreviations}
 \begin{itemize}[label={--}, left=0.25cm] % Adjust label and left indent as desired
@@ -73,7 +84,8 @@ In the FPGA world, the design entry to product pipeline is despairingly complex 
         \end{itemize}
         \item Open source software for FPGA development:
         \begin{itemize}[label={$\cdot$}, left=0.25cm]
-            \item \textbf{VTR}: Simulated Annealing placer for FPGAs. Popular among researchers who study placement techniques. Commonly referred to as an "academic placer".
+            \item \textbf{VTR}: Simulated Annealing placer for FPGAs. Popular among researchers who study placement techniques. 
+                Commonly referred to as an "academic placer".
             \item \textbf{OSS-CAD}: a full-flow software suite that includes ABC synthesis, Yosys synthesis, Yosys nextpnr.
             \item \textbf{AMF-Placer}: Analytical Placer for FPGAs
             \item \textbf{RapidWright}: Semi-open source API that provides backend access to Xilinx Vivado EDA using design checkpoints.
