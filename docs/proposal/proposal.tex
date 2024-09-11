@@ -18,33 +18,53 @@
 
 
 \section{Proposal}
-In modern software development, the process of compiling high-level languages like C++ or Java into executable machine code is highly efficient and streamlined. 
-The software toolchains only consist of compilers and scripts and are mostly open source and easy to learn. 
-The compilation is where most of the magic happens.
-Through multiple stages of lexing, parsing, and optimizations, the compiler takes the developer's program and produces working machine code.
-The developer can influence a few optimization flags if needed, but for the most part, the developer simply runs the default compiler command and is presented with the final product.
-All of this happens within milliseconds to seconds, even for large projects. 
+A compiler takes a high-level program like a Java or Python file and assembles a corresponding machine code which is ready to be executed on a CPU.
+In similar fashion, an Electronic Design Automation tool (EDA) takes a high-level description of a digital system written in Verilog or VHDL and produces a bitstream which is ready to be deployed to an FPGA.
+In a superficial way, compilers and EDAs perform the same task for engineers but in different industries. 
+One for software, the latter for hardware.
 
-In the same way that a compiler takes a high-level C++ file and assembles machine code ready to be executed on a CPU, an Electronic Design Automation (EDA) tool takes a high-level Verilog file and produces a hardware configuration in the form of a bitstream, ready to be deployed onto an FPGA or ASIC. 
-In a superficial way, they perform the same task but for different industries. 
-One for software, the other for hardware.
+% Software compilers have become incredibly optimized over the decades and have allowed software engineers to be very productive. 
+% The speed and user-friendliness that compilers offer allows engineers to push dozens, even hundreds of design cycles per day.
+% Bugs and design changes can be patched and implemented into the program and recompiled in a matter of milliseconds to minutes. 
+% Modern compilers are so refined that compilation can be regarded as where the "magic" happens in the software design cycle.
+% Software engineers typically do not concern themselves with how their program gets compiled.
+% Through multiple stages of lexing, parsing, and optimizations, the compiler takes the developer's program and produces working machine code.
+% The developer can influence a few optimization flags if needed, but for the most part, the developer simply runs the default compiler command and is presented with the final product.
+% All of this happens within milliseconds to seconds, even for large projects. 
+% monotone, sentence length
 
-In the FPGA world, the design entry to product pipeline is despairingly complex by comparison. 
-First, the design entry. The engineer describes a digital system using a high-level HDL like Verilog or VHDL. 
+Software compilers have evolved to become highly optimized, significantly boosting the productivity of software developers. 
+The compilers are so robust that developers rarely need to worry about the correctness or efficiency of their machine code, and are so refined that it all happens in a matter of milliseconds to minutes, even for large projects. % break this up?
+The speed of compilation enables rapid debugging and implementation of design changes and allows developers to iterate through dozens or even hundreds of design cycles per day.
+Instead of tinkering around with assembly code, software engineers can comfortably focus on the high-level abstractions of their design. 
+
+% Compilation, which takes mere milliseconds to minutes, enables rapid debugging and implementation of design changes. 
+% The compilation process has become so streamlined that it can be considered the "magic" of the software development cycle. 
+% They can influence a few optimization flags when needed, but for the most part, the developer simply runs the default compiler command.
+% The compiler handles the lexing, parsing, and optimization automatically, with minimal input from the developer who typically relies on default settings unless specific optimization flags are needed. 
+% Even for large-scale projects, this process is fast and efficient, allowing engineers to focus on higher-level design rather than low-level details.
+
+The compilation stages mainly consists of lexing, parsing, and instruction optimization.
+While these stages can be complex from a design standpoint, they are, mathematically, trivial.
+The EDA stages are despairingly complex by comparison. 
+First, the FPGA engineer creates and describes a digital design using a hardware description language (HDL) like Verilog or VHDL.     
 Then the engineer submits the design entry to an EDA like Vivado or Quartus to perform three stages of automated design. 
 These are: synthesis, placement, and routing. 
 All three are NP-hard problems.
+
+
 For even modest designs like binary counters or 8-bit CPUs that utilize a small percentage of the available resources on the FPGA, the EDA will spend a minimum of a couple minutes synthesizing and implementing the design.
 The EDA run time increases exponentially with the scale of the project. 
 Projects that utilize 80\% or more of the FPGA's resources may run for hours, and for the high-end devices like Xilinx's Kintex FPGAs which have millions of logical elements, can run for days.
 At high utilization, sometimes the design EDA cannot fit the design onto the device due to routing congestion even when it has enough logical elements to implement the design, essentially wasting hours or days of runtime. 
 
-One of the most common complaints from those in the FPGA design industry, especially from those in software development, is that the FPGA toolchains are overall slow and heavy. 
+One of the most common complaints from new FPGA engineers, especially those coming from software development, is that the FPGA toolchains are overall slow and heavy.
+This is because the problems that the EDA must solve are inherently complex.
 Unlike in software development where an error in the program can be patched and recompiled in a matter of minutes, EDA runtimes lasting several hours means that an engineer can only go through a couple design cycles per day. 
 An FPGA engineer must be very precise with their coding and practice thorough verification of their design before submitting it to the EDA.
 This overall heightens the barrier of entry into FPGA development and contributes to a shortage of qualified FPGA engineers. 
 
-This paper aims to attack one of the sections of this wall: the placement stage. Like synthesis and routing, it is an NP-hard problem. The search space for a placed design is massive.
+This paper aims to attack one of the sections of this wall: the placement stage. First, it will survey the current landscape of placement algorithms and strategies. Like synthesis and routing, it is an NP-hard problem. The search space for a well placed design is massive.
 
 \section{Abbreviations}
 \begin{itemize}[label={--}, left=0.25cm]

@@ -1,7 +1,7 @@
 # Fdb version 3
-["bibtex proposal"] 1726012194 "proposal.aux" "proposal.bbl" "proposal" 1726013641
+["bibtex proposal"] 1726012194 "proposal.aux" "proposal.bbl" "proposal" 1726083853
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/ieeetr.bst" 1292289607 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "proposal.aux" 1726013641 2376 0fccc63438284d021abcec56f2b3bcf0 "pdflatex"
+  "proposal.aux" 1726083853 2376 0fccc63438284d021abcec56f2b3bcf0 "pdflatex"
   "references/fpga_placement.bib" 1725906290 4922 d13d2b258bf850472770ee5426b7837e ""
   "references/rapidwright.bib" 1725906288 2442 aa33f1a8b36f10d354bf2b104918878d ""
   "references/surveys.bib" 1725906287 1680 aa06521ac31c948471b1521e94b2f4d8 ""
@@ -9,7 +9,7 @@
   (generated)
   "proposal.bbl"
   "proposal.blg"
-["pdflatex"] 1726013640 "proposal.tex" "proposal.pdf" "proposal" 1726013641
+["pdflatex"] 1726083852 "proposal.tex" "proposal.pdf" "proposal" 1726083853
   "/etc/texmf/web2c/texmf.cnf" 1725646323 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -84,10 +84,10 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1725653372 2801870 9d830cba1077795a4fe404c4d38dc0c3 ""
   "figures/ProCha.png" 1725896007 226750 1a96df5377809772ac0d2de906084c83 ""
   "figures/kraftwerk2.png" 1725894593 91188 aeb516bd9188c40b56d029ce7d02250e ""
-  "proposal.aux" 1726013641 2376 0fccc63438284d021abcec56f2b3bcf0 "pdflatex"
+  "proposal.aux" 1726083853 2376 0fccc63438284d021abcec56f2b3bcf0 "pdflatex"
   "proposal.bbl" 1726012194 5013 e918fa7e26e4cf216c82f95fb9fa42ea "bibtex proposal"
-  "proposal.out" 1726013641 342 bbf743240140cd122d35db0f214c91d3 "pdflatex"
-  "proposal.tex" 1726013638 8640 82b1c23f835abe73bd6c1f2ea6bf8607 ""
+  "proposal.out" 1726083853 342 bbf743240140cd122d35db0f214c91d3 "pdflatex"
+  "proposal.tex" 1726083852 10791 ffc0d7b52f8fa30794b0e1e880d912f8 ""
   (generated)
   "proposal.aux"
   "proposal.log"
