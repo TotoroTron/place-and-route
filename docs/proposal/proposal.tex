@@ -11,8 +11,13 @@
 \date{}
 \maketitle
 
-\section{Proposal}
+\section{Keywords}
+\begin{itemize}
+    \item FPGA, EDA, Synthesis, Placement, Routing, Parallel, Optimization
+\end{itemize}
 
+
+\section{Proposal}
 In modern software development, the process of compiling high-level languages like C++ or Java into executable machine code is highly efficient and streamlined. 
 The software toolchains only consist of compilers and scripts and are mostly open source and easy to learn. 
 The compilation is where most of the magic happens.
@@ -23,17 +28,22 @@ All of this happens within milliseconds to seconds, even for large projects.
 In the same way that a compiler takes a high-level C++ file and assembles machine code ready to be executed on a CPU, an Electronic Design Automation (EDA) tool takes a high-level Verilog file and produces a hardware configuration in the form of a bitstream, ready to be deployed onto an FPGA or ASIC. In a superficial way, they perform the same task but for different industries. 
 One for software, the other for hardware.
 
-Dramatic transition.
-
 In the FPGA world, the design entry to product pipeline is despairingly complex by comparison. 
 First, the design entry. The engineer describes a digital system using a high-level HDL like Verilog or VHDL. 
 Then the engineer submits the design entry to an EDA like Vivado or Quartus to perform three stages of automated design. 
 These are: synthesis, placement, and routing. 
 All three are NP-hard problems.
-For even modest designs like binary counters or 8-bit CPUs that utilize a small percentage of the available resources on the FPGA, the EDA will spend a minimum of a couple minutes building the design.
-The EDA build time increases exponentially with the scale of the project. 
-Projects that utilize 80\% or more of the FPGA's resources may build for hours, and for the high-end devices like Xilinx's Kintex which boast millions of logical elements, can take days.
-Sometimes the EDA cannot fit the design onto the device.
+For even modest designs like binary counters or 8-bit CPUs that utilize a small percentage of the available resources on the FPGA, the EDA will spend a minimum of a couple minutes synthesizing and implementing the design.
+The EDA run time increases exponentially with the scale of the project. 
+Projects that utilize 80\% or more of the FPGA's resources may run for hours, and for the high-end devices like Xilinx's Kintex FPGAs which have millions of logical elements, can run for days.
+At high utilization, sometimes the design EDA cannot fit the design onto the device due to routing congestion even when it has enough logical elements to implement the design, essentially wasting hours or days of runtime. 
+
+One of the most common complaints from those in the FPGA design industry, especially from those in software development, is that the FPGA toolchains are overall slow and heavy. 
+Unlike in software development where an error in the program can be patched and recompiled in a matter of minutes, EDA runtimes lasting several hours means that an engineer can only go through a couple design cycles per day. 
+A Verilog developer must be very precise with their coding and practice thorough verification of their design before submitting it to the EDA.
+This overall heightens the barrier of entry into FPGA development and contributes to a shortage of qualified FPGA engineers. 
+
+This paper aims to attack one of the sections of this wall: the placement stage. Like synthesis and routing, it is an NP-hard problem. The search space for a placed design is massive. 
 
 \section{Abbreviations}
 \begin{itemize}[label={--}, left=0.25cm]
@@ -51,10 +61,6 @@ Sometimes the EDA cannot fit the design onto the device.
     \item \textbf{HPWL}: Half Perimeter Wire Length
 \end{itemize}
 
-\section{Keywords}
-\begin{itemize}
-    \item FPGA, EDA, Synthesis, Placement, Routing, Parallel, Optimization
-\end{itemize}
 
 \section{Ideas}
 \begin{itemize}[label={\textbullet}, left=0.25cm]
