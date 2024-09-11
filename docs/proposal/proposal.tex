@@ -25,7 +25,8 @@ Through multiple stages of lexing, parsing, and optimizations, the compiler take
 The developer can influence a few optimization flags if needed, but for the most part, the developer simply runs the default compiler command and is presented with the final product.
 All of this happens within milliseconds to seconds, even for large projects. 
 
-In the same way that a compiler takes a high-level C++ file and assembles machine code ready to be executed on a CPU, an Electronic Design Automation (EDA) tool takes a high-level Verilog file and produces a hardware configuration in the form of a bitstream, ready to be deployed onto an FPGA or ASIC. In a superficial way, they perform the same task but for different industries. 
+In the same way that a compiler takes a high-level C++ file and assembles machine code ready to be executed on a CPU, an Electronic Design Automation (EDA) tool takes a high-level Verilog file and produces a hardware configuration in the form of a bitstream, ready to be deployed onto an FPGA or ASIC. 
+In a superficial way, they perform the same task but for different industries. 
 One for software, the other for hardware.
 
 In the FPGA world, the design entry to product pipeline is despairingly complex by comparison. 
@@ -40,10 +41,10 @@ At high utilization, sometimes the design EDA cannot fit the design onto the dev
 
 One of the most common complaints from those in the FPGA design industry, especially from those in software development, is that the FPGA toolchains are overall slow and heavy. 
 Unlike in software development where an error in the program can be patched and recompiled in a matter of minutes, EDA runtimes lasting several hours means that an engineer can only go through a couple design cycles per day. 
-A Verilog developer must be very precise with their coding and practice thorough verification of their design before submitting it to the EDA.
+An FPGA engineer must be very precise with their coding and practice thorough verification of their design before submitting it to the EDA.
 This overall heightens the barrier of entry into FPGA development and contributes to a shortage of qualified FPGA engineers. 
 
-This paper aims to attack one of the sections of this wall: the placement stage. Like synthesis and routing, it is an NP-hard problem. The search space for a placed design is massive. 
+This paper aims to attack one of the sections of this wall: the placement stage. Like synthesis and routing, it is an NP-hard problem. The search space for a placed design is massive.
 
 \section{Abbreviations}
 \begin{itemize}[label={--}, left=0.25cm]
