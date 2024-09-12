@@ -69,13 +69,20 @@ This paper aims to study one particular pillar of this barrier: the placement st
 First, it will review prerequisite knowledge for placement algorithms. 
 This includes graph theory to represent logical elements of a digital design and the wired connections between them, and a corresponding optimization problem with a cost function which we seek to minimize. 
 
-In mathematics, a graph is usually modeled as \( G = (V, E) \), where \( V \) represents the set of vertices and \( E \) represents the set of edges between them.
+In mathematics, a graph is modeled as \( G = (V, E) \), where \( V \) represents the set of vertices and \( E \) represents the set of edges between them.
 A hypergraph is denoted as \( G_{H} = (V_{H}, E_{H}) \), where \( V_{H} \) represents the set of vertices, and \( E_{H} \) represents the set of hyperedges, which are edges that can connect more than two vertices.
-Electronic circuits are typically represented as hypergraphs where % FINISH ME
-In FPGA design, the graph is often modeled using a "netlist". A netlist is a graph \( G = (V, E) \), where \( V \) represents the components (e.g., logic blocks or gates), and \( E \) represents the connections or nets between them.
+Electronic circuits are represented as hypergraphs as because a voltage source can have one or many sinks. 
+In FPGA design, the hypergraph is often transform into something called a "netlist", which is a hypergraph that has been flattened down into a graph. 
+For every hyperedge in the hypergraph, transform the hyperedge into a collection of 2-pin edges - one source to one sink.
+There are different strategies for this reduction - unoriented star model, clique model, etc.. 
+A netlist is a graph \( G = (V, E) \), where \( V \) represents the components (e.g., logic blocks or gates), and \( E \) represents the connections or nets between them.
 
 The vast majority of existing placers use the Half Perimeter Wire Length (HPWL) cost function or one of its various flavors - manhattan distance, euclidian distance, beta-regularized, etc..
-The basic HPWL models the problem as the summation of the manhattan lengths of all nets in the netlist. 
+The basic HPWL models the cost function as the summation of the manhattan lengths of all nets in the netlist. 
+
+This paper will primarily use Xilinx's open-source API, RapidWright to implement various custom placement algorithms.
+RapidWright is a Java API that provides backend access to Xilinx's EDA, Vivado. 
+
 
 
 \begin{equation}
@@ -84,7 +91,7 @@ The basic HPWL models the problem as the summation of the manhattan lengths of a
 
 
 Then, the paper will survey the current landscape of placement algorithms and strategies. 
-This includes Simulated Annealing (SA), Analytical Placement (AP), 
+This includes Simulated Annealing (SA) which is stochastic, but will focus on Analytical Placement (AP). 
 
 
 \section{Abbreviations}
