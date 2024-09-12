@@ -2,6 +2,7 @@
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{graphicx}
+\usepackage{amsmath}
 
 \begin{document}
 \title{Technical Paper Proposal: \\ Placement Algorithms for Heterogenous FPGAs}
@@ -52,19 +53,39 @@ Then the engineer submits the design entry to an EDA like Vivado or Quartus to p
 These are: synthesis, placement, and routing. 
 All three are NP-hard problems.
 
-
-For even modest designs like binary counters or 8-bit CPUs that utilize a small percentage of the available resources on the FPGA, the EDA will spend a minimum of a couple minutes synthesizing and implementing the design.
+For even modest designs that utilize a small percentage of the available resources on the FPGA, the EDA will spend a minimum of a couple minutes synthesizing and implementing the design.
 The EDA run time increases exponentially with the scale of the project. 
 Projects that utilize 80\% or more of the FPGA's resources may run for hours, and for the high-end devices like Xilinx's Kintex FPGAs which have millions of logical elements, can run for days.
-At high utilization, sometimes the design EDA cannot fit the design onto the device due to routing congestion even when it has enough logical elements to implement the design, essentially wasting hours or days of runtime. 
+At high utilization, there is a possibility that the EDA cannot fit the design onto the device due to routing congestion even when it has enough logical elements to implement the design. 
+The EDA might only reach this conclusion after attempting to fit the design for several hours. 
 
 One of the most common complaints from new FPGA engineers, especially those coming from software development, is that the FPGA toolchains are overall slow and heavy.
 This is because the problems that the EDA must solve are inherently complex.
 Unlike in software development where an error in the program can be patched and recompiled in a matter of minutes, EDA runtimes lasting several hours means that an engineer can only go through a couple design cycles per day. 
 An FPGA engineer must be very precise with their coding and practice thorough verification of their design before submitting it to the EDA.
-This overall heightens the barrier of entry into FPGA development and contributes to a shortage of qualified FPGA engineers. 
+This overall heightens the barrier of entry into FPGA development and contributes to a shortage of qualified FPGA engineers and a limitation of their productivity. 
 
-This paper aims to attack one of the sections of this wall: the placement stage. First, it will survey the current landscape of placement algorithms and strategies. Like synthesis and routing, it is an NP-hard problem. The search space for a well placed design is massive.
+This paper aims to study one particular pillar of this barrier: the placement stage. 
+First, it will review prerequisite knowledge for placement algorithms. 
+This includes graph theory to represent logical elements of a digital design and the wired connections between them, and a corresponding optimization problem with a cost function which we seek to minimize. 
+
+In mathematics, a graph is usually modeled as \( G = (V, E) \), where \( V \) represents the set of vertices and \( E \) represents the set of edges between them.
+A hypergraph is denoted as \( G_{H} = (V_{H}, E_{H}) \), where \( V_{H} \) represents the set of vertices, and \( E_{H} \) represents the set of hyperedges, which are edges that can connect more than two vertices.
+Electronic circuits are typically represented as hypergraphs where % FINISH ME
+In FPGA design, the graph is often modeled using a "netlist". A netlist is a graph \( G = (V, E) \), where \( V \) represents the components (e.g., logic blocks or gates), and \( E \) represents the connections or nets between them.
+
+The vast majority of existing placers use the Half Perimeter Wire Length (HPWL) cost function or one of its various flavors - manhattan distance, euclidian distance, beta-regularized, etc..
+The basic HPWL models the problem as the summation of the manhattan lengths of all nets in the netlist. 
+
+
+\begin{equation}
+    \text{HPWL} = \sum_{i=1}^{n} \left( \max_{j \in \text{net}_i} (x_j) - \min_{j \in \text{net}_i} (x_j) + \max_{j \in \text{net}_i} (y_j) - \min_{j \in \text{net}_i} (y_j) \right)
+\end{equation}
+
+
+Then, the paper will survey the current landscape of placement algorithms and strategies. 
+This includes Simulated Annealing (SA), Analytical Placement (AP), 
+
 
 \section{Abbreviations}
 \begin{itemize}[label={--}, left=0.25cm]
@@ -111,7 +132,7 @@ This paper aims to attack one of the sections of this wall: the placement stage.
                 Commonly referred to as an "academic placer".
             \item \textbf{OSS-CAD}: a full-flow software suite that includes ABC synthesis, Yosys synthesis, Yosys nextpnr.
             \item \textbf{AMF-Placer}: Analytical Placer for FPGAs
-            \item \textbf{RapidWright}: Semi-open source API that provides backend access to Xilinx Vivado EDA using design checkpoints.
+            \item \textbf{RapidWright}: Semi-open source Java API that provides backend access to Xilinx Vivado EDA using design checkpoints.
             \item \textbf{RapidLayout}: Hard Block Placer for Systolic Arrays. Built with RapidWright.
             \item \textbf{RapidStream}: HLS Placer. Built with RapidWright.
             \item \textbf{DREAMPlace}: GPU-powered deep learning placement for VLSI.
