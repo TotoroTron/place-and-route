@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.9.6)  12 SEP 2024 15:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.9.6)  12 SEP 2024 15:55
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -212,14 +212,7 @@ LaTeX Info: Redefining \] on input line 2939.
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count283
 \l__pdf_internal_box=\box53
-) (./proposal.aux
-
-LaTeX Warning: Label `eq:' multiply defined.
-
-
-LaTeX Warning: Label `eq:' multiply defined.
-
-)
+) (./proposal.aux)
 \openout1 = `proposal.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
@@ -289,22 +282,19 @@ File: figures/ProCha.png Graphic file (type png)
 Package pdftex.def Info: figures/ProCha.png  used on input line 201.
 (pdftex.def)             Requested size: 327.74895pt x 151.62697pt.
  [7 <./figures/kraftwerk2.png> <./figures/ProCha.png>] (./proposal.bbl [8] [9]) [10] (./proposal.aux)
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package rerunfilecheck Info: File `proposal.out' has not changed.
 (rerunfilecheck)             Checksum: 12466680CECDDAD993D00175A2CF8D92;555.
  ) 
 Here is how much of TeX's memory you used:
- 9224 strings out of 478287
- 144148 string characters out of 5849290
- 441588 words of memory out of 5000000
- 27272 multiletter control sequences out of 15000+600000
+ 9226 strings out of 478287
+ 144178 string characters out of 5849290
+ 441663 words of memory out of 5000000
+ 27274 multiletter control sequences out of 15000+600000
  475184 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,6n,63p,377b,666s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on proposal.pdf (10 pages, 472041 bytes).
+Output written on proposal.pdf (10 pages, 472079 bytes).
 PDF statistics:
  206 PDF objects out of 1000 (max. 8388607)
  158 compressed objects within 2 object streams

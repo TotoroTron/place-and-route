@@ -10,10 +10,6 @@ I'm skipping whatever remains of this command
 Database file #1: references/surveys.bib
 Database file #2: references/rapidwright.bib
 Database file #3: references/fpga_placement.bib
-Repeated entry---line 121 of file references/fpga_placement.bib
- : @inproceedings{RapidLayout
- :                           ,
-I'm skipping whatever remains of this entry
 Database file #4: references/vlsi_placement.bib
 You've used 23 entries,
             1876 wiz_defined-function locations,
@@ -56,4 +52,4 @@ warning$ -- 0
 while$ -- 62
 width$ -- 25
 write$ -- 220
-(There were 2 error messages)
+(There was 1 error message)

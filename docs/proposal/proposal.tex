@@ -75,24 +75,24 @@
     The vast majority of existing placers use the Half Perimeter Wire Length (HPWL) cost function in one of its various flavors - manhattan distance, euclidian distance, bounding box, etc..
     The manhattan and euclidian HPWL models the cost function as the summation of the lengths of all nets in the netlist. 
     The manhattan HPWL is convex while the euclidian HPWL is strictly convex.
-    We can use smooth methods to minimize the euclidian, however, it generally produces worse Quality of Result (QoR) than the manhattan \cite{AP_2012}.
+    We can use smooth methods to minimize the euclidian, however, it produces worse Quality of Result (QoR) than the manhattan \cite{AP_2012}, which is something to consider.
     The bounding box HPWL models the cost function as simply the longest net in the netlist.
     Shown below in (1) and (2) are the manhattan and euclidian distance HPWL objective functions respectively.
     Shown in (3) is the bounding box version.
 
     \begin{equation}
-        \Phi(\vec{x}, \vec{y}) = \sum_{i,j} w_{i,j} \left[ (x_i - x_j)^2 + (y_i - y_j)^2 \right]
-        \label{eq:}
+        \Phi(\vec{x}, \vec{y}) = \sum_{i,j} w_{i,j} \left( |x_i - x_j| + |y_i - y_j| \right)
+        \label{Manhattan}
     \end{equation}
 
     \begin{equation}
-        \Phi(\vec{x}, \vec{y}) = \sum_{i,j} w_{i,j} \left( |x_i - x_j| + |y_i - y_j| \right)
-        \label{eq:}
+        \Phi(\vec{x}, \vec{y}) = \sum_{i,j} w_{i,j} \left[ (x_i - x_j)^2 + (y_i - y_j)^2 \right]
+        \label{Euclidian}
     \end{equation}
 
     \begin{equation}
         \Phi(\vec{x}, \vec{y}) = \sum_{i=1}^{n} \left( \max_{j \in e_i} (x_j) - \min_{j \in e_i} (x_j) + \max_{j \in e_i} (y_j) - \min_{j \in e_i} (y_j) \right)
-        \label{eq:}
+        \label{BoundingBox}
     \end{equation}
 
     \( x = \{ x_{1}, x_{2}, ..., x_{N} \} \) represents the set of physical x-coordinates of the logic block pins on the chip and \( y = \{ y_{1}, y_{2}, ..., y_{N} \} \) represents the set of y-coordinates.
