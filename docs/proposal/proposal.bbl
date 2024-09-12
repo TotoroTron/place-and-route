@@ -1,5 +1,41 @@
 \begin{thebibliography}{10}
 
+\bibitem{Yosys}
+D.~Shah, E.~Hung, C.~Wolf, S.~Bazanski, D.~Gisselquist, and M.~Milanovic,
+  ``Yosys+nextpnr: An open source framework from verilog to bitstream for
+  commercial fpgas,'' in {\em 2019 IEEE 27th Annual International Symposium on
+  Field-Programmable Custom Computing Machines (FCCM)}, pp.~1--4, 2019.
+
+\bibitem{AMFPlacer2}
+T.~Liang, G.~Chen, J.~Zhao, S.~Sinha, and W.~Zhang, ``Amf-placer 2.0: Open
+  source timing-driven analytical mixed-size placer for large-scale
+  heterogeneous fpga,'' {\em IEEE Transactions on Computer-Aided Design of
+  Integrated Circuits and Systems}, pp.~1--1, 2024.
+
+\bibitem{RapidLayout}
+N.~Zhang, X.~Chen, and N.~Kapre, ``Rapidlayout: Fast hard block placement of
+  fpga-optimized systolic arrays using evolutionary algorithms,'' in {\em 2020
+  30th International Conference on Field-Programmable Logic and Applications
+  (FPL)}, pp.~145--152, 2020.
+
+\bibitem{RapidStream}
+L.~Guo, P.~Maidee, Y.~Zhou, C.~Lavin, J.~Wang, Y.~Chi, W.~Qiao, A.~Kaviani,
+  Z.~Zhang, and J.~Cong, ``Rapidstream: Parallel physical implementation of
+  fpga hls designs,'' in {\em Proceedings of the 2022 ACM/SIGDA International
+  Symposium on Field-Programmable Gate Arrays}, FPGA '22, (New York, NY, USA),
+  p.~1–12, Association for Computing Machinery, 2022.
+
+\bibitem{DREAMPlace}
+Y.~Lin, S.~Dhar, W.~Li, H.~Ren, B.~Khailany, and D.~Z. Pan, ``Dreampiace: Deep
+  learning toolkit-enabled gpu acceleration for modern vlsi placement,'' in
+  {\em 2019 56th ACM/IEEE Design Automation Conference (DAC)}, pp.~1--6, 2019.
+
+\bibitem{DREAMPlaceFPGA}
+R.~S. Rajarathnam, M.~B. Alawieh, Z.~Jiang, M.~Iyer, and D.~Z. Pan,
+  ``Dreamplacefpga: An open-source analytical placer for large scale
+  heterogeneous fpgas using deep-learning toolkit,'' in {\em 2022 27th Asia and
+  South Pacific Design Automation Conference (ASP-DAC)}, pp.~300--306, 2022.
+
 \bibitem{AP_2000}
 A.~A. Kennings and I.~L. Markov, ``Analytical minimization of half-perimeter
   wirelength,'' in {\em Proceedings of the 2000 Asia and South Pacific Design
@@ -76,23 +112,11 @@ S.~Dhar, L.~Singhal, M.~Iyer, and D.~Pan, ``Fpga accelerated fpga placement,''
   in {\em 2019 29th International Conference on Field Programmable Logic and
   Applications (FPL)}, pp.~404--410, 2019.
 
-\bibitem{DREAMPlaceFPGA}
-R.~S. Rajarathnam, M.~B. Alawieh, Z.~Jiang, M.~Iyer, and D.~Z. Pan,
-  ``Dreamplacefpga: An open-source analytical placer for large scale
-  heterogeneous fpgas using deep-learning toolkit,'' in {\em 2022 27th Asia and
-  South Pacific Design Automation Conference (ASP-DAC)}, pp.~300--306, 2022.
-
 \bibitem{SAP_2023}
 H.~Long, Y.~Bai, Y.~Li, J.~Wang, and J.~Lai, ``Optimizing wirelength and delay
   of fpga tile through floorplanning based on simulated annealing algorithm,''
   in {\em 2023 IEEE 15th International Conference on ASIC (ASICON)}, pp.~1--4,
   2023.
-
-\bibitem{AMFPlacer2}
-T.~Liang, G.~Chen, J.~Zhao, S.~Sinha, and W.~Zhang, ``Amf-placer 2.0: Open
-  source timing-driven analytical mixed-size placer for large-scale
-  heterogeneous fpga,'' {\em IEEE Transactions on Computer-Aided Design of
-  Integrated Circuits and Systems}, pp.~1--1, 2024.
 
 \bibitem{VLSI_AP_2014}
 B.~Ray, A.~R. Tripathy, P.~Samal, M.~Das, and P.~Mallik, ``Half-perimeter
@@ -103,10 +127,5 @@ B.~Ray, A.~R. Tripathy, P.~Samal, M.~Das, and P.~Mallik, ``Half-perimeter
 B.~N.~B. Ray, S.~K. Mohanty, D.~Sethy, and R.~B. Ray, ``Hpwl formulation for
   analytical placement using gaussian error function,'' in {\em 2017
   International Conference on Information Technology (ICIT)}, pp.~56--61, 2017.
-
-\bibitem{DREAMPlace}
-Y.~Lin, S.~Dhar, W.~Li, H.~Ren, B.~Khailany, and D.~Z. Pan, ``Dreampiace: Deep
-  learning toolkit-enabled gpu acceleration for modern vlsi placement,'' in
-  {\em 2019 56th ACM/IEEE Design Automation Conference (DAC)}, pp.~1--6, 2019.
 
 \end{thebibliography}
