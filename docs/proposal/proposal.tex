@@ -19,79 +19,98 @@
 
 
 \section{Proposal}
-A compiler takes a high-level program like a Java or Python file and assembles a corresponding machine code which is ready to be executed on a CPU.
+A compiler takes a program written in high-level programming language like a Java or Python and assembles low-level machine code which is ready to be executed on a CPU.
 In similar fashion, an Electronic Design Automation tool (EDA) takes a high-level description of a digital system written in Verilog or VHDL and produces a bitstream which is ready to be deployed to an FPGA.
 In a superficial way, compilers and EDAs perform the same task for engineers but in different industries. 
 One for software, the latter for hardware.
 
-% Software compilers have become incredibly optimized over the decades and have allowed software engineers to be very productive. 
-% The speed and user-friendliness that compilers offer allows engineers to push dozens, even hundreds of design cycles per day.
-% Bugs and design changes can be patched and implemented into the program and recompiled in a matter of milliseconds to minutes. 
-% Modern compilers are so refined that compilation can be regarded as where the "magic" happens in the software design cycle.
-% Software engineers typically do not concern themselves with how their program gets compiled.
-% Through multiple stages of lexing, parsing, and optimizations, the compiler takes the developer's program and produces working machine code.
-% The developer can influence a few optimization flags if needed, but for the most part, the developer simply runs the default compiler command and is presented with the final product.
-% All of this happens within milliseconds to seconds, even for large projects. 
-% monotone, sentence length
-
 Software compilers have evolved to become highly optimized, significantly boosting the productivity of software developers. 
 The compilers are so robust that developers rarely need to worry about the correctness or efficiency of their machine code, and are so refined that it all happens in a matter of milliseconds to minutes, even for large projects. % break this up?
-The speed of compilation enables rapid debugging and implementation of design changes and allows developers to iterate through dozens or even hundreds of design cycles per day.
+The speed of compilation enables rapid debugging and implementation of new features and allows developers to iterate through dozens or even hundreds of design cycles per day.
 Instead of tinkering around with assembly code, software engineers can comfortably focus on the high-level abstractions of their design. 
 
-% Compilation, which takes mere milliseconds to minutes, enables rapid debugging and implementation of design changes. 
-% The compilation process has become so streamlined that it can be considered the "magic" of the software development cycle. 
-% They can influence a few optimization flags when needed, but for the most part, the developer simply runs the default compiler command.
-% The compiler handles the lexing, parsing, and optimization automatically, with minimal input from the developer who typically relies on default settings unless specific optimization flags are needed. 
-% Even for large-scale projects, this process is fast and efficient, allowing engineers to focus on higher-level design rather than low-level details.
-
 The compilation stages mainly consists of lexing, parsing, and instruction optimization.
-While these stages can be complex from a design standpoint, they are, mathematically, trivial.
-The EDA stages are despairingly complex by comparison. 
+While these stages are complex from a systems standpoint, they are, mathematically, trivial.
+The EDA stages on the other hand are deeply mathematically complex. 
 First, the FPGA engineer creates and describes a digital design using a hardware description language (HDL) like Verilog or VHDL.     
 Then the engineer submits the design entry to an EDA like Vivado or Quartus to perform three stages of automated design. 
-These are: synthesis, placement, and routing. 
+These are mainly: synthesis, placement, and routing. 
 All three are NP-hard problems.
 
-For even modest designs that utilize a small percentage of the available resources on the FPGA, the EDA will spend a minimum of a couple minutes synthesizing and implementing the design.
+For even modest designs that utilize a small percentage of the available resources on the FPGA, the EDA will spend a minimum two to three minutes running synthesis and implementation.
 The EDA run time increases exponentially with the scale of the project. 
 Projects that utilize 80\% or more of the FPGA's resources may run for hours, and for the high-end devices like Xilinx's Kintex FPGAs which have millions of logical elements, can run for days.
 At high utilization, there is a possibility that the EDA cannot fit the design onto the device due to routing congestion even when it has enough logical elements to implement the design. 
 The EDA might only reach this conclusion after attempting to fit the design for several hours. 
 
-One of the most common complaints from new FPGA engineers, especially those coming from software development, is that the FPGA toolchains are overall slow and heavy.
+One of the most common complaints from new FPGA engineers, especially those coming from software development, is that the FPGA toolchains are slow and heavy.
 This is because the problems that the EDA must solve are inherently complex.
 Unlike in software development where an error in the program can be patched and recompiled in a matter of minutes, EDA runtimes lasting several hours means that an engineer can only go through a couple design cycles per day. 
 An FPGA engineer must be very precise with their coding and practice thorough verification of their design before submitting it to the EDA.
 This overall heightens the barrier of entry into FPGA development and contributes to a shortage of qualified FPGA engineers and a limitation of their productivity. 
 
 This paper aims to study one particular pillar of this barrier: the placement stage. 
-First, it will review prerequisite knowledge for placement algorithms. 
+First, it will review prerequisite knowledge for placement strategies. 
 This includes graph theory to represent logical elements of a digital design and the wired connections between them, and a corresponding optimization problem with a cost function which we seek to minimize. 
 
+Second, it will briefly explore the historical progress made on placement algorithms for both VLSI and FPGA and then explore the current trends in placement research. 
+
+Then third, the paper will outline my own work on placement strategies, whether they be reproductions of existing strategies, or if I manage to think of a novel strategy. 
+I intend to use Xilinx's open-source API, RapidWright, which is written in Java and provides backend access to Xilinx's FPGA EDA, Vivado.
+
+
+
+\section{Foundational Knowledge (so far)}
 In mathematics, a graph is modeled as \( G = (V, E) \), where \( V \) represents the set of vertices and \( E \) represents the set of edges between them.
 A hypergraph is denoted as \( G_{H} = (V_{H}, E_{H}) \), where \( V_{H} \) represents the set of vertices, and \( E_{H} \) represents the set of hyperedges, which are edges that can connect more than two vertices.
-Electronic circuits are represented as hypergraphs as because a voltage source can have one or many sinks. 
-In FPGA design, the hypergraph is often transform into something called a "netlist", which is a hypergraph that has been flattened down into a graph. 
-For every hyperedge in the hypergraph, transform the hyperedge into a collection of 2-pin edges - one source to one sink.
+Electronic circuits are typically represented as hypergraphs because a voltage source pin can have one or many sink pins. 
+In FPGA and VLSI design, the hypergraph is transformed into something called a "netlist", which is a hypergraph that has been flattened down into a graph. 
+For every hyperedge in the hypergraph, transform the hyperedge into a set of 2-pin edges, each having one source to one sink.
+The resulting graph can be represented by \( G = (V, E) \), where \( V \) represnts the ports (pins) of all modules (logic gates, )
 There are different strategies for this reduction - unoriented star model, clique model, etc.. 
-A netlist is a graph \( G = (V, E) \), where \( V \) represents the components (e.g., logic blocks or gates), and \( E \) represents the connections or nets between them.
+\cite{AP_2000}
 
-The vast majority of existing placers use the Half Perimeter Wire Length (HPWL) cost function or one of its various flavors - manhattan distance, euclidian distance, beta-regularized, etc..
-The basic HPWL models the cost function as the summation of the manhattan lengths of all nets in the netlist. 
-
-This paper will primarily use Xilinx's open-source API, RapidWright to implement various custom placement algorithms.
-RapidWright is a Java API that provides backend access to Xilinx's EDA, Vivado. 
-
-
+The vast majority of existing placers use the Half Perimeter Wire Length (HPWL) cost function in one of its various flavors - manhattan distance, euclidian distance, bounding box, etc..
+The manhattan and euclidian HPWL models the cost function as the summation of the lengths of all nets in the netlist. 
+The manhattan HPWL is convex while the euclidian HPWL is strictly convex.
+We can use smooth methods to minimize the euclidian, however, it generally produces worse Quality of Result (QoR) than the manhattan \cite{AP_2012}.
+The bounding box HPWL models the cost function as simply the longest net in the netlist.
+Shown below in (1) and (2) are the manhattan and euclidian distance HPWL objective functions respectively.
+Shown in (3) is the bounding box version.
 
 \begin{equation}
-    \text{HPWL} = \sum_{i=1}^{n} \left( \max_{j \in \text{net}_i} (x_j) - \min_{j \in \text{net}_i} (x_j) + \max_{j \in \text{net}_i} (y_j) - \min_{j \in \text{net}_i} (y_j) \right)
+    \Phi(\vec{x}, \vec{y}) = \sum_{i,j} w_{i,j} \left[ (x_i - x_j)^2 + (y_i - y_j)^2 \right]
+    \label{eq:}
 \end{equation}
 
+\begin{equation}
+    \Phi(\vec{x}, \vec{y}) = \sum_{i,j} w_{i,j} \left( |x_i - x_j| + |y_i - y_j| \right)
+    \label{eq:}
+\end{equation}
 
-Then, the paper will survey the current landscape of placement algorithms and strategies. 
-This includes Simulated Annealing (SA) which is stochastic, but will focus on Analytical Placement (AP). 
+\begin{equation}
+    \Phi(\vec{x}, \vec{y}) = \sum_{i=1}^{n} \left( \max_{j \in e_i} (x_j) - \min_{j \in e_i} (x_j) + \max_{j \in e_i} (y_j) - \min_{j \in e_i} (y_j) \right)
+    \label{eq:}
+\end{equation}
+
+\( x = \{ x_{1}, x_{2}, ..., x_{N} \} \) represents the set of physical x-coordinates of the logic block pins on the chip and \( y = \{ y_{1}, y_{2}, ..., y_{N} \} \) represents the set of y-coordinates.
+The units for these coordinates can be nanometers in VLSI design, but for FPGAs where the logic blocks are uniform size and arranged in a grid, the coordinates can simply be positive integers.
+\( N \) is the total number of logic block pins in the design. \( E = \{ e_{1}, e_{2}, ..., e_{M} \} \) represents the netlist with M total nets.
+
+We want to minimize the total wirelength in our design for two reasons: power consumption, and clock skew, and routing.
+FPGAs are commonly used for mission critical applications and edge computing devices that are required to run on low power.
+We can reduce the power consumption of the FPGA by reducing the power dissipation of current running through wires.
+This is particularly important for FPGAs because signal paths must propagate not only through wires but also switchboxes and programmable interconnects which can also dissipate power.
+The second and more important reason is to minimize clock skew. 
+Signal propagation through wires and transistors takes time. 
+The clock signal is crucial for state transition in an FSM.
+If the clock signal drives two logic blocks that were placed too far apart, they may become desynchronized as the same clock edge may reach the two flip-flops at different clock periods.
+All flip-flops operating on the same clock domain must strike at the same nanosecond.
+
+The third and equally relevant reason is the simplify the routing stage which takes place after placement.
+If the logic blocks are all placed close together but in such a way that the wiring between them will become spaghetti, the router will produce an over-congested wiring and potentially risk routing failure because of it. 
+The placer ideally must cluster relevant logic blocks into semi-islolated neighborhood such that the wiring in one neighborhood to another is minimized.
+
 
 
 \section{Abbreviations}

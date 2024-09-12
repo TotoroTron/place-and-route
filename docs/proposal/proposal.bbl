@@ -1,5 +1,16 @@
 \begin{thebibliography}{10}
 
+\bibitem{AP_2000}
+A.~A. Kennings and I.~L. Markov, ``Analytical minimization of half-perimeter
+  wirelength,'' in {\em Proceedings of the 2000 Asia and South Pacific Design
+  Automation Conference}, ASP-DAC '00, (New York, NY, USA), p.~179–184,
+  Association for Computing Machinery, 2000.
+
+\bibitem{AP_2012}
+M.~Gort and J.~H. Anderson, ``Analytical placement for heterogeneous fpgas,''
+  in {\em 22nd International Conference on Field Programmable Logic and
+  Applications (FPL)}, pp.~143--150, 2012.
+
 \bibitem{kraftwerk2}
 P.~Spindler, U.~Schlichtmann, and F.~M. Johannes, ``Kraftwerk2—a fast
   force-directed quadratic placement approach using an accurate net model,''
@@ -49,21 +60,10 @@ C.~Lavin and E.~Hung, ``Invited paper: Rapidwright: Unleashing the full power
   of fpga technology with domain-specific tooling,'' in {\em 2023 IEEE/ACM
   International Conference on Computer Aided Design (ICCAD)}, pp.~1--7, 2023.
 
-\bibitem{AP_2000}
-A.~A. Kennings and I.~L. Markov, ``Analytical minimization of half-perimeter
-  wirelength,'' in {\em Proceedings of the 2000 Asia and South Pacific Design
-  Automation Conference}, ASP-DAC '00, (New York, NY, USA), p.~179–184,
-  Association for Computing Machinery, 2000.
-
 \bibitem{HierPlace}
 S.~Areibi, G.~Grewal, D.~Banerji, and P.~Du, ``Hierarchical fpga placement,''
   {\em Canadian Journal of Electrical and Computer Engineering}, vol.~32,
   no.~1, pp.~53--64, 2007.
-
-\bibitem{AP_2012}
-M.~Gort and J.~H. Anderson, ``Analytical placement for heterogeneous fpgas,''
-  in {\em 22nd International Conference on Field Programmable Logic and
-  Applications (FPL)}, pp.~143--150, 2012.
 
 \bibitem{AP_2019}
 J.~Chen, W.~Zhu, J.~Yu, L.~He, and Y.-W. Chang, ``Analytical placement with 3d
