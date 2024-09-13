@@ -32,18 +32,18 @@
     The compilation stages mainly consists of lexing, parsing, and optimization.
     The optimization stage is where most of the complexity occurs as it deals with NP-hard problems.
     The compiler at this stage must optimize the ordering of the machine instructions to maximize pipelining and register allocation.
-    While the search space for the best possible machine code is massive, it is typically constrained to the size of the CPU instruction set and architecture which are fixed.
+    While the search space for the best possible machine code is massive, it is typically constrained by the size of the CPU instruction set and architecture which are fixed.
     Furthermore, compiler makers have developed highly efficient heuristics to approximate the best machine code within an acceptable runtime.
 
     On the other hand, the EDA stages consist mainly of synthesis, placement, and routing.
-    All three are NP-hard optimization problems with massive search spaces with massive search spaces.
-    Even with heuristics and approximations to circumvent NP-hardness, the size of their search spaces make the EDA runtimes less than acceptable.
+    % Placement and routing is often packaged into one big stage referred to as "implementation" as is the case in Vivado.
+    All three are NP-hard optimization problems with massive search spaces.
+    Even with heuristics and approximations to circumvent NP-hardness, the size of their search spaces make the EDA runtimes less than desirable.
     
     In a typical FPGA design flow, the engineer creates and describes a digital design using a hardware description language (HDL) like Verilog or VHDL.     
     Then, the FPGA engineer verifies the design by creating a testbench that wraps around the design and feeds the design input signals and observes the output signals.
     % The formal verification process is an art of its own and is so matured that companies will often separate their engineers into two departments - one focusing on design and the other on verification.
     Then the engineer submits the design entry to an EDA like Vivado or Quartus to perform the three stages of automated design. 
-
     For even modest designs that utilize a small percentage of the available resources on the FPGA, the EDA will spend a minimum two to three minutes running synthesis and implementation.
     The EDA run time increases exponentially with the scale of the project. 
     Projects that utilize 80\% or more of the FPGA's resources may run for hours, and for the high-end devices like Xilinx's Kintex FPGAs which have millions of logical elements, can run for days.
@@ -64,7 +64,7 @@
     \cite{Yosys}, \cite{AMFPlacer2}, \cite{RapidLayout}, \cite{RapidStream}, \cite{DREAMPlace}, \cite{DREAMPlaceFPGA}.
     I would have liked to explore the current trends in proprietary EDAs but they are unfortunately closed source.
 
-    Then third, the paper will outline my own work on placement strategies, whether they be reproductions of existing strategies, or a novel strategy if I manage to think of one (unlikely). 
+    Then third, the paper will outline my own work on placement strategies, whether they be reproductions of existing strategies, or a novel strategy if I manage to create one in the span of 3 months (unlikely). 
     I intend to use Xilinx's open-source API, RapidWright, which is written in Java and provides backend access to Xilinx's FPGA EDA, Vivado. 
     I have already familiarized myself with the API and, over the past month have practiced using the Vivado + RapidWright toolchain to do basic tasks like extracting the netlist of a synthesized VHDL design.
     You can see my preliminary work in my Github: \url{https://github.com/TotoroTron/place-and-route}.
