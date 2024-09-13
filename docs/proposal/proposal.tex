@@ -29,13 +29,20 @@
     The speed of compilation enables rapid debugging and implementation of new features and allows developers to iterate through dozens or even hundreds of design cycles per day.
     Instead of tinkering around with assembly code, software engineers can comfortably focus on the high-level abstractions of their design. 
 
-    The compilation stages mainly consists of lexing, parsing, and instruction optimization.
-    While these stages are complex from a systems standpoint, they are, mathematically, trivial.
-    The EDA stages on the other hand are deeply mathematically complex. 
-    First, the FPGA engineer creates and describes a digital design using a hardware description language (HDL) like Verilog or VHDL.     
-    Then the engineer submits the design entry to an EDA like Vivado or Quartus to perform three stages of automated design. 
-    These are mainly: synthesis, placement, and routing. 
-    All three are NP-hard problems.
+    % The compilation stages mainly consists of lexing, parsing, and instruction optimization which is NP-hard.
+    % Mathematically, the optimization is NP-hard.
+    % The search space for optimizations, while large, is typically constrained to the instruction set and a relatively small number of optimization passes like register allocation and instruction scheduling.
+    The compilation stages mainly consists of lexing, parsing, and optimization.
+    The optimization stage is where most of the complexity occurs as it deals with NP-hard problems.
+    The compiler at this stage must optimize the ordering of the machine instructions to take advantage of pipelining, register allocation.
+    While the search space for the best possible machine code is massive, it is typically constrained to the size of the CPU instruction set and architecture which are fixed.
+    Furthermore, compiler makers have developed highly efficient heuristics to approximate the best machine code within a reasonable time.
+
+    On the other hand, the search space for the EDA stages are much more massive. 
+    These are: synthesis, placement, and routing, and all three are NP-hard with massive search spaces.
+
+    % First, the FPGA engineer creates and describes a digital design using a hardware description language (HDL) like Verilog or VHDL.     
+    % Then the engineer submits the design entry to an EDA like Vivado or Quartus to perform three stages of automated design. 
 
     For even modest designs that utilize a small percentage of the available resources on the FPGA, the EDA will spend a minimum two to three minutes running synthesis and implementation.
     The EDA run time increases exponentially with the scale of the project. 
