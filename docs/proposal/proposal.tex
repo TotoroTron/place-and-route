@@ -30,9 +30,9 @@
     Instead of tinkering around with assembly code, software engineers can comfortably focus on the high-level abstractions of their design. 
 
     The compilation stages mainly consists of lexing, parsing, and optimization.
-    The optimization stage is where most of the complexity occurs as it deals with NP-hard problems.
-    The compiler at this stage must optimize the ordering of the machine instructions to maximize pipelining and register allocation.
-    While the search space for the best possible machine code is massive, it is typically constrained by the size of the CPU instruction set and architecture which are fixed.
+    The optimization stage is where most of the complexity occurs as it can deal with NP-complete problems, depending on what optimization flags the developer set when running compile.
+    The compiler at this stage must optimize loop unrolling and code pruning as well as the ordering of the machine instructions to maximize pipelining and register allocation.
+    While the search space for the best possible machine code is large, it is typically constrained by the size of the CPU instruction set and architecture which are fixed.
     Furthermore, compiler makers have developed highly efficient heuristics to approximate the best machine code within an acceptable runtime.
 
     On the other hand, the EDA stages consist mainly of synthesis, placement, and routing.
