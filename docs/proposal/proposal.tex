@@ -27,12 +27,12 @@
     Software compilers have evolved to become highly optimized, significantly boosting the productivity of software developers. 
     The compilers are so robust that developers rarely need to worry about the correctness or efficiency of their machine code, and are so refined that it all happens in a matter of milliseconds to minutes, even for large projects. % break this up?
     The speed of compilation enables rapid debugging and implementation of new features and allows developers to iterate through dozens or even hundreds of design cycles per day.
-    Instead of tinkering around with assembly code, software engineers can comfortably focus on the high-level abstractions of their design. 
+    Instead of tinkering with assembly code, software engineers can comfortably focus on the high-level abstractions of their design. 
 
     The compilation stages mainly consists of lexing, parsing, and optimization.
     The optimization stage is where most of the complexity occurs as it can deal with NP-complete problems, depending on what optimization flags the developer set when running compile.
     The compiler at this stage must optimize loop unrolling and code pruning as well as the ordering of the machine instructions to maximize pipelining and register allocation.
-    While the search space for the best possible machine code is large, it is typically constrained by the size of the CPU instruction set and architecture which are fixed.
+    While the search space for the best possible machine code is large, it is typically constrained by the size of the CPU instruction set and CPU architecture which are fixed.
     Furthermore, compiler makers have developed highly efficient heuristics to approximate the best machine code within an acceptable runtime.
 
     On the other hand, the EDA stages consist mainly of synthesis, placement, and routing.
@@ -60,17 +60,18 @@
     First, it will review prerequisite knowledge for placement strategies. 
     This includes graph theory to represent logical elements of a digital design and the wired connections between them, and a corresponding optimization problem with a cost function which we seek to minimize. 
 
-    Second, it will briefly explore the historical progress made on placement algorithms for both VLSI and FPGA and then explore the current trends in open-source placement research 
+    Second, it will briefly explore the historical progress made on placement algorithms for both VLSI and FPGA \cite{ProCha} and then explore the current trends in open-source placement research 
     \cite{Yosys}, \cite{AMFPlacer2}, \cite{RapidLayout}, \cite{RapidStream}, \cite{DREAMPlace}, \cite{DREAMPlaceFPGA}.
     I would have liked to explore the current trends in proprietary EDAs but they are unfortunately closed source.
 
-    Then third, the paper will outline my own work on placement strategies, whether they be reproductions of existing strategies, or a novel strategy if I manage to create one in the span of 3 months (unlikely). 
-    I intend to use Xilinx's open-source API, RapidWright, which is written in Java and provides backend access to Xilinx's FPGA EDA, Vivado. 
-    I have already familiarized myself with the API and, over the past month have practiced using the Vivado + RapidWright toolchain to do basic tasks like extracting the netlist of a synthesized VHDL design.
+    And third, the paper will outline my own technical work on placement strategies, whether they be reproductions of existing strategies, or a novel strategy if I manage to create one in the span of 3 months. 
+    This will include performance analysis and comparisons among different placement algorithms and strategies.
+    To achieve this, I will use Xilinx's open-source API, RapidWright which provides backend access to Vivado which is Xilinx's EDA for FPGAs. 
+    I have already familiarized myself with the API and and able to use the Vivado + RapidWright toolchain to do basic tasks like extracting the netlist of a synthesized VHDL design or performing manual placement of logic elements.
     You can see my preliminary work in my Github: \url{https://github.com/TotoroTron/place-and-route}.
 
 \section{Foundational Knowledge (so far)}
-    In mathematics, a graph is modeled as \( G = (V, E) \), where \( V \) represents the set of vertices and \( E \) represents the set of edges between them.
+    A graph is modeled as \( G = (V, E) \), where \( V \) represents the set of vertices and \( E \) represents the set of edges between them.
     A hypergraph is denoted as \( G_{H} = (V_{H}, E_{H}) \), where \( V_{H} \) represents the set of vertices, and \( E_{H} \) represents the set of hyperedges, which are edges that can connect more than two vertices.
     Electronic circuits are typically represented as hypergraphs because a voltage source pin can have one or many sink pins. 
     In FPGA and VLSI design, the hypergraph is transformed into something called a "netlist", which is a hypergraph that has been flattened down into a graph. 
@@ -82,7 +83,7 @@
     The vast majority of existing placers use the Half Perimeter Wire Length (HPWL) cost function in one of its various flavors - manhattan distance, euclidian distance, bounding box, etc..
     The manhattan and euclidian HPWL models the cost function as the summation of the lengths of all nets in the netlist. 
     The manhattan HPWL is convex while the euclidian HPWL is strictly convex.
-    We can use smooth methods to minimize the euclidian, however, it produces worse Quality of Result (QoR) than the manhattan \cite{AP_2012}, which is something to consider.
+    We can use smooth methods to minimize the euclidian, however, it produces worse Quality of Result (QoR) than the manhattan \cite{AP_2012}.
     The bounding box HPWL models the cost function as simply the longest net in the netlist.
     Shown below in (1) and (2) are the manhattan and euclidian distance HPWL objective functions respectively.
     Shown in (3) is the bounding box version.
@@ -104,23 +105,22 @@
 
     \( x = \{ x_{1}, x_{2}, ..., x_{N} \} \) represents the set of physical x-coordinates of the logic block pins on the chip and \( y = \{ y_{1}, y_{2}, ..., y_{N} \} \) represents the set of y-coordinates.
     The units for these coordinates can be nanometers in VLSI design, but for FPGAs where the logic blocks are uniform size and arranged in a grid, the coordinates can simply be positive integers.
-    \( N \) is the total number of logic block pins in the design. \( E = \{ e_{1}, e_{2}, ..., e_{M} \} \) represents the netlist with M total nets.
+    \( N \) is the total number of logic block pins in the design. 
+    \( E = \{ e_{1}, e_{2}, ..., e_{M} \} \) represents the netlist with M total nets.
 
-    We want to minimize the total wirelength in our design for two reasons: power consumption, and clock skew, and routing.
+    We want to minimize the total wirelength in our design for three reasons: power, clock skew, and routing.
     FPGAs are commonly used for mission critical applications and edge computing devices that are required to run on low power.
-    We can reduce the power consumption of the FPGA by reducing the power dissipation of current running through wires.
+    Minimizing the wirelength, or more accurately, minimizing the signal path length can help save power because wires have a non-zero resisitance.
     This is particularly important for FPGAs because signal paths must propagate not only through wires but also switchboxes and programmable interconnects which can also dissipate power.
+    
     The second and more important reason is to minimize clock skew. 
     Signal propagation through wires and transistors takes time. 
-    The clock signal is crucial for state transition in an FSM.
-    If the clock signal drives two logic blocks that were placed too far apart, they may become desynchronized as the same clock edge may reach the two flip-flops at different clock periods.
+    The clock signal is crucial for state transition in a finite state machine (FSM).
+    If a clock signal drives two logic blocks that were placed too far apart, they may become desynchronized as the same clock edge may reach the two flip-flops at different clock periods.
     All flip-flops operating on the same clock domain must strike at the same nanosecond.
 
-    The third and equally relevant reason is the simplify the routing stage which takes place after placement.
-    If the logic blocks are all placed close together but in such a way that the wiring between them will become spaghetti, the router will produce an over-congested wiring and potentially risk routing failure because of it. 
-    The placer ideally must cluster relevant logic blocks into semi-islolated neighborhood such that the wiring in one neighborhood to another is minimized.
-
-
+    The third, equally important reason is to simplify the routing stage that follows placement. If logic blocks are placed close together in a way that creates chaotic, spaghetti-like wiring between them, certain routing points may become over-congested and risk failure. To avoid this, the placer should group related logic blocks into semi-isolated neighborhoods, minimizing inter-neighborhood connections and ensuring more efficient and manageable routing.
+   
 
 \section{Abbreviations}
     \begin{itemize}[label={--}, left=0.25cm]

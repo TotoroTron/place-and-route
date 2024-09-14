@@ -1,5 +1,10 @@
 \begin{thebibliography}{10}
 
+\bibitem{ProCha}
+I.~L. Markov, J.~Hu, and M.-C. Kim, ``Progress and challenges in vlsi placement
+  research,'' {\em Proceedings of the IEEE}, vol.~103, no.~11, pp.~1985--2003,
+  2015.
+
 \bibitem{Yosys}
 D.~Shah, E.~Hung, C.~Wolf, S.~Bazanski, D.~Gisselquist, and M.~Milanovic,
   ``Yosys+nextpnr: An open source framework from verilog to bitstream for
@@ -52,11 +57,6 @@ P.~Spindler, U.~Schlichtmann, and F.~M. Johannes, ``Kraftwerk2—a fast
   force-directed quadratic placement approach using an accurate net model,''
   {\em Trans. Comp.-Aided Des. Integ. Cir. Sys.}, vol.~27, p.~1398–1411, aug
   2008.
-
-\bibitem{ProCha}
-I.~L. Markov, J.~Hu, and M.-C. Kim, ``Progress and challenges in vlsi placement
-  research,'' {\em Proceedings of the IEEE}, vol.~103, no.~11, pp.~1985--2003,
-  2015.
 
 \bibitem{AMFPlacer}
 T.~Liang, G.~Chen, J.~Zhao, S.~Sinha, and W.~Zhang, ``Amf-placer:

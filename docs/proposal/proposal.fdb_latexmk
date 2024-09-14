@@ -1,7 +1,7 @@
 # Fdb version 3
-["bibtex proposal"] 1726187383 "proposal.aux" "proposal.bbl" "proposal" 1726187780
+["bibtex proposal"] 1726341920 "proposal.aux" "proposal.bbl" "proposal" 1726343268
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/ieeetr.bst" 1292289607 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "proposal.aux" 1726187780 2984 b3b5faf3a7eaa1e77f4a1d5bc52d2aef "pdflatex"
+  "proposal.aux" 1726343268 3002 03aab78c5d7cb44e442dad7320069b54 "pdflatex"
   "references/fpga_placement.bib" 1726170795 5583 57b60a5dde72c13a80d926c569535bd4 ""
   "references/rapidwright.bib" 1726169997 3838 1f5c35a71d84c18a8560c8283af6fe95 ""
   "references/surveys.bib" 1725906287 1680 aa06521ac31c948471b1521e94b2f4d8 ""
@@ -9,7 +9,7 @@
   (generated)
   "proposal.bbl"
   "proposal.blg"
-["pdflatex"] 1726187779 "proposal.tex" "proposal.pdf" "proposal" 1726187780
+["pdflatex"] 1726343267 "proposal.tex" "proposal.pdf" "proposal" 1726343268
   "/etc/texmf/web2c/texmf.cnf" 1725646323 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -100,10 +100,10 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1725653372 2801870 9d830cba1077795a4fe404c4d38dc0c3 ""
   "figures/ProCha.png" 1725896007 226750 1a96df5377809772ac0d2de906084c83 ""
   "figures/kraftwerk2.png" 1725894593 91188 aeb516bd9188c40b56d029ce7d02250e ""
-  "proposal.aux" 1726187780 2984 b3b5faf3a7eaa1e77f4a1d5bc52d2aef "pdflatex"
-  "proposal.bbl" 1726187383 6003 0b5efa3b66ce3766809ad8267a7f453f "bibtex proposal"
-  "proposal.out" 1726187780 555 12466680cecddad993d00175a2cf8d92 "pdflatex"
-  "proposal.tex" 1726187778 16324 16015b1e1ae1cc5d3af7744c473242c5 ""
+  "proposal.aux" 1726343268 3002 03aab78c5d7cb44e442dad7320069b54 "pdflatex"
+  "proposal.bbl" 1726341920 6003 7cefce6a0d2eb48eb3ce099152eaa09a "bibtex proposal"
+  "proposal.out" 1726343268 555 12466680cecddad993d00175a2cf8d92 "pdflatex"
+  "proposal.tex" 1726343267 16675 d2aef00646d99a6e35dfe48b857f6b3e ""
   (generated)
   "proposal.aux"
   "proposal.log"
