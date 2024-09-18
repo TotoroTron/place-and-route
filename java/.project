@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>java</name>
-	<comment>Project java created by Buildship.</comment>
+	<name>placer</name>
+	<comment></comment>
 	<projects>
 	</projects>
 	<buildSpec>
@@ -22,7 +22,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1725663526220</id>
+			<id>1</id>
 			<name></name>
 			<type>30</type>
 			<matcher>

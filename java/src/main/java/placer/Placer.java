@@ -43,7 +43,7 @@ public abstract class Placer {
     }
 
     public void run() throws IOException {
-        printDesignInfo(design);
+        printLogicalInfo(design);
         design = place(design);
         design.writeCheckpoint(placedDcp);
         if (writerCells != null) {
@@ -68,7 +68,7 @@ public abstract class Placer {
         }
     }
 
-    public void printDesignInfo(Design design) throws IOException {
+    public void printLogicalInfo(Design design) throws IOException {
 
         // Graph G = (ports, nets)
         // nets = Collection<Collection<EDIFHierPortInst>>
@@ -98,6 +98,10 @@ public abstract class Placer {
             printEDIFHierPortInsts(writerNets, ehpis);
         }
 
+    }
+
+    public void printPhysicalInfo(Design design) throws IOException {
+
         // Physical Netlist Info
 
         // MODULE IMPLS
@@ -113,7 +117,6 @@ public abstract class Placer {
         for (ModuleInst modinst : modinsts) {
             writerModInsts.write("\n" + String.valueOf(modinst.isPlaced()));
         }
-
     }
 
     protected abstract Design place(Design design);

@@ -9,38 +9,30 @@ repositories {
 }
 
 dependencies {
-    // Use environment variables to reference external libraries
     implementation files("${System.getenv('RAPIDWRIGHT_PATH')}/bin")
     implementation fileTree(dir: "${System.getenv('RAPIDWRIGHT_PATH')}/jars", include: ['*.jar'])
-    // implementation fileTree(dir: "/home/bcheng/workspace/tools/RapidWright/jars", include: ['*.jar'])
 }
 
+apply plugin: 'java'
 apply plugin: 'eclipse'
 eclipse {
     classpath {
         file {
             whenMerged {
-                entries.addAll(fileTree(dir: "${System.getenv('RAPIDWRIGHT_PATH')}/jars", include: ['*.jar']).collect { fileReference(it) })
-                entries.add(fileReference("${System.getenv('RAPIDWRIGHT_PATH')}/bin"))
+                def source = entries.find { it.path == 'src/main/java' }
+                source.entryAttributes['ignore_optional_problems'] = true
             }
         }
     }
 }
 
+
 tasks.withType(JavaCompile) {
     options.forkOptions.jvmArgs = ["-Xmx32736m"]
 }
 
-sourceSets {
-    main {
-        java {
-            srcDirs = ['src/main/java']
-        }
-    }
-}
-
 application {
-    mainClass = 'Main'
+    mainClass = 'placer.Main'
 }
 
 task generateClasspath {
