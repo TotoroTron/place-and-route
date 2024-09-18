@@ -1,3 +1,5 @@
+package placer;
+
 import java.util.Map;
 import java.util.Collection;
 import java.util.List;

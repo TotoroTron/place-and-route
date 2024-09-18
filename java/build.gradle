@@ -13,26 +13,33 @@ dependencies {
     implementation fileTree(dir: "${System.getenv('RAPIDWRIGHT_PATH')}/jars", include: ['*.jar'])
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-eclipse {
-    classpath {
-        file {
-            whenMerged {
-                def source = entries.find { it.path == 'src/main/java' }
-                source.entryAttributes['ignore_optional_problems'] = true
-            }
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
         }
     }
 }
 
+application {
+    mainClass = 'placer.Main'
+}
+
+// apply plugin: 'java'
+// apply plugin: 'eclipse'
+// eclipse {
+//     classpath {
+//         file {
+//             whenMerged {
+//                 def source = entries.find { it.path == 'src/main/java' }
+//                 source.entryAttributes['ignore_optional_problems'] = true
+//             }
+//         }
+//     }
+// }
 
 tasks.withType(JavaCompile) {
     options.forkOptions.jvmArgs = ["-Xmx32736m"]
-}
-
-application {
-    mainClass = 'placer.Main'
 }
 
 task generateClasspath {
