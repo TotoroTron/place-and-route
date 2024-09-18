@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id 'eclipse'
 }
 
 repositories {
@@ -12,6 +13,18 @@ dependencies {
     implementation files("${System.getenv('RAPIDWRIGHT_PATH')}/bin")
     implementation fileTree(dir: "${System.getenv('RAPIDWRIGHT_PATH')}/jars", include: ['*.jar'])
     // implementation fileTree(dir: "/home/bcheng/workspace/tools/RapidWright/jars", include: ['*.jar'])
+}
+
+apply plugin: 'eclipse'
+eclipse {
+    classpath {
+        file {
+            whenMerged {
+                entries.addAll(fileTree(dir: "${System.getenv('RAPIDWRIGHT_PATH')}/jars", include: ['*.jar']).collect { fileReference(it) })
+                entries.add(fileReference("${System.getenv('RAPIDWRIGHT_PATH')}/bin"))
+            }
+        }
+    }
 }
 
 tasks.withType(JavaCompile) {

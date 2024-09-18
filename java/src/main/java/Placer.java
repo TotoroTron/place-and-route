@@ -1,8 +1,6 @@
 import java.util.Collection;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Map;
-import java.util.HashMap;
 
 import java.io.FileWriter;
 import java.io.BufferedWriter;
@@ -11,22 +9,13 @@ import java.io.IOException;
 // import com.xilinx.rapidwright.design.*;
 // import com.xilinx.rapidwright.edif.*;
 import com.xilinx.rapidwright.design.Design;
-import com.xilinx.rapidwright.design.Net;
-import com.xilinx.rapidwright.design.Module;
 import com.xilinx.rapidwright.design.ModuleInst;
 import com.xilinx.rapidwright.design.ModuleImpls;
-import com.xilinx.rapidwright.design.Cell;
 
-import com.xilinx.rapidwright.edif.EDIFTools;
 import com.xilinx.rapidwright.edif.EDIFLibrary;
 import com.xilinx.rapidwright.edif.EDIFNetlist;
-import com.xilinx.rapidwright.edif.EDIFNet;
 import com.xilinx.rapidwright.edif.EDIFHierNet;
-import com.xilinx.rapidwright.edif.EDIFCell;
-import com.xilinx.rapidwright.edif.EDIFCellInst;
 import com.xilinx.rapidwright.edif.EDIFHierCellInst;
-import com.xilinx.rapidwright.edif.EDIFPort;
-import com.xilinx.rapidwright.edif.EDIFPortInst;
 import com.xilinx.rapidwright.edif.EDIFHierPortInst;
 
 import com.xilinx.rapidwright.device.Device;
@@ -41,12 +30,16 @@ public abstract class Placer {
     private final String placedDcp = rootDir + "/outputs/placed.dcp";
     private BufferedWriter writerCells;
     private BufferedWriter writerNets;
+    private BufferedWriter writerModImpls;
+    private BufferedWriter writerModInsts;
 
     public Placer() throws IOException {
         this.design = Design.readCheckpoint(synthesizedDcp);
         this.device = Device.getDevice("xc7z020clg400-1");
         this.writerCells = new BufferedWriter(new FileWriter(rootDir + "outputs/output_cells.txt"));
         this.writerNets = new BufferedWriter(new FileWriter(rootDir + "outputs/output_nets.txt"));
+        this.writerModImpls = new BufferedWriter(new FileWriter(rootDir + "outputs/output_modimpls.txt"));
+        this.writerModInsts = new BufferedWriter(new FileWriter(rootDir + "outputs/output_modinsts.txt"));
     }
 
     public void run() throws IOException {
@@ -58,6 +51,12 @@ public abstract class Placer {
         }
         if (writerNets != null) {
             writerNets.close();
+        }
+        if (writerModImpls != null) {
+            writerModImpls.close();
+        }
+        if (writerModInsts != null) {
+            writerModInsts.close();
         }
     }
 
@@ -73,6 +72,8 @@ public abstract class Placer {
 
         // Graph G = (ports, nets)
         // nets = Collection<Collection<EDIFHierPortInst>>
+
+        // Logical Netlist Info
 
         EDIFNetlist netlist = design.getNetlist();
 
@@ -97,8 +98,22 @@ public abstract class Placer {
             printEDIFHierPortInsts(writerNets, ehpis);
         }
 
-        // Keeps track of a set of EDIFCell objects that are part of a netlist.
-        EDIFLibrary library = netlist.getHDIPrimitivesLibrary();
+        // Physical Netlist Info
+
+        // MODULE IMPLS
+        writerModImpls.write("Printing ModuleImpls: ");
+        Collection<ModuleImpls> modimpls = design.getModules();
+        for (ModuleImpls modimpl : modimpls) {
+            writerModImpls.write("\n" + modimpl.getName());
+        }
+
+        // MODULE INSTS
+        writerModInsts.write("Printing ModuleInsts: ");
+        Collection<ModuleInst> modinsts = design.getModuleInsts();
+        for (ModuleInst modinst : modinsts) {
+            writerModInsts.write("\n" + String.valueOf(modinst.isPlaced()));
+        }
+
     }
 
     protected abstract Design place(Design design);
