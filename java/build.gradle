@@ -25,21 +25,8 @@ application {
     mainClass = 'placer.Main'
 }
 
-// apply plugin: 'java'
-// apply plugin: 'eclipse'
-// eclipse {
-//     classpath {
-//         file {
-//             whenMerged {
-//                 def source = entries.find { it.path == 'src/main/java' }
-//                 source.entryAttributes['ignore_optional_problems'] = true
-//             }
-//         }
-//     }
-// }
 
 tasks.withType(JavaCompile) {
     options.forkOptions.jvmArgs = ["-Xmx32736m"]
 }
-
 
