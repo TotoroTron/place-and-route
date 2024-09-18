@@ -42,10 +42,4 @@ tasks.withType(JavaCompile) {
     options.forkOptions.jvmArgs = ["-Xmx32736m"]
 }
 
-task generateClasspath {
-    doLast {
-        def classpath = configurations.compileClasspath.asPath
-        def file = file("classpath.txt")
-        file.text = classpath
-    }
-}
+
