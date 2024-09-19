@@ -5,8 +5,6 @@ import java.util.logging.FileHandler;
 import java.util.logging.SimpleFormatter;
 import java.util.logging.Level;
 
-import java.io.FileWriter;
-import java.io.BufferedWriter;
 import java.io.IOException;
 
 public class Main {

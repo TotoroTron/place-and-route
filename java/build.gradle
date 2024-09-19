@@ -4,13 +4,8 @@ plugins {
     id 'eclipse'
 }
 
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    implementation files("${System.getenv('RAPIDWRIGHT_PATH')}/bin")
-    implementation fileTree(dir: "${System.getenv('RAPIDWRIGHT_PATH')}/jars", include: ['*.jar'])
+application {
+    mainClass = 'placer.Main'
 }
 
 sourceSets {
@@ -21,10 +16,15 @@ sourceSets {
     }
 }
 
-application {
-    mainClass = 'placer.Main'
+repositories {
+    mavenLocal()
 }
 
+dependencies {
+    // implementation 'com.xilinx.rapidwright.rapidwright:2023.2'
+    implementation files("${System.getenv('RAPIDWRIGHT_PATH')}/bin")
+    implementation fileTree(dir: "${System.getenv('RAPIDWRIGHT_PATH')}/jars", include: ['*.jar'])
+}
 
 tasks.withType(JavaCompile) {
     options.forkOptions.jvmArgs = ["-Xmx32736m"]

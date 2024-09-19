@@ -1,27 +1,13 @@
 package placer;
 
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Collection;
 
 import java.io.IOException;
 
 import com.xilinx.rapidwright.design.Design;
-import com.xilinx.rapidwright.device.Device;
-
-import com.xilinx.rapidwright.device.Site;
-import com.xilinx.rapidwright.device.SiteTypeEnum;
-
-import com.xilinx.rapidwright.design.Design;
-import com.xilinx.rapidwright.design.Net;
-import com.xilinx.rapidwright.design.Module;
-import com.xilinx.rapidwright.design.ModuleInst;
-import com.xilinx.rapidwright.design.ModuleImpls;
-import com.xilinx.rapidwright.design.Cell;
 
 import com.xilinx.rapidwright.edif.EDIFLibrary;
 import com.xilinx.rapidwright.edif.EDIFNetlist;
-import com.xilinx.rapidwright.edif.EDIFCell;
 import com.xilinx.rapidwright.edif.EDIFCellInst;
 import com.xilinx.rapidwright.edif.EDIFHierCellInst;
 

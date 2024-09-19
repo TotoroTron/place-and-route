@@ -14,9 +14,9 @@ import com.xilinx.rapidwright.edif.EDIFHierPortInst;
 
 import com.xilinx.rapidwright.edif.EDIFHierNet;
 
-public class SimulatedAnnealingPlacer extends Placer {
+public class CompleteRandomPlacer extends Placer {
 
-    public SimulatedAnnealingPlacer() throws IOException {
+    public CompleteRandomPlacer() throws IOException {
         super();
     }
 
@@ -26,6 +26,7 @@ public class SimulatedAnnealingPlacer extends Placer {
 
         List<EDIFHierCellInst> ehcis = netlist.getAllLeafHierCellInstances();
         for (EDIFHierCellInst ehci : ehcis) {
+            // design.createAndPlaceCell("")
             List<EDIFHierPortInst> ehpis = ehci.getHierPortInsts();
         }
 
