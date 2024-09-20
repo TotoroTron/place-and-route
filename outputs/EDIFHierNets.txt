@@ -1,4 +1,4 @@
-Printing EDIFHierNet(s): 
+Printing EDIFHierNet(s) with their EDIFHierPortInst(s): 
 COUNTER/plusOp[3]
 EDIFHierPortInst(s) on this net: 
 	COUNTER/count[3]_i_1/O
