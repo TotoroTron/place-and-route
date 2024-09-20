@@ -1,4 +1,5 @@
 Printing EDIFHierCellInsts(s) in EDIFNetlist: 
+
 FDRE : CLOCK_ENABLE_GEN/count_reg[0]
 EDIFHierPortInst(s) on this cell: 
 	CLOCK_ENABLE_GEN/count_reg[0]/C

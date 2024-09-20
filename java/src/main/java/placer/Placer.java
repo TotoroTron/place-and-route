@@ -3,6 +3,7 @@ package placer;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 
 import java.io.FileWriter;
 import java.io.BufferedWriter;
@@ -14,6 +15,7 @@ import com.xilinx.rapidwright.design.ModuleImpls;
 
 import com.xilinx.rapidwright.edif.EDIFNetlist;
 import com.xilinx.rapidwright.edif.EDIFHierNet;
+import com.xilinx.rapidwright.edif.EDIFCellInst;
 import com.xilinx.rapidwright.edif.EDIFHierCellInst;
 import com.xilinx.rapidwright.edif.EDIFHierPortInst;
 
@@ -27,94 +29,94 @@ public abstract class Placer {
     private final String rootDir = "/home/bcheng/workspace/dev/place-and-route/";
     private final String synthesizedDcp = rootDir + "/outputs/synthesized.dcp";
     private final String placedDcp = rootDir + "/outputs/placed.dcp";
-    private BufferedWriter writerCells;
-    private BufferedWriter writerNets;
-    private BufferedWriter writerModImpls;
-    private BufferedWriter writerModInsts;
 
     public Placer() throws IOException {
         this.design = Design.readCheckpoint(synthesizedDcp);
         this.device = Device.getDevice("xc7z020clg400-1");
-        this.writerCells = new BufferedWriter(new FileWriter(rootDir + "outputs/output_cells.txt"));
-        this.writerNets = new BufferedWriter(new FileWriter(rootDir + "outputs/output_nets.txt"));
-        this.writerModImpls = new BufferedWriter(new FileWriter(rootDir + "outputs/output_modimpls.txt"));
-        this.writerModInsts = new BufferedWriter(new FileWriter(rootDir + "outputs/output_modinsts.txt"));
     }
 
     public void run() throws IOException {
-        printLogicalInfo(design);
+        EDIFNetlist netlist = design.getNetlist();
+        printEDIFCellInsts(netlist);
+        printEDIFHierCellInsts(netlist);
+        printEDIFHierNets(netlist);
         design = place(design);
         design.writeCheckpoint(placedDcp);
-        if (writerCells != null) {
-            writerCells.close();
+    }
+
+    // Graph G = (ports, nets)
+    // nets = Collection<Collection<EDIFHierPortInst>>
+
+    public void printEDIFCellInsts(EDIFNetlist netlist) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/EDIFCellInsts.txt"));
+        writer.write("Printing EDIFCellInst(s): ");
+        writer.newLine();
+        HashMap<String, EDIFCellInst> ecis = netlist.generateCellInstMap();
+        for (Map.Entry<String, EDIFCellInst> entry : ecis.entrySet()) {
+            String key = entry.getKey();
+            EDIFCellInst eci = entry.getValue();
+            String s1 = String.format(
+                    "\nString Key: %-40s  =>\tEDIFCellInst Value: %-40s", key, eci.getCellName());
+            writer.write(s1);
         }
-        if (writerNets != null) {
-            writerNets.close();
-        }
-        if (writerModImpls != null) {
-            writerModImpls.close();
-        }
-        if (writerModInsts != null) {
-            writerModInsts.close();
-        }
+        if (writer != null)
+            writer.close();
     }
 
     private void printEDIFHierPortInsts(BufferedWriter writer, Collection<EDIFHierPortInst> ehpis) throws IOException {
         for (EDIFHierPortInst ehpi : ehpis) {
             writer.write("\n\t" + ehpi.toString());
-            // writerNets.write("\n\t\t\t"+ehpi.getFullHierarchicalInstName());
-            // writerNets.write("\n\t\t\t"+ehpi.getHierarchicalInstName());
+            // writer.write("\n\t"+ehpi.getFullHierarchicalInstName());
+            // writer.write("\n\t"+ehpi.getHierarchicalInstName());
         }
     }
 
-    public void printLogicalInfo(Design design) throws IOException {
-
-        // Graph G = (ports, nets)
-        // nets = Collection<Collection<EDIFHierPortInst>>
-
-        // Logical Netlist Info
-
-        EDIFNetlist netlist = design.getNetlist();
-
-        // CELLS
-        writerCells.write("Printing EDIFHierCellInsts(s) in EDIFNetlist: ");
+    public void printEDIFHierCellInsts(EDIFNetlist netlist) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/EDIFHierCellInsts.txt"));
+        writer.write("Printing EDIFHierCellInsts(s) in EDIFNetlist: ");
+        writer.newLine();
         List<EDIFHierCellInst> ehcis = netlist.getAllLeafHierCellInstances();
         for (EDIFHierCellInst ehci : ehcis) {
-            // writerCells.write("\n\t"+ehci.getCellName());
-            writerCells.write("\n" + ehci.getCellName() + " : " + ehci.getFullHierarchicalInstName());
-            writerCells.write("\nEDIFHierPortInst(s) on this cell: ");
+            writer.write("\n" + ehci.getCellName() + " : " + ehci.getFullHierarchicalInstName());
+            writer.write("\nEDIFHierPortInst(s) on this cell: ");
             List<EDIFHierPortInst> ehpis = ehci.getHierPortInsts();
-            printEDIFHierPortInsts(writerCells, ehpis);
+            printEDIFHierPortInsts(writer, ehpis);
         }
-
-        // NETS
-        writerNets.write("Printing EDIFHierNet(s): ");
-        Map<EDIFHierNet, EDIFHierNet> ehns = netlist.getParentNetMap();
-        for (EDIFHierNet ehn : ehns.values()) {
-            writerNets.write("\n" + ehn.getHierarchicalNetName());
-            writerNets.write("\nEDIFHierPortInst(s) on this net: ");
-            Collection<EDIFHierPortInst> ehpis = ehn.getPortInsts();
-            printEDIFHierPortInsts(writerNets, ehpis);
-        }
-
+        if (writer != null)
+            writer.close();
     }
 
-    public void printPhysicalInfo(Design design) throws IOException {
+    public void printEDIFHierNets(EDIFNetlist netlist) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/EDIFHierNets.txt"));
+        writer.write("Printing EDIFHierNet(s): ");
+        Map<EDIFHierNet, EDIFHierNet> ehns = netlist.getParentNetMap();
+        for (EDIFHierNet ehn : ehns.values()) {
+            writer.write("\n" + ehn.getHierarchicalNetName());
+            writer.write("\nEDIFHierPortInst(s) on this net: ");
+            Collection<EDIFHierPortInst> ehpis = ehn.getPortInsts();
+            printEDIFHierPortInsts(writer, ehpis);
+        }
+        if (writer != null)
+            writer.close();
+    }
 
-        // Physical Netlist Info
-
-        // MODULE IMPLS
-        writerModImpls.write("Printing ModuleImpls: ");
+    public void printModuleImpls(EDIFNetlist netlist) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/ModuleImpls.txt"));
+        writer.write("Printing ModuleImpls: ");
         Collection<ModuleImpls> modimpls = design.getModules();
         for (ModuleImpls modimpl : modimpls) {
-            writerModImpls.write("\n" + modimpl.getName());
+            writer.write("\n" + modimpl.getName());
         }
+        if (writer != null)
+            writer.close();
+    }
 
-        // MODULE INSTS
-        writerModInsts.write("Printing ModuleInsts: ");
+    public void printModuleInsts(EDIFNetlist netlist) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/ModuleInsts.txt"));
+        writer.write("Printing ModuleInsts: ");
         Collection<ModuleInst> modinsts = design.getModuleInsts();
         for (ModuleInst modinst : modinsts) {
-            writerModInsts.write("\n" + String.valueOf(modinst.isPlaced()));
+            writer.write("\n" + String.valueOf(modinst.isPlaced()));
         }
     }
 

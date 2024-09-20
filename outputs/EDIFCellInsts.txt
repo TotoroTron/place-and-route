@@ -1,0 +1,21 @@
+Printing EDIFCellInst(s): 
+
+String Key: CLOCK_ENABLE_GEN/count_reg[0]_i_2         =>	EDIFCellInst Value: CARRY4                                  
+String Key: COUNTER/count[3]_i_1                      =>	EDIFCellInst Value: LUT4                                    
+String Key: CLOCK_ENABLE_GEN/count_reg[3]             =>	EDIFCellInst Value: FDRE                                    
+String Key: CLOCK_ENABLE_GEN/count[0]_i_1__0          =>	EDIFCellInst Value: LUT5                                    
+String Key: COUNTER/count[2]_i_1                      =>	EDIFCellInst Value: LUT3                                    
+String Key: COUNTER/count[0]_i_1                      =>	EDIFCellInst Value: LUT1                                    
+String Key: CLOCK_ENABLE_GEN/count_reg[0]             =>	EDIFCellInst Value: FDRE                                    
+String Key: CLOCK_ENABLE_GEN/VCC                      =>	EDIFCellInst Value: VCC                                     
+String Key: CLOCK_ENABLE_GEN/count_reg[2]             =>	EDIFCellInst Value: FDRE                                    
+String Key: CLOCK_ENABLE_GEN/count_reg[1]             =>	EDIFCellInst Value: FDRE                                    
+String Key: COUNTER/count[1]_i_1                      =>	EDIFCellInst Value: LUT2                                    
+String Key: CLOCK_ENABLE_GEN/o_pulse_reg              =>	EDIFCellInst Value: FDRE                                    
+String Key: CLOCK_ENABLE_GEN/GND                      =>	EDIFCellInst Value: GND                                     
+String Key: CLOCK_ENABLE_GEN/count[0]_i_3             =>	EDIFCellInst Value: LUT1                                    
+String Key: COUNTER/count_reg[0]                      =>	EDIFCellInst Value: FDRE                                    
+String Key: COUNTER/count_reg[1]                      =>	EDIFCellInst Value: FDRE                                    
+String Key: COUNTER/count_reg[2]                      =>	EDIFCellInst Value: FDRE                                    
+String Key: COUNTER/count_reg[3]                      =>	EDIFCellInst Value: FDRE                                    
+String Key: CLOCK_ENABLE_GEN/o_pulse_i_1              =>	EDIFCellInst Value: LUT5                                    
