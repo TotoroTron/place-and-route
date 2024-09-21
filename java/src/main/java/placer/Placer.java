@@ -113,13 +113,17 @@ public abstract class Placer {
         for (EDIFNet net : ens.values()) {
 
             writer.write("\nTop level EDIFPortInst(s) in this net: ");
-            EDIFPortInst topPort = net.getTopLevelPortInst();
-            if (topPort != null) {
-                writer.write("\n\t" + topPort.toString());
-            } else {
-                writer.write("\n\t" + "NULL!");
-                // Nets with only one source to one sink do not have a top-level ports.
-            }
+            List<EDIFPortInst> topPorts = net.getAllTopLevelPortInsts();
+            if (topPorts.isEmpty())
+                writer.write("\n\tNONE!");
+            else
+                for (EDIFPortInst topPort : topPorts)
+                    writer.write("\n\t" + topPort.toString());
+            // Top level ports are exactly what they sound like:
+            // Ports declared in the top_level.vhd module.
+            // Source ports are exactly what they sound like:
+            // Output ports of any module.
+            // NONE means this net does not have ports in the top_level module.
 
             writer.write("\nSource EDIFPortInst(s) in this net: ");
             List<EDIFPortInst> sourcePorts = net.getSourcePortInsts(true); // bool includeTopLevelPorts

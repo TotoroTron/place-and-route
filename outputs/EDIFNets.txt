@@ -11,7 +11,7 @@ EDIFPortInst(s) in this net:
 	count_reg[2]/Q
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 	count[3]_i_1/O
 EDIFPortInst(s) in this net: 
@@ -65,14 +65,14 @@ EDIFPortInst(s) in this net:
 	i_rst
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 	count_reg[0]_i_2/CO[0]
 EDIFPortInst(s) in this net: 
 	count_reg[0]_i_2/CO[0]
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 	count_reg[0]/Q
 EDIFPortInst(s) in this net: 
@@ -82,7 +82,7 @@ EDIFPortInst(s) in this net:
 	o_pulse_i_1/I0
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 	count_reg[0]_i_2/O[3]
 EDIFPortInst(s) in this net: 
@@ -90,14 +90,14 @@ EDIFPortInst(s) in this net:
 	count_reg[3]/D
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 	count_reg[0]_i_2/CO[2]
 EDIFPortInst(s) in this net: 
 	count_reg[0]_i_2/CO[2]
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 	count_reg[2]/Q
 EDIFPortInst(s) in this net: 
@@ -107,14 +107,14 @@ EDIFPortInst(s) in this net:
 	o_pulse_i_1/I1
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 	count_reg[0]_i_2/CO[1]
 EDIFPortInst(s) in this net: 
 	count_reg[0]_i_2/CO[1]
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 	count[1]_i_1/O
 EDIFPortInst(s) in this net: 
@@ -122,7 +122,7 @@ EDIFPortInst(s) in this net:
 	count_reg[1]/D
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 	count_reg[0]_i_2/O[0]
 EDIFPortInst(s) in this net: 
@@ -130,7 +130,7 @@ EDIFPortInst(s) in this net:
 	count_reg[0]_i_2/O[0]
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 	count_reg[0]_i_2/O[2]
 EDIFPortInst(s) in this net: 
@@ -138,7 +138,7 @@ EDIFPortInst(s) in this net:
 	count_reg[2]/D
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 	count_reg[0]_i_2/O[1]
 EDIFPortInst(s) in this net: 
@@ -157,12 +157,12 @@ EDIFPortInst(s) in this net:
 	count_reg[3]/CE
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 EDIFPortInst(s) in this net: 
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 	CLOCK_ENABLE_GEN/E[0]
 EDIFPortInst(s) in this net: 
@@ -170,7 +170,7 @@ EDIFPortInst(s) in this net:
 	COUNTER/E[0]
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 	GND/G
 EDIFPortInst(s) in this net: 
@@ -183,17 +183,17 @@ EDIFPortInst(s) in this net:
 	o_pulse_reg/R
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 EDIFPortInst(s) in this net: 
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 EDIFPortInst(s) in this net: 
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 	count[0]_i_1__0/O
 EDIFPortInst(s) in this net: 
@@ -242,7 +242,7 @@ EDIFPortInst(s) in this net:
 	ov_led[3]
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 	o_pulse_i_1/O
 EDIFPortInst(s) in this net: 
@@ -258,7 +258,7 @@ EDIFPortInst(s) in this net:
 	ov_led[1]
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 	count_reg[3]/Q
 EDIFPortInst(s) in this net: 
@@ -268,12 +268,12 @@ EDIFPortInst(s) in this net:
 	o_pulse_i_1/I3
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 EDIFPortInst(s) in this net: 
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 	count[0]_i_1/O
 EDIFPortInst(s) in this net: 
@@ -281,7 +281,7 @@ EDIFPortInst(s) in this net:
 	count_reg[0]/D
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 	count[2]_i_1/O
 EDIFPortInst(s) in this net: 
@@ -289,7 +289,7 @@ EDIFPortInst(s) in this net:
 	count_reg[2]/D
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 	count_reg[1]/Q
 EDIFPortInst(s) in this net: 
@@ -319,7 +319,7 @@ EDIFPortInst(s) in this net:
 	i_rst
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 	count[0]_i_3/O
 EDIFPortInst(s) in this net: 
@@ -339,7 +339,7 @@ EDIFPortInst(s) in this net:
 	o_pulse_reg/C
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 EDIFPortInst(s) in this net: 
 
@@ -353,7 +353,7 @@ EDIFPortInst(s) in this net:
 	i_clk
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 	VCC/P
 EDIFPortInst(s) in this net: 
@@ -366,6 +366,6 @@ EDIFPortInst(s) in this net:
 	o_pulse_reg/CE
 
 Top level EDIFPortInst(s) in this net: 
-	NULL!
+	NONE!
 Source EDIFPortInst(s) in this net: 
 EDIFPortInst(s) in this net: 
