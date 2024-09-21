@@ -48,8 +48,8 @@ public abstract class Placer {
         EDIFNetlist netlist = design.getNetlist();
         printEDIFLibrary(netlist);
         printEDIFCellInsts(netlist);
-        printEDIFNets(netlist);
         printEDIFHierCellInsts(netlist);
+        printEDIFNets(netlist);
         printEDIFHierNets(netlist);
         design = place(design);
         design.writeCheckpoint(placedDcp);
@@ -79,8 +79,8 @@ public abstract class Placer {
     private void printEDIFPortInsts(BufferedWriter writer, Collection<EDIFPortInst> epis) throws IOException {
         for (EDIFPortInst epi : epis) {
             writer.write("\n\t" + epi.toString());
-            // writer.write("\n\t"+ehpi.getFullHierarchicalInstName());
-            // writer.write("\n\t"+ehpi.getHierarchicalInstName());
+            writer.write("\tName: " + epi.getName());
+            writer.write("\tFull Name: " + epi.getFullName());
         }
     }
 
@@ -112,6 +112,9 @@ public abstract class Placer {
         HashMap<String, EDIFNet> ens = netlist.generateEDIFNetMap(ecis);
         for (EDIFNet net : ens.values()) {
 
+            // Top level ports are exactly what they sound like:
+            // Ports declared in the top_level.vhd module.
+            // NONE means this net does not have ports in the top_level module.
             writer.write("\nTop level EDIFPortInst(s) in this net: ");
             List<EDIFPortInst> topPorts = net.getAllTopLevelPortInsts();
             if (topPorts.isEmpty())
@@ -119,12 +122,9 @@ public abstract class Placer {
             else
                 for (EDIFPortInst topPort : topPorts)
                     writer.write("\n\t" + topPort.toString());
-            // Top level ports are exactly what they sound like:
-            // Ports declared in the top_level.vhd module.
+
             // Source ports are exactly what they sound like:
             // Output ports of any module.
-            // NONE means this net does not have ports in the top_level module.
-
             writer.write("\nSource EDIFPortInst(s) in this net: ");
             List<EDIFPortInst> sourcePorts = net.getSourcePortInsts(true); // bool includeTopLevelPorts
             printEDIFPortInsts(writer, sourcePorts);
@@ -145,8 +145,8 @@ public abstract class Placer {
     private void printEDIFHierPortInsts(BufferedWriter writer, Collection<EDIFHierPortInst> ehpis) throws IOException {
         for (EDIFHierPortInst ehpi : ehpis) {
             writer.write("\n\t" + ehpi.toString());
-            // writer.write("\n\t"+ehpi.getFullHierarchicalInstName());
-            // writer.write("\n\t"+ehpi.getHierarchicalInstName());
+            writer.write("\tHier Inst Name: " + ehpi.getHierarchicalInstName());
+            writer.write("\tFull Hier Inst Name: " + ehpi.getFullHierarchicalInstName());
         }
     }
 

@@ -19,6 +19,7 @@ import com.xilinx.rapidwright.edif.EDIFHierCellInst;
 import com.xilinx.rapidwright.edif.EDIFPortInst;
 import com.xilinx.rapidwright.edif.EDIFHierPortInst;
 
+import com.xilinx.rapidwright.design.Net;
 import com.xilinx.rapidwright.edif.EDIFHierNet;
 
 public class CompleteRandomPlacer extends Placer {
@@ -29,24 +30,27 @@ public class CompleteRandomPlacer extends Placer {
 
     public Design place(Design design) {
 
+        // Logical to Physical mapping
+
         EDIFNetlist netlist = design.getNetlist();
 
         List<Cell> cells = new ArrayList<>();
+        List<Net> nets = new ArrayList<>();
 
         HashMap<String, EDIFCellInst> ecis = netlist.generateCellInstMap();
         for (Map.Entry<String, EDIFCellInst> entry : ecis.entrySet()) {
             String key = entry.getKey();
             EDIFCellInst val = entry.getValue();
             cells.add(design.createCell(key, val));
-            // createCell(String instName, EDIFCellInst instance);
-            // design.placeCell(Cell c, Site site, BEL bel);
-            // figure out valid sites and bells for each cell
+            // Cell c = createCell(String instName, EDIFCellInst instance);
+            // boolean b = design.placeCell(Cell c, Site site, BEL bel);
         }
 
-        Map<EDIFHierNet, EDIFHierNet> ehns = netlist.getParentNetMap();
-        for (EDIFHierNet ehn : ehns.values()) {
-            Collection<EDIFHierPortInst> ehpis = ehn.getPortInsts();
-        }
+        // Net n = createNet(EDIFHierNet ehn);
+        // Net n = createNet(String netName);
+        // SitePinInst spi = net.connect(Cell c, String logicalPinName);
+        // get the pins for each cell.
+
         return design;
     }
 

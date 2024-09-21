@@ -2,131 +2,131 @@ Printing EDIFHierCellInsts(s) with their EDIFHierPortInst(s):
 
 FDRE : CLOCK_ENABLE_GEN/count_reg[0]
 EDIFHierPortInst(s) on this cell: 
-	CLOCK_ENABLE_GEN/count_reg[0]/C
-	CLOCK_ENABLE_GEN/count_reg[0]/CE
-	CLOCK_ENABLE_GEN/count_reg[0]/D
-	CLOCK_ENABLE_GEN/count_reg[0]/Q
-	CLOCK_ENABLE_GEN/count_reg[0]/R
+	CLOCK_ENABLE_GEN/count_reg[0]/C	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]
+	CLOCK_ENABLE_GEN/count_reg[0]/CE	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]
+	CLOCK_ENABLE_GEN/count_reg[0]/D	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]
+	CLOCK_ENABLE_GEN/count_reg[0]/Q	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]
+	CLOCK_ENABLE_GEN/count_reg[0]/R	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]
 FDRE : CLOCK_ENABLE_GEN/o_pulse_reg
 EDIFHierPortInst(s) on this cell: 
-	CLOCK_ENABLE_GEN/o_pulse_reg/C
-	CLOCK_ENABLE_GEN/o_pulse_reg/CE
-	CLOCK_ENABLE_GEN/o_pulse_reg/D
-	CLOCK_ENABLE_GEN/o_pulse_reg/Q
-	CLOCK_ENABLE_GEN/o_pulse_reg/R
+	CLOCK_ENABLE_GEN/o_pulse_reg/C	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/o_pulse_reg
+	CLOCK_ENABLE_GEN/o_pulse_reg/CE	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/o_pulse_reg
+	CLOCK_ENABLE_GEN/o_pulse_reg/D	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/o_pulse_reg
+	CLOCK_ENABLE_GEN/o_pulse_reg/Q	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/o_pulse_reg
+	CLOCK_ENABLE_GEN/o_pulse_reg/R	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/o_pulse_reg
 LUT5 : CLOCK_ENABLE_GEN/count[0]_i_1__0
 EDIFHierPortInst(s) on this cell: 
-	CLOCK_ENABLE_GEN/count[0]_i_1__0/I0
-	CLOCK_ENABLE_GEN/count[0]_i_1__0/I1
-	CLOCK_ENABLE_GEN/count[0]_i_1__0/I2
-	CLOCK_ENABLE_GEN/count[0]_i_1__0/I3
-	CLOCK_ENABLE_GEN/count[0]_i_1__0/I4
-	CLOCK_ENABLE_GEN/count[0]_i_1__0/O
+	CLOCK_ENABLE_GEN/count[0]_i_1__0/I0	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count[0]_i_1__0
+	CLOCK_ENABLE_GEN/count[0]_i_1__0/I1	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count[0]_i_1__0
+	CLOCK_ENABLE_GEN/count[0]_i_1__0/I2	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count[0]_i_1__0
+	CLOCK_ENABLE_GEN/count[0]_i_1__0/I3	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count[0]_i_1__0
+	CLOCK_ENABLE_GEN/count[0]_i_1__0/I4	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count[0]_i_1__0
+	CLOCK_ENABLE_GEN/count[0]_i_1__0/O	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count[0]_i_1__0
 FDRE : CLOCK_ENABLE_GEN/count_reg[3]
 EDIFHierPortInst(s) on this cell: 
-	CLOCK_ENABLE_GEN/count_reg[3]/C
-	CLOCK_ENABLE_GEN/count_reg[3]/CE
-	CLOCK_ENABLE_GEN/count_reg[3]/D
-	CLOCK_ENABLE_GEN/count_reg[3]/Q
-	CLOCK_ENABLE_GEN/count_reg[3]/R
+	CLOCK_ENABLE_GEN/count_reg[3]/C	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[3]
+	CLOCK_ENABLE_GEN/count_reg[3]/CE	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[3]
+	CLOCK_ENABLE_GEN/count_reg[3]/D	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[3]
+	CLOCK_ENABLE_GEN/count_reg[3]/Q	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[3]
+	CLOCK_ENABLE_GEN/count_reg[3]/R	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[3]
 FDRE : CLOCK_ENABLE_GEN/count_reg[1]
 EDIFHierPortInst(s) on this cell: 
-	CLOCK_ENABLE_GEN/count_reg[1]/C
-	CLOCK_ENABLE_GEN/count_reg[1]/CE
-	CLOCK_ENABLE_GEN/count_reg[1]/D
-	CLOCK_ENABLE_GEN/count_reg[1]/Q
-	CLOCK_ENABLE_GEN/count_reg[1]/R
+	CLOCK_ENABLE_GEN/count_reg[1]/C	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[1]
+	CLOCK_ENABLE_GEN/count_reg[1]/CE	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[1]
+	CLOCK_ENABLE_GEN/count_reg[1]/D	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[1]
+	CLOCK_ENABLE_GEN/count_reg[1]/Q	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[1]
+	CLOCK_ENABLE_GEN/count_reg[1]/R	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[1]
 VCC : CLOCK_ENABLE_GEN/VCC
 EDIFHierPortInst(s) on this cell: 
-	CLOCK_ENABLE_GEN/VCC/P
+	CLOCK_ENABLE_GEN/VCC/P	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/VCC
 FDRE : CLOCK_ENABLE_GEN/count_reg[2]
 EDIFHierPortInst(s) on this cell: 
-	CLOCK_ENABLE_GEN/count_reg[2]/C
-	CLOCK_ENABLE_GEN/count_reg[2]/CE
-	CLOCK_ENABLE_GEN/count_reg[2]/D
-	CLOCK_ENABLE_GEN/count_reg[2]/Q
-	CLOCK_ENABLE_GEN/count_reg[2]/R
+	CLOCK_ENABLE_GEN/count_reg[2]/C	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[2]
+	CLOCK_ENABLE_GEN/count_reg[2]/CE	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[2]
+	CLOCK_ENABLE_GEN/count_reg[2]/D	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[2]
+	CLOCK_ENABLE_GEN/count_reg[2]/Q	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[2]
+	CLOCK_ENABLE_GEN/count_reg[2]/R	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[2]
 CARRY4 : CLOCK_ENABLE_GEN/count_reg[0]_i_2
 EDIFHierPortInst(s) on this cell: 
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/CI
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/CO[0]
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/CO[1]
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/CO[2]
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/CYINIT
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[0]
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[1]
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[2]
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[3]
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[0]
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[1]
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[2]
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[3]
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[0]
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[1]
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[2]
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[3]
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/CI	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/CO[0]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/CO[1]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/CO[2]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/CYINIT	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[0]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[1]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[2]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[3]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[0]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[1]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[2]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[3]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[0]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[1]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[2]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[3]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
 LUT5 : CLOCK_ENABLE_GEN/o_pulse_i_1
 EDIFHierPortInst(s) on this cell: 
-	CLOCK_ENABLE_GEN/o_pulse_i_1/I0
-	CLOCK_ENABLE_GEN/o_pulse_i_1/I1
-	CLOCK_ENABLE_GEN/o_pulse_i_1/I2
-	CLOCK_ENABLE_GEN/o_pulse_i_1/I3
-	CLOCK_ENABLE_GEN/o_pulse_i_1/I4
-	CLOCK_ENABLE_GEN/o_pulse_i_1/O
+	CLOCK_ENABLE_GEN/o_pulse_i_1/I0	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/o_pulse_i_1
+	CLOCK_ENABLE_GEN/o_pulse_i_1/I1	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/o_pulse_i_1
+	CLOCK_ENABLE_GEN/o_pulse_i_1/I2	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/o_pulse_i_1
+	CLOCK_ENABLE_GEN/o_pulse_i_1/I3	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/o_pulse_i_1
+	CLOCK_ENABLE_GEN/o_pulse_i_1/I4	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/o_pulse_i_1
+	CLOCK_ENABLE_GEN/o_pulse_i_1/O	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/o_pulse_i_1
 GND : CLOCK_ENABLE_GEN/GND
 EDIFHierPortInst(s) on this cell: 
-	CLOCK_ENABLE_GEN/GND/G
+	CLOCK_ENABLE_GEN/GND/G	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/GND
 LUT1 : CLOCK_ENABLE_GEN/count[0]_i_3
 EDIFHierPortInst(s) on this cell: 
-	CLOCK_ENABLE_GEN/count[0]_i_3/I0
-	CLOCK_ENABLE_GEN/count[0]_i_3/O
+	CLOCK_ENABLE_GEN/count[0]_i_3/I0	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count[0]_i_3
+	CLOCK_ENABLE_GEN/count[0]_i_3/O	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count[0]_i_3
 FDRE : COUNTER/count_reg[0]
 EDIFHierPortInst(s) on this cell: 
-	COUNTER/count_reg[0]/C
-	COUNTER/count_reg[0]/CE
-	COUNTER/count_reg[0]/D
-	COUNTER/count_reg[0]/Q
-	COUNTER/count_reg[0]/R
+	COUNTER/count_reg[0]/C	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[0]
+	COUNTER/count_reg[0]/CE	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[0]
+	COUNTER/count_reg[0]/D	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[0]
+	COUNTER/count_reg[0]/Q	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[0]
+	COUNTER/count_reg[0]/R	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[0]
 LUT3 : COUNTER/count[2]_i_1
 EDIFHierPortInst(s) on this cell: 
-	COUNTER/count[2]_i_1/I0
-	COUNTER/count[2]_i_1/I1
-	COUNTER/count[2]_i_1/I2
-	COUNTER/count[2]_i_1/O
+	COUNTER/count[2]_i_1/I0	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[2]_i_1
+	COUNTER/count[2]_i_1/I1	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[2]_i_1
+	COUNTER/count[2]_i_1/I2	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[2]_i_1
+	COUNTER/count[2]_i_1/O	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[2]_i_1
 LUT4 : COUNTER/count[3]_i_1
 EDIFHierPortInst(s) on this cell: 
-	COUNTER/count[3]_i_1/I0
-	COUNTER/count[3]_i_1/I1
-	COUNTER/count[3]_i_1/I2
-	COUNTER/count[3]_i_1/I3
-	COUNTER/count[3]_i_1/O
+	COUNTER/count[3]_i_1/I0	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[3]_i_1
+	COUNTER/count[3]_i_1/I1	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[3]_i_1
+	COUNTER/count[3]_i_1/I2	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[3]_i_1
+	COUNTER/count[3]_i_1/I3	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[3]_i_1
+	COUNTER/count[3]_i_1/O	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[3]_i_1
 FDRE : COUNTER/count_reg[3]
 EDIFHierPortInst(s) on this cell: 
-	COUNTER/count_reg[3]/C
-	COUNTER/count_reg[3]/CE
-	COUNTER/count_reg[3]/D
-	COUNTER/count_reg[3]/Q
-	COUNTER/count_reg[3]/R
+	COUNTER/count_reg[3]/C	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[3]
+	COUNTER/count_reg[3]/CE	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[3]
+	COUNTER/count_reg[3]/D	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[3]
+	COUNTER/count_reg[3]/Q	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[3]
+	COUNTER/count_reg[3]/R	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[3]
 FDRE : COUNTER/count_reg[1]
 EDIFHierPortInst(s) on this cell: 
-	COUNTER/count_reg[1]/C
-	COUNTER/count_reg[1]/CE
-	COUNTER/count_reg[1]/D
-	COUNTER/count_reg[1]/Q
-	COUNTER/count_reg[1]/R
+	COUNTER/count_reg[1]/C	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[1]
+	COUNTER/count_reg[1]/CE	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[1]
+	COUNTER/count_reg[1]/D	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[1]
+	COUNTER/count_reg[1]/Q	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[1]
+	COUNTER/count_reg[1]/R	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[1]
 FDRE : COUNTER/count_reg[2]
 EDIFHierPortInst(s) on this cell: 
-	COUNTER/count_reg[2]/C
-	COUNTER/count_reg[2]/CE
-	COUNTER/count_reg[2]/D
-	COUNTER/count_reg[2]/Q
-	COUNTER/count_reg[2]/R
+	COUNTER/count_reg[2]/C	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[2]
+	COUNTER/count_reg[2]/CE	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[2]
+	COUNTER/count_reg[2]/D	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[2]
+	COUNTER/count_reg[2]/Q	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[2]
+	COUNTER/count_reg[2]/R	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[2]
 LUT2 : COUNTER/count[1]_i_1
 EDIFHierPortInst(s) on this cell: 
-	COUNTER/count[1]_i_1/I0
-	COUNTER/count[1]_i_1/I1
-	COUNTER/count[1]_i_1/O
+	COUNTER/count[1]_i_1/I0	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[1]_i_1
+	COUNTER/count[1]_i_1/I1	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[1]_i_1
+	COUNTER/count[1]_i_1/O	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[1]_i_1
 LUT1 : COUNTER/count[0]_i_1
 EDIFHierPortInst(s) on this cell: 
-	COUNTER/count[0]_i_1/I0
-	COUNTER/count[0]_i_1/O
+	COUNTER/count[0]_i_1/I0	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[0]_i_1
+	COUNTER/count[0]_i_1/O	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[0]_i_1
