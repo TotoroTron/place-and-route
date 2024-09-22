@@ -3,7 +3,11 @@ package placer;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import java.io.FileWriter;
 import java.io.BufferedWriter;
@@ -30,6 +34,8 @@ import com.xilinx.rapidwright.device.Device;
 import com.xilinx.rapidwright.device.Site;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 import com.xilinx.rapidwright.device.BEL;
+import com.xilinx.rapidwright.device.Tile;
+import com.xilinx.rapidwright.device.TileTypeEnum;
 
 public abstract class Placer {
 
@@ -49,6 +55,9 @@ public abstract class Placer {
 
     public void run() throws IOException {
         EDIFNetlist netlist = design.getNetlist();
+        printAllDeviceTiles(device);
+        printUniqueTiles(device);
+        printUniqueSites(device);
         printAllDeviceSites(device);
         printDeviceSlices(device);
         printEDIFLibrary(netlist);
@@ -60,28 +69,112 @@ public abstract class Placer {
         design.writeCheckpoint(placedDcp);
     }
 
+    public void printAllDeviceTiles(Device device) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/DeviceAllTiles.txt"));
+        writer.write("\nPrinting all tiles in device: ");
+        Tile[][] tiles = device.getTiles();
+        for (Tile[] row : tiles) {
+            for (Tile tile : row) {
+                String s1 = String.format(
+                        "\nTile: %-30s Type: %-20s, Row: %-5s Col: %-5s, X: %-5s Y: %-5s",
+                        tile.getName(), tile.getTileTypeEnum(), tile.getRow(), tile.getColumn(),
+                        tile.getTileXCoordinate(), tile.getTileYCoordinate());
+                writer.write(s1);
+                Site[] sites = tile.getSites();
+                for (Site site : sites) {
+                    String s2 = String.format(
+                            "\n\tSite: %-30s Type: %-20s", site.getName(), site.getSiteTypeEnum());
+                    writer.write(s2);
+                    // printBELs(writer, site);
+                }
+            }
+            writer.write("\n");
+        }
+        if (writer != null)
+            writer.close();
+    }
+
+    public void printUniqueTiles(Device device) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/DeviceUniqueTiles.txt"));
+        writer.write("\nPrinting unique tiles in device: ");
+        writer.write("\nUnique tile types: " + device.getTileTypeCount());
+        writer.newLine();
+
+        Tile[][] tiles = device.getTiles();
+        Set<TileTypeEnum> uniqueTileTypes = new HashSet<>();
+        List<Tile> uniqueTiles = new ArrayList<>();
+
+        for (Tile[] row : tiles) {
+            for (Tile tile : row) {
+                if (uniqueTileTypes.add(tile.getTileTypeEnum())) {
+                    uniqueTiles.add(tile);
+                }
+            }
+        }
+
+        for (Tile uniqueTile : uniqueTiles) {
+            writer.write("\nTile Type: " + uniqueTile.getTileTypeEnum());
+            Site[] sites = uniqueTile.getSites();
+            for (Site site : sites) {
+                String s2 = String.format(
+                        "\n\tSite: %-30s Type: %-20s", site.getName(), site.getSiteTypeEnum());
+                writer.write(s2);
+                printBELs(writer, site);
+            }
+            writer.newLine();
+        }
+
+        if (writer != null)
+            writer.close();
+
+    }
+
     public void printBELs(BufferedWriter writer, Site site) throws IOException {
-        writer.write("\nBELs in this site: ");
+        writer.write("\n\t\tBELs in this site: \n\t\t");
         BEL[] bels = site.getBELs();
         int word_count = 0;
-        writer.write("\n\t");
         for (BEL bel : bels) {
             writer.write(bel.getName() + " ");
             word_count++;
-            if (word_count == 12) {
-                writer.write("\n\t");
+            if (word_count == 8) {
+                writer.write("\n\t\t");
                 word_count = 0;
             }
         }
     }
 
+    public void printUniqueSites(Device device) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/DeviceUniqueSites.txt"));
+        writer.write("Printing unique sites in the device: ");
+        writer.write("\nUnique tile types: " + device.getTileTypeCount());
+        writer.newLine();
+
+        Site[] sites = device.getAllSites();
+        Set<SiteTypeEnum> uniqueSiteTypes = new HashSet<>();
+        List<Site> uniqueSites = new ArrayList<>();
+
+        for (Site site : sites) {
+            if (uniqueSiteTypes.add(site.getSiteTypeEnum())) {
+                // HashSet .add returns false if trying to add duplicate.
+                uniqueSites.add(site);
+            }
+        }
+        for (Site uniqueSite : uniqueSites) {
+            writer.write("\n" + uniqueSite.getName());
+            printBELs(writer, uniqueSite);
+        }
+        if (writer != null)
+            writer.close();
+    }
+
     public void printAllDeviceSites(Device device) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/DeviceAllSites.txt"));
         writer.write("Printing All Site(s) in device " + device.getName() + ": ");
+        writer.write("Unique site types: " + device.getSiteTypeCount());
         Site[] sites = device.getAllSites();
         for (Site site : sites) {
-            writer.write("\n" + site.getName());
-            printBELs(writer, site);
+            writer.write("\n" + site.getName() + "Site Type: " + site.getSiteTypeEnum());
+            // printBELs(writer, site);
         }
         if (writer != null)
             writer.close();
@@ -94,7 +187,6 @@ public abstract class Placer {
         writerM.write("Printing SLICEM Sites in device " + device.getName() + ": ");
         Site[] sliceLs = device.getAllSitesOfType(SiteTypeEnum.SLICEL);
         Site[] sliceMs = device.getAllSitesOfType(SiteTypeEnum.SLICEM);
-
         for (Site sliceL : sliceLs) {
             writerL.write("\n" + sliceL.getName());
             printBELs(writerL, sliceL);

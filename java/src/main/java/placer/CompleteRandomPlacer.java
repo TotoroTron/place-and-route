@@ -22,6 +22,8 @@ import com.xilinx.rapidwright.edif.EDIFCellInst;
 import com.xilinx.rapidwright.design.Net;
 // import com.xilinx.rapidwright.edif.EDIFHierNet;
 
+import com.xilinx.rapidwright.device.Device;
+
 public class CompleteRandomPlacer extends Placer {
 
     public CompleteRandomPlacer() throws IOException {
