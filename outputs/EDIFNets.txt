@@ -3,158 +3,158 @@ Printing EDIFNets:
 Top level EDIFPortInst(s) in this net: 
 	Q[2]
 Source EDIFPortInst(s) in this net: 
-	count_reg[2]/Q	Name: Q	Full Name: count_reg[2]/Q
+	count_reg[2]/Q
 EDIFPortInst(s) in this net: 
-	Q[2]	Name: Q[2]	Full Name: Q[2]
-	count[2]_i_1/I2	Name: I2	Full Name: count[2]_i_1/I2
-	count[3]_i_1/I2	Name: I2	Full Name: count[3]_i_1/I2
-	count_reg[2]/Q	Name: Q	Full Name: count_reg[2]/Q
+	Q[2]
+	count[2]_i_1/I2
+	count[3]_i_1/I2
+	count_reg[2]/Q
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
-	count[3]_i_1/O	Name: O	Full Name: count[3]_i_1/O
+	count[3]_i_1/O
 EDIFPortInst(s) in this net: 
-	count[3]_i_1/O	Name: O	Full Name: count[3]_i_1/O
-	count_reg[3]/D	Name: D	Full Name: count_reg[3]/D
+	count[3]_i_1/O
+	count_reg[3]/D
 
 Top level EDIFPortInst(s) in this net: 
 	Q[0]
 Source EDIFPortInst(s) in this net: 
-	count_reg[0]/Q	Name: Q	Full Name: count_reg[0]/Q
+	count_reg[0]/Q
 EDIFPortInst(s) in this net: 
-	Q[0]	Name: Q[0]	Full Name: Q[0]
-	count[0]_i_1/I0	Name: I0	Full Name: count[0]_i_1/I0
-	count[1]_i_1/I0	Name: I0	Full Name: count[1]_i_1/I0
-	count[2]_i_1/I0	Name: I0	Full Name: count[2]_i_1/I0
-	count[3]_i_1/I1	Name: I1	Full Name: count[3]_i_1/I1
-	count_reg[0]/Q	Name: Q	Full Name: count_reg[0]/Q
+	Q[0]
+	count[0]_i_1/I0
+	count[1]_i_1/I0
+	count[2]_i_1/I0
+	count[3]_i_1/I1
+	count_reg[0]/Q
 
 Top level EDIFPortInst(s) in this net: 
 	ov_led[2]
 Source EDIFPortInst(s) in this net: 
-	COUNTER/Q[2]	Name: Q[2]	Full Name: COUNTER/Q[2]
+	COUNTER/Q[2]
 EDIFPortInst(s) in this net: 
-	COUNTER/Q[2]	Name: Q[2]	Full Name: COUNTER/Q[2]
-	ov_led[2]	Name: ov_led[2]	Full Name: ov_led[2]
+	COUNTER/Q[2]
+	ov_led[2]
 
 Top level EDIFPortInst(s) in this net: 
 	i_rst
 Source EDIFPortInst(s) in this net: 
-	i_rst	Name: i_rst	Full Name: i_rst
+	i_rst
 EDIFPortInst(s) in this net: 
-	count[0]_i_1__0/I0	Name: I0	Full Name: count[0]_i_1__0/I0
-	i_rst	Name: i_rst	Full Name: i_rst
-	o_pulse_i_1/I4	Name: I4	Full Name: o_pulse_i_1/I4
+	count[0]_i_1__0/I0
+	i_rst
+	o_pulse_i_1/I4
 
 Top level EDIFPortInst(s) in this net: 
 	ov_led[0]
 Source EDIFPortInst(s) in this net: 
-	COUNTER/Q[0]	Name: Q[0]	Full Name: COUNTER/Q[0]
+	COUNTER/Q[0]
 EDIFPortInst(s) in this net: 
-	COUNTER/Q[0]	Name: Q[0]	Full Name: COUNTER/Q[0]
-	ov_led[0]	Name: ov_led[0]	Full Name: ov_led[0]
+	COUNTER/Q[0]
+	ov_led[0]
 
 Top level EDIFPortInst(s) in this net: 
 	i_rst
 Source EDIFPortInst(s) in this net: 
-	i_rst	Name: i_rst	Full Name: i_rst
+	i_rst
 EDIFPortInst(s) in this net: 
-	CLOCK_ENABLE_GEN/i_rst	Name: i_rst	Full Name: CLOCK_ENABLE_GEN/i_rst
-	COUNTER/i_rst	Name: i_rst	Full Name: COUNTER/i_rst
-	i_rst	Name: i_rst	Full Name: i_rst
+	CLOCK_ENABLE_GEN/i_rst
+	COUNTER/i_rst
+	i_rst
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
-	count_reg[0]_i_2/CO[0]	Name: CO[0]	Full Name: count_reg[0]_i_2/CO[0]
+	count_reg[0]_i_2/CO[0]
 EDIFPortInst(s) in this net: 
-	count_reg[0]_i_2/CO[0]	Name: CO[0]	Full Name: count_reg[0]_i_2/CO[0]
+	count_reg[0]_i_2/CO[0]
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
-	count_reg[0]/Q	Name: Q	Full Name: count_reg[0]/Q
+	count_reg[0]/Q
 EDIFPortInst(s) in this net: 
-	count[0]_i_1__0/I2	Name: I2	Full Name: count[0]_i_1__0/I2
-	count[0]_i_3/I0	Name: I0	Full Name: count[0]_i_3/I0
-	count_reg[0]/Q	Name: Q	Full Name: count_reg[0]/Q
-	o_pulse_i_1/I0	Name: I0	Full Name: o_pulse_i_1/I0
+	count[0]_i_1__0/I2
+	count[0]_i_3/I0
+	count_reg[0]/Q
+	o_pulse_i_1/I0
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
-	count_reg[0]_i_2/O[3]	Name: O[3]	Full Name: count_reg[0]_i_2/O[3]
+	count_reg[0]_i_2/O[3]
 EDIFPortInst(s) in this net: 
-	count_reg[0]_i_2/O[3]	Name: O[3]	Full Name: count_reg[0]_i_2/O[3]
-	count_reg[3]/D	Name: D	Full Name: count_reg[3]/D
+	count_reg[0]_i_2/O[3]
+	count_reg[3]/D
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
-	count_reg[0]_i_2/CO[2]	Name: CO[2]	Full Name: count_reg[0]_i_2/CO[2]
+	count_reg[0]_i_2/CO[2]
 EDIFPortInst(s) in this net: 
-	count_reg[0]_i_2/CO[2]	Name: CO[2]	Full Name: count_reg[0]_i_2/CO[2]
+	count_reg[0]_i_2/CO[2]
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
-	count_reg[2]/Q	Name: Q	Full Name: count_reg[2]/Q
+	count_reg[2]/Q
 EDIFPortInst(s) in this net: 
-	count[0]_i_1__0/I4	Name: I4	Full Name: count[0]_i_1__0/I4
-	count_reg[0]_i_2/S[2]	Name: S[2]	Full Name: count_reg[0]_i_2/S[2]
-	count_reg[2]/Q	Name: Q	Full Name: count_reg[2]/Q
-	o_pulse_i_1/I1	Name: I1	Full Name: o_pulse_i_1/I1
+	count[0]_i_1__0/I4
+	count_reg[0]_i_2/S[2]
+	count_reg[2]/Q
+	o_pulse_i_1/I1
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
-	count_reg[0]_i_2/CO[1]	Name: CO[1]	Full Name: count_reg[0]_i_2/CO[1]
+	count_reg[0]_i_2/CO[1]
 EDIFPortInst(s) in this net: 
-	count_reg[0]_i_2/CO[1]	Name: CO[1]	Full Name: count_reg[0]_i_2/CO[1]
+	count_reg[0]_i_2/CO[1]
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
-	count[1]_i_1/O	Name: O	Full Name: count[1]_i_1/O
+	count[1]_i_1/O
 EDIFPortInst(s) in this net: 
-	count[1]_i_1/O	Name: O	Full Name: count[1]_i_1/O
-	count_reg[1]/D	Name: D	Full Name: count_reg[1]/D
+	count[1]_i_1/O
+	count_reg[1]/D
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
-	count_reg[0]_i_2/O[0]	Name: O[0]	Full Name: count_reg[0]_i_2/O[0]
+	count_reg[0]_i_2/O[0]
 EDIFPortInst(s) in this net: 
-	count_reg[0]/D	Name: D	Full Name: count_reg[0]/D
-	count_reg[0]_i_2/O[0]	Name: O[0]	Full Name: count_reg[0]_i_2/O[0]
+	count_reg[0]/D
+	count_reg[0]_i_2/O[0]
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
-	count_reg[0]_i_2/O[2]	Name: O[2]	Full Name: count_reg[0]_i_2/O[2]
+	count_reg[0]_i_2/O[2]
 EDIFPortInst(s) in this net: 
-	count_reg[0]_i_2/O[2]	Name: O[2]	Full Name: count_reg[0]_i_2/O[2]
-	count_reg[2]/D	Name: D	Full Name: count_reg[2]/D
+	count_reg[0]_i_2/O[2]
+	count_reg[2]/D
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
-	count_reg[0]_i_2/O[1]	Name: O[1]	Full Name: count_reg[0]_i_2/O[1]
+	count_reg[0]_i_2/O[1]
 EDIFPortInst(s) in this net: 
-	count_reg[0]_i_2/O[1]	Name: O[1]	Full Name: count_reg[0]_i_2/O[1]
-	count_reg[1]/D	Name: D	Full Name: count_reg[1]/D
+	count_reg[0]_i_2/O[1]
+	count_reg[1]/D
 
 Top level EDIFPortInst(s) in this net: 
 	E[0]
 Source EDIFPortInst(s) in this net: 
-	E[0]	Name: E[0]	Full Name: E[0]
+	E[0]
 EDIFPortInst(s) in this net: 
-	E[0]	Name: E[0]	Full Name: E[0]
-	count_reg[0]/CE	Name: CE	Full Name: count_reg[0]/CE
-	count_reg[1]/CE	Name: CE	Full Name: count_reg[1]/CE
-	count_reg[2]/CE	Name: CE	Full Name: count_reg[2]/CE
-	count_reg[3]/CE	Name: CE	Full Name: count_reg[3]/CE
+	E[0]
+	count_reg[0]/CE
+	count_reg[1]/CE
+	count_reg[2]/CE
+	count_reg[3]/CE
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
@@ -164,28 +164,23 @@ EDIFPortInst(s) in this net:
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
-	CLOCK_ENABLE_GEN/E[0]	Name: E[0]	Full Name: CLOCK_ENABLE_GEN/E[0]
+	CLOCK_ENABLE_GEN/E[0]
 EDIFPortInst(s) in this net: 
-	CLOCK_ENABLE_GEN/E[0]	Name: E[0]	Full Name: CLOCK_ENABLE_GEN/E[0]
-	COUNTER/E[0]	Name: E[0]	Full Name: COUNTER/E[0]
+	CLOCK_ENABLE_GEN/E[0]
+	COUNTER/E[0]
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
-	GND/G	Name: G	Full Name: GND/G
+	GND/G
 EDIFPortInst(s) in this net: 
-	GND/G	Name: G	Full Name: GND/G
-	count_reg[0]_i_2/CI	Name: CI	Full Name: count_reg[0]_i_2/CI
-	count_reg[0]_i_2/CYINIT	Name: CYINIT	Full Name: count_reg[0]_i_2/CYINIT
-	count_reg[0]_i_2/DI[1]	Name: DI[1]	Full Name: count_reg[0]_i_2/DI[1]
-	count_reg[0]_i_2/DI[2]	Name: DI[2]	Full Name: count_reg[0]_i_2/DI[2]
-	count_reg[0]_i_2/DI[3]	Name: DI[3]	Full Name: count_reg[0]_i_2/DI[3]
-	o_pulse_reg/R	Name: R	Full Name: o_pulse_reg/R
-
-Top level EDIFPortInst(s) in this net: 
-	NONE!
-Source EDIFPortInst(s) in this net: 
-EDIFPortInst(s) in this net: 
+	GND/G
+	count_reg[0]_i_2/CI
+	count_reg[0]_i_2/CYINIT
+	count_reg[0]_i_2/DI[1]
+	count_reg[0]_i_2/DI[2]
+	count_reg[0]_i_2/DI[3]
+	o_pulse_reg/R
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
@@ -195,77 +190,82 @@ EDIFPortInst(s) in this net:
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
-	count[0]_i_1__0/O	Name: O	Full Name: count[0]_i_1__0/O
 EDIFPortInst(s) in this net: 
-	count[0]_i_1__0/O	Name: O	Full Name: count[0]_i_1__0/O
-	count_reg[0]/R	Name: R	Full Name: count_reg[0]/R
-	count_reg[1]/R	Name: R	Full Name: count_reg[1]/R
-	count_reg[2]/R	Name: R	Full Name: count_reg[2]/R
-	count_reg[3]/R	Name: R	Full Name: count_reg[3]/R
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	count[0]_i_1__0/O
+EDIFPortInst(s) in this net: 
+	count[0]_i_1__0/O
+	count_reg[0]/R
+	count_reg[1]/R
+	count_reg[2]/R
+	count_reg[3]/R
 
 Top level EDIFPortInst(s) in this net: 
 	i_clk
 Source EDIFPortInst(s) in this net: 
-	i_clk	Name: i_clk	Full Name: i_clk
+	i_clk
 EDIFPortInst(s) in this net: 
-	count_reg[0]/C	Name: C	Full Name: count_reg[0]/C
-	count_reg[1]/C	Name: C	Full Name: count_reg[1]/C
-	count_reg[2]/C	Name: C	Full Name: count_reg[2]/C
-	count_reg[3]/C	Name: C	Full Name: count_reg[3]/C
-	i_clk	Name: i_clk	Full Name: i_clk
+	count_reg[0]/C
+	count_reg[1]/C
+	count_reg[2]/C
+	count_reg[3]/C
+	i_clk
 
 Top level EDIFPortInst(s) in this net: 
 	E[0]
 Source EDIFPortInst(s) in this net: 
-	o_pulse_reg/Q	Name: Q	Full Name: o_pulse_reg/Q
+	o_pulse_reg/Q
 EDIFPortInst(s) in this net: 
-	E[0]	Name: E[0]	Full Name: E[0]
-	o_pulse_reg/Q	Name: Q	Full Name: o_pulse_reg/Q
+	E[0]
+	o_pulse_reg/Q
 
 Top level EDIFPortInst(s) in this net: 
 	Q[1]
 Source EDIFPortInst(s) in this net: 
-	count_reg[1]/Q	Name: Q	Full Name: count_reg[1]/Q
+	count_reg[1]/Q
 EDIFPortInst(s) in this net: 
-	Q[1]	Name: Q[1]	Full Name: Q[1]
-	count[1]_i_1/I1	Name: I1	Full Name: count[1]_i_1/I1
-	count[2]_i_1/I1	Name: I1	Full Name: count[2]_i_1/I1
-	count[3]_i_1/I0	Name: I0	Full Name: count[3]_i_1/I0
-	count_reg[1]/Q	Name: Q	Full Name: count_reg[1]/Q
+	Q[1]
+	count[1]_i_1/I1
+	count[2]_i_1/I1
+	count[3]_i_1/I0
+	count_reg[1]/Q
 
 Top level EDIFPortInst(s) in this net: 
 	ov_led[3]
 Source EDIFPortInst(s) in this net: 
-	COUNTER/Q[3]	Name: Q[3]	Full Name: COUNTER/Q[3]
+	COUNTER/Q[3]
 EDIFPortInst(s) in this net: 
-	COUNTER/Q[3]	Name: Q[3]	Full Name: COUNTER/Q[3]
-	ov_led[3]	Name: ov_led[3]	Full Name: ov_led[3]
+	COUNTER/Q[3]
+	ov_led[3]
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
-	o_pulse_i_1/O	Name: O	Full Name: o_pulse_i_1/O
+	o_pulse_i_1/O
 EDIFPortInst(s) in this net: 
-	o_pulse_i_1/O	Name: O	Full Name: o_pulse_i_1/O
-	o_pulse_reg/D	Name: D	Full Name: o_pulse_reg/D
+	o_pulse_i_1/O
+	o_pulse_reg/D
 
 Top level EDIFPortInst(s) in this net: 
 	ov_led[1]
 Source EDIFPortInst(s) in this net: 
-	COUNTER/Q[1]	Name: Q[1]	Full Name: COUNTER/Q[1]
+	COUNTER/Q[1]
 EDIFPortInst(s) in this net: 
-	COUNTER/Q[1]	Name: Q[1]	Full Name: COUNTER/Q[1]
-	ov_led[1]	Name: ov_led[1]	Full Name: ov_led[1]
+	COUNTER/Q[1]
+	ov_led[1]
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
-	count_reg[3]/Q	Name: Q	Full Name: count_reg[3]/Q
+	count_reg[3]/Q
 EDIFPortInst(s) in this net: 
-	count[0]_i_1__0/I1	Name: I1	Full Name: count[0]_i_1__0/I1
-	count_reg[0]_i_2/S[3]	Name: S[3]	Full Name: count_reg[0]_i_2/S[3]
-	count_reg[3]/Q	Name: Q	Full Name: count_reg[3]/Q
-	o_pulse_i_1/I3	Name: I3	Full Name: o_pulse_i_1/I3
+	count[0]_i_1__0/I1
+	count_reg[0]_i_2/S[3]
+	count_reg[3]/Q
+	o_pulse_i_1/I3
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
@@ -275,68 +275,68 @@ EDIFPortInst(s) in this net:
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
-	count[0]_i_1/O	Name: O	Full Name: count[0]_i_1/O
+	count[0]_i_1/O
 EDIFPortInst(s) in this net: 
-	count[0]_i_1/O	Name: O	Full Name: count[0]_i_1/O
-	count_reg[0]/D	Name: D	Full Name: count_reg[0]/D
+	count[0]_i_1/O
+	count_reg[0]/D
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
-	count[2]_i_1/O	Name: O	Full Name: count[2]_i_1/O
+	count[2]_i_1/O
 EDIFPortInst(s) in this net: 
-	count[2]_i_1/O	Name: O	Full Name: count[2]_i_1/O
-	count_reg[2]/D	Name: D	Full Name: count_reg[2]/D
+	count[2]_i_1/O
+	count_reg[2]/D
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
-	count_reg[1]/Q	Name: Q	Full Name: count_reg[1]/Q
+	count_reg[1]/Q
 EDIFPortInst(s) in this net: 
-	count[0]_i_1__0/I3	Name: I3	Full Name: count[0]_i_1__0/I3
-	count_reg[0]_i_2/S[1]	Name: S[1]	Full Name: count_reg[0]_i_2/S[1]
-	count_reg[1]/Q	Name: Q	Full Name: count_reg[1]/Q
-	o_pulse_i_1/I2	Name: I2	Full Name: o_pulse_i_1/I2
+	count[0]_i_1__0/I3
+	count_reg[0]_i_2/S[1]
+	count_reg[1]/Q
+	o_pulse_i_1/I2
 
 Top level EDIFPortInst(s) in this net: 
 	Q[3]
 Source EDIFPortInst(s) in this net: 
-	count_reg[3]/Q	Name: Q	Full Name: count_reg[3]/Q
+	count_reg[3]/Q
 EDIFPortInst(s) in this net: 
-	Q[3]	Name: Q[3]	Full Name: Q[3]
-	count[3]_i_1/I3	Name: I3	Full Name: count[3]_i_1/I3
-	count_reg[3]/Q	Name: Q	Full Name: count_reg[3]/Q
+	Q[3]
+	count[3]_i_1/I3
+	count_reg[3]/Q
 
 Top level EDIFPortInst(s) in this net: 
 	i_rst
 Source EDIFPortInst(s) in this net: 
-	i_rst	Name: i_rst	Full Name: i_rst
+	i_rst
 EDIFPortInst(s) in this net: 
-	count_reg[0]/R	Name: R	Full Name: count_reg[0]/R
-	count_reg[1]/R	Name: R	Full Name: count_reg[1]/R
-	count_reg[2]/R	Name: R	Full Name: count_reg[2]/R
-	count_reg[3]/R	Name: R	Full Name: count_reg[3]/R
-	i_rst	Name: i_rst	Full Name: i_rst
+	count_reg[0]/R
+	count_reg[1]/R
+	count_reg[2]/R
+	count_reg[3]/R
+	i_rst
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
-	count[0]_i_3/O	Name: O	Full Name: count[0]_i_3/O
+	count[0]_i_3/O
 EDIFPortInst(s) in this net: 
-	count[0]_i_3/O	Name: O	Full Name: count[0]_i_3/O
-	count_reg[0]_i_2/S[0]	Name: S[0]	Full Name: count_reg[0]_i_2/S[0]
+	count[0]_i_3/O
+	count_reg[0]_i_2/S[0]
 
 Top level EDIFPortInst(s) in this net: 
 	i_clk
 Source EDIFPortInst(s) in this net: 
-	i_clk	Name: i_clk	Full Name: i_clk
+	i_clk
 EDIFPortInst(s) in this net: 
-	count_reg[0]/C	Name: C	Full Name: count_reg[0]/C
-	count_reg[1]/C	Name: C	Full Name: count_reg[1]/C
-	count_reg[2]/C	Name: C	Full Name: count_reg[2]/C
-	count_reg[3]/C	Name: C	Full Name: count_reg[3]/C
-	i_clk	Name: i_clk	Full Name: i_clk
-	o_pulse_reg/C	Name: C	Full Name: o_pulse_reg/C
+	count_reg[0]/C
+	count_reg[1]/C
+	count_reg[2]/C
+	count_reg[3]/C
+	i_clk
+	o_pulse_reg/C
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
@@ -346,24 +346,24 @@ EDIFPortInst(s) in this net:
 Top level EDIFPortInst(s) in this net: 
 	i_clk
 Source EDIFPortInst(s) in this net: 
-	i_clk	Name: i_clk	Full Name: i_clk
+	i_clk
 EDIFPortInst(s) in this net: 
-	CLOCK_ENABLE_GEN/i_clk	Name: i_clk	Full Name: CLOCK_ENABLE_GEN/i_clk
-	COUNTER/i_clk	Name: i_clk	Full Name: COUNTER/i_clk
-	i_clk	Name: i_clk	Full Name: i_clk
+	CLOCK_ENABLE_GEN/i_clk
+	COUNTER/i_clk
+	i_clk
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
-	VCC/P	Name: P	Full Name: VCC/P
+	VCC/P
 EDIFPortInst(s) in this net: 
-	VCC/P	Name: P	Full Name: VCC/P
-	count_reg[0]/CE	Name: CE	Full Name: count_reg[0]/CE
-	count_reg[0]_i_2/DI[0]	Name: DI[0]	Full Name: count_reg[0]_i_2/DI[0]
-	count_reg[1]/CE	Name: CE	Full Name: count_reg[1]/CE
-	count_reg[2]/CE	Name: CE	Full Name: count_reg[2]/CE
-	count_reg[3]/CE	Name: CE	Full Name: count_reg[3]/CE
-	o_pulse_reg/CE	Name: CE	Full Name: o_pulse_reg/CE
+	VCC/P
+	count_reg[0]/CE
+	count_reg[0]_i_2/DI[0]
+	count_reg[1]/CE
+	count_reg[2]/CE
+	count_reg[3]/CE
+	o_pulse_reg/CE
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!

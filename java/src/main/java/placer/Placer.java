@@ -27,6 +27,9 @@ import com.xilinx.rapidwright.edif.EDIFPortInst;
 import com.xilinx.rapidwright.edif.EDIFHierPortInst;
 
 import com.xilinx.rapidwright.device.Device;
+import com.xilinx.rapidwright.device.Site;
+import com.xilinx.rapidwright.device.SiteTypeEnum;
+import com.xilinx.rapidwright.device.BEL;
 
 public abstract class Placer {
 
@@ -46,6 +49,8 @@ public abstract class Placer {
 
     public void run() throws IOException {
         EDIFNetlist netlist = design.getNetlist();
+        printAllDeviceSites(device);
+        printDeviceSlices(device);
         printEDIFLibrary(netlist);
         printEDIFCellInsts(netlist);
         printEDIFHierCellInsts(netlist);
@@ -55,8 +60,55 @@ public abstract class Placer {
         design.writeCheckpoint(placedDcp);
     }
 
-    // ============= LIBRARY PRINTOUT ================
-    // ============= LIBRARY PRINTOUT ================
+    public void printBELs(BufferedWriter writer, Site site) throws IOException {
+        writer.write("\nBELs in this site: ");
+        BEL[] bels = site.getBELs();
+        int word_count = 0;
+        writer.write("\n\t");
+        for (BEL bel : bels) {
+            writer.write(bel.getName() + " ");
+            word_count++;
+            if (word_count == 12) {
+                writer.write("\n\t");
+                word_count = 0;
+            }
+        }
+    }
+
+    public void printAllDeviceSites(Device device) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/DeviceAllSites.txt"));
+        writer.write("Printing All Site(s) in device " + device.getName() + ": ");
+        Site[] sites = device.getAllSites();
+        for (Site site : sites) {
+            writer.write("\n" + site.getName());
+            printBELs(writer, site);
+        }
+        if (writer != null)
+            writer.close();
+    }
+
+    public void printDeviceSlices(Device device) throws IOException {
+        BufferedWriter writerL = new BufferedWriter(new FileWriter(rootDir + "outputs/DeviceSLICELs.txt"));
+        BufferedWriter writerM = new BufferedWriter(new FileWriter(rootDir + "outputs/DeviceSLICEMs.txt"));
+        writerL.write("Printing SLICEL Sites in device " + device.getName() + ": ");
+        writerM.write("Printing SLICEM Sites in device " + device.getName() + ": ");
+        Site[] sliceLs = device.getAllSitesOfType(SiteTypeEnum.SLICEL);
+        Site[] sliceMs = device.getAllSitesOfType(SiteTypeEnum.SLICEM);
+
+        for (Site sliceL : sliceLs) {
+            writerL.write("\n" + sliceL.getName());
+            printBELs(writerL, sliceL);
+        }
+        for (Site sliceM : sliceMs) {
+            writerM.write("\n" + sliceM.getName());
+            printBELs(writerM, sliceM);
+        }
+        if (writerL != null)
+            writerL.close();
+        if (writerM != null)
+            writerM.close();
+    }
+
     // ============= LIBRARY PRINTOUT ================
 
     public void printEDIFLibrary(EDIFNetlist netlist) throws IOException {
@@ -65,22 +117,19 @@ public abstract class Placer {
         writer.newLine();
         EDIFLibrary library = netlist.getHDIPrimitivesLibrary();
         Map<String, EDIFCell> ecs = library.getCellMap();
-        for (String cell : ecs.keySet()) {
+        for (String cell : ecs.keySet())
             writer.write("\nEDIFCell: " + cell);
-        }
         if (writer != null)
             writer.close();
     }
 
     // ============== NON-HIER PRINTOUT ==================
-    // ============== NON-HIER PRINTOUT ==================
-    // ============== NON-HIER PRINTOUT ==================
 
     private void printEDIFPortInsts(BufferedWriter writer, Collection<EDIFPortInst> epis) throws IOException {
         for (EDIFPortInst epi : epis) {
             writer.write("\n\t" + epi.toString());
-            writer.write("\tName: " + epi.getName());
-            writer.write("\tFull Name: " + epi.getFullName());
+            // writer.write("\tName: " + epi.getName());
+            // writer.write("\tFull Name: " + epi.getFullName());
         }
     }
 
@@ -138,8 +187,6 @@ public abstract class Placer {
             writer.close();
     }
 
-    // ============ HIERARCHICAL PRINTOUTS ===============
-    // ============ HIERARCHICAL PRINTOUTS ===============
     // ============ HIERARCHICAL PRINTOUTS ===============
 
     private void printEDIFHierPortInsts(BufferedWriter writer, Collection<EDIFHierPortInst> ehpis) throws IOException {

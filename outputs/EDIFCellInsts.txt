@@ -2,149 +2,149 @@ Printing EDIFCellInst(s) HashMap:
 
 String Key: CLOCK_ENABLE_GEN/count_reg[0]_i_2  =>	EDIFCellInst Value: CARRY4                        
 EDIFPortInst(s) on this cell: 
-	count_reg[0]_i_2/CI	Name: CI	Full Name: count_reg[0]_i_2/CI
-	count_reg[0]_i_2/CO[0]	Name: CO[0]	Full Name: count_reg[0]_i_2/CO[0]
-	count_reg[0]_i_2/CO[1]	Name: CO[1]	Full Name: count_reg[0]_i_2/CO[1]
-	count_reg[0]_i_2/CO[2]	Name: CO[2]	Full Name: count_reg[0]_i_2/CO[2]
-	count_reg[0]_i_2/CYINIT	Name: CYINIT	Full Name: count_reg[0]_i_2/CYINIT
-	count_reg[0]_i_2/DI[0]	Name: DI[0]	Full Name: count_reg[0]_i_2/DI[0]
-	count_reg[0]_i_2/DI[1]	Name: DI[1]	Full Name: count_reg[0]_i_2/DI[1]
-	count_reg[0]_i_2/DI[2]	Name: DI[2]	Full Name: count_reg[0]_i_2/DI[2]
-	count_reg[0]_i_2/DI[3]	Name: DI[3]	Full Name: count_reg[0]_i_2/DI[3]
-	count_reg[0]_i_2/O[0]	Name: O[0]	Full Name: count_reg[0]_i_2/O[0]
-	count_reg[0]_i_2/O[1]	Name: O[1]	Full Name: count_reg[0]_i_2/O[1]
-	count_reg[0]_i_2/O[2]	Name: O[2]	Full Name: count_reg[0]_i_2/O[2]
-	count_reg[0]_i_2/O[3]	Name: O[3]	Full Name: count_reg[0]_i_2/O[3]
-	count_reg[0]_i_2/S[0]	Name: S[0]	Full Name: count_reg[0]_i_2/S[0]
-	count_reg[0]_i_2/S[1]	Name: S[1]	Full Name: count_reg[0]_i_2/S[1]
-	count_reg[0]_i_2/S[2]	Name: S[2]	Full Name: count_reg[0]_i_2/S[2]
-	count_reg[0]_i_2/S[3]	Name: S[3]	Full Name: count_reg[0]_i_2/S[3]
+	count_reg[0]_i_2/CI
+	count_reg[0]_i_2/CO[0]
+	count_reg[0]_i_2/CO[1]
+	count_reg[0]_i_2/CO[2]
+	count_reg[0]_i_2/CYINIT
+	count_reg[0]_i_2/DI[0]
+	count_reg[0]_i_2/DI[1]
+	count_reg[0]_i_2/DI[2]
+	count_reg[0]_i_2/DI[3]
+	count_reg[0]_i_2/O[0]
+	count_reg[0]_i_2/O[1]
+	count_reg[0]_i_2/O[2]
+	count_reg[0]_i_2/O[3]
+	count_reg[0]_i_2/S[0]
+	count_reg[0]_i_2/S[1]
+	count_reg[0]_i_2/S[2]
+	count_reg[0]_i_2/S[3]
 
 String Key: COUNTER/count[3]_i_1            =>	EDIFCellInst Value: LUT4                          
 EDIFPortInst(s) on this cell: 
-	count[3]_i_1/I0	Name: I0	Full Name: count[3]_i_1/I0
-	count[3]_i_1/I1	Name: I1	Full Name: count[3]_i_1/I1
-	count[3]_i_1/I2	Name: I2	Full Name: count[3]_i_1/I2
-	count[3]_i_1/I3	Name: I3	Full Name: count[3]_i_1/I3
-	count[3]_i_1/O	Name: O	Full Name: count[3]_i_1/O
+	count[3]_i_1/I0
+	count[3]_i_1/I1
+	count[3]_i_1/I2
+	count[3]_i_1/I3
+	count[3]_i_1/O
 
 String Key: CLOCK_ENABLE_GEN/count_reg[3]   =>	EDIFCellInst Value: FDRE                          
 EDIFPortInst(s) on this cell: 
-	count_reg[3]/C	Name: C	Full Name: count_reg[3]/C
-	count_reg[3]/CE	Name: CE	Full Name: count_reg[3]/CE
-	count_reg[3]/D	Name: D	Full Name: count_reg[3]/D
-	count_reg[3]/Q	Name: Q	Full Name: count_reg[3]/Q
-	count_reg[3]/R	Name: R	Full Name: count_reg[3]/R
+	count_reg[3]/C
+	count_reg[3]/CE
+	count_reg[3]/D
+	count_reg[3]/Q
+	count_reg[3]/R
 
 String Key: CLOCK_ENABLE_GEN/count[0]_i_1__0  =>	EDIFCellInst Value: LUT5                          
 EDIFPortInst(s) on this cell: 
-	count[0]_i_1__0/I0	Name: I0	Full Name: count[0]_i_1__0/I0
-	count[0]_i_1__0/I1	Name: I1	Full Name: count[0]_i_1__0/I1
-	count[0]_i_1__0/I2	Name: I2	Full Name: count[0]_i_1__0/I2
-	count[0]_i_1__0/I3	Name: I3	Full Name: count[0]_i_1__0/I3
-	count[0]_i_1__0/I4	Name: I4	Full Name: count[0]_i_1__0/I4
-	count[0]_i_1__0/O	Name: O	Full Name: count[0]_i_1__0/O
+	count[0]_i_1__0/I0
+	count[0]_i_1__0/I1
+	count[0]_i_1__0/I2
+	count[0]_i_1__0/I3
+	count[0]_i_1__0/I4
+	count[0]_i_1__0/O
 
 String Key: COUNTER/count[2]_i_1            =>	EDIFCellInst Value: LUT3                          
 EDIFPortInst(s) on this cell: 
-	count[2]_i_1/I0	Name: I0	Full Name: count[2]_i_1/I0
-	count[2]_i_1/I1	Name: I1	Full Name: count[2]_i_1/I1
-	count[2]_i_1/I2	Name: I2	Full Name: count[2]_i_1/I2
-	count[2]_i_1/O	Name: O	Full Name: count[2]_i_1/O
+	count[2]_i_1/I0
+	count[2]_i_1/I1
+	count[2]_i_1/I2
+	count[2]_i_1/O
 
 String Key: COUNTER/count[0]_i_1            =>	EDIFCellInst Value: LUT1                          
 EDIFPortInst(s) on this cell: 
-	count[0]_i_1/I0	Name: I0	Full Name: count[0]_i_1/I0
-	count[0]_i_1/O	Name: O	Full Name: count[0]_i_1/O
+	count[0]_i_1/I0
+	count[0]_i_1/O
 
 String Key: CLOCK_ENABLE_GEN/count_reg[0]   =>	EDIFCellInst Value: FDRE                          
 EDIFPortInst(s) on this cell: 
-	count_reg[0]/C	Name: C	Full Name: count_reg[0]/C
-	count_reg[0]/CE	Name: CE	Full Name: count_reg[0]/CE
-	count_reg[0]/D	Name: D	Full Name: count_reg[0]/D
-	count_reg[0]/Q	Name: Q	Full Name: count_reg[0]/Q
-	count_reg[0]/R	Name: R	Full Name: count_reg[0]/R
+	count_reg[0]/C
+	count_reg[0]/CE
+	count_reg[0]/D
+	count_reg[0]/Q
+	count_reg[0]/R
 
 String Key: CLOCK_ENABLE_GEN/VCC            =>	EDIFCellInst Value: VCC                           
 EDIFPortInst(s) on this cell: 
-	VCC/P	Name: P	Full Name: VCC/P
+	VCC/P
 
 String Key: CLOCK_ENABLE_GEN/count_reg[2]   =>	EDIFCellInst Value: FDRE                          
 EDIFPortInst(s) on this cell: 
-	count_reg[2]/C	Name: C	Full Name: count_reg[2]/C
-	count_reg[2]/CE	Name: CE	Full Name: count_reg[2]/CE
-	count_reg[2]/D	Name: D	Full Name: count_reg[2]/D
-	count_reg[2]/Q	Name: Q	Full Name: count_reg[2]/Q
-	count_reg[2]/R	Name: R	Full Name: count_reg[2]/R
+	count_reg[2]/C
+	count_reg[2]/CE
+	count_reg[2]/D
+	count_reg[2]/Q
+	count_reg[2]/R
 
 String Key: CLOCK_ENABLE_GEN/count_reg[1]   =>	EDIFCellInst Value: FDRE                          
 EDIFPortInst(s) on this cell: 
-	count_reg[1]/C	Name: C	Full Name: count_reg[1]/C
-	count_reg[1]/CE	Name: CE	Full Name: count_reg[1]/CE
-	count_reg[1]/D	Name: D	Full Name: count_reg[1]/D
-	count_reg[1]/Q	Name: Q	Full Name: count_reg[1]/Q
-	count_reg[1]/R	Name: R	Full Name: count_reg[1]/R
+	count_reg[1]/C
+	count_reg[1]/CE
+	count_reg[1]/D
+	count_reg[1]/Q
+	count_reg[1]/R
 
 String Key: COUNTER/count[1]_i_1            =>	EDIFCellInst Value: LUT2                          
 EDIFPortInst(s) on this cell: 
-	count[1]_i_1/I0	Name: I0	Full Name: count[1]_i_1/I0
-	count[1]_i_1/I1	Name: I1	Full Name: count[1]_i_1/I1
-	count[1]_i_1/O	Name: O	Full Name: count[1]_i_1/O
+	count[1]_i_1/I0
+	count[1]_i_1/I1
+	count[1]_i_1/O
 
 String Key: CLOCK_ENABLE_GEN/o_pulse_reg    =>	EDIFCellInst Value: FDRE                          
 EDIFPortInst(s) on this cell: 
-	o_pulse_reg/C	Name: C	Full Name: o_pulse_reg/C
-	o_pulse_reg/CE	Name: CE	Full Name: o_pulse_reg/CE
-	o_pulse_reg/D	Name: D	Full Name: o_pulse_reg/D
-	o_pulse_reg/Q	Name: Q	Full Name: o_pulse_reg/Q
-	o_pulse_reg/R	Name: R	Full Name: o_pulse_reg/R
+	o_pulse_reg/C
+	o_pulse_reg/CE
+	o_pulse_reg/D
+	o_pulse_reg/Q
+	o_pulse_reg/R
 
 String Key: CLOCK_ENABLE_GEN/GND            =>	EDIFCellInst Value: GND                           
 EDIFPortInst(s) on this cell: 
-	GND/G	Name: G	Full Name: GND/G
+	GND/G
 
 String Key: CLOCK_ENABLE_GEN/count[0]_i_3   =>	EDIFCellInst Value: LUT1                          
 EDIFPortInst(s) on this cell: 
-	count[0]_i_3/I0	Name: I0	Full Name: count[0]_i_3/I0
-	count[0]_i_3/O	Name: O	Full Name: count[0]_i_3/O
+	count[0]_i_3/I0
+	count[0]_i_3/O
 
 String Key: COUNTER/count_reg[0]            =>	EDIFCellInst Value: FDRE                          
 EDIFPortInst(s) on this cell: 
-	count_reg[0]/C	Name: C	Full Name: count_reg[0]/C
-	count_reg[0]/CE	Name: CE	Full Name: count_reg[0]/CE
-	count_reg[0]/D	Name: D	Full Name: count_reg[0]/D
-	count_reg[0]/Q	Name: Q	Full Name: count_reg[0]/Q
-	count_reg[0]/R	Name: R	Full Name: count_reg[0]/R
+	count_reg[0]/C
+	count_reg[0]/CE
+	count_reg[0]/D
+	count_reg[0]/Q
+	count_reg[0]/R
 
 String Key: COUNTER/count_reg[1]            =>	EDIFCellInst Value: FDRE                          
 EDIFPortInst(s) on this cell: 
-	count_reg[1]/C	Name: C	Full Name: count_reg[1]/C
-	count_reg[1]/CE	Name: CE	Full Name: count_reg[1]/CE
-	count_reg[1]/D	Name: D	Full Name: count_reg[1]/D
-	count_reg[1]/Q	Name: Q	Full Name: count_reg[1]/Q
-	count_reg[1]/R	Name: R	Full Name: count_reg[1]/R
+	count_reg[1]/C
+	count_reg[1]/CE
+	count_reg[1]/D
+	count_reg[1]/Q
+	count_reg[1]/R
 
 String Key: COUNTER/count_reg[2]            =>	EDIFCellInst Value: FDRE                          
 EDIFPortInst(s) on this cell: 
-	count_reg[2]/C	Name: C	Full Name: count_reg[2]/C
-	count_reg[2]/CE	Name: CE	Full Name: count_reg[2]/CE
-	count_reg[2]/D	Name: D	Full Name: count_reg[2]/D
-	count_reg[2]/Q	Name: Q	Full Name: count_reg[2]/Q
-	count_reg[2]/R	Name: R	Full Name: count_reg[2]/R
+	count_reg[2]/C
+	count_reg[2]/CE
+	count_reg[2]/D
+	count_reg[2]/Q
+	count_reg[2]/R
 
 String Key: COUNTER/count_reg[3]            =>	EDIFCellInst Value: FDRE                          
 EDIFPortInst(s) on this cell: 
-	count_reg[3]/C	Name: C	Full Name: count_reg[3]/C
-	count_reg[3]/CE	Name: CE	Full Name: count_reg[3]/CE
-	count_reg[3]/D	Name: D	Full Name: count_reg[3]/D
-	count_reg[3]/Q	Name: Q	Full Name: count_reg[3]/Q
-	count_reg[3]/R	Name: R	Full Name: count_reg[3]/R
+	count_reg[3]/C
+	count_reg[3]/CE
+	count_reg[3]/D
+	count_reg[3]/Q
+	count_reg[3]/R
 
 String Key: CLOCK_ENABLE_GEN/o_pulse_i_1    =>	EDIFCellInst Value: LUT5                          
 EDIFPortInst(s) on this cell: 
-	o_pulse_i_1/I0	Name: I0	Full Name: o_pulse_i_1/I0
-	o_pulse_i_1/I1	Name: I1	Full Name: o_pulse_i_1/I1
-	o_pulse_i_1/I2	Name: I2	Full Name: o_pulse_i_1/I2
-	o_pulse_i_1/I3	Name: I3	Full Name: o_pulse_i_1/I3
-	o_pulse_i_1/I4	Name: I4	Full Name: o_pulse_i_1/I4
-	o_pulse_i_1/O	Name: O	Full Name: o_pulse_i_1/O
+	o_pulse_i_1/I0
+	o_pulse_i_1/I1
+	o_pulse_i_1/I2
+	o_pulse_i_1/I3
+	o_pulse_i_1/I4
+	o_pulse_i_1/O

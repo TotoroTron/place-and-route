@@ -1,7 +1,7 @@
 package placer;
 
 import java.util.Map;
-import java.util.Collection;
+// import java.util.Collection;
 import java.util.List;
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -12,15 +12,15 @@ import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.Cell;
 
 import com.xilinx.rapidwright.edif.EDIFNetlist;
-import com.xilinx.rapidwright.edif.EDIFCell;
+// import com.xilinx.rapidwright.edif.EDIFCell;
 import com.xilinx.rapidwright.edif.EDIFCellInst;
-import com.xilinx.rapidwright.edif.EDIFHierCellInst;
+// import com.xilinx.rapidwright.edif.EDIFHierCellInst;
 
-import com.xilinx.rapidwright.edif.EDIFPortInst;
-import com.xilinx.rapidwright.edif.EDIFHierPortInst;
+// import com.xilinx.rapidwright.edif.EDIFPortInst;
+// import com.xilinx.rapidwright.edif.EDIFHierPortInst;
 
 import com.xilinx.rapidwright.design.Net;
-import com.xilinx.rapidwright.edif.EDIFHierNet;
+// import com.xilinx.rapidwright.edif.EDIFHierNet;
 
 public class CompleteRandomPlacer extends Placer {
 
@@ -44,6 +44,7 @@ public class CompleteRandomPlacer extends Placer {
             cells.add(design.createCell(key, val));
             // Cell c = createCell(String instName, EDIFCellInst instance);
             // boolean b = design.placeCell(Cell c, Site site, BEL bel);
+            // returns true if placement successful or if already placed
         }
 
         // Net n = createNet(EDIFHierNet ehn);
