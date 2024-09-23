@@ -1,104 +1,52 @@
 
 Printing unique sites in the device: 
 
-Unique site types: 
-	TIEOFF
-	SLICEM
-	SLICEL
-	OLOGICE3
-	ILOGICE3
-	IDELAYE2
-	IOB33
-	IOB33S
-	IOB33M
-	RAMBFIFO36E1
-	FIFO18E1
-	RAMB18E1
-	DSP48E1
-	OUT_FIFO
-	IN_FIFO
-	PLLE2_ADV
-	GCLK_TEST_BUF
-	PHASER_REF
-	PHY_CONTROL
-	PHASER_OUT_PHY
-	PHASER_IN_PHY
-	IPAD
-	XADC
-	PMVBRAM
-	BUFHCE
-	BUFMRCE
-	BUFIO
-	BUFR
-	IDELAYCTRL
-	MMCME2_ADV
-	IOPAD
-	PS7
-	DNA_PORT
-	EFUSE_USR
-	USR_ACCESS
-	BSCAN
-	ICAP
-	PMVIOB
-	FRAME_ECC
-	STARTUP
-	CAPTURE
-	DCIRESET
-	CFG_IO_ACCESS
-	BUFGCTRL
-	MTBF2
-	PMV2
-	PMV2_SVT
-	PMV
-
-Number of unique site types: 48
-Unique sites types with detail: 
-
-	SiteName: TIEOFF_X20Y149                 SiteType: TIEOFF              
-	SiteName: SLICE_X26Y149                  SiteType: SLICEM              
-	SiteName: SLICE_X27Y149                  SiteType: SLICEL              
-	SiteName: OLOGIC_X1Y149                  SiteType: OLOGICE3            
-	SiteName: ILOGIC_X1Y149                  SiteType: ILOGICE3            
-	SiteName: IDELAY_X1Y149                  SiteType: IDELAYE2            
-	SiteName: IOB_X1Y149                     SiteType: IOB33               
-	SiteName: IOB_X1Y147                     SiteType: IOB33S              
-	SiteName: IOB_X1Y148                     SiteType: IOB33M              
-	SiteName: RAMB36_X2Y29                   SiteType: RAMBFIFO36E1        
-	SiteName: RAMB18_X2Y58                   SiteType: FIFO18E1            
-	SiteName: RAMB18_X2Y59                   SiteType: RAMB18E1            
-	SiteName: DSP48_X2Y58                    SiteType: DSP48E1             
-	SiteName: OUT_FIFO_X1Y11                 SiteType: OUT_FIFO            
-	SiteName: IN_FIFO_X1Y11                  SiteType: IN_FIFO             
-	SiteName: PLLE2_ADV_X1Y2                 SiteType: PLLE2_ADV           
-	SiteName: GCLK_TEST_BUF_X0Y128           SiteType: GCLK_TEST_BUF       
-	SiteName: PHASER_REF_X1Y2                SiteType: PHASER_REF          
-	SiteName: PHY_CONTROL_X1Y2               SiteType: PHY_CONTROL         
-	SiteName: PHASER_OUT_PHY_X1Y10           SiteType: PHASER_OUT_PHY      
-	SiteName: PHASER_IN_PHY_X1Y10            SiteType: PHASER_IN_PHY       
-	SiteName: IPAD_X0Y1                      SiteType: IPAD                
-	SiteName: XADC_X0Y0                      SiteType: XADC                
-	SiteName: PMVBRAM_X2Y2                   SiteType: PMVBRAM             
-	SiteName: BUFHCE_X0Y24                   SiteType: BUFHCE              
-	SiteName: BUFMRCE_X1Y5                   SiteType: BUFMRCE             
-	SiteName: BUFIO_X1Y9                     SiteType: BUFIO               
-	SiteName: BUFR_X1Y9                      SiteType: BUFR                
-	SiteName: IDELAYCTRL_X1Y2                SiteType: IDELAYCTRL          
-	SiteName: MMCME2_ADV_X1Y2                SiteType: MMCME2_ADV          
-	SiteName: IOPAD_X1Y1                     SiteType: IOPAD               
-	SiteName: PS7_X0Y0                       SiteType: PS7                 
-	SiteName: DNA_PORT_X0Y0                  SiteType: DNA_PORT            
-	SiteName: EFUSE_USR_X0Y0                 SiteType: EFUSE_USR           
-	SiteName: USR_ACCESS_X0Y0                SiteType: USR_ACCESS          
-	SiteName: BSCAN_X0Y0                     SiteType: BSCAN               
-	SiteName: ICAP_X0Y0                      SiteType: ICAP                
-	SiteName: PMVIOB_X1Y1                    SiteType: PMVIOB              
-	SiteName: FRAME_ECC_X0Y0                 SiteType: FRAME_ECC           
-	SiteName: STARTUP_X0Y0                   SiteType: STARTUP             
-	SiteName: CAPTURE_X0Y0                   SiteType: CAPTURE             
-	SiteName: DCIRESET_X0Y0                  SiteType: DCIRESET            
-	SiteName: CFG_IO_ACCESS_X0Y0             SiteType: CFG_IO_ACCESS       
-	SiteName: BUFGCTRL_X0Y16                 SiteType: BUFGCTRL            
-	SiteName: MTBF2_X0Y0                     SiteType: MTBF2               
-	SiteName: PMV_X0Y2                       SiteType: PMV2                
-	SiteName: PMV_X0Y1                       SiteType: PMV2_SVT            
-	SiteName: PMV_X0Y0                       SiteType: PMV                 
+Nunmber of unique site types: 48
+	SiteType: TIEOFF                         SiteName: TIEOFF_X20Y149                           
+	SiteType: SLICEM                         SiteName: SLICE_X26Y149                            
+	SiteType: SLICEL                         SiteName: SLICE_X27Y149                            
+	SiteType: OLOGICE3                       SiteName: OLOGIC_X1Y149                            
+	SiteType: ILOGICE3                       SiteName: ILOGIC_X1Y149                            
+	SiteType: IDELAYE2                       SiteName: IDELAY_X1Y149                            
+	SiteType: IOB33                          SiteName: IOB_X1Y149                               
+	SiteType: IOB33S                         SiteName: IOB_X1Y147                               
+	SiteType: IOB33M                         SiteName: IOB_X1Y148                               
+	SiteType: RAMBFIFO36E1                   SiteName: RAMB36_X2Y29                             
+	SiteType: FIFO18E1                       SiteName: RAMB18_X2Y58                             
+	SiteType: RAMB18E1                       SiteName: RAMB18_X2Y59                             
+	SiteType: DSP48E1                        SiteName: DSP48_X2Y58                              
+	SiteType: OUT_FIFO                       SiteName: OUT_FIFO_X1Y11                           
+	SiteType: IN_FIFO                        SiteName: IN_FIFO_X1Y11                            
+	SiteType: PLLE2_ADV                      SiteName: PLLE2_ADV_X1Y2                           
+	SiteType: GCLK_TEST_BUF                  SiteName: GCLK_TEST_BUF_X0Y128                     
+	SiteType: PHASER_REF                     SiteName: PHASER_REF_X1Y2                          
+	SiteType: PHY_CONTROL                    SiteName: PHY_CONTROL_X1Y2                         
+	SiteType: PHASER_OUT_PHY                 SiteName: PHASER_OUT_PHY_X1Y10                     
+	SiteType: PHASER_IN_PHY                  SiteName: PHASER_IN_PHY_X1Y10                      
+	SiteType: IPAD                           SiteName: IPAD_X0Y1                                
+	SiteType: XADC                           SiteName: XADC_X0Y0                                
+	SiteType: PMVBRAM                        SiteName: PMVBRAM_X2Y2                             
+	SiteType: BUFHCE                         SiteName: BUFHCE_X0Y24                             
+	SiteType: BUFMRCE                        SiteName: BUFMRCE_X1Y5                             
+	SiteType: BUFIO                          SiteName: BUFIO_X1Y9                               
+	SiteType: BUFR                           SiteName: BUFR_X1Y9                                
+	SiteType: IDELAYCTRL                     SiteName: IDELAYCTRL_X1Y2                          
+	SiteType: MMCME2_ADV                     SiteName: MMCME2_ADV_X1Y2                          
+	SiteType: IOPAD                          SiteName: IOPAD_X1Y1                               
+	SiteType: PS7                            SiteName: PS7_X0Y0                                 
+	SiteType: DNA_PORT                       SiteName: DNA_PORT_X0Y0                            
+	SiteType: EFUSE_USR                      SiteName: EFUSE_USR_X0Y0                           
+	SiteType: USR_ACCESS                     SiteName: USR_ACCESS_X0Y0                          
+	SiteType: BSCAN                          SiteName: BSCAN_X0Y0                               
+	SiteType: ICAP                           SiteName: ICAP_X0Y0                                
+	SiteType: PMVIOB                         SiteName: PMVIOB_X1Y1                              
+	SiteType: FRAME_ECC                      SiteName: FRAME_ECC_X0Y0                           
+	SiteType: STARTUP                        SiteName: STARTUP_X0Y0                             
+	SiteType: CAPTURE                        SiteName: CAPTURE_X0Y0                             
+	SiteType: DCIRESET                       SiteName: DCIRESET_X0Y0                            
+	SiteType: CFG_IO_ACCESS                  SiteName: CFG_IO_ACCESS_X0Y0                       
+	SiteType: BUFGCTRL                       SiteName: BUFGCTRL_X0Y16                           
+	SiteType: MTBF2                          SiteName: MTBF2_X0Y0                               
+	SiteType: PMV2                           SiteName: PMV_X0Y2                                 
+	SiteType: PMV2_SVT                       SiteName: PMV_X0Y1                                 
+	SiteType: PMV                            SiteName: PMV_X0Y0                                 

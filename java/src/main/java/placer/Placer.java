@@ -69,28 +69,25 @@ public abstract class Placer {
     public void printTileArray(BufferedWriter writer, Tile[] tiles) throws IOException {
         for (Tile tile : tiles) {
             String s1 = String.format(
-                    "\nTileName: %-30s TileType: %-20s, Row: %-5s Col: %-5s, X: %-5s Y: %-5s",
-                    tile.getName(), tile.getTileTypeEnum(), tile.getRow(), tile.getColumn(),
+                    "\nTileType: %-30s TileName: %-40s Row: %-5s Col: %-5s X: %-5s Y: %-5s",
+                    tile.getTileTypeEnum(), tile.getName(), tile.getRow(), tile.getColumn(),
                     tile.getTileXCoordinate(), tile.getTileYCoordinate());
             writer.write(s1);
             Site[] sites = tile.getSites();
-            printSiteArray(writer, sites);
+            // printSiteArray(writer, sites);
         }
     }
 
     public void printSiteArray(BufferedWriter writer, Site[] sites) throws IOException {
         for (Site site : sites) {
             String s2 = String.format(
-                    "\n\tSiteName: %-30s SiteType: %-20s", site.getName(), site.getSiteTypeEnum());
+                    "\n\tSiteType: %-30s SiteName: %-40s ", site.getSiteTypeEnum(), site.getName());
             writer.write(s2);
             // printBELArray(writer, site);
         }
-        writer.newLine();
     }
 
-    public void printBELArray(BufferedWriter writer, Site site) throws IOException {
-        writer.write("\n\t\tBELs in this site: \n\t\t");
-        BEL[] bels = site.getBELs();
+    public void printBELArray(BufferedWriter writer, BEL[] bels) throws IOException {
         int word_count = 0;
         for (BEL bel : bels) {
             writer.write(bel.getName() + " ");
@@ -119,11 +116,9 @@ public abstract class Placer {
         // why is this inconsistent with unique TypeEnums?
         writer.write("\nPrinting unique tiles in device: ");
         writer.newLine();
-
         Tile[][] tiles = device.getTiles();
         Set<TileTypeEnum> uniqueTileTypes = new HashSet<>();
         List<Tile> uniqueTiles = new ArrayList<>();
-
         for (Tile[] row : tiles) {
             for (Tile tile : row) {
                 if (uniqueTileTypes.add(tile.getTileTypeEnum())) {
@@ -131,25 +126,10 @@ public abstract class Placer {
                 }
             }
         }
-
-        writer.write("\nUnique tile types: ");
-        for (Tile uniqueTile : uniqueTiles) {
-            writer.write("\n\t" + uniqueTile.getTileTypeEnum());
-        }
-
-        writer.newLine();
         writer.write("\nNumber of unique tile types: " + uniqueTiles.size());
-        writer.write("\nUnique tile types with detail: ");
-        writer.newLine();
-        for (Tile uniqueTile : uniqueTiles) {
-            writer.write("\nTileType: " + uniqueTile.getTileTypeEnum());
-            Site[] sites = uniqueTile.getSites();
-            printSiteArray(writer, sites);
-        }
-
+        printTileArray(writer, uniqueTiles.toArray(new Tile[0]));
         if (writer != null)
             writer.close();
-
     }
 
     public void printUniqueSites(Device device) throws IOException {
@@ -159,29 +139,16 @@ public abstract class Placer {
         // why is this inconsistent with unique TypeEnums?
         writer.write("\nPrinting unique sites in the device: ");
         writer.newLine();
-
         Site[] sites = device.getAllSites();
         Set<SiteTypeEnum> uniqueSiteTypes = new HashSet<>();
         List<Site> uniqueSites = new ArrayList<>();
-
         for (Site site : sites) {
             if (uniqueSiteTypes.add(site.getSiteTypeEnum())) {
                 uniqueSites.add(site);
             }
         }
-
-        writer.write("\nUnique site types: ");
-        for (Site uniqueSite : uniqueSites) {
-            writer.write("\n\t" + uniqueSite.getSiteTypeEnum());
-        }
-
-        writer.newLine();
-        writer.write("\nNumber of unique site types: " + uniqueSites.size());
-        writer.write("\nUnique sites types with detail: ");
-        writer.newLine();
-
+        writer.write("\nNunmber of unique site types: " + uniqueSites.size());
         printSiteArray(writer, uniqueSites.toArray(new Site[0]));
-
         if (writer != null)
             writer.close();
     }
@@ -194,27 +161,6 @@ public abstract class Placer {
         printSiteArray(writer, sites);
         if (writer != null)
             writer.close();
-    }
-
-    public void printDeviceSlices(Device device) throws IOException {
-        BufferedWriter writerL = new BufferedWriter(new FileWriter(rootDir + "outputs/DeviceSLICELs.txt"));
-        BufferedWriter writerM = new BufferedWriter(new FileWriter(rootDir + "outputs/DeviceSLICEMs.txt"));
-        writerL.write("Printing SLICEL Sites in device " + device.getName() + ": ");
-        writerM.write("Printing SLICEM Sites in device " + device.getName() + ": ");
-        Site[] sliceLs = device.getAllSitesOfType(SiteTypeEnum.SLICEL);
-        Site[] sliceMs = device.getAllSitesOfType(SiteTypeEnum.SLICEM);
-        for (Site sliceL : sliceLs) {
-            writerL.write("\n" + sliceL.getName());
-            printBELArray(writerL, sliceL);
-        }
-        for (Site sliceM : sliceMs) {
-            writerM.write("\n" + sliceM.getName());
-            printBELArray(writerM, sliceM);
-        }
-        if (writerL != null)
-            writerL.close();
-        if (writerM != null)
-            writerM.close();
     }
 
     // ============= LIBRARY PRINTOUT ================

@@ -1,768 +1,109 @@
 
 Printing unique tiles in device: 
 
-Unique tile types: 
-	NULL
-	T_TERM_INT
-	TERM_CMT
-	BRKH_CLB
-	BRKH_TERM_INT
-	CLK_TERM
-	PCIE_NULL
-	INT_INTERFACE_PSS_L
-	INT_L
-	INT_R
-	CLBLM_R
-	CLBLL_L
-	VBRK
-	BRAM_INT_INTERFACE_L
-	CLBLM_L
-	INT_INTERFACE_R
-	CLK_FEED
-	CLBLL_R
-	INT_FEEDTHRU_1
-	INT_FEEDTHRU_2
-	VFRAME
-	INT_INTERFACE_L
-	BRAM_INT_INTERFACE_R
-	CMT_PMV_L
-	IO_INT_INTERFACE_R
-	R_TERM_INT
-	RIOI3_SING
-	RIOB33_SING
-	RIOI3
-	RIOB33
-	BRAM_L
-	DSP_R
-	MONITOR_TOP_PELE1
-	DSP_L
-	BRAM_R
-	CMT_FIFO_L
-	RIOI3_TBYTESRC
-	CMT_TOP_L_UPPER_T
-	PSS4
-	RIOI3_TBYTETERM
-	CLK_BUFG_REBUF
-	MONITOR_MID_PELE1
-	CMT_TOP_L_UPPER_B
-	MONITOR_BOT_PELE1
-	HCLK_CLB
-	HCLK_L
-	HCLK_R
-	HCLK_VBRK
-	HCLK_BRAM
-	HCLK_INT_INTERFACE
-	HCLK_DSP_R
-	CLK_HROW_TOP_R
-	HCLK_FEEDTHRU_1
-	HCLK_FEEDTHRU_2
-	HCLK_FEEDTHRU_1_PELE
-	HCLK_VFRAME
-	HCLK_DSP_L
-	HCLK_CMT_L
-	HCLK_FIFO_L
-	HCLK_TERM
-	HCLK_IOI3
-	HCLK_IOB
-	PSS3
-	CFG_SECURITY_TOP_PELE1
-	CMT_TOP_L_LOWER_T
-	CFG_SECURITY_MID_PELE1
-	CMT_TOP_L_LOWER_B
-	PSS2
-	CFG_SECURITY_BOT_PELE1
-	BRKH_INT
-	BRKH_BRAM
-	BRKH_DSP_R
-	BRKH_CLK
-	BRKH_DSP_L
-	BRKH_CMT
-	CFG_CENTER_TOP
-	PSS1
-	CFG_CENTER_MID
-	PSS0
-	CFG_CENTER_BOT
-	CLK_BUFG_TOP_R
-	BRKH_INT_PSS
-	LIOB33_SING
-	LIOI3_SING
-	L_TERM_INT
-	IO_INT_INTERFACE_L
-	CMT_PMV
-	LIOB33
-	LIOI3
-	CLK_BUFG_BOT_R
-	CLK_MTBF2
-	LIOI3_TBYTESRC
-	CMT_FIFO_R
-	CMT_TOP_R_UPPER_T
-	CLK_PMV2
-	LIOI3_TBYTETERM
-	CLK_PMV2_SVT
-	CMT_TOP_R_UPPER_B
-	HCLK_CMT
-	CLK_HROW_BOT_R
-	CMT_TOP_R_LOWER_T
-	CLK_PMVIOB
-	CMT_TOP_R_LOWER_B
-	CLK_PMV
-	B_TERM_INT
-
 Number of unique tile types: 105
-Unique tile types with detail: 
-
-TileType: NULL
-
-TileType: T_TERM_INT
-
-TileType: TERM_CMT
-
-TileType: BRKH_CLB
-
-TileType: BRKH_TERM_INT
-
-TileType: CLK_TERM
-
-TileType: PCIE_NULL
-
-TileType: INT_INTERFACE_PSS_L
-
-TileType: INT_L
-	SiteName: TIEOFF_X20Y149                 SiteType: TIEOFF              
-
-TileType: INT_R
-	SiteName: TIEOFF_X21Y149                 SiteType: TIEOFF              
-
-TileType: CLBLM_R
-	SiteName: SLICE_X26Y149                  SiteType: SLICEM              
-	SiteName: SLICE_X27Y149                  SiteType: SLICEL              
-
-TileType: CLBLL_L
-	SiteName: SLICE_X29Y149                  SiteType: SLICEL              
-	SiteName: SLICE_X28Y149                  SiteType: SLICEL              
-
-TileType: VBRK
-
-TileType: BRAM_INT_INTERFACE_L
-
-TileType: CLBLM_L
-	SiteName: SLICE_X35Y149                  SiteType: SLICEL              
-	SiteName: SLICE_X34Y149                  SiteType: SLICEM              
-
-TileType: INT_INTERFACE_R
-
-TileType: CLK_FEED
-
-TileType: CLBLL_R
-	SiteName: SLICE_X52Y149                  SiteType: SLICEL              
-	SiteName: SLICE_X53Y149                  SiteType: SLICEL              
-
-TileType: INT_FEEDTHRU_1
-
-TileType: INT_FEEDTHRU_2
-
-TileType: VFRAME
-
-TileType: INT_INTERFACE_L
-
-TileType: BRAM_INT_INTERFACE_R
-
-TileType: CMT_PMV_L
-
-TileType: IO_INT_INTERFACE_R
-
-TileType: R_TERM_INT
-
-TileType: RIOI3_SING
-	SiteName: OLOGIC_X1Y149                  SiteType: OLOGICE3            
-	SiteName: ILOGIC_X1Y149                  SiteType: ILOGICE3            
-	SiteName: IDELAY_X1Y149                  SiteType: IDELAYE2            
-
-TileType: RIOB33_SING
-	SiteName: IOB_X1Y149                     SiteType: IOB33               
-
-TileType: RIOI3
-	SiteName: OLOGIC_X1Y147                  SiteType: OLOGICE3            
-	SiteName: ILOGIC_X1Y147                  SiteType: ILOGICE3            
-	SiteName: OLOGIC_X1Y148                  SiteType: OLOGICE3            
-	SiteName: ILOGIC_X1Y148                  SiteType: ILOGICE3            
-	SiteName: IDELAY_X1Y147                  SiteType: IDELAYE2            
-	SiteName: IDELAY_X1Y148                  SiteType: IDELAYE2            
-
-TileType: RIOB33
-	SiteName: IOB_X1Y147                     SiteType: IOB33S              
-	SiteName: IOB_X1Y148                     SiteType: IOB33M              
-
-TileType: BRAM_L
-	SiteName: RAMB36_X2Y29                   SiteType: RAMBFIFO36E1        
-	SiteName: RAMB18_X2Y58                   SiteType: FIFO18E1            
-	SiteName: RAMB18_X2Y59                   SiteType: RAMB18E1            
-
-TileType: DSP_R
-	SiteName: DSP48_X2Y58                    SiteType: DSP48E1             
-	SiteName: DSP48_X2Y59                    SiteType: DSP48E1             
-	SiteName: TIEOFF_X28Y145                 SiteType: TIEOFF              
-
-TileType: MONITOR_TOP_PELE1
-
-TileType: DSP_L
-	SiteName: DSP48_X4Y58                    SiteType: DSP48E1             
-	SiteName: DSP48_X4Y59                    SiteType: DSP48E1             
-	SiteName: TIEOFF_X68Y145                 SiteType: TIEOFF              
-
-TileType: BRAM_R
-	SiteName: RAMB18_X5Y58                   SiteType: FIFO18E1            
-	SiteName: RAMB18_X5Y59                   SiteType: RAMB18E1            
-	SiteName: RAMB36_X5Y29                   SiteType: RAMBFIFO36E1        
-
-TileType: CMT_FIFO_L
-	SiteName: OUT_FIFO_X1Y11                 SiteType: OUT_FIFO            
-	SiteName: IN_FIFO_X1Y11                  SiteType: IN_FIFO             
-
-TileType: RIOI3_TBYTESRC
-	SiteName: OLOGIC_X1Y143                  SiteType: OLOGICE3            
-	SiteName: ILOGIC_X1Y143                  SiteType: ILOGICE3            
-	SiteName: OLOGIC_X1Y144                  SiteType: OLOGICE3            
-	SiteName: ILOGIC_X1Y144                  SiteType: ILOGICE3            
-	SiteName: IDELAY_X1Y143                  SiteType: IDELAYE2            
-	SiteName: IDELAY_X1Y144                  SiteType: IDELAYE2            
-
-TileType: CMT_TOP_L_UPPER_T
-	SiteName: PLLE2_ADV_X1Y2                 SiteType: PLLE2_ADV           
-
-TileType: PSS4
-
-TileType: RIOI3_TBYTETERM
-	SiteName: OLOGIC_X1Y137                  SiteType: OLOGICE3            
-	SiteName: ILOGIC_X1Y137                  SiteType: ILOGICE3            
-	SiteName: OLOGIC_X1Y138                  SiteType: OLOGICE3            
-	SiteName: ILOGIC_X1Y138                  SiteType: ILOGICE3            
-	SiteName: IDELAY_X1Y137                  SiteType: IDELAYE2            
-	SiteName: IDELAY_X1Y138                  SiteType: IDELAYE2            
-
-TileType: CLK_BUFG_REBUF
-	SiteName: GCLK_TEST_BUF_X0Y128           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y128           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y129           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y129           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y130           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y130           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y131           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y131           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y132           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y132           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y133           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y133           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y134           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y134           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y135           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y135           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y136           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y136           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y137           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y137           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y138           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y138           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y139           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y139           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y140           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y140           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y141           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y141           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y142           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y142           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y143           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y143           SiteType: GCLK_TEST_BUF       
-
-TileType: MONITOR_MID_PELE1
-
-TileType: CMT_TOP_L_UPPER_B
-	SiteName: PHASER_REF_X1Y2                SiteType: PHASER_REF          
-	SiteName: PHY_CONTROL_X1Y2               SiteType: PHY_CONTROL         
-	SiteName: PHASER_OUT_PHY_X1Y10           SiteType: PHASER_OUT_PHY      
-	SiteName: PHASER_IN_PHY_X1Y10            SiteType: PHASER_IN_PHY       
-	SiteName: PHASER_OUT_PHY_X1Y11           SiteType: PHASER_OUT_PHY      
-	SiteName: PHASER_IN_PHY_X1Y11            SiteType: PHASER_IN_PHY       
-
-TileType: MONITOR_BOT_PELE1
-	SiteName: IPAD_X0Y1                      SiteType: IPAD                
-	SiteName: IPAD_X0Y0                      SiteType: IPAD                
-	SiteName: XADC_X0Y0                      SiteType: XADC                
-
-TileType: HCLK_CLB
-
-TileType: HCLK_L
-
-TileType: HCLK_R
-
-TileType: HCLK_VBRK
-
-TileType: HCLK_BRAM
-	SiteName: PMVBRAM_X2Y2                   SiteType: PMVBRAM             
-
-TileType: HCLK_INT_INTERFACE
-
-TileType: HCLK_DSP_R
-
-TileType: CLK_HROW_TOP_R
-	SiteName: GCLK_TEST_BUF_X3Y113           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X3Y112           SiteType: GCLK_TEST_BUF       
-	SiteName: BUFHCE_X0Y24                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X0Y25                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X0Y26                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X0Y27                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X0Y28                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X0Y29                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X0Y30                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X0Y31                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X0Y32                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X0Y33                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X0Y34                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X0Y35                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y35                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y34                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y33                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y32                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y31                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y30                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y29                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y28                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y27                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y26                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y25                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y24                   SiteType: BUFHCE              
-	SiteName: GCLK_TEST_BUF_X1Y112           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y113           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y114           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y115           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y116           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y117           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y118           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y119           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y120           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y121           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y122           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y123           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y124           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y125           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y126           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y127           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y112           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y113           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y114           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y115           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y116           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y117           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y118           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y119           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y120           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y121           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y122           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y123           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y124           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y125           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y126           SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y127           SiteType: GCLK_TEST_BUF       
-
-TileType: HCLK_FEEDTHRU_1
-
-TileType: HCLK_FEEDTHRU_2
-
-TileType: HCLK_FEEDTHRU_1_PELE
-
-TileType: HCLK_VFRAME
-
-TileType: HCLK_DSP_L
-
-TileType: HCLK_CMT_L
-	SiteName: BUFMRCE_X1Y5                   SiteType: BUFMRCE             
-	SiteName: BUFMRCE_X1Y4                   SiteType: BUFMRCE             
-
-TileType: HCLK_FIFO_L
-
-TileType: HCLK_TERM
-
-TileType: HCLK_IOI3
-	SiteName: BUFIO_X1Y9                     SiteType: BUFIO               
-	SiteName: BUFIO_X1Y8                     SiteType: BUFIO               
-	SiteName: BUFIO_X1Y11                    SiteType: BUFIO               
-	SiteName: BUFIO_X1Y10                    SiteType: BUFIO               
-	SiteName: BUFR_X1Y9                      SiteType: BUFR                
-	SiteName: BUFR_X1Y8                      SiteType: BUFR                
-	SiteName: BUFR_X1Y11                     SiteType: BUFR                
-	SiteName: BUFR_X1Y10                     SiteType: BUFR                
-	SiteName: IDELAYCTRL_X1Y2                SiteType: IDELAYCTRL          
-
-TileType: HCLK_IOB
-
-TileType: PSS3
-
-TileType: CFG_SECURITY_TOP_PELE1
-
-TileType: CMT_TOP_L_LOWER_T
-	SiteName: PHASER_OUT_PHY_X1Y8            SiteType: PHASER_OUT_PHY      
-	SiteName: PHASER_IN_PHY_X1Y8             SiteType: PHASER_IN_PHY       
-	SiteName: PHASER_OUT_PHY_X1Y9            SiteType: PHASER_OUT_PHY      
-	SiteName: PHASER_IN_PHY_X1Y9             SiteType: PHASER_IN_PHY       
-
-TileType: CFG_SECURITY_MID_PELE1
-
-TileType: CMT_TOP_L_LOWER_B
-	SiteName: MMCME2_ADV_X1Y2                SiteType: MMCME2_ADV          
-
-TileType: PSS2
-	SiteName: IOPAD_X1Y1                     SiteType: IOPAD               
-	SiteName: IOPAD_X1Y2                     SiteType: IOPAD               
-	SiteName: IOPAD_X1Y3                     SiteType: IOPAD               
-	SiteName: IOPAD_X1Y4                     SiteType: IOPAD               
-	SiteName: IOPAD_X1Y5                     SiteType: IOPAD               
-	SiteName: IOPAD_X1Y6                     SiteType: IOPAD               
-	SiteName: IOPAD_X1Y7                     SiteType: IOPAD               
-	SiteName: IOPAD_X1Y8                     SiteType: IOPAD               
-	SiteName: IOPAD_X1Y9                     SiteType: IOPAD               
-	SiteName: IOPAD_X1Y10                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y11                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y12                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y13                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y14                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y15                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y16                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y17                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y18                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y19                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y20                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y21                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y22                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y23                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y24                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y25                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y26                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y27                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y28                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y29                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y30                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y31                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y32                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y33                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y34                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y35                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y36                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y37                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y38                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y39                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y40                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y41                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y42                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y43                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y44                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y45                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y46                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y47                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y48                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y49                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y50                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y51                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y52                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y53                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y54                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y55                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y56                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y57                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y58                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y59                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y60                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y61                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y62                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y63                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y64                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y65                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y66                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y67                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y68                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y69                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y70                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y71                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y72                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y77                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y78                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y79                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y80                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y81                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y82                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y83                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y84                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y85                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y86                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y87                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y88                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y89                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y90                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y91                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y92                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y93                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y94                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y95                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y96                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y97                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y98                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y99                    SiteType: IOPAD               
-	SiteName: IOPAD_X1Y100                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y101                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y102                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y103                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y104                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y105                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y106                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y107                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y108                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y109                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y110                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y111                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y112                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y113                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y114                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y115                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y116                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y117                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y118                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y119                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y120                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y121                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y122                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y123                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y124                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y125                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y126                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y127                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y128                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y129                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y130                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y131                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y132                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y133                   SiteType: IOPAD               
-	SiteName: IOPAD_X1Y134                   SiteType: IOPAD               
-	SiteName: PS7_X0Y0                       SiteType: PS7                 
-
-TileType: CFG_SECURITY_BOT_PELE1
-
-TileType: BRKH_INT
-
-TileType: BRKH_BRAM
-
-TileType: BRKH_DSP_R
-
-TileType: BRKH_CLK
-
-TileType: BRKH_DSP_L
-
-TileType: BRKH_CMT
-
-TileType: CFG_CENTER_TOP
-	SiteName: DNA_PORT_X0Y0                  SiteType: DNA_PORT            
-	SiteName: EFUSE_USR_X0Y0                 SiteType: EFUSE_USR           
-
-TileType: PSS1
-
-TileType: CFG_CENTER_MID
-	SiteName: USR_ACCESS_X0Y0                SiteType: USR_ACCESS          
-	SiteName: BSCAN_X0Y0                     SiteType: BSCAN               
-	SiteName: BSCAN_X0Y1                     SiteType: BSCAN               
-	SiteName: ICAP_X0Y0                      SiteType: ICAP                
-	SiteName: PMVIOB_X1Y1                    SiteType: PMVIOB              
-	SiteName: FRAME_ECC_X0Y0                 SiteType: FRAME_ECC           
-	SiteName: STARTUP_X0Y0                   SiteType: STARTUP             
-	SiteName: CAPTURE_X0Y0                   SiteType: CAPTURE             
-	SiteName: DCIRESET_X0Y0                  SiteType: DCIRESET            
-	SiteName: BSCAN_X0Y2                     SiteType: BSCAN               
-	SiteName: BSCAN_X0Y3                     SiteType: BSCAN               
-	SiteName: ICAP_X0Y1                      SiteType: ICAP                
-	SiteName: CFG_IO_ACCESS_X0Y0             SiteType: CFG_IO_ACCESS       
-
-TileType: PSS0
-
-TileType: CFG_CENTER_BOT
-
-TileType: CLK_BUFG_TOP_R
-	SiteName: BUFGCTRL_X0Y16                 SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y17                 SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y18                 SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y19                 SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y20                 SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y21                 SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y22                 SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y23                 SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y24                 SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y25                 SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y26                 SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y27                 SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y28                 SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y29                 SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y30                 SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y31                 SiteType: BUFGCTRL            
-
-TileType: BRKH_INT_PSS
-
-TileType: LIOB33_SING
-	SiteName: IOB_X0Y49                      SiteType: IOB33               
-
-TileType: LIOI3_SING
-	SiteName: OLOGIC_X0Y49                   SiteType: OLOGICE3            
-	SiteName: ILOGIC_X0Y49                   SiteType: ILOGICE3            
-	SiteName: IDELAY_X0Y49                   SiteType: IDELAYE2            
-
-TileType: L_TERM_INT
-
-TileType: IO_INT_INTERFACE_L
-
-TileType: CMT_PMV
-
-TileType: LIOB33
-	SiteName: IOB_X0Y47                      SiteType: IOB33S              
-	SiteName: IOB_X0Y48                      SiteType: IOB33M              
-
-TileType: LIOI3
-	SiteName: OLOGIC_X0Y47                   SiteType: OLOGICE3            
-	SiteName: ILOGIC_X0Y47                   SiteType: ILOGICE3            
-	SiteName: OLOGIC_X0Y48                   SiteType: OLOGICE3            
-	SiteName: ILOGIC_X0Y48                   SiteType: ILOGICE3            
-	SiteName: IDELAY_X0Y47                   SiteType: IDELAYE2            
-	SiteName: IDELAY_X0Y48                   SiteType: IDELAYE2            
-
-TileType: CLK_BUFG_BOT_R
-	SiteName: BUFGCTRL_X0Y0                  SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y1                  SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y2                  SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y3                  SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y4                  SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y5                  SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y6                  SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y7                  SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y8                  SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y9                  SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y10                 SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y11                 SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y12                 SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y13                 SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y14                 SiteType: BUFGCTRL            
-	SiteName: BUFGCTRL_X0Y15                 SiteType: BUFGCTRL            
-
-TileType: CLK_MTBF2
-	SiteName: MTBF2_X0Y0                     SiteType: MTBF2               
-
-TileType: LIOI3_TBYTESRC
-	SiteName: OLOGIC_X0Y43                   SiteType: OLOGICE3            
-	SiteName: ILOGIC_X0Y43                   SiteType: ILOGICE3            
-	SiteName: OLOGIC_X0Y44                   SiteType: OLOGICE3            
-	SiteName: ILOGIC_X0Y44                   SiteType: ILOGICE3            
-	SiteName: IDELAY_X0Y43                   SiteType: IDELAYE2            
-	SiteName: IDELAY_X0Y44                   SiteType: IDELAYE2            
-
-TileType: CMT_FIFO_R
-	SiteName: OUT_FIFO_X0Y3                  SiteType: OUT_FIFO            
-	SiteName: IN_FIFO_X0Y3                   SiteType: IN_FIFO             
-
-TileType: CMT_TOP_R_UPPER_T
-	SiteName: PLLE2_ADV_X0Y0                 SiteType: PLLE2_ADV           
-
-TileType: CLK_PMV2
-	SiteName: PMV_X0Y2                       SiteType: PMV2                
-
-TileType: LIOI3_TBYTETERM
-	SiteName: OLOGIC_X0Y37                   SiteType: OLOGICE3            
-	SiteName: ILOGIC_X0Y37                   SiteType: ILOGICE3            
-	SiteName: OLOGIC_X0Y38                   SiteType: OLOGICE3            
-	SiteName: ILOGIC_X0Y38                   SiteType: ILOGICE3            
-	SiteName: IDELAY_X0Y37                   SiteType: IDELAYE2            
-	SiteName: IDELAY_X0Y38                   SiteType: IDELAYE2            
-
-TileType: CLK_PMV2_SVT
-	SiteName: PMV_X0Y1                       SiteType: PMV2_SVT            
-
-TileType: CMT_TOP_R_UPPER_B
-	SiteName: PHASER_REF_X0Y0                SiteType: PHASER_REF          
-	SiteName: PHY_CONTROL_X0Y0               SiteType: PHY_CONTROL         
-	SiteName: PHASER_OUT_PHY_X0Y2            SiteType: PHASER_OUT_PHY      
-	SiteName: PHASER_IN_PHY_X0Y2             SiteType: PHASER_IN_PHY       
-	SiteName: PHASER_OUT_PHY_X0Y3            SiteType: PHASER_OUT_PHY      
-	SiteName: PHASER_IN_PHY_X0Y3             SiteType: PHASER_IN_PHY       
-
-TileType: HCLK_CMT
-	SiteName: BUFMRCE_X0Y1                   SiteType: BUFMRCE             
-	SiteName: BUFMRCE_X0Y0                   SiteType: BUFMRCE             
-
-TileType: CLK_HROW_BOT_R
-	SiteName: GCLK_TEST_BUF_X3Y17            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X3Y16            SiteType: GCLK_TEST_BUF       
-	SiteName: BUFHCE_X0Y0                    SiteType: BUFHCE              
-	SiteName: BUFHCE_X0Y1                    SiteType: BUFHCE              
-	SiteName: BUFHCE_X0Y2                    SiteType: BUFHCE              
-	SiteName: BUFHCE_X0Y3                    SiteType: BUFHCE              
-	SiteName: BUFHCE_X0Y4                    SiteType: BUFHCE              
-	SiteName: BUFHCE_X0Y5                    SiteType: BUFHCE              
-	SiteName: BUFHCE_X0Y6                    SiteType: BUFHCE              
-	SiteName: BUFHCE_X0Y7                    SiteType: BUFHCE              
-	SiteName: BUFHCE_X0Y8                    SiteType: BUFHCE              
-	SiteName: BUFHCE_X0Y9                    SiteType: BUFHCE              
-	SiteName: BUFHCE_X0Y10                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X0Y11                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y11                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y10                   SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y9                    SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y8                    SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y7                    SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y6                    SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y5                    SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y4                    SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y3                    SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y2                    SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y1                    SiteType: BUFHCE              
-	SiteName: BUFHCE_X1Y0                    SiteType: BUFHCE              
-	SiteName: GCLK_TEST_BUF_X1Y16            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y17            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y18            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y19            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y20            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y21            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y22            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y23            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y24            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y25            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y26            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y27            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y28            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y29            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y30            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X1Y31            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y16            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y17            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y18            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y19            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y20            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y21            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y22            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y23            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y24            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y25            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y26            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y27            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y28            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y29            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y30            SiteType: GCLK_TEST_BUF       
-	SiteName: GCLK_TEST_BUF_X0Y31            SiteType: GCLK_TEST_BUF       
-
-TileType: CMT_TOP_R_LOWER_T
-	SiteName: PHASER_OUT_PHY_X0Y0            SiteType: PHASER_OUT_PHY      
-	SiteName: PHASER_IN_PHY_X0Y0             SiteType: PHASER_IN_PHY       
-	SiteName: PHASER_OUT_PHY_X0Y1            SiteType: PHASER_OUT_PHY      
-	SiteName: PHASER_IN_PHY_X0Y1             SiteType: PHASER_IN_PHY       
-
-TileType: CLK_PMVIOB
-	SiteName: PMVIOB_X0Y0                    SiteType: PMVIOB              
-
-TileType: CMT_TOP_R_LOWER_B
-	SiteName: MMCME2_ADV_X0Y0                SiteType: MMCME2_ADV          
-
-TileType: CLK_PMV
-	SiteName: PMV_X0Y0                       SiteType: PMV                 
-
-TileType: B_TERM_INT
+TileType: NULL                           TileName: NULL_X0Y156                              Row: 0     Col: 0     X: 0     Y: 156  
+TileType: T_TERM_INT                     TileName: T_TERM_INT_X4Y156                        Row: 0     Col: 4     X: 4     Y: 156  
+TileType: TERM_CMT                       TileName: TERM_CMT_X8Y156                          Row: 0     Col: 8     X: 8     Y: 156  
+TileType: BRKH_CLB                       TileName: BRKH_CLB_X50Y156                         Row: 0     Col: 50    X: 50    Y: 156  
+TileType: BRKH_TERM_INT                  TileName: BRKH_TERM_INT_X18Y149                    Row: 0     Col: 51    X: 18    Y: 149  
+TileType: CLK_TERM                       TileName: CLK_TERM_X87Y156                         Row: 0     Col: 87    X: 87    Y: 156  
+TileType: PCIE_NULL                      TileName: PCIE_NULL_X0Y155                         Row: 1     Col: 0     X: 0     Y: 155  
+TileType: INT_INTERFACE_PSS_L            TileName: INT_INTERFACE_PSS_L_X18Y149              Row: 1     Col: 50    X: 18    Y: 149  
+TileType: INT_L                          TileName: INT_L_X18Y149                            Row: 1     Col: 51    X: 18    Y: 149  
+TileType: INT_R                          TileName: INT_R_X19Y149                            Row: 1     Col: 52    X: 19    Y: 149  
+TileType: CLBLM_R                        TileName: CLBLM_R_X19Y149                          Row: 1     Col: 53    X: 19    Y: 149  
+TileType: CLBLL_L                        TileName: CLBLL_L_X20Y149                          Row: 1     Col: 54    X: 20    Y: 149  
+TileType: VBRK                           TileName: VBRK_X58Y155                             Row: 1     Col: 58    X: 58    Y: 155  
+TileType: BRAM_INT_INTERFACE_L           TileName: BRAM_INT_INTERFACE_L_X22Y149             Row: 1     Col: 60    X: 22    Y: 149  
+TileType: CLBLM_L                        TileName: CLBLM_L_X24Y149                          Row: 1     Col: 64    X: 24    Y: 149  
+TileType: INT_INTERFACE_R                TileName: INT_INTERFACE_R_X25Y149                  Row: 1     Col: 67    X: 25    Y: 149  
+TileType: CLK_FEED                       TileName: CLK_FEED_X87Y155                         Row: 1     Col: 87    X: 87    Y: 155  
+TileType: CLBLL_R                        TileName: CLBLL_R_X35Y149                          Row: 1     Col: 92    X: 35    Y: 149  
+TileType: INT_FEEDTHRU_1                 TileName: INT_FEEDTHRU_1_X112Y155                  Row: 1     Col: 112   X: 112   Y: 155  
+TileType: INT_FEEDTHRU_2                 TileName: INT_FEEDTHRU_2_X113Y155                  Row: 1     Col: 113   X: 113   Y: 155  
+TileType: VFRAME                         TileName: VFRAME_X124Y155                          Row: 1     Col: 124   X: 124   Y: 155  
+TileType: INT_INTERFACE_L                TileName: INT_INTERFACE_L_X50Y149                  Row: 1     Col: 125   X: 50    Y: 149  
+TileType: BRAM_INT_INTERFACE_R           TileName: BRAM_INT_INTERFACE_R_X67Y149             Row: 1     Col: 166   X: 67    Y: 149  
+TileType: CMT_PMV_L                      TileName: CMT_PMV_L_X179Y155                       Row: 1     Col: 179   X: 179   Y: 155  
+TileType: IO_INT_INTERFACE_R             TileName: IO_INT_INTERFACE_R_X73Y149               Row: 1     Col: 183   X: 73    Y: 149  
+TileType: R_TERM_INT                     TileName: R_TERM_INT_X184Y155                      Row: 1     Col: 184   X: 184   Y: 155  
+TileType: RIOI3_SING                     TileName: RIOI3_SING_X73Y149                       Row: 1     Col: 185   X: 73    Y: 149  
+TileType: RIOB33_SING                    TileName: RIOB33_SING_X73Y149                      Row: 1     Col: 186   X: 73    Y: 149  
+TileType: RIOI3                          TileName: RIOI3_X73Y147                            Row: 3     Col: 185   X: 73    Y: 147  
+TileType: RIOB33                         TileName: RIOB33_X73Y147                           Row: 3     Col: 186   X: 73    Y: 147  
+TileType: BRAM_L                         TileName: BRAM_L_X22Y145                           Row: 5     Col: 59    X: 22    Y: 145  
+TileType: DSP_R                          TileName: DSP_R_X25Y145                            Row: 5     Col: 68    X: 25    Y: 145  
+TileType: MONITOR_TOP_PELE1              TileName: MONITOR_TOP_PELE1_X123Y151               Row: 5     Col: 123   X: 123   Y: 151  
+TileType: DSP_L                          TileName: DSP_L_X64Y145                            Row: 5     Col: 158   X: 64    Y: 145  
+TileType: BRAM_R                         TileName: BRAM_R_X67Y145                           Row: 5     Col: 167   X: 67    Y: 145  
+TileType: CMT_FIFO_L                     TileName: CMT_FIFO_L_X179Y149                      Row: 7     Col: 179   X: 179   Y: 149  
+TileType: RIOI3_TBYTESRC                 TileName: RIOI3_TBYTESRC_X73Y143                   Row: 7     Col: 185   X: 73    Y: 143  
+TileType: CMT_TOP_L_UPPER_T              TileName: CMT_TOP_L_UPPER_T_X178Y148               Row: 8     Col: 178   X: 178   Y: 148  
+TileType: PSS4                           TileName: PSS4_X32Y146                             Row: 10    Col: 32    X: 32    Y: 146  
+TileType: RIOI3_TBYTETERM                TileName: RIOI3_TBYTETERM_X73Y137                  Row: 13    Col: 185   X: 73    Y: 137  
+TileType: CLK_BUFG_REBUF                 TileName: CLK_BUFG_REBUF_X87Y142                   Row: 14    Col: 87    X: 87    Y: 142  
+TileType: MONITOR_MID_PELE1              TileName: MONITOR_MID_PELE1_X123Y141               Row: 15    Col: 123   X: 123   Y: 141  
+TileType: CMT_TOP_L_UPPER_B              TileName: CMT_TOP_L_UPPER_B_X178Y135               Row: 21    Col: 178   X: 178   Y: 135  
+TileType: MONITOR_BOT_PELE1              TileName: MONITOR_BOT_PELE1_X123Y131               Row: 25    Col: 123   X: 123   Y: 131  
+TileType: HCLK_CLB                       TileName: HCLK_CLB_X50Y130                         Row: 26    Col: 50    X: 50    Y: 130  
+TileType: HCLK_L                         TileName: HCLK_L_X51Y130                           Row: 26    Col: 51    X: 51    Y: 130  
+TileType: HCLK_R                         TileName: HCLK_R_X52Y130                           Row: 26    Col: 52    X: 52    Y: 130  
+TileType: HCLK_VBRK                      TileName: HCLK_VBRK_X58Y130                        Row: 26    Col: 58    X: 58    Y: 130  
+TileType: HCLK_BRAM                      TileName: HCLK_BRAM_X59Y130                        Row: 26    Col: 59    X: 59    Y: 130  
+TileType: HCLK_INT_INTERFACE             TileName: HCLK_INT_INTERFACE_X60Y130               Row: 26    Col: 60    X: 60    Y: 130  
+TileType: HCLK_DSP_R                     TileName: HCLK_DSP_R_X68Y130                       Row: 26    Col: 68    X: 68    Y: 130  
+TileType: CLK_HROW_TOP_R                 TileName: CLK_HROW_TOP_R_X87Y130                   Row: 26    Col: 87    X: 87    Y: 130  
+TileType: HCLK_FEEDTHRU_1                TileName: HCLK_FEEDTHRU_1_X112Y130                 Row: 26    Col: 112   X: 112   Y: 130  
+TileType: HCLK_FEEDTHRU_2                TileName: HCLK_FEEDTHRU_2_X113Y130                 Row: 26    Col: 113   X: 113   Y: 130  
+TileType: HCLK_FEEDTHRU_1_PELE           TileName: HCLK_FEEDTHRU_1_PELE_X123Y130            Row: 26    Col: 123   X: 123   Y: 130  
+TileType: HCLK_VFRAME                    TileName: HCLK_VFRAME_X124Y130                     Row: 26    Col: 124   X: 124   Y: 130  
+TileType: HCLK_DSP_L                     TileName: HCLK_DSP_L_X158Y130                      Row: 26    Col: 158   X: 158   Y: 130  
+TileType: HCLK_CMT_L                     TileName: HCLK_CMT_L_X178Y130                      Row: 26    Col: 178   X: 178   Y: 130  
+TileType: HCLK_FIFO_L                    TileName: HCLK_FIFO_L_X179Y130                     Row: 26    Col: 179   X: 179   Y: 130  
+TileType: HCLK_TERM                      TileName: HCLK_TERM_X184Y130                       Row: 26    Col: 184   X: 184   Y: 130  
+TileType: HCLK_IOI3                      TileName: HCLK_IOI3_X185Y130                       Row: 26    Col: 185   X: 185   Y: 130  
+TileType: HCLK_IOB                       TileName: HCLK_IOB_X186Y130                        Row: 26    Col: 186   X: 186   Y: 130  
+TileType: PSS3                           TileName: PSS3_X32Y125                             Row: 31    Col: 32    X: 32    Y: 125  
+TileType: CFG_SECURITY_TOP_PELE1         TileName: CFG_SECURITY_TOP_PELE1_X123Y125          Row: 31    Col: 123   X: 123   Y: 125  
+TileType: CMT_TOP_L_LOWER_T              TileName: CMT_TOP_L_LOWER_T_X178Y122               Row: 34    Col: 178   X: 178   Y: 122  
+TileType: CFG_SECURITY_MID_PELE1         TileName: CFG_SECURITY_MID_PELE1_X123Y115          Row: 41    Col: 123   X: 123   Y: 115  
+TileType: CMT_TOP_L_LOWER_B              TileName: CMT_TOP_L_LOWER_B_X178Y113               Row: 43    Col: 178   X: 178   Y: 113  
+TileType: PSS2                           TileName: PSS2_X32Y105                             Row: 51    Col: 32    X: 32    Y: 105  
+TileType: CFG_SECURITY_BOT_PELE1         TileName: CFG_SECURITY_BOT_PELE1_X123Y105          Row: 51    Col: 123   X: 123   Y: 105  
+TileType: BRKH_INT                       TileName: BRKH_INT_X18Y99                          Row: 52    Col: 51    X: 18    Y: 99   
+TileType: BRKH_BRAM                      TileName: BRKH_BRAM_X59Y104                        Row: 52    Col: 59    X: 59    Y: 104  
+TileType: BRKH_DSP_R                     TileName: BRKH_DSP_R_X68Y104                       Row: 52    Col: 68    X: 68    Y: 104  
+TileType: BRKH_CLK                       TileName: BRKH_CLK_X87Y104                         Row: 52    Col: 87    X: 87    Y: 104  
+TileType: BRKH_DSP_L                     TileName: BRKH_DSP_L_X158Y104                      Row: 52    Col: 158   X: 158   Y: 104  
+TileType: BRKH_CMT                       TileName: BRKH_CMT_X178Y104                        Row: 52    Col: 178   X: 178   Y: 104  
+TileType: CFG_CENTER_TOP                 TileName: CFG_CENTER_TOP_X123Y94                   Row: 62    Col: 123   X: 123   Y: 94   
+TileType: PSS1                           TileName: PSS1_X32Y84                              Row: 72    Col: 32    X: 32    Y: 84   
+TileType: CFG_CENTER_MID                 TileName: CFG_CENTER_MID_X123Y84                   Row: 72    Col: 123   X: 123   Y: 84   
+TileType: PSS0                           TileName: PSS0_X32Y63                              Row: 93    Col: 32    X: 32    Y: 63   
+TileType: CFG_CENTER_BOT                 TileName: CFG_CENTER_BOT_X123Y63                   Row: 93    Col: 123   X: 123   Y: 63   
+TileType: CLK_BUFG_TOP_R                 TileName: CLK_BUFG_TOP_R_X87Y53                    Row: 103   Col: 87    X: 87    Y: 53   
+TileType: BRKH_INT_PSS                   TileName: BRKH_INT_PSS_X0Y49                       Row: 104   Col: 4     X: 0     Y: 49   
+TileType: LIOB33_SING                    TileName: LIOB33_SING_X0Y49                        Row: 105   Col: 0     X: 0     Y: 49   
+TileType: LIOI3_SING                     TileName: LIOI3_SING_X0Y49                         Row: 105   Col: 1     X: 0     Y: 49   
+TileType: L_TERM_INT                     TileName: L_TERM_INT_X2Y51                         Row: 105   Col: 2     X: 2     Y: 51   
+TileType: IO_INT_INTERFACE_L             TileName: IO_INT_INTERFACE_L_X0Y49                 Row: 105   Col: 3     X: 0     Y: 49   
+TileType: CMT_PMV                        TileName: CMT_PMV_X7Y51                            Row: 105   Col: 7     X: 7     Y: 51   
+TileType: LIOB33                         TileName: LIOB33_X0Y47                             Row: 107   Col: 0     X: 0     Y: 47   
+TileType: LIOI3                          TileName: LIOI3_X0Y47                              Row: 107   Col: 1     X: 0     Y: 47   
+TileType: CLK_BUFG_BOT_R                 TileName: CLK_BUFG_BOT_R_X87Y48                    Row: 108   Col: 87    X: 87    Y: 48   
+TileType: CLK_MTBF2                      TileName: CLK_MTBF2_X87Y47                         Row: 109   Col: 87    X: 87    Y: 47   
+TileType: LIOI3_TBYTESRC                 TileName: LIOI3_TBYTESRC_X0Y43                     Row: 111   Col: 1     X: 0     Y: 43   
+TileType: CMT_FIFO_R                     TileName: CMT_FIFO_R_X7Y45                         Row: 111   Col: 7     X: 7     Y: 45   
+TileType: CMT_TOP_R_UPPER_T              TileName: CMT_TOP_R_UPPER_T_X8Y44                  Row: 112   Col: 8     X: 8     Y: 44   
+TileType: CLK_PMV2                       TileName: CLK_PMV2_X87Y43                          Row: 113   Col: 87    X: 87    Y: 43   
+TileType: LIOI3_TBYTETERM                TileName: LIOI3_TBYTETERM_X0Y37                    Row: 117   Col: 1     X: 0     Y: 37   
+TileType: CLK_PMV2_SVT                   TileName: CLK_PMV2_SVT_X87Y34                      Row: 122   Col: 87    X: 87    Y: 34   
+TileType: CMT_TOP_R_UPPER_B              TileName: CMT_TOP_R_UPPER_B_X8Y31                  Row: 125   Col: 8     X: 8     Y: 31   
+TileType: HCLK_CMT                       TileName: HCLK_CMT_X8Y26                           Row: 130   Col: 8     X: 8     Y: 26   
+TileType: CLK_HROW_BOT_R                 TileName: CLK_HROW_BOT_R_X87Y26                    Row: 130   Col: 87    X: 87    Y: 26   
+TileType: CMT_TOP_R_LOWER_T              TileName: CMT_TOP_R_LOWER_T_X8Y18                  Row: 138   Col: 8     X: 8     Y: 18   
+TileType: CLK_PMVIOB                     TileName: CLK_PMVIOB_X87Y18                        Row: 138   Col: 87    X: 87    Y: 18   
+TileType: CMT_TOP_R_LOWER_B              TileName: CMT_TOP_R_LOWER_B_X8Y9                   Row: 147   Col: 8     X: 8     Y: 9    
+TileType: CLK_PMV                        TileName: CLK_PMV_X87Y2                            Row: 154   Col: 87    X: 87    Y: 2    
+TileType: B_TERM_INT                     TileName: B_TERM_INT_X4Y0                          Row: 156   Col: 4     X: 4     Y: 0    
