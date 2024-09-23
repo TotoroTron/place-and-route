@@ -59,6 +59,7 @@ fi
 
 # Gradle Run Stage (replaces Java Placement)
 if [ "$start_stage" == "place" ] || [ "$start_stage" == "all" ]; then
+    rm $PROJ_DIR/outputs/*.txt
     echo "Running Java placement with Gradle..."
     cd $PROJ_DIR/java
     gradle run
