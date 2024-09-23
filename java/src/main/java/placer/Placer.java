@@ -97,7 +97,7 @@ public abstract class Placer {
     public void printUniqueTiles(Device device) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/DeviceUniqueTiles.txt"));
         writer.write("\nPrinting unique tiles in device: ");
-        writer.write("\nUnique tile types: " + device.getTileTypeCount());
+        writer.write("\nNumber of unique tile types: " + device.getTileTypeCount());
         writer.newLine();
 
         Tile[][] tiles = device.getTiles();
@@ -112,6 +112,12 @@ public abstract class Placer {
             }
         }
 
+        writer.write("\nUnique tile types: ");
+        for (Tile uniqueTile : uniqueTiles) {
+            writer.write("\n\t" + uniqueTile.getTileTypeEnum());
+        }
+
+        writer.write("\nUnique tile types with detail: ");
         for (Tile uniqueTile : uniqueTiles) {
             writer.write("\nTile Type: " + uniqueTile.getTileTypeEnum());
             Site[] sites = uniqueTile.getSites();
@@ -145,8 +151,8 @@ public abstract class Placer {
 
     public void printUniqueSites(Device device) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/DeviceUniqueSites.txt"));
-        writer.write("Printing unique sites in the device: ");
-        writer.write("\nUnique tile types: " + device.getTileTypeCount());
+        writer.write("Number of unique sites in the device: " + device.getSiteTypeCount());
+        writer.write("\nPrinting unique sites in the device: ");
         writer.newLine();
 
         Site[] sites = device.getAllSites();
@@ -159,8 +165,9 @@ public abstract class Placer {
                 uniqueSites.add(site);
             }
         }
+        writer.write("\nUnique sites: " + uniqueSites.size());
         for (Site uniqueSite : uniqueSites) {
-            writer.write("\n" + uniqueSite.getName());
+            writer.write("\n" + uniqueSite.getSiteTypeEnum());
             printBELs(writer, uniqueSite);
         }
         if (writer != null)

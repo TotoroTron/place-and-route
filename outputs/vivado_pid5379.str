@@ -1,0 +1,704 @@
+/*
+
+AMD Vivado v2023.2.2 (64-bit) [Major: 2023, Minor: 2]
+SW Build: 4126759 on Thu Feb  8 23:52:05 MST 2024
+IP Build: 4126054 on Fri Feb  9 11:39:09 MST 2024
+IP Build: 4126054 on Fri Feb  9 11:39:09 MST 2024
+
+Process ID (PID): 5379
+License: Customer
+Mode: GUI Mode
+
+Current time: 	Sun Sep 22 19:00:54 EDT 2024
+Time zone: 	Eastern Standard Time (America/New_York)
+
+OS: Ubuntu
+OS Version: 6.8.0-40-generic
+OS Architecture: amd64
+Available processors (cores): 8
+LSB Release Description: Ubuntu 22.04.4 LTS
+
+Display: 0
+Screen size: 1920x1080
+Local screen bounds: x = 0, y = 27, width = 1920, height = 1053
+Screen resolution (DPI): 100
+Available screens: 1
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+Scale size: 12
+OS font scaling: 100%
+Anti-Alias Enabled: false
+
+Java version: 	17.0.7 64-bit
+JavaFX version: 17.0.1
+Java home: 	/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/tps/lnx64/jre17.0.7_7
+Java executable: 	/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/tps/lnx64/jre17.0.7_7/bin/java
+Java arguments: 	[-Dsun.java2d.pmoffscreen=false, -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2, -Dsun.java2d.xrender=false, -Djdk.gtk.version=2, -Dsun.java2d.uiScale.enabled=false, -Dswing.aatext=true, -XX:-UsePerfData, -Djdk.map.althashing.threshold=512, -XX:StringTableSize=4072, -XX:+UseStringDeduplication, -XX:MaxGCPauseMillis=200, -XX:+ParallelRefProcEnabled, --add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-opens=java.base/java.nio=ALL-UNNAMED, --add-opens=java.desktop/sun.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-opens=java.desktop/javax.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-opens=java.desktop/java.awt.event=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-exports=java.base/java.nio=ALL-UNNAMED, --add-exports=java.desktop/sun.swing=ALL-UNNAMED, --add-exports=java.desktop/javax.swing=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-exports=java.desktop/sun.swing=ALL-UNNAMED, --add-exports=java.desktop/sun.swing.table=ALL-UNNAMED, --add-exports=java.desktop/sun.swing.plaf.synth=ALL-UNNAMED, --add-exports=java.desktop/sun.awt.shell=ALL-UNNAMED, --add-exports=java.base/sun.security.action=ALL-UNNAMED, --add-exports=java.desktop/sun.font=ALL-UNNAMED, --add-opens=java.desktop/sun.awt.X11=ALL-UNNAMED, -XX:NewSize=80m, -XX:MaxNewSize=80m, -Xms512m, -Xmx4072m, -Xss10m, -Xrs, -Xmx32736m]
+Java initial memory (-Xms): 	512 MB
+Java maximum memory (-Xmx):	 31 GB
+
+User name: 	bcheng
+User home directory: /home/bcheng
+User working directory: /home/bcheng/workspace/dev/place-and-route/outputs
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: /home/bcheng/workspace/tools/Xilinx/Vivado
+HDI_APPROOT: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2
+RDI_DATADIR: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/data
+RDI_BINDIR: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/bin
+
+Vivado preferences file: /home/bcheng/.Xilinx/Vivado/2023.2/vivado.xml
+Vivado preferences directory: /home/bcheng/.Xilinx/Vivado/2023.2/
+Vivado layouts directory: /home/bcheng/.Xilinx/Vivado/2023.2/data/layouts
+PlanAhead jar file: 	/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/lib/classes/planAhead.jar
+Vivado log file: 	
+Vivado journal file: 	
+Engine tmp dir: 	./.Xil/Vivado-5379-bcheng-HP
+Non-Default Parameters:	[]
+
+Xilinx & AMD Environment Variables
+--------------------------------------------------------------------------------------------
+GNOME_SHELL_SESSION_MODE: ubuntu
+JAVA_HOME: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/tps/lnx64/jre17.0.7_7
+RDI_APPROOT: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2
+RDI_BASEROOT: /home/bcheng/workspace/tools/Xilinx/Vivado
+RDI_BINROOT: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/bin
+RDI_BUILD: yes
+RDI_DATADIR: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/data
+RDI_INSTALLROOT: /home/bcheng/workspace/tools/Xilinx
+RDI_INSTALLVER: 2023.2
+RDI_JAVA_PLATFORM: 
+RDI_JAVA_VERSION: 17.0.7_7
+RDI_LIBDIR: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/lib/lnx64.o/Ubuntu/22:/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/lib/lnx64.o/Ubuntu:/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/lib/lnx64.o
+RDI_OPT_EXT: .o
+RDI_PATCHROOT: 
+RDI_PLATFORM: lnx64
+RDI_PREPEND_PATH: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/ids_lite/ISE/bin/lin64
+RDI_PROG: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/bin/unwrapped/lnx64.o/vivado
+RDI_SESSION_INFO: /home/bcheng/workspace/dev/place-and-route/outputs:bcheng-HP_1727046030_5338
+RDI_SHARED_DATA: /home/bcheng/workspace/tools/Xilinx/SharedData/2023.2/data
+RDI_TPS_ROOT: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/tps/lnx64
+RDI_USE_JDK17: True
+SHELL: /bin/bash
+XILINX: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/ids_lite/ISE
+XILINX_DSP: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/ids_lite/ISE
+XILINX_HLS: /home/bcheng/workspace/tools/Xilinx/Vitis_HLS/2023.2
+XILINX_PLANAHEAD: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2
+XILINX_VIVADO: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2
+XILINX_VIVADO_HLS: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2
+_JAVA_OPTIONS: -Xmx32736m
+
+
+GUI allocated memory:	512 MB
+GUI max memory:		32,736 MB
+Engine allocated memory: 2,546 MB
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// [GUI Memory]: 97 MB (+99281kb) [00:00:02]
+// [Engine Memory]: 2,283 MB (+2242349kb) [00:00:02]
+// [GUI Memory]: 108 MB (+6047kb) [00:00:03]
+// DeviceModel: Load Xgds SwingWorker Join Forever elapsed time: 0.6s
+// TclEventType: HFED_INIT_ROUTE_STORAGE_COMPLETED
+// TclEventType: BOARD_CATALOG_MODIFIED
+// [GUI Memory]: 139 MB (+26794kb) [00:00:05]
+// [Engine Memory]: 2,436 MB (+40624kb) [00:00:05]
+// DeviceView Instantiated
+// TclEventType: START_PROGRESS_DIALOG
+// TclEventType: STOP_PROGRESS_DIALOG
+// Device view-level: 0.0
+// [GUI Memory]: 156 MB (+11071kb) [00:00:06]
+// TclEventType: STOP_PROGRESS_DIALOG
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/data/ip'. 
+dismissDialog("Sourcing Tcl script 'open_placed_dcp.tcl'"); // bq (Sourcing Tcl script 'open_placed_dcp.tcl' Progress)
+// Device view-level: 0.0
+// [GUI Memory]: 169 MB (+4830kb) [00:00:07]
+// RouteApi::initDelayMediator elapsed time: 3s
+// RouteApi: Init Delay Mediator Swing Worker Finished
+// Elapsed time: 48 seconds
+selectMenu(PAResourceItoN.MainMenuMgr_REPORTS, "Reports"); // ag (PAResourceItoN.MainMenuMgr_REPORTS, Reports)
+dismissMenu(PAResourceItoN.MainMenuMgr_REPORTS, "Reports"); // ag (PAResourceItoN.MainMenuMgr_REPORTS, Reports)
+selectMenu(PAResourceItoN.MainMenuMgr_WINDOW, "Window"); // ag (PAResourceItoN.MainMenuMgr_WINDOW, Window)
+dismissMenu(PAResourceItoN.MainMenuMgr_WINDOW, "Window"); // ag (PAResourceItoN.MainMenuMgr_WINDOW, Window)
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, -59693, 300428); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+/********** leftMouseClick (846, 519, true); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor) **********/
+// Device view-level: 0.0
+floatFrame(PAResourceOtoP.PAViews_DEVICE, "Device"); // R (PAResourceOtoP.PAViews_DEVICE, Device)
+// PAResourceOtoP.PAViews_DEVICE: Device: float view
+// [GUI Memory]: 189 MB (+12036kb) [00:00:58]
+maximizeFrame(PAResourceOtoP.PAViews_DEVICE, "Device"); // R (PAResourceOtoP.PAViews_DEVICE, Device)
+// Device view-level: 0.4
+// HMemoryUtils.trashcanNow. Engine heap size: 2,534 MB. GUI used memory: 143 MB. Current time: 9/22/24, 7:01:43 PM EDT
+// Device view-level: 0.7
+// Device view-level: 1.0
+// Device view-level: 1.3
+// Device view-level: 1.6
+// HMemoryUtils.trashcanNow. Engine heap size: 2,537 MB. GUI used memory: 202 MB. Current time: 9/22/24, 7:01:44 PM EDT
+// [Engine Memory]: 2,653 MB (+100146kb) [00:01:00]
+// Device view-level: 1.9
+// Device view-level: 1.6
+// Device view-level: 1.3
+// Device view-level: 1.0
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 397298, 224400); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 1.0
+// HMemoryUtils.trashcanNow. Engine heap size: 2,654 MB. GUI used memory: 197 MB. Current time: 9/22/24, 7:01:46 PM EDT
+// Device view-level: 1.0
+// Device view-level: 0.7
+// Device view-level: 0.4
+// Device view-level: 0.4
+// HMemoryUtils.trashcanNow. Engine heap size: 2,654 MB. GUI used memory: 187 MB. Current time: 9/22/24, 7:01:47 PM EDT
+// Device view-level: 0.7
+// Device view-level: 1.0
+// Device view-level: 1.3
+// Device view-level: 1.6
+// HMemoryUtils.trashcanNow. Engine heap size: 2,654 MB. GUI used memory: 205 MB. Current time: 9/22/24, 7:01:49 PM EDT
+// Device view-level: 1.9
+// Device view-level: 2.2
+// Device view-level: 2.5
+// Device view-level: 2.8
+// Device view-level: 2.5
+// HMemoryUtils.trashcanNow. Engine heap size: 2,656 MB. GUI used memory: 169 MB. Current time: 9/22/24, 7:02:00 PM EDT
+// Device view-level: 2.2
+// Elapsed time: 16 seconds
+selectButton(PAResourceCommand.PACommandNames_FED_TOGGLE_ROUTING_RESOURCES, (String) null); // v (PAResourceCommand.PACommandNames_FED_TOGGLE_ROUTING_RESOURCES): TRUE
+// Run Command: PAResourceCommand.PACommandNames_FED_TOGGLE_ROUTING_RESOURCES
+// Device view-level: 2.5
+// Device view-level: 1.3
+// [GUI Memory]: 202 MB (+3744kb) [00:01:18]
+// Device view-level: 1.5
+// Device view-level: 1.7
+// HMemoryUtils.trashcanNow. Engine heap size: 2,658 MB. GUI used memory: 183 MB. Current time: 9/22/24, 7:02:04 PM EDT
+// Device view-level: 1.5
+// Device view-level: 1.3
+// Device view-level: 1.1
+// Device view-level: 0.9
+// [GUI Memory]: 214 MB (+2956kb) [00:01:22]
+// Device view-level: 0.6
+// [GUI Memory]: 227 MB (+2053kb) [00:01:22]
+// HMemoryUtils.trashcanNow. Engine heap size: 2,669 MB. GUI used memory: 227 MB. Current time: 9/22/24, 7:02:07 PM EDT
+// Device view-level: 0.4
+// Device view-level: 0.2
+// Device view-level: 0.0
+// Device view-level: 0.0
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 2565490, 2068218); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// HMemoryUtils.trashcanNow. Engine heap size: 2,669 MB. GUI used memory: 213 MB. Current time: 9/22/24, 7:02:08 PM EDT
+// Device view-level: 0.2
+// Device view-level: 0.5
+// Device view-level: 0.7
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 1035654, 4006004); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 0.7
+// HMemoryUtils.trashcanNow. Engine heap size: 2,669 MB. GUI used memory: 225 MB. Current time: 9/22/24, 7:02:10 PM EDT
+// Device view-level: 0.9
+// Device view-level: 1.1
+// Device view-level: 1.3
+// Device view-level: 1.6
+// HMemoryUtils.trashcanNow. Engine heap size: 2,669 MB. GUI used memory: 224 MB. Current time: 9/22/24, 7:02:11 PM EDT
+// Device view-level: 1.8
+// Device view-level: 2.0
+// Device view-level: 2.2
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 542865, 4009080); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 2.2
+// HMemoryUtils.trashcanNow. Engine heap size: 2,669 MB. GUI used memory: 216 MB. Current time: 9/22/24, 7:02:13 PM EDT
+// Device view-level: 2.4
+// Device view-level: 2.7
+// Device view-level: 2.9
+// HMemoryUtils.trashcanNow. Engine heap size: 2,669 MB. GUI used memory: 178 MB. Current time: 9/22/24, 7:02:14 PM EDT
+// Device view-level: 3.1
+// Device view-level: 3.3
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 565037, 4010191); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 3.3
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 554773, 4007617); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// HMemoryUtils.trashcanNow. Engine heap size: 2,670 MB. GUI used memory: 194 MB. Current time: 9/22/24, 7:02:16 PM EDT
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 546088, 4004057); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+selectButton(PAResourceCommand.PACommandNames_FED_TOGGLE_ROUTING_RESOURCES, (String) null); // v (PAResourceCommand.PACommandNames_FED_TOGGLE_ROUTING_RESOURCES): FALSE
+// Run Command: PAResourceCommand.PACommandNames_FED_TOGGLE_ROUTING_RESOURCES
+// Device view-level: 3.3
+// Device view-level: 4.4
+// [GUI Memory]: 242 MB (+4024kb) [00:01:36]
+// Device view-level: 4.1
+// Device view-level: 3.8
+// HMemoryUtils.trashcanNow. Engine heap size: 2,670 MB. GUI used memory: 220 MB. Current time: 9/22/24, 7:02:20 PM EDT
+// Device view-level: 3.5
+// [GUI Memory]: 256 MB (+1867kb) [00:01:45]
+// [GUI Memory]: 269 MB (+248kb) [00:01:56]
+// Device view-level: 3.2
+// Device view-level: 2.9
+// Device view-level: 2.6
+// Device view-level: 2.3
+// HMemoryUtils.trashcanNow. Engine heap size: 2,671 MB. GUI used memory: 265 MB. Current time: 9/22/24, 7:02:42 PM EDT
+// Device view-level: 2.6
+// Device view-level: 2.9
+// Device view-level: 3.2
+// Device view-level: 3.5
+// [GUI Memory]: 284 MB (+1123kb) [00:02:00]
+// Elapsed time: 25 seconds
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 35521, 506187); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 3.5
+// HMemoryUtils.trashcanNow. Engine heap size: 2,671 MB. GUI used memory: 238 MB. Current time: 9/22/24, 7:02:45 PM EDT
+// Device view-level: 3.8
+// Device view-level: 4.1
+// HMemoryUtils.trashcanNow. Engine heap size: 2,671 MB. GUI used memory: 277 MB. Current time: 9/22/24, 7:02:46 PM EDT
+// Device view-level: 3.8
+// Device view-level: 3.5
+// Device view-level: 3.2
+// Device view-level: 2.9
+// Device view-level: 2.6
+// HMemoryUtils.trashcanNow. Engine heap size: 2,671 MB. GUI used memory: 279 MB. Current time: 9/22/24, 7:02:47 PM EDT
+// Device view-level: 2.3
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 61578, 506575); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 2.3
+// Device view-level: 2.6
+// Device view-level: 2.9
+// Device view-level: 3.2
+// HMemoryUtils.trashcanNow. Engine heap size: 2,671 MB. GUI used memory: 254 MB. Current time: 9/22/24, 7:02:54 PM EDT
+// Device view-level: 3.5
+// Device view-level: 3.2
+// Device view-level: 2.9
+// Device view-level: 2.6
+// Device view-level: 2.3
+// HMemoryUtils.trashcanNow. Engine heap size: 2,671 MB. GUI used memory: 242 MB. Current time: 9/22/24, 7:02:55 PM EDT
+// Device view-level: 2.0
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 88388, 486195); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 2.0
+// Device view-level: 1.7
+// Device view-level: 1.4
+// HMemoryUtils.trashcanNow. Engine heap size: 2,671 MB. GUI used memory: 246 MB. Current time: 9/22/24, 7:02:57 PM EDT
+// Device view-level: 1.7
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 168215, 434917); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 1.7
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 118564, 393315); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// HMemoryUtils.trashcanNow. Engine heap size: 2,671 MB. GUI used memory: 262 MB. Current time: 9/22/24, 7:02:59 PM EDT
+// Device view-level: 2.0
+// Device view-level: 2.3
+// Device view-level: 2.6
+// Device view-level: 2.9
+// Device view-level: 3.2
+// HMemoryUtils.trashcanNow. Engine heap size: 2,671 MB. GUI used memory: 266 MB. Current time: 9/22/24, 7:03:01 PM EDT
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 92704, 390573); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 3.2
+// Device view-level: 2.9
+// Device view-level: 2.6
+// Device view-level: 2.3
+// Device view-level: 2.0
+// HMemoryUtils.trashcanNow. Engine heap size: 2,672 MB. GUI used memory: 294 MB. Current time: 9/22/24, 7:03:15 PM EDT
+// Device view-level: 1.7
+// Elapsed time: 12 seconds
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 80400, 405163); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 1.7
+// Device view-level: 2.0
+// Device view-level: 2.3
+// HMemoryUtils.trashcanNow. Engine heap size: 2,672 MB. GUI used memory: 290 MB. Current time: 9/22/24, 7:03:20 PM EDT
+// HMemoryUtils.trashcanNow. Engine heap size: 2,672 MB. GUI used memory: 254 MB. Current time: 9/22/24, 7:03:22 PM EDT
+// Device view-level: 2.6
+// HMemoryUtils.trashcanNow. Engine heap size: 2,672 MB. GUI used memory: 248 MB. Current time: 9/22/24, 7:03:23 PM EDT
+// Device view-level: 2.3
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 56876, 513169); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 2.3
+// Device view-level: 2.6
+// Device view-level: 2.9
+// HMemoryUtils.trashcanNow. Engine heap size: 2,672 MB. GUI used memory: 277 MB. Current time: 9/22/24, 7:03:55 PM EDT
+// Device view-level: 3.2
+// Device view-level: 3.5
+// Device view-level: 3.8
+// [GUI Memory]: 299 MB (+333kb) [00:03:13]
+// Device view-level: 4.1
+// Device view-level: 4.4
+// HMemoryUtils.trashcanNow. Engine heap size: 2,672 MB. GUI used memory: 268 MB. Current time: 9/22/24, 7:03:58 PM EDT
+// Device view-level: 4.7
+// Device view-level: 4.4
+// Device view-level: 4.1
+// Device view-level: 3.8
+// Elapsed time: 36 seconds
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 52212, 513903); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+/********** leftMouseClick (724, 819, true); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor) **********/
+// Device select: 'Site - SLICE_X0Y0'
+selectView(PAResourceOtoP.PAViews_DEVICE, "Device", 9864, 97087, 1904, 1010); // G (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice)
+// HMemoryUtils.trashcanNow. Engine heap size: 2,673 MB. GUI used memory: 245 MB. Current time: 9/22/24, 7:04:01 PM EDT
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 52922, 515131); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+/********** leftMouseClick (858, 1051, true); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor) **********/
+selectButton(PAResourceCommand.PACommandNames_FED_TOGGLE_ROUTING_RESOURCES, (String) null); // v (PAResourceCommand.PACommandNames_FED_TOGGLE_ROUTING_RESOURCES): TRUE
+// Run Command: PAResourceCommand.PACommandNames_FED_TOGGLE_ROUTING_RESOURCES
+// Device view-level: 3.7
+// Device view-level: 3.9
+// Device view-level: 3.7
+// Device view-level: 3.4
+// Device view-level: 3.2
+// HMemoryUtils.trashcanNow. Engine heap size: 2,677 MB. GUI used memory: 287 MB. Current time: 9/22/24, 7:04:05 PM EDT
+// Device view-level: 3.0
+// Device view-level: 2.8
+// Device view-level: 2.5
+// Device view-level: 2.1
+// Device view-level: 1.9
+// HMemoryUtils.trashcanNow. Engine heap size: 2,677 MB. GUI used memory: 308 MB. Current time: 9/22/24, 7:04:06 PM EDT
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 544398, 4050733); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 1.9
+// Device view-level: 1.7
+// Device view-level: 1.4
+// Device view-level: 1.2
+// HMemoryUtils.trashcanNow. Engine heap size: 2,677 MB. GUI used memory: 309 MB. Current time: 9/22/24, 7:04:07 PM EDT
+// Device view-level: 1.0
+// Device view-level: 1.2
+// Device view-level: 1.4
+// Device view-level: 1.7
+// Device view-level: 1.9
+// HMemoryUtils.trashcanNow. Engine heap size: 2,677 MB. GUI used memory: 315 MB. Current time: 9/22/24, 7:04:09 PM EDT
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 308685, 4052288); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 1.9
+// Device view-level: 2.1
+// [GUI Memory]: 314 MB (+394kb) [00:03:26]
+// Device view-level: 2.3
+// Device view-level: 2.1
+// HMemoryUtils.trashcanNow. Engine heap size: 2,677 MB. GUI used memory: 278 MB. Current time: 9/22/24, 7:04:12 PM EDT
+// Device view-level: 1.9
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 395066, 4052570); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 1.9
+// Device view-level: 2.1
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 371777, 4051912); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 2.1
+// HMemoryUtils.trashcanNow. Engine heap size: 2,677 MB. GUI used memory: 277 MB. Current time: 9/22/24, 7:04:18 PM EDT
+// Device view-level: 2.3
+// Device view-level: 2.5
+// Device view-level: 2.8
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 299660, 4052604); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 2.8
+// HMemoryUtils.trashcanNow. Engine heap size: 2,677 MB. GUI used memory: 277 MB. Current time: 9/22/24, 7:04:19 PM EDT
+// Device view-level: 2.5
+// Device view-level: 2.3
+// Device view-level: 2.1
+// Device view-level: 1.9
+// Device view-level: 2.1
+// HMemoryUtils.trashcanNow. Engine heap size: 2,677 MB. GUI used memory: 312 MB. Current time: 9/22/24, 7:04:22 PM EDT
+// Device view-level: 2.3
+// Device view-level: 2.5
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 305667, 4053386); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 2.5
+// Device view-level: 2.3
+// Device view-level: 2.1
+// HMemoryUtils.trashcanNow. Engine heap size: 2,677 MB. GUI used memory: 322 MB. Current time: 9/22/24, 7:04:24 PM EDT
+// Device view-level: 1.9
+// Device view-level: 1.7
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 420046, 4057767); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 1.7
+// Device view-level: 1.7
+// Device view-level: 1.9
+// HMemoryUtils.trashcanNow. Engine heap size: 2,677 MB. GUI used memory: 314 MB. Current time: 9/22/24, 7:04:26 PM EDT
+// Device view-level: 2.1
+// Device view-level: 2.3
+// Device view-level: 2.1
+// Device view-level: 1.9
+// Device view-level: 1.7
+// HMemoryUtils.trashcanNow. Engine heap size: 2,677 MB. GUI used memory: 270 MB. Current time: 9/22/24, 7:04:28 PM EDT
+// Device view-level: 1.4
+// Device view-level: 1.2
+// Device view-level: 1.0
+// Device view-level: 0.8
+// Device view-level: 0.6
+// HMemoryUtils.trashcanNow. Engine heap size: 2,677 MB. GUI used memory: 302 MB. Current time: 9/22/24, 7:04:29 PM EDT
+// Device view-level: 0.3
+// Device view-level: 0.1
+// Device view-level: 0.3
+// Device view-level: 0.6
+// Device view-level: 0.8
+// HMemoryUtils.trashcanNow. Engine heap size: 2,677 MB. GUI used memory: 316 MB. Current time: 9/22/24, 7:04:31 PM EDT
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 968925, 3967875); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 0.8
+// Device view-level: 1.0
+// Device view-level: 1.2
+// Device view-level: 1.4
+// HMemoryUtils.trashcanNow. Engine heap size: 2,677 MB. GUI used memory: 305 MB. Current time: 9/22/24, 7:04:32 PM EDT
+// Device view-level: 1.7
+// Device view-level: 1.9
+// Device view-level: 2.1
+// HMemoryUtils.trashcanNow. Engine heap size: 2,677 MB. GUI used memory: 271 MB. Current time: 9/22/24, 7:04:34 PM EDT
+// Device view-level: 1.9
+// Device view-level: 1.7
+// Device view-level: 1.4
+// Device view-level: 1.2
+// HMemoryUtils.trashcanNow. Engine heap size: 2,677 MB. GUI used memory: 268 MB. Current time: 9/22/24, 7:04:37 PM EDT
+// Device view-level: 1.4
+// Device view-level: 1.7
+// Device view-level: 1.9
+// Device view-level: 2.1
+// HMemoryUtils.trashcanNow. Engine heap size: 2,690 MB. GUI used memory: 292 MB. Current time: 9/22/24, 7:04:44 PM EDT
+// Device view-level: 1.9
+// Elapsed time: 15 seconds
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 529999, 4045355); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 1.9
+// [GUI Memory]: 330 MB (+911kb) [00:04:02]
+// Device view-level: 2.1
+// HMemoryUtils.trashcanNow. Engine heap size: 2,692 MB. GUI used memory: 289 MB. Current time: 9/22/24, 7:04:47 PM EDT
+// Device view-level: 2.3
+// Device view-level: 2.5
+// Device view-level: 2.8
+// Device view-level: 2.5
+// Device view-level: 2.3
+// HMemoryUtils.trashcanNow. Engine heap size: 2,692 MB. GUI used memory: 322 MB. Current time: 9/22/24, 7:04:49 PM EDT
+// Device view-level: 2.1
+// Device view-level: 1.9
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 468319, 4049167); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 1.9
+// HMemoryUtils.trashcanNow. Engine heap size: 2,692 MB. GUI used memory: 318 MB. Current time: 9/22/24, 7:04:51 PM EDT
+// HMemoryUtils.trashcanNow. Engine heap size: 2,692 MB. GUI used memory: 266 MB. Current time: 9/22/24, 7:04:52 PM EDT
+// HMemoryUtils.trashcanNow. Engine heap size: 2,692 MB. GUI used memory: 250 MB. Current time: 9/22/24, 7:04:52 PM EDT
+// HMemoryUtils.trashcanNow. Engine heap size: 2,692 MB. GUI used memory: 237 MB. Current time: 9/22/24, 7:04:52 PM EDT
+// HMemoryUtils.trashcanNow. Engine heap size: 2,692 MB. GUI used memory: 224 MB. Current time: 9/22/24, 7:04:52 PM EDT
+// HMemoryUtils.trashcanNow. Engine heap size: 2,692 MB. GUI used memory: 212 MB. Current time: 9/22/24, 7:04:52 PM EDT
+// HMemoryUtils.trashcanNow. Engine heap size: 2,692 MB. GUI used memory: 211 MB. Current time: 9/22/24, 7:04:52 PM EDT
+// Device view-level: 2.1
+// [Engine Memory]: 2,825 MB (+40636kb) [00:04:11]
+// Device view-level: 1.9
+// Device view-level: 1.7
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 559357, 4057141); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 1.7
+// Device view-level: 1.9
+// HMemoryUtils.trashcanNow. Engine heap size: 2,825 MB. GUI used memory: 244 MB. Current time: 9/22/24, 7:04:58 PM EDT
+// Device view-level: 2.1
+// Device view-level: 2.3
+// Device view-level: 2.5
+// Device view-level: 2.3
+// HMemoryUtils.trashcanNow. Engine heap size: 2,825 MB. GUI used memory: 241 MB. Current time: 9/22/24, 7:05:00 PM EDT
+// Device view-level: 2.1
+// Device view-level: 1.9
+// Device view-level: 1.7
+// Device view-level: 1.4
+// Device view-level: 1.7
+// HMemoryUtils.trashcanNow. Engine heap size: 2,825 MB. GUI used memory: 234 MB. Current time: 9/22/24, 7:05:01 PM EDT
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 468319, 4059682); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 1.7
+// HMemoryUtils.trashcanNow. Engine heap size: 2,825 MB. GUI used memory: 228 MB. Current time: 9/22/24, 7:05:03 PM EDT
+// Device view-level: 1.9
+// Device view-level: 1.7
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 540515, 4055660); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 1.7
+// HMemoryUtils.trashcanNow. Engine heap size: 2,825 MB. GUI used memory: 145 MB. Current time: 9/22/24, 7:05:08 PM EDT
+// Device view-level: 1.9
+// Device view-level: 2.1
+// Device view-level: 2.3
+// Device view-level: 2.1
+// HMemoryUtils.trashcanNow. Engine heap size: 2,659 MB. GUI used memory: 215 MB. Current time: 9/22/24, 7:05:10 PM EDT
+// Device view-level: 1.9
+// Elapsed time: 153 seconds
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 529999, 4033641); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+/********** startDrag (715, 521); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor) **********/
+/********** endDrag (1177, 852); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor) **********/
+// Device view-level: 2.5
+// Device view-level: 2.2
+// Device view-level: 2.0
+// Device view-level: 1.8
+// HMemoryUtils.trashcanNow. Engine heap size: 2,659 MB. GUI used memory: 189 MB. Current time: 9/22/24, 7:07:43 PM EDT
+// Device view-level: 1.6
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 592724, 4001071); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 1.6
+// Device view-level: 1.8
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 663018, 3979607); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 1.8
+// HMemoryUtils.trashcanNow. Engine heap size: 2,659 MB. GUI used memory: 176 MB. Current time: 9/22/24, 7:07:47 PM EDT
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 537236, 4002565); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Elapsed time: 38 seconds
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 475509, 4045490); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// HMemoryUtils.trashcanNow. Engine heap size: 2,659 MB. GUI used memory: 196 MB. Current time: 9/22/24, 7:08:28 PM EDT
+// Device view-level: 2.0
+// HMemoryUtils.trashcanNow. Engine heap size: 2,659 MB. GUI used memory: 184 MB. Current time: 9/22/24, 7:08:30 PM EDT
+// Device view-level: 2.2
+// Device view-level: 2.5
+// Device view-level: 2.7
+// Device view-level: 2.9
+// Device view-level: 3.1
+// HMemoryUtils.trashcanNow. Engine heap size: 2,659 MB. GUI used memory: 213 MB. Current time: 9/22/24, 7:08:31 PM EDT
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 293797, 4053845); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 3.1
+// Device view-level: 2.9
+// Device view-level: 2.7
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 294018, 4055751); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 2.7
+// HMemoryUtils.trashcanNow. Engine heap size: 2,659 MB. GUI used memory: 172 MB. Current time: 9/22/24, 7:08:33 PM EDT
+// Device view-level: 2.9
+// Device view-level: 3.1
+// Device view-level: 3.3
+// HMemoryUtils.trashcanNow. Engine heap size: 2,659 MB. GUI used memory: 184 MB. Current time: 9/22/24, 7:08:35 PM EDT
+// Device view-level: 3.6
+// Device view-level: 3.8
+// Device view-level: 4.0
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 289039, 4046156); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+/********** leftMouseClick (1136, 365, true); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor) **********/
+// Device select: 'Node - IOB_IBUF0'
+selectView(PAResourceOtoP.PAViews_DEVICE, "Device", 100174, 1402302, 1904, 1010); // G (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice)
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 289102, 4046162); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+/********** leftMouseClick (1158, 367, true); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor) **********/
+// Device select: 'Pip - LIOI_IBUF0->LIOI_I0'
+selectView(PAResourceOtoP.PAViews_DEVICE, "Device", 100196, 1402304, 1904, 1010); // G (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice)
+// HMemoryUtils.trashcanNow. Engine heap size: 2,660 MB. GUI used memory: 171 MB. Current time: 9/22/24, 7:08:37 PM EDT
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 289082, 4046171, false, false, false, true, false); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor) - Popup Trigger
+// Device select: 'Pip - LIOI_IBUF0->LIOI_I0'
+selectView(PAResourceOtoP.PAViews_DEVICE, "Device", 100189, 1402307, 1904, 1010); // G (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice)
+selectView(PAResourceOtoP.PAViews_DEVICE, "Device", 100189, 1402307, 1904, 1010, false, false, false, true, false); // G (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice) - Popup Trigger
+/********** leftMouseClick (1151, 370, true); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor) **********/
+selectMenuItem(RDIResourceCommand.RDICommands_PROPERTIES, "Pip Properties..."); // ao (RDIResourceCommand.RDICommands_PROPERTIES, edit_properties_menu)
+// Run Command: RDIResourceCommand.RDICommands_PROPERTIES
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 289068, 4046324); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+/********** leftMouseClick (1146, 423, true); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor) **********/
+// Device select: 'Node - LIOI_I0'
+selectView(PAResourceOtoP.PAViews_DEVICE, "Device", 100184, 1402360, 1904, 1010); // G (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice)
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 289068, 4046324, false, false, false, true, false); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor) - Popup Trigger
+// Device select: 'Node - LIOI_I0'
+selectView(PAResourceOtoP.PAViews_DEVICE, "Device", 100184, 1402360, 1904, 1010); // G (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice)
+selectView(PAResourceOtoP.PAViews_DEVICE, "Device", 100184, 1402360, 1904, 1010, false, false, false, true, false); // G (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice) - Popup Trigger
+/********** leftMouseClick (1146, 423, true); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor) **********/
+selectMenuItem(RDIResourceCommand.RDICommands_PROPERTIES, "Node Properties..."); // ao (RDIResourceCommand.RDICommands_PROPERTIES, edit_properties_menu)
+// Run Command: RDIResourceCommand.RDICommands_PROPERTIES
+// Device view-level: 3.8
+// Device view-level: 3.6
+// Device view-level: 3.3
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 292640, 4047452); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 3.3
+// HMemoryUtils.trashcanNow. Engine heap size: 2,667 MB. GUI used memory: 200 MB. Current time: 9/22/24, 7:08:49 PM EDT
+// Device view-level: 3.6
+// Device view-level: 3.8
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 293489, 4049459); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+/********** leftMouseClick (1126, 692, true); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor) **********/
+// Device select: 'Site - ILOGIC_X0Y0'
+selectView(PAResourceOtoP.PAViews_DEVICE, "Device", 67811, 935633, 1904, 1010); // G (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice)
+// HMemoryUtils.trashcanNow. Engine heap size: 2,667 MB. GUI used memory: 258 MB. Current time: 9/22/24, 7:08:55 PM EDT
+// Device view-level: 3.6
+// HMemoryUtils.trashcanNow. Engine heap size: 2,667 MB. GUI used memory: 237 MB. Current time: 9/22/24, 7:09:03 PM EDT
+// Device view-level: 3.3
+// Device view-level: 3.1
+// Device view-level: 2.9
+// Device view-level: 2.7
+// Device view-level: 2.5
+// HMemoryUtils.trashcanNow. Engine heap size: 2,667 MB. GUI used memory: 211 MB. Current time: 9/22/24, 7:09:06 PM EDT
+// Device view-level: 2.2
+// Device view-level: 2.0
+// HMemoryUtils.trashcanNow. Engine heap size: 2,667 MB. GUI used memory: 220 MB. Current time: 9/22/24, 7:09:08 PM EDT
+// Device view-level: 1.6
+// Device view-level: 1.4
+// Elapsed time: 17 seconds
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 606846, 4010572); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 1.4
+// Device view-level: 1.1
+// HMemoryUtils.trashcanNow. Engine heap size: 2,667 MB. GUI used memory: 251 MB. Current time: 9/22/24, 7:09:09 PM EDT
+// Device view-level: 0.9
+// Device view-level: 0.7
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 1967242, 3554175); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 0.7
+// Device view-level: 0.7
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 3216827, 3694423); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// HMemoryUtils.trashcanNow. Engine heap size: 2,667 MB. GUI used memory: 249 MB. Current time: 9/22/24, 7:09:11 PM EDT
+// Device view-level: 0.5
+// Device view-level: 0.2
+// Device view-level: 0.0
+// Device view-level: 0.2
+// Device view-level: 0.5
+// HMemoryUtils.trashcanNow. Engine heap size: 2,667 MB. GUI used memory: 255 MB. Current time: 9/22/24, 7:09:12 PM EDT
+// Device view-level: 0.7
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 4537165, 3918059); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 0.7
+// Device view-level: 0.9
+// Device view-level: 1.1
+// HMemoryUtils.trashcanNow. Engine heap size: 2,667 MB. GUI used memory: 253 MB. Current time: 9/22/24, 7:09:13 PM EDT
+// Device view-level: 1.4
+// Device view-level: 1.6
+// Device view-level: 1.8
+// Device view-level: 2.0
+// Device view-level: 1.8
+// HMemoryUtils.trashcanNow. Engine heap size: 2,667 MB. GUI used memory: 221 MB. Current time: 9/22/24, 7:09:16 PM EDT
+// Device view-level: 2.0
+// Device view-level: 2.2
+// Device view-level: 2.5
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 4850491, 4057022); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 2.5
+// Device view-level: 2.2
+// HMemoryUtils.trashcanNow. Engine heap size: 2,667 MB. GUI used memory: 244 MB. Current time: 9/22/24, 7:09:19 PM EDT
+// Device view-level: 2.0
+// Device view-level: 1.8
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 4804711, 4050486); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 1.8
+// Device view-level: 1.8
+// Device view-level: 2.0
+// HMemoryUtils.trashcanNow. Engine heap size: 2,667 MB. GUI used memory: 209 MB. Current time: 9/22/24, 7:09:20 PM EDT
+// Device view-level: 2.2
+// Device view-level: 2.5
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 4756314, 4080221); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+/********** leftMouseClick (1099, 802, true); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor) **********/
+// Device select: 'Tile - B_TERM_INT_X182Y0'
+selectView(PAResourceOtoP.PAViews_DEVICE, "Device", 96478, 82764, 1904, 1010); // G (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice)
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 4756807, 4078299, false, false, false, true, false); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor) - Popup Trigger
+// Device select: 'Tile - B_TERM_INT_X182Y0'
+selectView(PAResourceOtoP.PAViews_DEVICE, "Device", 96488, 82725, 1904, 1010); // G (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice)
+selectView(PAResourceOtoP.PAViews_DEVICE, "Device", 96488, 82725, 1904, 1010, false, false, false, true, false); // G (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice) - Popup Trigger
+/********** leftMouseClick (1109, 762, true); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor) **********/
+selectMenu(PAResourceQtoS.SelectMenu_HIGHLIGHT, "Highlight"); // al (PAResourceQtoS.SelectMenu_HIGHLIGHT, Highlight)
+selectMenuItem(RDIResourceCommand.RDICommands_PROPERTIES, "Tile Properties..."); // ao (RDIResourceCommand.RDICommands_PROPERTIES, edit_properties_menu)
+// Run Command: RDIResourceCommand.RDICommands_PROPERTIES
+// Elapsed time: 25 seconds
+selectTab(RDIResource.PropertiesView_TABBED_PANE, (HResource) null, "Switchboxes", 8); // g (RDIResource.PropertiesView_TABBED_PANE)
+selectTab(RDIResource.PropertiesView_TABBED_PANE, (HResource) null, "Nodes", 7); // g (RDIResource.PropertiesView_TABBED_PANE)
+// Device view-level: 2.2
+// HMemoryUtils.trashcanNow. Engine heap size: 2,672 MB. GUI used memory: 312 MB. Current time: 9/22/24, 7:09:54 PM EDT
+// Device view-level: 2.0
+// Device view-level: 1.8
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 4682926, 4056483); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 1.8
+// HMemoryUtils.trashcanNow. Engine heap size: 2,684 MB. GUI used memory: 303 MB. Current time: 9/22/24, 7:09:57 PM EDT
+// Device view-level: 2.0
+// Device view-level: 2.2
+// Device view-level: 2.5
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 4602349, 4054632); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+/********** leftMouseClick (693, 577, true); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor) **********/
+// Device select: 'Tile - VBRK_X177Y1'
+selectView(PAResourceOtoP.PAViews_DEVICE, "Device", 93355, 82245, 1902, 1008); // G (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice)
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 4599292, 4054977); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+/********** leftMouseClick (631, 584, true); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor) **********/
+// Device select: 'Tile - CLBLM_R_X71Y0'
+selectView(PAResourceOtoP.PAViews_DEVICE, "Device", 93293, 82252, 1902, 1008); // G (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice)
+// HMemoryUtils.trashcanNow. Engine heap size: 2,684 MB. GUI used memory: 326 MB. Current time: 9/22/24, 7:09:59 PM EDT
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 4599292, 4054977, false, false, false, true, false); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor) - Popup Trigger
+// Device select: 'Tile - CLBLM_R_X71Y0'
+selectView(PAResourceOtoP.PAViews_DEVICE, "Device", 93293, 82252, 1902, 1008); // G (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice)
+selectView(PAResourceOtoP.PAViews_DEVICE, "Device", 93293, 82252, 1902, 1008, false, false, false, true, false); // G (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice) - Popup Trigger
+/********** leftMouseClick (631, 584, true); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor) **********/
+selectMenu(PAResourceQtoS.SelectMenu_HIGHLIGHT, "Highlight"); // al (PAResourceQtoS.SelectMenu_HIGHLIGHT, Highlight)
+selectMenuItem(RDIResourceCommand.RDICommands_PROPERTIES, "Tile Properties..."); // ao (RDIResourceCommand.RDICommands_PROPERTIES, edit_properties_menu)
+// Run Command: RDIResourceCommand.RDICommands_PROPERTIES
+selectTab(RDIResource.PropertiesView_TABBED_PANE, (HResource) null, "General", 0); // g (RDIResource.PropertiesView_TABBED_PANE)
+selectTab(RDIResource.PropertiesView_TABBED_PANE, (HResource) null, "Properties", 1); // g (RDIResource.PropertiesView_TABBED_PANE)
+selectTab(RDIResource.PropertiesView_TABBED_PANE, (HResource) null, "General", 0); // g (RDIResource.PropertiesView_TABBED_PANE)
+// Device view-level: 2.2
+// Device view-level: 2.0
+// Device view-level: 1.8
+// Device view-level: 1.6
+// Device view-level: 1.4
+// HMemoryUtils.trashcanNow. Engine heap size: 2,685 MB. GUI used memory: 307 MB. Current time: 9/22/24, 7:24:45 PM EDT
+// Elapsed time: 867 seconds
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 4452727, 4045041); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 1.4
+// Device view-level: 1.1
+// Device view-level: 0.9
+// Device view-level: 0.7
+// HMemoryUtils.trashcanNow. Engine heap size: 2,685 MB. GUI used memory: 317 MB. Current time: 9/22/24, 7:24:46 PM EDT
+// Device view-level: 0.5
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 2124560, 3724139); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 0.5
+// Device view-level: 0.7
+// Device view-level: 0.9
+// HMemoryUtils.trashcanNow. Engine heap size: 2,685 MB. GUI used memory: 325 MB. Current time: 9/22/24, 7:24:48 PM EDT
+// Device view-level: 1.1
+// Device view-level: 1.4
+// Device view-level: 1.6
+// Device view-level: 1.8
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 420124, 4063969); // t (PAResourceOtoP.PAViews_DEVICE, PlanAheadTabDevice_editor)
+// Device view-level: 1.8
+// HMemoryUtils.trashcanNow. Engine heap size: 2,685 MB. GUI used memory: 335 MB. Current time: 9/22/24, 7:24:49 PM EDT
+// HMemoryUtils.trashcanNow. Engine heap size: 2,685 MB. GUI used memory: 160 MB. Current time: 9/22/24, 7:54:51 PM EDT
+// HMemoryUtils.trashcanNow. Engine heap size: 2,686 MB. GUI used memory: 155 MB. Current time: 9/22/24, 8:24:51 PM EDT
+// WARNING: HTimer (ActiveMsgMonitor Process Messages Timer) is taking 331ms to process. Increasing delay to 2000 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  3584 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  2110 ms.
+// WARNING: HTimer (ActiveMsgMonitor Process Messages Timer) is taking 664ms to process. Increasing delay to 3000 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1037 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1567 ms.
