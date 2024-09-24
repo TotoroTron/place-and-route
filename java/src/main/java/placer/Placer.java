@@ -55,12 +55,29 @@ public abstract class Placer {
 
     public void run() throws IOException {
         EDIFNetlist netlist = design.getNetlist();
+        printOneTile(device);
         printAllDeviceTiles(device);
         printUniqueTiles(device);
         printAllDeviceSites(device);
         printUniqueSites(device);
+        printEDIFCellInstsTest(netlist);
+        printEDIFCellInsts(netlist);
+        printEDIFNets(netlist);
+        printEDIFHierNets(netlist);
         design = place(design);
         design.writeCheckpoint(placedDcp);
+    }
+
+    public void printOneTile(Device device) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/OneTile.txt"));
+        Tile tile = device.getTile(155, 10); // ROW, COLUMN
+        writer.write("\nTileType: " + tile.getTileTypeEnum());
+        writer.write("\nTileTypeIndex: " + tile.getTileTypeIndex());
+        writer.write("\nTileName: " + tile.getName());
+        writer.write("\nRow: " + tile.getRow() + "\tCol: " + tile.getRow());
+        writer.write("\nX: " + tile.getTileXCoordinate() + "\tY: " + tile.getTileYCoordinate());
+        if (writer != null)
+            writer.close();
     }
 
     public void printTileArray(BufferedWriter writer, Tile[] tiles, boolean showSites, boolean showBELs)
@@ -198,7 +215,8 @@ public abstract class Placer {
             String key = entry.getKey();
             EDIFCellInst eci = entry.getValue();
             String s1 = String.format(
-                    "\nString Key: %-30s  =>\tEDIFCellInst Value: %-30s", key, eci.getCellName());
+                    "\nString Key: %-30s EDIFCellInst Value: %-30s EDIFName: %-20s EDIFView: %-20s",
+                    key, eci.getCellName(), eci.getCellType().getEDIFView().getName(), eci.getCellType().getView());
             writer.write(s1);
             writer.write("\nEDIFPortInst(s) on this cell: ");
             Collection<EDIFPortInst> epis = eci.getPortInsts();
@@ -209,17 +227,32 @@ public abstract class Placer {
             writer.close();
     }
 
+    public void printEDIFCellInstsTest(EDIFNetlist netlist) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/EDIFCellInstsTest.txt"));
+        List<EDIFCellInst> ecis_list = netlist.getAllLeafCellInstances();
+        writer.write("\nList size: " + ecis_list.size());
+        for (EDIFCellInst eci : ecis_list) {
+            writer.write("\nEDIFCellInst: " + eci.getCellName());
+        }
+        writer.newLine();
+        HashMap<String, EDIFCellInst> ecis_map = netlist.generateCellInstMap();
+        writer.write("\nMap size: " + ecis_list.size());
+        for (Map.Entry<String, EDIFCellInst> entry : ecis_map.entrySet()) {
+            EDIFCellInst eci = entry.getValue();
+            writer.write("\nEDIFCellInst: " + eci.getCellName());
+        }
+        if (writer != null)
+            writer.close();
+    }
+
     public void printEDIFNets(EDIFNetlist netlist) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/EDIFNets.txt"));
         writer.write("Printing EDIFNets: ");
         writer.newLine();
+
         HashMap<String, EDIFCellInst> ecis = netlist.generateCellInstMap();
         HashMap<String, EDIFNet> ens = netlist.generateEDIFNetMap(ecis);
         for (EDIFNet net : ens.values()) {
-
-            // Top level ports are exactly what they sound like:
-            // Ports declared in the top_level.vhd module.
-            // NONE means this net does not have ports in the top_level module.
             writer.write("\nTop level EDIFPortInst(s) in this net: ");
             List<EDIFPortInst> topPorts = net.getAllTopLevelPortInsts();
             if (topPorts.isEmpty())
@@ -228,8 +261,6 @@ public abstract class Placer {
                 for (EDIFPortInst topPort : topPorts)
                     writer.write("\n\t" + topPort.toString());
 
-            // Source ports are exactly what they sound like:
-            // Output ports of any module.
             writer.write("\nSource EDIFPortInst(s) in this net: ");
             List<EDIFPortInst> sourcePorts = net.getSourcePortInsts(true); // bool includeTopLevelPorts
             printEDIFPortInsts(writer, sourcePorts);

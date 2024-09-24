@@ -5,24 +5,24 @@ import java.util.Map;
 import java.util.List;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Set;
 
 import java.io.IOException;
 
+import com.xilinx.rapidwright.edif.EDIFNetlist;
+import com.xilinx.rapidwright.edif.EDIFCell;
+import com.xilinx.rapidwright.edif.EDIFCellInst;
+import com.xilinx.rapidwright.edif.EDIFHierCellInst;
+import com.xilinx.rapidwright.edif.EDIFPortInst;
+import com.xilinx.rapidwright.edif.EDIFHierPortInst;
+import com.xilinx.rapidwright.edif.EDIFNet;
+import com.xilinx.rapidwright.edif.EDIFHierNet;
+
 import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.Cell;
-
-import com.xilinx.rapidwright.edif.EDIFNetlist;
-// import com.xilinx.rapidwright.edif.EDIFCell;
-import com.xilinx.rapidwright.edif.EDIFCellInst;
-// import com.xilinx.rapidwright.edif.EDIFHierCellInst;
-
-// import com.xilinx.rapidwright.edif.EDIFPortInst;
-// import com.xilinx.rapidwright.edif.EDIFHierPortInst;
-
 import com.xilinx.rapidwright.design.Net;
-// import com.xilinx.rapidwright.edif.EDIFHierNet;
 
-import com.xilinx.rapidwright.device.Device;
+import com.xilinx.rapidwright.device.SiteTypeEnum;
 
 public class CompleteRandomPlacer extends Placer {
 
@@ -39,14 +39,24 @@ public class CompleteRandomPlacer extends Placer {
         List<Cell> cells = new ArrayList<>();
         List<Net> nets = new ArrayList<>();
 
-        HashMap<String, EDIFCellInst> ecis = netlist.generateCellInstMap();
-        for (Map.Entry<String, EDIFCellInst> entry : ecis.entrySet()) {
-            String key = entry.getKey();
-            EDIFCellInst val = entry.getValue();
-            cells.add(design.createCell(key, val));
-            // Cell c = createCell(String instName, EDIFCellInst instance);
-            // boolean b = design.placeCell(Cell c, Site site, BEL bel);
-            // returns true if placement successful or if already placed
+        List<EDIFHierCellInst> cellInstList = netlist.getAllLeafHierCellInstances();
+        for (EDIFHierCellInst ehci : cellInstList) {
+            cells.add(design.createCell(ehci.getFullHierarchicalInstName(), ehci.getInst()));
+        }
+
+        Map<EDIFHierNet, EDIFHierNet> edifNetMap = netlist.getParentNetMap();
+        for (Map.Entry<EDIFHierNet, EDIFHierNet> entry : edifNetMap.entrySet()) {
+            EDIFHierNet key = entry.getKey(); // Sink ?
+            EDIFHierNet val = entry.getValue(); // Source ?
+            String s1 = String.format(
+                    "Key: %-40s Val: %-40s",
+                    key.getHierarchicalNetName(), val.getHierarchicalNetName());
+            System.out.println(s1);
+        }
+
+        // Find compatible sites and BELs for each cell.
+        for (Cell cell : cells) {
+            Map<SiteTypeEnum, Set<String>> siteBELMap = cell.getCompatiblePlacements(this.device);
         }
 
         // Net n = createNet(EDIFHierNet ehn);
@@ -58,3 +68,25 @@ public class CompleteRandomPlacer extends Placer {
     }
 
 }
+
+/*
+ * // Create Cells from EDIFCellInsts
+ * HashMap<String, EDIFCellInst> cellInstMap = netlist.generateCellInstMap();
+ * for (Map.Entry<String, EDIFCellInst> entry : cellInstMap.entrySet()) {
+ * String key = entry.getKey();
+ * EDIFCellInst val = entry.getValue();
+ * cells.add(design.createCell(key, val));
+ * }
+ *
+ * // Cell c = createCell(String instName, EDIFCellInst instance);
+ * // boolean b = design.placeCell(Cell c, Site site, BEL bel);
+ * // returns true if placement successful or if already placed
+ * 
+ * HashMap<String, EDIFNet> edifNetMap =
+ * netlist.generateEDIFNetMap(cellInstMap);
+ * for (Map.Entry<String, EDIFNet> entry : edifNetMap.entrySet()) {
+ * String key = entry.getKey();
+ * EDIFNet val = entry.getValue();
+ * nets.add(design.createNet(val)); // createNet only accepts EDIFHierNet...
+ * }
+ */
