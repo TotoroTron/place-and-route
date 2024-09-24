@@ -55,18 +55,16 @@ public abstract class Placer {
 
     public void run() throws IOException {
         EDIFNetlist netlist = design.getNetlist();
-
         printAllDeviceTiles(device);
         printUniqueTiles(device);
-
         printAllDeviceSites(device);
         printUniqueSites(device);
-
         design = place(design);
         design.writeCheckpoint(placedDcp);
     }
 
-    public void printTileArray(BufferedWriter writer, Tile[] tiles) throws IOException {
+    public void printTileArray(BufferedWriter writer, Tile[] tiles, boolean showSites, boolean showBELs)
+            throws IOException {
         for (Tile tile : tiles) {
             String s1 = String.format(
                     "\nTileType: %-30s TileName: %-40s Row: %-5s Col: %-5s X: %-5s Y: %-5s",
@@ -74,21 +72,25 @@ public abstract class Placer {
                     tile.getTileXCoordinate(), tile.getTileYCoordinate());
             writer.write(s1);
             Site[] sites = tile.getSites();
-            // printSiteArray(writer, sites);
+            if (showSites == true)
+                printSiteArray(writer, sites, showBELs);
         }
     }
 
-    public void printSiteArray(BufferedWriter writer, Site[] sites) throws IOException {
+    public void printSiteArray(BufferedWriter writer, Site[] sites, boolean showBELs) throws IOException {
         for (Site site : sites) {
             String s2 = String.format(
                     "\n\tSiteType: %-30s SiteName: %-40s ", site.getSiteTypeEnum(), site.getName());
             writer.write(s2);
-            // printBELArray(writer, site);
+            BEL[] bels = site.getBELs();
+            if (showBELs == true)
+                printBELArray(writer, bels);
         }
     }
 
     public void printBELArray(BufferedWriter writer, BEL[] bels) throws IOException {
         int word_count = 0;
+        writer.write("\n\t\t");
         for (BEL bel : bels) {
             writer.write(bel.getName() + " ");
             word_count++;
@@ -104,8 +106,18 @@ public abstract class Placer {
         writer.write("\nPrinting all tiles in device: ");
         Tile[][] tiles = device.getTiles();
         for (Tile[] row : tiles) {
-            printTileArray(writer, row);
+            printTileArray(writer, row, false, false);
         }
+        if (writer != null)
+            writer.close();
+    }
+
+    public void printAllDeviceSites(Device device) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/DeviceAllSites.txt"));
+        writer.write("Printing All Site(s) in device " + device.getName() + ": ");
+        writer.write("Unique site types: " + device.getSiteTypeCount());
+        Site[] sites = device.getAllSites();
+        printSiteArray(writer, sites, false);
         if (writer != null)
             writer.close();
     }
@@ -127,7 +139,7 @@ public abstract class Placer {
             }
         }
         writer.write("\nNumber of unique tile types: " + uniqueTiles.size());
-        printTileArray(writer, uniqueTiles.toArray(new Tile[0]));
+        printTileArray(writer, uniqueTiles.toArray(new Tile[0]), true, true);
         if (writer != null)
             writer.close();
     }
@@ -148,17 +160,7 @@ public abstract class Placer {
             }
         }
         writer.write("\nNunmber of unique site types: " + uniqueSites.size());
-        printSiteArray(writer, uniqueSites.toArray(new Site[0]));
-        if (writer != null)
-            writer.close();
-    }
-
-    public void printAllDeviceSites(Device device) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/DeviceAllSites.txt"));
-        writer.write("Printing All Site(s) in device " + device.getName() + ": ");
-        writer.write("Unique site types: " + device.getSiteTypeCount());
-        Site[] sites = device.getAllSites();
-        printSiteArray(writer, sites);
+        printSiteArray(writer, uniqueSites.toArray(new Site[0]), true);
         if (writer != null)
             writer.close();
     }
