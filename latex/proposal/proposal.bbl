@@ -118,6 +118,12 @@ H.~Long, Y.~Bai, Y.~Li, J.~Wang, and J.~Lai, ``Optimizing wirelength and delay
   in {\em 2023 IEEE 15th International Conference on ASIC (ASICON)}, pp.~1--4,
   2023.
 
+\bibitem{VPR_2013}
+E.~Hung, F.~Eslami, and S.~J. Wilton, ``Escaping the academic sandbox:
+  Realizing vpr circuits on xilinx devices,'' in {\em 2013 IEEE 21st Annual
+  International Symposium on Field-Programmable Custom Computing Machines},
+  pp.~45--52, 2013.
+
 \bibitem{VLSI_AP_2014}
 B.~Ray, A.~R. Tripathy, P.~Samal, M.~Das, and P.~Mallik, ``Half-perimeter
   wirelength model for vlsi analytical placement,'' in {\em 2014 International

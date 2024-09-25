@@ -1,193 +1,193 @@
 Printing EDIFHierNet(s) with their EDIFHierPortInst(s): 
 COUNTER/plusOp[3]
 EDIFHierPortInst(s) on this net: 
-	COUNTER/count[3]_i_1/O	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[3]_i_1
-	COUNTER/count_reg[3]/D	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[3]
+	COUNTER/count[3]_i_1/O
+	COUNTER/count_reg[3]/D
 CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_7
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/count_reg[0]/D	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[0]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
+	CLOCK_ENABLE_GEN/count_reg[0]/D
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[0]
 COUNTER/Q[0]
 EDIFHierPortInst(s) on this net: 
-	COUNTER/Q[0]	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER
-	COUNTER/count[0]_i_1/I0	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[0]_i_1
-	COUNTER/count[1]_i_1/I0	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[1]_i_1
-	COUNTER/count[2]_i_1/I0	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[2]_i_1
-	COUNTER/count[3]_i_1/I1	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[3]_i_1
-	COUNTER/count_reg[0]/Q	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[0]
+	COUNTER/Q[0]
+	COUNTER/count[0]_i_1/I0
+	COUNTER/count[1]_i_1/I0
+	COUNTER/count[2]_i_1/I0
+	COUNTER/count[3]_i_1/I1
+	COUNTER/count_reg[0]/Q
 COUNTER/plusOp[1]
 EDIFHierPortInst(s) on this net: 
-	COUNTER/count[1]_i_1/O	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[1]_i_1
-	COUNTER/count_reg[1]/D	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[1]
+	COUNTER/count[1]_i_1/O
+	COUNTER/count_reg[1]/D
 COUNTER/Q[1]
 EDIFHierPortInst(s) on this net: 
-	COUNTER/Q[1]	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER
-	COUNTER/count[1]_i_1/I1	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[1]_i_1
-	COUNTER/count[2]_i_1/I1	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[2]_i_1
-	COUNTER/count[3]_i_1/I0	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[3]_i_1
-	COUNTER/count_reg[1]/Q	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[1]
+	COUNTER/Q[1]
+	COUNTER/count[1]_i_1/I1
+	COUNTER/count[2]_i_1/I1
+	COUNTER/count[3]_i_1/I0
+	COUNTER/count_reg[1]/Q
 CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_1
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/CO[2]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/CO[2]
 CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_2
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/CO[1]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/CO[1]
 CLOCK_ENABLE_GEN/<const1>
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/VCC/P	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/VCC
-	CLOCK_ENABLE_GEN/count_reg[0]/CE	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[0]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
-	CLOCK_ENABLE_GEN/count_reg[1]/CE	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[1]
-	CLOCK_ENABLE_GEN/count_reg[2]/CE	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[2]
-	CLOCK_ENABLE_GEN/count_reg[3]/CE	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[3]
-	CLOCK_ENABLE_GEN/o_pulse_reg/CE	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/o_pulse_reg
+	CLOCK_ENABLE_GEN/VCC/P
+	CLOCK_ENABLE_GEN/count_reg[0]/CE
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[0]
+	CLOCK_ENABLE_GEN/count_reg[1]/CE
+	CLOCK_ENABLE_GEN/count_reg[2]/CE
+	CLOCK_ENABLE_GEN/count_reg[3]/CE
+	CLOCK_ENABLE_GEN/o_pulse_reg/CE
 CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_5
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[2]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
-	CLOCK_ENABLE_GEN/count_reg[2]/D	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[2]
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[2]
+	CLOCK_ENABLE_GEN/count_reg[2]/D
 CLOCK_ENABLE_GEN/E[0]
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/E[0]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN
-	CLOCK_ENABLE_GEN/o_pulse_reg/Q	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/o_pulse_reg
+	CLOCK_ENABLE_GEN/E[0]
+	CLOCK_ENABLE_GEN/o_pulse_reg/Q
 CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_6
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[1]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
-	CLOCK_ENABLE_GEN/count_reg[1]/D	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[1]
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[1]
+	CLOCK_ENABLE_GEN/count_reg[1]/D
 CLOCK_ENABLE_GEN/o_pulse_i_1_n_0
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/o_pulse_i_1/O	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/o_pulse_i_1
-	CLOCK_ENABLE_GEN/o_pulse_reg/D	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/o_pulse_reg
+	CLOCK_ENABLE_GEN/o_pulse_i_1/O
+	CLOCK_ENABLE_GEN/o_pulse_reg/D
 CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_3
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/CO[0]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/CO[0]
 CLOCK_ENABLE_GEN/count[0]_i_3_n_0
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/count[0]_i_3/O	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count[0]_i_3
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[0]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
+	CLOCK_ENABLE_GEN/count[0]_i_3/O
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[0]
 CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_4
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[3]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
-	CLOCK_ENABLE_GEN/count_reg[3]/D	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[3]
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/O[3]
+	CLOCK_ENABLE_GEN/count_reg[3]/D
 CLOCK_ENABLE_GEN/E[0]
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/E[0]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN
-	CLOCK_ENABLE_GEN/o_pulse_reg/Q	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/o_pulse_reg
+	CLOCK_ENABLE_GEN/E[0]
+	CLOCK_ENABLE_GEN/o_pulse_reg/Q
 i_rst
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/i_rst	Hier Inst Name: 	Full Hier Inst Name: CLOCK_ENABLE_GEN
-	COUNTER/i_rst	Hier Inst Name: 	Full Hier Inst Name: COUNTER
-	i_rst	Hier Inst Name: 	Full Hier Inst Name: 
+	CLOCK_ENABLE_GEN/i_rst
+	COUNTER/i_rst
+	i_rst
 CLOCK_ENABLE_GEN/count_reg[1]
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/count[0]_i_1__0/I3	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count[0]_i_1__0
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[1]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
-	CLOCK_ENABLE_GEN/count_reg[1]/Q	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[1]
-	CLOCK_ENABLE_GEN/o_pulse_i_1/I2	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/o_pulse_i_1
+	CLOCK_ENABLE_GEN/count[0]_i_1__0/I3
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[1]
+	CLOCK_ENABLE_GEN/count_reg[1]/Q
+	CLOCK_ENABLE_GEN/o_pulse_i_1/I2
 CLOCK_ENABLE_GEN/count_reg[3]
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/count[0]_i_1__0/I1	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count[0]_i_1__0
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[3]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
-	CLOCK_ENABLE_GEN/count_reg[3]/Q	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[3]
-	CLOCK_ENABLE_GEN/o_pulse_i_1/I3	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/o_pulse_i_1
+	CLOCK_ENABLE_GEN/count[0]_i_1__0/I1
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[3]
+	CLOCK_ENABLE_GEN/count_reg[3]/Q
+	CLOCK_ENABLE_GEN/o_pulse_i_1/I3
 COUNTER/Q[2]
 EDIFHierPortInst(s) on this net: 
-	COUNTER/Q[2]	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER
-	COUNTER/count[2]_i_1/I2	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[2]_i_1
-	COUNTER/count[3]_i_1/I2	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[3]_i_1
-	COUNTER/count_reg[2]/Q	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[2]
+	COUNTER/Q[2]
+	COUNTER/count[2]_i_1/I2
+	COUNTER/count[3]_i_1/I2
+	COUNTER/count_reg[2]/Q
 i_rst
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/i_rst	Hier Inst Name: 	Full Hier Inst Name: CLOCK_ENABLE_GEN
-	COUNTER/i_rst	Hier Inst Name: 	Full Hier Inst Name: COUNTER
-	i_rst	Hier Inst Name: 	Full Hier Inst Name: 
+	CLOCK_ENABLE_GEN/i_rst
+	COUNTER/i_rst
+	i_rst
 i_clk
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/i_clk	Hier Inst Name: 	Full Hier Inst Name: CLOCK_ENABLE_GEN
-	COUNTER/i_clk	Hier Inst Name: 	Full Hier Inst Name: COUNTER
-	i_clk	Hier Inst Name: 	Full Hier Inst Name: 
+	CLOCK_ENABLE_GEN/i_clk
+	COUNTER/i_clk
+	i_clk
 CLOCK_ENABLE_GEN/E[0]
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/E[0]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN
-	CLOCK_ENABLE_GEN/o_pulse_reg/Q	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/o_pulse_reg
+	CLOCK_ENABLE_GEN/E[0]
+	CLOCK_ENABLE_GEN/o_pulse_reg/Q
 COUNTER/Q[0]
 EDIFHierPortInst(s) on this net: 
-	COUNTER/Q[0]	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER
-	COUNTER/count[0]_i_1/I0	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[0]_i_1
-	COUNTER/count[1]_i_1/I0	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[1]_i_1
-	COUNTER/count[2]_i_1/I0	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[2]_i_1
-	COUNTER/count[3]_i_1/I1	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[3]_i_1
-	COUNTER/count_reg[0]/Q	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[0]
+	COUNTER/Q[0]
+	COUNTER/count[0]_i_1/I0
+	COUNTER/count[1]_i_1/I0
+	COUNTER/count[2]_i_1/I0
+	COUNTER/count[3]_i_1/I1
+	COUNTER/count_reg[0]/Q
 COUNTER/plusOp[0]
 EDIFHierPortInst(s) on this net: 
-	COUNTER/count[0]_i_1/O	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[0]_i_1
-	COUNTER/count_reg[0]/D	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[0]
+	COUNTER/count[0]_i_1/O
+	COUNTER/count_reg[0]/D
 COUNTER/Q[2]
 EDIFHierPortInst(s) on this net: 
-	COUNTER/Q[2]	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER
-	COUNTER/count[2]_i_1/I2	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[2]_i_1
-	COUNTER/count[3]_i_1/I2	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[3]_i_1
-	COUNTER/count_reg[2]/Q	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[2]
+	COUNTER/Q[2]
+	COUNTER/count[2]_i_1/I2
+	COUNTER/count[3]_i_1/I2
+	COUNTER/count_reg[2]/Q
 COUNTER/plusOp[2]
 EDIFHierPortInst(s) on this net: 
-	COUNTER/count[2]_i_1/O	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[2]_i_1
-	COUNTER/count_reg[2]/D	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[2]
+	COUNTER/count[2]_i_1/O
+	COUNTER/count_reg[2]/D
 i_rst
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/i_rst	Hier Inst Name: 	Full Hier Inst Name: CLOCK_ENABLE_GEN
-	COUNTER/i_rst	Hier Inst Name: 	Full Hier Inst Name: COUNTER
-	i_rst	Hier Inst Name: 	Full Hier Inst Name: 
+	CLOCK_ENABLE_GEN/i_rst
+	COUNTER/i_rst
+	i_rst
 CLOCK_ENABLE_GEN/<const0>
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/GND/G	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/GND
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/CI	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/CYINIT	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[1]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[2]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[3]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
-	CLOCK_ENABLE_GEN/o_pulse_reg/R	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/o_pulse_reg
+	CLOCK_ENABLE_GEN/GND/G
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/CI
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/CYINIT
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[1]
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[2]
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/DI[3]
+	CLOCK_ENABLE_GEN/o_pulse_reg/R
 CLOCK_ENABLE_GEN/count_reg[0]
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/count[0]_i_1__0/I2	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count[0]_i_1__0
-	CLOCK_ENABLE_GEN/count[0]_i_3/I0	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count[0]_i_3
-	CLOCK_ENABLE_GEN/count_reg[0]/Q	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]
-	CLOCK_ENABLE_GEN/o_pulse_i_1/I0	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/o_pulse_i_1
+	CLOCK_ENABLE_GEN/count[0]_i_1__0/I2
+	CLOCK_ENABLE_GEN/count[0]_i_3/I0
+	CLOCK_ENABLE_GEN/count_reg[0]/Q
+	CLOCK_ENABLE_GEN/o_pulse_i_1/I0
 i_clk
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/i_clk	Hier Inst Name: 	Full Hier Inst Name: CLOCK_ENABLE_GEN
-	COUNTER/i_clk	Hier Inst Name: 	Full Hier Inst Name: COUNTER
-	i_clk	Hier Inst Name: 	Full Hier Inst Name: 
+	CLOCK_ENABLE_GEN/i_clk
+	COUNTER/i_clk
+	i_clk
 CLOCK_ENABLE_GEN/count_reg[2]
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/count[0]_i_1__0/I4	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count[0]_i_1__0
-	CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[2]	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]_i_2
-	CLOCK_ENABLE_GEN/count_reg[2]/Q	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[2]
-	CLOCK_ENABLE_GEN/o_pulse_i_1/I1	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/o_pulse_i_1
+	CLOCK_ENABLE_GEN/count[0]_i_1__0/I4
+	CLOCK_ENABLE_GEN/count_reg[0]_i_2/S[2]
+	CLOCK_ENABLE_GEN/count_reg[2]/Q
+	CLOCK_ENABLE_GEN/o_pulse_i_1/I1
 CLOCK_ENABLE_GEN/count[0]_i_1__0_n_0
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/count[0]_i_1__0/O	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count[0]_i_1__0
-	CLOCK_ENABLE_GEN/count_reg[0]/R	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[0]
-	CLOCK_ENABLE_GEN/count_reg[1]/R	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[1]
-	CLOCK_ENABLE_GEN/count_reg[2]/R	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[2]
-	CLOCK_ENABLE_GEN/count_reg[3]/R	Hier Inst Name: CLOCK_ENABLE_GEN	Full Hier Inst Name: CLOCK_ENABLE_GEN/count_reg[3]
+	CLOCK_ENABLE_GEN/count[0]_i_1__0/O
+	CLOCK_ENABLE_GEN/count_reg[0]/R
+	CLOCK_ENABLE_GEN/count_reg[1]/R
+	CLOCK_ENABLE_GEN/count_reg[2]/R
+	CLOCK_ENABLE_GEN/count_reg[3]/R
 i_clk
 EDIFHierPortInst(s) on this net: 
-	CLOCK_ENABLE_GEN/i_clk	Hier Inst Name: 	Full Hier Inst Name: CLOCK_ENABLE_GEN
-	COUNTER/i_clk	Hier Inst Name: 	Full Hier Inst Name: COUNTER
-	i_clk	Hier Inst Name: 	Full Hier Inst Name: 
+	CLOCK_ENABLE_GEN/i_clk
+	COUNTER/i_clk
+	i_clk
 COUNTER/Q[3]
 EDIFHierPortInst(s) on this net: 
-	COUNTER/Q[3]	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER
-	COUNTER/count[3]_i_1/I3	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[3]_i_1
-	COUNTER/count_reg[3]/Q	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[3]
+	COUNTER/Q[3]
+	COUNTER/count[3]_i_1/I3
+	COUNTER/count_reg[3]/Q
 COUNTER/Q[1]
 EDIFHierPortInst(s) on this net: 
-	COUNTER/Q[1]	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER
-	COUNTER/count[1]_i_1/I1	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[1]_i_1
-	COUNTER/count[2]_i_1/I1	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[2]_i_1
-	COUNTER/count[3]_i_1/I0	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[3]_i_1
-	COUNTER/count_reg[1]/Q	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[1]
+	COUNTER/Q[1]
+	COUNTER/count[1]_i_1/I1
+	COUNTER/count[2]_i_1/I1
+	COUNTER/count[3]_i_1/I0
+	COUNTER/count_reg[1]/Q
 COUNTER/Q[3]
 EDIFHierPortInst(s) on this net: 
-	COUNTER/Q[3]	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER
-	COUNTER/count[3]_i_1/I3	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count[3]_i_1
-	COUNTER/count_reg[3]/Q	Hier Inst Name: COUNTER	Full Hier Inst Name: COUNTER/count_reg[3]
+	COUNTER/Q[3]
+	COUNTER/count[3]_i_1/I3
+	COUNTER/count_reg[3]/Q

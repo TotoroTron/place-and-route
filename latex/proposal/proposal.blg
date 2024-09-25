@@ -11,45 +11,45 @@ Database file #1: references/surveys.bib
 Database file #2: references/rapidwright.bib
 Database file #3: references/fpga_placement.bib
 Database file #4: references/vlsi_placement.bib
-You've used 23 entries,
+You've used 24 entries,
             1876 wiz_defined-function locations,
-            640 strings with 9105 characters,
-and the built_in function-call counts, 7541 in all, are:
-= -- 673
-> -- 346
+            647 strings with 9349 characters,
+and the built_in function-call counts, 7852 in all, are:
+= -- 701
+> -- 357
 < -- 0
-+ -- 123
-- -- 100
-* -- 521
-:= -- 1023
-add.period$ -- 23
-call.type$ -- 23
-change.case$ -- 23
++ -- 127
+- -- 103
+* -- 541
+:= -- 1063
+add.period$ -- 24
+call.type$ -- 24
+change.case$ -- 24
 chr.to.int$ -- 0
-cite$ -- 23
-duplicate$ -- 438
-empty$ -- 723
-format.name$ -- 100
-if$ -- 1889
+cite$ -- 24
+duplicate$ -- 457
+empty$ -- 757
+format.name$ -- 103
+if$ -- 1969
 int.to.chr$ -- 0
-int.to.str$ -- 23
-missing$ -- 23
-newline$ -- 72
-num.names$ -- 23
-pop$ -- 124
+int.to.str$ -- 24
+missing$ -- 24
+newline$ -- 75
+num.names$ -- 24
+pop$ -- 131
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 315
+skip$ -- 327
 stack$ -- 0
-substring$ -- 436
-swap$ -- 189
+substring$ -- 456
+swap$ -- 196
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 62
-width$ -- 25
-write$ -- 220
+while$ -- 65
+width$ -- 26
+write$ -- 229
 (There was 1 error message)

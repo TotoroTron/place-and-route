@@ -159,7 +159,9 @@ EDIFPortInst(s) in this net:
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
+	Empty EDIFPortInst Collection.
 EDIFPortInst(s) in this net: 
+	Empty EDIFPortInst Collection.
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
@@ -185,12 +187,16 @@ EDIFPortInst(s) in this net:
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
+	Empty EDIFPortInst Collection.
 EDIFPortInst(s) in this net: 
+	Empty EDIFPortInst Collection.
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
+	Empty EDIFPortInst Collection.
 EDIFPortInst(s) in this net: 
+	Empty EDIFPortInst Collection.
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
@@ -270,7 +276,9 @@ EDIFPortInst(s) in this net:
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
+	Empty EDIFPortInst Collection.
 EDIFPortInst(s) in this net: 
+	Empty EDIFPortInst Collection.
 
 Top level EDIFPortInst(s) in this net: 
 	NONE!
@@ -341,7 +349,9 @@ EDIFPortInst(s) in this net:
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
+	Empty EDIFPortInst Collection.
 EDIFPortInst(s) in this net: 
+	Empty EDIFPortInst Collection.
 
 Top level EDIFPortInst(s) in this net: 
 	i_clk
@@ -368,4 +378,6 @@ EDIFPortInst(s) in this net:
 Top level EDIFPortInst(s) in this net: 
 	NONE!
 Source EDIFPortInst(s) in this net: 
+	Empty EDIFPortInst Collection.
 EDIFPortInst(s) in this net: 
+	Empty EDIFPortInst Collection.

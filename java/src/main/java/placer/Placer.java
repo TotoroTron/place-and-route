@@ -64,6 +64,7 @@ public abstract class Placer {
         printEDIFCellInsts(netlist);
         printEDIFNets(netlist);
         printEDIFHierNets(netlist);
+        printTopCell(netlist);
         design = place(design);
         design.writeCheckpoint(placedDcp);
     }
@@ -82,6 +83,8 @@ public abstract class Placer {
 
     public void printTileArray(BufferedWriter writer, Tile[] tiles, boolean showSites, boolean showBELs)
             throws IOException {
+        if (tiles.length == 0)
+            writer.write("\nEmpty Tile Array.");
         for (Tile tile : tiles) {
             String s1 = String.format(
                     "\nTileType: %-30s TileName: %-40s Row: %-5s Col: %-5s X: %-5s Y: %-5s",
@@ -95,6 +98,8 @@ public abstract class Placer {
     }
 
     public void printSiteArray(BufferedWriter writer, Site[] sites, boolean showBELs) throws IOException {
+        if (sites.length == 0)
+            writer.write("\n\tEmpty Site Array.");
         for (Site site : sites) {
             String s2 = String.format(
                     "\n\tSiteType: %-30s SiteName: %-40s ", site.getSiteTypeEnum(), site.getName());
@@ -106,6 +111,8 @@ public abstract class Placer {
     }
 
     public void printBELArray(BufferedWriter writer, BEL[] bels) throws IOException {
+        if (bels.length == 0)
+            writer.write("\n\t\tEmpty BEL Array.");
         int word_count = 0;
         writer.write("\n\t\t");
         for (BEL bel : bels) {
@@ -198,7 +205,36 @@ public abstract class Placer {
 
     // ============== NON-HIER PRINTOUT ==================
 
+    private void printTopCell(EDIFNetlist netlist) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/TopCell.txt"));
+        EDIFCell topCell = netlist.getTopCell();
+        EDIFCellInst topCellInst = netlist.getTopCellInst();
+        EDIFHierCellInst topHierCellInst = netlist.getTopHierCellInst();
+        writer.write("\ntopCellInst: " + topCellInst.getCellName() + " topHierCellInst: "
+                + topHierCellInst.getFullHierarchicalInstName());
+        writer.write("\nDepth: " + topHierCellInst.getDepth());
+        writer.write("\nCell Type: " + topHierCellInst.getCellType().getName());
+        writer.write("\nCell is primitive? " + topHierCellInst.getCellType().isPrimitive());
+
+        // VHDL "components" and Verilog "modules" are also represented as cells.
+        // The cells are either primitive or not primitive.
+        // Primitive cells are LUTs, FDREs, etc.
+        // Components instantiated inside a component is represented as a child cell of
+        // the outer parent cell.
+
+        Collection<EDIFPortInst> epis = topCellInst.getPortInsts();
+        printEDIFPortInsts(writer, epis);
+
+        List<EDIFHierPortInst> ehpis = topHierCellInst.getHierPortInsts();
+        printEDIFHierPortInsts(writer, ehpis);
+
+        if (writer != null)
+            writer.close();
+    }
+
     private void printEDIFPortInsts(BufferedWriter writer, Collection<EDIFPortInst> epis) throws IOException {
+        if (epis.isEmpty())
+            writer.write("\n\tEmpty EDIFPortInst Collection.");
         for (EDIFPortInst epi : epis) {
             writer.write("\n\t" + epi.toString());
             // writer.write("\tName: " + epi.getName());
@@ -277,10 +313,12 @@ public abstract class Placer {
     // ============ HIERARCHICAL PRINTOUTS ===============
 
     private void printEDIFHierPortInsts(BufferedWriter writer, Collection<EDIFHierPortInst> ehpis) throws IOException {
+        if (ehpis.isEmpty())
+            writer.write("\n\tEmpty EDIFHierPortInst Collection.");
         for (EDIFHierPortInst ehpi : ehpis) {
             writer.write("\n\t" + ehpi.toString());
-            writer.write("\tHier Inst Name: " + ehpi.getHierarchicalInstName());
-            writer.write("\tFull Hier Inst Name: " + ehpi.getFullHierarchicalInstName());
+            // writer.write("\tHier Inst Name: " + ehpi.getHierarchicalInstName());
+            // writer.write("\tFull Hier Inst Name: " + ehpi.getFullHierarchicalInstName());
         }
     }
 

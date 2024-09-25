@@ -1,0 +1,7 @@
+
+topCellInst: top_level topHierCellInst: 
+Depth: 1
+Cell Type: top_level
+Cell is primitive? false
+	Empty EDIFPortInst Collection.
+	Empty EDIFHierPortInst Collection.

@@ -52,6 +52,7 @@ public class CompleteRandomPlacer extends Placer {
                     "Key: %-40s Val: %-40s",
                     key.getHierarchicalNetName(), val.getHierarchicalNetName());
             System.out.println(s1);
+            nets.add(design.createNet(val));
         }
 
         // Find compatible sites and BELs for each cell.
