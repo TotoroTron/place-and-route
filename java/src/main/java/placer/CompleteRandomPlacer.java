@@ -23,6 +23,8 @@ import com.xilinx.rapidwright.design.Cell;
 import com.xilinx.rapidwright.design.Net;
 
 import com.xilinx.rapidwright.device.SiteTypeEnum;
+import com.xilinx.rapidwright.device.Site;
+import com.xilinx.rapidwright.device.BEL;
 
 public class CompleteRandomPlacer extends Placer {
 
@@ -46,18 +48,24 @@ public class CompleteRandomPlacer extends Placer {
 
         Map<EDIFHierNet, EDIFHierNet> edifNetMap = netlist.getParentNetMap();
         for (Map.Entry<EDIFHierNet, EDIFHierNet> entry : edifNetMap.entrySet()) {
-            EDIFHierNet key = entry.getKey(); // Sink ?
-            EDIFHierNet val = entry.getValue(); // Source ?
-            String s1 = String.format(
-                    "Key: %-40s Val: %-40s",
-                    key.getHierarchicalNetName(), val.getHierarchicalNetName());
-            System.out.println(s1);
-            nets.add(design.createNet(val));
+            EDIFHierNet key = entry.getKey(); // Net Name
+            EDIFHierNet val = entry.getValue(); // Net Parent
+            nets.add(design.createNet(key));
+            // If Name = Parent, then it means the net source comes from a primitive cell or
+            // an I/O pad
+            // If Name != Parent, then the net source comes from non-primitive hierarchical
+            // cell
         }
 
         // Find compatible sites and BELs for each cell.
         for (Cell cell : cells) {
             Map<SiteTypeEnum, Set<String>> siteBELMap = cell.getCompatiblePlacements(this.device);
+            // need to print this map out
+            Site site;
+            BEL bel;
+            if (design.placeCell(cell, site, bel) == false)
+                // https://www.rapidwright.io/javadoc/com/xilinx/rapidwright/device/Site.html
+                System.out.println(cell.getName() + "placement failed!");
         }
 
         // Net n = createNet(EDIFHierNet ehn);

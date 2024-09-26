@@ -341,6 +341,14 @@ public abstract class Placer {
         BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/EDIFHierNets.txt"));
         writer.write("Printing EDIFHierNet(s) with their EDIFHierPortInst(s): ");
         Map<EDIFHierNet, EDIFHierNet> ehns = netlist.getParentNetMap();
+        /*
+         * EDIFHierNet key = entry.getKey(); // Net Name
+         * EDIFHierNet val = entry.getValue(); // Net Parent
+         * If Name = Parent, then it means the net source comes from a primitive cell
+         * or an I/O pad
+         * If Name != Parent, then the net source comes from non-primitive
+         * hierarchica cell
+         */
         for (EDIFHierNet ehn : ehns.values()) {
             writer.write("\n" + ehn.getHierarchicalNetName());
             writer.write("\nEDIFHierPortInst(s) on this net: ");
