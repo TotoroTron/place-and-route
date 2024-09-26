@@ -1,0 +1,389 @@
+Printing EDIFNets: 
+
+Top level EDIFPortInst(s) in this net: 
+	Q[2]
+Source EDIFPortInst(s) in this net: 
+	count_reg[2]/Q
+EDIFPortInst(s) in this net: 
+	Q[2]
+	count[2]_i_1/I2
+	count[3]_i_1/I2
+	count_reg[2]/Q
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	COUNTER/Q[1]
+EDIFPortInst(s) in this net: 
+	COUNTER/Q[1]
+	ov_led_OBUF[1]_inst/I
+
+Top level EDIFPortInst(s) in this net: 
+	i_clk_IBUF
+Source EDIFPortInst(s) in this net: 
+	i_clk_IBUF
+EDIFPortInst(s) in this net: 
+	count_reg[0]/C
+	count_reg[1]/C
+	count_reg[2]/C
+	count_reg[3]/C
+	i_clk_IBUF
+	o_pulse_reg/C
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	count[3]_i_1/O
+EDIFPortInst(s) in this net: 
+	count[3]_i_1/O
+	count_reg[3]/D
+
+Top level EDIFPortInst(s) in this net: 
+	Q[0]
+Source EDIFPortInst(s) in this net: 
+	count_reg[0]/Q
+EDIFPortInst(s) in this net: 
+	Q[0]
+	count[0]_i_1/I0
+	count[1]_i_1/I0
+	count[2]_i_1/I0
+	count[3]_i_1/I1
+	count_reg[0]/Q
+
+Top level EDIFPortInst(s) in this net: 
+	ov_led[2]
+Source EDIFPortInst(s) in this net: 
+	ov_led_OBUF[2]_inst/O
+EDIFPortInst(s) in this net: 
+	ov_led[2]
+	ov_led_OBUF[2]_inst/O
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	COUNTER/Q[3]
+EDIFPortInst(s) in this net: 
+	COUNTER/Q[3]
+	ov_led_OBUF[3]_inst/I
+
+Top level EDIFPortInst(s) in this net: 
+	SR[0]
+Source EDIFPortInst(s) in this net: 
+	SR[0]
+EDIFPortInst(s) in this net: 
+	SR[0]
+	count[0]_i_1__0/I0
+	o_pulse_i_1/I4
+
+Top level EDIFPortInst(s) in this net: 
+	ov_led[0]
+Source EDIFPortInst(s) in this net: 
+	ov_led_OBUF[0]_inst/O
+EDIFPortInst(s) in this net: 
+	ov_led[0]
+	ov_led_OBUF[0]_inst/O
+
+Top level EDIFPortInst(s) in this net: 
+	i_rst
+Source EDIFPortInst(s) in this net: 
+	i_rst
+EDIFPortInst(s) in this net: 
+	i_rst
+	i_rst_IBUF_inst/I
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	count_reg[0]_i_2/CO[0]
+EDIFPortInst(s) in this net: 
+	count_reg[0]_i_2/CO[0]
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	count_reg[0]/Q
+EDIFPortInst(s) in this net: 
+	count[0]_i_1__0/I2
+	count[0]_i_3/I0
+	count_reg[0]/Q
+	o_pulse_i_1/I0
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	count_reg[0]_i_2/O[3]
+EDIFPortInst(s) in this net: 
+	count_reg[0]_i_2/O[3]
+	count_reg[3]/D
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	count_reg[0]_i_2/CO[2]
+EDIFPortInst(s) in this net: 
+	count_reg[0]_i_2/CO[2]
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	count_reg[2]/Q
+EDIFPortInst(s) in this net: 
+	count[0]_i_1__0/I4
+	count_reg[0]_i_2/S[2]
+	count_reg[2]/Q
+	o_pulse_i_1/I1
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	count_reg[0]_i_2/CO[1]
+EDIFPortInst(s) in this net: 
+	count_reg[0]_i_2/CO[1]
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	count[1]_i_1/O
+EDIFPortInst(s) in this net: 
+	count[1]_i_1/O
+	count_reg[1]/D
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	i_clk_IBUF_inst/O
+EDIFPortInst(s) in this net: 
+	CLOCK_ENABLE_GEN/i_clk_IBUF
+	COUNTER/i_clk_IBUF
+	i_clk_IBUF_inst/O
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	count_reg[0]_i_2/O[0]
+EDIFPortInst(s) in this net: 
+	count_reg[0]/D
+	count_reg[0]_i_2/O[0]
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	count_reg[0]_i_2/O[2]
+EDIFPortInst(s) in this net: 
+	count_reg[0]_i_2/O[2]
+	count_reg[2]/D
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	count_reg[0]_i_2/O[1]
+EDIFPortInst(s) in this net: 
+	count_reg[0]_i_2/O[1]
+	count_reg[1]/D
+
+Top level EDIFPortInst(s) in this net: 
+	E[0]
+Source EDIFPortInst(s) in this net: 
+	E[0]
+EDIFPortInst(s) in this net: 
+	E[0]
+	count_reg[0]/CE
+	count_reg[1]/CE
+	count_reg[2]/CE
+	count_reg[3]/CE
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	CLOCK_ENABLE_GEN/E[0]
+EDIFPortInst(s) in this net: 
+	CLOCK_ENABLE_GEN/E[0]
+	COUNTER/E[0]
+
+Top level EDIFPortInst(s) in this net: 
+	i_clk_IBUF
+Source EDIFPortInst(s) in this net: 
+	i_clk_IBUF
+EDIFPortInst(s) in this net: 
+	count_reg[0]/C
+	count_reg[1]/C
+	count_reg[2]/C
+	count_reg[3]/C
+	i_clk_IBUF
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	GND/G
+EDIFPortInst(s) in this net: 
+	GND/G
+	count_reg[0]_i_2/CI
+	count_reg[0]_i_2/CYINIT
+	count_reg[0]_i_2/DI[1]
+	count_reg[0]_i_2/DI[2]
+	count_reg[0]_i_2/DI[3]
+	o_pulse_reg/R
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	count[0]_i_1__0/O
+EDIFPortInst(s) in this net: 
+	count[0]_i_1__0/O
+	count_reg[0]/R
+	count_reg[1]/R
+	count_reg[2]/R
+	count_reg[3]/R
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	COUNTER/Q[2]
+EDIFPortInst(s) in this net: 
+	COUNTER/Q[2]
+	ov_led_OBUF[2]_inst/I
+
+Top level EDIFPortInst(s) in this net: 
+	E[0]
+Source EDIFPortInst(s) in this net: 
+	o_pulse_reg/Q
+EDIFPortInst(s) in this net: 
+	E[0]
+	o_pulse_reg/Q
+
+Top level EDIFPortInst(s) in this net: 
+	Q[1]
+Source EDIFPortInst(s) in this net: 
+	count_reg[1]/Q
+EDIFPortInst(s) in this net: 
+	Q[1]
+	count[1]_i_1/I1
+	count[2]_i_1/I1
+	count[3]_i_1/I0
+	count_reg[1]/Q
+
+Top level EDIFPortInst(s) in this net: 
+	ov_led[3]
+Source EDIFPortInst(s) in this net: 
+	ov_led_OBUF[3]_inst/O
+EDIFPortInst(s) in this net: 
+	ov_led[3]
+	ov_led_OBUF[3]_inst/O
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	o_pulse_i_1/O
+EDIFPortInst(s) in this net: 
+	o_pulse_i_1/O
+	o_pulse_reg/D
+
+Top level EDIFPortInst(s) in this net: 
+	ov_led[1]
+Source EDIFPortInst(s) in this net: 
+	ov_led_OBUF[1]_inst/O
+EDIFPortInst(s) in this net: 
+	ov_led[1]
+	ov_led_OBUF[1]_inst/O
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	count_reg[3]/Q
+EDIFPortInst(s) in this net: 
+	count[0]_i_1__0/I1
+	count_reg[0]_i_2/S[3]
+	count_reg[3]/Q
+	o_pulse_i_1/I3
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	i_rst_IBUF_inst/O
+EDIFPortInst(s) in this net: 
+	CLOCK_ENABLE_GEN/SR[0]
+	COUNTER/SR[0]
+	i_rst_IBUF_inst/O
+
+Top level EDIFPortInst(s) in this net: 
+	SR[0]
+Source EDIFPortInst(s) in this net: 
+	SR[0]
+EDIFPortInst(s) in this net: 
+	SR[0]
+	count_reg[0]/R
+	count_reg[1]/R
+	count_reg[2]/R
+	count_reg[3]/R
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	count[0]_i_1/O
+EDIFPortInst(s) in this net: 
+	count[0]_i_1/O
+	count_reg[0]/D
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	COUNTER/Q[0]
+EDIFPortInst(s) in this net: 
+	COUNTER/Q[0]
+	ov_led_OBUF[0]_inst/I
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	count[2]_i_1/O
+EDIFPortInst(s) in this net: 
+	count[2]_i_1/O
+	count_reg[2]/D
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	count_reg[1]/Q
+EDIFPortInst(s) in this net: 
+	count[0]_i_1__0/I3
+	count_reg[0]_i_2/S[1]
+	count_reg[1]/Q
+	o_pulse_i_1/I2
+
+Top level EDIFPortInst(s) in this net: 
+	Q[3]
+Source EDIFPortInst(s) in this net: 
+	count_reg[3]/Q
+EDIFPortInst(s) in this net: 
+	Q[3]
+	count[3]_i_1/I3
+	count_reg[3]/Q
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	count[0]_i_3/O
+EDIFPortInst(s) in this net: 
+	count[0]_i_3/O
+	count_reg[0]_i_2/S[0]
+
+Top level EDIFPortInst(s) in this net: 
+	i_clk
+Source EDIFPortInst(s) in this net: 
+	i_clk
+EDIFPortInst(s) in this net: 
+	i_clk
+	i_clk_IBUF_inst/I
+
+Top level EDIFPortInst(s) in this net: 
+	NONE!
+Source EDIFPortInst(s) in this net: 
+	VCC/P
+EDIFPortInst(s) in this net: 
+	VCC/P
+	count_reg[0]/CE
+	count_reg[0]_i_2/DI[0]
+	count_reg[1]/CE
+	count_reg[2]/CE
+	count_reg[3]/CE
+	o_pulse_reg/CE

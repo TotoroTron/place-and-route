@@ -4,7 +4,7 @@
   (keywordmap (keywordlevel 0))
 (status
  (written
-  (timeStamp 2024 08 17 15 12 53)
+  (timeStamp 2024 09 26 16 14 16)
   (program "Vivado" (version "2023.2.2"))
   (comment "Built on 'Thu Feb  8 23:52:05 MST 2024'")
   (comment "Built by 'xbuild'")
@@ -100,14 +100,6 @@
        )
      )
    )
-   (cell BUFG (celltype GENERIC)
-     (view netlist (viewtype NETLIST)
-       (interface 
-        (port O (direction OUTPUT))
-        (port I (direction INPUT))
-       )
-     )
-   )
    (cell IBUF (celltype GENERIC)
      (view netlist (viewtype NETLIST)
        (interface 
@@ -139,7 +131,7 @@
    (cell pps_gen (celltype GENERIC)
      (view pps_gen (viewtype NETLIST)
        (interface 
-        (port i_clk_IBUF_BUFG (direction INPUT))
+        (port i_clk_IBUF (direction INPUT))
         (port (rename E_0_ "E[0]") (direction OUTPUT))
         (port (rename SR_0_ "SR[0]") (direction INPUT))
        )
@@ -275,13 +267,13 @@
           (portref (member S 0) (instanceref count_reg_0__i_2))
           )
          )
-         (net i_clk_IBUF_BUFG (joined
+         (net i_clk_IBUF (joined
           (portref C (instanceref count_reg_0_))
           (portref C (instanceref count_reg_1_))
           (portref C (instanceref count_reg_2_))
           (portref C (instanceref count_reg_3_))
           (portref C (instanceref o_pulse_reg))
-          (portref i_clk_IBUF_BUFG)
+          (portref i_clk_IBUF)
           )
          )
          (net o_pulse_i_1_n_0 (joined
@@ -295,7 +287,7 @@
    (cell counter (celltype GENERIC)
      (view counter (viewtype NETLIST)
        (interface 
-        (port i_clk_IBUF_BUFG (direction INPUT))
+        (port i_clk_IBUF (direction INPUT))
         (port (rename E_0_ "E[0]") (direction INPUT))
         (port (array (rename Q "Q[3:0]") 4) (direction OUTPUT))
         (port (rename SR_0_ "SR[0]") (direction INPUT))
@@ -375,12 +367,12 @@
           (portref SR_0_)
           )
          )
-         (net i_clk_IBUF_BUFG (joined
+         (net i_clk_IBUF (joined
           (portref C (instanceref count_reg_0_))
           (portref C (instanceref count_reg_1_))
           (portref C (instanceref count_reg_2_))
           (portref C (instanceref count_reg_3_))
-          (portref i_clk_IBUF_BUFG)
+          (portref i_clk_IBUF)
           )
          )
          (net (rename plusOp_0_ "plusOp[0]") (joined
@@ -409,20 +401,35 @@
    (cell top_level (celltype GENERIC)
      (view top_level (viewtype NETLIST)
        (interface 
-        (port i_clk (direction INPUT))
-        (port i_rst (direction INPUT))
+        (port i_clk (direction INPUT)
+           (property IO_BUFFER_TYPE (string "IBUF"))
+        )
+        (port i_rst (direction INPUT)
+           (property IO_BUFFER_TYPE (string "IBUF"))
+        )
         (port (array (rename ov_led "ov_led[3:0]") 4) (direction OUTPUT))
        )
        (contents
          (instance CLOCK_ENABLE_GEN (viewref pps_gen (cellref pps_gen (libraryref work))))
          (instance COUNTER (viewref counter (cellref counter (libraryref work))))
-         (instance i_clk_IBUF_BUFG_inst (viewref netlist (cellref BUFG (libraryref hdi_primitives))))
-         (instance i_clk_IBUF_inst (viewref netlist (cellref IBUF (libraryref hdi_primitives))))
-         (instance i_rst_IBUF_inst (viewref netlist (cellref IBUF (libraryref hdi_primitives))))
-         (instance (rename ov_led_OBUF_0__inst "ov_led_OBUF[0]_inst") (viewref netlist (cellref OBUF (libraryref hdi_primitives))))
-         (instance (rename ov_led_OBUF_1__inst "ov_led_OBUF[1]_inst") (viewref netlist (cellref OBUF (libraryref hdi_primitives))))
-         (instance (rename ov_led_OBUF_2__inst "ov_led_OBUF[2]_inst") (viewref netlist (cellref OBUF (libraryref hdi_primitives))))
-         (instance (rename ov_led_OBUF_3__inst "ov_led_OBUF[3]_inst") (viewref netlist (cellref OBUF (libraryref hdi_primitives))))
+         (instance i_clk_IBUF_inst (viewref netlist (cellref IBUF (libraryref hdi_primitives)))
+           (property io_buffer_type (string "IBUF"))
+         )
+         (instance i_rst_IBUF_inst (viewref netlist (cellref IBUF (libraryref hdi_primitives)))
+           (property io_buffer_type (string "IBUF"))
+         )
+         (instance (rename ov_led_OBUF_0__inst "ov_led_OBUF[0]_inst") (viewref netlist (cellref OBUF (libraryref hdi_primitives)))
+           (property io_buffer_type (string "OBUF"))
+         )
+         (instance (rename ov_led_OBUF_1__inst "ov_led_OBUF[1]_inst") (viewref netlist (cellref OBUF (libraryref hdi_primitives)))
+           (property io_buffer_type (string "OBUF"))
+         )
+         (instance (rename ov_led_OBUF_2__inst "ov_led_OBUF[2]_inst") (viewref netlist (cellref OBUF (libraryref hdi_primitives)))
+           (property io_buffer_type (string "OBUF"))
+         )
+         (instance (rename ov_led_OBUF_3__inst "ov_led_OBUF[3]_inst") (viewref netlist (cellref OBUF (libraryref hdi_primitives)))
+           (property io_buffer_type (string "OBUF"))
+         )
          (net i_clk (joined
           (portref I (instanceref i_clk_IBUF_inst))
           (portref i_clk)
@@ -431,14 +438,9 @@
            (property IOSTANDARD (string "LVCMOS33"))
          )
          (net i_clk_IBUF (joined
-          (portref I (instanceref i_clk_IBUF_BUFG_inst))
           (portref O (instanceref i_clk_IBUF_inst))
-          )
-         )
-         (net i_clk_IBUF_BUFG (joined
-          (portref O (instanceref i_clk_IBUF_BUFG_inst))
-          (portref i_clk_IBUF_BUFG (instanceref CLOCK_ENABLE_GEN))
-          (portref i_clk_IBUF_BUFG (instanceref COUNTER))
+          (portref i_clk_IBUF (instanceref CLOCK_ENABLE_GEN))
+          (portref i_clk_IBUF (instanceref COUNTER))
           )
          )
          (net i_rst (joined
@@ -517,7 +519,6 @@
 
   (design top_level
     (cellref top_level (libraryref work))
-    (property XLNX_PROJ_DIR (string "/home/bcheng/workspace/dev/place-and-route/hdl/vhdl/counter"))
     (property ENABLE_NOC_NETLIST_VIEW (boolean (true)))
     (property ENABLE_AIE_NETLIST_VIEW (boolean (true)))
     (property part (string "xc7z020clg400-1"))

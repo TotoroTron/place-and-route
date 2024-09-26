@@ -1,0 +1,54 @@
+
+List size: 25
+EDIFCellInst: OBUF
+EDIFCellInst: OBUF
+EDIFCellInst: IBUF
+EDIFCellInst: OBUF
+EDIFCellInst: OBUF
+EDIFCellInst: IBUF
+EDIFCellInst: FDRE
+EDIFCellInst: FDRE
+EDIFCellInst: LUT5
+EDIFCellInst: FDRE
+EDIFCellInst: FDRE
+EDIFCellInst: VCC
+EDIFCellInst: FDRE
+EDIFCellInst: CARRY4
+EDIFCellInst: LUT5
+EDIFCellInst: GND
+EDIFCellInst: LUT1
+EDIFCellInst: FDRE
+EDIFCellInst: LUT3
+EDIFCellInst: LUT4
+EDIFCellInst: FDRE
+EDIFCellInst: FDRE
+EDIFCellInst: FDRE
+EDIFCellInst: LUT2
+EDIFCellInst: LUT1
+
+Map size: 25
+EDIFCellInst: CARRY4
+EDIFCellInst: OBUF
+EDIFCellInst: LUT5
+EDIFCellInst: LUT3
+EDIFCellInst: FDRE
+EDIFCellInst: FDRE
+EDIFCellInst: IBUF
+EDIFCellInst: FDRE
+EDIFCellInst: FDRE
+EDIFCellInst: LUT4
+EDIFCellInst: FDRE
+EDIFCellInst: LUT1
+EDIFCellInst: IBUF
+EDIFCellInst: VCC
+EDIFCellInst: OBUF
+EDIFCellInst: FDRE
+EDIFCellInst: LUT2
+EDIFCellInst: FDRE
+EDIFCellInst: GND
+EDIFCellInst: LUT1
+EDIFCellInst: OBUF
+EDIFCellInst: FDRE
+EDIFCellInst: FDRE
+EDIFCellInst: OBUF
+EDIFCellInst: LUT5
