@@ -13,7 +13,8 @@ export _JAVA_OPTIONS=-Xmx32736m
 
 PROJ_DIR="/home/bcheng/workspace/dev/place-and-route"
 SYNTH_TCL="$PROJ_DIR/tcl/synth.tcl"
-ROUTE_TCL="$PROJ_DIR/tcl/route.tcl"
+PLACE_TCL="$PROJ_DIR/tcl/vivado_place.tcl"
+ROUTE_TCL="$PROJ_DIR/tcl/vivado_route.tcl"
 
 start_stage=${1:-all} # Use first argument or defaults to all
 
@@ -32,32 +33,18 @@ if [ "$start_stage" == "synth" ] || [ "$start_stage" == "all" ]; then
     echo "Vivado synthesis completed. Check 'synthesized.dcp'."
 fi
 
-# Gradle Build Stage (replaces Java Compilation)
-if [ "$start_stage" == "compile" ] || [ "$start_stage" == "all" ]; then
-    echo "Building Java project with Gradle..."
-    cd $PROJ_DIR/java
-    gradle build
-    check_exit_status "Gradle build"
-    echo "Gradle build completed."
+# Vivado Placement Stage
+if [ "$start_stage" == "place" ]; then
+    echo "Running Vivado place..."
+    vivado -mode batch -source $PLACE_TCL -nolog -nojournal
+    check_exit_status "Vivado place"
+    echo "Vivado place completed. Check 'vivado_placed.dcp'."
 fi
-
-# Gradle Run Stage (replaces Java Placement)
-if [ "$start_stage" == "place" ] || [ "$start_stage" == "all" ]; then
-    rm $PROJ_DIR/outputs/*.txt
-    echo "Running Java placement with Gradle..."
-    cd $PROJ_DIR/java
-    gradle run
-    check_exit_status "Gradle run"
-    echo "Java placement executed. Check 'logger.txt' for output."
-fi
-
-# Return to outer dir
-cd $PROJ_DIR
 
 # Vivado Route Stage
 if [ "$start_stage" == "route" ] || [ "$start_stage" == "all" ]; then
     echo "Running Vivado route..."
     vivado -mode batch -source $ROUTE_TCL -nolog -nojournal
     check_exit_status "Vivado route"
-    echo "Vivado route completed. Check 'routed.dcp'."
+    echo "Vivado route completed. Check 'vivado_routed.dcp'."
 fi

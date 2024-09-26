@@ -51,7 +51,7 @@ public abstract class Placer {
         this.device = Device.getDevice("xc7z020clg400-1");
     }
 
-    protected abstract Design place(Design design);
+    protected abstract Design place(Design design) throws IOException;
 
     public void run() throws IOException {
         EDIFNetlist netlist = design.getNetlist();

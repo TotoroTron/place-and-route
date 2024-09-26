@@ -1,12 +1,16 @@
 package placer;
 
+import java.util.Random;
 import java.util.Map;
 // import java.util.Collection;
 import java.util.List;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.HashSet;
 
+import java.io.FileWriter;
+import java.io.BufferedWriter;
 import java.io.IOException;
 
 import com.xilinx.rapidwright.edif.EDIFNetlist;
@@ -28,13 +32,14 @@ import com.xilinx.rapidwright.device.BEL;
 
 public class CompleteRandomPlacer extends Placer {
 
+    private final String rootDir = "/home/bcheng/workspace/dev/place-and-route/";
+
     public CompleteRandomPlacer() throws IOException {
         super();
     }
 
-    public Design place(Design design) {
-
-        // Logical to Physical mapping
+    public Design place(Design design) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/CompleteRandomPlacer.txt"));
 
         EDIFNetlist netlist = design.getNetlist();
 
@@ -57,15 +62,34 @@ public class CompleteRandomPlacer extends Placer {
             // cell
         }
 
+        // HashSet<BEL> occupiedBELs = new HashSet<>();
+        HashSet<Site> activeSites = new HashSet<>();
+
+        HashMap<Site, HashSet<BEL>> map = new HashMap<>();
+        Random rand = new Random();
+
         // Find compatible sites and BELs for each cell.
         for (Cell cell : cells) {
-            Map<SiteTypeEnum, Set<String>> siteBELMap = cell.getCompatiblePlacements(this.device);
-            // need to print this map out
+            writer.write("\nCell: " + cell.getName());
+            Map<SiteTypeEnum, Set<String>> compatibleBELs = cell.getCompatiblePlacements(this.device);
+            for (Map.Entry<SiteTypeEnum, Set<String>> entry : compatibleBELs.entrySet()) {
+                SiteTypeEnum siteType = entry.getKey();
+                Set<String> bels = entry.getValue();
+                writer.write("\n\tSiteTypeEnum: " + siteType.name());
+                for (String bel : bels) {
+                    writer.write("\n\t\tBEL: " + bel);
+                }
+            }
+
+            List<Map.Entry<SiteTypeEnum, Set<String>>> entryList = new ArrayList<>(compatibleBELs.entrySet());
+
+            // Select a random bel.
             Site site;
             BEL bel;
+
             if (design.placeCell(cell, site, bel) == false)
-                // https://www.rapidwright.io/javadoc/com/xilinx/rapidwright/device/Site.html
                 System.out.println(cell.getName() + "placement failed!");
+
         }
 
         // Net n = createNet(EDIFHierNet ehn);
@@ -73,6 +97,8 @@ public class CompleteRandomPlacer extends Placer {
         // SitePinInst spi = net.connect(Cell c, String logicalPinName);
         // get the pins for each cell.
 
+        if (writer != null)
+            writer.close();
         return design;
     }
 

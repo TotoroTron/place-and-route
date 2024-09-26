@@ -38,6 +38,10 @@ entity top_level is
         i_rst : in std_logic;
         ov_led : out std_logic_vector (3 downto 0)
     );
+    attribute io_buffer_type : string;
+    attribute io_buffer_type of i_clk : signal is "IBUF";
+    attribute io_buffer_type of i_rst : signal is "IBUF";
+    attribute io_buffer_type of ov_led : signal is "OBUF";
 end top_level;
 
 architecture structural of top_level is
