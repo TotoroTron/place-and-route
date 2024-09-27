@@ -134,22 +134,23 @@ public class CompleteRandomPlacer extends Placer {
                     }
                 }
 
-                if (!availableBELs.isEmpty()) {
-                    String randomBEL = availableBELs.get(rand.nextInt(availableBELs.size()));
-                    assignedBELs.add(randomBEL);
-
-                    writer.write("\n\tAssigned SiteType: " + randomSiteType);
-                    writer.write("\n\tAssigned BEL: " + randomBEL);
-
-                    uniqueBELFound = true;
-
-                    // design.placeCell(cell, randomSiteType, randomBEL);
-
-                } else {
-                    // Remove entry and try the while loop again.
+                if (availableBELs.isEmpty()) {
                     entryList.remove(randomEntry);
+                    continue;
                 }
-            }
+
+                String randomBEL = availableBELs.get(rand.nextInt(availableBELs.size()));
+                assignedBELs.add(randomBEL);
+
+                writer.write("\n\tAssigned SiteType: " + randomSiteType);
+                writer.write("\n\tAssigned BEL: " + randomBEL);
+
+                uniqueBELFound = true;
+
+                design.placeCell(cell, randomSiteType, device.getBEL(randomSiteType, randomBEL));
+
+            } // end while (!uniqueBELFound && !entryList.isEmpty())
+
         } // end for (Cell cell : cells)
 
         if (writer != null)
