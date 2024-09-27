@@ -60,6 +60,7 @@ public abstract class Placer {
         printUniqueTiles(device);
         printAllDeviceSites(device);
         printUniqueSites(device);
+        printEDIFHierCellInsts(netlist);
         printEDIFCellInstsTest(netlist);
         printEDIFCellInsts(netlist);
         printEDIFNets(netlist);

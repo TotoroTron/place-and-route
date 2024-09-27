@@ -20,11 +20,11 @@ public class Main {
             logger.addHandler(fileHandler);
             logger.setLevel(Level.ALL); // Set logging level to record all messages
 
-            logger.log(Level.INFO, "Begin SimulatedAnnealingPlacer...");
-            // SimulatedAnnealingPlacer SAPlacer = new SimulatedAnnealingPlacer();
-            CompleteRandomPlacer CRPlacer = new CompleteRandomPlacer();
-            // SAPlacer.run();
-            CRPlacer.run();
+            logger.log(Level.INFO, "Begin Random Placer...");
+
+            PlacerRandom RPlacer = new PlacerRandom();
+            RPlacer.run();
+
             logger.log(Level.INFO, "Data writing complete. Check 'output.txt'");
 
         } catch (IOException e) {

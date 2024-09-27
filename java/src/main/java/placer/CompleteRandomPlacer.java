@@ -147,7 +147,8 @@ public class CompleteRandomPlacer extends Placer {
 
                 uniqueBELFound = true;
 
-                design.placeCell(cell, randomSiteType, device.getBEL(randomSiteType, randomBEL));
+                // design.placeCell(cell, randomSiteType, device.getBEL(randomSiteType,
+                // randomBEL));
 
             } // end while (!uniqueBELFound && !entryList.isEmpty())
 
