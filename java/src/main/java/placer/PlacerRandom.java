@@ -71,12 +71,6 @@ public class PlacerRandom extends Placer {
         BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/PlacerRandom.txt"));
         EDIFNetlist netlist = design.getNetlist();
 
-        // CREATE NETS
-        Map<EDIFHierNet, EDIFHierNet> edifNetMap = netlist.getParentNetMap();
-        for (EDIFHierNet ehn : edifNetMap.keySet()) {
-            design.createNet(ehn);
-        }
-
         // CREATE AND PLACE CELLS
         List<EDIFHierCellInst> cellInstList = netlist.getAllLeafHierCellInstances();
         for (EDIFHierCellInst ehci : cellInstList) {
@@ -86,6 +80,12 @@ public class PlacerRandom extends Placer {
 
             writer.write("\nPlacing Cell: " + cell.getName());
             printAllCompatiblePlacements(writer, cell);
+
+            if (ehci.isTopLevelInst()) {
+                //
+                // TODO
+                //
+            }
 
             List<SiteTypeEnum> sitelessTypes = new ArrayList<>();
             Collections.addAll(sitelessTypes,
@@ -127,7 +127,6 @@ public class PlacerRandom extends Placer {
                 BEL selectedBEL = selectedSite.getBEL(selectedBELName);
 
                 if (occupiedSiteBELs.add(selectedSite.getName() + "_" + selectedBELName)) {
-                    // Unique siteBEL pair successfully added to Set
                     design.placeCell(cell, selectedSite, selectedBEL);
                     writer.write("\n\tPLACED CELL: ");
                     writer.write("\n\t\tBEL: " + selectedBELName);
@@ -144,11 +143,28 @@ public class PlacerRandom extends Placer {
 
         } // end for (EDIFHierCellInst ehci : cellInstList)
 
+        // CREATE NETS
+        Map<EDIFHierNet, EDIFHierNet> edifNetMap = netlist.getParentNetMap();
+        for (EDIFHierNet ehn : edifNetMap.keySet()) {
+
+            // If Net is in top level, route all I/O through I/OLOGICE3
+            EDIFHierCellInst cell = ehn.getHierarchicalInst();
+            if (cell.isTopLevelInst()) {
+                Collection<EDIFHierPortInst> ehpis = ehn.getPortInsts();
+                //
+                // TODO
+                //
+            }
+
+            design.addNet(design.createNet(ehn));
+
+        }
+
         if (writer != null)
             writer.close();
         return design;
 
-    } // end PlacerRandom()
+    } // end place()
 } // end class
 
 // String ehciName = ehci.getCellName();
