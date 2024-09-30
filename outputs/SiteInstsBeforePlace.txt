@@ -1,0 +1,13 @@
+
+SiteInst: OLOGIC_X1Y87
+	isPlaced(): true
+SiteInst: IOB_X1Y142
+	isPlaced(): true
+SiteInst: IOB_X1Y141
+	isPlaced(): true
+SiteInst: IOB_X1Y87
+	isPlaced(): true
+SiteInst: ILOGIC_X1Y141
+	isPlaced(): true
+SiteInst: ILOGIC_X1Y142
+	isPlaced(): true

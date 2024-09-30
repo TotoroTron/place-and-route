@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.List;
 import java.util.HashMap;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
@@ -27,6 +28,8 @@ import com.xilinx.rapidwright.edif.EDIFHierNet;
 import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.Cell;
 import com.xilinx.rapidwright.design.Net;
+import com.xilinx.rapidwright.design.SitePinInst;
+import com.xilinx.rapidwright.design.SiteInst;
 
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 import com.xilinx.rapidwright.device.Site;
@@ -82,9 +85,12 @@ public class PlacerRandom extends Placer {
             printAllCompatiblePlacements(writer, cell);
 
             if (ehci.isTopLevelInst()) {
-                //
-                // TODO
-                //
+            }
+
+            Set<String> skipCells = new HashSet<>(Arrays.asList("IBUF", "OBUF"));
+            if (skipCells.contains(ehci.getCellName())) {
+                // IBUFs and OBUFs are already placed by the constraints xdc file.
+                continue;
             }
 
             List<SiteTypeEnum> sitelessTypes = new ArrayList<>();
@@ -131,6 +137,11 @@ public class PlacerRandom extends Placer {
                     writer.write("\n\tPLACED CELL: ");
                     writer.write("\n\t\tBEL: " + selectedBELName);
                     writer.write("\n\t\tSite: " + selectedSite.getName());
+
+                    System.out.println("\tPLACED CELL: ");
+                    System.out.println("\t\tBEL: " + selectedBELName);
+                    System.out.println("\t\tSite: " + selectedSite.getName());
+                    cell.getSiteInst().routeSite();
                     break;
                 }
                 if (iterCount == 100) {
@@ -143,21 +154,41 @@ public class PlacerRandom extends Placer {
 
         } // end for (EDIFHierCellInst ehci : cellInstList)
 
+        writer.newLine();
+        writer.newLine();
+        writer.newLine();
+
+        // writer.write("\nRouting Intra-Site Connections...");
+        // // ROUTE INTRA-SITE CONNECTIONS
+        // for (Cell cell : design.getCells()) {
+        // Set<String> skipCells = new HashSet<>(Arrays.asList("IBUF", "OBUF"));
+        // if (skipCells.contains(cell.getEDIFCellInst().getCellName())) {
+        // // IBUFs and OBUFs are already placed by the constraints xdc file.
+        // continue;
+        // }
+        // System.out.println("\tCell: " + cell.getName());
+        // SiteInst si = cell.getSiteInst();
+        // writer.write("\n\tSiteInst: " + si.getName());
+        // System.out.println(" SiteInst: " + si.getName());
+        // cell.getSiteInst().routeSite();
+        // }
+
+        writer.newLine();
+        writer.newLine();
+        writer.newLine();
+
         // CREATE NETS
         Map<EDIFHierNet, EDIFHierNet> edifNetMap = netlist.getParentNetMap();
         for (EDIFHierNet ehn : edifNetMap.keySet()) {
+            Net net = design.createNet(ehn);
+            // writer.write("\nNet: " + net.getName());
+            // System.out.println("Net: " + net.getName());
+            // List<SitePinInst> spis = net.getPins();
+            // for (SitePinInst spi : spis) {
+            // writer.write("\n\tSitePinInst: " + spi.getName());
+            // System.out.println("\tSitePinInst: " + spi.getName());
 
-            // If Net is in top level, route all I/O through I/OLOGICE3
-            EDIFHierCellInst cell = ehn.getHierarchicalInst();
-            if (cell.isTopLevelInst()) {
-                Collection<EDIFHierPortInst> ehpis = ehn.getPortInsts();
-                //
-                // TODO
-                //
-            }
-
-            design.addNet(design.createNet(ehn));
-
+            // }
         }
 
         if (writer != null)

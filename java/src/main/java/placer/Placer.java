@@ -16,6 +16,7 @@ import java.io.IOException;
 import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.ModuleInst;
 import com.xilinx.rapidwright.design.ModuleImpls;
+import com.xilinx.rapidwright.design.SiteInst;
 
 import com.xilinx.rapidwright.edif.EDIFNetlist;
 import com.xilinx.rapidwright.edif.EDIFLibrary;
@@ -42,9 +43,9 @@ public abstract class Placer {
     protected Device device;
     protected Design design;
 
-    private final String rootDir = "/home/bcheng/workspace/dev/place-and-route/";
-    private final String synthesizedDcp = rootDir + "/outputs/synthesized.dcp";
-    private final String placedDcp = rootDir + "/outputs/placed.dcp";
+    private String rootDir = "/home/bcheng/workspace/dev/place-and-route/";
+    private String synthesizedDcp = rootDir + "/outputs/synthesized.dcp";
+    private String placedDcp = rootDir + "/outputs/placed.dcp";
 
     public Placer() throws IOException {
         this.design = Design.readCheckpoint(synthesizedDcp);
@@ -55,18 +56,26 @@ public abstract class Placer {
 
     public void run() throws IOException {
         EDIFNetlist netlist = design.getNetlist();
+
         printOneTile(device);
         printAllDeviceTiles(device);
         printUniqueTiles(device);
         printAllDeviceSites(device);
         printUniqueSites(device);
+
         printEDIFHierCellInsts(netlist);
         printEDIFCellInstsTest(netlist);
         printEDIFCellInsts(netlist);
         printEDIFNets(netlist);
         printEDIFHierNets(netlist);
         printTopCell(netlist);
+
+        printAllSiteInsts(design, "SiteInstsBeforePlace");
+
         design = place(design);
+
+        printAllSiteInsts(design, "SiteInstsAfterPlace");
+
         design.writeCheckpoint(placedDcp);
     }
 
@@ -124,6 +133,17 @@ public abstract class Placer {
                 word_count = 0;
             }
         }
+    }
+
+    public void printAllSiteInsts(Design design, String fileName) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/" + fileName + ".txt"));
+        Collection<SiteInst> sis = design.getSiteInsts();
+        for (SiteInst si : sis) {
+            writer.write("\nSiteInst: " + si.getSiteName());
+            writer.write("\n\tisPlaced(): " + si.isPlaced());
+        }
+        if (writer != null)
+            writer.close();
     }
 
     public void printAllDeviceTiles(Device device) throws IOException {
