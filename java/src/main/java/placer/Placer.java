@@ -17,6 +17,9 @@ import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.ModuleInst;
 import com.xilinx.rapidwright.design.ModuleImpls;
 import com.xilinx.rapidwright.design.SiteInst;
+import com.xilinx.rapidwright.design.Net;
+import com.xilinx.rapidwright.design.Cell;
+import com.xilinx.rapidwright.design.SitePinInst;
 
 import com.xilinx.rapidwright.edif.EDIFNetlist;
 import com.xilinx.rapidwright.edif.EDIFLibrary;
@@ -75,8 +78,43 @@ public abstract class Placer {
         design = place(design);
 
         printAllSiteInsts(design, "SiteInstsAfterPlace");
+        printNets(design);
+        printCells(design);
 
         design.writeCheckpoint(placedDcp);
+    }
+
+    public void printCells(Design design) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/DesignCells.txt"));
+        Collection<Cell> cells = design.getCells();
+
+        for (Cell cell : cells) {
+            writer.write("\nCell: " + cell.getName());
+            // writer.write("\n\tSite: " + cell.getSite().getName());
+            // writer.write("\n\tSiteInst: " + cell.getSiteInst().getName());
+        }
+
+        if (writer != null)
+            writer.close();
+    }
+
+    public void printNets(Design design) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/DesignNets.txt"));
+        Collection<Net> nets = design.getNets();
+        for (Net net : nets) {
+            writer.write("\nNet: " + net.getName());
+            Set<SiteInst> sis = net.getSiteInsts();
+            for (SiteInst si : sis) {
+                writer.write("\n\tSiteInst: " + si.getName());
+            }
+            List<SitePinInst> spis = net.getPins();
+            for (SitePinInst spi : spis) {
+                writer.write("\n\tSitePinInst: " + spi.getName());
+            }
+        }
+
+        if (writer != null)
+            writer.close();
     }
 
     public void printOneTile(Device device) throws IOException {

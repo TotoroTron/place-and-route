@@ -26,7 +26,7 @@ public class Main {
             RPlacer.run();
 
             ViewVivadoCheckpoint ViewVivado = new ViewVivadoCheckpoint();
-            ViewVivado.run();
+            // ViewVivado.run();
 
             logger.log(Level.INFO, "Data writing complete. Check 'output.txt'");
 

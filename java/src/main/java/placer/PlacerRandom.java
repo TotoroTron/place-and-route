@@ -133,15 +133,21 @@ public class PlacerRandom extends Placer {
                 BEL selectedBEL = selectedSite.getBEL(selectedBELName);
 
                 if (occupiedSiteBELs.add(selectedSite.getName() + "_" + selectedBELName)) {
+                    cell.setSiteInst(design.getSiteInstFromSite(selectedSite));
                     design.placeCell(cell, selectedSite, selectedBEL);
+                    cell.getSiteInst().place(selectedSite);
+                    // cell.getSiteInst().routeSite();
+
                     writer.write("\n\tPLACED CELL: ");
                     writer.write("\n\t\tBEL: " + selectedBELName);
                     writer.write("\n\t\tSite: " + selectedSite.getName());
+                    writer.write("\n\t\tSite Inst: " + cell.getSiteInst());
 
                     System.out.println("\tPLACED CELL: ");
                     System.out.println("\t\tBEL: " + selectedBELName);
                     System.out.println("\t\tSite: " + selectedSite.getName());
-                    cell.getSiteInst().routeSite();
+                    System.out.println("\t\tSite Inst: " + cell.getSiteInst().getName());
+
                     break;
                 }
                 if (iterCount == 100) {
