@@ -25,7 +25,7 @@ public class Main {
             PlacerRandom RPlacer = new PlacerRandom();
             RPlacer.run();
 
-            ViewVivadoCheckpoint ViewVivado = new ViewVivadoCheckpoint();
+            // ViewVivadoCheckpoint ViewVivado = new ViewVivadoCheckpoint();
             // ViewVivado.run();
 
             logger.log(Level.INFO, "Data writing complete. Check 'output.txt'");

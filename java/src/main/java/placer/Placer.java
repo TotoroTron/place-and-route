@@ -55,7 +55,7 @@ public abstract class Placer {
         this.device = Device.getDevice("xc7z020clg400-1");
     }
 
-    protected abstract Design place(Design design) throws IOException;
+    protected abstract void place() throws IOException;
 
     public void run() throws IOException {
         EDIFNetlist netlist = design.getNetlist();
@@ -73,32 +73,34 @@ public abstract class Placer {
         printEDIFHierNets(netlist);
         printTopCell(netlist);
 
-        printAllSiteInsts(design, "SiteInstsBeforePlace");
+        printAllSiteInsts("SiteInstsBeforePlace");
+        printNets();
+        printCells();
 
-        design = place(design);
+        place();
 
-        printAllSiteInsts(design, "SiteInstsAfterPlace");
-        printNets(design);
-        printCells(design);
+        printAllSiteInsts("SiteInstsAfterPlace");
+        printNets();
+        printCells();
 
         design.writeCheckpoint(placedDcp);
     }
 
-    public void printCells(Design design) throws IOException {
+    public void printCells() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/DesignCells.txt"));
         Collection<Cell> cells = design.getCells();
 
         for (Cell cell : cells) {
             writer.write("\nCell: " + cell.getName());
-            // writer.write("\n\tSite: " + cell.getSite().getName());
-            // writer.write("\n\tSiteInst: " + cell.getSiteInst().getName());
+            writer.write("\n\tSite: " + cell.getSite().getName());
+            writer.write("\n\tSiteInst: " + cell.getSiteInst().getName());
         }
 
         if (writer != null)
             writer.close();
     }
 
-    public void printNets(Design design) throws IOException {
+    public void printNets() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/DesignNets.txt"));
         Collection<Net> nets = design.getNets();
         for (Net net : nets) {
@@ -109,7 +111,7 @@ public abstract class Placer {
             }
             List<SitePinInst> spis = net.getPins();
             for (SitePinInst spi : spis) {
-                writer.write("\n\tSitePinInst: " + spi.getName());
+                writer.write("\n\tSitePinInst: " + spi.getName() + " isRouted() = " + spi.isRouted());
             }
         }
 
@@ -173,7 +175,7 @@ public abstract class Placer {
         }
     }
 
-    public void printAllSiteInsts(Design design, String fileName) throws IOException {
+    public void printAllSiteInsts(String fileName) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/" + fileName + ".txt"));
         Collection<SiteInst> sis = design.getSiteInsts();
         for (SiteInst si : sis) {

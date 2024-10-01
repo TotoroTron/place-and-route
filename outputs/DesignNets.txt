@@ -1,12 +1,13 @@
 
 Net: i_btn_0
+	SiteInst: IOB_X1Y142
 Net: o_led
+	SiteInst: IOB_X1Y87
 Net: i_btn_0_IBUF
 Net: GLOBAL_LOGIC0
 	SiteInst: IOB_X1Y142
 	SiteInst: IOB_X1Y141
-Net: GLOBAL_LOGIC1
-	SiteInst: SLICE_X63Y45
 Net: i_btn_1_IBUF
 Net: o_led_OBUF
 Net: i_btn_1
+	SiteInst: IOB_X1Y141

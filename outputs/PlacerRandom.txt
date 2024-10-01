@@ -77,13 +77,13 @@ Placing Cell: o_led_OBUF_inst_i_1
 			BEL: D5LUT
 			BEL: D6LUT
 			4350 compatible sites.
+	Created Net: i_btn_0_IBUF
+	Created Net: i_btn_1_IBUF
+	Created Net: o_led_OBUF
 	PLACED CELL: 
-		BEL: C5LUT
-		Site: SLICE_X63Y45
-		Site Inst: SiteInst(name="SLICE_X63Y45", type="SLICEL", site="SLICE_X63Y45")
-
-
-
+		BEL: D6LUT
+		Site: SLICE_X100Y19
+		Site Inst: SLICE_X100Y19
 
 
 

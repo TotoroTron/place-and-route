@@ -1,9 +1,0 @@
-
-Cell: i_btn_0
-Cell: o_led
-Cell: i_btn_1_IBUF_inst
-Cell: i_btn_0_IBUF_inst
-Cell: <LOCKED>
-Cell: o_led_OBUF_inst
-Cell: i_btn_1
-Cell: o_led_OBUF_inst_i_1
