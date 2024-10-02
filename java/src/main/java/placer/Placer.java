@@ -95,14 +95,26 @@ public abstract class Placer {
         System.out.println("\nNumber of cells: " + cells.size());
 
         for (Cell cell : cells) {
-            System.out.println("Cell: " + cell.getName() + " isPlaced = " + cell.isPlaced());
-            // System.out.println("\tSite: " + cell.getSite().getName());
-            // System.out.println("\tSiteInst " + cell.getSiteInst().getName() + " Placed="
-            // + cell.getSiteInst().isPlaced());
-            writer.write("\nCell: " + cell.getName() + " isPlaced = " + cell.isPlaced());
-            // writer.write("\n\tSite: " + cell.getSite().getName());
-            // writer.write("\n\tSiteInst: " + cell.getSiteInst().getName() + " Placed=" +
-            // cell.getSiteInst().isPlaced());
+            String s1 = String.format(
+                    "Cell: %-40s isPlaced = %-10s",
+                    cell.getName(), cell.isPlaced());
+            System.out.println(s1);
+            writer.newLine();
+            writer.write(s1);
+
+            if (cell.getSite() != null) {
+                String s2 = "\tSite: " + cell.getSite().getName();
+                String s3 = "\tSiteInst " + cell.getSiteInst().getName() + " \tPlaced = "
+                        + cell.getSiteInst().isPlaced();
+
+                System.out.println(s2);
+                System.out.println(s3);
+                writer.newLine();
+                writer.write(s2);
+                writer.newLine();
+                writer.write(s3);
+
+            }
         }
 
         if (writer != null)
@@ -117,6 +129,7 @@ public abstract class Placer {
             Set<SiteInst> sis = net.getSiteInsts();
             for (SiteInst si : sis) {
                 writer.write("\n\tSiteInst: " + si.getName());
+                writer.write("\n\t\tCells: " + si.getCells());
             }
             List<SitePinInst> spis = net.getPins();
             for (SitePinInst spi : spis) {

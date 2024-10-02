@@ -31,9 +31,9 @@ Placing Cell: o_led_OBUF_inst_i_1
 	Created Net: i_btn_1_IBUF
 	Created Net: o_led_OBUF
 	PLACED CELL: 
-		BEL: D6LUT
-		Site: SLICE_X102Y11
-		Site Inst: SLICE_X102Y11
+		BEL: D5LUT
+		Site: SLICE_X94Y61
+		Site Inst: SLICE_X94Y61
 
 
 

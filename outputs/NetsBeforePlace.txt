@@ -1,16 +1,24 @@
 
 Net: i_btn_0
 	SiteInst: IOB_X1Y142
+		Cells: [i_btn_0_IBUF_inst(BEL: INBUF_EN), i_btn_0(BEL: PAD)]
 Net: o_led
 	SiteInst: IOB_X1Y87
+		Cells: [o_led(BEL: PAD), o_led_OBUF_inst(BEL: OUTBUF)]
 Net: i_btn_0_IBUF
 	SiteInst: IOB_X1Y142
+		Cells: [i_btn_0_IBUF_inst(BEL: INBUF_EN), i_btn_0(BEL: PAD)]
 Net: GLOBAL_LOGIC0
 	SiteInst: IOB_X1Y142
+		Cells: [i_btn_0_IBUF_inst(BEL: INBUF_EN), i_btn_0(BEL: PAD)]
 	SiteInst: IOB_X1Y141
+		Cells: [i_btn_1_IBUF_inst(BEL: INBUF_EN), i_btn_1(BEL: PAD)]
 Net: i_btn_1_IBUF
 	SiteInst: IOB_X1Y141
+		Cells: [i_btn_1_IBUF_inst(BEL: INBUF_EN), i_btn_1(BEL: PAD)]
 Net: o_led_OBUF
 	SiteInst: IOB_X1Y87
+		Cells: [o_led(BEL: PAD), o_led_OBUF_inst(BEL: OUTBUF)]
 Net: i_btn_1
 	SiteInst: IOB_X1Y141
+		Cells: [i_btn_1_IBUF_inst(BEL: INBUF_EN), i_btn_1(BEL: PAD)]

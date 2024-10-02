@@ -1,9 +1,19 @@
 
-Cell: i_btn_0 isPlaced = true
-Cell: o_led isPlaced = true
-Cell: i_btn_1_IBUF_inst isPlaced = false
-Cell: i_btn_0_IBUF_inst isPlaced = false
-Cell: <LOCKED> isPlaced = false
-Cell: o_led_OBUF_inst isPlaced = false
-Cell: i_btn_1 isPlaced = true
-Cell: o_led_OBUF_inst_i_1 isPlaced = true
+Cell: i_btn_0                                  isPlaced = true      
+	Site: IOB_X1Y142
+	SiteInst IOB_X1Y142 	Placed = true
+Cell: o_led                                    isPlaced = true      
+	Site: IOB_X1Y87
+	SiteInst IOB_X1Y87 	Placed = true
+Cell: i_btn_1_IBUF_inst                        isPlaced = false     
+Cell: i_btn_0_IBUF_inst                        isPlaced = false     
+Cell: <LOCKED>                                 isPlaced = false     
+	Site: OLOGIC_X1Y87
+	SiteInst OLOGIC_X1Y87 	Placed = true
+Cell: o_led_OBUF_inst                          isPlaced = false     
+Cell: i_btn_1                                  isPlaced = true      
+	Site: IOB_X1Y141
+	SiteInst IOB_X1Y141 	Placed = true
+Cell: o_led_OBUF_inst_i_1                      isPlaced = true      
+	Site: SLICE_X94Y61
+	SiteInst SLICE_X94Y61 	Placed = true
