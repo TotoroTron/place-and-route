@@ -1,0 +1,9 @@
+
+Cell: i_btn_0 isPlaced = true
+Cell: o_led isPlaced = true
+Cell: i_btn_1_IBUF_inst isPlaced = false
+Cell: i_btn_0_IBUF_inst isPlaced = false
+Cell: <LOCKED> isPlaced = false
+Cell: o_led_OBUF_inst isPlaced = false
+Cell: i_btn_1 isPlaced = true
+Cell: o_led_OBUF_inst_i_1 isPlaced = true

@@ -1,60 +1,10 @@
 
 Placing Cell: i_btn_0_IBUF_inst
-	Compatible placements: 
-		SiteTypeEnum: IOB18
-			BEL: INBUF_DCIEN
-			Sites: None!
-		SiteTypeEnum: IPAD
-			BEL: IPAD
-			Site: IPAD_X0Y1
-			Site: IPAD_X0Y0
-		SiteTypeEnum: IOB33
-			BEL: INBUF_EN
-			Site: IOB_X1Y149
-			Site: IOB_X1Y100
-			Site: IOB_X1Y99
-			Site: IOB_X1Y50
-			Site: IOB_X0Y49
-			Site: IOB_X1Y49
-			Site: IOB_X0Y0
-			Site: IOB_X1Y0
+	IBUF/OBUF type already placed by constraints.
 Placing Cell: i_btn_1_IBUF_inst
-	Compatible placements: 
-		SiteTypeEnum: IOB18
-			BEL: INBUF_DCIEN
-			Sites: None!
-		SiteTypeEnum: IPAD
-			BEL: IPAD
-			Site: IPAD_X0Y1
-			Site: IPAD_X0Y0
-		SiteTypeEnum: IOB33
-			BEL: INBUF_EN
-			Site: IOB_X1Y149
-			Site: IOB_X1Y100
-			Site: IOB_X1Y99
-			Site: IOB_X1Y50
-			Site: IOB_X0Y49
-			Site: IOB_X1Y49
-			Site: IOB_X0Y0
-			Site: IOB_X1Y0
+	IBUF/OBUF type already placed by constraints.
 Placing Cell: o_led_OBUF_inst
-	Compatible placements: 
-		SiteTypeEnum: IOB18
-			BEL: OUTBUF_DCIEN
-			Sites: None!
-		SiteTypeEnum: OPAD
-			BEL: OPAD
-			Sites: None!
-		SiteTypeEnum: IOB33
-			BEL: OUTBUF
-			Site: IOB_X1Y149
-			Site: IOB_X1Y100
-			Site: IOB_X1Y99
-			Site: IOB_X1Y50
-			Site: IOB_X0Y49
-			Site: IOB_X1Y49
-			Site: IOB_X0Y0
-			Site: IOB_X1Y0
+	IBUF/OBUF type already placed by constraints.
 Placing Cell: o_led_OBUF_inst_i_1
 	Compatible placements: 
 		SiteTypeEnum: SLICEL
@@ -82,8 +32,8 @@ Placing Cell: o_led_OBUF_inst_i_1
 	Created Net: o_led_OBUF
 	PLACED CELL: 
 		BEL: D6LUT
-		Site: SLICE_X100Y19
-		Site Inst: SLICE_X100Y19
+		Site: SLICE_X102Y11
+		Site Inst: SLICE_X102Y11
 
 
 

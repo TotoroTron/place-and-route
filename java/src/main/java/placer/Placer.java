@@ -44,27 +44,29 @@ import com.xilinx.rapidwright.device.TileTypeEnum;
 public abstract class Placer {
 
     protected Device device;
-    protected Design design;
+    // protected Design design;
+    // protected EDIFNetlist netlist;
 
-    private String rootDir = "/home/bcheng/workspace/dev/place-and-route/";
-    private String synthesizedDcp = rootDir + "/outputs/synthesized.dcp";
-    private String placedDcp = rootDir + "/outputs/placed.dcp";
+    protected String rootDir = "/home/bcheng/workspace/dev/place-and-route/";
+    protected String synthesizedDcp = rootDir + "/outputs/synthesized.dcp";
+    protected String placedDcp = rootDir + "/outputs/placed.dcp";
 
     public Placer() throws IOException {
-        this.design = Design.readCheckpoint(synthesizedDcp);
-        this.device = Device.getDevice("xc7z020clg400-1");
+        device = Device.getDevice("xc7z020clg400-1");
     }
 
-    protected abstract void place() throws IOException;
+    protected abstract Design place(Design design) throws IOException;
 
     public void run() throws IOException {
+
+        Design design = Design.readCheckpoint(synthesizedDcp);
         EDIFNetlist netlist = design.getNetlist();
 
-        printOneTile(device);
-        printAllDeviceTiles(device);
-        printUniqueTiles(device);
-        printAllDeviceSites(device);
-        printUniqueSites(device);
+        printOneTile();
+        printAllDeviceTiles();
+        printUniqueTiles();
+        printAllDeviceSites();
+        printUniqueSites();
 
         printEDIFHierCellInsts(netlist);
         printEDIFCellInstsTest(netlist);
@@ -73,35 +75,42 @@ public abstract class Placer {
         printEDIFHierNets(netlist);
         printTopCell(netlist);
 
-        printAllSiteInsts("SiteInstsBeforePlace");
-        printNets();
-        printCells();
+        printAllSiteInsts(design, "SiteInstsBeforePlace");
+        printNets(design, "NetsBeforePlace");
+        printCells(design, "CellsBeforePlace");
 
-        place();
+        design = place(design);
 
-        printAllSiteInsts("SiteInstsAfterPlace");
-        printNets();
-        printCells();
+        printAllSiteInsts(design, "SiteInstsAfterPlace");
+        printNets(design, "NetsAfterPlace");
+        printCells(design, "CellsAfterPlace");
 
         design.writeCheckpoint(placedDcp);
     }
 
-    public void printCells() throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/DesignCells.txt"));
+    public void printCells(Design design, String fileName) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/" + fileName + ".txt"));
         Collection<Cell> cells = design.getCells();
 
+        System.out.println("\nNumber of cells: " + cells.size());
+
         for (Cell cell : cells) {
-            writer.write("\nCell: " + cell.getName());
-            writer.write("\n\tSite: " + cell.getSite().getName());
-            writer.write("\n\tSiteInst: " + cell.getSiteInst().getName());
+            System.out.println("Cell: " + cell.getName() + " isPlaced = " + cell.isPlaced());
+            // System.out.println("\tSite: " + cell.getSite().getName());
+            // System.out.println("\tSiteInst " + cell.getSiteInst().getName() + " Placed="
+            // + cell.getSiteInst().isPlaced());
+            writer.write("\nCell: " + cell.getName() + " isPlaced = " + cell.isPlaced());
+            // writer.write("\n\tSite: " + cell.getSite().getName());
+            // writer.write("\n\tSiteInst: " + cell.getSiteInst().getName() + " Placed=" +
+            // cell.getSiteInst().isPlaced());
         }
 
         if (writer != null)
             writer.close();
     }
 
-    public void printNets() throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/DesignNets.txt"));
+    public void printNets(Design design, String fileName) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/" + fileName + ".txt"));
         Collection<Net> nets = design.getNets();
         for (Net net : nets) {
             writer.write("\nNet: " + net.getName());
@@ -119,7 +128,7 @@ public abstract class Placer {
             writer.close();
     }
 
-    public void printOneTile(Device device) throws IOException {
+    public void printOneTile() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/OneTile.txt"));
         Tile tile = device.getTile(155, 10); // ROW, COLUMN
         writer.write("\nTileType: " + tile.getTileTypeEnum());
@@ -175,7 +184,7 @@ public abstract class Placer {
         }
     }
 
-    public void printAllSiteInsts(String fileName) throws IOException {
+    public void printAllSiteInsts(Design design, String fileName) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/" + fileName + ".txt"));
         Collection<SiteInst> sis = design.getSiteInsts();
         for (SiteInst si : sis) {
@@ -186,7 +195,7 @@ public abstract class Placer {
             writer.close();
     }
 
-    public void printAllDeviceTiles(Device device) throws IOException {
+    public void printAllDeviceTiles() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/DeviceAllTiles.txt"));
         writer.write("\nPrinting all tiles in device: ");
         Tile[][] tiles = device.getTiles();
@@ -197,7 +206,7 @@ public abstract class Placer {
             writer.close();
     }
 
-    public void printAllDeviceSites(Device device) throws IOException {
+    public void printAllDeviceSites() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/DeviceAllSites.txt"));
         writer.write("Printing All Site(s) in device " + device.getName() + ": ");
         writer.write("Unique site types: " + device.getSiteTypeCount());
@@ -207,7 +216,7 @@ public abstract class Placer {
             writer.close();
     }
 
-    public void printUniqueTiles(Device device) throws IOException {
+    public void printUniqueTiles() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/DeviceUniqueTiles.txt"));
         // writer.write("Number of unique tile types: " + device.getTileTypeCount());
         // why is this inconsistent with unique TypeEnums?
@@ -229,7 +238,7 @@ public abstract class Placer {
             writer.close();
     }
 
-    public void printUniqueSites(Device device) throws IOException {
+    public void printUniqueSites() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/DeviceUniqueSites.txt"));
         // writer.write("Number of unique sites in the device: " +
         // device.getSiteTypeCount());
@@ -420,7 +429,7 @@ public abstract class Placer {
             writer.close();
     }
 
-    public void printModuleImpls(EDIFNetlist netlist) throws IOException {
+    public void printModuleImpls(Design design) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/ModuleImpls.txt"));
         writer.write("Printing ModuleImpls: ");
         Collection<ModuleImpls> modimpls = design.getModules();
@@ -431,7 +440,7 @@ public abstract class Placer {
             writer.close();
     }
 
-    public void printModuleInsts(EDIFNetlist netlist) throws IOException {
+    public void printModuleInsts(Design design) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/ModuleInsts.txt"));
         writer.write("Printing ModuleInsts: ");
         Collection<ModuleInst> modinsts = design.getModuleInsts();
