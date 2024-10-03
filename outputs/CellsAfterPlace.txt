@@ -28,6 +28,6 @@ Cell: i_btn_1                                  isPlaced = true
 	SiteInst: IOB_X1Y141 	Placed = true
 	SiteTypeEnum: IOB33
 Cell: o_led_OBUF_inst_i_1                      isPlaced = true      
-	Site: SLICE_X30Y98
-	SiteInst: SLICE_X30Y98 	Placed = true
+	Site: SLICE_X100Y79
+	SiteInst: SLICE_X100Y79 	Placed = true
 	SiteTypeEnum: SLICEM

@@ -165,6 +165,7 @@ public class PlacerRandom extends Placer {
         if (writer != null)
             writer.close();
 
+        design.routeSites();
         return design;
 
     } // end place()

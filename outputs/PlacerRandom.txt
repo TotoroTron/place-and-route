@@ -1,10 +1,10 @@
 
 IBUF/OBUF type already placed by constraints.
-	Cell: i_btn_0_IBUF_inst placed at: IOB_X1Y142
+	Cell: i_btn_0_IBUF_inst	placed at Site: IOB_X1Y142
 IBUF/OBUF type already placed by constraints.
-	Cell: i_btn_1_IBUF_inst placed at: IOB_X1Y141
+	Cell: i_btn_1_IBUF_inst	placed at Site: IOB_X1Y141
 IBUF/OBUF type already placed by constraints.
-	Cell: o_led_OBUF_inst placed at: IOB_X1Y87
+	Cell: o_led_OBUF_inst	placed at Site: IOB_X1Y87
 Placing Cell: o_led_OBUF_inst_i_1
 	Compatible placements: 
 		SiteTypeEnum: SLICEL
@@ -31,9 +31,9 @@ Placing Cell: o_led_OBUF_inst_i_1
 	Created Net: i_btn_1_IBUF
 	Created Net: o_led_OBUF
 	PLACED CELL: 
-		BEL: D5LUT
-		Site: SLICE_X30Y98
-		Site Inst: SLICE_X30Y98
+		BEL: B6LUT
+		Site: SLICE_X100Y79
+		Site Inst: SLICE_X100Y79
 		SiteTypeEnum: SLICEM
 
 

@@ -5,17 +5,27 @@ Net: i_btn_0
 Net: o_led
 	SiteInst: IOB_X1Y87
 		Cells: [o_led(BEL: PAD), o_led_OBUF_inst(BEL: OUTBUF)]
+	SitePinInst: PADOUT isRouted() = false
 Net: i_btn_0_IBUF
+	SiteInst: SLICE_X100Y79
+		Cells: [o_led_OBUF_inst_i_1(BEL: B6LUT)]
+	SitePinInst: I isRouted() = false
+	SitePinInst: B5 isRouted() = false
 Net: GLOBAL_LOGIC0
 	SiteInst: IOB_X1Y142
 		Cells: [i_btn_0_IBUF_inst(BEL: INBUF_EN), i_btn_0(BEL: PAD)]
 	SiteInst: IOB_X1Y141
 		Cells: [i_btn_1_IBUF_inst(BEL: INBUF_EN), i_btn_1(BEL: PAD)]
-Net: GLOBAL_LOGIC1
-	SiteInst: SLICE_X30Y98
-		Cells: [o_led_OBUF_inst_i_1(BEL: D5LUT)]
 Net: i_btn_1_IBUF
+	SiteInst: SLICE_X100Y79
+		Cells: [o_led_OBUF_inst_i_1(BEL: B6LUT)]
+	SitePinInst: I isRouted() = false
+	SitePinInst: B6 isRouted() = false
 Net: o_led_OBUF
+	SiteInst: SLICE_X100Y79
+		Cells: [o_led_OBUF_inst_i_1(BEL: B6LUT)]
+	SitePinInst: B isRouted() = false
+	SitePinInst: O isRouted() = false
 Net: i_btn_1
 	SiteInst: IOB_X1Y141
 		Cells: [i_btn_1_IBUF_inst(BEL: INBUF_EN), i_btn_1(BEL: PAD)]
