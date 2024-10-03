@@ -1,15 +1,59 @@
 
-SiteInst: OLOGIC_X1Y87
+SiteInst: OLOGIC_X1Y104
 	isPlaced(): true
-SiteInst: IOB_X1Y142
+SiteInst: IOB_X1Y124
 	isPlaced(): true
-SiteInst: IOB_X1Y141
+SiteInst: IOB_X1Y107
 	isPlaced(): true
-SiteInst: SLICE_X100Y79
+SiteInst: SLICE_X102Y31
+	isPlaced(): true
+SiteInst: ILOGIC_X1Y124
+	isPlaced(): true
+SiteInst: IOB_X1Y104
+	isPlaced(): true
+SiteInst: OLOGIC_X1Y107
+	isPlaced(): true
+SiteInst: SLICE_X39Y106
+	isPlaced(): true
+SiteInst: SLICE_X49Y121
+	isPlaced(): true
+SiteInst: SLICE_X99Y57
+	isPlaced(): true
+SiteInst: SLICE_X113Y114
+	isPlaced(): true
+SiteInst: SLICE_X18Y2
+	isPlaced(): true
+SiteInst: IOB_X1Y88
+	isPlaced(): true
+SiteInst: SLICE_X62Y40
 	isPlaced(): true
 SiteInst: IOB_X1Y87
 	isPlaced(): true
-SiteInst: ILOGIC_X1Y141
+SiteInst: SLICE_X104Y109
 	isPlaced(): true
-SiteInst: ILOGIC_X1Y142
+SiteInst: SLICE_X10Y33
+	isPlaced(): true
+SiteInst: IOB_X1Y135
+	isPlaced(): true
+SiteInst: SLICE_X50Y9
+	isPlaced(): true
+SiteInst: ILOGIC_X1Y135
+	isPlaced(): true
+SiteInst: SLICE_X94Y64
+	isPlaced(): true
+SiteInst: SLICE_X98Y11
+	isPlaced(): true
+SiteInst: OLOGIC_X1Y88
+	isPlaced(): true
+SiteInst: SLICE_X111Y142
+	isPlaced(): true
+SiteInst: OLOGIC_X1Y87
+	isPlaced(): true
+SiteInst: SLICE_X111Y136
+	isPlaced(): true
+SiteInst: SLICE_X50Y97
+	isPlaced(): true
+SiteInst: SLICE_X42Y85
+	isPlaced(): true
+SiteInst: SLICE_X47Y100
 	isPlaced(): true

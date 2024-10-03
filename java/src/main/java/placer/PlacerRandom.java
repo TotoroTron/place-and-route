@@ -140,7 +140,7 @@ public class PlacerRandom extends Placer {
                     writer.write("\n\tPLACED CELL: ");
                     writer.write("\n\t\tBEL: " + cell.getBEL().getName());
                     writer.write("\n\t\tSite: " + cell.getSite().getName());
-                    writer.write("\n\t\tSite Inst: " + cell.getSiteInst().getName());
+                    writer.write("\n\t\tSiteInst: " + cell.getSiteInst().getName());
                     writer.write("\n\t\tSiteTypeEnum: " + cell.getSiteInst().getSiteTypeEnum());
                     break; // break while-loop
                 }
@@ -152,20 +152,25 @@ public class PlacerRandom extends Placer {
                 }
                 iterCount++;
 
-            } // end while-loop
+            } // end while (true)
 
-            writer.newLine();
-
-        } // end for (EDIFHierCellInst ehci : cellInstList)
+        } // end for (ehci)
 
         writer.newLine();
         writer.newLine();
         writer.newLine();
+        writer.write("Beginning Intra-Routing...");
+        writer.newLine();
+
+        for (SiteInst siteInst : design.getSiteInsts()) {
+            boolean carryIsUsed = siteInst.getCells().stream().anyMatch(cell -> cell.getBEL().isCarry());
+            //
+            // TODO
+            //
+        }
 
         if (writer != null)
             writer.close();
-
-        design.routeSites();
         return design;
 
     } // end place()

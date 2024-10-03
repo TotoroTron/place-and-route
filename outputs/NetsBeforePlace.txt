@@ -1,24 +1,67 @@
 
-Net: i_btn_0
-	SiteInst: IOB_X1Y142
-		Cells: [i_btn_0_IBUF_inst(BEL: INBUF_EN), i_btn_0(BEL: PAD)]
-Net: o_led
+Net: COUNTER/Q[2]
+	SiteInst: IOB_X1Y107
+		Cells: [ov_led[2](BEL: PAD), ov_led_OBUF[2]_inst(BEL: OUTBUF)]
+	SitePinInsts: None!
+
+Net: COUNTER/Q[1]
+	SiteInst: IOB_X1Y88
+		Cells: [ov_led[1](BEL: PAD), ov_led_OBUF[1]_inst(BEL: OUTBUF)]
+	SitePinInsts: None!
+
+Net: COUNTER/Q[0]
 	SiteInst: IOB_X1Y87
-		Cells: [o_led(BEL: PAD), o_led_OBUF_inst(BEL: OUTBUF)]
-Net: i_btn_0_IBUF
-	SiteInst: IOB_X1Y142
-		Cells: [i_btn_0_IBUF_inst(BEL: INBUF_EN), i_btn_0(BEL: PAD)]
+		Cells: [ov_led[0](BEL: PAD), ov_led_OBUF[0]_inst(BEL: OUTBUF)]
+	SitePinInsts: None!
+
+Net: ov_led[3]
+	SiteInst: IOB_X1Y104
+		Cells: [ov_led[3](BEL: PAD), ov_led_OBUF[3]_inst(BEL: OUTBUF)]
+	SitePinInsts: None!
+
+Net: ov_led[2]
+	SiteInst: IOB_X1Y107
+		Cells: [ov_led[2](BEL: PAD), ov_led_OBUF[2]_inst(BEL: OUTBUF)]
+	SitePinInsts: None!
+
 Net: GLOBAL_LOGIC0
-	SiteInst: IOB_X1Y142
-		Cells: [i_btn_0_IBUF_inst(BEL: INBUF_EN), i_btn_0(BEL: PAD)]
-	SiteInst: IOB_X1Y141
-		Cells: [i_btn_1_IBUF_inst(BEL: INBUF_EN), i_btn_1(BEL: PAD)]
-Net: i_btn_1_IBUF
-	SiteInst: IOB_X1Y141
-		Cells: [i_btn_1_IBUF_inst(BEL: INBUF_EN), i_btn_1(BEL: PAD)]
-Net: o_led_OBUF
+	SiteInst: IOB_X1Y135
+		Cells: [i_rst_IBUF_inst(BEL: INBUF_EN), i_rst(BEL: PAD)]
+	SiteInst: IOB_X1Y124
+		Cells: [i_clk_IBUF_inst(BEL: INBUF_EN), i_clk(BEL: PAD)]
+	SitePinInsts: None!
+
+Net: ov_led[1]
+	SiteInst: IOB_X1Y88
+		Cells: [ov_led[1](BEL: PAD), ov_led_OBUF[1]_inst(BEL: OUTBUF)]
+	SitePinInsts: None!
+
+Net: ov_led[0]
 	SiteInst: IOB_X1Y87
-		Cells: [o_led(BEL: PAD), o_led_OBUF_inst(BEL: OUTBUF)]
-Net: i_btn_1
-	SiteInst: IOB_X1Y141
-		Cells: [i_btn_1_IBUF_inst(BEL: INBUF_EN), i_btn_1(BEL: PAD)]
+		Cells: [ov_led[0](BEL: PAD), ov_led_OBUF[0]_inst(BEL: OUTBUF)]
+	SitePinInsts: None!
+
+Net: i_rst
+	SiteInst: IOB_X1Y135
+		Cells: [i_rst_IBUF_inst(BEL: INBUF_EN), i_rst(BEL: PAD)]
+	SitePinInsts: None!
+
+Net: i_rst_IBUF
+	SiteInst: IOB_X1Y135
+		Cells: [i_rst_IBUF_inst(BEL: INBUF_EN), i_rst(BEL: PAD)]
+	SitePinInsts: None!
+
+Net: COUNTER/Q[3]
+	SiteInst: IOB_X1Y104
+		Cells: [ov_led[3](BEL: PAD), ov_led_OBUF[3]_inst(BEL: OUTBUF)]
+	SitePinInsts: None!
+
+Net: i_clk_IBUF
+	SiteInst: IOB_X1Y124
+		Cells: [i_clk_IBUF_inst(BEL: INBUF_EN), i_clk(BEL: PAD)]
+	SitePinInsts: None!
+
+Net: i_clk
+	SiteInst: IOB_X1Y124
+		Cells: [i_clk_IBUF_inst(BEL: INBUF_EN), i_clk(BEL: PAD)]
+	SitePinInsts: None!

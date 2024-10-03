@@ -1,11 +1,95 @@
 
 IBUF/OBUF type already placed by constraints.
-	Cell: i_btn_0_IBUF_inst	placed at Site: IOB_X1Y142
+	Cell: ov_led_OBUF[0]_inst	placed at Site: IOB_X1Y87
 IBUF/OBUF type already placed by constraints.
-	Cell: i_btn_1_IBUF_inst	placed at Site: IOB_X1Y141
+	Cell: ov_led_OBUF[2]_inst	placed at Site: IOB_X1Y107
 IBUF/OBUF type already placed by constraints.
-	Cell: o_led_OBUF_inst	placed at Site: IOB_X1Y87
-Placing Cell: o_led_OBUF_inst_i_1
+	Cell: i_clk_IBUF_inst	placed at Site: IOB_X1Y124
+IBUF/OBUF type already placed by constraints.
+	Cell: ov_led_OBUF[3]_inst	placed at Site: IOB_X1Y104
+IBUF/OBUF type already placed by constraints.
+	Cell: ov_led_OBUF[1]_inst	placed at Site: IOB_X1Y88
+IBUF/OBUF type already placed by constraints.
+	Cell: i_rst_IBUF_inst	placed at Site: IOB_X1Y135
+Placing Cell: CLOCK_ENABLE_GEN/count_reg[0]
+	Compatible placements: 
+		SiteTypeEnum: SLICEL
+			BEL: A5FF
+			BEL: AFF
+			BEL: B5FF
+			BEL: BFF
+			BEL: C5FF
+			BEL: CFF
+			BEL: D5FF
+			BEL: DFF
+			8950 compatible sites.
+		SiteTypeEnum: OLOGICE2
+			BEL: OUTFF
+			BEL: TFF
+			Sites: None!
+		SiteTypeEnum: OLOGICE3
+			BEL: OUTFF
+			BEL: TFF
+			200 compatible sites.
+		SiteTypeEnum: SLICEM
+			BEL: A5FF
+			BEL: AFF
+			BEL: B5FF
+			BEL: BFF
+			BEL: C5FF
+			BEL: CFF
+			BEL: D5FF
+			BEL: DFF
+			4350 compatible sites.
+		SiteTypeEnum: ILOGICE3
+			BEL: IFF
+			200 compatible sites.
+		SiteTypeEnum: ILOGICE2
+			BEL: IFF
+			Sites: None!
+	Created Net: CLOCK_ENABLE_GEN/i_clk_IBUF
+	Created Net: CLOCK_ENABLE_GEN/<const1>
+	Created Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_7
+	Created Net: CLOCK_ENABLE_GEN/count_reg[0]
+	Created Net: CLOCK_ENABLE_GEN/count[0]_i_1__0_n_0
+	PLACED CELL: 
+		BEL: C5FF
+		Site: SLICE_X42Y85
+		SiteInst: SLICE_X42Y85
+		SiteTypeEnum: SLICEM
+Placing Cell: CLOCK_ENABLE_GEN/o_pulse_reg
+	Compatible placements: 
+		SiteTypeEnum: SLICEL
+			BEL: A5FF
+			BEL: AFF
+			BEL: B5FF
+			BEL: BFF
+			BEL: C5FF
+			BEL: CFF
+			BEL: D5FF
+			BEL: DFF
+			8950 compatible sites.
+		SiteTypeEnum: SLICEM
+			BEL: A5FF
+			BEL: AFF
+			BEL: B5FF
+			BEL: BFF
+			BEL: C5FF
+			BEL: CFF
+			BEL: D5FF
+			BEL: DFF
+			4350 compatible sites.
+	Created Net: CLOCK_ENABLE_GEN/i_clk_IBUF
+	Created Net: CLOCK_ENABLE_GEN/<const1>
+	Created Net: CLOCK_ENABLE_GEN/o_pulse_i_1_n_0
+	Created Net: CLOCK_ENABLE_GEN/E[0]
+	Created Net: CLOCK_ENABLE_GEN/<const0>
+	PLACED CELL: 
+		BEL: D5FF
+		Site: SLICE_X94Y64
+		SiteInst: SLICE_X94Y64
+		SiteTypeEnum: SLICEM
+Placing Cell: CLOCK_ENABLE_GEN/count[0]_i_1__0
 	Compatible placements: 
 		SiteTypeEnum: SLICEL
 			BEL: A5LUT
@@ -27,14 +111,490 @@ Placing Cell: o_led_OBUF_inst_i_1
 			BEL: D5LUT
 			BEL: D6LUT
 			4350 compatible sites.
-	Created Net: i_btn_0_IBUF
-	Created Net: i_btn_1_IBUF
-	Created Net: o_led_OBUF
+	Created Net: CLOCK_ENABLE_GEN/SR[0]
+	Created Net: CLOCK_ENABLE_GEN/count_reg[3]
+	Created Net: CLOCK_ENABLE_GEN/count_reg[0]
+	Created Net: CLOCK_ENABLE_GEN/count_reg[1]
+	Created Net: CLOCK_ENABLE_GEN/count_reg[2]
+	Created Net: CLOCK_ENABLE_GEN/count[0]_i_1__0_n_0
+	PLACED CELL: 
+		BEL: A5LUT
+		Site: SLICE_X104Y109
+		SiteInst: SLICE_X104Y109
+		SiteTypeEnum: SLICEM
+Placing Cell: CLOCK_ENABLE_GEN/count_reg[3]
+	Compatible placements: 
+		SiteTypeEnum: SLICEL
+			BEL: A5FF
+			BEL: AFF
+			BEL: B5FF
+			BEL: BFF
+			BEL: C5FF
+			BEL: CFF
+			BEL: D5FF
+			BEL: DFF
+			8950 compatible sites.
+		SiteTypeEnum: SLICEM
+			BEL: A5FF
+			BEL: AFF
+			BEL: B5FF
+			BEL: BFF
+			BEL: C5FF
+			BEL: CFF
+			BEL: D5FF
+			BEL: DFF
+			4350 compatible sites.
+	Created Net: CLOCK_ENABLE_GEN/i_clk_IBUF
+	Created Net: CLOCK_ENABLE_GEN/<const1>
+	Created Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_4
+	Created Net: CLOCK_ENABLE_GEN/count_reg[3]
+	Created Net: CLOCK_ENABLE_GEN/count[0]_i_1__0_n_0
+	PLACED CELL: 
+		BEL: AFF
+		Site: SLICE_X111Y142
+		SiteInst: SLICE_X111Y142
+		SiteTypeEnum: SLICEL
+Placing Cell: CLOCK_ENABLE_GEN/count_reg[1]
+	Compatible placements: 
+		SiteTypeEnum: SLICEL
+			BEL: A5FF
+			BEL: AFF
+			BEL: B5FF
+			BEL: BFF
+			BEL: C5FF
+			BEL: CFF
+			BEL: D5FF
+			BEL: DFF
+			8950 compatible sites.
+		SiteTypeEnum: SLICEM
+			BEL: A5FF
+			BEL: AFF
+			BEL: B5FF
+			BEL: BFF
+			BEL: C5FF
+			BEL: CFF
+			BEL: D5FF
+			BEL: DFF
+			4350 compatible sites.
+	Created Net: CLOCK_ENABLE_GEN/i_clk_IBUF
+	Created Net: CLOCK_ENABLE_GEN/<const1>
+	Created Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_6
+	Created Net: CLOCK_ENABLE_GEN/count_reg[1]
+	Created Net: CLOCK_ENABLE_GEN/count[0]_i_1__0_n_0
+	PLACED CELL: 
+		BEL: DFF
+		Site: SLICE_X99Y57
+		SiteInst: SLICE_X99Y57
+		SiteTypeEnum: SLICEL
+Placing Cell: CLOCK_ENABLE_GEN/VCC
+	Compatible placements: 
+	WARNING: Cell: CLOCK_ENABLE_GEN/VCC has no compatible BELs on the device!
+Placing Cell: CLOCK_ENABLE_GEN/count_reg[2]
+	Compatible placements: 
+		SiteTypeEnum: SLICEL
+			BEL: A5FF
+			BEL: AFF
+			BEL: B5FF
+			BEL: BFF
+			BEL: C5FF
+			BEL: CFF
+			BEL: D5FF
+			BEL: DFF
+			8950 compatible sites.
+		SiteTypeEnum: SLICEM
+			BEL: A5FF
+			BEL: AFF
+			BEL: B5FF
+			BEL: BFF
+			BEL: C5FF
+			BEL: CFF
+			BEL: D5FF
+			BEL: DFF
+			4350 compatible sites.
+	Created Net: CLOCK_ENABLE_GEN/i_clk_IBUF
+	Created Net: CLOCK_ENABLE_GEN/<const1>
+	Created Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_5
+	Created Net: CLOCK_ENABLE_GEN/count_reg[2]
+	Created Net: CLOCK_ENABLE_GEN/count[0]_i_1__0_n_0
+	PLACED CELL: 
+		BEL: D5FF
+		Site: SLICE_X47Y100
+		SiteInst: SLICE_X47Y100
+		SiteTypeEnum: SLICEL
+Placing Cell: CLOCK_ENABLE_GEN/count_reg[0]_i_2
+	Compatible placements: 
+		SiteTypeEnum: SLICEL
+			BEL: CARRY4
+			8950 compatible sites.
+		SiteTypeEnum: SLICEM
+			BEL: CARRY4
+			4350 compatible sites.
+	Created Net: CLOCK_ENABLE_GEN/<const0>
+	Created Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_3
+	Created Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_2
+	Created Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_1
+	Created Net: CLOCK_ENABLE_GEN/<const0>
+	Created Net: CLOCK_ENABLE_GEN/<const1>
+	Created Net: CLOCK_ENABLE_GEN/<const0>
+	Created Net: CLOCK_ENABLE_GEN/<const0>
+	Created Net: CLOCK_ENABLE_GEN/<const0>
+	Created Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_7
+	Created Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_6
+	Created Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_5
+	Created Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_4
+	Created Net: CLOCK_ENABLE_GEN/count[0]_i_3_n_0
+	Created Net: CLOCK_ENABLE_GEN/count_reg[1]
+	Created Net: CLOCK_ENABLE_GEN/count_reg[2]
+	Created Net: CLOCK_ENABLE_GEN/count_reg[3]
+	PLACED CELL: 
+		BEL: CARRY4
+		Site: SLICE_X10Y33
+		SiteInst: SLICE_X10Y33
+		SiteTypeEnum: SLICEM
+Placing Cell: CLOCK_ENABLE_GEN/o_pulse_i_1
+	Compatible placements: 
+		SiteTypeEnum: SLICEL
+			BEL: A5LUT
+			BEL: A6LUT
+			BEL: B5LUT
+			BEL: B6LUT
+			BEL: C5LUT
+			BEL: C6LUT
+			BEL: D5LUT
+			BEL: D6LUT
+			8950 compatible sites.
+		SiteTypeEnum: SLICEM
+			BEL: A5LUT
+			BEL: A6LUT
+			BEL: B5LUT
+			BEL: B6LUT
+			BEL: C5LUT
+			BEL: C6LUT
+			BEL: D5LUT
+			BEL: D6LUT
+			4350 compatible sites.
+	Created Net: CLOCK_ENABLE_GEN/count_reg[0]
+	Created Net: CLOCK_ENABLE_GEN/count_reg[2]
+	Created Net: CLOCK_ENABLE_GEN/count_reg[1]
+	Created Net: CLOCK_ENABLE_GEN/count_reg[3]
+	Created Net: CLOCK_ENABLE_GEN/SR[0]
+	Created Net: CLOCK_ENABLE_GEN/o_pulse_i_1_n_0
 	PLACED CELL: 
 		BEL: B6LUT
-		Site: SLICE_X100Y79
-		Site Inst: SLICE_X100Y79
+		Site: SLICE_X49Y121
+		SiteInst: SLICE_X49Y121
+		SiteTypeEnum: SLICEL
+Placing Cell: CLOCK_ENABLE_GEN/GND
+	Compatible placements: 
+	WARNING: Cell: CLOCK_ENABLE_GEN/GND has no compatible BELs on the device!
+Placing Cell: CLOCK_ENABLE_GEN/count[0]_i_3
+	Compatible placements: 
+		SiteTypeEnum: SLICEL
+			BEL: A5LUT
+			BEL: A6LUT
+			BEL: B5LUT
+			BEL: B6LUT
+			BEL: C5LUT
+			BEL: C6LUT
+			BEL: D5LUT
+			BEL: D6LUT
+			8950 compatible sites.
 		SiteTypeEnum: SLICEM
+			BEL: A5LUT
+			BEL: A6LUT
+			BEL: B5LUT
+			BEL: B6LUT
+			BEL: C5LUT
+			BEL: C6LUT
+			BEL: D5LUT
+			BEL: D6LUT
+			4350 compatible sites.
+	Created Net: CLOCK_ENABLE_GEN/count_reg[0]
+	Created Net: CLOCK_ENABLE_GEN/count[0]_i_3_n_0
+	PLACED CELL: 
+		BEL: B6LUT
+		Site: SLICE_X98Y11
+		SiteInst: SLICE_X98Y11
+		SiteTypeEnum: SLICEM
+Placing Cell: COUNTER/count_reg[0]
+	Compatible placements: 
+		SiteTypeEnum: SLICEL
+			BEL: A5FF
+			BEL: AFF
+			BEL: B5FF
+			BEL: BFF
+			BEL: C5FF
+			BEL: CFF
+			BEL: D5FF
+			BEL: DFF
+			8950 compatible sites.
+		SiteTypeEnum: SLICEM
+			BEL: A5FF
+			BEL: AFF
+			BEL: B5FF
+			BEL: BFF
+			BEL: C5FF
+			BEL: CFF
+			BEL: D5FF
+			BEL: DFF
+			4350 compatible sites.
+	Created Net: COUNTER/i_clk_IBUF
+	Created Net: COUNTER/E[0]
+	Created Net: COUNTER/plusOp[0]
+	Created Net: COUNTER/Q[0]
+	Created Net: COUNTER/SR[0]
+	PLACED CELL: 
+		BEL: BFF
+		Site: SLICE_X102Y31
+		SiteInst: SLICE_X102Y31
+		SiteTypeEnum: SLICEM
+Placing Cell: COUNTER/count[2]_i_1
+	Compatible placements: 
+		SiteTypeEnum: SLICEL
+			BEL: A5LUT
+			BEL: A6LUT
+			BEL: B5LUT
+			BEL: B6LUT
+			BEL: C5LUT
+			BEL: C6LUT
+			BEL: D5LUT
+			BEL: D6LUT
+			8950 compatible sites.
+		SiteTypeEnum: SLICEM
+			BEL: A5LUT
+			BEL: A6LUT
+			BEL: B5LUT
+			BEL: B6LUT
+			BEL: C5LUT
+			BEL: C6LUT
+			BEL: D5LUT
+			BEL: D6LUT
+			4350 compatible sites.
+	Created Net: COUNTER/Q[0]
+	Created Net: COUNTER/Q[1]
+	Created Net: COUNTER/Q[2]
+	Created Net: COUNTER/plusOp[2]
+	PLACED CELL: 
+		BEL: D6LUT
+		Site: SLICE_X50Y97
+		SiteInst: SLICE_X50Y97
+		SiteTypeEnum: SLICEM
+Placing Cell: COUNTER/count[3]_i_1
+	Compatible placements: 
+		SiteTypeEnum: SLICEL
+			BEL: A5LUT
+			BEL: A6LUT
+			BEL: B5LUT
+			BEL: B6LUT
+			BEL: C5LUT
+			BEL: C6LUT
+			BEL: D5LUT
+			BEL: D6LUT
+			8950 compatible sites.
+		SiteTypeEnum: SLICEM
+			BEL: A5LUT
+			BEL: A6LUT
+			BEL: B5LUT
+			BEL: B6LUT
+			BEL: C5LUT
+			BEL: C6LUT
+			BEL: D5LUT
+			BEL: D6LUT
+			4350 compatible sites.
+	Created Net: COUNTER/Q[1]
+	Created Net: COUNTER/Q[0]
+	Created Net: COUNTER/Q[2]
+	Created Net: COUNTER/Q[3]
+	Created Net: COUNTER/plusOp[3]
+	PLACED CELL: 
+		BEL: B5LUT
+		Site: SLICE_X113Y114
+		SiteInst: SLICE_X113Y114
+		SiteTypeEnum: SLICEL
+Placing Cell: COUNTER/count_reg[3]
+	Compatible placements: 
+		SiteTypeEnum: SLICEL
+			BEL: A5FF
+			BEL: AFF
+			BEL: B5FF
+			BEL: BFF
+			BEL: C5FF
+			BEL: CFF
+			BEL: D5FF
+			BEL: DFF
+			8950 compatible sites.
+		SiteTypeEnum: SLICEM
+			BEL: A5FF
+			BEL: AFF
+			BEL: B5FF
+			BEL: BFF
+			BEL: C5FF
+			BEL: CFF
+			BEL: D5FF
+			BEL: DFF
+			4350 compatible sites.
+	Created Net: COUNTER/i_clk_IBUF
+	Created Net: COUNTER/E[0]
+	Created Net: COUNTER/plusOp[3]
+	Created Net: COUNTER/Q[3]
+	Created Net: COUNTER/SR[0]
+	PLACED CELL: 
+		BEL: CFF
+		Site: SLICE_X18Y2
+		SiteInst: SLICE_X18Y2
+		SiteTypeEnum: SLICEM
+Placing Cell: COUNTER/count_reg[1]
+	Compatible placements: 
+		SiteTypeEnum: SLICEL
+			BEL: A5FF
+			BEL: AFF
+			BEL: B5FF
+			BEL: BFF
+			BEL: C5FF
+			BEL: CFF
+			BEL: D5FF
+			BEL: DFF
+			8950 compatible sites.
+		SiteTypeEnum: SLICEM
+			BEL: A5FF
+			BEL: AFF
+			BEL: B5FF
+			BEL: BFF
+			BEL: C5FF
+			BEL: CFF
+			BEL: D5FF
+			BEL: DFF
+			4350 compatible sites.
+	Created Net: COUNTER/i_clk_IBUF
+	Created Net: COUNTER/E[0]
+	Created Net: COUNTER/plusOp[1]
+	Created Net: COUNTER/Q[1]
+	Created Net: COUNTER/SR[0]
+	PLACED CELL: 
+		BEL: C5FF
+		Site: SLICE_X50Y9
+		SiteInst: SLICE_X50Y9
+		SiteTypeEnum: SLICEM
+Placing Cell: COUNTER/count_reg[2]
+	Compatible placements: 
+		SiteTypeEnum: SLICEL
+			BEL: A5FF
+			BEL: AFF
+			BEL: B5FF
+			BEL: BFF
+			BEL: C5FF
+			BEL: CFF
+			BEL: D5FF
+			BEL: DFF
+			8950 compatible sites.
+		SiteTypeEnum: SLICEM
+			BEL: A5FF
+			BEL: AFF
+			BEL: B5FF
+			BEL: BFF
+			BEL: C5FF
+			BEL: CFF
+			BEL: D5FF
+			BEL: DFF
+			4350 compatible sites.
+	Created Net: COUNTER/i_clk_IBUF
+	Created Net: COUNTER/E[0]
+	Created Net: COUNTER/plusOp[2]
+	Created Net: COUNTER/Q[2]
+	Created Net: COUNTER/SR[0]
+	PLACED CELL: 
+		BEL: B5FF
+		Site: SLICE_X39Y106
+		SiteInst: SLICE_X39Y106
+		SiteTypeEnum: SLICEL
+Placing Cell: COUNTER/count[1]_i_1
+	Compatible placements: 
+		SiteTypeEnum: SLICEL
+			BEL: A5LUT
+			BEL: A6LUT
+			BEL: B5LUT
+			BEL: B6LUT
+			BEL: C5LUT
+			BEL: C6LUT
+			BEL: D5LUT
+			BEL: D6LUT
+			8950 compatible sites.
+		SiteTypeEnum: SLICEM
+			BEL: A5LUT
+			BEL: A6LUT
+			BEL: B5LUT
+			BEL: B6LUT
+			BEL: C5LUT
+			BEL: C6LUT
+			BEL: D5LUT
+			BEL: D6LUT
+			4350 compatible sites.
+	Created Net: COUNTER/Q[0]
+	Created Net: COUNTER/Q[1]
+	Created Net: COUNTER/plusOp[1]
+	PLACED CELL: 
+		BEL: B6LUT
+		Site: SLICE_X62Y40
+		SiteInst: SLICE_X62Y40
+		SiteTypeEnum: SLICEM
+Placing Cell: COUNTER/count[0]_i_1
+	Compatible placements: 
+		SiteTypeEnum: SLICEL
+			BEL: A5LUT
+			BEL: A6LUT
+			BEL: B5LUT
+			BEL: B6LUT
+			BEL: C5LUT
+			BEL: C6LUT
+			BEL: D5LUT
+			BEL: D6LUT
+			8950 compatible sites.
+		SiteTypeEnum: SLICEM
+			BEL: A5LUT
+			BEL: A6LUT
+			BEL: B5LUT
+			BEL: B6LUT
+			BEL: C5LUT
+			BEL: C6LUT
+			BEL: D5LUT
+			BEL: D6LUT
+			4350 compatible sites.
+	Created Net: COUNTER/Q[0]
+	Created Net: COUNTER/plusOp[0]
+	PLACED CELL: 
+		BEL: D6LUT
+		Site: SLICE_X111Y136
+		SiteInst: SLICE_X111Y136
+		SiteTypeEnum: SLICEL
 
 
+Beginning Intra-Routing...
 
+RW Intra-Routed Site: IOB_X1Y124
+RW Intra-Routed Site: IOB_X1Y124
+RW Intra-Routed Site: IOB_X1Y107
+RW Intra-Routed Site: IOB_X1Y107
+RW Intra-Routed Site: SLICE_X102Y31
+RW Intra-Routed Site: IOB_X1Y104
+RW Intra-Routed Site: IOB_X1Y104
+RW Intra-Routed Site: SLICE_X39Y106
+RW Intra-Routed Site: SLICE_X49Y121
+RW Intra-Routed Site: SLICE_X99Y57
+RW Intra-Routed Site: SLICE_X113Y114
+RW Intra-Routed Site: SLICE_X18Y2
+RW Intra-Routed Site: IOB_X1Y88
+RW Intra-Routed Site: IOB_X1Y88
+RW Intra-Routed Site: SLICE_X62Y40
+RW Intra-Routed Site: IOB_X1Y87
+RW Intra-Routed Site: IOB_X1Y87
+RW Intra-Routed Site: SLICE_X104Y109
+RW Intra-Routed Site: IOB_X1Y135
+RW Intra-Routed Site: IOB_X1Y135
+RW Intra-Routed Site: SLICE_X50Y9
+RW Intra-Routed Site: SLICE_X94Y64
+RW Intra-Routed Site: SLICE_X98Y11
+RW Intra-Routed Site: SLICE_X111Y142
+RW Intra-Routed Site: SLICE_X111Y136
+RW Intra-Routed Site: SLICE_X50Y97
+RW Intra-Routed Site: SLICE_X42Y85
+RW Intra-Routed Site: SLICE_X47Y100

@@ -1,33 +1,123 @@
 
-Cell: i_btn_0                                  isPlaced = true      
-	Site: IOB_X1Y142
-	SiteInst: IOB_X1Y142 	Placed = true
+Cell: CLOCK_ENABLE_GEN/count_reg[0]_i_2        isPlaced = true      
+	Site: SLICE_X10Y33
+	SiteInst: SLICE_X10Y33 	Placed = true
+	SiteTypeEnum: SLICEM
+Cell: ov_led[2]                                isPlaced = true      
+	Site: IOB_X1Y107
+	SiteInst: IOB_X1Y107 	Placed = true
 	SiteTypeEnum: IOB33
-Cell: o_led                                    isPlaced = true      
+Cell: ov_led[0]                                isPlaced = true      
 	Site: IOB_X1Y87
 	SiteInst: IOB_X1Y87 	Placed = true
 	SiteTypeEnum: IOB33
-Cell: i_btn_1_IBUF_inst                        isPlaced = true      
-	Site: IOB_X1Y141
-	SiteInst: IOB_X1Y141 	Placed = true
+Cell: ov_led_OBUF[2]_inst                      isPlaced = true      
+	Site: IOB_X1Y107
+	SiteInst: IOB_X1Y107 	Placed = true
 	SiteTypeEnum: IOB33
-Cell: i_btn_0_IBUF_inst                        isPlaced = true      
-	Site: IOB_X1Y142
-	SiteInst: IOB_X1Y142 	Placed = true
+Cell: i_rst                                    isPlaced = true      
+	Site: IOB_X1Y135
+	SiteInst: IOB_X1Y135 	Placed = true
 	SiteTypeEnum: IOB33
+Cell: CLOCK_ENABLE_GEN/count[0]_i_1__0         isPlaced = true      
+	Site: SLICE_X104Y109
+	SiteInst: SLICE_X104Y109 	Placed = true
+	SiteTypeEnum: SLICEM
+Cell: COUNTER/count[2]_i_1                     isPlaced = true      
+	Site: SLICE_X50Y97
+	SiteInst: SLICE_X50Y97 	Placed = true
+	SiteTypeEnum: SLICEM
+Cell: CLOCK_ENABLE_GEN/count_reg[0]            isPlaced = true      
+	Site: SLICE_X42Y85
+	SiteInst: SLICE_X42Y85 	Placed = true
+	SiteTypeEnum: SLICEM
+Cell: CLOCK_ENABLE_GEN/count_reg[2]            isPlaced = true      
+	Site: SLICE_X47Y100
+	SiteInst: SLICE_X47Y100 	Placed = true
+	SiteTypeEnum: SLICEL
+Cell: i_rst_IBUF_inst                          isPlaced = true      
+	Site: IOB_X1Y135
+	SiteInst: IOB_X1Y135 	Placed = true
+	SiteTypeEnum: IOB33
+Cell: COUNTER/count_reg[1]                     isPlaced = true      
+	Site: SLICE_X50Y9
+	SiteInst: SLICE_X50Y9 	Placed = true
+	SiteTypeEnum: SLICEM
+Cell: COUNTER/count_reg[3]                     isPlaced = true      
+	Site: SLICE_X18Y2
+	SiteInst: SLICE_X18Y2 	Placed = true
+	SiteTypeEnum: SLICEM
+Cell: ov_led[3]                                isPlaced = true      
+	Site: IOB_X1Y104
+	SiteInst: IOB_X1Y104 	Placed = true
+	SiteTypeEnum: IOB33
+Cell: ov_led[1]                                isPlaced = true      
+	Site: IOB_X1Y88
+	SiteInst: IOB_X1Y88 	Placed = true
+	SiteTypeEnum: IOB33
+Cell: COUNTER/count[3]_i_1                     isPlaced = true      
+	Site: SLICE_X113Y114
+	SiteInst: SLICE_X113Y114 	Placed = true
+	SiteTypeEnum: SLICEL
+Cell: CLOCK_ENABLE_GEN/count_reg[3]            isPlaced = true      
+	Site: SLICE_X111Y142
+	SiteInst: SLICE_X111Y142 	Placed = true
+	SiteTypeEnum: SLICEL
+Cell: COUNTER/count[0]_i_1                     isPlaced = true      
+	Site: SLICE_X111Y136
+	SiteInst: SLICE_X111Y136 	Placed = true
+	SiteTypeEnum: SLICEL
+Cell: i_clk_IBUF_inst                          isPlaced = true      
+	Site: IOB_X1Y124
+	SiteInst: IOB_X1Y124 	Placed = true
+	SiteTypeEnum: IOB33
+Cell: CLOCK_ENABLE_GEN/VCC                     isPlaced = false     
+Cell: ov_led_OBUF[1]_inst                      isPlaced = true      
+	Site: IOB_X1Y88
+	SiteInst: IOB_X1Y88 	Placed = true
+	SiteTypeEnum: IOB33
+Cell: CLOCK_ENABLE_GEN/count_reg[1]            isPlaced = true      
+	Site: SLICE_X99Y57
+	SiteInst: SLICE_X99Y57 	Placed = true
+	SiteTypeEnum: SLICEL
+Cell: COUNTER/count[1]_i_1                     isPlaced = true      
+	Site: SLICE_X62Y40
+	SiteInst: SLICE_X62Y40 	Placed = true
+	SiteTypeEnum: SLICEM
+Cell: CLOCK_ENABLE_GEN/o_pulse_reg             isPlaced = true      
+	Site: SLICE_X94Y64
+	SiteInst: SLICE_X94Y64 	Placed = true
+	SiteTypeEnum: SLICEM
+Cell: CLOCK_ENABLE_GEN/GND                     isPlaced = false     
+Cell: CLOCK_ENABLE_GEN/count[0]_i_3            isPlaced = true      
+	Site: SLICE_X98Y11
+	SiteInst: SLICE_X98Y11 	Placed = true
+	SiteTypeEnum: SLICEM
+Cell: ov_led_OBUF[0]_inst                      isPlaced = true      
+	Site: IOB_X1Y87
+	SiteInst: IOB_X1Y87 	Placed = true
+	SiteTypeEnum: IOB33
+Cell: i_clk                                    isPlaced = true      
+	Site: IOB_X1Y124
+	SiteInst: IOB_X1Y124 	Placed = true
+	SiteTypeEnum: IOB33
+Cell: COUNTER/count_reg[0]                     isPlaced = true      
+	Site: SLICE_X102Y31
+	SiteInst: SLICE_X102Y31 	Placed = true
+	SiteTypeEnum: SLICEM
 Cell: <LOCKED>                                 isPlaced = false     
 	Site: OLOGIC_X1Y87
 	SiteInst: OLOGIC_X1Y87 	Placed = true
 	SiteTypeEnum: OLOGICE3
-Cell: o_led_OBUF_inst                          isPlaced = true      
-	Site: IOB_X1Y87
-	SiteInst: IOB_X1Y87 	Placed = true
+Cell: COUNTER/count_reg[2]                     isPlaced = true      
+	Site: SLICE_X39Y106
+	SiteInst: SLICE_X39Y106 	Placed = true
+	SiteTypeEnum: SLICEL
+Cell: ov_led_OBUF[3]_inst                      isPlaced = true      
+	Site: IOB_X1Y104
+	SiteInst: IOB_X1Y104 	Placed = true
 	SiteTypeEnum: IOB33
-Cell: i_btn_1                                  isPlaced = true      
-	Site: IOB_X1Y141
-	SiteInst: IOB_X1Y141 	Placed = true
-	SiteTypeEnum: IOB33
-Cell: o_led_OBUF_inst_i_1                      isPlaced = true      
-	Site: SLICE_X100Y79
-	SiteInst: SLICE_X100Y79 	Placed = true
-	SiteTypeEnum: SLICEM
+Cell: CLOCK_ENABLE_GEN/o_pulse_i_1             isPlaced = true      
+	Site: SLICE_X49Y121
+	SiteInst: SLICE_X49Y121 	Placed = true
+	SiteTypeEnum: SLICEL

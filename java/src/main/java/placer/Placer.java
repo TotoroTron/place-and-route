@@ -136,9 +136,12 @@ public abstract class Placer {
                 writer.write("\n\t\tCells: " + si.getCells());
             }
             List<SitePinInst> spis = net.getPins();
-            for (SitePinInst spi : spis) {
-                writer.write("\n\tSitePinInst: " + spi.getName() + " isRouted() = " + spi.isRouted());
-            }
+            if (spis.isEmpty())
+                writer.write("\n\tSitePinInsts: None!");
+            else
+                for (SitePinInst spi : spis)
+                    writer.write("\n\tSitePinInst: " + spi.getName() + " isRouted() = " + spi.isRouted());
+            writer.newLine();
         }
 
         if (writer != null)

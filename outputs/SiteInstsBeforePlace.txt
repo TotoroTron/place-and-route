@@ -1,13 +1,25 @@
 
 SiteInst: OLOGIC_X1Y87
 	isPlaced(): true
-SiteInst: IOB_X1Y142
+SiteInst: OLOGIC_X1Y104
 	isPlaced(): true
-SiteInst: IOB_X1Y141
+SiteInst: IOB_X1Y135
+	isPlaced(): true
+SiteInst: IOB_X1Y124
+	isPlaced(): true
+SiteInst: IOB_X1Y107
+	isPlaced(): true
+SiteInst: ILOGIC_X1Y124
+	isPlaced(): true
+SiteInst: ILOGIC_X1Y135
+	isPlaced(): true
+SiteInst: IOB_X1Y88
+	isPlaced(): true
+SiteInst: IOB_X1Y104
 	isPlaced(): true
 SiteInst: IOB_X1Y87
 	isPlaced(): true
-SiteInst: ILOGIC_X1Y141
+SiteInst: OLOGIC_X1Y107
 	isPlaced(): true
-SiteInst: ILOGIC_X1Y142
+SiteInst: OLOGIC_X1Y88
 	isPlaced(): true
