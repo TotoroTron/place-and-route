@@ -12,7 +12,7 @@ Net: GLOBAL_LOGIC0
 	SiteInst: IOB_X1Y141
 		Cells: [i_btn_1_IBUF_inst(BEL: INBUF_EN), i_btn_1(BEL: PAD)]
 Net: GLOBAL_LOGIC1
-	SiteInst: SLICE_X94Y61
+	SiteInst: SLICE_X30Y98
 		Cells: [o_led_OBUF_inst_i_1(BEL: D5LUT)]
 Net: i_btn_1_IBUF
 Net: o_led_OBUF

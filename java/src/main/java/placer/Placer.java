@@ -104,15 +104,19 @@ public abstract class Placer {
 
             if (cell.getSite() != null) {
                 String s2 = "\tSite: " + cell.getSite().getName();
-                String s3 = "\tSiteInst " + cell.getSiteInst().getName() + " \tPlaced = "
+                String s3 = "\tSiteInst: " + cell.getSiteInst().getName() + " \tPlaced = "
                         + cell.getSiteInst().isPlaced();
+                String s4 = "\tSiteTypeEnum: " + cell.getSiteInst().getSiteTypeEnum();
 
                 System.out.println(s2);
                 System.out.println(s3);
+                System.out.println(s4);
                 writer.newLine();
                 writer.write(s2);
                 writer.newLine();
                 writer.write(s3);
+                writer.newLine();
+                writer.write(s4);
 
             }
         }

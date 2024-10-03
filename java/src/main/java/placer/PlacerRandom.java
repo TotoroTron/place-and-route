@@ -73,31 +73,35 @@ public class PlacerRandom extends Placer {
 
     public Design place(Design design) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/PlacerRandom.txt"));
-        design.flattenDesign();
+        // design.flattenDesign();
         EDIFNetlist netlist = design.getNetlist();
 
         // CREATE AND PLACE CELLS
         List<EDIFHierCellInst> cellInstList = netlist.getAllLeafHierCellInstances();
         for (EDIFHierCellInst ehci : cellInstList) {
+
+            Set<String> buffCells = new HashSet<>(Arrays.asList("IBUF", "OBUF"));
+            if (buffCells.contains(ehci.getCellName())) {
+                writer.write("\nIBUF/OBUF type already placed by constraints.");
+                Cell buffCell = design.getCell(ehci.getFullHierarchicalInstName());
+                writer.write("\n\tCell: " + buffCell.getName() + "\tplaced at Site: " + buffCell.getSite().getName());
+                continue; // continue for-loop
+            }
+
             Cell cell = design.createCell(ehci.getFullHierarchicalInstName(), ehci.getInst());
             Map<SiteTypeEnum, Set<String>> compatibleBELs = cell.getCompatiblePlacements(device);
             writer.write("\nPlacing Cell: " + cell.getName());
-            Set<String> skipCells = new HashSet<>(Arrays.asList("IBUF", "OBUF"));
-            if (skipCells.contains(ehci.getCellName())) {
-                writer.write("\n\tIBUF/OBUF type already placed by constraints.");
-                continue; // continue for-loop
-            }
             printAllCompatiblePlacements(writer, cell);
 
-            List<SiteTypeEnum> sitelessTypes = new ArrayList<>();
-            Collections.addAll(sitelessTypes,
+            List<SiteTypeEnum> buffSiteTypes = new ArrayList<>();
+            Collections.addAll(buffSiteTypes,
                     SiteTypeEnum.ILOGICE2,
                     SiteTypeEnum.ILOGICE3,
                     SiteTypeEnum.OLOGICE2,
                     SiteTypeEnum.OLOGICE3,
                     SiteTypeEnum.IOB18,
                     SiteTypeEnum.OPAD);
-            compatibleBELs.keySet().removeAll(sitelessTypes);
+            compatibleBELs.keySet().removeAll(buffSiteTypes);
 
             Set<String> occupiedSiteBELs = new HashSet<>();
             int iterCount = 0;
@@ -137,6 +141,7 @@ public class PlacerRandom extends Placer {
                     writer.write("\n\t\tBEL: " + cell.getBEL().getName());
                     writer.write("\n\t\tSite: " + cell.getSite().getName());
                     writer.write("\n\t\tSite Inst: " + cell.getSiteInst().getName());
+                    writer.write("\n\t\tSiteTypeEnum: " + cell.getSiteInst().getSiteTypeEnum());
                     break; // break while-loop
                 }
 
