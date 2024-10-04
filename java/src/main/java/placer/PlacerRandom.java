@@ -74,9 +74,13 @@ public class PlacerRandom extends Placer {
     public Design place(Design design) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/PlacerRandom.txt"));
         // design.flattenDesign();
-        EDIFNetlist netlist = design.getNetlist();
 
         // CREATE AND PLACE CELLS
+        writer.write("\nPlacing Cells...");
+        writer.newLine();
+        writer.newLine();
+
+        EDIFNetlist netlist = design.getNetlist();
         List<EDIFHierCellInst> cellInstList = netlist.getAllLeafHierCellInstances();
         for (EDIFHierCellInst ehci : cellInstList) {
 
@@ -162,11 +166,42 @@ public class PlacerRandom extends Placer {
         writer.write("Beginning Intra-Routing...");
         writer.newLine();
 
-        for (SiteInst siteInst : design.getSiteInsts()) {
-            boolean carryIsUsed = siteInst.getCells().stream().anyMatch(cell -> cell.getBEL().isCarry());
-            //
-            // TODO
-            //
+        for (SiteInst si : design.getSiteInsts()) {
+            // route the site normally
+            si.routeSite();
+
+            // does this site use a CARRY cell?
+            // if so, we might need to route carry-in nets manually.
+            Cell carryCell = si.getCells().stream()
+                    .filter(cell -> cell.getBEL() != null)
+                    .filter(cell -> cell.getBEL().isCarry())
+                    .findFirst()
+                    .orElse(null);
+            if (carryCell != null) {
+                writer.write("\nFound CARRY cell.");
+                BELPin[] belpins = carryCell.getBEL().getPins();
+                for (BELPin bp : belpins) {
+                    writer.write("\nBELPin: " + bp.getName());
+                    writer.write("\n\tSource BELPin: " + bp.getSourcePin());
+                    for (BELPin siteConn : bp.getSiteConns()) {
+                        writer.write("\n\tsiteConn: " + siteConn.getName());
+                    }
+                }
+
+                // if this CARRY4 is the first in a carry chain...
+                Net cinNet = si.getNetFromSiteWire("CIN");
+                if (cinNet.isGNDNet()) {
+                    // manually remove CIN pin from the GND Net...
+                    // otherwise, routing will complain that CIN is unreachable
+                    cinNet.removePin(si.getSitePinInst("CIN"));
+                    BELPin cinPin = si.getBELPin("CARRY4", "CIN");
+                    si.unrouteIntraSiteNet(cinPin.getSourcePin(), cinPin);
+
+                    // manually route CYINIT (maybe routing will do it?)
+                    // BELPin cyInitPin = si.getBELPin("CARRY4", "CYINIT");
+                    // si.routeIntraSiteNet(cinNet, , cyInitPin);
+                }
+            }
         }
 
         if (writer != null)
@@ -174,4 +209,5 @@ public class PlacerRandom extends Placer {
         return design;
 
     } // end place()
+
 } // end class
