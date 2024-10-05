@@ -99,6 +99,7 @@ public class PlacerRandom extends Placer {
 
             List<SiteTypeEnum> buffSiteTypes = new ArrayList<>();
             Collections.addAll(buffSiteTypes,
+                    // FF Cells are reported to be "compatible" with these buffer sites
                     SiteTypeEnum.ILOGICE2,
                     SiteTypeEnum.ILOGICE3,
                     SiteTypeEnum.OLOGICE2,
@@ -166,6 +167,8 @@ public class PlacerRandom extends Placer {
         writer.write("Beginning Intra-Routing...");
         writer.newLine();
 
+        // design.routeSites();
+
         for (SiteInst si : design.getSiteInsts()) {
             // route the site normally
             si.routeSite();
@@ -202,6 +205,33 @@ public class PlacerRandom extends Placer {
                     // si.routeIntraSiteNet(cinNet, , cyInitPin);
                 }
             }
+
+            Cell ffCell = si.getCells().stream()
+                    .filter(cell -> cell.getBEL() != null)
+                    .filter(cell -> cell.getBEL().isFF())
+                    .findFirst()
+                    .orElse(null);
+            if (ffCell != null) {
+                writer.write("\nFound FF cell.");
+                BELPin[] belpins = ffCell.getBEL().getPins();
+                for (BELPin bp : belpins) {
+                    writer.write("\nBELPin: " + bp.getName());
+                    writer.write("\n\tSource BELPin: " + bp.getSourcePin());
+                    for (BELPin siteConn : bp.getSiteConns()) {
+                        writer.write("\n\tsiteConn: " + siteConn.getName());
+                    }
+                }
+
+                Net srNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
+                if (!srNet.isGNDNet()) {
+
+                    // srNet.addPin(si.getSitePinInst("SR"));
+                    BELPin srPin = ffCell.getBEL().getPin("SR");
+                    si.unrouteIntraSiteNet(srPin.getSourcePin(), srPin);
+                    si.routeIntraSiteNet(srNet, si.getBELPin("SRUSEDMUX", "IN"), srPin);
+                }
+            }
+
         }
 
         if (writer != null)

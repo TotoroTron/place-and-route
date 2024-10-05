@@ -1,6 +1,6 @@
 -------------------------------------
 | Tool Version : Vivado v.2023.2.2
-| Date         : Thu Oct  3 13:53:50 2024
+| Date         : Sat Oct  5 13:55:40 2024
 | Host         : bcheng-HP
 | Design       : checkpoint_synthesized
 | Device       : xc7z020-clg400-1--

@@ -1,44 +1,43 @@
 
 Net: COUNTER/Q[2]
-	SiteInst: SLICE_X84Y44
-		Cells: [COUNTER/count[2]_i_1(BEL: C5LUT)]
-	SiteInst: SLICE_X54Y52
+	SiteInst: SLICE_X48Y134
+		Cells: [COUNTER/count[2]_i_1(BEL: C6LUT)]
+	SiteInst: SLICE_X83Y59
 		Cells: [COUNTER/count[3]_i_1(BEL: B6LUT)]
-	SiteInst: SLICE_X1Y0
-		Cells: [COUNTER/count_reg[2](BEL: CFF)]
-	SitePinInst: CQ isRouted() = false
+	SiteInst: SLICE_X90Y132
+		Cells: [COUNTER/count_reg[2](BEL: A5FF), COUNTER/count_reg[2](BEL: A5LUT)]
 	SitePinInst: O isRouted() = false
-	SitePinInst: C5 isRouted() = false
+	SitePinInst: C6 isRouted() = false
 	SitePinInst: B5 isRouted() = false
+	SitePinInst: AMUX isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/i_clk_IBUF
 	SitePinInsts: None!
 
 Net: COUNTER/plusOp[3]
-	SiteInst: SLICE_X54Y52
+	SiteInst: SLICE_X45Y87
+		Cells: [COUNTER/count_reg[3](BEL: C5LUT), COUNTER/count_reg[3](BEL: C5FF)]
+	SiteInst: SLICE_X83Y59
 		Cells: [COUNTER/count[3]_i_1(BEL: B6LUT)]
-	SiteInst: SLICE_X86Y93
-		Cells: [COUNTER/count_reg[3](BEL: BFF)]
-	SitePinInst: BX isRouted() = false
 	SitePinInst: B isRouted() = false
 
 Net: COUNTER/Q[0]
-	SiteInst: SLICE_X84Y44
-		Cells: [COUNTER/count[2]_i_1(BEL: C5LUT)]
-	SiteInst: SLICE_X54Y97
-		Cells: [COUNTER/count[1]_i_1(BEL: A6LUT)]
-	SiteInst: SLICE_X54Y52
-		Cells: [COUNTER/count[3]_i_1(BEL: B6LUT)]
-	SiteInst: SLICE_X8Y25
-		Cells: [COUNTER/count_reg[0](BEL: CFF)]
-	SiteInst: SLICE_X96Y113
+	SiteInst: SLICE_X83Y42
+		Cells: [COUNTER/count_reg[0](BEL: A5FF), COUNTER/count_reg[0](BEL: A5LUT)]
+	SiteInst: SLICE_X90Y80
+		Cells: [COUNTER/count[1]_i_1(BEL: C6LUT)]
+	SiteInst: SLICE_X107Y13
 		Cells: [COUNTER/count[0]_i_1(BEL: B5LUT)]
+	SiteInst: SLICE_X48Y134
+		Cells: [COUNTER/count[2]_i_1(BEL: C6LUT)]
+	SiteInst: SLICE_X83Y59
+		Cells: [COUNTER/count[3]_i_1(BEL: B6LUT)]
+	SitePinInst: AMUX isRouted() = false
 	SitePinInst: O isRouted() = false
-	SitePinInst: C3 isRouted() = false
-	SitePinInst: A5 isRouted() = false
+	SitePinInst: C4 isRouted() = false
 	SitePinInst: B4 isRouted() = false
-	SitePinInst: CQ isRouted() = false
 	SitePinInst: B5 isRouted() = false
+	SitePinInst: C5 isRouted() = false
 
 Net: ov_led[2]
 	SiteInst: IOB_X1Y107
@@ -59,84 +58,82 @@ Net: i_rst
 	SitePinInsts: None!
 
 Net: CLOCK_ENABLE_GEN/count_reg[0]
-	SiteInst: SLICE_X47Y66
-		Cells: [CLOCK_ENABLE_GEN/count[0]_i_3(BEL: A6LUT)]
-	SiteInst: SLICE_X107Y41
-		Cells: [CLOCK_ENABLE_GEN/count[0]_i_1__0(BEL: D5LUT)]
-	SiteInst: SLICE_X14Y22
+	SiteInst: SLICE_X105Y147
 		Cells: [CLOCK_ENABLE_GEN/count_reg[0](BEL: D5LUT), CLOCK_ENABLE_GEN/count_reg[0](BEL: D5FF)]
-	SiteInst: SLICE_X29Y60
-		Cells: [CLOCK_ENABLE_GEN/o_pulse_i_1(BEL: C5LUT)]
-	SitePinInst: D3 isRouted() = false
+	SiteInst: SLICE_X45Y86
+		Cells: [CLOCK_ENABLE_GEN/o_pulse_i_1(BEL: B5LUT)]
+	SiteInst: SLICE_X16Y5
+		Cells: [CLOCK_ENABLE_GEN/count[0]_i_1__0(BEL: B6LUT)]
+	SiteInst: SLICE_X46Y144
+		Cells: [CLOCK_ENABLE_GEN/count[0]_i_3(BEL: D5LUT)]
+	SitePinInst: B1 isRouted() = false
+	SitePinInst: B4 isRouted() = false
+	SitePinInst: D5 isRouted() = false
 	SitePinInst: DMUX isRouted() = false
-	SitePinInst: A6 isRouted() = false
-	SitePinInst: C1 isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_3
-	SiteInst: SLICE_X98Y64
+	SiteInst: SLICE_X102Y49
 		Cells: [CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: C6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: CARRY4), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: A6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: B6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: D6LUT)]
 	SitePinInsts: None!
 
 Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_4
-	SiteInst: SLICE_X98Y64
+	SiteInst: SLICE_X60Y75
+		Cells: [CLOCK_ENABLE_GEN/count_reg[3](BEL: C5LUT), CLOCK_ENABLE_GEN/count_reg[3](BEL: C5FF)]
+	SiteInst: SLICE_X102Y49
 		Cells: [CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: C6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: CARRY4), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: A6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: B6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: D6LUT)]
-	SiteInst: SLICE_X105Y72
-		Cells: [CLOCK_ENABLE_GEN/count_reg[3](BEL: D5LUT), CLOCK_ENABLE_GEN/count_reg[3](BEL: D5FF)]
 	SitePinInst: DMUX isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/count_reg[2]
-	SiteInst: SLICE_X107Y41
-		Cells: [CLOCK_ENABLE_GEN/count[0]_i_1__0(BEL: D5LUT)]
-	SiteInst: SLICE_X98Y64
+	SiteInst: SLICE_X102Y49
 		Cells: [CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: C6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: CARRY4), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: A6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: B6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: D6LUT)]
-	SiteInst: SLICE_X26Y66
+	SiteInst: SLICE_X45Y86
+		Cells: [CLOCK_ENABLE_GEN/o_pulse_i_1(BEL: B5LUT)]
+	SiteInst: SLICE_X16Y5
+		Cells: [CLOCK_ENABLE_GEN/count[0]_i_1__0(BEL: B6LUT)]
+	SiteInst: SLICE_X20Y29
 		Cells: [CLOCK_ENABLE_GEN/count_reg[2](BEL: A5FF), CLOCK_ENABLE_GEN/count_reg[2](BEL: A5LUT)]
-	SiteInst: SLICE_X29Y60
-		Cells: [CLOCK_ENABLE_GEN/o_pulse_i_1(BEL: C5LUT)]
-	SitePinInst: D5 isRouted() = false
 	SitePinInst: AMUX isRouted() = false
-	SitePinInst: C2 isRouted() = false
+	SitePinInst: B2 isRouted() = false
+	SitePinInst: B6 isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_1
-	SiteInst: SLICE_X98Y64
+	SiteInst: SLICE_X102Y49
 		Cells: [CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: C6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: CARRY4), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: A6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: B6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: D6LUT)]
 	SitePinInsts: None!
 
 Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_2
-	SiteInst: SLICE_X98Y64
+	SiteInst: SLICE_X102Y49
 		Cells: [CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: C6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: CARRY4), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: A6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: B6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: D6LUT)]
 	SitePinInsts: None!
 
 Net: COUNTER/plusOp[1]
-	SiteInst: SLICE_X42Y30
-		Cells: [COUNTER/count_reg[1](BEL: CFF)]
-	SiteInst: SLICE_X54Y97
-		Cells: [COUNTER/count[1]_i_1(BEL: A6LUT)]
-	SitePinInst: CX isRouted() = false
-	SitePinInst: A isRouted() = false
+	SiteInst: SLICE_X58Y23
+		Cells: [COUNTER/count_reg[1](BEL: B5LUT), COUNTER/count_reg[1](BEL: B5FF)]
+	SiteInst: SLICE_X90Y80
+		Cells: [COUNTER/count[1]_i_1(BEL: C6LUT)]
+	SitePinInst: C isRouted() = false
 
 Net: i_clk_IBUF
-	SiteInst: SLICE_X98Y36
-		Cells: [CLOCK_ENABLE_GEN/o_pulse_reg(BEL: CFF)]
-	SiteInst: SLICE_X105Y72
-		Cells: [CLOCK_ENABLE_GEN/count_reg[3](BEL: D5LUT), CLOCK_ENABLE_GEN/count_reg[3](BEL: D5FF)]
-	SiteInst: SLICE_X48Y39
-		Cells: [CLOCK_ENABLE_GEN/count_reg[1](BEL: AFF)]
-	SiteInst: SLICE_X42Y30
-		Cells: [COUNTER/count_reg[1](BEL: CFF)]
-	SiteInst: SLICE_X14Y22
+	SiteInst: SLICE_X83Y42
+		Cells: [COUNTER/count_reg[0](BEL: A5FF), COUNTER/count_reg[0](BEL: A5LUT)]
+	SiteInst: SLICE_X58Y23
+		Cells: [COUNTER/count_reg[1](BEL: B5LUT), COUNTER/count_reg[1](BEL: B5FF)]
+	SiteInst: SLICE_X45Y87
+		Cells: [COUNTER/count_reg[3](BEL: C5LUT), COUNTER/count_reg[3](BEL: C5FF)]
+	SiteInst: SLICE_X60Y75
+		Cells: [CLOCK_ENABLE_GEN/count_reg[3](BEL: C5LUT), CLOCK_ENABLE_GEN/count_reg[3](BEL: C5FF)]
+	SiteInst: SLICE_X105Y147
 		Cells: [CLOCK_ENABLE_GEN/count_reg[0](BEL: D5LUT), CLOCK_ENABLE_GEN/count_reg[0](BEL: D5FF)]
-	SiteInst: SLICE_X1Y0
-		Cells: [COUNTER/count_reg[2](BEL: CFF)]
 	SiteInst: IOB_X1Y124
 		Cells: [i_clk_IBUF_inst(BEL: INBUF_EN), i_clk(BEL: PAD)]
-	SiteInst: SLICE_X26Y66
+	SiteInst: SLICE_X90Y132
+		Cells: [COUNTER/count_reg[2](BEL: A5FF), COUNTER/count_reg[2](BEL: A5LUT)]
+	SiteInst: SLICE_X76Y22
+		Cells: [CLOCK_ENABLE_GEN/o_pulse_reg(BEL: DFF)]
+	SiteInst: SLICE_X20Y29
 		Cells: [CLOCK_ENABLE_GEN/count_reg[2](BEL: A5FF), CLOCK_ENABLE_GEN/count_reg[2](BEL: A5LUT)]
-	SiteInst: SLICE_X86Y93
-		Cells: [COUNTER/count_reg[3](BEL: BFF)]
-	SiteInst: SLICE_X8Y25
-		Cells: [COUNTER/count_reg[0](BEL: CFF)]
-	SitePinInst: CLK isRouted() = false
+	SiteInst: SLICE_X27Y117
+		Cells: [CLOCK_ENABLE_GEN/count_reg[1](BEL: C5LUT), CLOCK_ENABLE_GEN/count_reg[1](BEL: C5FF)]
 	SitePinInst: CLK isRouted() = false
 	SitePinInst: I isRouted() = false
 	SitePinInst: CLK isRouted() = false
@@ -146,27 +143,27 @@ Net: i_clk_IBUF
 	SitePinInst: CLK isRouted() = false
 	SitePinInst: CLK isRouted() = false
 	SitePinInst: CLK isRouted() = false
+	SitePinInst: CLK isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_7
-	SiteInst: SLICE_X14Y22
+	SiteInst: SLICE_X105Y147
 		Cells: [CLOCK_ENABLE_GEN/count_reg[0](BEL: D5LUT), CLOCK_ENABLE_GEN/count_reg[0](BEL: D5FF)]
-	SiteInst: SLICE_X98Y64
+	SiteInst: SLICE_X102Y49
 		Cells: [CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: C6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: CARRY4), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: A6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: B6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: D6LUT)]
 	SitePinInst: AMUX isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_5
-	SiteInst: SLICE_X98Y64
-		Cells: [CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: C6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: CARRY4), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: A6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: B6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: D6LUT)]
-	SiteInst: SLICE_X26Y66
+	SiteInst: SLICE_X20Y29
 		Cells: [CLOCK_ENABLE_GEN/count_reg[2](BEL: A5FF), CLOCK_ENABLE_GEN/count_reg[2](BEL: A5LUT)]
+	SiteInst: SLICE_X102Y49
+		Cells: [CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: C6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: CARRY4), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: A6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: B6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: D6LUT)]
 	SitePinInst: CMUX isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_6
-	SiteInst: SLICE_X48Y39
-		Cells: [CLOCK_ENABLE_GEN/count_reg[1](BEL: AFF)]
-	SiteInst: SLICE_X98Y64
+	SiteInst: SLICE_X27Y117
+		Cells: [CLOCK_ENABLE_GEN/count_reg[1](BEL: C5LUT), CLOCK_ENABLE_GEN/count_reg[1](BEL: C5FF)]
+	SiteInst: SLICE_X102Y49
 		Cells: [CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: C6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: CARRY4), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: A6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: B6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: D6LUT)]
-	SitePinInst: AX isRouted() = false
 	SitePinInst: BMUX isRouted() = false
 
 Net: COUNTER/E[0]
@@ -176,58 +173,58 @@ Net: COUNTER/i_clk_IBUF
 	SitePinInsts: None!
 
 Net: CLOCK_ENABLE_GEN/<const0>
-	SiteInst: SLICE_X98Y36
-		Cells: [CLOCK_ENABLE_GEN/o_pulse_reg(BEL: CFF)]
-	SiteInst: SLICE_X98Y64
+	SiteInst: SLICE_X76Y22
+		Cells: [CLOCK_ENABLE_GEN/o_pulse_reg(BEL: DFF)]
+	SiteInst: SLICE_X102Y49
 		Cells: [CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: C6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: CARRY4), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: A6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: B6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: D6LUT)]
 	SitePinInst: CX isRouted() = false
 	SitePinInst: BX isRouted() = false
 	SitePinInst: DX isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/count[0]_i_1__0_n_0
-	SiteInst: SLICE_X107Y41
-		Cells: [CLOCK_ENABLE_GEN/count[0]_i_1__0(BEL: D5LUT)]
-	SiteInst: SLICE_X105Y72
-		Cells: [CLOCK_ENABLE_GEN/count_reg[3](BEL: D5LUT), CLOCK_ENABLE_GEN/count_reg[3](BEL: D5FF)]
-	SiteInst: SLICE_X48Y39
-		Cells: [CLOCK_ENABLE_GEN/count_reg[1](BEL: AFF)]
-	SiteInst: SLICE_X14Y22
+	SiteInst: SLICE_X60Y75
+		Cells: [CLOCK_ENABLE_GEN/count_reg[3](BEL: C5LUT), CLOCK_ENABLE_GEN/count_reg[3](BEL: C5FF)]
+	SiteInst: SLICE_X105Y147
 		Cells: [CLOCK_ENABLE_GEN/count_reg[0](BEL: D5LUT), CLOCK_ENABLE_GEN/count_reg[0](BEL: D5FF)]
-	SiteInst: SLICE_X26Y66
+	SiteInst: SLICE_X16Y5
+		Cells: [CLOCK_ENABLE_GEN/count[0]_i_1__0(BEL: B6LUT)]
+	SiteInst: SLICE_X20Y29
 		Cells: [CLOCK_ENABLE_GEN/count_reg[2](BEL: A5FF), CLOCK_ENABLE_GEN/count_reg[2](BEL: A5LUT)]
-	SitePinInst: DMUX isRouted() = false
+	SiteInst: SLICE_X27Y117
+		Cells: [CLOCK_ENABLE_GEN/count_reg[1](BEL: C5LUT), CLOCK_ENABLE_GEN/count_reg[1](BEL: C5FF)]
+	SitePinInst: B isRouted() = false
 
 Net: COUNTER/Q[1]
-	SiteInst: SLICE_X84Y44
-		Cells: [COUNTER/count[2]_i_1(BEL: C5LUT)]
-	SiteInst: SLICE_X54Y97
-		Cells: [COUNTER/count[1]_i_1(BEL: A6LUT)]
-	SiteInst: SLICE_X42Y30
-		Cells: [COUNTER/count_reg[1](BEL: CFF)]
-	SiteInst: SLICE_X54Y52
+	SiteInst: SLICE_X58Y23
+		Cells: [COUNTER/count_reg[1](BEL: B5LUT), COUNTER/count_reg[1](BEL: B5FF)]
+	SiteInst: SLICE_X90Y80
+		Cells: [COUNTER/count[1]_i_1(BEL: C6LUT)]
+	SiteInst: SLICE_X48Y134
+		Cells: [COUNTER/count[2]_i_1(BEL: C6LUT)]
+	SiteInst: SLICE_X83Y59
 		Cells: [COUNTER/count[3]_i_1(BEL: B6LUT)]
-	SitePinInst: CQ isRouted() = false
+	SitePinInst: BMUX isRouted() = false
 	SitePinInst: O isRouted() = false
-	SitePinInst: C4 isRouted() = false
-	SitePinInst: A6 isRouted() = false
+	SitePinInst: C5 isRouted() = false
 	SitePinInst: B3 isRouted() = false
+	SitePinInst: C6 isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/E[0]
-	SiteInst: SLICE_X98Y36
-		Cells: [CLOCK_ENABLE_GEN/o_pulse_reg(BEL: CFF)]
-	SiteInst: SLICE_X86Y93
-		Cells: [COUNTER/count_reg[3](BEL: BFF)]
-	SiteInst: SLICE_X42Y30
-		Cells: [COUNTER/count_reg[1](BEL: CFF)]
-	SiteInst: SLICE_X1Y0
-		Cells: [COUNTER/count_reg[2](BEL: CFF)]
-	SiteInst: SLICE_X8Y25
-		Cells: [COUNTER/count_reg[0](BEL: CFF)]
+	SiteInst: SLICE_X83Y42
+		Cells: [COUNTER/count_reg[0](BEL: A5FF), COUNTER/count_reg[0](BEL: A5LUT)]
+	SiteInst: SLICE_X58Y23
+		Cells: [COUNTER/count_reg[1](BEL: B5LUT), COUNTER/count_reg[1](BEL: B5FF)]
+	SiteInst: SLICE_X45Y87
+		Cells: [COUNTER/count_reg[3](BEL: C5LUT), COUNTER/count_reg[3](BEL: C5FF)]
+	SiteInst: SLICE_X76Y22
+		Cells: [CLOCK_ENABLE_GEN/o_pulse_reg(BEL: DFF)]
+	SiteInst: SLICE_X90Y132
+		Cells: [COUNTER/count_reg[2](BEL: A5FF), COUNTER/count_reg[2](BEL: A5LUT)]
 	SitePinInst: CE isRouted() = false
 	SitePinInst: CE isRouted() = false
 	SitePinInst: CE isRouted() = false
 	SitePinInst: CE isRouted() = false
-	SitePinInst: CQ isRouted() = false
+	SitePinInst: DQ isRouted() = false
 
 Net: ov_led[3]
 	SiteInst: IOB_X1Y104
@@ -235,12 +232,12 @@ Net: ov_led[3]
 	SitePinInst: PADOUT isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/o_pulse_i_1_n_0
-	SiteInst: SLICE_X98Y36
-		Cells: [CLOCK_ENABLE_GEN/o_pulse_reg(BEL: CFF)]
-	SiteInst: SLICE_X29Y60
-		Cells: [CLOCK_ENABLE_GEN/o_pulse_i_1(BEL: C5LUT)]
-	SitePinInst: CX isRouted() = false
-	SitePinInst: CMUX isRouted() = false
+	SiteInst: SLICE_X76Y22
+		Cells: [CLOCK_ENABLE_GEN/o_pulse_reg(BEL: DFF)]
+	SiteInst: SLICE_X45Y86
+		Cells: [CLOCK_ENABLE_GEN/o_pulse_i_1(BEL: B5LUT)]
+	SitePinInst: BMUX isRouted() = false
+	SitePinInst: DX isRouted() = false
 
 Net: GLOBAL_LOGIC0
 	SiteInst: IOB_X1Y135
@@ -255,95 +252,91 @@ Net: ov_led[1]
 	SitePinInst: PADOUT isRouted() = false
 
 Net: GLOBAL_LOGIC1
-	SiteInst: SLICE_X84Y44
-		Cells: [COUNTER/count[2]_i_1(BEL: C5LUT)]
-	SiteInst: SLICE_X107Y41
-		Cells: [CLOCK_ENABLE_GEN/count[0]_i_1__0(BEL: D5LUT)]
-	SiteInst: SLICE_X96Y113
+	SiteInst: SLICE_X107Y13
 		Cells: [COUNTER/count[0]_i_1(BEL: B5LUT)]
-	SiteInst: SLICE_X29Y60
-		Cells: [CLOCK_ENABLE_GEN/o_pulse_i_1(BEL: C5LUT)]
+	SiteInst: SLICE_X45Y86
+		Cells: [CLOCK_ENABLE_GEN/o_pulse_i_1(BEL: B5LUT)]
+	SiteInst: SLICE_X46Y144
+		Cells: [CLOCK_ENABLE_GEN/count[0]_i_3(BEL: D5LUT)]
 	SitePinInsts: None!
 
 Net: CLOCK_ENABLE_GEN/count_reg[3]
-	SiteInst: SLICE_X107Y41
-		Cells: [CLOCK_ENABLE_GEN/count[0]_i_1__0(BEL: D5LUT)]
-	SiteInst: SLICE_X105Y72
-		Cells: [CLOCK_ENABLE_GEN/count_reg[3](BEL: D5LUT), CLOCK_ENABLE_GEN/count_reg[3](BEL: D5FF)]
-	SiteInst: SLICE_X98Y64
+	SiteInst: SLICE_X60Y75
+		Cells: [CLOCK_ENABLE_GEN/count_reg[3](BEL: C5LUT), CLOCK_ENABLE_GEN/count_reg[3](BEL: C5FF)]
+	SiteInst: SLICE_X102Y49
 		Cells: [CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: C6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: CARRY4), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: A6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: B6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: D6LUT)]
-	SiteInst: SLICE_X29Y60
-		Cells: [CLOCK_ENABLE_GEN/o_pulse_i_1(BEL: C5LUT)]
-	SitePinInst: D2 isRouted() = false
-	SitePinInst: DMUX isRouted() = false
-	SitePinInst: C4 isRouted() = false
+	SiteInst: SLICE_X45Y86
+		Cells: [CLOCK_ENABLE_GEN/o_pulse_i_1(BEL: B5LUT)]
+	SiteInst: SLICE_X16Y5
+		Cells: [CLOCK_ENABLE_GEN/count[0]_i_1__0(BEL: B6LUT)]
+	SitePinInst: B4 isRouted() = false
+	SitePinInst: B3 isRouted() = false
+	SitePinInst: CMUX isRouted() = false
 
 Net: i_rst_IBUF
-	SiteInst: SLICE_X107Y41
-		Cells: [CLOCK_ENABLE_GEN/count[0]_i_1__0(BEL: D5LUT)]
-	SiteInst: SLICE_X42Y30
-		Cells: [COUNTER/count_reg[1](BEL: CFF)]
-	SiteInst: SLICE_X1Y0
-		Cells: [COUNTER/count_reg[2](BEL: CFF)]
+	SiteInst: SLICE_X83Y42
+		Cells: [COUNTER/count_reg[0](BEL: A5FF), COUNTER/count_reg[0](BEL: A5LUT)]
+	SiteInst: SLICE_X58Y23
+		Cells: [COUNTER/count_reg[1](BEL: B5LUT), COUNTER/count_reg[1](BEL: B5FF)]
+	SiteInst: SLICE_X45Y87
+		Cells: [COUNTER/count_reg[3](BEL: C5LUT), COUNTER/count_reg[3](BEL: C5FF)]
+	SiteInst: SLICE_X45Y86
+		Cells: [CLOCK_ENABLE_GEN/o_pulse_i_1(BEL: B5LUT)]
+	SiteInst: SLICE_X16Y5
+		Cells: [CLOCK_ENABLE_GEN/count[0]_i_1__0(BEL: B6LUT)]
 	SiteInst: IOB_X1Y135
 		Cells: [i_rst_IBUF_inst(BEL: INBUF_EN), i_rst(BEL: PAD)]
-	SiteInst: SLICE_X86Y93
-		Cells: [COUNTER/count_reg[3](BEL: BFF)]
-	SiteInst: SLICE_X8Y25
-		Cells: [COUNTER/count_reg[0](BEL: CFF)]
-	SiteInst: SLICE_X29Y60
-		Cells: [CLOCK_ENABLE_GEN/o_pulse_i_1(BEL: C5LUT)]
-	SitePinInst: D1 isRouted() = false
+	SiteInst: SLICE_X90Y132
+		Cells: [COUNTER/count_reg[2](BEL: A5FF), COUNTER/count_reg[2](BEL: A5LUT)]
+	SitePinInst: B5 isRouted() = false
+	SitePinInst: B2 isRouted() = false
 	SitePinInst: I isRouted() = false
-	SitePinInst: C5 isRouted() = false
 
 Net: COUNTER/SR[0]
 	SitePinInsts: None!
 
 Net: COUNTER/plusOp[0]
-	SiteInst: SLICE_X8Y25
-		Cells: [COUNTER/count_reg[0](BEL: CFF)]
-	SiteInst: SLICE_X96Y113
+	SiteInst: SLICE_X107Y13
 		Cells: [COUNTER/count[0]_i_1(BEL: B5LUT)]
-	SitePinInst: CX isRouted() = false
+	SiteInst: SLICE_X83Y42
+		Cells: [COUNTER/count_reg[0](BEL: A5FF), COUNTER/count_reg[0](BEL: A5LUT)]
 	SitePinInst: BMUX isRouted() = false
 
 Net: COUNTER/plusOp[2]
-	SiteInst: SLICE_X84Y44
-		Cells: [COUNTER/count[2]_i_1(BEL: C5LUT)]
-	SiteInst: SLICE_X1Y0
-		Cells: [COUNTER/count_reg[2](BEL: CFF)]
-	SitePinInst: CX isRouted() = false
-	SitePinInst: CMUX isRouted() = false
+	SiteInst: SLICE_X48Y134
+		Cells: [COUNTER/count[2]_i_1(BEL: C6LUT)]
+	SiteInst: SLICE_X90Y132
+		Cells: [COUNTER/count_reg[2](BEL: A5FF), COUNTER/count_reg[2](BEL: A5LUT)]
+	SitePinInst: C isRouted() = false
 
 Net: COUNTER/Q[3]
-	SiteInst: SLICE_X54Y52
+	SiteInst: SLICE_X45Y87
+		Cells: [COUNTER/count_reg[3](BEL: C5LUT), COUNTER/count_reg[3](BEL: C5FF)]
+	SiteInst: SLICE_X83Y59
 		Cells: [COUNTER/count[3]_i_1(BEL: B6LUT)]
-	SiteInst: SLICE_X86Y93
-		Cells: [COUNTER/count_reg[3](BEL: BFF)]
 	SitePinInst: O isRouted() = false
-	SitePinInst: BQ isRouted() = false
+	SitePinInst: CMUX isRouted() = false
 	SitePinInst: B6 isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/count_reg[1]
-	SiteInst: SLICE_X107Y41
-		Cells: [CLOCK_ENABLE_GEN/count[0]_i_1__0(BEL: D5LUT)]
-	SiteInst: SLICE_X48Y39
-		Cells: [CLOCK_ENABLE_GEN/count_reg[1](BEL: AFF)]
-	SiteInst: SLICE_X98Y64
+	SiteInst: SLICE_X102Y49
 		Cells: [CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: C6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: CARRY4), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: A6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: B6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: D6LUT)]
-	SiteInst: SLICE_X29Y60
-		Cells: [CLOCK_ENABLE_GEN/o_pulse_i_1(BEL: C5LUT)]
-	SitePinInst: D4 isRouted() = false
-	SitePinInst: AQ isRouted() = false
-	SitePinInst: C3 isRouted() = false
+	SiteInst: SLICE_X45Y86
+		Cells: [CLOCK_ENABLE_GEN/o_pulse_i_1(BEL: B5LUT)]
+	SiteInst: SLICE_X16Y5
+		Cells: [CLOCK_ENABLE_GEN/count[0]_i_1__0(BEL: B6LUT)]
+	SiteInst: SLICE_X27Y117
+		Cells: [CLOCK_ENABLE_GEN/count_reg[1](BEL: C5LUT), CLOCK_ENABLE_GEN/count_reg[1](BEL: C5FF)]
+	SitePinInst: B3 isRouted() = false
+	SitePinInst: B5 isRouted() = false
+	SitePinInst: CMUX isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/count[0]_i_3_n_0
-	SiteInst: SLICE_X47Y66
-		Cells: [CLOCK_ENABLE_GEN/count[0]_i_3(BEL: A6LUT)]
-	SiteInst: SLICE_X98Y64
+	SiteInst: SLICE_X102Y49
 		Cells: [CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: C6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: CARRY4), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: A6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: B6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: D6LUT)]
-	SitePinInst: A isRouted() = false
+	SiteInst: SLICE_X46Y144
+		Cells: [CLOCK_ENABLE_GEN/count[0]_i_3(BEL: D5LUT)]
+	SitePinInst: DMUX isRouted() = false
 
 Net: i_clk
 	SiteInst: IOB_X1Y124
@@ -351,16 +344,16 @@ Net: i_clk
 	SitePinInsts: None!
 
 Net: CLOCK_ENABLE_GEN/<const1>
-	SiteInst: SLICE_X98Y36
-		Cells: [CLOCK_ENABLE_GEN/o_pulse_reg(BEL: CFF)]
-	SiteInst: SLICE_X105Y72
-		Cells: [CLOCK_ENABLE_GEN/count_reg[3](BEL: D5LUT), CLOCK_ENABLE_GEN/count_reg[3](BEL: D5FF)]
-	SiteInst: SLICE_X48Y39
-		Cells: [CLOCK_ENABLE_GEN/count_reg[1](BEL: AFF)]
-	SiteInst: SLICE_X14Y22
+	SiteInst: SLICE_X60Y75
+		Cells: [CLOCK_ENABLE_GEN/count_reg[3](BEL: C5LUT), CLOCK_ENABLE_GEN/count_reg[3](BEL: C5FF)]
+	SiteInst: SLICE_X76Y22
+		Cells: [CLOCK_ENABLE_GEN/o_pulse_reg(BEL: DFF)]
+	SiteInst: SLICE_X105Y147
 		Cells: [CLOCK_ENABLE_GEN/count_reg[0](BEL: D5LUT), CLOCK_ENABLE_GEN/count_reg[0](BEL: D5FF)]
-	SiteInst: SLICE_X98Y64
+	SiteInst: SLICE_X102Y49
 		Cells: [CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: C6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: CARRY4), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: A6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: B6LUT), CLOCK_ENABLE_GEN/count_reg[0]_i_2(BEL: D6LUT)]
-	SiteInst: SLICE_X26Y66
+	SiteInst: SLICE_X20Y29
 		Cells: [CLOCK_ENABLE_GEN/count_reg[2](BEL: A5FF), CLOCK_ENABLE_GEN/count_reg[2](BEL: A5LUT)]
+	SiteInst: SLICE_X27Y117
+		Cells: [CLOCK_ENABLE_GEN/count_reg[1](BEL: C5LUT), CLOCK_ENABLE_GEN/count_reg[1](BEL: C5FF)]
 	SitePinInst: AX isRouted() = false

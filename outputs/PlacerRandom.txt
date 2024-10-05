@@ -57,9 +57,9 @@ Placing Cell: CLOCK_ENABLE_GEN/count_reg[0]
 	Created Net: CLOCK_ENABLE_GEN/count[0]_i_1__0_n_0
 	PLACED CELL: 
 		BEL: D5FF
-		Site: SLICE_X14Y22
-		SiteInst: SLICE_X14Y22
-		SiteTypeEnum: SLICEM
+		Site: SLICE_X105Y147
+		SiteInst: SLICE_X105Y147
+		SiteTypeEnum: SLICEL
 Placing Cell: CLOCK_ENABLE_GEN/o_pulse_reg
 	Compatible placements: 
 		SiteTypeEnum: SLICEL
@@ -88,10 +88,10 @@ Placing Cell: CLOCK_ENABLE_GEN/o_pulse_reg
 	Created Net: CLOCK_ENABLE_GEN/E[0]
 	Created Net: CLOCK_ENABLE_GEN/<const0>
 	PLACED CELL: 
-		BEL: CFF
-		Site: SLICE_X98Y36
-		SiteInst: SLICE_X98Y36
-		SiteTypeEnum: SLICEM
+		BEL: DFF
+		Site: SLICE_X76Y22
+		SiteInst: SLICE_X76Y22
+		SiteTypeEnum: SLICEL
 Placing Cell: CLOCK_ENABLE_GEN/count[0]_i_1__0
 	Compatible placements: 
 		SiteTypeEnum: SLICEL
@@ -121,10 +121,10 @@ Placing Cell: CLOCK_ENABLE_GEN/count[0]_i_1__0
 	Created Net: CLOCK_ENABLE_GEN/count_reg[2]
 	Created Net: CLOCK_ENABLE_GEN/count[0]_i_1__0_n_0
 	PLACED CELL: 
-		BEL: D5LUT
-		Site: SLICE_X107Y41
-		SiteInst: SLICE_X107Y41
-		SiteTypeEnum: SLICEL
+		BEL: B6LUT
+		Site: SLICE_X16Y5
+		SiteInst: SLICE_X16Y5
+		SiteTypeEnum: SLICEM
 Placing Cell: CLOCK_ENABLE_GEN/count_reg[3]
 	Compatible placements: 
 		SiteTypeEnum: SLICEL
@@ -153,9 +153,9 @@ Placing Cell: CLOCK_ENABLE_GEN/count_reg[3]
 	Created Net: CLOCK_ENABLE_GEN/count_reg[3]
 	Created Net: CLOCK_ENABLE_GEN/count[0]_i_1__0_n_0
 	PLACED CELL: 
-		BEL: D5FF
-		Site: SLICE_X105Y72
-		SiteInst: SLICE_X105Y72
+		BEL: C5FF
+		Site: SLICE_X60Y75
+		SiteInst: SLICE_X60Y75
 		SiteTypeEnum: SLICEL
 Placing Cell: CLOCK_ENABLE_GEN/count_reg[1]
 	Compatible placements: 
@@ -185,9 +185,9 @@ Placing Cell: CLOCK_ENABLE_GEN/count_reg[1]
 	Created Net: CLOCK_ENABLE_GEN/count_reg[1]
 	Created Net: CLOCK_ENABLE_GEN/count[0]_i_1__0_n_0
 	PLACED CELL: 
-		BEL: AFF
-		Site: SLICE_X48Y39
-		SiteInst: SLICE_X48Y39
+		BEL: C5FF
+		Site: SLICE_X27Y117
+		SiteInst: SLICE_X27Y117
 		SiteTypeEnum: SLICEL
 Placing Cell: CLOCK_ENABLE_GEN/VCC
 	Compatible placements: 
@@ -221,8 +221,8 @@ Placing Cell: CLOCK_ENABLE_GEN/count_reg[2]
 	Created Net: CLOCK_ENABLE_GEN/count[0]_i_1__0_n_0
 	PLACED CELL: 
 		BEL: A5FF
-		Site: SLICE_X26Y66
-		SiteInst: SLICE_X26Y66
+		Site: SLICE_X20Y29
+		SiteInst: SLICE_X20Y29
 		SiteTypeEnum: SLICEM
 Placing Cell: CLOCK_ENABLE_GEN/count_reg[0]_i_2
 	Compatible placements: 
@@ -251,8 +251,8 @@ Placing Cell: CLOCK_ENABLE_GEN/count_reg[0]_i_2
 	Created Net: CLOCK_ENABLE_GEN/count_reg[3]
 	PLACED CELL: 
 		BEL: CARRY4
-		Site: SLICE_X98Y64
-		SiteInst: SLICE_X98Y64
+		Site: SLICE_X102Y49
+		SiteInst: SLICE_X102Y49
 		SiteTypeEnum: SLICEM
 Placing Cell: CLOCK_ENABLE_GEN/o_pulse_i_1
 	Compatible placements: 
@@ -283,9 +283,9 @@ Placing Cell: CLOCK_ENABLE_GEN/o_pulse_i_1
 	Created Net: CLOCK_ENABLE_GEN/SR[0]
 	Created Net: CLOCK_ENABLE_GEN/o_pulse_i_1_n_0
 	PLACED CELL: 
-		BEL: C5LUT
-		Site: SLICE_X29Y60
-		SiteInst: SLICE_X29Y60
+		BEL: B5LUT
+		Site: SLICE_X45Y86
+		SiteInst: SLICE_X45Y86
 		SiteTypeEnum: SLICEL
 Placing Cell: CLOCK_ENABLE_GEN/GND
 	Compatible placements: 
@@ -315,10 +315,10 @@ Placing Cell: CLOCK_ENABLE_GEN/count[0]_i_3
 	Created Net: CLOCK_ENABLE_GEN/count_reg[0]
 	Created Net: CLOCK_ENABLE_GEN/count[0]_i_3_n_0
 	PLACED CELL: 
-		BEL: A6LUT
-		Site: SLICE_X47Y66
-		SiteInst: SLICE_X47Y66
-		SiteTypeEnum: SLICEL
+		BEL: D5LUT
+		Site: SLICE_X46Y144
+		SiteInst: SLICE_X46Y144
+		SiteTypeEnum: SLICEM
 Placing Cell: COUNTER/count_reg[0]
 	Compatible placements: 
 		SiteTypeEnum: SLICEL
@@ -347,10 +347,10 @@ Placing Cell: COUNTER/count_reg[0]
 	Created Net: COUNTER/Q[0]
 	Created Net: COUNTER/SR[0]
 	PLACED CELL: 
-		BEL: CFF
-		Site: SLICE_X8Y25
-		SiteInst: SLICE_X8Y25
-		SiteTypeEnum: SLICEM
+		BEL: A5FF
+		Site: SLICE_X83Y42
+		SiteInst: SLICE_X83Y42
+		SiteTypeEnum: SLICEL
 Placing Cell: COUNTER/count[2]_i_1
 	Compatible placements: 
 		SiteTypeEnum: SLICEL
@@ -378,9 +378,9 @@ Placing Cell: COUNTER/count[2]_i_1
 	Created Net: COUNTER/Q[2]
 	Created Net: COUNTER/plusOp[2]
 	PLACED CELL: 
-		BEL: C5LUT
-		Site: SLICE_X84Y44
-		SiteInst: SLICE_X84Y44
+		BEL: C6LUT
+		Site: SLICE_X48Y134
+		SiteInst: SLICE_X48Y134
 		SiteTypeEnum: SLICEL
 Placing Cell: COUNTER/count[3]_i_1
 	Compatible placements: 
@@ -411,9 +411,9 @@ Placing Cell: COUNTER/count[3]_i_1
 	Created Net: COUNTER/plusOp[3]
 	PLACED CELL: 
 		BEL: B6LUT
-		Site: SLICE_X54Y52
-		SiteInst: SLICE_X54Y52
-		SiteTypeEnum: SLICEM
+		Site: SLICE_X83Y59
+		SiteInst: SLICE_X83Y59
+		SiteTypeEnum: SLICEL
 Placing Cell: COUNTER/count_reg[3]
 	Compatible placements: 
 		SiteTypeEnum: SLICEL
@@ -442,10 +442,10 @@ Placing Cell: COUNTER/count_reg[3]
 	Created Net: COUNTER/Q[3]
 	Created Net: COUNTER/SR[0]
 	PLACED CELL: 
-		BEL: BFF
-		Site: SLICE_X86Y93
-		SiteInst: SLICE_X86Y93
-		SiteTypeEnum: SLICEM
+		BEL: C5FF
+		Site: SLICE_X45Y87
+		SiteInst: SLICE_X45Y87
+		SiteTypeEnum: SLICEL
 Placing Cell: COUNTER/count_reg[1]
 	Compatible placements: 
 		SiteTypeEnum: SLICEL
@@ -474,9 +474,9 @@ Placing Cell: COUNTER/count_reg[1]
 	Created Net: COUNTER/Q[1]
 	Created Net: COUNTER/SR[0]
 	PLACED CELL: 
-		BEL: CFF
-		Site: SLICE_X42Y30
-		SiteInst: SLICE_X42Y30
+		BEL: B5FF
+		Site: SLICE_X58Y23
+		SiteInst: SLICE_X58Y23
 		SiteTypeEnum: SLICEM
 Placing Cell: COUNTER/count_reg[2]
 	Compatible placements: 
@@ -506,10 +506,10 @@ Placing Cell: COUNTER/count_reg[2]
 	Created Net: COUNTER/Q[2]
 	Created Net: COUNTER/SR[0]
 	PLACED CELL: 
-		BEL: CFF
-		Site: SLICE_X1Y0
-		SiteInst: SLICE_X1Y0
-		SiteTypeEnum: SLICEL
+		BEL: A5FF
+		Site: SLICE_X90Y132
+		SiteInst: SLICE_X90Y132
+		SiteTypeEnum: SLICEM
 Placing Cell: COUNTER/count[1]_i_1
 	Compatible placements: 
 		SiteTypeEnum: SLICEL
@@ -536,9 +536,9 @@ Placing Cell: COUNTER/count[1]_i_1
 	Created Net: COUNTER/Q[1]
 	Created Net: COUNTER/plusOp[1]
 	PLACED CELL: 
-		BEL: A6LUT
-		Site: SLICE_X54Y97
-		SiteInst: SLICE_X54Y97
+		BEL: C6LUT
+		Site: SLICE_X90Y80
+		SiteInst: SLICE_X90Y80
 		SiteTypeEnum: SLICEM
 Placing Cell: COUNTER/count[0]_i_1
 	Compatible placements: 
@@ -566,13 +566,125 @@ Placing Cell: COUNTER/count[0]_i_1
 	Created Net: COUNTER/plusOp[0]
 	PLACED CELL: 
 		BEL: B5LUT
-		Site: SLICE_X96Y113
-		SiteInst: SLICE_X96Y113
-		SiteTypeEnum: SLICEM
+		Site: SLICE_X107Y13
+		SiteInst: SLICE_X107Y13
+		SiteTypeEnum: SLICEL
 
 
 Beginning Intra-Routing...
 
+Found FF cell.
+BELPin: CE
+	Source BELPin: CEUSEDMUX.OUT
+	siteConn: OUT
+BELPin: CK
+	Source BELPin: CLKINV.OUT
+	siteConn: OUT
+BELPin: D
+	Source BELPin: A5FFMUX.OUT
+	siteConn: OUT
+BELPin: SR
+	Source BELPin: SRUSEDMUX.OUT
+	siteConn: OUT
+BELPin: Q
+	Source BELPin: A5FF.Q
+	siteConn: A5Q
+Found FF cell.
+BELPin: CE
+	Source BELPin: CEUSEDMUX.OUT
+	siteConn: OUT
+BELPin: CK
+	Source BELPin: CLKINV.OUT
+	siteConn: OUT
+BELPin: D
+	Source BELPin: B5FFMUX.OUT
+	siteConn: OUT
+BELPin: SR
+	Source BELPin: SRUSEDMUX.OUT
+	siteConn: OUT
+BELPin: Q
+	Source BELPin: B5FF.Q
+	siteConn: B5Q
+Found FF cell.
+BELPin: CE
+	Source BELPin: CEUSEDMUX.OUT
+	siteConn: OUT
+BELPin: CK
+	Source BELPin: CLKINV.OUT
+	siteConn: OUT
+BELPin: D
+	Source BELPin: A5FFMUX.OUT
+	siteConn: OUT
+BELPin: SR
+	Source BELPin: SRUSEDMUX.OUT
+	siteConn: OUT
+BELPin: Q
+	Source BELPin: A5FF.Q
+	siteConn: A5Q
+Found FF cell.
+BELPin: CE
+	Source BELPin: CEUSEDMUX.OUT
+	siteConn: OUT
+BELPin: CK
+	Source BELPin: CLKINV.OUT
+	siteConn: OUT
+BELPin: D
+	Source BELPin: C5FFMUX.OUT
+	siteConn: OUT
+BELPin: SR
+	Source BELPin: SRUSEDMUX.OUT
+	siteConn: OUT
+BELPin: Q
+	Source BELPin: C5FF.Q
+	siteConn: C5Q
+Found FF cell.
+BELPin: CE
+	Source BELPin: CEUSEDMUX.OUT
+	siteConn: OUT
+BELPin: CK
+	Source BELPin: CLKINV.OUT
+	siteConn: OUT
+BELPin: D
+	Source BELPin: C5FFMUX.OUT
+	siteConn: OUT
+BELPin: SR
+	Source BELPin: SRUSEDMUX.OUT
+	siteConn: OUT
+BELPin: Q
+	Source BELPin: C5FF.Q
+	siteConn: C5Q
+Found FF cell.
+BELPin: CE
+	Source BELPin: CEUSEDMUX.OUT
+	siteConn: OUT
+BELPin: CK
+	Source BELPin: CLKINV.OUT
+	siteConn: OUT
+BELPin: D
+	Source BELPin: A5FFMUX.OUT
+	siteConn: OUT
+BELPin: SR
+	Source BELPin: SRUSEDMUX.OUT
+	siteConn: OUT
+BELPin: Q
+	Source BELPin: A5FF.Q
+	siteConn: A5Q
+Found FF cell.
+BELPin: CE
+	Source BELPin: CEUSEDMUX.OUT
+	siteConn: OUT
+BELPin: CK
+	Source BELPin: CLKINV.OUT
+	siteConn: OUT
+BELPin: D
+	Source BELPin: D5FFMUX.OUT
+	siteConn: OUT
+BELPin: SR
+	Source BELPin: SRUSEDMUX.OUT
+	siteConn: OUT
+BELPin: Q
+	Source BELPin: D5FF.Q
+	siteConn: D5Q
 Found CARRY cell.
 BELPin: CIN
 	Source BELPin: CIN.CIN
@@ -637,3 +749,19 @@ BELPin: O3
 	Source BELPin: CARRY4.O3
 	siteConn: XOR
 	siteConn: XOR
+Found FF cell.
+BELPin: CE
+	Source BELPin: CEUSEDMUX.OUT
+	siteConn: OUT
+BELPin: CK
+	Source BELPin: CLKINV.OUT
+	siteConn: OUT
+BELPin: D
+	Source BELPin: C5FFMUX.OUT
+	siteConn: OUT
+BELPin: SR
+	Source BELPin: SRUSEDMUX.OUT
+	siteConn: OUT
+BELPin: Q
+	Source BELPin: C5FF.Q
+	siteConn: C5Q
