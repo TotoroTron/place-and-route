@@ -60,6 +60,7 @@ public abstract class Placer {
     public void run() throws IOException {
 
         Design design = Design.readCheckpoint(synthesizedDcp);
+        design.flattenDesign();
         EDIFNetlist netlist = design.getNetlist();
 
         printOneTile();
@@ -78,12 +79,14 @@ public abstract class Placer {
         printAllSiteInsts(design, "SiteInstsBeforePlace");
         printNets(design, "NetsBeforePlace");
         printCells(design, "CellsBeforePlace");
+        // printVCCNet(design, "VCCNetBeforeRoute");
 
         design = place(design);
 
         printAllSiteInsts(design, "SiteInstsAfterPlace");
         printNets(design, "NetsAfterPlace");
         printCells(design, "CellsAfterPlace");
+        printVCCNet(design, "VCCNetAfterRoute");
 
         design.writeCheckpoint(placedDcp);
     }
@@ -107,7 +110,6 @@ public abstract class Placer {
                 String s3 = "\tSiteInst: " + cell.getSiteInst().getName() + " \tPlaced = "
                         + cell.getSiteInst().isPlaced();
                 String s4 = "\tSiteTypeEnum: " + cell.getSiteInst().getSiteTypeEnum();
-
                 System.out.println(s2);
                 System.out.println(s3);
                 System.out.println(s4);
@@ -125,16 +127,25 @@ public abstract class Placer {
             writer.close();
     }
 
+    public void printVCCNet(Design design, String fileName) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/" + fileName + ".txt"));
+
+        Net net = design.getNet("GLOBAL_LOGIC1");
+        List<SitePinInst> spis = net.getPins();
+        if (spis.isEmpty())
+            writer.write("\nNet has no pins!");
+        else
+            for (SitePinInst spi : spis)
+                writer.write("\nSitePinInst: " + spi.getName());
+        if (writer != null)
+            writer.close();
+    }
+
     public void printNets(Design design, String fileName) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/" + fileName + ".txt"));
         Collection<Net> nets = design.getNets();
         for (Net net : nets) {
             writer.write("\nNet: " + net.getName());
-            Set<SiteInst> sis = net.getSiteInsts();
-            for (SiteInst si : sis) {
-                writer.write("\n\tSiteInst: " + si.getName());
-                writer.write("\n\t\tCells: " + si.getCells());
-            }
             List<SitePinInst> spis = net.getPins();
             if (spis.isEmpty())
                 writer.write("\n\tSitePinInsts: None!");
