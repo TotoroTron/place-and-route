@@ -10,6 +10,9 @@ import java.util.HashMap;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Set;
+
+import org.python.antlr.PythonParser.else_clause_return;
+
 import java.util.HashSet;
 
 import java.io.FileWriter;
@@ -110,8 +113,10 @@ public class PlacerRandom extends Placer {
 
             Set<String> occupiedSiteBELs = new HashSet<>();
             int iterCount = 0;
+
+            long seed = 12345L;
+            Random rand = new Random();
             while (true) {
-                Random rand = new Random();
                 List<SiteTypeEnum> keys = new ArrayList<>(compatibleBELs.keySet());
                 if (keys.isEmpty()) {
                     writer.write("\n\tWARNING: Cell: " + cell.getName()
@@ -213,22 +218,50 @@ public class PlacerRandom extends Placer {
                     .orElse(null);
             if (ffCell != null) {
                 writer.write("\nFound FF cell.");
-                BELPin[] belpins = ffCell.getBEL().getPins();
-                for (BELPin bp : belpins) {
-                    writer.write("\nBELPin: " + bp.getName());
-                    writer.write("\n\tSource BELPin: " + bp.getSourcePin());
-                    for (BELPin siteConn : bp.getSiteConns()) {
-                        writer.write("\n\tsiteConn: " + siteConn.getName());
-                    }
-                }
 
                 Net srNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
                 if (!srNet.isGNDNet()) {
-
                     // srNet.addPin(si.getSitePinInst("SR"));
                     BELPin srPin = ffCell.getBEL().getPin("SR");
                     si.unrouteIntraSiteNet(srPin.getSourcePin(), srPin);
                     si.routeIntraSiteNet(srNet, si.getBELPin("SRUSEDMUX", "IN"), srPin);
+                }
+
+                Net ceNet = si.getNetFromSiteWire("CEUSEDMUX_OUT");
+                if (ceNet.isVCCNet()) {
+                    writer.newLine();
+                    writer.newLine();
+                    writer.write("\n" + ceNet.getName() + " is VCCNet");
+
+                    BELPin cePin = ffCell.getBEL().getPin("CE");
+
+                    // si.addSitePIP(si.getSitePIP("CEUSEDMUX", "1"));
+                    si.unrouteIntraSiteNet(cePin.getSourcePin(), cePin);
+                    si.routeIntraSiteNet(ceNet, si.getBELPin("CEUSEDVCC", "1"), cePin);
+
+                    /*
+                     * si.routeIntraSiteNet(ceNet, si.getBELPin("CEUSEDMUX", "OUT"), cePin);
+                     * si.routeIntraSiteNet(ceNet, si.getBELPin("CEUSEDMUX", "1"),
+                     * si.getBELPin("CEUSEDMUX", "OUT"));
+                     * si.routeIntraSiteNet(ceNet, si.getBELPin("CEUSEDVCC", "1"),
+                     * si.getBELPin("CEUSEDMUX", "1"));
+                     */
+
+                    /*
+                     * if (si.routeIntraSiteNet(ceNet, si.getBELPin("CEUSEDMUX", "1"), cePin))
+                     * writer.write("\nIntra-route successful: " + ceNet.getName());
+                     * else
+                     * writer.write("\nIntra-route failed: " + ceNet.getName());
+                     * 
+                     * if (si.routeIntraSiteNet(ceNet, si.getBELPin("CEUSEDVCC", "1"),
+                     * si.getBELPin("CEUSEDMUX", "1")))
+                     * writer.write("\nIntra-route successful: " + ceNet.getName());
+                     * else
+                     * writer.write("\nIntra-route failed: " + ceNet.getName());
+                     */
+
+                    writer.newLine();
+                    writer.newLine();
                 }
             }
 

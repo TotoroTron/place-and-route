@@ -1,23 +1,24 @@
 
 Net: COUNTER/Q[2]
 	SitePinInst: O isRouted() = false
-	SitePinInst: DQ isRouted() = false
-	SitePinInst: A4 isRouted() = false
 	SitePinInst: D5 isRouted() = false
+	SitePinInst: B6 isRouted() = false
+	SitePinInst: CMUX isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/i_clk_IBUF
 	SitePinInsts: None!
 
 Net: COUNTER/plusOp[3]
-	SitePinInst: AMUX isRouted() = false
+	SitePinInst: D isRouted() = false
+	SitePinInst: CX isRouted() = false
 
 Net: COUNTER/Q[0]
-	SitePinInst: C4 isRouted() = false
-	SitePinInst: DQ isRouted() = false
+	SitePinInst: D4 isRouted() = false
+	SitePinInst: BMUX isRouted() = false
 	SitePinInst: O isRouted() = false
-	SitePinInst: A6 isRouted() = false
-	SitePinInst: A3 isRouted() = false
-	SitePinInst: D3 isRouted() = false
+	SitePinInst: B4 isRouted() = false
+	SitePinInst: D6 isRouted() = false
+	SitePinInst: B5 isRouted() = false
 
 Net: ov_led[2]
 	SitePinInst: PADOUT isRouted() = false
@@ -32,21 +33,22 @@ Net: i_rst
 	SitePinInsts: None!
 
 Net: CLOCK_ENABLE_GEN/count_reg[0]
+	SitePinInst: AQ isRouted() = false
+	SitePinInst: C3 isRouted() = false
 	SitePinInst: D5 isRouted() = false
-	SitePinInst: B3 isRouted() = false
-	SitePinInst: A2 isRouted() = false
-	SitePinInst: BMUX isRouted() = false
+	SitePinInst: D2 isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_3
 	SitePinInsts: None!
 
 Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_4
+	SitePinInst: CX isRouted() = false
 	SitePinInst: DMUX isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/count_reg[2]
-	SitePinInst: B5 isRouted() = false
-	SitePinInst: A3 isRouted() = false
-	SitePinInst: DQ isRouted() = false
+	SitePinInst: C5 isRouted() = false
+	SitePinInst: D3 isRouted() = false
+	SitePinInst: AQ isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_1
 	SitePinInsts: None!
@@ -55,11 +57,12 @@ Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_2
 	SitePinInsts: None!
 
 Net: COUNTER/plusOp[1]
-	SitePinInst: CMUX isRouted() = false
+	SitePinInst: AX isRouted() = false
+	SitePinInst: B isRouted() = false
 
 Net: i_clk_IBUF
-	SitePinInst: I isRouted() = false
 	SitePinInst: CLK isRouted() = false
+	SitePinInst: I isRouted() = false
 	SitePinInst: CLK isRouted() = false
 	SitePinInst: CLK isRouted() = false
 	SitePinInst: CLK isRouted() = false
@@ -70,14 +73,14 @@ Net: i_clk_IBUF
 	SitePinInst: CLK isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_7
+	SitePinInst: AX isRouted() = false
 	SitePinInst: AMUX isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_5
-	SitePinInst: DX isRouted() = false
 	SitePinInst: CMUX isRouted() = false
+	SitePinInst: AX isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_6
-	SitePinInst: BX isRouted() = false
 	SitePinInst: BMUX isRouted() = false
 
 Net: COUNTER/E[0]
@@ -92,28 +95,27 @@ Net: CLOCK_ENABLE_GEN/<const0>
 	SitePinInst: DX isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/count[0]_i_1__0_n_0
-	SitePinInst: BMUX isRouted() = false
+	SitePinInst: CMUX isRouted() = false
 
 Net: COUNTER/Q[1]
-	SitePinInst: C5 isRouted() = false
+	SitePinInst: D3 isRouted() = false
+	SitePinInst: AQ isRouted() = false
 	SitePinInst: O isRouted() = false
-	SitePinInst: AMUX isRouted() = false
-	SitePinInst: A2 isRouted() = false
-	SitePinInst: D4 isRouted() = false
+	SitePinInst: B5 isRouted() = false
+	SitePinInst: B6 isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/E[0]
 	SitePinInst: CE isRouted() = false
 	SitePinInst: CE isRouted() = false
 	SitePinInst: CE isRouted() = false
+	SitePinInst: CMUX isRouted() = false
 	SitePinInst: CE isRouted() = false
-	SitePinInst: AQ isRouted() = false
 
 Net: ov_led[3]
 	SitePinInst: PADOUT isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/o_pulse_i_1_n_0
-	SitePinInst: A isRouted() = false
-	SitePinInst: AX isRouted() = false
+	SitePinInst: D isRouted() = false
 
 Net: GLOBAL_LOGIC0
 	SitePinInsts: None!
@@ -125,35 +127,33 @@ Net: GLOBAL_LOGIC1
 	SitePinInsts: None!
 
 Net: CLOCK_ENABLE_GEN/count_reg[3]
-	SitePinInst: B2 isRouted() = false
-	SitePinInst: A5 isRouted() = false
-	SitePinInst: BMUX isRouted() = false
+	SitePinInst: CQ isRouted() = false
+	SitePinInst: C2 isRouted() = false
+	SitePinInst: D5 isRouted() = false
 
 Net: i_rst_IBUF
-	SitePinInst: B1 isRouted() = false
-	SitePinInst: A6 isRouted() = false
+	SitePinInst: C1 isRouted() = false
+	SitePinInst: D6 isRouted() = false
 	SitePinInst: I isRouted() = false
 
 Net: COUNTER/SR[0]
 	SitePinInsts: None!
 
 Net: COUNTER/plusOp[0]
-	SitePinInst: DX isRouted() = false
-	SitePinInst: A isRouted() = false
+	SitePinInst: D isRouted() = false
 
 Net: COUNTER/plusOp[2]
-	SitePinInst: DX isRouted() = false
-	SitePinInst: DMUX isRouted() = false
+	SitePinInst: B isRouted() = false
 
 Net: COUNTER/Q[3]
+	SitePinInst: D6 isRouted() = false
 	SitePinInst: O isRouted() = false
-	SitePinInst: DMUX isRouted() = false
-	SitePinInst: A5 isRouted() = false
+	SitePinInst: CQ isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/count_reg[1]
-	SitePinInst: B4 isRouted() = false
-	SitePinInst: A4 isRouted() = false
-	SitePinInst: BQ isRouted() = false
+	SitePinInst: C4 isRouted() = false
+	SitePinInst: CMUX isRouted() = false
+	SitePinInst: D4 isRouted() = false
 
 Net: CLOCK_ENABLE_GEN/count[0]_i_3_n_0
 	SitePinInst: DMUX isRouted() = false
