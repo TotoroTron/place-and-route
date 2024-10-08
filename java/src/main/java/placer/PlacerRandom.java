@@ -217,8 +217,6 @@ public class PlacerRandom extends Placer {
                     .findFirst()
                     .orElse(null);
             if (ffCell != null) {
-                writer.write("\nFound FF cell.");
-
                 Net srNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
                 if (!srNet.isGNDNet()) {
                     // srNet.addPin(si.getSitePinInst("SR"));
@@ -227,42 +225,23 @@ public class PlacerRandom extends Placer {
                     si.routeIntraSiteNet(srNet, si.getBELPin("SRUSEDMUX", "IN"), srPin);
                 }
 
-                Net ceNet = si.getNetFromSiteWire("CEUSEDMUX_OUT");
-                if (ceNet.isVCCNet()) {
-                    writer.newLine();
-                    writer.newLine();
-                    writer.write("\n" + ceNet.getName() + " is VCCNet");
-
-                    BELPin cePin = ffCell.getBEL().getPin("CE");
-
-                    // si.addSitePIP(si.getSitePIP("CEUSEDMUX", "1"));
-                    si.unrouteIntraSiteNet(cePin.getSourcePin(), cePin);
-                    si.routeIntraSiteNet(ceNet, si.getBELPin("CEUSEDVCC", "1"), cePin);
-
-                    /*
-                     * si.routeIntraSiteNet(ceNet, si.getBELPin("CEUSEDMUX", "OUT"), cePin);
-                     * si.routeIntraSiteNet(ceNet, si.getBELPin("CEUSEDMUX", "1"),
-                     * si.getBELPin("CEUSEDMUX", "OUT"));
-                     * si.routeIntraSiteNet(ceNet, si.getBELPin("CEUSEDVCC", "1"),
-                     * si.getBELPin("CEUSEDMUX", "1"));
-                     */
-
-                    /*
-                     * if (si.routeIntraSiteNet(ceNet, si.getBELPin("CEUSEDMUX", "1"), cePin))
-                     * writer.write("\nIntra-route successful: " + ceNet.getName());
-                     * else
-                     * writer.write("\nIntra-route failed: " + ceNet.getName());
-                     * 
-                     * if (si.routeIntraSiteNet(ceNet, si.getBELPin("CEUSEDVCC", "1"),
-                     * si.getBELPin("CEUSEDMUX", "1")))
-                     * writer.write("\nIntra-route successful: " + ceNet.getName());
-                     * else
-                     * writer.write("\nIntra-route failed: " + ceNet.getName());
-                     */
-
-                    writer.newLine();
-                    writer.newLine();
-                }
+                /*
+                 * Net ceNet = si.getNetFromSiteWire("CEUSEDMUX_OUT");
+                 * if (ceNet.isVCCNet()) {
+                 * writer.newLine();
+                 * writer.newLine();
+                 * writer.write("\n" + ceNet.getName() + " is VCCNet");
+                 * 
+                 * BELPin cePin = ffCell.getBEL().getPin("CE");
+                 * 
+                 * // si.addSitePIP(si.getSitePIP("CEUSEDMUX", "1"));
+                 * si.unrouteIntraSiteNet(cePin.getSourcePin(), cePin);
+                 * si.routeIntraSiteNet(ceNet, si.getBELPin("CEUSEDVCC", "1"), cePin);
+                 * 
+                 * writer.newLine();
+                 * writer.newLine();
+                 * }
+                 */
             }
 
         }
