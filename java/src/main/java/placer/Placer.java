@@ -63,66 +63,30 @@ public abstract class Placer {
         design.flattenDesign();
         EDIFNetlist netlist = design.getNetlist();
 
-        printOneTile();
-        printAllDeviceTiles();
-        printUniqueTiles();
-        printAllDeviceSites();
-        printUniqueSites();
-
-        printEDIFHierCellInsts(netlist);
-        printEDIFCellInstsTest(netlist);
-        printEDIFCellInsts(netlist);
-        printEDIFNets(netlist);
-        printEDIFHierNets(netlist);
-        printTopCell(netlist);
-
-        printAllSiteInsts(design, "SiteInstsBeforePlace");
         printNets(design, "NetsBeforePlace");
         printCells(design, "CellsBeforePlace");
-        // printVCCNet(design, "VCCNetBeforeRoute");
-
         design = place(design);
-
-        printAllSiteInsts(design, "SiteInstsAfterPlace");
         printNets(design, "NetsAfterPlace");
         printCells(design, "CellsAfterPlace");
-        printVCCNet(design, "VCCNetAfterRoute");
-
         design.writeCheckpoint(placedDcp);
     }
 
     public void printCells(Design design, String fileName) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/" + fileName + ".txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout" + fileName + ".txt"));
         Collection<Cell> cells = design.getCells();
-
-        System.out.println("\nNumber of cells: " + cells.size());
-
         for (Cell cell : cells) {
             String s1 = String.format(
-                    "Cell: %-40s isPlaced = %-10s",
+                    "\nCell: %-40s isPlaced = %-10s",
                     cell.getName(), cell.isPlaced());
-            System.out.println(s1);
-            writer.newLine();
             writer.write(s1);
-
             if (cell.getSite() != null) {
-                String s2 = "\tSite: " + cell.getSite().getName();
-                String s3 = "\tSiteInst: " + cell.getSiteInst().getName() + " \tPlaced = "
+                String s2 = "\n\tSite: " + cell.getSite().getName();
+                String s3 = "\n\tSiteInst: " + cell.getSiteInst().getName() + " \tPlaced = "
                         + cell.getSiteInst().isPlaced();
-                String s4 = "\tSiteTypeEnum: " + cell.getSiteInst().getSiteTypeEnum();
-                System.out.println(s2);
-                System.out.println(s3);
-                System.out.println(s4);
-                writer.newLine();
-                writer.write(s2);
-                writer.newLine();
-                writer.write(s3);
-                writer.newLine();
-                writer.write(s4);
-
+                String s4 = "\n\tSiteTypeEnum: " + cell.getSiteInst().getSiteTypeEnum();
+                writer.write(s2 + s3 + s4);
             }
         }
-
         if (writer != null)
             writer.close();
     }
@@ -142,7 +106,7 @@ public abstract class Placer {
     }
 
     public void printNets(Design design, String fileName) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/" + fileName + ".txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout" + fileName + ".txt"));
         Collection<Net> nets = design.getNets();
         for (Net net : nets) {
             writer.write("\nNet: " + net.getName());

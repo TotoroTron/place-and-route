@@ -1,6 +1,0 @@
-
-TileType: CLBLM_L
-TileTypeIndex: 26
-TileName: CLBLM_L_X2Y0
-Row: 155	Col: 155
-X: 2	Y: 0

@@ -22,8 +22,11 @@ public class Main {
 
             logger.log(Level.INFO, "Begin Random Placer...");
 
-            PlacerRandom RPlacer = new PlacerRandom();
-            RPlacer.run();
+            PlacerFirst FPlacer = new PlacerFirst();
+            FPlacer.run();
+
+            // PlacerRandom RPlacer = new PlacerRandom();
+            // RPlacer.run();
 
             // ViewVivadoCheckpoint ViewVivado = new ViewVivadoCheckpoint();
             // ViewVivado.run();
