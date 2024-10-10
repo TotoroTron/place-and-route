@@ -72,7 +72,7 @@ public abstract class Placer {
     }
 
     public void printCells(Design design, String fileName) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout" + fileName + ".txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/" + fileName + ".txt"));
         Collection<Cell> cells = design.getCells();
         for (Cell cell : cells) {
             String s1 = String.format(
@@ -92,7 +92,7 @@ public abstract class Placer {
     }
 
     public void printVCCNet(Design design, String fileName) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/" + fileName + ".txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/" + fileName + ".txt"));
 
         Net net = design.getNet("GLOBAL_LOGIC1");
         List<SitePinInst> spis = net.getPins();
@@ -106,7 +106,7 @@ public abstract class Placer {
     }
 
     public void printNets(Design design, String fileName) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout" + fileName + ".txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/" + fileName + ".txt"));
         Collection<Net> nets = design.getNets();
         for (Net net : nets) {
             writer.write("\nNet: " + net.getName());
@@ -124,7 +124,7 @@ public abstract class Placer {
     }
 
     public void printOneTile() throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/OneTile.txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/OneTile.txt"));
         Tile tile = device.getTile(155, 10); // ROW, COLUMN
         writer.write("\nTileType: " + tile.getTileTypeEnum());
         writer.write("\nTileTypeIndex: " + tile.getTileTypeIndex());
@@ -180,7 +180,7 @@ public abstract class Placer {
     }
 
     public void printAllSiteInsts(Design design, String fileName) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/" + fileName + ".txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/" + fileName + ".txt"));
         Collection<SiteInst> sis = design.getSiteInsts();
         for (SiteInst si : sis) {
             writer.write("\nSiteInst: " + si.getSiteName());
@@ -191,7 +191,7 @@ public abstract class Placer {
     }
 
     public void printAllDeviceTiles() throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/DeviceAllTiles.txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/DeviceAllTiles.txt"));
         writer.write("\nPrinting all tiles in device: ");
         Tile[][] tiles = device.getTiles();
         for (Tile[] row : tiles) {
@@ -202,7 +202,7 @@ public abstract class Placer {
     }
 
     public void printAllDeviceSites() throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/DeviceAllSites.txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/DeviceAllSites.txt"));
         writer.write("Printing All Site(s) in device " + device.getName() + ": ");
         writer.write("Unique site types: " + device.getSiteTypeCount());
         Site[] sites = device.getAllSites();
@@ -212,7 +212,7 @@ public abstract class Placer {
     }
 
     public void printUniqueTiles() throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/DeviceUniqueTiles.txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/DeviceUniqueTiles.txt"));
         // writer.write("Number of unique tile types: " + device.getTileTypeCount());
         // why is this inconsistent with unique TypeEnums?
         writer.write("\nPrinting unique tiles in device: ");
@@ -234,7 +234,7 @@ public abstract class Placer {
     }
 
     public void printUniqueSites() throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/DeviceUniqueSites.txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/DeviceUniqueSites.txt"));
         // writer.write("Number of unique sites in the device: " +
         // device.getSiteTypeCount());
         // why is this inconsistent with unique TypeEnums?
@@ -257,7 +257,7 @@ public abstract class Placer {
     // ============= LIBRARY PRINTOUT ================
 
     public void printEDIFLibrary(EDIFNetlist netlist) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/EDIFLibrary.txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/EDIFLibrary.txt"));
         writer.write("Printing EDIFCells in EDIFLibrary: ");
         writer.newLine();
         EDIFLibrary library = netlist.getHDIPrimitivesLibrary();
@@ -271,7 +271,7 @@ public abstract class Placer {
     // ============== NON-HIER PRINTOUT ==================
 
     private void printTopCell(EDIFNetlist netlist) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/TopCell.txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/TopCell.txt"));
         EDIFCell topCell = netlist.getTopCell();
         EDIFCellInst topCellInst = netlist.getTopCellInst();
         EDIFHierCellInst topHierCellInst = netlist.getTopHierCellInst();
@@ -308,7 +308,7 @@ public abstract class Placer {
     }
 
     public void printEDIFCellInsts(EDIFNetlist netlist) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/EDIFCellInsts.txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/EDIFCellInsts.txt"));
         writer.write("Printing EDIFCellInst(s) HashMap: ");
         writer.newLine();
         HashMap<String, EDIFCellInst> ecis = netlist.generateCellInstMap();
@@ -329,7 +329,7 @@ public abstract class Placer {
     }
 
     public void printEDIFCellInstsTest(EDIFNetlist netlist) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/EDIFCellInstsTest.txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/EDIFCellInstsTest.txt"));
         List<EDIFCellInst> ecis_list = netlist.getAllLeafCellInstances();
         writer.write("\nList size: " + ecis_list.size());
         for (EDIFCellInst eci : ecis_list) {
@@ -347,7 +347,7 @@ public abstract class Placer {
     }
 
     public void printEDIFNets(EDIFNetlist netlist) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/EDIFNets.txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/EDIFNets.txt"));
         writer.write("Printing EDIFNets: ");
         writer.newLine();
 
@@ -388,7 +388,7 @@ public abstract class Placer {
     }
 
     public void printEDIFHierCellInsts(EDIFNetlist netlist) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/EDIFHierCellInsts.txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/EDIFHierCellInsts.txt"));
         writer.write("Printing EDIFHierCellInsts(s) with their EDIFHierPortInst(s): ");
         writer.newLine();
         List<EDIFHierCellInst> ehcis = netlist.getAllLeafHierCellInstances();
@@ -403,7 +403,7 @@ public abstract class Placer {
     }
 
     public void printEDIFHierNets(EDIFNetlist netlist) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/EDIFHierNets.txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/EDIFHierNets.txt"));
         writer.write("Printing EDIFHierNet(s) with their EDIFHierPortInst(s): ");
         Map<EDIFHierNet, EDIFHierNet> ehns = netlist.getParentNetMap();
         /*
@@ -425,7 +425,7 @@ public abstract class Placer {
     }
 
     public void printModuleImpls(Design design) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/ModuleImpls.txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/ModuleImpls.txt"));
         writer.write("Printing ModuleImpls: ");
         Collection<ModuleImpls> modimpls = design.getModules();
         for (ModuleImpls modimpl : modimpls) {
@@ -436,7 +436,7 @@ public abstract class Placer {
     }
 
     public void printModuleInsts(Design design) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/ModuleInsts.txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/ModuleInsts.txt"));
         writer.write("Printing ModuleInsts: ");
         Collection<ModuleInst> modinsts = design.getModuleInsts();
         for (ModuleInst modinst : modinsts) {

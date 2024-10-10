@@ -94,6 +94,10 @@ public class PlacerFirst extends Placer {
         types.removeAll(buffSiteTypes);
     }
 
+    private void addToMap(Map<String, List<String>> map, String key, String value) {
+        map.computeIfAbsent(key, k -> new ArrayList<>()).add(value);
+    }
+
     public Design place(Design design) throws IOException {
         FileWriter writer = new FileWriter(rootDir + "outputs/printout/PlacerRandom.txt");
         // design.flattenDesign();
@@ -101,45 +105,103 @@ public class PlacerFirst extends Placer {
         // CREATE AND PLACE CELLS
         writer.write("\nPlacing Cells...");
 
-        // Set<String> occupiedBELs = new HashSet<>(); // <"SITE_X66Y77 AFF">
-        Set<String[]> occupiedBELs = new HashSet<>();
+        Map<String, List<String>> occupiedPlacements = new HashMap<>();
+        // a "placement" consists of a site-BEL pair
 
         for (EDIFHierCellInst ehci : design.getNetlist().getAllLeafHierCellInstances()) {
 
             // Filter out IBUF/OBUF cells. They are already placed by constraints.
             if (isBufferCell(design, ehci))
-                continue;
+                continue; // continue for-loop
 
             // Create the Cell out of EDIFHierCellInst
             Cell cell = design.createCell(ehci.getFullHierarchicalInstName(), ehci.getInst());
             Map<SiteTypeEnum, Set<String>> compatiblePlacements = cell.getCompatiblePlacements(device);
-            writer.write("\nPlacing Cell: " + cell.getName());
 
-            // Select a SiteTypeEnum
+            if (compatiblePlacements.isEmpty()) {
+                writer.write("\n\tWARNING: Cell: " + cell.getName() + " of type: " + cell.getType()
+                        + " has no compatible placements!");
+                continue;
+            }
+
+            // printAllCompatiblePlacements(writer, cell);
+
+            // Remove Buffer SiteType
+            removeBufferTypes(compatiblePlacements.keySet());
+
+            // Select a SiteType
+            // hacky way to get "first" elem of a set. not reliable.
             Iterator<SiteTypeEnum> iterator = compatiblePlacements.keySet().iterator();
             SiteTypeEnum selectedSiteType = iterator.next();
-            // hacky way to get first elem of a set. not reliable.
 
-            // Get all device site names with this SiteTypeEnum
-            List<String> siteNames = Arrays.stream(device.getAllCompatibleSites(selectedSiteType))
-                    .map(Site::getName) // Extract site names
-                    .collect(Collectors.toList()); // Collect to Set
-
-            //
-            // TODO =======================================
-            //
-            removeBufferTypes(compatiblePlacements.keySet());
-            String selectedBEL = device.getSite(siteNames.remove(0)).getBELs());
-            if (design.placeCell(cell, selectedSite, selectedBEL)) {
-                occupiedBELs.add(selectedSite.getName() + " " + selectedBEL.getName());
-            } else {
-                writer.write("\n\tPLACEMENT FAILED!");
-                continue; // break for-loop
+            if (device.getAllSitesOfType(selectedSiteType).length == 0) {
+                writer.write("\n\tWARNING: SiteTypeEnum: " + selectedSiteType +
+                        " has no compatible sites!");
+                continue;
             }
-            // 
-            // TODO =======================================
-            //
 
+            // Get all device site names of selected SiteType
+            List<String> siteNames = Arrays.stream(device.getAllCompatibleSites(selectedSiteType))
+                    .map(Site::getName) // return as string names only, not the site itself
+                    .collect(Collectors.toList()); // collect as list
+
+            // Get all bel names in the selected site
+            List<String> belNames = compatiblePlacements.get(selectedSiteType).stream()
+                    .collect(Collectors.toList());
+
+            Map<String, List<String>> availablePlacements = new HashMap<>();
+            for (String siteName : siteNames) {
+                availablePlacements.put(siteName, belNames);
+            }
+
+            // Remove occupiedPlacements from availablePlacements
+            for (Map.Entry<String, List<String>> occupiedBELsEntry : occupiedPlacements.entrySet()) {
+                String siteName = occupiedBELsEntry.getKey();
+                List<String> occupiedBELs = occupiedBELsEntry.getValue();
+                availablePlacements.get(siteName).removeAll(occupiedBELs);
+                if (availablePlacements.get(siteName).isEmpty()) {
+                    System.out.println("Removed Site: " + siteName + " from availablePlacements.");
+                    availablePlacements.remove(siteName);
+                }
+
+                System.out.println("\tAvailable BELs in Site: " + siteName);
+                for (String s : availablePlacements.get(siteName))
+                    System.out.println("\t" + s);
+            }
+
+            if (availablePlacements.isEmpty()) {
+                String s1 = String.format("\nWARNING: Cell: $-40s has no available placements!",
+                        cell.getName());
+                System.out.println(s1);
+                writer.write(s1);
+                continue;
+            }
+
+            // Select first site and in first site, first BEL
+            String selectedSiteName = availablePlacements.keySet().iterator().next();
+            if (availablePlacements.get(selectedSiteName).isEmpty())
+                System.out.println(selectedSiteName + " value empty!");
+            String selectedBELName = availablePlacements.get(selectedSiteName).get(0);
+
+            Site selectedSite = device.getSite(selectedSiteName);
+            BEL selectedBEL = selectedSite.getBEL(selectedBELName);
+
+            String s1 = String.format(
+                    "\nCell: %-40s, EDIFCellType: %-10s, cellType: %-10s, SiteType: %-10s, Site: %-10s, BEL: %-10s",
+                    cell.getName(), ehci.getCellType(), cell.getType(), selectedSiteType, selectedSiteName,
+                    selectedBELName);
+            System.out.println(s1);
+            writer.write(s1);
+            if (design.placeCell(cell, selectedSite, selectedBEL)) {
+                writer.write("\n\tPlacement success!");
+                System.out.println("\tPlacement success!");
+                addToMap(occupiedPlacements, selectedSiteName, selectedBELName);
+            } else {
+                writer.write("\n\tWARNING: Placement Failed!");
+                System.out.println("\tWARNING: Placement Failed!");
+            }
+
+            //
         } // end for (ehci)
 
         writer.write("Beginning Intra-Routing...");
