@@ -98,6 +98,18 @@ public class PlacerFirst extends Placer {
         map.computeIfAbsent(key, k -> new ArrayList<>()).add(value);
     }
 
+    private void printMap(Map<String, List<String>> map) {
+        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
+            String siteName = entry.getKey();
+            List<String> occupiedBELs = entry.getValue();
+            System.out.println("\tSite: " + siteName);
+            for (String bel : occupiedBELs) {
+                System.out.println("\t\tBEL: " + bel);
+            }
+        }
+        System.out.println();
+    }
+
     public Design place(Design design) throws IOException {
         FileWriter writer = new FileWriter(rootDir + "outputs/printout/PlacerRandom.txt");
         // design.flattenDesign();
@@ -151,22 +163,30 @@ public class PlacerFirst extends Placer {
 
             Map<String, List<String>> availablePlacements = new HashMap<>();
             for (String siteName : siteNames) {
-                availablePlacements.put(siteName, belNames);
+                availablePlacements.put(siteName, new ArrayList<>(belNames));
             }
 
-            // Remove occupiedPlacements from availablePlacements
-            for (Map.Entry<String, List<String>> occupiedBELsEntry : occupiedPlacements.entrySet()) {
-                String siteName = occupiedBELsEntry.getKey();
-                List<String> occupiedBELs = occupiedBELsEntry.getValue();
-                availablePlacements.get(siteName).removeAll(occupiedBELs);
-                if (availablePlacements.get(siteName).isEmpty()) {
-                    System.out.println("Removed Site: " + siteName + " from availablePlacements.");
-                    availablePlacements.remove(siteName);
-                }
+            System.out.println("Printing occupiedPlacements...");
+            printMap(occupiedPlacements);
+            // System.out.println("Printing availablePlacements...");
 
-                System.out.println("\tAvailable BELs in Site: " + siteName);
-                for (String s : availablePlacements.get(siteName))
-                    System.out.println("\t" + s);
+            // printMap(availablePlacements);
+
+            // Remove occupiedPlacements from availablePlacements
+            for (Map.Entry<String, List<String>> entry : occupiedPlacements.entrySet()) {
+                String siteName = entry.getKey();
+                List<String> occupiedBELs = entry.getValue();
+
+                // Only one BEL per site...
+                availablePlacements.remove(siteName);
+
+                // BEL PACKING VERSION (WILL CAUSE ILLEGAL PLACEMENT)
+                // if (availablePlacements.containsKey(siteName)) {
+                // availablePlacements.get(siteName).removeAll(occupiedBELs);
+                // if (availablePlacements.get(siteName).isEmpty()) {
+                // availablePlacements.remove(siteName);
+                // }
+                // }
             }
 
             if (availablePlacements.isEmpty()) {
@@ -179,8 +199,6 @@ public class PlacerFirst extends Placer {
 
             // Select first site and in first site, first BEL
             String selectedSiteName = availablePlacements.keySet().iterator().next();
-            if (availablePlacements.get(selectedSiteName).isEmpty())
-                System.out.println(selectedSiteName + " value empty!");
             String selectedBELName = availablePlacements.get(selectedSiteName).get(0);
 
             Site selectedSite = device.getSite(selectedSiteName);
@@ -190,15 +208,12 @@ public class PlacerFirst extends Placer {
                     "\nCell: %-40s, EDIFCellType: %-10s, cellType: %-10s, SiteType: %-10s, Site: %-10s, BEL: %-10s",
                     cell.getName(), ehci.getCellType(), cell.getType(), selectedSiteType, selectedSiteName,
                     selectedBELName);
-            System.out.println(s1);
             writer.write(s1);
             if (design.placeCell(cell, selectedSite, selectedBEL)) {
                 writer.write("\n\tPlacement success!");
-                System.out.println("\tPlacement success!");
                 addToMap(occupiedPlacements, selectedSiteName, selectedBELName);
             } else {
                 writer.write("\n\tWARNING: Placement Failed!");
-                System.out.println("\tWARNING: Placement Failed!");
             }
 
             //

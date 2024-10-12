@@ -1,0 +1,102 @@
+
+Placing Cells...
+Cell: CLOCK_ENABLE_GEN/count_reg[0]           , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y129, BEL: A5FF      
+	Placement success!
+Cell: CLOCK_ENABLE_GEN/o_pulse_reg            , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y127, BEL: A5FF      
+	Placement success!
+Cell: CLOCK_ENABLE_GEN/count[0]_i_1__0        , EDIFCellType: LUT5      , cellType: LUT5      , SiteType: SLICEL    , Site: SLICE_X57Y128, BEL: A5LUT     
+	Placement success!
+Cell: CLOCK_ENABLE_GEN/count_reg[3]           , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y125, BEL: A5FF      
+	Placement success!
+Cell: CLOCK_ENABLE_GEN/count_reg[1]           , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y126, BEL: A5FF      
+	Placement success!
+	WARNING: Cell: CLOCK_ENABLE_GEN/VCC of type: VCC has no compatible placements!
+Cell: CLOCK_ENABLE_GEN/count_reg[2]           , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y123, BEL: A5FF      
+	Placement success!
+Cell: CLOCK_ENABLE_GEN/count_reg[0]_i_2       , EDIFCellType: CARRY4    , cellType: CARRY4    , SiteType: SLICEL    , Site: SLICE_X57Y124, BEL: CARRY4    
+	Placement success!
+Cell: CLOCK_ENABLE_GEN/o_pulse_i_1            , EDIFCellType: LUT5      , cellType: LUT5      , SiteType: SLICEL    , Site: SLICE_X57Y121, BEL: A5LUT     
+	Placement success!
+	WARNING: Cell: CLOCK_ENABLE_GEN/GND of type: GND has no compatible placements!
+Cell: CLOCK_ENABLE_GEN/count[0]_i_3           , EDIFCellType: LUT1      , cellType: LUT1      , SiteType: SLICEL    , Site: SLICE_X57Y122, BEL: A5LUT     
+	Placement success!
+Cell: COUNTER/count_reg[0]                    , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y120, BEL: A5FF      
+	Placement success!
+Cell: COUNTER/count[2]_i_1                    , EDIFCellType: LUT3      , cellType: LUT3      , SiteType: SLICEL    , Site: SLICE_X57Y118, BEL: A5LUT     
+	Placement success!
+Cell: COUNTER/count[3]_i_1                    , EDIFCellType: LUT4      , cellType: LUT4      , SiteType: SLICEL    , Site: SLICE_X57Y119, BEL: A5LUT     
+	Placement success!
+Cell: COUNTER/count_reg[3]                    , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y116, BEL: A5FF      
+	Placement success!
+Cell: COUNTER/count_reg[1]                    , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X111Y97, BEL: A5FF      
+	Placement success!
+Cell: COUNTER/count_reg[2]                    , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y117, BEL: A5FF      
+	Placement success!
+Cell: COUNTER/count[1]_i_1                    , EDIFCellType: LUT2      , cellType: LUT2      , SiteType: SLICEL    , Site: SLICE_X111Y96, BEL: A5LUT     
+	Placement success!
+Cell: COUNTER/count[0]_i_1                    , EDIFCellType: LUT1      , cellType: LUT1      , SiteType: SLICEL    , Site: SLICE_X57Y114, BEL: A5LUT     
+	Placement success!Beginning Intra-Routing...
+Found CARRY cell.
+BELPin: CIN
+	Source BELPin: CIN.CIN
+	siteConn: CIN
+BELPin: CYINIT
+	Source BELPin: PRECYINIT.OUT
+	siteConn: OUT
+BELPin: DI0
+	Source BELPin: ACY0.OUT
+	siteConn: OUT
+BELPin: DI1
+	Source BELPin: BCY0.OUT
+	siteConn: OUT
+BELPin: DI2
+	Source BELPin: CCY0.OUT
+	siteConn: OUT
+BELPin: DI3
+	Source BELPin: DCY0.OUT
+	siteConn: OUT
+BELPin: S0
+	Source BELPin: A6LUT.O6
+	siteConn: O6
+BELPin: S1
+	Source BELPin: B6LUT.O6
+	siteConn: O6
+BELPin: S2
+	Source BELPin: C6LUT.O6
+	siteConn: O6
+BELPin: S3
+	Source BELPin: D6LUT.O6
+	siteConn: O6
+BELPin: CO0
+	Source BELPin: CARRY4.CO0
+	siteConn: CY
+	siteConn: CY
+BELPin: CO1
+	Source BELPin: CARRY4.CO1
+	siteConn: CY
+	siteConn: CY
+BELPin: CO2
+	Source BELPin: CARRY4.CO2
+	siteConn: CY
+	siteConn: CY
+BELPin: CO3
+	Source BELPin: CARRY4.CO3
+	siteConn: 0
+	siteConn: CY
+	siteConn: CY
+BELPin: O0
+	Source BELPin: CARRY4.O0
+	siteConn: XOR
+	siteConn: XOR
+BELPin: O1
+	Source BELPin: CARRY4.O1
+	siteConn: XOR
+	siteConn: XOR
+BELPin: O2
+	Source BELPin: CARRY4.O2
+	siteConn: XOR
+	siteConn: XOR
+BELPin: O3
+	Source BELPin: CARRY4.O3
+	siteConn: XOR
+	siteConn: XOR
