@@ -1,3 +1,4 @@
+
 package placer;
 
 import java.util.Random;
@@ -38,9 +39,9 @@ import com.xilinx.rapidwright.device.Site;
 import com.xilinx.rapidwright.device.BEL;
 import com.xilinx.rapidwright.device.BELPin;
 
-public class PlacerFirst extends Placer {
+public class PlacerPacking extends Placer {
 
-    public PlacerFirst() throws IOException {
+    public PlacerPacking() throws IOException {
         super();
     }
 
@@ -159,7 +160,7 @@ public class PlacerFirst extends Placer {
 
             // Get all bel names in the selected site
             List<String> belNames = compatiblePlacements.get(selectedSiteType).stream()
-                    .filter(name -> !name.contains("5FF"))
+                    .filter(name -> !name.contains("5FF")) // Removes LATCH FFs
                     .collect(Collectors.toList());
 
             Map<String, List<String>> availablePlacements = new HashMap<>();
@@ -220,7 +221,7 @@ public class PlacerFirst extends Placer {
             //
         } // end for (ehci)
 
-        writer.write("\n\nBeginning Intra-Routing...");
+        writer.write("Beginning Intra-Routing...");
 
         for (SiteInst si : design.getSiteInsts()) {
             // route the site normally
@@ -255,22 +256,12 @@ public class PlacerFirst extends Placer {
                 }
             }
 
-            // writer.write("\nCells in site: ");
-            // for (Cell cell : si.getCells()) {
-            // if (cell.getBEL() != null) {
-            // writer.write("\n\tCell : " + cell.getName() + ", type: " + cell.getType() +
-            // ", BEL: "
-            // + cell.getBEL().getBELType());
-            // }
-            // }
-
             Cell ffCell = si.getCells().stream()
                     .filter(cell -> cell.getBEL() != null)
-                    .filter(cell -> cell.getBEL().getBELType().contains("REG_INIT"))
+                    .filter(cell -> cell.getBEL().isFF())
                     .findFirst()
                     .orElse(null);
             if (ffCell != null) {
-                writer.write("\nFound FF cell.");
                 Net srNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
                 if (!srNet.isGNDNet()) {
                     // srNet.addPin(si.getSitePinInst("SR"));

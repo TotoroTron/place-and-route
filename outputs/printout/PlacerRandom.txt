@@ -1,17 +1,17 @@
 
 Placing Cells...
-Cell: CLOCK_ENABLE_GEN/count_reg[0]           , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y129, BEL: A5FF      
+Cell: CLOCK_ENABLE_GEN/count_reg[0]           , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y129, BEL: AFF       
 	Placement success!
-Cell: CLOCK_ENABLE_GEN/o_pulse_reg            , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y127, BEL: A5FF      
+Cell: CLOCK_ENABLE_GEN/o_pulse_reg            , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y127, BEL: AFF       
 	Placement success!
 Cell: CLOCK_ENABLE_GEN/count[0]_i_1__0        , EDIFCellType: LUT5      , cellType: LUT5      , SiteType: SLICEL    , Site: SLICE_X57Y128, BEL: A5LUT     
 	Placement success!
-Cell: CLOCK_ENABLE_GEN/count_reg[3]           , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y125, BEL: A5FF      
+Cell: CLOCK_ENABLE_GEN/count_reg[3]           , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y125, BEL: AFF       
 	Placement success!
-Cell: CLOCK_ENABLE_GEN/count_reg[1]           , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y126, BEL: A5FF      
+Cell: CLOCK_ENABLE_GEN/count_reg[1]           , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y126, BEL: AFF       
 	Placement success!
 	WARNING: Cell: CLOCK_ENABLE_GEN/VCC of type: VCC has no compatible placements!
-Cell: CLOCK_ENABLE_GEN/count_reg[2]           , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y123, BEL: A5FF      
+Cell: CLOCK_ENABLE_GEN/count_reg[2]           , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y123, BEL: AFF       
 	Placement success!
 Cell: CLOCK_ENABLE_GEN/count_reg[0]_i_2       , EDIFCellType: CARRY4    , cellType: CARRY4    , SiteType: SLICEL    , Site: SLICE_X57Y124, BEL: CARRY4    
 	Placement success!
@@ -20,22 +20,29 @@ Cell: CLOCK_ENABLE_GEN/o_pulse_i_1            , EDIFCellType: LUT5      , cellTy
 	WARNING: Cell: CLOCK_ENABLE_GEN/GND of type: GND has no compatible placements!
 Cell: CLOCK_ENABLE_GEN/count[0]_i_3           , EDIFCellType: LUT1      , cellType: LUT1      , SiteType: SLICEL    , Site: SLICE_X57Y122, BEL: A5LUT     
 	Placement success!
-Cell: COUNTER/count_reg[0]                    , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y120, BEL: A5FF      
+Cell: COUNTER/count_reg[0]                    , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y120, BEL: AFF       
 	Placement success!
 Cell: COUNTER/count[2]_i_1                    , EDIFCellType: LUT3      , cellType: LUT3      , SiteType: SLICEL    , Site: SLICE_X57Y118, BEL: A5LUT     
 	Placement success!
 Cell: COUNTER/count[3]_i_1                    , EDIFCellType: LUT4      , cellType: LUT4      , SiteType: SLICEL    , Site: SLICE_X57Y119, BEL: A5LUT     
 	Placement success!
-Cell: COUNTER/count_reg[3]                    , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y116, BEL: A5FF      
+Cell: COUNTER/count_reg[3]                    , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y116, BEL: AFF       
 	Placement success!
-Cell: COUNTER/count_reg[1]                    , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X111Y97, BEL: A5FF      
+Cell: COUNTER/count_reg[1]                    , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X111Y97, BEL: AFF       
 	Placement success!
-Cell: COUNTER/count_reg[2]                    , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y117, BEL: A5FF      
+Cell: COUNTER/count_reg[2]                    , EDIFCellType: FDRE      , cellType: FDRE      , SiteType: SLICEL    , Site: SLICE_X57Y117, BEL: AFF       
 	Placement success!
 Cell: COUNTER/count[1]_i_1                    , EDIFCellType: LUT2      , cellType: LUT2      , SiteType: SLICEL    , Site: SLICE_X111Y96, BEL: A5LUT     
 	Placement success!
 Cell: COUNTER/count[0]_i_1                    , EDIFCellType: LUT1      , cellType: LUT1      , SiteType: SLICEL    , Site: SLICE_X57Y114, BEL: A5LUT     
-	Placement success!Beginning Intra-Routing...
+	Placement success!
+
+Beginning Intra-Routing...
+Found FF cell.
+Found FF cell.
+Found FF cell.
+Found FF cell.
+Found FF cell.
 Found CARRY cell.
 BELPin: CIN
 	Source BELPin: CIN.CIN
@@ -100,3 +107,7 @@ BELPin: O3
 	Source BELPin: CARRY4.O3
 	siteConn: XOR
 	siteConn: XOR
+Found FF cell.
+Found FF cell.
+Found FF cell.
+Found FF cell.
