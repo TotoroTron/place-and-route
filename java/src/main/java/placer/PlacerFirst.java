@@ -226,6 +226,16 @@ public class PlacerFirst extends Placer {
             // route the site normally
             si.routeSite();
 
+            writer.write("\nCells in site: " + si.getName());
+            for (Cell cell : si.getCells()) {
+                if (cell.getBEL() != null) {
+                    writer.write("\n\tCellName : " + cell.getName() + ", CellType: " + cell.getType() +
+                            ", BELName: " + cell.getBELName() + ", BELType: " + cell.getBEL().getBELType());
+                } else {
+                    writer.write("\n\tNull!");
+                }
+            }
+
             // does this site use a CARRY cell?
             // if so, we might need to route carry-in nets manually.
             Cell carryCell = si.getCells().stream()
@@ -235,15 +245,6 @@ public class PlacerFirst extends Placer {
                     .orElse(null);
             if (carryCell != null) {
                 writer.write("\nFound CARRY cell.");
-                BELPin[] belpins = carryCell.getBEL().getPins();
-                for (BELPin bp : belpins) {
-                    writer.write("\nBELPin: " + bp.getName());
-                    writer.write("\n\tSource BELPin: " + bp.getSourcePin());
-                    for (BELPin siteConn : bp.getSiteConns()) {
-                        writer.write("\n\tsiteConn: " + siteConn.getName());
-                    }
-                }
-
                 // if this CARRY4 is the first in a carry chain...
                 Net cinNet = si.getNetFromSiteWire("CIN");
                 if (cinNet.isGNDNet()) {
@@ -254,15 +255,6 @@ public class PlacerFirst extends Placer {
                     si.unrouteIntraSiteNet(cinPin.getSourcePin(), cinPin);
                 }
             }
-
-            // writer.write("\nCells in site: ");
-            // for (Cell cell : si.getCells()) {
-            // if (cell.getBEL() != null) {
-            // writer.write("\n\tCell : " + cell.getName() + ", type: " + cell.getType() +
-            // ", BEL: "
-            // + cell.getBEL().getBELType());
-            // }
-            // }
 
             Cell ffCell = si.getCells().stream()
                     .filter(cell -> cell.getBEL() != null)

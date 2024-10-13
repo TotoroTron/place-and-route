@@ -38,76 +38,81 @@ Cell: COUNTER/count[0]_i_1                    , EDIFCellType: LUT1      , cellTy
 	Placement success!
 
 Beginning Intra-Routing...
+Cells in site: SLICE_X57Y129
+	CellName : CLOCK_ENABLE_GEN/count_reg[0], CellType: FDRE, BELName: AFF, BELType: REG_INIT
 Found FF cell.
+Cells in site: OLOGIC_X1Y104
+	Null!
+Cells in site: SLICE_X57Y127
+	CellName : CLOCK_ENABLE_GEN/o_pulse_reg, CellType: FDRE, BELName: AFF, BELType: REG_INIT
 Found FF cell.
+Cells in site: IOB_X1Y124
+	CellName : i_clk_IBUF_inst, CellType: IBUF, BELName: INBUF_EN, BELType: IOB33_INBUF_EN
+	CellName : i_clk, CellType: <PORT>, BELName: PAD, BELType: PAD
+Cells in site: SLICE_X57Y128
+	CellName : CLOCK_ENABLE_GEN/count[0]_i_1__0, CellType: LUT5, BELName: A5LUT, BELType: LUT5
+Cells in site: SLICE_X57Y125
+	CellName : CLOCK_ENABLE_GEN/count_reg[3], CellType: FDRE, BELName: AFF, BELType: REG_INIT
 Found FF cell.
+Cells in site: SLICE_X57Y126
+	CellName : CLOCK_ENABLE_GEN/count_reg[1], CellType: FDRE, BELName: AFF, BELType: REG_INIT
 Found FF cell.
+Cells in site: IOB_X1Y107
+	CellName : ov_led[2], CellType: <PORT>, BELName: PAD, BELType: PAD
+	CellName : ov_led_OBUF[2]_inst, CellType: OBUF, BELName: OUTBUF, BELType: IOB33_OUTBUF
+Cells in site: SLICE_X57Y123
+	CellName : CLOCK_ENABLE_GEN/count_reg[2], CellType: FDRE, BELName: AFF, BELType: REG_INIT
 Found FF cell.
+Cells in site: ILOGIC_X1Y124
+	Null!
+Cells in site: SLICE_X57Y124
+	CellName : CLOCK_ENABLE_GEN/count_reg[0]_i_2, CellType: CARRY4, BELName: C6LUT, BELType: LUT6
+	CellName : CLOCK_ENABLE_GEN/count_reg[0]_i_2, CellType: CARRY4, BELName: CARRY4, BELType: CARRY4
+	CellName : CLOCK_ENABLE_GEN/count_reg[0]_i_2, CellType: CARRY4, BELName: A6LUT, BELType: LUT6
+	CellName : CLOCK_ENABLE_GEN/count_reg[0]_i_2, CellType: CARRY4, BELName: B6LUT, BELType: LUT6
+	CellName : CLOCK_ENABLE_GEN/count_reg[0]_i_2, CellType: CARRY4, BELName: D6LUT, BELType: LUT6
 Found CARRY cell.
-BELPin: CIN
-	Source BELPin: CIN.CIN
-	siteConn: CIN
-BELPin: CYINIT
-	Source BELPin: PRECYINIT.OUT
-	siteConn: OUT
-BELPin: DI0
-	Source BELPin: ACY0.OUT
-	siteConn: OUT
-BELPin: DI1
-	Source BELPin: BCY0.OUT
-	siteConn: OUT
-BELPin: DI2
-	Source BELPin: CCY0.OUT
-	siteConn: OUT
-BELPin: DI3
-	Source BELPin: DCY0.OUT
-	siteConn: OUT
-BELPin: S0
-	Source BELPin: A6LUT.O6
-	siteConn: O6
-BELPin: S1
-	Source BELPin: B6LUT.O6
-	siteConn: O6
-BELPin: S2
-	Source BELPin: C6LUT.O6
-	siteConn: O6
-BELPin: S3
-	Source BELPin: D6LUT.O6
-	siteConn: O6
-BELPin: CO0
-	Source BELPin: CARRY4.CO0
-	siteConn: CY
-	siteConn: CY
-BELPin: CO1
-	Source BELPin: CARRY4.CO1
-	siteConn: CY
-	siteConn: CY
-BELPin: CO2
-	Source BELPin: CARRY4.CO2
-	siteConn: CY
-	siteConn: CY
-BELPin: CO3
-	Source BELPin: CARRY4.CO3
-	siteConn: 0
-	siteConn: CY
-	siteConn: CY
-BELPin: O0
-	Source BELPin: CARRY4.O0
-	siteConn: XOR
-	siteConn: XOR
-BELPin: O1
-	Source BELPin: CARRY4.O1
-	siteConn: XOR
-	siteConn: XOR
-BELPin: O2
-	Source BELPin: CARRY4.O2
-	siteConn: XOR
-	siteConn: XOR
-BELPin: O3
-	Source BELPin: CARRY4.O3
-	siteConn: XOR
-	siteConn: XOR
+Cells in site: SLICE_X57Y121
+	CellName : CLOCK_ENABLE_GEN/o_pulse_i_1, CellType: LUT5, BELName: A5LUT, BELType: LUT5
+Cells in site: IOB_X1Y104
+	CellName : ov_led[3], CellType: <PORT>, BELName: PAD, BELType: PAD
+	CellName : ov_led_OBUF[3]_inst, CellType: OBUF, BELName: OUTBUF, BELType: IOB33_OUTBUF
+Cells in site: SLICE_X57Y122
+	CellName : CLOCK_ENABLE_GEN/count[0]_i_3, CellType: LUT1, BELName: A5LUT, BELType: LUT5
+Cells in site: SLICE_X57Y120
+	CellName : COUNTER/count_reg[0], CellType: FDRE, BELName: AFF, BELType: REG_INIT
 Found FF cell.
+Cells in site: OLOGIC_X1Y107
+	Null!
+Cells in site: IOB_X1Y88
+	CellName : ov_led[1], CellType: <PORT>, BELName: PAD, BELType: PAD
+	CellName : ov_led_OBUF[1]_inst, CellType: OBUF, BELName: OUTBUF, BELType: IOB33_OUTBUF
+Cells in site: IOB_X1Y87
+	CellName : ov_led[0], CellType: <PORT>, BELName: PAD, BELType: PAD
+	CellName : ov_led_OBUF[0]_inst, CellType: OBUF, BELName: OUTBUF, BELType: IOB33_OUTBUF
+Cells in site: SLICE_X57Y118
+	CellName : COUNTER/count[2]_i_1, CellType: LUT3, BELName: A5LUT, BELType: LUT5
+Cells in site: SLICE_X57Y119
+	CellName : COUNTER/count[3]_i_1, CellType: LUT4, BELName: A5LUT, BELType: LUT5
+Cells in site: SLICE_X57Y116
+	CellName : COUNTER/count_reg[3], CellType: FDRE, BELName: AFF, BELType: REG_INIT
 Found FF cell.
+Cells in site: SLICE_X111Y97
+	CellName : COUNTER/count_reg[1], CellType: FDRE, BELName: AFF, BELType: REG_INIT
 Found FF cell.
+Cells in site: IOB_X1Y135
+	CellName : i_rst_IBUF_inst, CellType: IBUF, BELName: INBUF_EN, BELType: IOB33_INBUF_EN
+	CellName : i_rst, CellType: <PORT>, BELName: PAD, BELType: PAD
+Cells in site: SLICE_X57Y117
+	CellName : COUNTER/count_reg[2], CellType: FDRE, BELName: AFF, BELType: REG_INIT
 Found FF cell.
+Cells in site: SLICE_X111Y96
+	CellName : COUNTER/count[1]_i_1, CellType: LUT2, BELName: A5LUT, BELType: LUT5
+Cells in site: SLICE_X57Y114
+	CellName : COUNTER/count[0]_i_1, CellType: LUT1, BELName: A5LUT, BELType: LUT5
+Cells in site: ILOGIC_X1Y135
+	Null!
+Cells in site: OLOGIC_X1Y88
+	Null!
+Cells in site: OLOGIC_X1Y87
+	Null!
