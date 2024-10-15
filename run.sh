@@ -90,8 +90,8 @@ if [ "$start_stage" == "sim" ] || [ "$start_stage" == "all" ]; then
         glbl
 
     # xsim top_timesim -gui
-    # xsim tb_counter_time_impl -key {Post-Implementation:sim_1:Timing:tb_counter} -tclbatch tb_counter.tcl -log simulate.log
-    xsim tb_counter_time_impl --tclbatch xsim_cfg.tcl
+    xsim tb_counter_time_impl -key {Post-Implementation:sim_1:Timing:tb_counter} -tclbatch tb_counter.tcl -log simulate.log
+    # xsim tb_counter_time_impl --tclbatch xsim_cfg.tcl -log simulate.log
     # xsim tb_counter_time_impl -gui
 fi
 
