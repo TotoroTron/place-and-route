@@ -271,6 +271,7 @@ public class PlacerFirst extends Placer {
                     si.routeIntraSiteNet(srNet, si.getBELPin("SRUSEDMUX", "IN"), srPin);
                 }
             }
+
         }
 
         if (writer != null)

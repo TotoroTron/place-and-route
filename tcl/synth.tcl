@@ -1,27 +1,33 @@
 # synth.tcl
 
 set root_dir "/home/bcheng/workspace/dev/place-and-route"
-set design_name "top_level"
 set synthesized_dcp "$root_dir/outputs/synthesized.dcp" 
 
-set hdl_dir $root_dir/hdl/vhdl/counter/counter.srcs/sources_1/new
-# set hdl_dir $root_dir/hdl/vhdl/and/and.srcs/sources_1/new
-set hdl_files [glob -nocomplain -directory $hdl_dir *.vhd]
-foreach file $hdl_files {
+set design "counter"
+set src_dir "$root_dir/hdl/vhdl/$design/$design.srcs/sources_1/new"
+set verif_dir "$root_dir/hdl/vhdl/$design/$design.srcs/sim_1/new"
+set xdc_dir "$root_dir/hdl/vhdl/$design/$design.srcs/constrs_1/new"
+
+# Read in source files
+set src_files [glob -nocomplain -directory $src_dir *.vhd]
+foreach file $src_files {
     puts "reading: $file"
     read_vhdl $file
 }
 
-set xdc_dir $root_dir/hdl/vhdl/counter/counter.srcs/constrs_1/new
-# set xdc_dir $root_dir/hdl/vhdl/and/and.srcs/constrs_1/new
+# Read in verif files
+set verif_files [glob -nocomplain -directory $verif_dir *.vhd]
+foreach file $verif_files {
+    puts "reading: $file"
+    read_vhdl $file
+}
+
+# Read in constraints file
 set xdc_file $xdc_dir/constraints.xdc
 read_xdc $xdc_file
 
-synth_design -mode out_of_context -part xc7z020clg400-1 -top $design_name
+synth_design -mode out_of_context -part xc7z020clg400-1 -top top_level
 
-write_checkpoint -force $synthesized_dcp
+write_checkpoint -force "$root_dir/outputs/synthesized.dcp"
 
 exit
-
-# open project <proj.xpr>
-# close_project
