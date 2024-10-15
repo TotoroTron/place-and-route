@@ -71,22 +71,28 @@ if [ "$start_stage" == "sim" ] || [ "$start_stage" == "all" ]; then
     echo "Timing SDF and verilog file generated. Check 'top_timesim.sdf"
 
     cd "$PROJ_DIR/outputs/simulation"
-    xvlog top_timesim.v
-    xvlog -sv "$PROJ_DIR/hdl/vhdl/counter/counter.srcs/sim_1/new/tb_postroute.sv"
-    xvlog $XILINX_VIVADO/data/verilog/src/glbl.v
+    xvlog --incr --relax -L uvm -prj tb_counter_vlog.prj
+    # xvlog tb_counter_time_impl.v
+    xvlog "$XILINX_VIVADO/data/verilog/src/glbl.v"
+    # xvlog -sv "$PROJ_DIR/hdl/vhdl/counter/counter.srcs/sim_1/new/tb_postroute.sv"
+
     xelab \
-        -snapshot top_timesim \
-        -debug typical \
-        -L unisims_ver \
-        -L simprims_ver \
-        -top tb_counter \
-        -maxdelay \
+        --incr \
+        --debug typical \
+        --relax \
+        --mt 8 \
+        --maxdelay \
+        -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver \
         -transport_int_delays \
-        -pulse_r 0 \
-        -pulse_int_r 0 \
+        -log elaborate.log \
+        -pulse_r 0 -pulse_int_r 0 -pulse_int_e 0 \
+        -snapshot tb_counter_time_impl -top tb_counter \
         glbl
-    # xelab -debug typical -maxdelay -L secureip -L simprims_ver -transport_int_delays -pulse_r 0 -pulse_int_r 0 testbench glbl -s top_timesim
-    xsim top_timesim -gui
+
+    # xsim top_timesim -gui
+    # xsim tb_counter_time_impl -key {Post-Implementation:sim_1:Timing:tb_counter} -tclbatch tb_counter.tcl -log simulate.log
+    xsim tb_counter_time_impl --tclbatch xsim_cfg.tcl
+    # xsim tb_counter_time_impl -gui
 fi
 
 # Return to outer dir

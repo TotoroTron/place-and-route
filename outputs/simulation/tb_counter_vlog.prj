@@ -1,0 +1,9 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"tb_counter_time_impl.v" \
+
+sv xil_defaultlib  \
+"/home/bcheng/workspace/dev/place-and-route/hdl/vhdl/counter/counter.srcs/sim_1/new/tb_postroute.sv" \
+
+# Do not sort compile order
+nosort

@@ -2,11 +2,10 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2023.2.2 (lin64) Build 4126759 Thu Feb  8 23:52:05 MST 2024
-// Date        : Tue Oct 15 13:18:52 2024
+// Date        : Tue Oct 15 15:35:42 2024
 // Host        : bcheng-HP running 64-bit Ubuntu 22.04.5 LTS
-// Command     : write_verilog /home/bcheng/workspace/dev/place-and-route/outputs/simulation/top_timesim.v -force -mode
-//               timesim -sdf_anno true -sdf_file
-//               /home/bcheng/workspace/dev/place-and-route/outputs/simulation/top_timesim.sdf
+// Command     : write_verilog /home/bcheng/workspace/dev/place-and-route/outputs/simulation/tb_counter_time_impl.v -force
+//               -mode timesim -nolib -sdf_anno true
 // Design      : top_level
 // Purpose     : This verilog netlist is a timing simulation representation of the design and should not be modified or
 //               synthesized. Please ensure that this netlist is used with the corresponding SDF file.
@@ -212,7 +211,7 @@ module top_level
   wire [3:0]ov_led_OBUF;
 
 initial begin
- $sdf_annotate("/home/bcheng/workspace/dev/place-and-route/outputs/simulation/top_timesim.sdf",,,,"tool_control");
+ $sdf_annotate("tb_counter_time_impl.sdf",,,,"tool_control");
 end
   pps_gen CLOCK_ENABLE_GEN
        (.E(o_pulse),

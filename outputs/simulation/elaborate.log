@@ -1,14 +1,14 @@
 Vivado Simulator v2023.2.2
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/bin/unwrapped/lnx64.o/xelab -snapshot top_timesim -debug typical -L unisims_ver -L simprims_ver -top tb_counter -maxdelay -transport_int_delays -pulse_r 0 -pulse_int_r 0 glbl 
-Multi-threading is on. Using 6 slave threads.
+Running: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/bin/unwrapped/lnx64.o/xelab --incr --debug typical --relax --mt 8 --maxdelay -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver -transport_int_delays -log elaborate.log -pulse_r 0 -pulse_int_r 0 -pulse_int_e 0 -snapshot tb_counter_time_impl -top tb_counter glbl 
+Using 8 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
-INFO: [XSIM 43-3451] SDF backannotation process started with SDF file "/home/bcheng/workspace/dev/place-and-route/outputs/simulation/top_timesim.sdf", for root module "tb_counter/dut".
+INFO: [XSIM 43-3451] SDF backannotation process started with SDF file "tb_counter_time_impl.sdf", for root module "tb_counter/dut".
 WARNING: [XSIM 43-3481] Unable to locate information about pathpulse limits for SDG instance count[0]_i_1__0 of module LUT5.
 WARNING: [XSIM 43-3481] Unable to locate information about pathpulse limits for SDG instance count[0]_i_3 of module LUT1.
 WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports CE and C for module FDRE_default.

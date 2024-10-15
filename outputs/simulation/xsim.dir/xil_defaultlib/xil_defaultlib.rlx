@@ -1,0 +1,6 @@
+0.7
+2020.2
+Feb  8 2024
+23:58:30
+/home/bcheng/workspace/dev/place-and-route/hdl/vhdl/counter/counter.srcs/sim_1/new/tb_postroute.sv,1729010310,systemVerilog,,,,tb_counter,,uvm,,,,,,
+/home/bcheng/workspace/dev/place-and-route/outputs/simulation/tb_counter_time_impl.v,1729020942,verilog,,,,counter;glbl;pps_gen;top_level,,uvm,,,,,,
