@@ -1,0 +1,134 @@
+Vivado Simulator v2023.2.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/bin/unwrapped/lnx64.o/xelab -snapshot top_timesim -debug typical -L unisims_ver -L simprims_ver -top tb_counter -maxdelay -transport_int_delays -pulse_r 0 -pulse_int_r 0 glbl 
+Multi-threading is on. Using 6 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+INFO: [XSIM 43-3451] SDF backannotation process started with SDF file "/home/bcheng/workspace/dev/place-and-route/outputs/simulation/top_timesim.sdf", for root module "tb_counter/dut".
+WARNING: [XSIM 43-3481] Unable to locate information about pathpulse limits for SDG instance count[0]_i_1__0 of module LUT5.
+WARNING: [XSIM 43-3481] Unable to locate information about pathpulse limits for SDG instance count[0]_i_3 of module LUT1.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3481] Unable to locate information about pathpulse limits for SDG instance count_reg[0]_i_2 of module CARRY4.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3481] Unable to locate information about pathpulse limits for SDG instance o_pulse_i_1 of module LUT5.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3481] Unable to locate information about pathpulse limits for SDG instance count[0]_i_1 of module LUT1.
+WARNING: [XSIM 43-3481] Unable to locate information about pathpulse limits for SDG instance count[1]_i_1 of module LUT2(INIT=4'b0110).
+WARNING: [XSIM 43-3481] Unable to locate information about pathpulse limits for SDG instance count[2]_i_1 of module LUT3(INIT=8'b01111000).
+WARNING: [XSIM 43-3481] Unable to locate information about pathpulse limits for SDG instance count[3]_i_1 of module LUT4(INIT=16'b0111111110000000).
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports CE and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports D and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3472] Unable to find delay expressions for setup between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3467] Unable to find delay expressions for hold between ports R and C for module FDRE_default.
+WARNING: [XSIM 43-3481] Unable to locate information about pathpulse limits for SDG instance i_clk_IBUF_inst of module IBUF.
+WARNING: [XSIM 43-3481] Unable to locate information about pathpulse limits for SDG instance i_rst_IBUF_inst of module IBUF.
+WARNING: [XSIM 43-3481] Unable to locate information about pathpulse limits for SDG instance ov_led_OBUF[0]_inst of module OBUF.
+WARNING: [XSIM 43-3481] Unable to locate information about pathpulse limits for SDG instance ov_led_OBUF[1]_inst of module OBUF.
+WARNING: [XSIM 43-3481] Unable to locate information about pathpulse limits for SDG instance ov_led_OBUF[2]_inst of module OBUF.
+WARNING: [XSIM 43-3481] Unable to locate information about pathpulse limits for SDG instance ov_led_OBUF[3]_inst of module OBUF.
+ERROR: [XSIM 43-3462] Unable to annotate SDF delays in the design.

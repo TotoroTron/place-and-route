@@ -14,6 +14,7 @@ export _JAVA_OPTIONS=-Xmx32736m
 PROJ_DIR="/home/bcheng/workspace/dev/place-and-route"
 SYNTH_TCL="$PROJ_DIR/tcl/synth.tcl"
 ROUTE_TCL="$PROJ_DIR/tcl/route.tcl"
+SIM_TCL="$PROJ_DIR/tcl/sim.tcl"
 
 start_stage=${1:-all} # Use first argument or defaults to all
 
@@ -61,3 +62,32 @@ if [ "$start_stage" == "route" ] || [ "$start_stage" == "all" ]; then
     check_exit_status "Vivado route"
     echo "Vivado route completed. Check 'routed.dcp'."
 fi
+
+# Post-Implementation Timing Simulation
+if [ "$start_stage" == "sim" ] || [ "$start_stage" == "all" ]; then
+    echo "Running Post-Implementation Timing Simulation..."
+    vivado -mode batch -source $SIM_TCL -nolog -nojournal
+    check_exit_status "Vivado sim"
+    echo "Timing SDF and verilog file generated. Check 'top_timesim.sdf"
+
+    cd "$PROJ_DIR/outputs/simulation"
+    xvlog top_timesim.v
+    xvlog -sv "$PROJ_DIR/hdl/vhdl/counter/counter.srcs/sim_1/new/tb_postroute.sv"
+    xvlog $XILINX_VIVADO/data/verilog/src/glbl.v
+    xelab \
+        -snapshot top_timesim \
+        -debug typical \
+        -L unisims_ver \
+        -L simprims_ver \
+        -top tb_counter \
+        -maxdelay \
+        -transport_int_delays \
+        -pulse_r 0 \
+        -pulse_int_r 0 \
+        glbl
+    # xelab -debug typical -maxdelay -L secureip -L simprims_ver -transport_int_delays -pulse_r 0 -pulse_int_r 0 testbench glbl -s top_timesim
+    xsim top_timesim -gui
+fi
+
+# Return to outer dir
+cd $PROJ_DIR

@@ -28,6 +28,6 @@ read_xdc $xdc_file
 
 synth_design -mode out_of_context -part xc7z020clg400-1 -top top_level
 
-write_checkpoint -force "$root_dir/outputs/synthesized.dcp"
+write_checkpoint -force $synthesized_dcp
 
 exit
