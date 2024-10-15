@@ -1,0 +1,12 @@
+
+{ 
+    crc :  4802759862853836992  , 
+    ccp_crc :  0  , 
+    cmdline : " -incr -debug typical -relax -maxdelay -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver -transport_int_delays -pulse_r 0 -pulse_int_r 0 -pulse_int_e 0 -snapshot tb_counter_time_impl -top tb_counter -sdfroot /home/bcheng/workspace/dev/place-and-route/outputs/simulation/tb_counter_time_impl.sdf glbl" , 
+    buildDate : "Feb  8 2024" , 
+    buildTime : "23:58:30" , 
+    linkCmd : "/usr/bin/gcc -Wa,-W  -O -fPIC  -m64  -Wl,--no-as-needed  -Wl,--unresolved-symbols=ignore-all  -o \"xsim.dir/tb_counter_time_impl/xsimk\"   \"xsim.dir/tb_counter_time_impl/obj/xsim_0.lnx64.o\" \"xsim.dir/tb_counter_time_impl/obj/xsim_1.lnx64.o\" -L\"/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/lib/lnx64.o\" -lrdi_simulator_kernel    -L/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/lib/lnx64.o/../../tps/lnx64/gcc-9.3.0/bin/../lib64 -Wl,--disable-new-dtags -Wl,-rpath=/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/lib/lnx64.o/../../tps/lnx64/gcc-9.3.0/bin/../lib64 -lrdi_simbridge_kernel" , 
+    aggregate_nets : 
+    [ 
+    ] 
+} 

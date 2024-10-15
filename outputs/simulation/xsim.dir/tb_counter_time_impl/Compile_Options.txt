@@ -1,0 +1,1 @@
+-incr -debug "typical" -relax -mt "8" -maxdelay -L "xil_defaultlib" -L "uvm" -L "secureip" -L "unisims_ver" -L "simprims_ver" -transport_int_delays -log "elaborate.log" -pulse_r "0" -pulse_int_r "0" -pulse_int_e "0" -snapshot "tb_counter_time_impl" -top "tb_counter" -sdfroot "/home/bcheng/workspace/dev/place-and-route/outputs/simulation/tb_counter_time_impl.sdf" "glbl" 
