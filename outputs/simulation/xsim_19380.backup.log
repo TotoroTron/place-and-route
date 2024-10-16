@@ -3,13 +3,13 @@
 # SW Build 4126759 on Thu Feb  8 23:52:05 MST 2024
 # IP Build 4126054 on Fri Feb  9 11:39:09 MST 2024
 # SharedData Build 4115275 on Tue Jan 30 00:40:57 MST 2024
-# Start of session at: Tue Oct 15 21:17:43 2024
-# Process ID: 13607
+# Start of session at: Wed Oct 16 13:06:09 2024
+# Process ID: 19380
 # Current directory: /home/bcheng/workspace/dev/place-and-route/outputs/simulation
 # Command line: xsim -source {xsim.dir/tb_counter_time_impl.wdb/xsim_script.tcl}
 # Log file: /home/bcheng/workspace/dev/place-and-route/outputs/simulation/xsim.log
 # Journal file: /home/bcheng/workspace/dev/place-and-route/outputs/simulation/xsim.jou
-# Running On: bcheng-HP, OS: Linux, CPU Frequency: 400.000 MHz, CPU Physical cores: 4, Host memory: 16397 MB
+# Running On: bcheng-HP, OS: Linux, CPU Frequency: 2358.068 MHz, CPU Physical cores: 4, Host memory: 16397 MB
 #-----------------------------------------------------------
 start_gui
 source xsim.dir/tb_counter_time_impl.wdb/xsim_script.tcl
@@ -76,18 +76,13 @@ WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670ld:part0:1.0 avail
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/data/ip'.
-current_fileset: Time (s): cpu = 00:00:12 ; elapsed = 00:00:06 . Memory (MB): peak = 40731.527 ; gain = 569.055 ; free physical = 7920 ; free virtual = 27833
+current_fileset: Time (s): cpu = 00:00:13 ; elapsed = 00:00:06 . Memory (MB): peak = 40600.504 ; gain = 552.062 ; free physical = 5230 ; free virtual = 25862
 # xsim {tb_counter_time_impl.wdb} -autoloadwcfg -tclbatch {waveform.tcl}
 source waveform.tcl
-## create_wave_config
-## add_wave set_property needs_save false [current_wave_config]
-ERROR: [Wavedata 42-471] Note: Nothing was found for the following items: set_property needs_save false Untitled 1 
-ERROR: [Common 17-39] 'add_wave' failed due to earlier errors.
-
-    while executing
-"add_wave set_property needs_save false [current_wave_config]"
-    (file "waveform.tcl" line 2)
+## create_wave_config;
+## add_wave /;
+## set_property needs_save false [current_wave_config]
 close_sim
 INFO: [Simtcl 6-16] Simulation closed
 exit
-INFO: [Common 17-206] Exiting xsim at Tue Oct 15 21:18:09 2024...
+INFO: [Common 17-206] Exiting xsim at Wed Oct 16 13:12:25 2024...

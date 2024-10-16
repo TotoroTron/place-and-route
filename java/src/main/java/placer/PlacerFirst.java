@@ -1,38 +1,24 @@
 package placer;
 
-import java.util.Random;
-import java.util.EnumSet;
-import java.util.Collections;
-import java.util.Collection;
 import java.util.Set;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.stream.Collectors;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
-import com.xilinx.rapidwright.edif.EDIFNetlist;
-import com.xilinx.rapidwright.edif.EDIFCell;
-import com.xilinx.rapidwright.edif.EDIFCellInst;
 import com.xilinx.rapidwright.edif.EDIFHierCellInst;
-import com.xilinx.rapidwright.edif.EDIFPortInst;
-import com.xilinx.rapidwright.edif.EDIFHierPortInst;
-import com.xilinx.rapidwright.edif.EDIFNet;
-import com.xilinx.rapidwright.edif.EDIFHierNet;
 
 import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.Cell;
 import com.xilinx.rapidwright.design.Net;
-import com.xilinx.rapidwright.design.SitePinInst;
 import com.xilinx.rapidwright.design.SiteInst;
 
-import com.xilinx.rapidwright.device.Device;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 import com.xilinx.rapidwright.device.Site;
 import com.xilinx.rapidwright.device.BEL;
@@ -42,72 +28,6 @@ public class PlacerFirst extends Placer {
 
     public PlacerFirst() throws IOException {
         super();
-    }
-
-    private void printAllCompatiblePlacements(FileWriter writer, Cell cell)
-            throws IOException {
-        writer.write("\n\tCompatible placements: ");
-        Map<SiteTypeEnum, Set<String>> compatibleBELs = cell.getCompatiblePlacements(device);
-
-        for (Map.Entry<SiteTypeEnum, Set<String>> entry : compatibleBELs.entrySet()) {
-            SiteTypeEnum siteType = entry.getKey();
-            Set<String> belNames = entry.getValue();
-
-            writer.write("\n\t\tSiteTypeEnum: " + siteType.name());
-            Site[] sites = device.getAllSitesOfType(siteType);
-
-            for (String bel : belNames)
-                writer.write("\n\t\t\tBEL: " + bel);
-            if (sites.length == 0) {
-                writer.write("\n\t\t\tSites: None!");
-                continue;
-            }
-            if (sites.length > 10) {
-                writer.write("\n\t\t\t" + sites.length + " compatible sites.");
-                continue;
-            }
-            for (Site site : sites)
-                writer.write("\n\t\t\tSite: " + site.getName());
-        }
-        return;
-    }
-
-    private boolean isBufferCell(Design design, EDIFHierCellInst ehci) {
-        // Filter out IBUF/OBUF cells. They are already placed by constraints.
-        Set<String> buffCells = new HashSet<>(Arrays.asList("IBUF", "OBUF"));
-        if (buffCells.contains(ehci.getCellName()))
-            return true;
-        else
-            return false;
-    }
-
-    private void removeBufferTypes(Set<SiteTypeEnum> types) {
-        List<SiteTypeEnum> buffSiteTypes = new ArrayList<>();
-        Collections.addAll(buffSiteTypes,
-                // FF Cells are reported to be "compatible" with these buffer sites
-                SiteTypeEnum.ILOGICE2,
-                SiteTypeEnum.ILOGICE3,
-                SiteTypeEnum.OLOGICE2,
-                SiteTypeEnum.OLOGICE3,
-                SiteTypeEnum.IOB18,
-                SiteTypeEnum.OPAD);
-        types.removeAll(buffSiteTypes);
-    }
-
-    private void addToMap(Map<String, List<String>> map, String key, String value) {
-        map.computeIfAbsent(key, k -> new ArrayList<>()).add(value);
-    }
-
-    private void printMap(Map<String, List<String>> map) {
-        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
-            String siteName = entry.getKey();
-            List<String> occupiedBELs = entry.getValue();
-            System.out.println("\tSite: " + siteName);
-            for (String bel : occupiedBELs) {
-                System.out.println("\t\tBEL: " + bel);
-            }
-        }
-        System.out.println();
     }
 
     public Design place(Design design) throws IOException {

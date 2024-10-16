@@ -2,11 +2,6 @@ package placer;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
 
 import java.io.FileWriter;
@@ -14,31 +9,11 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 
 import com.xilinx.rapidwright.design.Design;
-import com.xilinx.rapidwright.design.ModuleInst;
-import com.xilinx.rapidwright.design.ModuleImpls;
 import com.xilinx.rapidwright.design.SiteInst;
 import com.xilinx.rapidwright.design.SitePinInst;
 import com.xilinx.rapidwright.design.Net;
 
-import com.xilinx.rapidwright.edif.EDIFNetlist;
-import com.xilinx.rapidwright.edif.EDIFLibrary;
-
-import com.xilinx.rapidwright.edif.EDIFNet;
-import com.xilinx.rapidwright.edif.EDIFHierNet;
-
-import com.xilinx.rapidwright.edif.EDIFCell;
-import com.xilinx.rapidwright.edif.EDIFCellInst;
-import com.xilinx.rapidwright.edif.EDIFHierCellInst;
-
-import com.xilinx.rapidwright.edif.EDIFPortInst;
-import com.xilinx.rapidwright.edif.EDIFHierPortInst;
-
 import com.xilinx.rapidwright.device.Device;
-import com.xilinx.rapidwright.device.Site;
-import com.xilinx.rapidwright.device.SiteTypeEnum;
-import com.xilinx.rapidwright.device.BEL;
-import com.xilinx.rapidwright.device.Tile;
-import com.xilinx.rapidwright.device.TileTypeEnum;
 
 public class ViewVivadoCheckpoint {
 
