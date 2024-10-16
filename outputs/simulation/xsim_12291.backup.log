@@ -3,19 +3,26 @@
 # SW Build 4126759 on Thu Feb  8 23:52:05 MST 2024
 # IP Build 4126054 on Fri Feb  9 11:39:09 MST 2024
 # SharedData Build 4115275 on Tue Jan 30 00:40:57 MST 2024
-# Start of session at: Tue Oct 15 21:19:57 2024
-# Process ID: 14480
+# Start of session at: Tue Oct 15 21:14:27 2024
+# Process ID: 12291
 # Current directory: /home/bcheng/workspace/dev/place-and-route/outputs/simulation
-# Command line: xsim -source {xsim.dir/tb_counter_time_impl.wdb/xsim_script.tcl}
+# Command line: xsim -mode tcl -source {xsim.dir/tb_counter_time_impl/xsim_script.tcl}
 # Log file: /home/bcheng/workspace/dev/place-and-route/outputs/simulation/xsim.log
 # Journal file: /home/bcheng/workspace/dev/place-and-route/outputs/simulation/xsim.jou
-# Running On: bcheng-HP, OS: Linux, CPU Frequency: 3593.691 MHz, CPU Physical cores: 4, Host memory: 16397 MB
+# Running On: bcheng-HP, OS: Linux, CPU Frequency: 904.680 MHz, CPU Physical cores: 4, Host memory: 16397 MB
 #-----------------------------------------------------------
-start_gui
-source xsim.dir/tb_counter_time_impl.wdb/xsim_script.tcl
-# set_param project.enableReportConfiguration 0
-# load_feature core
-# current_fileset
+source xsim.dir/tb_counter_time_impl/xsim_script.tcl
+# xsim {tb_counter_time_impl} -autoloadwcfg -tclbatch {tb_counter.tcl}
+Time resolution is 1 ps
+source tb_counter.tcl
+## log_wave -recursive *
+## run all
+$finish called at time : 300025 ns : File "/home/bcheng/workspace/dev/place-and-route/hdl/vhdl/counter/counter.srcs/sim_1/new/tb_postroute.sv" Line 31
+## start_gui
+## create_wave_config;
+## add_wave /;
+## set_property needs_save false [current_wave_config]
+xsim: Time (s): cpu = 00:00:17 ; elapsed = 00:00:06 . Memory (MB): peak = 40543.320 ; gain = 39531.695 ; free physical = 7983 ; free virtual = 28028
 WARNING: [Board 49-26] cannot add Board Part xilinx.com:kc705:part0:1.6 available at /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kc705/1.6/board.xml as part xc7k325tffg900-2 specified in board_part file is either invalid or not available
 WARNING: [Board 49-26] cannot add Board Part xilinx.com:kcu105:part0:1.6 available at /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kcu105/1.6/board.xml as part xcku040-ffva1156-2-e specified in board_part file is either invalid or not available
 WARNING: [Board 49-26] cannot add Board Part xilinx.com:kcu105:part0:1.7 available at /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kcu105/1.7/board.xml as part xcku040-ffva1156-2-e specified in board_part file is either invalid or not available
@@ -73,16 +80,5 @@ WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu216:part0:2.0 availab
 WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu216ld:part0:2.0 available at /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu216ld/production/2.0/board.xml as part xczu59dr-ffvf1760-2-i specified in board_part file is either invalid or not available
 WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670:part0:2.0 available at /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu670/2.0/board.xml as part xczu67dr-fsve1156-2-i specified in board_part file is either invalid or not available
 WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670ld:part0:1.0 available at /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu670ld/1.0/board.xml as part xczu57dr-fsve1156-2-i specified in board_part file is either invalid or not available
-INFO: [IP_Flow 19-234] Refreshing IP repositories
-INFO: [IP_Flow 19-1704] No user IP repositories specified
-INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/data/ip'.
-current_fileset: Time (s): cpu = 00:00:13 ; elapsed = 00:00:06 . Memory (MB): peak = 40600.504 ; gain = 552.062 ; free physical = 7880 ; free virtual = 27796
-# xsim {tb_counter_time_impl.wdb} -autoloadwcfg -tclbatch {waveform.tcl}
-source waveform.tcl
-## create_wave_config;
-## add_wave /;
-## set_property needs_save false [current_wave_config]
-close_sim
-INFO: [Simtcl 6-16] Simulation closed
 exit
-INFO: [Common 17-206] Exiting xsim at Tue Oct 15 21:20:56 2024...
+INFO: [Common 17-206] Exiting xsim at Tue Oct 15 21:14:59 2024...

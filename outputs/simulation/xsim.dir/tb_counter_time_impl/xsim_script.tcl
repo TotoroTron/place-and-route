@@ -1,4 +1,1 @@
-set_param project.enableReportConfiguration 0
-load_feature core
-current_fileset
-xsim {tb_counter_time_impl} -autoloadwcfg
+xsim {tb_counter_time_impl} -autoloadwcfg -tclbatch {tb_counter.tcl}

@@ -1,7 +1,7 @@
 Vivado Simulator v2023.2.2
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/bin/unwrapped/lnx64.o/xelab -incr -debug typical -relax -mt 8 -maxdelay -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver -transport_int_delays -log elaborate.log -pulse_r 0 -pulse_int_r 0 -pulse_int_e 0 -snapshot tb_counter_time_impl -top tb_counter -sdfroot /home/bcheng/workspace/dev/place-and-route/outputs/simulation/tb_counter_time_impl.sdf glbl 
+Running: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/bin/unwrapped/lnx64.o/xelab -debug typical -relax -mt 8 -maxdelay -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver -transport_int_delays -pulse_r 0 -pulse_int_r 0 -pulse_int_e 0 -snapshot tb_counter_time_impl -top tb_counter -sdfroot /home/bcheng/workspace/dev/place-and-route/outputs/simulation/tb_counter_time_impl.sdf -log elaborate.log glbl 
 Using 8 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
