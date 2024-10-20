@@ -2,7 +2,7 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2023.2.2 (lin64) Build 4126759 Thu Feb  8 23:52:05 MST 2024
-// Date        : Wed Oct 16 13:14:05 2024
+// Date        : Sun Oct 20 17:06:20 2024
 // Host        : bcheng-HP running 64-bit Ubuntu 22.04.5 LTS
 // Command     : write_verilog /home/bcheng/workspace/dev/place-and-route/outputs/simulation/tb_counter_time_impl.v -force
 //               -mode timesim -nolib -sdf_anno true

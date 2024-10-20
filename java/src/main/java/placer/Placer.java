@@ -1,5 +1,6 @@
 package placer;
 
+import java.util.stream.Collectors;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -24,14 +25,11 @@ import com.xilinx.rapidwright.design.SitePinInst;
 
 import com.xilinx.rapidwright.edif.EDIFNetlist;
 import com.xilinx.rapidwright.edif.EDIFLibrary;
-
 import com.xilinx.rapidwright.edif.EDIFNet;
 import com.xilinx.rapidwright.edif.EDIFHierNet;
-
 import com.xilinx.rapidwright.edif.EDIFCell;
 import com.xilinx.rapidwright.edif.EDIFCellInst;
 import com.xilinx.rapidwright.edif.EDIFHierCellInst;
-
 import com.xilinx.rapidwright.edif.EDIFPortInst;
 import com.xilinx.rapidwright.edif.EDIFHierPortInst;
 
@@ -39,13 +37,15 @@ import com.xilinx.rapidwright.device.Device;
 import com.xilinx.rapidwright.device.Site;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 import com.xilinx.rapidwright.device.BEL;
+import com.xilinx.rapidwright.device.BELPin;
 import com.xilinx.rapidwright.device.Tile;
 import com.xilinx.rapidwright.device.TileTypeEnum;
 
 public abstract class Placer {
+    protected String placerName;
 
     protected Device device;
-    // protected Design design;
+    protected Design design;
     // protected EDIFNetlist netlist;
 
     protected String rootDir = "/home/bcheng/workspace/dev/place-and-route/";
@@ -53,23 +53,219 @@ public abstract class Placer {
     protected String placedDcp = rootDir + "/outputs/placed.dcp";
 
     public Placer() throws IOException {
+        design = Design.readCheckpoint(synthesizedDcp);
         device = Device.getDevice("xc7z020clg400-1");
     }
 
-    protected abstract Design place(Design design) throws IOException;
-
     public void run() throws IOException {
 
-        Design design = Design.readCheckpoint(synthesizedDcp);
-        design.flattenDesign();
-        EDIFNetlist netlist = design.getNetlist();
-
+        // design.flattenDesign();
         printNets(design, "NetsBeforePlace");
         printCells(design, "CellsBeforePlace");
-        design = place(design);
+        place();
+        manualIntraRouteSites();
         printNets(design, "NetsAfterPlace");
         printCells(design, "CellsAfterPlace");
         design.writeCheckpoint(placedDcp);
+    }
+
+    protected abstract SiteTypeEnum selectSiteType(
+            Map<SiteTypeEnum, Set<String>> compatiblePlacements) throws IOException;
+
+    protected abstract String[] selectSiteAndBEL(
+            Map<String, List<String>> availablePlacements,
+            Map<String, List<String>> occupiedPlacements) throws IOException;
+
+    // protected abstract void place() throws IOException;
+    public void place() throws IOException {
+        FileWriter writer = new FileWriter(rootDir + "outputs/printout/Placer.txt");
+        // design.flattenDesign();
+
+        // CREATE AND PLACE CELLS
+        writer.write("\nPlacing Cells...");
+
+        Map<String, List<String>> occupiedPlacements = new HashMap<>();
+        // a "placement" consists of a site-BEL pair
+
+        for (EDIFHierCellInst ehci : design.getNetlist().getAllLeafHierCellInstances()) {
+
+            // SKIP UNPLACEABLE CELLS
+            if (isBufferCell(design, ehci))
+                continue; // buffer cells already placed by constraints
+            Cell cell = design.createCell(ehci.getFullHierarchicalInstName(), ehci.getInst());
+            Map<SiteTypeEnum, Set<String>> compatiblePlacements = cell.getCompatiblePlacements(device);
+            if (compatiblePlacements.isEmpty()) {
+                writer.write("\n\tWARNING: Cell: " + cell.getName() + " of type: " + cell.getType()
+                        + " has no compatible placements!");
+                continue;
+            }
+            removeBufferTypes(compatiblePlacements.keySet());
+            SiteTypeEnum selectedSiteType = selectSiteType(compatiblePlacements);
+            if (selectedSiteType == null) {
+                writer.write("\n\tWARNING: SiteTypeEnum: " + selectedSiteType +
+                        " has no compatible sites!");
+                continue;
+            }
+
+            // BEGIN PLACEMENT DECISION
+            List<String> siteNames = Arrays.stream(device.getAllCompatibleSites(selectedSiteType))
+                    .map(Site::getName) // return as string names only, not the site itself
+                    .collect(Collectors.toList()); // collect as list
+            List<String> belNames = compatiblePlacements.get(selectedSiteType).stream()
+                    .filter(name -> !name.contains("5FF")) // placing regs on 5FF BELs will cause routing problems
+                    .collect(Collectors.toList());
+            Map<String, List<String>> availablePlacements = new HashMap<>();
+            for (String siteName : siteNames) {
+                availablePlacements.put(siteName, new ArrayList<>(belNames));
+            }
+
+            // Remove occupiedPlacements from availablePlacements
+            for (Map.Entry<String, List<String>> entry : occupiedPlacements.entrySet()) {
+                String siteName = entry.getKey();
+                List<String> occupiedBELs = entry.getValue();
+
+                // Only one BEL per site...
+                availablePlacements.remove(siteName);
+
+                // BEL PACKING VERSION (WILL CAUSE ILLEGAL PLACEMENT)
+                // if (availablePlacements.containsKey(siteName)) {
+                // availablePlacements.get(siteName).removeAll(occupiedBELs);
+                // if (availablePlacements.get(siteName).isEmpty()) {
+                // availablePlacements.remove(siteName);
+                // }
+                // }
+            }
+
+            if (availablePlacements.isEmpty()) {
+                String s1 = String.format("\nWARNING: Cell: $-40s has no available placements!",
+                        cell.getName());
+                System.out.println(s1);
+                writer.write(s1);
+                continue;
+            }
+
+            String[] selectedPlacement = selectSiteAndBEL(availablePlacements, occupiedPlacements);
+            String selectedSiteName = selectedPlacement[0];
+            String selectedBELName = selectedPlacement[1];
+
+            System.out.println("Selected Site + BEL: " + selectedSiteName + ", " + selectedBELName);
+            Site selectedSite = device.getSite(selectedSiteName);
+            BEL selectedBEL = selectedSite.getBEL(selectedBELName);
+            if (design.placeCell(cell, selectedSite, selectedBEL)) {
+                writer.write("\n\tPlacement success! Cell: " + cell.getName() + ", Site: " + selectedSiteName
+                        + ", BEL: " + selectedBELName);
+                addToMap(occupiedPlacements, selectedPlacement[0], selectedPlacement[1]);
+            } else {
+                writer.write("\n\tWARNING: Placement Failed!");
+            }
+        } // end for (EDIFHierCellInst)
+
+        if (writer != null)
+            writer.close();
+
+    } // end place()
+
+    protected boolean isBufferCell(Design design, EDIFHierCellInst ehci) {
+        // Filter out IBUF/OBUF cells. They are already placed by constraints.
+        Set<String> buffCells = new HashSet<>(Arrays.asList("IBUF", "OBUF"));
+        if (buffCells.contains(ehci.getCellName()))
+            return true;
+        else
+            return false;
+    }
+
+    protected void removeBufferTypes(Set<SiteTypeEnum> types) {
+        List<SiteTypeEnum> buffSiteTypes = new ArrayList<>();
+        Collections.addAll(buffSiteTypes,
+                // FF Cells are reported to be "compatible" with these buffer sites
+                SiteTypeEnum.ILOGICE2,
+                SiteTypeEnum.ILOGICE3,
+                SiteTypeEnum.OLOGICE2,
+                SiteTypeEnum.OLOGICE3,
+                SiteTypeEnum.IOB18,
+                SiteTypeEnum.OPAD);
+        types.removeAll(buffSiteTypes);
+    }
+
+    protected void addToMap(Map<String, List<String>> map, String key, String value) {
+        map.computeIfAbsent(key, k -> new ArrayList<>()).add(value);
+    }
+
+    protected Design manualIntraRouteSites() throws IOException {
+        FileWriter writer = new FileWriter(rootDir + "outputs/printout/manualIntraRouteSites.txt");
+        writer.write("\n\nBeginning Intra-Routing...");
+
+        for (SiteInst si : design.getSiteInsts()) {
+            // route the site normally
+            si.routeSite();
+
+            writer.write("\nCells in site: " + si.getName());
+            for (Cell cell : si.getCells()) {
+                if (cell.getBEL() != null) {
+                    writer.write("\n\tCellName : " + cell.getName() + ", CellType: " + cell.getType() +
+                            ", BELName: " + cell.getBELName() + ", BELType: " + cell.getBEL().getBELType());
+                } else {
+                    writer.write("\n\tNull!");
+                }
+            }
+
+            // does this site use a CARRY cell?
+            // if so, we might need to route carry-in nets manually.
+            Cell carryCell = si.getCells().stream()
+                    .filter(cell -> cell.getBEL() != null)
+                    .filter(cell -> cell.getBEL().isCarry())
+                    .findFirst()
+                    .orElse(null);
+            if (carryCell != null) {
+                writer.write("\nFound CARRY cell.");
+                // if this CARRY4 is the first in a carry chain...
+                Net cinNet = si.getNetFromSiteWire("CIN");
+                if (cinNet.isGNDNet()) {
+                    // manually remove CIN pin from the GND Net...
+                    // otherwise, routing will complain that CIN is unreachable
+                    cinNet.removePin(si.getSitePinInst("CIN"));
+                    BELPin cinPin = si.getBELPin("CARRY4", "CIN");
+                    si.unrouteIntraSiteNet(cinPin.getSourcePin(), cinPin);
+                }
+            }
+
+            Cell ffCell = si.getCells().stream()
+                    .filter(cell -> cell.getBEL() != null)
+                    .filter(cell -> cell.getBEL().getBELType().contains("REG_INIT"))
+                    .findFirst()
+                    .orElse(null);
+            if (ffCell != null) {
+                writer.write("\nFound FF cell.");
+                Net srNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
+                if (!srNet.isGNDNet()) {
+                    // srNet.addPin(si.getSitePinInst("SR"));
+                    BELPin srPin = ffCell.getBEL().getPin("SR");
+                    si.unrouteIntraSiteNet(srPin.getSourcePin(), srPin);
+                    si.routeIntraSiteNet(srNet, si.getBELPin("SRUSEDMUX", "IN"), srPin);
+                }
+            }
+        } // end for (SiteInst)
+        if (writer != null)
+            writer.close();
+        return design;
+    }
+
+    /*
+     *
+     * OLD PRINTOUT FUNCTIONS
+     *
+     */
+
+    protected void printMap(Map<String, List<String>> map) {
+        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
+            String siteName = entry.getKey();
+            List<String> occupiedBELs = entry.getValue();
+            System.out.println("\tSite: " + siteName);
+            for (String bel : occupiedBELs) {
+                System.out.println("\t\tBEL: " + bel);
+            }
+        }
+        System.out.println();
     }
 
     protected void printAllCompatiblePlacements(FileWriter writer, Cell cell)
@@ -98,44 +294,6 @@ public abstract class Placer {
                 writer.write("\n\t\t\tSite: " + site.getName());
         }
         return;
-    }
-
-    protected boolean isBufferCell(Design design, EDIFHierCellInst ehci) {
-        // Filter out IBUF/OBUF cells. They are already placed by constraints.
-        Set<String> buffCells = new HashSet<>(Arrays.asList("IBUF", "OBUF"));
-        if (buffCells.contains(ehci.getCellName()))
-            return true;
-        else
-            return false;
-    }
-
-    protected void removeBufferTypes(Set<SiteTypeEnum> types) {
-        List<SiteTypeEnum> buffSiteTypes = new ArrayList<>();
-        Collections.addAll(buffSiteTypes,
-                // FF Cells are reported to be "compatible" with these buffer sites
-                SiteTypeEnum.ILOGICE2,
-                SiteTypeEnum.ILOGICE3,
-                SiteTypeEnum.OLOGICE2,
-                SiteTypeEnum.OLOGICE3,
-                SiteTypeEnum.IOB18,
-                SiteTypeEnum.OPAD);
-        types.removeAll(buffSiteTypes);
-    }
-
-    protected void addToMap(Map<String, List<String>> map, String key, String value) {
-        map.computeIfAbsent(key, k -> new ArrayList<>()).add(value);
-    }
-
-    protected void printMap(Map<String, List<String>> map) {
-        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
-            String siteName = entry.getKey();
-            List<String> occupiedBELs = entry.getValue();
-            System.out.println("\tSite: " + siteName);
-            for (String bel : occupiedBELs) {
-                System.out.println("\t\tBEL: " + bel);
-            }
-        }
-        System.out.println();
     }
 
     public void printCells(Design design, String fileName) throws IOException {

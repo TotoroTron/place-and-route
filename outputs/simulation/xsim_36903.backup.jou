@@ -3,13 +3,13 @@
 # SW Build 4126759 on Thu Feb  8 23:52:05 MST 2024
 # IP Build 4126054 on Fri Feb  9 11:39:09 MST 2024
 # SharedData Build 4115275 on Tue Jan 30 00:40:57 MST 2024
-# Start of session at: Sun Oct 20 17:06:35 2024
-# Process ID: 39400
+# Start of session at: Sun Oct 20 16:58:59 2024
+# Process ID: 36903
 # Current directory: /home/bcheng/workspace/dev/place-and-route/outputs/simulation
 # Command line: xsim -source {xsim.dir/tb_counter_time_impl.wdb/xsim_script.tcl}
 # Log file: /home/bcheng/workspace/dev/place-and-route/outputs/simulation/xsim.log
 # Journal file: /home/bcheng/workspace/dev/place-and-route/outputs/simulation/xsim.jou
-# Running On: bcheng-HP, OS: Linux, CPU Frequency: 670.884 MHz, CPU Physical cores: 4, Host memory: 16397 MB
+# Running On: bcheng-HP, OS: Linux, CPU Frequency: 2934.597 MHz, CPU Physical cores: 4, Host memory: 16397 MB
 #-----------------------------------------------------------
 start_gui
 source xsim.dir/tb_counter_time_impl.wdb/xsim_script.tcl

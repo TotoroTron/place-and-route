@@ -1743,3 +1743,65 @@ Oct 16, 2024 1:13:09 PM placer.Main main
 INFO: Begin Random Placer...
 Oct 16, 2024 1:13:10 PM placer.Main main
 INFO: Data writing complete. Check 'output.txt'
+Oct 19, 2024 3:21:30 PM placer.Main main
+INFO: Begin Random Placer...
+Oct 19, 2024 3:21:53 PM placer.Main main
+INFO: Data writing complete. Check 'output.txt'
+Oct 20, 2024 4:44:40 PM placer.Main main
+INFO: Begin Random Placer...
+Oct 20, 2024 4:44:41 PM placer.Main main
+SEVERE: An IOException occurred while configuring the logger.
+java.io.IOException: Stream closed
+	at java.base/sun.nio.cs.StreamEncoder.ensureOpen(StreamEncoder.java:51)
+	at java.base/sun.nio.cs.StreamEncoder.write(StreamEncoder.java:125)
+	at java.base/sun.nio.cs.StreamEncoder.write(StreamEncoder.java:142)
+	at java.base/java.io.OutputStreamWriter.write(OutputStreamWriter.java:223)
+	at java.base/java.io.Writer.write(Writer.java:249)
+	at placer.Placer.place(Placer.java:153)
+	at placer.Placer.run(Placer.java:65)
+	at placer.Main.main(Main.java:29)
+
+Oct 20, 2024 4:50:32 PM placer.Main main
+INFO: Begin Random Placer...
+Oct 20, 2024 4:50:55 PM placer.Main main
+SEVERE: An IOException occurred while configuring the logger.
+java.io.IOException: Stream closed
+	at java.base/sun.nio.cs.StreamEncoder.ensureOpen(StreamEncoder.java:51)
+	at java.base/sun.nio.cs.StreamEncoder.write(StreamEncoder.java:125)
+	at java.base/sun.nio.cs.StreamEncoder.write(StreamEncoder.java:142)
+	at java.base/java.io.OutputStreamWriter.write(OutputStreamWriter.java:223)
+	at java.base/java.io.Writer.write(Writer.java:249)
+	at placer.Placer.place(Placer.java:155)
+	at placer.Placer.run(Placer.java:65)
+	at placer.Main.main(Main.java:29)
+
+Oct 20, 2024 4:53:32 PM placer.Main main
+INFO: Begin Random Placer...
+Oct 20, 2024 4:53:32 PM placer.Main main
+SEVERE: An IOException occurred while configuring the logger.
+java.io.IOException: Stream closed
+	at java.base/sun.nio.cs.StreamEncoder.ensureOpen(StreamEncoder.java:51)
+	at java.base/sun.nio.cs.StreamEncoder.write(StreamEncoder.java:125)
+	at java.base/sun.nio.cs.StreamEncoder.write(StreamEncoder.java:142)
+	at java.base/java.io.OutputStreamWriter.write(OutputStreamWriter.java:223)
+	at java.base/java.io.Writer.write(Writer.java:249)
+	at placer.Placer.place(Placer.java:155)
+	at placer.Placer.run(Placer.java:65)
+	at placer.Main.main(Main.java:29)
+
+Oct 20, 2024 4:55:19 PM placer.Main main
+INFO: Begin Random Placer...
+Oct 20, 2024 4:55:19 PM placer.Main main
+INFO: Data writing complete. Check 'output.txt'
+Oct 20, 2024 4:56:09 PM placer.Main main
+INFO: Begin Random Placer...
+Oct 20, 2024 4:56:10 PM placer.Main main
+INFO: Data writing complete. Check 'output.txt'
+Oct 20, 2024 4:56:26 PM placer.Main main
+INFO: Begin Random Placer...
+Oct 20, 2024 4:56:27 PM placer.Main main
+INFO: Data writing complete. Check 'output.txt'
+Oct 20, 2024 5:05:07 PM placer.Main main
+INFO: Begin Random Placer...
+Oct 20, 2024 5:05:30 PM placer.Main main
+INFO: Data writing complete. Check 'output.txt'
