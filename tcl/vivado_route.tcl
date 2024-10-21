@@ -6,6 +6,7 @@ set bitstream_file "$root_dir/outputs/output.bit"
 open_checkpoint $placed_dcp
 
 route_design
+report_route_status 
 
 # phys_opt_design
 

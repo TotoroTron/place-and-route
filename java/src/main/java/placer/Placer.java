@@ -73,8 +73,11 @@ public abstract class Placer {
             Map<SiteTypeEnum, Set<String>> compatiblePlacements) throws IOException;
 
     protected abstract String[] selectSiteAndBEL(
-            Map<String, List<String>> availablePlacements,
-            Map<String, List<String>> occupiedPlacements) throws IOException;
+            Map<String, List<String>> availablePlacements) throws IOException;
+
+    protected abstract void removeOccupiedPlacements(
+            Map<String, List<String>> occupiedPlacements,
+            Map<String, List<String>> availablePlacements) throws IOException;
 
     // protected abstract void place() throws IOException;
     public void place() throws IOException {
@@ -100,7 +103,7 @@ public abstract class Placer {
                 continue;
             }
             removeBufferTypes(compatiblePlacements.keySet());
-            SiteTypeEnum selectedSiteType = selectSiteType(compatiblePlacements);
+            SiteTypeEnum selectedSiteType = selectSiteType(compatiblePlacements); // ABSTRACT!
             if (selectedSiteType == null) {
                 writer.write("\n\tWARNING: SiteTypeEnum: " + selectedSiteType +
                         " has no compatible sites!");
@@ -119,22 +122,7 @@ public abstract class Placer {
                 availablePlacements.put(siteName, new ArrayList<>(belNames));
             }
 
-            // Remove occupiedPlacements from availablePlacements
-            for (Map.Entry<String, List<String>> entry : occupiedPlacements.entrySet()) {
-                String siteName = entry.getKey();
-                List<String> occupiedBELs = entry.getValue();
-
-                // Only one BEL per site...
-                availablePlacements.remove(siteName);
-
-                // BEL PACKING VERSION (WILL CAUSE ILLEGAL PLACEMENT)
-                // if (availablePlacements.containsKey(siteName)) {
-                // availablePlacements.get(siteName).removeAll(occupiedBELs);
-                // if (availablePlacements.get(siteName).isEmpty()) {
-                // availablePlacements.remove(siteName);
-                // }
-                // }
-            }
+            removeOccupiedPlacements(occupiedPlacements, availablePlacements); // ABSTRACT!
 
             if (availablePlacements.isEmpty()) {
                 String s1 = String.format("\nWARNING: Cell: $-40s has no available placements!",
@@ -144,7 +132,7 @@ public abstract class Placer {
                 continue;
             }
 
-            String[] selectedPlacement = selectSiteAndBEL(availablePlacements, occupiedPlacements);
+            String[] selectedPlacement = selectSiteAndBEL(availablePlacements); // ABSTRACT!
             String selectedSiteName = selectedPlacement[0];
             String selectedBELName = selectedPlacement[1];
 
