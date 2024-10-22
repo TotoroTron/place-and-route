@@ -50,20 +50,26 @@ public class PlacerPacking extends Placer {
             List<String> occupiedBELs = entry.getValue();
 
             // SINGLE BEL PER SITE
-            availablePlacements.remove(siteName);
-
-            // BEL PACKING VERSION (WILL CAUSE ILLEGAL PLACEMENT)
-            // if (availablePlacements.containsKey(siteName)) {
-            // availablePlacements.get(siteName).removeAll(occupiedBELs);
-            // if (availablePlacements.get(siteName).isEmpty()) {
             // availablePlacements.remove(siteName);
-            // }
-            // }
+
+            // BEL PACKING (CAUSES ILLEGAL PLACEMENT FOR FIRST/RANDOM PLACER)
+            if (availablePlacements.containsKey(siteName)) {
+                availablePlacements.get(siteName).removeAll(occupiedBELs);
+                if (availablePlacements.get(siteName).isEmpty()) {
+                    availablePlacements.remove(siteName);
+                }
+            }
         }
     }
 
+    private void placeCell(
+            Cell cell,
+            Map<String, List<String>> occupiedPlacements) throws IOException {
+
+    }
+
     public @Override void placeDesign() throws IOException {
-        writer.write("\n\nPlacing Cells...");
+        writer.write("\n\nPlacing Design...");
 
         List<Cell> cells = spawnCells(); // returns placeable cells (no buffer or port cells)
         Map<String, List<String>> occupiedPlacements = new HashMap<>();
@@ -74,7 +80,49 @@ public class PlacerPacking extends Placer {
 
         writer.write("\n\nPrinting Cell Types...");
         for (Cell cell : cells) {
-            writer.write("\n\tCell: " + cell.getName() + " Type: " + cell.getType());
+            String s1 = String.format(
+                    "\n\tcellName: %-40s cellType = %-10s",
+                    cell.getName(), cell.getType());
+            writer.write(s1);
+        }
+
+        for (Cell cell : cells) {
+            String cellType = cell.getType();
+
+            if (cell.getType() == "CARRY4") {
+                CARRYCells.add(cell);
+                cells.remove(cell);
+                /*
+                 * Find the input and output pins of this CARRY cell.
+                 *
+                 * Do the output pins connect to FF cells?
+                 * If so, find that FF cell and place it in the same site.
+                 *
+                 * Do the input pins connect to LUT cells?
+                 * If so, find that LUT cell and place it in the same site.
+                 */
+            }
+
+            if (cell.getType() == "FDRE") {
+                FFCells.add(cell);
+                cells.remove(cell);
+                /*
+                 * Find the input pins of the FF cell.
+                 * Do the input pins connect to LUTs?
+                 * If so, find that LUT and place it in the same site.
+                 */
+            }
+
+            if (cell.getType().contains("LUT")) {
+                LUTCells.add(cell);
+                cells.remove(cell);
+                /*
+                 * By now, most LUTs should be placed.
+                 * If this LUT connects to other LUTs,
+                 * try to place them in the same site
+                 */
+            }
+
         }
 
         for (Cell cell : cells) {
@@ -109,8 +157,9 @@ public class PlacerPacking extends Placer {
             Site selectedSite = device.getSite(selectedSiteName);
             BEL selectedBEL = selectedSite.getBEL(selectedBELName);
             if (design.placeCell(cell, selectedSite, selectedBEL)) {
-                writer.write("\n\tPlacement success! Cell: " + cell.getName() + ", Site: " + selectedSiteName
-                        + ", BEL: " + selectedBELName);
+                String s1 = String.format(
+                        "\n\tcellName: %-40s Site: %-10s BEL: %-10s",
+                        cell.getName(), selectedSiteName, selectedBELName);
                 addToMap(occupiedPlacements, selectedPlacement[0], selectedPlacement[1]);
             } else {
                 writer.write("\n\tWARNING: Placement Failed!");

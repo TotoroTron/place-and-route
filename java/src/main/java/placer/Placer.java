@@ -162,7 +162,10 @@ public abstract class Placer {
                 cells.remove(cell);
                 continue;
             }
-            writer.write("\n\tSpawned cell: " + cell.getName() + " cellType: " + cell.getType());
+            String s1 = String.format(
+                    "\n\tSpawned cell: %-40s cellType: %-10s",
+                    cell.getName(), cell.getType());
+            writer.write(s1);
             cells.add(cell);
         }
         return cells;
@@ -204,8 +207,10 @@ public abstract class Placer {
             writer.write("\n\tCells in site: " + si.getName());
             for (Cell cell : si.getCells()) {
                 if (cell.getBEL() != null) {
-                    writer.write("\n\t\tCellName : " + cell.getName() + ", CellType: " + cell.getType() +
-                            ", BELName: " + cell.getBELName() + ", BELType: " + cell.getBEL().getBELType());
+                    String s1 = String.format(
+                            "\n\t\tcellName: %-40s cellType: %-10s BELName: %-10s BELType: %-10s",
+                            cell.getName(), cell.getType(), cell.getBELName(), cell.getBEL().getBELType());
+                    writer.write(s1);
                 } else {
                     writer.write("\n\t\tNull!");
                 }
@@ -219,7 +224,7 @@ public abstract class Placer {
                     .findFirst()
                     .orElse(null);
             if (carryCell != null) {
-                writer.write("\n\tFound CARRY cell.");
+                writer.write("\n\t\tFound CARRY cell.");
                 // if this CARRY4 is the first in a carry chain...
                 Net cinNet = si.getNetFromSiteWire("CIN");
                 if (cinNet.isGNDNet()) {
@@ -237,7 +242,7 @@ public abstract class Placer {
                     .findFirst()
                     .orElse(null);
             if (ffCell != null) {
-                writer.write("\n\tFound FF cell.");
+                writer.write("\n\t\tFound FF cell.");
                 Net srNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
                 if (!srNet.isGNDNet()) {
                     // srNet.addPin(si.getSitePinInst("SR"));
