@@ -13,12 +13,10 @@ import java.io.IOException;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 
 public class PlacerRandom extends Placer {
-    FileWriter writer;
-    protected String placerName;
 
     public PlacerRandom() throws IOException {
         super();
-        placerName = "PlacerRandom";
+        placerName = "PlacerPacking";
         writer = new FileWriter(rootDir + "outputs/printout/" + placerName + ".txt");
     }
 

@@ -1,0 +1,464 @@
+PlacerPacking.txt
+
+Printing All Nets...
+	Net: COUNTER/Q[2]
+		SitePinInsts: None!
+	Net: COUNTER/Q[1]
+		SitePinInsts: None!
+	Net: COUNTER/Q[0]
+		SitePinInsts: None!
+	Net: ov_led[3]
+		SitePinInsts: None!
+	Net: ov_led[2]
+		SitePinInsts: None!
+	Net: GLOBAL_LOGIC0
+		SitePinInsts: None!
+	Net: ov_led[1]
+		SitePinInsts: None!
+	Net: ov_led[0]
+		SitePinInsts: None!
+	Net: i_rst
+		SitePinInsts: None!
+	Net: i_rst_IBUF
+		SitePinInsts: None!
+	Net: COUNTER/Q[3]
+		SitePinInsts: None!
+	Net: i_clk_IBUF
+		SitePinInsts: None!
+	Net: i_clk
+		SitePinInsts: None!
+
+Printing All Cells...
+	Cell: ov_led[3]                                isPlaced = true      
+		Site: IOB_X1Y104
+		SiteInst: IOB_X1Y104 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: ov_led[2]                                isPlaced = true      
+		Site: IOB_X1Y107
+		SiteInst: IOB_X1Y107 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: ov_led[1]                                isPlaced = true      
+		Site: IOB_X1Y88
+		SiteInst: IOB_X1Y88 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: ov_led[0]                                isPlaced = true      
+		Site: IOB_X1Y87
+		SiteInst: IOB_X1Y87 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: ov_led_OBUF[2]_inst                      isPlaced = true      
+		Site: IOB_X1Y107
+		SiteInst: IOB_X1Y107 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: i_rst                                    isPlaced = true      
+		Site: IOB_X1Y135
+		SiteInst: IOB_X1Y135 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: i_clk_IBUF_inst                          isPlaced = true      
+		Site: IOB_X1Y124
+		SiteInst: IOB_X1Y124 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: ov_led_OBUF[1]_inst                      isPlaced = true      
+		Site: IOB_X1Y88
+		SiteInst: IOB_X1Y88 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: i_rst_IBUF_inst                          isPlaced = true      
+		Site: IOB_X1Y135
+		SiteInst: IOB_X1Y135 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: ov_led_OBUF[0]_inst                      isPlaced = true      
+		Site: IOB_X1Y87
+		SiteInst: IOB_X1Y87 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: i_clk                                    isPlaced = true      
+		Site: IOB_X1Y124
+		SiteInst: IOB_X1Y124 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: <LOCKED>                                 isPlaced = false     
+		Site: OLOGIC_X1Y87
+		SiteInst: OLOGIC_X1Y87 	Placed = true
+		SiteTypeEnum: OLOGICE3
+	Cell: ov_led_OBUF[3]_inst                      isPlaced = true      
+		Site: IOB_X1Y104
+		SiteInst: IOB_X1Y104 	Placed = true
+		SiteTypeEnum: IOB33
+
+Placing Cells...
+
+Spawning cells from netlist...
+	Spawned cell: CLOCK_ENABLE_GEN/count_reg[0] cellType: FDRE
+	Spawned cell: CLOCK_ENABLE_GEN/o_pulse_reg cellType: FDRE
+	Spawned cell: CLOCK_ENABLE_GEN/count[0]_i_1__0 cellType: LUT5
+	Spawned cell: CLOCK_ENABLE_GEN/count_reg[3] cellType: FDRE
+	Spawned cell: CLOCK_ENABLE_GEN/count_reg[1] cellType: FDRE
+	WARNING: Cell: CLOCK_ENABLE_GEN/VCC of type: VCC has no compatible placements! SKIPPING.
+	Spawned cell: CLOCK_ENABLE_GEN/count_reg[2] cellType: FDRE
+	Spawned cell: CLOCK_ENABLE_GEN/count_reg[0]_i_2 cellType: CARRY4
+	Spawned cell: CLOCK_ENABLE_GEN/o_pulse_i_1 cellType: LUT5
+	WARNING: Cell: CLOCK_ENABLE_GEN/GND of type: GND has no compatible placements! SKIPPING.
+	Spawned cell: CLOCK_ENABLE_GEN/count[0]_i_3 cellType: LUT1
+	Spawned cell: COUNTER/count_reg[0] cellType: FDRE
+	Spawned cell: COUNTER/count[2]_i_1 cellType: LUT3
+	Spawned cell: COUNTER/count[3]_i_1 cellType: LUT4
+	Spawned cell: COUNTER/count_reg[3] cellType: FDRE
+	Spawned cell: COUNTER/count_reg[1] cellType: FDRE
+	Spawned cell: COUNTER/count_reg[2] cellType: FDRE
+	Spawned cell: COUNTER/count[1]_i_1 cellType: LUT2
+	Spawned cell: COUNTER/count[0]_i_1 cellType: LUT1
+
+Printing Cell Types...
+	Cell: CLOCK_ENABLE_GEN/count_reg[0] Type: FDRE
+	Cell: CLOCK_ENABLE_GEN/o_pulse_reg Type: FDRE
+	Cell: CLOCK_ENABLE_GEN/count[0]_i_1__0 Type: LUT5
+	Cell: CLOCK_ENABLE_GEN/count_reg[3] Type: FDRE
+	Cell: CLOCK_ENABLE_GEN/count_reg[1] Type: FDRE
+	Cell: CLOCK_ENABLE_GEN/count_reg[2] Type: FDRE
+	Cell: CLOCK_ENABLE_GEN/count_reg[0]_i_2 Type: CARRY4
+	Cell: CLOCK_ENABLE_GEN/o_pulse_i_1 Type: LUT5
+	Cell: CLOCK_ENABLE_GEN/count[0]_i_3 Type: LUT1
+	Cell: COUNTER/count_reg[0] Type: FDRE
+	Cell: COUNTER/count[2]_i_1 Type: LUT3
+	Cell: COUNTER/count[3]_i_1 Type: LUT4
+	Cell: COUNTER/count_reg[3] Type: FDRE
+	Cell: COUNTER/count_reg[1] Type: FDRE
+	Cell: COUNTER/count_reg[2] Type: FDRE
+	Cell: COUNTER/count[1]_i_1 Type: LUT2
+	Cell: COUNTER/count[0]_i_1 Type: LUT1
+	Placement success! Cell: CLOCK_ENABLE_GEN/count_reg[0], Site: SLICE_X57Y129, BEL: AFF
+	Placement success! Cell: CLOCK_ENABLE_GEN/o_pulse_reg, Site: SLICE_X57Y127, BEL: AFF
+	Placement success! Cell: CLOCK_ENABLE_GEN/count[0]_i_1__0, Site: SLICE_X57Y128, BEL: A5LUT
+	Placement success! Cell: CLOCK_ENABLE_GEN/count_reg[3], Site: SLICE_X57Y125, BEL: AFF
+	Placement success! Cell: CLOCK_ENABLE_GEN/count_reg[1], Site: SLICE_X57Y126, BEL: AFF
+	Placement success! Cell: CLOCK_ENABLE_GEN/count_reg[2], Site: SLICE_X57Y123, BEL: AFF
+	Placement success! Cell: CLOCK_ENABLE_GEN/count_reg[0]_i_2, Site: SLICE_X57Y124, BEL: CARRY4
+	Placement success! Cell: CLOCK_ENABLE_GEN/o_pulse_i_1, Site: SLICE_X57Y121, BEL: A5LUT
+	Placement success! Cell: CLOCK_ENABLE_GEN/count[0]_i_3, Site: SLICE_X57Y122, BEL: A5LUT
+	Placement success! Cell: COUNTER/count_reg[0], Site: SLICE_X57Y120, BEL: AFF
+	Placement success! Cell: COUNTER/count[2]_i_1, Site: SLICE_X57Y118, BEL: A5LUT
+	Placement success! Cell: COUNTER/count[3]_i_1, Site: SLICE_X57Y119, BEL: A5LUT
+	Placement success! Cell: COUNTER/count_reg[3], Site: SLICE_X57Y116, BEL: AFF
+	Placement success! Cell: COUNTER/count_reg[1], Site: SLICE_X111Y97, BEL: AFF
+	Placement success! Cell: COUNTER/count_reg[2], Site: SLICE_X57Y117, BEL: AFF
+	Placement success! Cell: COUNTER/count[1]_i_1, Site: SLICE_X111Y96, BEL: A5LUT
+	Placement success! Cell: COUNTER/count[0]_i_1, Site: SLICE_X57Y114, BEL: A5LUT
+
+Beginning Intra-Routing...
+	Cells in site: SLICE_X57Y129
+		CellName : CLOCK_ENABLE_GEN/count_reg[0], CellType: FDRE, BELName: AFF, BELType: REG_INIT
+	Found FF cell.
+	Cells in site: OLOGIC_X1Y104
+		Null!
+	Cells in site: SLICE_X57Y127
+		CellName : CLOCK_ENABLE_GEN/o_pulse_reg, CellType: FDRE, BELName: AFF, BELType: REG_INIT
+	Found FF cell.
+	Cells in site: IOB_X1Y124
+		CellName : i_clk_IBUF_inst, CellType: IBUF, BELName: INBUF_EN, BELType: IOB33_INBUF_EN
+		CellName : i_clk, CellType: <PORT>, BELName: PAD, BELType: PAD
+	Cells in site: SLICE_X57Y128
+		CellName : CLOCK_ENABLE_GEN/count[0]_i_1__0, CellType: LUT5, BELName: A5LUT, BELType: LUT5
+	Cells in site: SLICE_X57Y125
+		CellName : CLOCK_ENABLE_GEN/count_reg[3], CellType: FDRE, BELName: AFF, BELType: REG_INIT
+	Found FF cell.
+	Cells in site: SLICE_X57Y126
+		CellName : CLOCK_ENABLE_GEN/count_reg[1], CellType: FDRE, BELName: AFF, BELType: REG_INIT
+	Found FF cell.
+	Cells in site: IOB_X1Y107
+		CellName : ov_led[2], CellType: <PORT>, BELName: PAD, BELType: PAD
+		CellName : ov_led_OBUF[2]_inst, CellType: OBUF, BELName: OUTBUF, BELType: IOB33_OUTBUF
+	Cells in site: SLICE_X57Y123
+		CellName : CLOCK_ENABLE_GEN/count_reg[2], CellType: FDRE, BELName: AFF, BELType: REG_INIT
+	Found FF cell.
+	Cells in site: ILOGIC_X1Y124
+		Null!
+	Cells in site: SLICE_X57Y124
+		CellName : CLOCK_ENABLE_GEN/count_reg[0]_i_2, CellType: CARRY4, BELName: C6LUT, BELType: LUT6
+		CellName : CLOCK_ENABLE_GEN/count_reg[0]_i_2, CellType: CARRY4, BELName: CARRY4, BELType: CARRY4
+		CellName : CLOCK_ENABLE_GEN/count_reg[0]_i_2, CellType: CARRY4, BELName: A6LUT, BELType: LUT6
+		CellName : CLOCK_ENABLE_GEN/count_reg[0]_i_2, CellType: CARRY4, BELName: B6LUT, BELType: LUT6
+		CellName : CLOCK_ENABLE_GEN/count_reg[0]_i_2, CellType: CARRY4, BELName: D6LUT, BELType: LUT6
+	Found CARRY cell.
+	Cells in site: SLICE_X57Y121
+		CellName : CLOCK_ENABLE_GEN/o_pulse_i_1, CellType: LUT5, BELName: A5LUT, BELType: LUT5
+	Cells in site: IOB_X1Y104
+		CellName : ov_led[3], CellType: <PORT>, BELName: PAD, BELType: PAD
+		CellName : ov_led_OBUF[3]_inst, CellType: OBUF, BELName: OUTBUF, BELType: IOB33_OUTBUF
+	Cells in site: SLICE_X57Y122
+		CellName : CLOCK_ENABLE_GEN/count[0]_i_3, CellType: LUT1, BELName: A5LUT, BELType: LUT5
+	Cells in site: SLICE_X57Y120
+		CellName : COUNTER/count_reg[0], CellType: FDRE, BELName: AFF, BELType: REG_INIT
+	Found FF cell.
+	Cells in site: OLOGIC_X1Y107
+		Null!
+	Cells in site: IOB_X1Y88
+		CellName : ov_led[1], CellType: <PORT>, BELName: PAD, BELType: PAD
+		CellName : ov_led_OBUF[1]_inst, CellType: OBUF, BELName: OUTBUF, BELType: IOB33_OUTBUF
+	Cells in site: IOB_X1Y87
+		CellName : ov_led[0], CellType: <PORT>, BELName: PAD, BELType: PAD
+		CellName : ov_led_OBUF[0]_inst, CellType: OBUF, BELName: OUTBUF, BELType: IOB33_OUTBUF
+	Cells in site: SLICE_X57Y118
+		CellName : COUNTER/count[2]_i_1, CellType: LUT3, BELName: A5LUT, BELType: LUT5
+	Cells in site: SLICE_X57Y119
+		CellName : COUNTER/count[3]_i_1, CellType: LUT4, BELName: A5LUT, BELType: LUT5
+	Cells in site: SLICE_X57Y116
+		CellName : COUNTER/count_reg[3], CellType: FDRE, BELName: AFF, BELType: REG_INIT
+	Found FF cell.
+	Cells in site: SLICE_X111Y97
+		CellName : COUNTER/count_reg[1], CellType: FDRE, BELName: AFF, BELType: REG_INIT
+	Found FF cell.
+	Cells in site: IOB_X1Y135
+		CellName : i_rst_IBUF_inst, CellType: IBUF, BELName: INBUF_EN, BELType: IOB33_INBUF_EN
+		CellName : i_rst, CellType: <PORT>, BELName: PAD, BELType: PAD
+	Cells in site: SLICE_X57Y117
+		CellName : COUNTER/count_reg[2], CellType: FDRE, BELName: AFF, BELType: REG_INIT
+	Found FF cell.
+	Cells in site: SLICE_X111Y96
+		CellName : COUNTER/count[1]_i_1, CellType: LUT2, BELName: A5LUT, BELType: LUT5
+	Cells in site: SLICE_X57Y114
+		CellName : COUNTER/count[0]_i_1, CellType: LUT1, BELName: A5LUT, BELType: LUT5
+	Cells in site: ILOGIC_X1Y135
+		Null!
+	Cells in site: OLOGIC_X1Y88
+		Null!
+	Cells in site: OLOGIC_X1Y87
+		Null!
+
+Printing All Nets...
+	Net: COUNTER/Q[2]
+		SitePinInst: O isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: COUNTER/plusOp[3]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: COUNTER/Q[0]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: O isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+	Net: ov_led[2]
+		SitePinInst: PADOUT isRouted() = false
+	Net: ov_led[0]
+		SitePinInst: PADOUT isRouted() = false
+	Net: i_rst
+		SitePinInsts: None!
+	Net: CLOCK_ENABLE_GEN/count_reg[0]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+	Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_3
+		SitePinInsts: None!
+	Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_4
+		SitePinInst: AX isRouted() = false
+		SitePinInst: DMUX isRouted() = false
+	Net: CLOCK_ENABLE_GEN/count_reg[2]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A2 isRouted() = false
+	Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_1
+		SitePinInsts: None!
+	Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_2
+		SitePinInsts: None!
+	Net: COUNTER/plusOp[1]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: i_clk_IBUF
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: I isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+	Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_7
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_5
+		SitePinInst: AX isRouted() = false
+		SitePinInst: CMUX isRouted() = false
+	Net: CLOCK_ENABLE_GEN/count_reg[0]_i_2_n_6
+		SitePinInst: AX isRouted() = false
+		SitePinInst: BMUX isRouted() = false
+	Net: CLOCK_ENABLE_GEN/count[0]_i_1__0_n_0
+		SitePinInst: AMUX isRouted() = false
+	Net: COUNTER/Q[1]
+		SitePinInst: O isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A5 isRouted() = false
+	Net: CLOCK_ENABLE_GEN/E[0]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+	Net: ov_led[3]
+		SitePinInst: PADOUT isRouted() = false
+	Net: CLOCK_ENABLE_GEN/o_pulse_i_1_n_0
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: GLOBAL_LOGIC0
+		SitePinInsts: None!
+	Net: ov_led[1]
+		SitePinInst: PADOUT isRouted() = false
+	Net: GLOBAL_LOGIC1
+		SitePinInst: AX isRouted() = false
+		SitePinInst: CX isRouted() = false
+		SitePinInst: BX isRouted() = false
+		SitePinInst: DX isRouted() = false
+	Net: CLOCK_ENABLE_GEN/count_reg[3]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A4 isRouted() = false
+	Net: i_rst_IBUF
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: I isRouted() = false
+	Net: COUNTER/plusOp[0]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: COUNTER/plusOp[2]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: COUNTER/Q[3]
+		SitePinInst: O isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: CLOCK_ENABLE_GEN/count_reg[1]
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A3 isRouted() = false
+	Net: CLOCK_ENABLE_GEN/count[0]_i_3_n_0
+		SitePinInst: AMUX isRouted() = false
+	Net: i_clk
+		SitePinInsts: None!
+
+Printing All Cells...
+	Cell: CLOCK_ENABLE_GEN/count_reg[0]_i_2        isPlaced = true      
+		Site: SLICE_X57Y124
+		SiteInst: SLICE_X57Y124 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: ov_led[2]                                isPlaced = true      
+		Site: IOB_X1Y107
+		SiteInst: IOB_X1Y107 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: ov_led[0]                                isPlaced = true      
+		Site: IOB_X1Y87
+		SiteInst: IOB_X1Y87 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: ov_led_OBUF[2]_inst                      isPlaced = true      
+		Site: IOB_X1Y107
+		SiteInst: IOB_X1Y107 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: i_rst                                    isPlaced = true      
+		Site: IOB_X1Y135
+		SiteInst: IOB_X1Y135 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: CLOCK_ENABLE_GEN/count[0]_i_1__0         isPlaced = true      
+		Site: SLICE_X57Y128
+		SiteInst: SLICE_X57Y128 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: COUNTER/count[2]_i_1                     isPlaced = true      
+		Site: SLICE_X57Y118
+		SiteInst: SLICE_X57Y118 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: CLOCK_ENABLE_GEN/count_reg[0]            isPlaced = true      
+		Site: SLICE_X57Y129
+		SiteInst: SLICE_X57Y129 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: CLOCK_ENABLE_GEN/count_reg[2]            isPlaced = true      
+		Site: SLICE_X57Y123
+		SiteInst: SLICE_X57Y123 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: i_rst_IBUF_inst                          isPlaced = true      
+		Site: IOB_X1Y135
+		SiteInst: IOB_X1Y135 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: COUNTER/count_reg[1]                     isPlaced = true      
+		Site: SLICE_X111Y97
+		SiteInst: SLICE_X111Y97 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: COUNTER/count_reg[3]                     isPlaced = true      
+		Site: SLICE_X57Y116
+		SiteInst: SLICE_X57Y116 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: ov_led[3]                                isPlaced = true      
+		Site: IOB_X1Y104
+		SiteInst: IOB_X1Y104 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: ov_led[1]                                isPlaced = true      
+		Site: IOB_X1Y88
+		SiteInst: IOB_X1Y88 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: COUNTER/count[3]_i_1                     isPlaced = true      
+		Site: SLICE_X57Y119
+		SiteInst: SLICE_X57Y119 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: CLOCK_ENABLE_GEN/count_reg[3]            isPlaced = true      
+		Site: SLICE_X57Y125
+		SiteInst: SLICE_X57Y125 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: COUNTER/count[0]_i_1                     isPlaced = true      
+		Site: SLICE_X57Y114
+		SiteInst: SLICE_X57Y114 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: i_clk_IBUF_inst                          isPlaced = true      
+		Site: IOB_X1Y124
+		SiteInst: IOB_X1Y124 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: CLOCK_ENABLE_GEN/VCC                     isPlaced = false     
+	Cell: ov_led_OBUF[1]_inst                      isPlaced = true      
+		Site: IOB_X1Y88
+		SiteInst: IOB_X1Y88 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: CLOCK_ENABLE_GEN/count_reg[1]            isPlaced = true      
+		Site: SLICE_X57Y126
+		SiteInst: SLICE_X57Y126 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: COUNTER/count[1]_i_1                     isPlaced = true      
+		Site: SLICE_X111Y96
+		SiteInst: SLICE_X111Y96 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: CLOCK_ENABLE_GEN/o_pulse_reg             isPlaced = true      
+		Site: SLICE_X57Y127
+		SiteInst: SLICE_X57Y127 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: CLOCK_ENABLE_GEN/GND                     isPlaced = false     
+	Cell: CLOCK_ENABLE_GEN/count[0]_i_3            isPlaced = true      
+		Site: SLICE_X57Y122
+		SiteInst: SLICE_X57Y122 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: ov_led_OBUF[0]_inst                      isPlaced = true      
+		Site: IOB_X1Y87
+		SiteInst: IOB_X1Y87 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: i_clk                                    isPlaced = true      
+		Site: IOB_X1Y124
+		SiteInst: IOB_X1Y124 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: COUNTER/count_reg[0]                     isPlaced = true      
+		Site: SLICE_X57Y120
+		SiteInst: SLICE_X57Y120 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: <LOCKED>                                 isPlaced = false     
+		Site: OLOGIC_X1Y87
+		SiteInst: OLOGIC_X1Y87 	Placed = true
+		SiteTypeEnum: OLOGICE3
+	Cell: COUNTER/count_reg[2]                     isPlaced = true      
+		Site: SLICE_X57Y117
+		SiteInst: SLICE_X57Y117 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: ov_led_OBUF[3]_inst                      isPlaced = true      
+		Site: IOB_X1Y104
+		SiteInst: IOB_X1Y104 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: CLOCK_ENABLE_GEN/o_pulse_i_1             isPlaced = true      
+		Site: SLICE_X57Y121
+		SiteInst: SLICE_X57Y121 	Placed = true
+		SiteTypeEnum: SLICEL

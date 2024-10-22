@@ -25,8 +25,11 @@ public class Main {
             // PlacerFirst FPlacer = new PlacerFirst();
             // FPlacer.run();
 
-            PlacerRandom RPlacer = new PlacerRandom();
-            RPlacer.run();
+            // PlacerRandom RPlacer = new PlacerRandom();
+            // RPlacer.run();
+
+            PlacerPacking PPlacer = new PlacerPacking();
+            PPlacer.run();
 
             // ViewVivadoCheckpoint ViewVivado = new ViewVivadoCheckpoint();
             // ViewVivado.run();

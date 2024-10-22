@@ -43,6 +43,7 @@ import com.xilinx.rapidwright.device.TileTypeEnum;
 
 public abstract class Placer {
     protected String placerName;
+    FileWriter writer;
 
     protected Device device;
     protected Design design;
@@ -62,10 +63,11 @@ public abstract class Placer {
         // design.flattenDesign();
         printNets(design, "NetsBeforePlace");
         printCells(design, "CellsBeforePlace");
-        place();
+        placeDesign();
         manualIntraRouteSites();
         printNets(design, "NetsAfterPlace");
         printCells(design, "CellsAfterPlace");
+        writer.close();
         design.writeCheckpoint(placedDcp);
     }
 
@@ -79,60 +81,37 @@ public abstract class Placer {
             Map<String, List<String>> occupiedPlacements,
             Map<String, List<String>> availablePlacements) throws IOException;
 
-    // protected abstract void place() throws IOException;
-    public void place() throws IOException {
-        FileWriter writer = new FileWriter(rootDir + "outputs/printout/Placer.txt");
-        // design.flattenDesign();
-
-        // CREATE AND PLACE CELLS
+    public void placeDesign() throws IOException {
         writer.write("\nPlacing Cells...");
 
+        List<Cell> cells = spawnCells(); // returns placeable cells (no buffer or port cells)
         Map<String, List<String>> occupiedPlacements = new HashMap<>();
-        // a "placement" consists of a site-BEL pair
 
-        for (EDIFHierCellInst ehci : design.getNetlist().getAllLeafHierCellInstances()) {
+        for (Cell cell : cells) {
 
-            // SKIP UNPLACEABLE CELLS
-            if (isBufferCell(design, ehci))
-                continue; // buffer cells already placed by constraints
-            Cell cell = design.createCell(ehci.getFullHierarchicalInstName(), ehci.getInst());
             Map<SiteTypeEnum, Set<String>> compatiblePlacements = cell.getCompatiblePlacements(device);
-            if (compatiblePlacements.isEmpty()) {
-                writer.write("\n\tWARNING: Cell: " + cell.getName() + " of type: " + cell.getType()
-                        + " has no compatible placements!");
-                continue;
-            }
             removeBufferTypes(compatiblePlacements.keySet());
-            SiteTypeEnum selectedSiteType = selectSiteType(compatiblePlacements); // ABSTRACT!
-            if (selectedSiteType == null) {
-                writer.write("\n\tWARNING: SiteTypeEnum: " + selectedSiteType +
-                        " has no compatible sites!");
-                continue;
-            }
 
-            // BEGIN PLACEMENT DECISION
+            // ABSTRACT
+            SiteTypeEnum selectedSiteType = selectSiteType(compatiblePlacements);
+
             List<String> siteNames = Arrays.stream(device.getAllCompatibleSites(selectedSiteType))
                     .map(Site::getName) // return as string names only, not the site itself
                     .collect(Collectors.toList()); // collect as list
             List<String> belNames = compatiblePlacements.get(selectedSiteType).stream()
                     .filter(name -> !name.contains("5FF")) // placing regs on 5FF BELs will cause routing problems
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toList()); // UG474, CH2 Storage Elements for more information
             Map<String, List<String>> availablePlacements = new HashMap<>();
             for (String siteName : siteNames) {
                 availablePlacements.put(siteName, new ArrayList<>(belNames));
             }
 
-            removeOccupiedPlacements(occupiedPlacements, availablePlacements); // ABSTRACT!
+            // ABSTRACT
+            removeOccupiedPlacements(availablePlacements, occupiedPlacements);
 
-            if (availablePlacements.isEmpty()) {
-                String s1 = String.format("\nWARNING: Cell: $-40s has no available placements!",
-                        cell.getName());
-                System.out.println(s1);
-                writer.write(s1);
-                continue;
-            }
+            // ABSTRACT
+            String[] selectedPlacement = selectSiteAndBEL(availablePlacements);
 
-            String[] selectedPlacement = selectSiteAndBEL(availablePlacements); // ABSTRACT!
             String selectedSiteName = selectedPlacement[0];
             String selectedBELName = selectedPlacement[1];
 
@@ -146,12 +125,48 @@ public abstract class Placer {
             } else {
                 writer.write("\n\tWARNING: Placement Failed!");
             }
-        } // end for (EDIFHierCellInst)
 
-        if (writer != null)
-            writer.close();
+        } // end for(Cell)
 
-    } // end place()
+    } // end placDesign()
+
+    protected List<Cell> spawnCells() throws IOException {
+        writer.write("\n\nSpawning cells from netlist...");
+        EDIFNetlist netlist = design.getNetlist();
+
+        List<Cell> cells = new ArrayList<>(); // spawn placeable cells from EDIFNetlist
+        for (EDIFHierCellInst ehci : netlist.getAllLeafHierCellInstances()) {
+
+            // SKIP UNPLACEABLE CELLS
+            if (isBufferCell(design, ehci)) {
+                continue; // buffer cells already placed by constraints
+            }
+
+            Cell cell = design.createCell(ehci.getFullHierarchicalInstName(), ehci.getInst());
+            Map<SiteTypeEnum, Set<String>> compatiblePlacements = cell.getCompatiblePlacements(device);
+            if (compatiblePlacements.isEmpty()) {
+                writer.write("\n\tWARNING: Cell: " + cell.getName() + " of type: " + cell.getType()
+                        + " has no compatible placements! SKIPPING.");
+                cells.remove(cell);
+                continue;
+            }
+            removeBufferTypes(compatiblePlacements.keySet());
+
+            // ABSTRACT
+            SiteTypeEnum selectedSiteType = selectSiteType(compatiblePlacements);
+            // END ABSTRACT
+
+            if (selectedSiteType == null) {
+                writer.write("\n\tWARNING: SiteTypeEnum: " + selectedSiteType +
+                        " has no compatible sites!");
+                cells.remove(cell);
+                continue;
+            }
+            writer.write("\n\tSpawned cell: " + cell.getName() + " cellType: " + cell.getType());
+            cells.add(cell);
+        }
+        return cells;
+    }
 
     protected boolean isBufferCell(Design design, EDIFHierCellInst ehci) {
         // Filter out IBUF/OBUF cells. They are already placed by constraints.
@@ -180,20 +195,19 @@ public abstract class Placer {
     }
 
     protected Design manualIntraRouteSites() throws IOException {
-        FileWriter writer = new FileWriter(rootDir + "outputs/printout/manualIntraRouteSites.txt");
         writer.write("\n\nBeginning Intra-Routing...");
 
         for (SiteInst si : design.getSiteInsts()) {
             // route the site normally
             si.routeSite();
 
-            writer.write("\nCells in site: " + si.getName());
+            writer.write("\n\tCells in site: " + si.getName());
             for (Cell cell : si.getCells()) {
                 if (cell.getBEL() != null) {
-                    writer.write("\n\tCellName : " + cell.getName() + ", CellType: " + cell.getType() +
+                    writer.write("\n\t\tCellName : " + cell.getName() + ", CellType: " + cell.getType() +
                             ", BELName: " + cell.getBELName() + ", BELType: " + cell.getBEL().getBELType());
                 } else {
-                    writer.write("\n\tNull!");
+                    writer.write("\n\t\tNull!");
                 }
             }
 
@@ -205,7 +219,7 @@ public abstract class Placer {
                     .findFirst()
                     .orElse(null);
             if (carryCell != null) {
-                writer.write("\nFound CARRY cell.");
+                writer.write("\n\tFound CARRY cell.");
                 // if this CARRY4 is the first in a carry chain...
                 Net cinNet = si.getNetFromSiteWire("CIN");
                 if (cinNet.isGNDNet()) {
@@ -223,7 +237,7 @@ public abstract class Placer {
                     .findFirst()
                     .orElse(null);
             if (ffCell != null) {
-                writer.write("\nFound FF cell.");
+                writer.write("\n\tFound FF cell.");
                 Net srNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
                 if (!srNet.isGNDNet()) {
                     // srNet.addPin(si.getSitePinInst("SR"));
@@ -233,16 +247,82 @@ public abstract class Placer {
                 }
             }
         } // end for (SiteInst)
-        if (writer != null)
-            writer.close();
         return design;
     }
 
-    /*
-     *
-     * OLD PRINTOUT FUNCTIONS
-     *
-     */
+    public void placeDesignFromEDIFNetlist() throws IOException {
+        writer.write("\n\nPlacing Cells...");
+
+        Map<String, List<String>> occupiedPlacements = new HashMap<>();
+        for (EDIFHierCellInst ehci : design.getNetlist().getAllLeafHierCellInstances()) {
+
+            // SKIP UNPLACEABLE CELLS
+            if (isBufferCell(design, ehci))
+                continue; // buffer cells already placed by constraints
+            Cell cell = design.createCell(ehci.getFullHierarchicalInstName(), ehci.getInst());
+            Map<SiteTypeEnum, Set<String>> compatiblePlacements = cell.getCompatiblePlacements(device);
+            if (compatiblePlacements.isEmpty()) {
+                writer.write("\n\tWARNING: Cell: " + cell.getName() + " of type: " + cell.getType()
+                        + " has no compatible placements!");
+                continue;
+            }
+            removeBufferTypes(compatiblePlacements.keySet());
+
+            // ABSTRACT
+            SiteTypeEnum selectedSiteType = selectSiteType(compatiblePlacements);
+            // END ABSTRACT
+
+            if (selectedSiteType == null) {
+                writer.write("\n\tWARNING: SiteTypeEnum: " + selectedSiteType +
+                        " has no compatible sites!");
+                continue;
+            }
+
+            // BEGIN PLACEMENT DECISION
+            List<String> siteNames = Arrays.stream(device.getAllCompatibleSites(selectedSiteType))
+                    .map(Site::getName) // return as string names only, not the site itself
+                    .collect(Collectors.toList()); // collect as list
+            List<String> belNames = compatiblePlacements.get(selectedSiteType).stream()
+                    .filter(name -> !name.contains("5FF")) // placing regs on 5FF BELs will cause routing problems
+                    .collect(Collectors.toList());
+            // UG474, CH2 Storage Elements for more information
+            Map<String, List<String>> availablePlacements = new HashMap<>();
+            for (String siteName : siteNames) {
+                availablePlacements.put(siteName, new ArrayList<>(belNames));
+            }
+
+            // ABSTRACT
+            removeOccupiedPlacements(availablePlacements, occupiedPlacements);
+            // END ABSTRACT
+
+            if (availablePlacements.isEmpty()) {
+                String s1 = String.format("\nWARNING: Cell: $-40s has no available placements!",
+                        cell.getName());
+                System.out.println(s1);
+                writer.write(s1);
+                continue;
+            }
+
+            // ABSTRACT
+            String[] selectedPlacement = selectSiteAndBEL(availablePlacements);
+            // END ABSTRACT
+
+            String selectedSiteName = selectedPlacement[0];
+            String selectedBELName = selectedPlacement[1];
+
+            System.out.println("Selected Site + BEL: " + selectedSiteName + ", " + selectedBELName);
+            Site selectedSite = device.getSite(selectedSiteName);
+            BEL selectedBEL = selectedSite.getBEL(selectedBELName);
+            if (design.placeCell(cell, selectedSite, selectedBEL)) {
+                writer.write("\n\tPlacement success! Cell: " + cell.getName() + ", Site: " + selectedSiteName
+                        + ", BEL: " + selectedBELName);
+                addToMap(occupiedPlacements, selectedPlacement[0], selectedPlacement[1]);
+            } else {
+                writer.write("\n\tWARNING: Placement Failed!");
+            }
+        } // end for (EDIFHierCellInst)
+
+    } // end placeDesignFromEDIFNetlist()
 
     protected void printMap(Map<String, List<String>> map) {
         for (Map.Entry<String, List<String>> entry : map.entrySet()) {
@@ -254,522 +334,66 @@ public abstract class Placer {
             }
         }
         System.out.println();
-    }
+    } // end printMap()
 
     protected void printAllCompatiblePlacements(FileWriter writer, Cell cell)
             throws IOException {
-        writer.write("\n\tCompatible placements: ");
+        writer.write("\n\nPrinting Compatible placements: ");
         Map<SiteTypeEnum, Set<String>> compatibleBELs = cell.getCompatiblePlacements(device);
 
         for (Map.Entry<SiteTypeEnum, Set<String>> entry : compatibleBELs.entrySet()) {
             SiteTypeEnum siteType = entry.getKey();
             Set<String> belNames = entry.getValue();
 
-            writer.write("\n\t\tSiteTypeEnum: " + siteType.name());
+            writer.write("\n\tSiteTypeEnum: " + siteType.name());
             Site[] sites = device.getAllSitesOfType(siteType);
 
             for (String bel : belNames)
-                writer.write("\n\t\t\tBEL: " + bel);
+                writer.write("\n\t\tBEL: " + bel);
             if (sites.length == 0) {
-                writer.write("\n\t\t\tSites: None!");
+                writer.write("\n\t\tSites: None!");
                 continue;
             }
             if (sites.length > 10) {
-                writer.write("\n\t\t\t" + sites.length + " compatible sites.");
+                writer.write("\n\t\t" + sites.length + " compatible sites.");
                 continue;
             }
             for (Site site : sites)
-                writer.write("\n\t\t\tSite: " + site.getName());
+                writer.write("\n\t\tSite: " + site.getName());
         }
         return;
-    }
+    } // end printAllCompatiblePlacements()
 
     public void printCells(Design design, String fileName) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/" + fileName + ".txt"));
+        writer.write("\n\nPrinting All Cells...");
         Collection<Cell> cells = design.getCells();
         for (Cell cell : cells) {
             String s1 = String.format(
-                    "\nCell: %-40s isPlaced = %-10s",
+                    "\n\tCell: %-40s isPlaced = %-10s",
                     cell.getName(), cell.isPlaced());
             writer.write(s1);
             if (cell.getSite() != null) {
-                String s2 = "\n\tSite: " + cell.getSite().getName();
-                String s3 = "\n\tSiteInst: " + cell.getSiteInst().getName() + " \tPlaced = "
+                String s2 = "\n\t\tSite: " + cell.getSite().getName();
+                String s3 = "\n\t\tSiteInst: " + cell.getSiteInst().getName() + " \tPlaced = "
                         + cell.getSiteInst().isPlaced();
-                String s4 = "\n\tSiteTypeEnum: " + cell.getSiteInst().getSiteTypeEnum();
+                String s4 = "\n\t\tSiteTypeEnum: " + cell.getSiteInst().getSiteTypeEnum();
                 writer.write(s2 + s3 + s4);
             }
         }
-        if (writer != null)
-            writer.close();
-    }
-
-    public void printVCCNet(Design design, String fileName) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/" + fileName + ".txt"));
-
-        Net net = design.getNet("GLOBAL_LOGIC1");
-        List<SitePinInst> spis = net.getPins();
-        if (spis.isEmpty())
-            writer.write("\nNet has no pins!");
-        else
-            for (SitePinInst spi : spis)
-                writer.write("\nSitePinInst: " + spi.getName());
-        if (writer != null)
-            writer.close();
-    }
+    } // end printCells()
 
     public void printNets(Design design, String fileName) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/" + fileName + ".txt"));
+        writer.write("\n\nPrinting All Nets...");
         Collection<Net> nets = design.getNets();
         for (Net net : nets) {
-            writer.write("\nNet: " + net.getName());
+            writer.write("\n\tNet: " + net.getName());
             List<SitePinInst> spis = net.getPins();
             if (spis.isEmpty())
-                writer.write("\n\tSitePinInsts: None!");
+                writer.write("\n\t\tSitePinInsts: None!");
             else
                 for (SitePinInst spi : spis)
-                    writer.write("\n\tSitePinInst: " + spi.getName() + " isRouted() = " + spi.isRouted());
-            writer.newLine();
+                    writer.write("\n\t\tSitePinInst: " + spi.getName() + " isRouted() = " + spi.isRouted());
         }
+    } // end printNets()
 
-        if (writer != null)
-            writer.close();
-    }
-
-    public void printOneTile() throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/OneTile.txt"));
-        Tile tile = device.getTile(155, 10); // ROW, COLUMN
-        writer.write("\nTileType: " + tile.getTileTypeEnum());
-        writer.write("\nTileTypeIndex: " + tile.getTileTypeIndex());
-        writer.write("\nTileName: " + tile.getName());
-        writer.write("\nRow: " + tile.getRow() + "\tCol: " + tile.getRow());
-        writer.write("\nX: " + tile.getTileXCoordinate() + "\tY: " + tile.getTileYCoordinate());
-        if (writer != null)
-            writer.close();
-    }
-
-    public void printTileArray(BufferedWriter writer, Tile[] tiles, boolean showSites, boolean showBELs)
-            throws IOException {
-        if (tiles.length == 0)
-            writer.write("\nEmpty Tile Array.");
-        for (Tile tile : tiles) {
-            String s1 = String.format(
-                    "\nTileType: %-30s TileName: %-40s Row: %-5s Col: %-5s X: %-5s Y: %-5s",
-                    tile.getTileTypeEnum(), tile.getName(), tile.getRow(), tile.getColumn(),
-                    tile.getTileXCoordinate(), tile.getTileYCoordinate());
-            writer.write(s1);
-            Site[] sites = tile.getSites();
-            if (showSites == true)
-                printSiteArray(writer, sites, showBELs);
-        }
-    }
-
-    public void printSiteArray(BufferedWriter writer, Site[] sites, boolean showBELs) throws IOException {
-        if (sites.length == 0)
-            writer.write("\n\tEmpty Site Array.");
-        for (Site site : sites) {
-            String s2 = String.format(
-                    "\n\tSiteType: %-30s SiteName: %-40s ", site.getSiteTypeEnum(), site.getName());
-            writer.write(s2);
-            BEL[] bels = site.getBELs();
-            if (showBELs == true)
-                printBELArray(writer, bels);
-        }
-    }
-
-    public void printBELArray(BufferedWriter writer, BEL[] bels) throws IOException {
-        if (bels.length == 0)
-            writer.write("\n\t\tEmpty BEL Array.");
-        int word_count = 0;
-        writer.write("\n\t\t");
-        for (BEL bel : bels) {
-            writer.write(bel.getName() + " ");
-            word_count++;
-            if (word_count == 8) {
-                writer.write("\n\t\t");
-                word_count = 0;
-            }
-        }
-    }
-
-    public void printAllSiteInsts(Design design, String fileName) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/" + fileName + ".txt"));
-        Collection<SiteInst> sis = design.getSiteInsts();
-        for (SiteInst si : sis) {
-            writer.write("\nSiteInst: " + si.getSiteName());
-            writer.write("\n\tisPlaced(): " + si.isPlaced());
-        }
-        if (writer != null)
-            writer.close();
-    }
-
-    public void printAllDeviceTiles() throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/DeviceAllTiles.txt"));
-        writer.write("\nPrinting all tiles in device: ");
-        Tile[][] tiles = device.getTiles();
-        for (Tile[] row : tiles) {
-            printTileArray(writer, row, false, false);
-        }
-        if (writer != null)
-            writer.close();
-    }
-
-    public void printAllDeviceSites() throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/DeviceAllSites.txt"));
-        writer.write("Printing All Site(s) in device " + device.getName() + ": ");
-        writer.write("Unique site types: " + device.getSiteTypeCount());
-        Site[] sites = device.getAllSites();
-        printSiteArray(writer, sites, false);
-        if (writer != null)
-            writer.close();
-    }
-
-    public void printUniqueTiles() throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/DeviceUniqueTiles.txt"));
-        // writer.write("Number of unique tile types: " + device.getTileTypeCount());
-        // why is this inconsistent with unique TypeEnums?
-        writer.write("\nPrinting unique tiles in device: ");
-        writer.newLine();
-        Tile[][] tiles = device.getTiles();
-        Set<TileTypeEnum> uniqueTileTypes = new HashSet<>();
-        List<Tile> uniqueTiles = new ArrayList<>();
-        for (Tile[] row : tiles) {
-            for (Tile tile : row) {
-                if (uniqueTileTypes.add(tile.getTileTypeEnum())) {
-                    uniqueTiles.add(tile);
-                }
-            }
-        }
-        writer.write("\nNumber of unique tile types: " + uniqueTiles.size());
-        printTileArray(writer, uniqueTiles.toArray(new Tile[0]), true, true);
-        if (writer != null)
-            writer.close();
-    }
-
-    public void printUniqueSites() throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/DeviceUniqueSites.txt"));
-        // writer.write("Number of unique sites in the device: " +
-        // device.getSiteTypeCount());
-        // why is this inconsistent with unique TypeEnums?
-        writer.write("\nPrinting unique sites in the device: ");
-        writer.newLine();
-        Site[] sites = device.getAllSites();
-        Set<SiteTypeEnum> uniqueSiteTypes = new HashSet<>();
-        List<Site> uniqueSites = new ArrayList<>();
-        for (Site site : sites) {
-            if (uniqueSiteTypes.add(site.getSiteTypeEnum())) {
-                uniqueSites.add(site);
-            }
-        }
-        writer.write("\nNunmber of unique site types: " + uniqueSites.size());
-        printSiteArray(writer, uniqueSites.toArray(new Site[0]), true);
-        if (writer != null)
-            writer.close();
-    }
-
-    // ============= LIBRARY PRINTOUT ================
-
-    public void printEDIFLibrary(EDIFNetlist netlist) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/EDIFLibrary.txt"));
-        writer.write("Printing EDIFCells in EDIFLibrary: ");
-        writer.newLine();
-        EDIFLibrary library = netlist.getHDIPrimitivesLibrary();
-        Map<String, EDIFCell> ecs = library.getCellMap();
-        for (String cell : ecs.keySet())
-            writer.write("\nEDIFCell: " + cell);
-        if (writer != null)
-            writer.close();
-    }
-
-    // ============== NON-HIER PRINTOUT ==================
-
-    private void printTopCell(EDIFNetlist netlist) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/TopCell.txt"));
-        EDIFCell topCell = netlist.getTopCell();
-        EDIFCellInst topCellInst = netlist.getTopCellInst();
-        EDIFHierCellInst topHierCellInst = netlist.getTopHierCellInst();
-        writer.write("\ntopCellInst: " + topCellInst.getCellName() + " topHierCellInst: "
-                + topHierCellInst.getFullHierarchicalInstName());
-        writer.write("\nDepth: " + topHierCellInst.getDepth());
-        writer.write("\nCell Type: " + topHierCellInst.getCellType().getName());
-        writer.write("\nCell is primitive? " + topHierCellInst.getCellType().isPrimitive());
-
-        // VHDL "components" and Verilog "modules" are also represented as cells.
-        // The cells are either primitive or not primitive.
-        // Primitive cells are LUTs, FDREs, etc.
-        // Components instantiated inside a component is represented as a child cell of
-        // the outer parent cell.
-
-        Collection<EDIFPortInst> epis = topCellInst.getPortInsts();
-        printEDIFPortInsts(writer, epis);
-
-        List<EDIFHierPortInst> ehpis = topHierCellInst.getHierPortInsts();
-        printEDIFHierPortInsts(writer, ehpis);
-
-        if (writer != null)
-            writer.close();
-    }
-
-    private void printEDIFPortInsts(BufferedWriter writer, Collection<EDIFPortInst> epis) throws IOException {
-        if (epis.isEmpty())
-            writer.write("\n\tEmpty EDIFPortInst Collection.");
-        for (EDIFPortInst epi : epis) {
-            writer.write("\n\t" + epi.toString());
-            // writer.write("\tName: " + epi.getName());
-            // writer.write("\tFull Name: " + epi.getFullName());
-        }
-    }
-
-    public void printEDIFCellInsts(EDIFNetlist netlist) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/EDIFCellInsts.txt"));
-        writer.write("Printing EDIFCellInst(s) HashMap: ");
-        writer.newLine();
-        HashMap<String, EDIFCellInst> ecis = netlist.generateCellInstMap();
-        for (Map.Entry<String, EDIFCellInst> entry : ecis.entrySet()) {
-            String key = entry.getKey();
-            EDIFCellInst eci = entry.getValue();
-            String s1 = String.format(
-                    "\nString Key: %-30s EDIFCellInst Value: %-30s EDIFName: %-20s EDIFView: %-20s",
-                    key, eci.getCellName(), eci.getCellType().getEDIFView().getName(), eci.getCellType().getView());
-            writer.write(s1);
-            writer.write("\nEDIFPortInst(s) on this cell: ");
-            Collection<EDIFPortInst> epis = eci.getPortInsts();
-            printEDIFPortInsts(writer, epis);
-            writer.newLine();
-        }
-        if (writer != null)
-            writer.close();
-    }
-
-    public void printEDIFCellInstsTest(EDIFNetlist netlist) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/EDIFCellInstsTest.txt"));
-        List<EDIFCellInst> ecis_list = netlist.getAllLeafCellInstances();
-        writer.write("\nList size: " + ecis_list.size());
-        for (EDIFCellInst eci : ecis_list) {
-            writer.write("\nEDIFCellInst: " + eci.getCellName());
-        }
-        writer.newLine();
-        HashMap<String, EDIFCellInst> ecis_map = netlist.generateCellInstMap();
-        writer.write("\nMap size: " + ecis_list.size());
-        for (Map.Entry<String, EDIFCellInst> entry : ecis_map.entrySet()) {
-            EDIFCellInst eci = entry.getValue();
-            writer.write("\nEDIFCellInst: " + eci.getCellName());
-        }
-        if (writer != null)
-            writer.close();
-    }
-
-    public void printEDIFNets(EDIFNetlist netlist) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/EDIFNets.txt"));
-        writer.write("Printing EDIFNets: ");
-        writer.newLine();
-
-        HashMap<String, EDIFCellInst> ecis = netlist.generateCellInstMap();
-        HashMap<String, EDIFNet> ens = netlist.generateEDIFNetMap(ecis);
-        for (EDIFNet net : ens.values()) {
-            writer.write("\nTop level EDIFPortInst(s) in this net: ");
-            List<EDIFPortInst> topPorts = net.getAllTopLevelPortInsts();
-            if (topPorts.isEmpty())
-                writer.write("\n\tNONE!");
-            else
-                for (EDIFPortInst topPort : topPorts)
-                    writer.write("\n\t" + topPort.toString());
-
-            writer.write("\nSource EDIFPortInst(s) in this net: ");
-            List<EDIFPortInst> sourcePorts = net.getSourcePortInsts(true); // bool includeTopLevelPorts
-            printEDIFPortInsts(writer, sourcePorts);
-
-            writer.write("\nEDIFPortInst(s) in this net: ");
-            Collection<EDIFPortInst> epis = net.getPortInsts();
-            printEDIFPortInsts(writer, epis);
-            writer.newLine();
-        }
-        if (writer != null)
-            writer.close();
-    }
-
-    // ============ HIERARCHICAL PRINTOUTS ===============
-
-    private void printEDIFHierPortInsts(BufferedWriter writer, Collection<EDIFHierPortInst> ehpis) throws IOException {
-        if (ehpis.isEmpty())
-            writer.write("\n\tEmpty EDIFHierPortInst Collection.");
-        for (EDIFHierPortInst ehpi : ehpis) {
-            writer.write("\n\t" + ehpi.toString());
-            // writer.write("\tHier Inst Name: " + ehpi.getHierarchicalInstName());
-            // writer.write("\tFull Hier Inst Name: " + ehpi.getFullHierarchicalInstName());
-        }
-    }
-
-    public void printEDIFHierCellInsts(EDIFNetlist netlist) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/EDIFHierCellInsts.txt"));
-        writer.write("Printing EDIFHierCellInsts(s) with their EDIFHierPortInst(s): ");
-        writer.newLine();
-        List<EDIFHierCellInst> ehcis = netlist.getAllLeafHierCellInstances();
-        for (EDIFHierCellInst ehci : ehcis) {
-            writer.write("\n" + ehci.getCellName() + " : " + ehci.getFullHierarchicalInstName());
-            writer.write("\nEDIFHierPortInst(s) on this cell: ");
-            List<EDIFHierPortInst> ehpis = ehci.getHierPortInsts();
-            printEDIFHierPortInsts(writer, ehpis);
-        }
-        if (writer != null)
-            writer.close();
-    }
-
-    public void printEDIFHierNets(EDIFNetlist netlist) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/EDIFHierNets.txt"));
-        writer.write("Printing EDIFHierNet(s) with their EDIFHierPortInst(s): ");
-        Map<EDIFHierNet, EDIFHierNet> ehns = netlist.getParentNetMap();
-        /*
-         * EDIFHierNet key = entry.getKey(); // Net Name
-         * EDIFHierNet val = entry.getValue(); // Net Parent
-         * If Name = Parent, then it means the net source comes from a primitive cell
-         * or an I/O pad
-         * If Name != Parent, then the net source comes from non-primitive
-         * hierarchica cell
-         */
-        for (EDIFHierNet ehn : ehns.values()) {
-            writer.write("\n" + ehn.getHierarchicalNetName());
-            writer.write("\nEDIFHierPortInst(s) on this net: ");
-            Collection<EDIFHierPortInst> ehpis = ehn.getPortInsts();
-            printEDIFHierPortInsts(writer, ehpis);
-        }
-        if (writer != null)
-            writer.close();
-    }
-
-    public void printModuleImpls(Design design) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/ModuleImpls.txt"));
-        writer.write("Printing ModuleImpls: ");
-        Collection<ModuleImpls> modimpls = design.getModules();
-        for (ModuleImpls modimpl : modimpls) {
-            writer.write("\n" + modimpl.getName());
-        }
-        if (writer != null)
-            writer.close();
-    }
-
-    public void printModuleInsts(Design design) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/ModuleInsts.txt"));
-        writer.write("Printing ModuleInsts: ");
-        Collection<ModuleInst> modinsts = design.getModuleInsts();
-        for (ModuleInst modinst : modinsts) {
-            writer.write("\n" + String.valueOf(modinst.isPlaced()));
-        }
-        if (writer != null)
-            writer.close();
-    }
-}
-
-/*
- * Map<EDIFHierNet, EDIFHierNet> ehns = netlist.getParentNetMap();
- * for (Map.Entry<EDIFHierNet, EDIFHierNet> entry : ehns.entrySet()) {
- * EDIFHierNet alias = entry.getKey();
- * EDIFHierNet net = entry.getValue();
- * String s1 = String.format(
- * "\n\tAlias: %-40s  =>\tCanonical: %-40s",
- * alias.getHierarchicalNetName(), net.getHierarchicalNetName()
- * );
- * writerNets.write(s1);
- */
-
-/*
- * writerNets.write("Printing EDIFHierNet(s): ");
- * List<EDIFHierNet> ehns1 = netlist.getNetAliases();
- * for (EDIFHierNet ehn : ehns1) {
- * ehn = netlist.getParentNet(ehn);
- * writerNets.write("\n\tInst: "+ehn.getHierarchicalInstName()+"\t\tNet: "+ehn.
- * getHierarchicalNetName());
- * }
- * 
- */
-
-/*
- * private void printEDIFPortInsts(BufferedWriter writer,
- * Collection<EDIFPortInst> epis) throws IOException {
- * for (EDIFPortInst epi : epis) {
- * String s = String.format(
- * "\n\t\tNAME: %-20s FULL NAME: %-30s INDEX: %d",
- * epi.getName(), epi.getFullName(), epi.getIndex()
- * );
- * writer.write(s);
- * }
- * }
- */
-
-/*
- * writer.write("Printing EDIFCell(s) in EDIFNetlist: ");
- * HashMap<String, EDIFCellInst> ecis = netlist.generateCellInstMap();
- * for (EDIFCellInst eci : ecis.values()) {
- * writer.write("\n\t"+eci.getCellName());
- * writer.write("\n\tEDIFPortInst(s): ");
- * Collection<EDIFPortInst> epis = eci.getPortInsts();
- * printEDIFPortInsts(writer, epis);
- * }
- */
-
-/*
- * writer.write("\n\nPrinting EDIFNet(s): ");
- * HashMap<String, EDIFNet> nets = netlist.generateEDIFNetMap(ecis);
- * writer.write("Net map contains "+nets.size()+" nets.");
- * for (int i = 0; i < nets.size(); i++) {
- * EDIFNet net = nets.get(i);
- * writer.write("\n\tNet #"+i+": ");
- * writer.write("\n\tEDIFPortInst(s): ");
- * if (net == null) {
- * writer.write("\n\t\tNet is null!");
- * continue;
- * }
- * Collection<EDIFPortInst> epis = net.getPortInsts();
- * printEDIFPortInsts(writer, epis);
- * }
- */
-
-// https://www.rapidwright.io/javadoc/overview-tree.html
-// https://www.rapidwright.io/javadoc/com/xilinx/rapidwright/design/Design.html
-// https://www.rapidwright.io/javadoc/com/xilinx/rapidwright/device/Device.html
-// https://docs.amd.com/r/en-US/ug912-vivado-properties/CELL
-
-/*
- * 
- * List<EDIFHierCellInst> ehcis = netlist.getAllLeafHierCellInstances();
- * for (EDIFHierCellInst ehci : ehcis) {
- * writer.write("\nCell Name: "+ehci.getCellName());
- * writer.write("\n\tDepth: "+ehci.getDepth());
- * writer.write("\n\tHierarchical Inst Name:"+ehci.getFullHierarchicalInstName()
- * );
- * }
- *
- *
- * These ideas are equivalent:
- * edif.EDIFCell => design.Cell
- * Logical Cell => Physical Cell
- * Post-Synth Cell => Post-Place Cell
- * 
- * EDIFCell: Represents a logical cell in an EDIF netlist.
- * Cell: Corresponds to the leaf cell within the logical netlist EDIFCellInst
- * and
- * provides a mapping to a physical location BEL on the device.
- * It could also be called a BELInst.
- * 
- * Synthesis provides a raw EDIF netlist with EDIFCellInst(s).
- * Placement maps these logical EDIFCellInst(s) onto physical BELs / Tiles /
- * Sites.
- * Cells are created during placement via design.createAndPlaceCell(...).
- * Example : Cell or2 = design.createAndPlaceCell("or2", Unisim.OR2,
- * "SLICE_X112Y140/C6LUT");
- * Example : Cell led = design.createAndPlaceIOB("led", PinType.OUT, "R14",
- * "LVCMOS33")
- * 
- * https://www.rapidwright.io/javadoc/com/xilinx/rapidwright/design/Cell.html
- * https://www.rapidwright.io/javadoc/com/xilinx/rapidwright/design/Unisim.html
- * https://www.rapidwright.io/javadoc/com/xilinx/rapidwright/edif/EDIFCell.html
- * https://www.rapidwright.io/javadoc/com/xilinx/rapidwright/edif/EDIFNetlist.
- * html
- * https://www.rapidwright.io/javadoc/com/xilinx/rapidwright/edif/
- * EDIFHierCellInst.html
- * https://www.rapidwright.io/javadoc/com/xilinx/rapidwright/edif/EDIFHierNet.
- * html
- * https://www.rapidwright.io/javadoc/com/xilinx/rapidwright/edif/
- * EDIFHierPortInst.html
- * 
- */
+} // end class

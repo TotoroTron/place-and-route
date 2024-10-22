@@ -11,11 +11,10 @@ import java.io.IOException;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 
 public class PlacerFirst extends Placer {
-    FileWriter writer;
 
     public PlacerFirst() throws IOException {
         super();
-        placerName = "PlacerFirst";
+        placerName = "PlacerPacking";
         writer = new FileWriter(rootDir + "outputs/printout/" + placerName + ".txt");
     }
 
