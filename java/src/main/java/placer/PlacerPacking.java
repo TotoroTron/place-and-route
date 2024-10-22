@@ -119,7 +119,7 @@ public class PlacerPacking extends Placer {
                 /*
                  * By now, most LUTs should be placed.
                  * If this LUT connects to other LUTs,
-                 * try to place them in the same site
+                 * try to place them in an *adjacent* site
                  */
             }
 
