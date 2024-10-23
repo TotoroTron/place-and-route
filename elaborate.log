@@ -1,0 +1,6 @@
+Vivado Simulator v2023.2.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/bin/unwrapped/lnx64.o/xelab -debug typical -relax -mt 8 -maxdelay -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver -transport_int_delays -pulse_r 0 -pulse_int_r 0 -pulse_int_e 0 -snapshot shift_reg_time_impl -top tb_shift_reg -sdfroot /home/bcheng/workspace/dev/place-and-route/hdl/verilog/shift_reg/sim/sim/shift_reg_time_impl.sdf -log elaborate.log glbl 
+Using 8 slave threads.
+ERROR: [XSIM 43-3225] Cannot find design unit work.tb_shift_reg in library work located at xsim.dir/work.

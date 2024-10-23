@@ -1,0 +1,1 @@
+-debug "typical" -relax -mt "8" -maxdelay -L "xil_defaultlib" -L "uvm" -L "secureip" -L "unisims_ver" -L "simprims_ver" -transport_int_delays -pulse_r "0" -pulse_int_r "0" -pulse_int_e "0" -snapshot "shift_reg_time_impl" -top "tb_shift_reg" -sdfroot "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/shift_reg/sim/shift_reg_time_impl.sdf" -log "elaborate.log" "glbl" 

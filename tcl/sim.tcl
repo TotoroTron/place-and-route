@@ -3,9 +3,10 @@ set design_name "top_level"
 set dcp_file "$root_dir/outputs/routed.dcp" 
 
 open_checkpoint $dcp_file
+set design "shift_reg"
 
-set sdf_file "$root_dir/outputs/simulation/tb_counter_time_impl.sdf"
-set verilog_file "$root_dir/outputs/simulation/tb_counter_time_impl.v"
+set sdf_file "$root_dir/hdl/verilog/${design}/sim/${design}_time_impl.sdf"
+set verilog_file "$root_dir/hdl/verilog/${design}/sim/${design}_time_impl.v"
 # write_verilog $verilog_file -force -mode timesim -sdf_anno true -sdf_file $sdf_file 
 write_verilog $verilog_file -force -mode timesim -nolib -sdf_anno true
 write_sdf $sdf_file -force -mode timesim -process_corner slow 

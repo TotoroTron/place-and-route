@@ -11,6 +11,7 @@ export PATH="$PATH:$RAPIDWRIGHT_PATH/bin"
 export CLASSPATH=$RAPIDWRIGHT_PATH/bin:$RAPIDWRIGHT_PATH/jars/*
 export _JAVA_OPTIONS=-Xmx32736m
 
+DESIGN="shift_reg"
 PROJ_DIR="/home/bcheng/workspace/dev/place-and-route"
 SYNTH_TCL="$PROJ_DIR/tcl/synth.tcl"
 ROUTE_TCL="$PROJ_DIR/tcl/route.tcl"
@@ -68,25 +69,28 @@ if [ "$start_stage" == "sim" ] || [ "$start_stage" == "all" ]; then
     echo "Running Post-Implementation Timing Simulation..."
     vivado -mode batch -source $SIM_TCL -nolog -nojournal
     check_exit_status "Vivado sim"
-    echo "Timing SDF and verilog file generated. Check 'tb_counter_time_impl.sdf"
+    echo "Timing SDF and verilog file generated. Check '${DESIGN}_time_impl.sdf"
 
-    cd "$PROJ_DIR/outputs/simulation"
-    xvlog tb_counter_time_impl.v
+    DESIGN_DIR="$PROJ_DIR/hdl/verilog/${DESIGN}"
+
+    cd "$DESIGN_DIR/sim"
+    xvlog "${DESIGN}_time_impl.v"
     xvlog "$XILINX_VIVADO/data/verilog/src/glbl.v"
-    xvlog -sv "$PROJ_DIR/hdl/vhdl/counter/counter.srcs/sim_1/new/tb_postroute.sv"
+    xvlog -sv "$DESIGN_DIR/verif/tb_${DESIGN}.sv"
+    # xvlog -sv "$PROJ_DIR/hdl/vhdl/counter/counter.srcs/sim_1/new/tb_postroute.sv"
 
     xelab \
         -debug typical -relax -mt 8 -maxdelay \
         -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver \
         -transport_int_delays \
         -pulse_r 0 -pulse_int_r 0 -pulse_int_e 0 \
-        -snapshot tb_counter_time_impl -top tb_counter \
-        -sdfroot "$PROJ_DIR/outputs/simulation/tb_counter_time_impl.sdf" \
+        -snapshot "${DESIGN}_time_impl" -top "tb_${DESIGN}" \
+        -sdfroot "$DESIGN_DIR/sim/${DESIGN}_time_impl.sdf" \
         -log elaborate.log \
         glbl
 
-    xsim tb_counter_time_impl -tclbatch tb_counter.tcl
-    xsim tb_counter_time_impl.wdb -gui -tclbatch waveform.tcl
+    xsim ${DESIGN}_time_impl -tclbatch xsim_cfg.tcl
+    xsim ${DESIGN}_time_impl.wdb -gui -tclbatch waveform.tcl
     # source /home/bcheng/workspace/tools/oss-cad-suite/environment
     # gtkwave waveform.vcd
 fi
