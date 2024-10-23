@@ -50,15 +50,15 @@ public class PlacerPacking extends Placer {
             List<String> occupiedBELs = entry.getValue();
 
             // SINGLE BEL PER SITE
-            // availablePlacements.remove(siteName);
+            availablePlacements.remove(siteName);
 
             // BEL PACKING (CAUSES ILLEGAL PLACEMENT FOR FIRST/RANDOM PLACER)
-            if (availablePlacements.containsKey(siteName)) {
-                availablePlacements.get(siteName).removeAll(occupiedBELs);
-                if (availablePlacements.get(siteName).isEmpty()) {
-                    availablePlacements.remove(siteName);
-                }
-            }
+            // if (availablePlacements.containsKey(siteName)) {
+            // availablePlacements.get(siteName).removeAll(occupiedBELs);
+            // if (availablePlacements.get(siteName).isEmpty()) {
+            // availablePlacements.remove(siteName);
+            // }
+            // }
         }
     }
 
@@ -92,7 +92,7 @@ public class PlacerPacking extends Placer {
         String selectedSiteName = selectedPlacement[0];
         String selectedBELName = selectedPlacement[1];
 
-        System.out.println("Selected Site + BEL: " + selectedSiteName + ", " + selectedBELName);
+        System.out.println("Selected Site: " + selectedSiteName + ", Selected BEL: " + selectedBELName);
         Site selectedSite = device.getSite(selectedSiteName);
         BEL selectedBEL = selectedSite.getBEL(selectedBELName);
         if (design.placeCell(cell, selectedSite, selectedBEL)) {
@@ -121,20 +121,27 @@ public class PlacerPacking extends Placer {
             String s1 = String.format(
                     "\n\tcellName: %-40s cellType = %-10s",
                     cell.getName(), cell.getType());
+            System.out.println(s1);
             writer.write(s1);
         }
 
         for (Cell cell : cells) {
-            if (cell.getType() == "CARRY4") {
+            if (cell.getType().contains("CARRY4")) {
                 CARRYCells.add(cell);
+                System.out.println("\tFound CARRY cell.");
+                writer.write("\n\tFound CARRY cell.");
                 cells.remove(cell);
             }
-            if (cell.getType() == "FDRE") {
+            if (cell.getType().contains("FDRE")) {
                 FFCells.add(cell);
+                System.out.println("\tFound FDRE cell.");
+                writer.write("\n\tFound FDRE cell.");
                 cells.remove(cell);
             }
             if (cell.getType().contains("LUT")) {
                 LUTCells.add(cell);
+                System.out.println("\tFound LUT cell.");
+                writer.write("\n\tFound LUT cell.");
                 cells.remove(cell);
             }
         }

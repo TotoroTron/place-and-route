@@ -1,0 +1,1 @@
+-debug "typical" -top "tb_shift_reg" -snapshot "my_tb_snap" 
