@@ -3,13 +3,13 @@
 # SW Build 4126759 on Thu Feb  8 23:52:05 MST 2024
 # IP Build 4126054 on Fri Feb  9 11:39:09 MST 2024
 # SharedData Build 4115275 on Tue Jan 30 00:40:57 MST 2024
-# Start of session at: Wed Oct 23 20:38:10 2024
-# Process ID: 28209
+# Start of session at: Thu Oct 24 18:00:18 2024
+# Process ID: 35978
 # Current directory: /home/bcheng/workspace/dev/place-and-route/hdl/verilog/shift_reg/sim_postroute
 # Command line: xsim -mode tcl -source {xsim.dir/shift_reg_time_impl/xsim_script.tcl}
 # Log file: /home/bcheng/workspace/dev/place-and-route/hdl/verilog/shift_reg/sim_postroute/xsim.log
 # Journal file: /home/bcheng/workspace/dev/place-and-route/hdl/verilog/shift_reg/sim_postroute/xsim.jou
-# Running On: bcheng-HP, OS: Linux, CPU Frequency: 471.569 MHz, CPU Physical cores: 4, Host memory: 16397 MB
+# Running On: bcheng-HP, OS: Linux, CPU Frequency: 509.537 MHz, CPU Physical cores: 4, Host memory: 16397 MB
 #-----------------------------------------------------------
 source xsim.dir/shift_reg_time_impl/xsim_script.tcl
 source xsim_cfg.tcl

@@ -60,84 +60,171 @@ Printing All Cells...
 Placing Cells...
 
 Spawning cells from netlist...
-	Spawned cell: shift_reg_0/shift_reg_reg[4]             cellType: FDRE      
 	Spawned cell: shift_reg_0/shift_reg_reg[3]             cellType: FDRE      
-	Spawned cell: shift_reg_0/shift_reg_reg[2]             cellType: FDRE      
 	Spawned cell: shift_reg_0/shift_reg_reg[1]             cellType: FDRE      
-	Spawned cell: shift_reg_0/shift_reg_reg[0]             cellType: FDRE      
-	WARNING: Cell: shift_reg_0/VCC of type: VCC has no compatible placements! SKIPPING.
+	Spawned cell: shift_reg_0/shift_reg_reg[20]            cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[30]            cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[9]             cellType: FDRE      
 	Spawned cell: shift_reg_0/shift_reg_reg[7]             cellType: FDRE      
-	Spawned cell: shift_reg_0/shift_reg_reg[6]             cellType: FDRE      
 	Spawned cell: shift_reg_0/shift_reg_reg[5]             cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[28]            cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[16]            cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[26]            cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[14]            cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[24]            cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[12]            cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[22]            cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[10]            cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[18]            cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[4]             cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[2]             cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[0]             cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[31]            cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[8]             cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[6]             cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[17]            cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[27]            cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[15]            cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[25]            cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[13]            cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[23]            cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[11]            cellType: FDRE      
+	WARNING: Cell: shift_reg_0/VCC of type: VCC has no compatible placements! SKIPPING.
+	Spawned cell: shift_reg_0/shift_reg_reg[21]            cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[19]            cellType: FDRE      
+	Spawned cell: shift_reg_0/shift_reg_reg[29]            cellType: FDRE      
 
 Beginning Intra-Routing...
+	siteName: SLICE_X57Y109
+		cellName: shift_reg_0/shift_reg_reg[19]            cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
 	siteName: IOB_X1Y142
 		cellName: i_din_IBUF_inst                          cellType: IBUF       BELName: INBUF_EN   BELType: IOB33_INBUF_EN
 		cellName: i_din                                    cellType: <PORT>     BELName: PAD        BELType: PAD       
 	siteName: SLICE_X57Y129
-		cellName: shift_reg_0/shift_reg_reg[4]             cellType: FDRE       BELName: AFF        BELType: REG_INIT  
-		Found FF cell.
-	siteName: SLICE_X57Y127
 		cellName: shift_reg_0/shift_reg_reg[3]             cellType: FDRE       BELName: AFF        BELType: REG_INIT  
 		Found FF cell.
-	siteName: IOB_X1Y135
-		cellName: i_rst_IBUF_inst                          cellType: IBUF       BELName: INBUF_EN   BELType: IOB33_INBUF_EN
-		cellName: i_rst                                    cellType: <PORT>     BELName: PAD        BELType: PAD       
+	siteName: SLICE_X57Y107
+		cellName: shift_reg_0/shift_reg_reg[29]            cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
+	siteName: SLICE_X57Y127
+		cellName: shift_reg_0/shift_reg_reg[1]             cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
 	siteName: IOB_X1Y124
 		cellName: i_clk_IBUF_inst                          cellType: IBUF       BELName: INBUF_EN   BELType: IOB33_INBUF_EN
 		cellName: i_clk                                    cellType: <PORT>     BELName: PAD        BELType: PAD       
 	siteName: SLICE_X57Y128
-		cellName: shift_reg_0/shift_reg_reg[2]             cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		cellName: shift_reg_0/shift_reg_reg[20]            cellType: FDRE       BELName: AFF        BELType: REG_INIT  
 		Found FF cell.
 	siteName: SLICE_X57Y125
-		cellName: shift_reg_0/shift_reg_reg[1]             cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		cellName: shift_reg_0/shift_reg_reg[30]            cellType: FDRE       BELName: AFF        BELType: REG_INIT  
 		Found FF cell.
 	siteName: SLICE_X57Y126
-		cellName: shift_reg_0/shift_reg_reg[0]             cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		cellName: shift_reg_0/shift_reg_reg[9]             cellType: FDRE       BELName: AFF        BELType: REG_INIT  
 		Found FF cell.
 	siteName: SLICE_X57Y123
 		cellName: shift_reg_0/shift_reg_reg[7]             cellType: FDRE       BELName: AFF        BELType: REG_INIT  
 		Found FF cell.
 	siteName: ILOGIC_X1Y124
 		Null!
-	siteName: ILOGIC_X1Y135
-		Null!
 	siteName: SLICE_X57Y124
-		cellName: shift_reg_0/shift_reg_reg[6]             cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		cellName: shift_reg_0/shift_reg_reg[5]             cellType: FDRE       BELName: AFF        BELType: REG_INIT  
 		Found FF cell.
 	siteName: SLICE_X57Y121
-		cellName: shift_reg_0/shift_reg_reg[5]             cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		cellName: shift_reg_0/shift_reg_reg[28]            cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
+	siteName: SLICE_X57Y122
+		cellName: shift_reg_0/shift_reg_reg[16]            cellType: FDRE       BELName: AFF        BELType: REG_INIT  
 		Found FF cell.
 	siteName: ILOGIC_X1Y142
 		Null!
-	siteName: OLOGIC_X1Y87
-		Null!
+	siteName: SLICE_X57Y120
+		cellName: shift_reg_0/shift_reg_reg[26]            cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
 	siteName: IOB_X1Y87
 		cellName: o_dout                                   cellType: <PORT>     BELName: PAD        BELType: PAD       
 		cellName: o_dout_OBUF_inst                         cellType: OBUF       BELName: OUTBUF     BELType: IOB33_OUTBUF
+	siteName: SLICE_X57Y118
+		cellName: shift_reg_0/shift_reg_reg[14]            cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
+	siteName: SLICE_X57Y119
+		cellName: shift_reg_0/shift_reg_reg[24]            cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
+	siteName: SLICE_X57Y116
+		cellName: shift_reg_0/shift_reg_reg[12]            cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
+	siteName: SLICE_X111Y97
+		cellName: shift_reg_0/shift_reg_reg[22]            cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
+	siteName: IOB_X1Y135
+		cellName: i_rst_IBUF_inst                          cellType: IBUF       BELName: INBUF_EN   BELType: IOB33_INBUF_EN
+		cellName: i_rst                                    cellType: <PORT>     BELName: PAD        BELType: PAD       
+	siteName: SLICE_X57Y117
+		cellName: shift_reg_0/shift_reg_reg[10]            cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
+	siteName: SLICE_X111Y96
+		cellName: shift_reg_0/shift_reg_reg[18]            cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
+	siteName: SLICE_X57Y114
+		cellName: shift_reg_0/shift_reg_reg[4]             cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
+	siteName: SLICE_X111Y99
+		cellName: shift_reg_0/shift_reg_reg[2]             cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
+	siteName: SLICE_X57Y115
+		cellName: shift_reg_0/shift_reg_reg[0]             cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
+	siteName: SLICE_X111Y98
+		cellName: shift_reg_0/shift_reg_reg[31]            cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
+	siteName: SLICE_X57Y112
+		cellName: shift_reg_0/shift_reg_reg[8]             cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
+	siteName: ILOGIC_X1Y135
+		Null!
+	siteName: SLICE_X57Y113
+		cellName: shift_reg_0/shift_reg_reg[6]             cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
+	siteName: SLICE_X57Y110
+		cellName: shift_reg_0/shift_reg_reg[17]            cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
+	siteName: SLICE_X57Y111
+		cellName: shift_reg_0/shift_reg_reg[27]            cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
+	siteName: OLOGIC_X1Y87
+		Null!
+	siteName: SLICE_X111Y93
+		cellName: shift_reg_0/shift_reg_reg[15]            cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
+	siteName: SLICE_X111Y92
+		cellName: shift_reg_0/shift_reg_reg[25]            cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
+	siteName: SLICE_X111Y95
+		cellName: shift_reg_0/shift_reg_reg[13]            cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
+	siteName: SLICE_X111Y94
+		cellName: shift_reg_0/shift_reg_reg[23]            cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
+	siteName: SLICE_X111Y91
+		cellName: shift_reg_0/shift_reg_reg[11]            cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
+	siteName: SLICE_X111Y90
+		cellName: shift_reg_0/shift_reg_reg[21]            cellType: FDRE       BELName: AFF        BELType: REG_INIT  
+		Found FF cell.
 
 Printing All Nets...
-	Net: GLOBAL_LOGIC0
-		SitePinInsts: None!
-	Net: GLOBAL_LOGIC1
-		SitePinInsts: None!
 	Net: i_din
 		SitePinInsts: None!
 	Net: i_rst
 		SitePinInsts: None!
-	Net: o_dout
-		SitePinInst: PADOUT isRouted() = false
-	Net: i_rst_IBUF
-		SitePinInst: I isRouted() = false
-	Net: shift_reg_0/Q[0]
-		SitePinInst: AQ isRouted() = false
-		SitePinInst: O isRouted() = false
 	Net: i_din_IBUF
 		SitePinInst: I isRouted() = false
 		SitePinInst: AX isRouted() = false
 	Net: i_clk_IBUF
 		SitePinInst: CLK isRouted() = false
 		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
 		SitePinInst: I isRouted() = false
 		SitePinInst: CLK isRouted() = false
 		SitePinInst: CLK isRouted() = false
@@ -145,56 +232,189 @@ Printing All Nets...
 		SitePinInst: CLK isRouted() = false
 		SitePinInst: CLK isRouted() = false
 		SitePinInst: CLK isRouted() = false
-	Net: shift_reg_0/p_0_in[3]
-		SitePinInst: AX isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+	Net: shift_reg_0/p_0_in[30]
 		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: shift_reg_0/p_0_in[20]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
 	Net: shift_reg_0/p_0_in[4]
-		SitePinInst: AX isRouted() = false
 		SitePinInst: AQ isRouted() = false
-	Net: shift_reg_0/p_0_in[5]
+		SitePinInst: AX isRouted() = false
+	Net: shift_reg_0/p_0_in[10]
 		SitePinInst: AQ isRouted() = false
 		SitePinInst: AX isRouted() = false
 	Net: shift_reg_0/p_0_in[6]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: shift_reg_0/p_0_in[22]
 		SitePinInst: AX isRouted() = false
 		SitePinInst: AQ isRouted() = false
-	Net: shift_reg_0/p_0_in[1]
+	Net: shift_reg_0/p_0_in[12]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: shift_reg_0/p_0_in[24]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: shift_reg_0/p_0_in[14]
 		SitePinInst: AX isRouted() = false
 		SitePinInst: AQ isRouted() = false
 	Net: shift_reg_0/p_0_in[2]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: shift_reg_0/p_0_in[26]
 		SitePinInst: AX isRouted() = false
 		SitePinInst: AQ isRouted() = false
+	Net: shift_reg_0/p_0_in[16]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: shift_reg_0/p_0_in[28]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: shift_reg_0/p_0_in[18]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: shift_reg_0/p_0_in[8]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: GLOBAL_LOGIC0
+		SitePinInsts: None!
+	Net: GLOBAL_LOGIC1
+		SitePinInsts: None!
+	Net: o_dout
+		SitePinInst: PADOUT isRouted() = false
+	Net: i_rst_IBUF
+		SitePinInst: I isRouted() = false
+	Net: shift_reg_0/Q[0]
+		SitePinInst: O isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: shift_reg_0/p_0_in[3]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: shift_reg_0/p_0_in[31]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: shift_reg_0/p_0_in[21]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: shift_reg_0/p_0_in[5]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: shift_reg_0/p_0_in[11]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: shift_reg_0/p_0_in[23]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: shift_reg_0/p_0_in[13]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: shift_reg_0/p_0_in[1]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: shift_reg_0/p_0_in[25]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: shift_reg_0/p_0_in[15]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
 	Net: i_clk
 		SitePinInsts: None!
+	Net: shift_reg_0/p_0_in[27]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: shift_reg_0/p_0_in[17]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: shift_reg_0/p_0_in[29]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: shift_reg_0/p_0_in[19]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
 	Net: shift_reg_0/p_0_in[7]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: shift_reg_0/p_0_in[9]
 		SitePinInst: AX isRouted() = false
 		SitePinInst: AQ isRouted() = false
 
 Printing All Cells...
+	Cell: shift_reg_0/shift_reg_reg[17]            isPlaced = true      
+		Site: SLICE_X57Y110
+		SiteInst: SLICE_X57Y110 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: shift_reg_0/shift_reg_reg[29]            isPlaced = true      
+		Site: SLICE_X57Y107
+		SiteInst: SLICE_X57Y107 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: shift_reg_0/shift_reg_reg[15]            isPlaced = true      
+		Site: SLICE_X111Y93
+		SiteInst: SLICE_X111Y93 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: shift_reg_0/shift_reg_reg[27]            isPlaced = true      
+		Site: SLICE_X57Y111
+		SiteInst: SLICE_X57Y111 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: shift_reg_0/shift_reg_reg[13]            isPlaced = true      
+		Site: SLICE_X111Y95
+		SiteInst: SLICE_X111Y95 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: shift_reg_0/shift_reg_reg[25]            isPlaced = true      
+		Site: SLICE_X111Y92
+		SiteInst: SLICE_X111Y92 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: shift_reg_0/shift_reg_reg[11]            isPlaced = true      
+		Site: SLICE_X111Y91
+		SiteInst: SLICE_X111Y91 	Placed = true
+		SiteTypeEnum: SLICEL
 	Cell: i_din                                    isPlaced = true      
 		Site: IOB_X1Y142
 		SiteInst: IOB_X1Y142 	Placed = true
 		SiteTypeEnum: IOB33
-	Cell: o_dout                                   isPlaced = true      
-		Site: IOB_X1Y87
-		SiteInst: IOB_X1Y87 	Placed = true
-		SiteTypeEnum: IOB33
+	Cell: shift_reg_0/shift_reg_reg[23]            isPlaced = true      
+		Site: SLICE_X111Y94
+		SiteInst: SLICE_X111Y94 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: shift_reg_0/shift_reg_reg[31]            isPlaced = true      
+		Site: SLICE_X111Y98
+		SiteInst: SLICE_X111Y98 	Placed = true
+		SiteTypeEnum: SLICEL
 	Cell: i_rst                                    isPlaced = true      
 		Site: IOB_X1Y135
 		SiteInst: IOB_X1Y135 	Placed = true
 		SiteTypeEnum: IOB33
-	Cell: i_clk_IBUF_inst                          isPlaced = true      
-		Site: IOB_X1Y124
-		SiteInst: IOB_X1Y124 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: shift_reg_0/shift_reg_reg[4]             isPlaced = true      
-		Site: SLICE_X57Y129
-		SiteInst: SLICE_X57Y129 	Placed = true
+	Cell: shift_reg_0/shift_reg_reg[9]             isPlaced = true      
+		Site: SLICE_X57Y126
+		SiteInst: SLICE_X57Y126 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: shift_reg_0/shift_reg_reg[21]            isPlaced = true      
+		Site: SLICE_X111Y90
+		SiteInst: SLICE_X111Y90 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg_0/shift_reg_reg[5]             isPlaced = true      
-		Site: SLICE_X57Y121
-		SiteInst: SLICE_X57Y121 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg_0/shift_reg_reg[6]             isPlaced = true      
 		Site: SLICE_X57Y124
 		SiteInst: SLICE_X57Y124 	Placed = true
 		SiteTypeEnum: SLICEL
@@ -211,24 +431,88 @@ Printing All Cells...
 		SiteInst: IOB_X1Y142 	Placed = true
 		SiteTypeEnum: IOB33
 	Cell: shift_reg_0/shift_reg_reg[0]             isPlaced = true      
-		Site: SLICE_X57Y126
-		SiteInst: SLICE_X57Y126 	Placed = true
+		Site: SLICE_X57Y115
+		SiteInst: SLICE_X57Y115 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: o_dout_OBUF_inst                         isPlaced = true      
 		Site: IOB_X1Y87
 		SiteInst: IOB_X1Y87 	Placed = true
 		SiteTypeEnum: IOB33
-	Cell: shift_reg_0/shift_reg_reg[1]             isPlaced = true      
-		Site: SLICE_X57Y125
-		SiteInst: SLICE_X57Y125 	Placed = true
-		SiteTypeEnum: SLICEL
 	Cell: shift_reg_0/shift_reg_reg[2]             isPlaced = true      
+		Site: SLICE_X111Y99
+		SiteInst: SLICE_X111Y99 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: shift_reg_0/shift_reg_reg[28]            isPlaced = true      
+		Site: SLICE_X57Y121
+		SiteInst: SLICE_X57Y121 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: shift_reg_0/shift_reg_reg[18]            isPlaced = true      
+		Site: SLICE_X111Y96
+		SiteInst: SLICE_X111Y96 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: shift_reg_0/shift_reg_reg[26]            isPlaced = true      
+		Site: SLICE_X57Y120
+		SiteInst: SLICE_X57Y120 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: shift_reg_0/shift_reg_reg[16]            isPlaced = true      
+		Site: SLICE_X57Y122
+		SiteInst: SLICE_X57Y122 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: shift_reg_0/shift_reg_reg[24]            isPlaced = true      
+		Site: SLICE_X57Y119
+		SiteInst: SLICE_X57Y119 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: shift_reg_0/shift_reg_reg[14]            isPlaced = true      
+		Site: SLICE_X57Y118
+		SiteInst: SLICE_X57Y118 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: shift_reg_0/shift_reg_reg[22]            isPlaced = true      
+		Site: SLICE_X111Y97
+		SiteInst: SLICE_X111Y97 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: shift_reg_0/shift_reg_reg[12]            isPlaced = true      
+		Site: SLICE_X57Y116
+		SiteInst: SLICE_X57Y116 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: shift_reg_0/shift_reg_reg[20]            isPlaced = true      
 		Site: SLICE_X57Y128
 		SiteInst: SLICE_X57Y128 	Placed = true
 		SiteTypeEnum: SLICEL
-	Cell: shift_reg_0/shift_reg_reg[3]             isPlaced = true      
+	Cell: shift_reg_0/shift_reg_reg[8]             isPlaced = true      
+		Site: SLICE_X57Y112
+		SiteInst: SLICE_X57Y112 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: o_dout                                   isPlaced = true      
+		Site: IOB_X1Y87
+		SiteInst: IOB_X1Y87 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: shift_reg_0/shift_reg_reg[10]            isPlaced = true      
+		Site: SLICE_X57Y117
+		SiteInst: SLICE_X57Y117 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: i_clk_IBUF_inst                          isPlaced = true      
+		Site: IOB_X1Y124
+		SiteInst: IOB_X1Y124 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: shift_reg_0/shift_reg_reg[30]            isPlaced = true      
+		Site: SLICE_X57Y125
+		SiteInst: SLICE_X57Y125 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: shift_reg_0/shift_reg_reg[4]             isPlaced = true      
+		Site: SLICE_X57Y114
+		SiteInst: SLICE_X57Y114 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: shift_reg_0/shift_reg_reg[6]             isPlaced = true      
+		Site: SLICE_X57Y113
+		SiteInst: SLICE_X57Y113 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: shift_reg_0/shift_reg_reg[1]             isPlaced = true      
 		Site: SLICE_X57Y127
 		SiteInst: SLICE_X57Y127 	Placed = true
+		SiteTypeEnum: SLICEL
+	Cell: shift_reg_0/shift_reg_reg[3]             isPlaced = true      
+		Site: SLICE_X57Y129
+		SiteInst: SLICE_X57Y129 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg_0/VCC                          isPlaced = false     
 	Cell: i_clk                                    isPlaced = true      
@@ -239,3 +523,7 @@ Printing All Cells...
 		Site: OLOGIC_X1Y87
 		SiteInst: OLOGIC_X1Y87 	Placed = true
 		SiteTypeEnum: OLOGICE3
+	Cell: shift_reg_0/shift_reg_reg[19]            isPlaced = true      
+		Site: SLICE_X57Y109
+		SiteInst: SLICE_X57Y109 	Placed = true
+		SiteTypeEnum: SLICEL

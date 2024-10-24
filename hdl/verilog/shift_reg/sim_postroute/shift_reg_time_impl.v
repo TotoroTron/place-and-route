@@ -2,9 +2,10 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2023.2.2 (lin64) Build 4126759 Thu Feb  8 23:52:05 MST 2024
-// Date        : Wed Oct 23 20:17:25 2024
+// Date        : Thu Oct 24 18:00:08 2024
 // Host        : bcheng-HP running 64-bit Ubuntu 22.04.5 LTS
-// Command     : write_verilog /home/bcheng/workspace/dev/place-and-route/hdl/verilog/shift_reg/sim/shift_reg_time_impl.v
+// Command     : write_verilog
+//               /home/bcheng/workspace/dev/place-and-route/hdl/verilog/shift_reg/sim_postroute/shift_reg_time_impl.v
 //               -force -mode timesim -nolib -sdf_anno true
 // Design      : top_level
 // Purpose     : This verilog netlist is a timing simulation representation of the design and should not be modified or
@@ -28,7 +29,7 @@ module shift_reg
   wire [0:0]Q;
   wire [0:0]SR;
   wire i_clk_IBUF;
-  wire [7:1]p_0_in;
+  wire [31:1]p_0_in;
 
   FDRE #(
     .INIT(1'b0)) 
@@ -40,6 +41,86 @@ module shift_reg
         .R(SR));
   FDRE #(
     .INIT(1'b0)) 
+    \shift_reg_reg[10] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[10]),
+        .Q(p_0_in[11]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[11] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[11]),
+        .Q(p_0_in[12]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[12] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[12]),
+        .Q(p_0_in[13]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[13] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[13]),
+        .Q(p_0_in[14]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[14] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[14]),
+        .Q(p_0_in[15]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[15] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[15]),
+        .Q(p_0_in[16]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[16] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[16]),
+        .Q(p_0_in[17]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[17] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[17]),
+        .Q(p_0_in[18]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[18] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[18]),
+        .Q(p_0_in[19]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[19] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[19]),
+        .Q(p_0_in[20]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
     \shift_reg_reg[1] 
        (.C(i_clk_IBUF),
         .CE(1'b1),
@@ -48,11 +129,107 @@ module shift_reg
         .R(SR));
   FDRE #(
     .INIT(1'b0)) 
+    \shift_reg_reg[20] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[20]),
+        .Q(p_0_in[21]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[21] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[21]),
+        .Q(p_0_in[22]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[22] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[22]),
+        .Q(p_0_in[23]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[23] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[23]),
+        .Q(p_0_in[24]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[24] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[24]),
+        .Q(p_0_in[25]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[25] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[25]),
+        .Q(p_0_in[26]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[26] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[26]),
+        .Q(p_0_in[27]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[27] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[27]),
+        .Q(p_0_in[28]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[28] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[28]),
+        .Q(p_0_in[29]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[29] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[29]),
+        .Q(p_0_in[30]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
     \shift_reg_reg[2] 
        (.C(i_clk_IBUF),
         .CE(1'b1),
         .D(p_0_in[2]),
         .Q(p_0_in[3]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[30] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[30]),
+        .Q(p_0_in[31]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[31] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[31]),
+        .Q(Q),
         .R(SR));
   FDRE #(
     .INIT(1'b0)) 
@@ -92,11 +269,27 @@ module shift_reg
        (.C(i_clk_IBUF),
         .CE(1'b1),
         .D(p_0_in[7]),
-        .Q(Q),
+        .Q(p_0_in[8]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[8] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[8]),
+        .Q(p_0_in[9]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[9] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[9]),
+        .Q(p_0_in[10]),
         .R(SR));
 endmodule
 
-(* LENGTH = "8" *) 
+(* LENGTH = "32" *) 
 (* NotValidForBitStream *)
 (* \DesignAttr:ENABLE_NOC_NETLIST_VIEW  *) 
 (* \DesignAttr:ENABLE_AIE_NETLIST_VIEW  *) 

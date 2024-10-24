@@ -1,5 +1,5 @@
 module shift_reg
-#(parameter LENGTH = 8)
+#(parameter LENGTH = 32)
     (
         input wire i_clk,
         input wire i_rst,
