@@ -2,7 +2,7 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2023.2.2 (lin64) Build 4126759 Thu Feb  8 23:52:05 MST 2024
-// Date        : Wed Oct 23 15:32:41 2024
+// Date        : Wed Oct 23 20:38:00 2024
 // Host        : bcheng-HP running 64-bit Ubuntu 22.04.5 LTS
 // Command     : write_verilog /home/bcheng/workspace/dev/place-and-route/hdl/verilog/shift_reg/sim/shift_reg_time_impl.v
 //               -force -mode timesim -nolib -sdf_anno true
@@ -14,238 +14,135 @@
 `timescale 1 ps / 1 ps
 `define XIL_TIMING
 
-module counter
+module shift_reg
    (i_clk_IBUF,
-    SR,
     Q,
-    E);
-  input i_clk_IBUF;
-  input [0:0]SR;
-  output [3:0]Q;
-  input [0:0]E;
-
-  wire [0:0]E;
-  wire [3:0]Q;
-  wire [0:0]SR;
-  wire i_clk_IBUF;
-  wire [3:0]plusOp;
-
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT1 #(
-    .INIT(2'h1)) 
-    \count[0]_i_1 
-       (.I0(Q[0]),
-        .O(plusOp[0]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT2 #(
-    .INIT(4'h6)) 
-    \count[1]_i_1 
-       (.I0(Q[0]),
-        .I1(Q[1]),
-        .O(plusOp[1]));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT3 #(
-    .INIT(8'h78)) 
-    \count[2]_i_1 
-       (.I0(Q[0]),
-        .I1(Q[1]),
-        .I2(Q[2]),
-        .O(plusOp[2]));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT4 #(
-    .INIT(16'h7F80)) 
-    \count[3]_i_1 
-       (.I0(Q[1]),
-        .I1(Q[0]),
-        .I2(Q[2]),
-        .I3(Q[3]),
-        .O(plusOp[3]));
-  FDRE #(
-    .INIT(1'b0)) 
-    \count_reg[0] 
-       (.C(i_clk_IBUF),
-        .CE(E),
-        .D(plusOp[0]),
-        .Q(Q[0]),
-        .R(SR));
-  FDRE #(
-    .INIT(1'b0)) 
-    \count_reg[1] 
-       (.C(i_clk_IBUF),
-        .CE(E),
-        .D(plusOp[1]),
-        .Q(Q[1]),
-        .R(SR));
-  FDRE #(
-    .INIT(1'b0)) 
-    \count_reg[2] 
-       (.C(i_clk_IBUF),
-        .CE(E),
-        .D(plusOp[2]),
-        .Q(Q[2]),
-        .R(SR));
-  FDRE #(
-    .INIT(1'b0)) 
-    \count_reg[3] 
-       (.C(i_clk_IBUF),
-        .CE(E),
-        .D(plusOp[3]),
-        .Q(Q[3]),
-        .R(SR));
-endmodule
-
-module pps_gen
-   (i_clk_IBUF,
     SR,
-    E);
+    D);
   input i_clk_IBUF;
+  output [0:0]Q;
   input [0:0]SR;
-  output [0:0]E;
+  input [0:0]D;
 
-  wire [0:0]E;
+  wire [0:0]D;
+  wire [0:0]Q;
   wire [0:0]SR;
-  wire \count[0]_i_1__0_n_0 ;
-  wire \count[0]_i_3_n_0 ;
-  wire [3:0]count_reg;
-  wire \count_reg[0]_i_2_n_1 ;
-  wire \count_reg[0]_i_2_n_2 ;
-  wire \count_reg[0]_i_2_n_3 ;
-  wire \count_reg[0]_i_2_n_4 ;
-  wire \count_reg[0]_i_2_n_5 ;
-  wire \count_reg[0]_i_2_n_6 ;
-  wire \count_reg[0]_i_2_n_7 ;
   wire i_clk_IBUF;
-  wire o_pulse_i_1_n_0;
-  wire [3:3]\NLW_count_reg[0]_i_2_CO_UNCONNECTED ;
+  wire [7:1]p_0_in;
 
-  LUT5 #(
-    .INIT(32'hAAAAAAEA)) 
-    \count[0]_i_1__0 
-       (.I0(SR),
-        .I1(count_reg[3]),
-        .I2(count_reg[0]),
-        .I3(count_reg[1]),
-        .I4(count_reg[2]),
-        .O(\count[0]_i_1__0_n_0 ));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \count[0]_i_3 
-       (.I0(count_reg[0]),
-        .O(\count[0]_i_3_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
-    \count_reg[0] 
+    \shift_reg_reg[0] 
        (.C(i_clk_IBUF),
         .CE(1'b1),
-        .D(\count_reg[0]_i_2_n_7 ),
-        .Q(count_reg[0]),
-        .R(\count[0]_i_1__0_n_0 ));
-  CARRY4 \count_reg[0]_i_2 
-       (.CI(1'b0),
-        .CO({\NLW_count_reg[0]_i_2_CO_UNCONNECTED [3],\count_reg[0]_i_2_n_1 ,\count_reg[0]_i_2_n_2 ,\count_reg[0]_i_2_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b1}),
-        .O({\count_reg[0]_i_2_n_4 ,\count_reg[0]_i_2_n_5 ,\count_reg[0]_i_2_n_6 ,\count_reg[0]_i_2_n_7 }),
-        .S({count_reg[3:1],\count[0]_i_3_n_0 }));
+        .D(D),
+        .Q(p_0_in[1]),
+        .R(SR));
   FDRE #(
     .INIT(1'b0)) 
-    \count_reg[1] 
+    \shift_reg_reg[1] 
        (.C(i_clk_IBUF),
         .CE(1'b1),
-        .D(\count_reg[0]_i_2_n_6 ),
-        .Q(count_reg[1]),
-        .R(\count[0]_i_1__0_n_0 ));
+        .D(p_0_in[1]),
+        .Q(p_0_in[2]),
+        .R(SR));
   FDRE #(
     .INIT(1'b0)) 
-    \count_reg[2] 
+    \shift_reg_reg[2] 
        (.C(i_clk_IBUF),
         .CE(1'b1),
-        .D(\count_reg[0]_i_2_n_5 ),
-        .Q(count_reg[2]),
-        .R(\count[0]_i_1__0_n_0 ));
+        .D(p_0_in[2]),
+        .Q(p_0_in[3]),
+        .R(SR));
   FDRE #(
     .INIT(1'b0)) 
-    \count_reg[3] 
+    \shift_reg_reg[3] 
        (.C(i_clk_IBUF),
         .CE(1'b1),
-        .D(\count_reg[0]_i_2_n_4 ),
-        .Q(count_reg[3]),
-        .R(\count[0]_i_1__0_n_0 ));
-  LUT5 #(
-    .INIT(32'h00000200)) 
-    o_pulse_i_1
-       (.I0(count_reg[0]),
-        .I1(count_reg[2]),
-        .I2(count_reg[1]),
-        .I3(count_reg[3]),
-        .I4(SR),
-        .O(o_pulse_i_1_n_0));
+        .D(p_0_in[3]),
+        .Q(p_0_in[4]),
+        .R(SR));
   FDRE #(
     .INIT(1'b0)) 
-    o_pulse_reg
+    \shift_reg_reg[4] 
        (.C(i_clk_IBUF),
         .CE(1'b1),
-        .D(o_pulse_i_1_n_0),
-        .Q(E),
-        .R(1'b0));
+        .D(p_0_in[4]),
+        .Q(p_0_in[5]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[5] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[5]),
+        .Q(p_0_in[6]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[6] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[6]),
+        .Q(p_0_in[7]),
+        .R(SR));
+  FDRE #(
+    .INIT(1'b0)) 
+    \shift_reg_reg[7] 
+       (.C(i_clk_IBUF),
+        .CE(1'b1),
+        .D(p_0_in[7]),
+        .Q(Q),
+        .R(SR));
 endmodule
 
-(* tps = "1000000" *) 
+(* LENGTH = "8" *) 
 (* NotValidForBitStream *)
 (* \DesignAttr:ENABLE_NOC_NETLIST_VIEW  *) 
 (* \DesignAttr:ENABLE_AIE_NETLIST_VIEW  *) 
 module top_level
    (i_clk,
-    ov_led,
-    i_rst);
-  (* IO_BUFFER_TYPE = "IBUF" *) input i_clk;
-  output [3:0]ov_led;
-  (* IO_BUFFER_TYPE = "IBUF" *) input i_rst;
+    i_rst,
+    o_dout,
+    i_din);
+  input i_clk;
+  input i_rst;
+  output o_dout;
+  input i_din;
 
   wire i_clk;
   wire i_clk_IBUF;
+  wire i_din;
+  wire i_din_IBUF;
   wire i_rst;
   wire i_rst_IBUF;
-  wire o_pulse;
-  wire [3:0]ov_led;
-  wire [3:0]ov_led_OBUF;
+  wire o_dout;
+  wire o_dout_OBUF;
 
 initial begin
  $sdf_annotate("shift_reg_time_impl.sdf",,,,"tool_control");
 end
-  pps_gen CLOCK_ENABLE_GEN
-       (.E(o_pulse),
-        .SR(i_rst_IBUF),
-        .i_clk_IBUF(i_clk_IBUF));
-  counter COUNTER
-       (.E(o_pulse),
-        .Q(ov_led_OBUF),
-        .SR(i_rst_IBUF),
-        .i_clk_IBUF(i_clk_IBUF));
-  (* io_buffer_type = "IBUF" *) 
+  (* io_buffer_type = "ibuf" *) 
   IBUF i_clk_IBUF_inst
        (.I(i_clk),
         .O(i_clk_IBUF));
-  (* io_buffer_type = "IBUF" *) 
+  (* io_buffer_type = "ibuf" *) 
+  IBUF i_din_IBUF_inst
+       (.I(i_din),
+        .O(i_din_IBUF));
+  (* io_buffer_type = "ibuf" *) 
   IBUF i_rst_IBUF_inst
        (.I(i_rst),
         .O(i_rst_IBUF));
-  (* io_buffer_type = "OBUF" *) 
-  OBUF \ov_led_OBUF[0]_inst 
-       (.I(ov_led_OBUF[0]),
-        .O(ov_led[0]));
-  (* io_buffer_type = "OBUF" *) 
-  OBUF \ov_led_OBUF[1]_inst 
-       (.I(ov_led_OBUF[1]),
-        .O(ov_led[1]));
-  (* io_buffer_type = "OBUF" *) 
-  OBUF \ov_led_OBUF[2]_inst 
-       (.I(ov_led_OBUF[2]),
-        .O(ov_led[2]));
-  (* io_buffer_type = "OBUF" *) 
-  OBUF \ov_led_OBUF[3]_inst 
-       (.I(ov_led_OBUF[3]),
-        .O(ov_led[3]));
+  (* io_buffer_type = "obuf" *) 
+  OBUF o_dout_OBUF_inst
+       (.I(o_dout_OBUF),
+        .O(o_dout));
+  shift_reg shift_reg_0
+       (.D(i_din_IBUF),
+        .Q(o_dout_OBUF),
+        .SR(i_rst_IBUF),
+        .i_clk_IBUF(i_clk_IBUF));
 endmodule
 `ifndef GLBL
 `define GLBL

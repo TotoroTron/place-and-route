@@ -88,44 +88,7 @@ public abstract class Placer {
         Map<String, List<String>> occupiedPlacements = new HashMap<>();
 
         for (Cell cell : cells) {
-
-            Map<SiteTypeEnum, Set<String>> compatiblePlacements = cell.getCompatiblePlacements(device);
-            removeBufferTypes(compatiblePlacements.keySet());
-
-            // ABSTRACT
-            SiteTypeEnum selectedSiteType = selectSiteType(compatiblePlacements);
-
-            List<String> siteNames = Arrays.stream(device.getAllCompatibleSites(selectedSiteType))
-                    .map(Site::getName) // return as string names only, not the site itself
-                    .collect(Collectors.toList()); // collect as list
-            List<String> belNames = compatiblePlacements.get(selectedSiteType).stream()
-                    .filter(name -> !name.contains("5FF")) // placing regs on 5FF BELs will cause routing problems
-                    .collect(Collectors.toList()); // UG474, CH2 Storage Elements for more information
-            Map<String, List<String>> availablePlacements = new HashMap<>();
-            for (String siteName : siteNames) {
-                availablePlacements.put(siteName, new ArrayList<>(belNames));
-            }
-
-            // ABSTRACT
-            removeOccupiedPlacements(availablePlacements, occupiedPlacements);
-
-            // ABSTRACT
-            String[] selectedPlacement = selectSiteAndBEL(availablePlacements);
-
-            String selectedSiteName = selectedPlacement[0];
-            String selectedBELName = selectedPlacement[1];
-
-            System.out.println("Selected Site + BEL: " + selectedSiteName + ", " + selectedBELName);
-            Site selectedSite = device.getSite(selectedSiteName);
-            BEL selectedBEL = selectedSite.getBEL(selectedBELName);
-            if (design.placeCell(cell, selectedSite, selectedBEL)) {
-                writer.write("\n\tPlacement success! Cell: " + cell.getName() + ", Site: " + selectedSiteName
-                        + ", BEL: " + selectedBELName);
-                addToMap(occupiedPlacements, selectedPlacement[0], selectedPlacement[1]);
-            } else {
-                writer.write("\n\tWARNING: Placement Failed!");
-            }
-
+            placeCell(cell, occupiedPlacements);
         } // end for(Cell)
 
     } // end placDesign()
@@ -171,6 +134,51 @@ public abstract class Placer {
         return cells;
     }
 
+    protected void placeCell(
+            Cell cell,
+            Map<String, List<String>> occupiedPlacements) throws IOException {
+
+        Map<SiteTypeEnum, Set<String>> compatiblePlacements = cell.getCompatiblePlacements(device);
+        removeBufferTypes(compatiblePlacements.keySet());
+
+        // ABSTRACT
+        SiteTypeEnum selectedSiteType = selectSiteType(compatiblePlacements);
+
+        List<String> siteNames = Arrays.stream(device.getAllCompatibleSites(selectedSiteType))
+                .map(Site::getName) // return as string names only, not the site itself
+                .collect(Collectors.toList()); // collect as list
+        List<String> belNames = compatiblePlacements.get(selectedSiteType).stream()
+                .filter(name -> !name.contains("5FF")) // placing regs on 5FF BELs will cause routing problems
+                .collect(Collectors.toList()); // UG474, CH2 Storage Elements for more information
+        Map<String, List<String>> availablePlacements = new HashMap<>();
+        for (String siteName : siteNames) {
+            availablePlacements.put(siteName, new ArrayList<>(belNames));
+        }
+
+        // ABSTRACT
+        removeOccupiedPlacements(availablePlacements, occupiedPlacements);
+
+        // ABSTRACT
+        String[] selectedPlacement = selectSiteAndBEL(availablePlacements);
+
+        String selectedSiteName = selectedPlacement[0];
+        String selectedBELName = selectedPlacement[1];
+
+        // System.out.println("Selected Site: " + selectedSiteName + ", Selected BEL: "
+        // + selectedBELName);
+        Site selectedSite = device.getSite(selectedSiteName);
+        BEL selectedBEL = selectedSite.getBEL(selectedBELName);
+        if (design.placeCell(cell, selectedSite, selectedBEL)) {
+            String s1 = String.format(
+                    "\n\tcellName: %-40s Site: %-10s BEL: %-10s",
+                    cell.getName(), selectedSiteName, selectedBELName);
+            addToMap(occupiedPlacements, selectedPlacement[0], selectedPlacement[1]);
+        } else {
+            writer.write("\n\tWARNING: Placement Failed!");
+        }
+
+    } // end placeCell()
+
     protected boolean isBufferCell(Design design, EDIFHierCellInst ehci) {
         // Filter out IBUF/OBUF cells. They are already placed by constraints.
         Set<String> buffCells = new HashSet<>(Arrays.asList("IBUF", "OBUF"));
@@ -204,7 +212,7 @@ public abstract class Placer {
             // route the site normally
             si.routeSite();
 
-            writer.write("\n\tCells in site: " + si.getName());
+            writer.write("\n\tsiteName: " + si.getName());
             for (Cell cell : si.getCells()) {
                 if (cell.getBEL() != null) {
                     String s1 = String.format(

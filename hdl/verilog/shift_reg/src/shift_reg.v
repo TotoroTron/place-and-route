@@ -1,10 +1,10 @@
 module shift_reg
 #(parameter LENGTH = 8)
     (
-        input i_clk,
-        input i_rst,
-        input i_din,
-        output o_dout
+        input wire i_clk,
+        input wire i_rst,
+        input wire i_din,
+        output wire o_dout
     );
 
     reg [LENGTH-1:0] shift_reg;

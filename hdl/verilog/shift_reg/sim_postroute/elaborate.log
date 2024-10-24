@@ -1,0 +1,51 @@
+Vivado Simulator v2023.2.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/bin/unwrapped/lnx64.o/xelab -debug typical -relax -mt 8 -maxdelay -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver -transport_int_delays -pulse_r 0 -pulse_int_r 0 -pulse_int_e 0 -snapshot shift_reg_time_impl -top tb_shift_reg -sdfroot /home/bcheng/workspace/dev/place-and-route/hdl/verilog/shift_reg/sim_postroute/shift_reg_time_impl.sdf -log elaborate.log glbl 
+Using 8 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-2861] module 'top_level' does not have a parameter named LENGTH [/home/bcheng/workspace/dev/place-and-route/hdl/verilog/shift_reg/verif/tb_shift_reg.sv:13]
+Completed static elaboration
+Starting simulation data flow analysis
+WARNING: [XSIM 43-4100] "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/shift_reg/sim_postroute/shift_reg_time_impl.v" Line 99. Module top_level has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/IBUF.v" Line 29. Module IBUF has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/IBUF.v" Line 29. Module IBUF has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/IBUF.v" Line 29. Module IBUF has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/OBUF.v" Line 25. Module OBUF has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/shift_reg/sim_postroute/shift_reg_time_impl.v" Line 17. Module shift_reg has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/FDRE.v" Line 27. Module FDRE_default has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/FDRE.v" Line 27. Module FDRE_default has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/FDRE.v" Line 27. Module FDRE_default has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/FDRE.v" Line 27. Module FDRE_default has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/FDRE.v" Line 27. Module FDRE_default has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/FDRE.v" Line 27. Module FDRE_default has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/FDRE.v" Line 27. Module FDRE_default has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/FDRE.v" Line 27. Module FDRE_default has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/shift_reg/sim_postroute/shift_reg_time_impl.v" Line 99. Module top_level has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/IBUF.v" Line 29. Module IBUF has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/IBUF.v" Line 29. Module IBUF has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/IBUF.v" Line 29. Module IBUF has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/OBUF.v" Line 25. Module OBUF has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/shift_reg/sim_postroute/shift_reg_time_impl.v" Line 17. Module shift_reg has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/FDRE.v" Line 27. Module FDRE_default has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/FDRE.v" Line 27. Module FDRE_default has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/FDRE.v" Line 27. Module FDRE_default has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/FDRE.v" Line 27. Module FDRE_default has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/FDRE.v" Line 27. Module FDRE_default has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/FDRE.v" Line 27. Module FDRE_default has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/FDRE.v" Line 27. Module FDRE_default has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/FDRE.v" Line 27. Module FDRE_default has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/data/verilog/src/glbl.v" Line 6. Module glbl has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/data/verilog/src/glbl.v" Line 6. Module glbl has a timescale but at least one module in design doesn't have timescale.
+Completed simulation data flow analysis
+WARNING: [XSIM 43-3918] Unable to determine HDL language type of design hierarchy in SDF. Returning without back annotation.
+Time Resolution for simulation is 1ps
+Compiling module unisims_ver.IBUF
+Compiling module unisims_ver.OBUF
+Compiling module unisims_ver.FDRE_default
+Compiling module work.shift_reg
+Compiling module work.top_level
+Compiling module work.tb_shift_reg
+Compiling module work.glbl
+Built simulation snapshot shift_reg_time_impl

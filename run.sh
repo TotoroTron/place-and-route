@@ -73,7 +73,7 @@ if [ "$start_stage" == "sim" ] || [ "$start_stage" == "all" ]; then
 
     DESIGN_DIR="$PROJ_DIR/hdl/verilog/${DESIGN}"
 
-    cd "$DESIGN_DIR/sim"
+    cd "$DESIGN_DIR/sim_postroute"
     xvlog "${DESIGN}_time_impl.v"
     xvlog "$XILINX_VIVADO/data/verilog/src/glbl.v"
     xvlog -sv "$DESIGN_DIR/verif/tb_${DESIGN}.sv"
@@ -85,7 +85,7 @@ if [ "$start_stage" == "sim" ] || [ "$start_stage" == "all" ]; then
         -transport_int_delays \
         -pulse_r 0 -pulse_int_r 0 -pulse_int_e 0 \
         -snapshot "${DESIGN}_time_impl" -top "tb_${DESIGN}" \
-        -sdfroot "$DESIGN_DIR/sim/${DESIGN}_time_impl.sdf" \
+        -sdfroot "$DESIGN_DIR/sim_postroute/${DESIGN}_time_impl.sdf" \
         -log elaborate.log \
         glbl
 

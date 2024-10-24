@@ -62,50 +62,6 @@ public class PlacerPacking extends Placer {
         }
     }
 
-    private void placeCell(
-            Cell cell,
-            Map<String, List<String>> occupiedPlacements) throws IOException {
-
-        Map<SiteTypeEnum, Set<String>> compatiblePlacements = cell.getCompatiblePlacements(device);
-        removeBufferTypes(compatiblePlacements.keySet());
-
-        // ABSTRACT
-        SiteTypeEnum selectedSiteType = selectSiteType(compatiblePlacements);
-
-        List<String> siteNames = Arrays.stream(device.getAllCompatibleSites(selectedSiteType))
-                .map(Site::getName) // return as string names only, not the site itself
-                .collect(Collectors.toList()); // collect as list
-        List<String> belNames = compatiblePlacements.get(selectedSiteType).stream()
-                .filter(name -> !name.contains("5FF")) // placing regs on 5FF BELs will cause routing problems
-                .collect(Collectors.toList()); // UG474, CH2 Storage Elements for more information
-        Map<String, List<String>> availablePlacements = new HashMap<>();
-        for (String siteName : siteNames) {
-            availablePlacements.put(siteName, new ArrayList<>(belNames));
-        }
-
-        // ABSTRACT
-        removeOccupiedPlacements(availablePlacements, occupiedPlacements);
-
-        // ABSTRACT
-        String[] selectedPlacement = selectSiteAndBEL(availablePlacements);
-
-        String selectedSiteName = selectedPlacement[0];
-        String selectedBELName = selectedPlacement[1];
-
-        System.out.println("Selected Site: " + selectedSiteName + ", Selected BEL: " + selectedBELName);
-        Site selectedSite = device.getSite(selectedSiteName);
-        BEL selectedBEL = selectedSite.getBEL(selectedBELName);
-        if (design.placeCell(cell, selectedSite, selectedBEL)) {
-            String s1 = String.format(
-                    "\n\tcellName: %-40s Site: %-10s BEL: %-10s",
-                    cell.getName(), selectedSiteName, selectedBELName);
-            addToMap(occupiedPlacements, selectedPlacement[0], selectedPlacement[1]);
-        } else {
-            writer.write("\n\tWARNING: Placement Failed!");
-        }
-
-    } // end placeCell()
-
     public @Override void placeDesign() throws IOException {
         writer.write("\n\nPlacing Design...");
 
@@ -125,24 +81,25 @@ public class PlacerPacking extends Placer {
             writer.write(s1);
         }
 
+        writer.write("\n\nSorting Cells By Cell Type...");
         for (Cell cell : cells) {
             if (cell.getType().contains("CARRY4")) {
                 CARRYCells.add(cell);
                 System.out.println("\tFound CARRY cell.");
                 writer.write("\n\tFound CARRY cell.");
-                cells.remove(cell);
+                // cells.remove(cell);
             }
             if (cell.getType().contains("FDRE")) {
                 FFCells.add(cell);
                 System.out.println("\tFound FDRE cell.");
                 writer.write("\n\tFound FDRE cell.");
-                cells.remove(cell);
+                // cells.remove(cell);
             }
             if (cell.getType().contains("LUT")) {
                 LUTCells.add(cell);
                 System.out.println("\tFound LUT cell.");
                 writer.write("\n\tFound LUT cell.");
-                cells.remove(cell);
+                // cells.remove(cell);
             }
         }
 

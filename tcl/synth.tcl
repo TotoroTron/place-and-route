@@ -12,13 +12,13 @@ set design "shift_reg"
 set src_dir "$root_dir/hdl/verilog/$design/src"
 set verif_dir "$root_dir/hdl/verilog/$design/verif"
 set xdc_dir "$root_dir/hdl/verilog/$design/constrs"
-/home/bcheng/workspace/dev/place-and-route/hdl/verilog/shift_reg/src
+# /home/bcheng/workspace/dev/place-and-route/hdl/verilog/shift_reg/src
 
 # Read in source files
-set src_files [glob -nocomplain -directory $src_dir *.vhd]
+set src_files [glob -nocomplain -directory $src_dir *.v]
 foreach file $src_files {
     puts "reading: $file"
-    read_vhdl $file
+    read_verilog $file
 }
 
 # Read in verif files

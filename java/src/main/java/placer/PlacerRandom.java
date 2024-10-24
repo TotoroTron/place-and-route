@@ -42,8 +42,8 @@ public class PlacerRandom extends Placer {
     }
 
     protected void removeOccupiedPlacements(
-            Map<String, List<String>> occupiedPlacements,
-            Map<String, List<String>> availablePlacements) throws IOException {
+            Map<String, List<String>> availablePlacements,
+            Map<String, List<String>> occupiedPlacements) throws IOException {
         for (Map.Entry<String, List<String>> entry : occupiedPlacements.entrySet()) {
             String siteName = entry.getKey();
             List<String> occupiedBELs = entry.getValue();

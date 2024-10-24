@@ -1,0 +1,175 @@
+$date
+   Wed Oct 23 20:38:13 2024
+$end
+
+$version
+  2023.2.2
+  $dumpfile ("waveform.vcd") 
+$end
+
+$timescale
+  1ps
+$end
+
+$scope module tb_shift_reg $end
+$var reg 32 ! num_errors [31:0] $end
+$var reg 1 " tb_clk $end
+$var reg 1 # tb_rst $end
+$var reg 1 $ tb_din $end
+$var reg 8 % tb_word [7:0] $end
+$var wire 1 & tb_dout $end
+$scope module dut $end
+$var wire 1 ' i_clk $end
+$var wire 1 ( i_clk_IBUF $end
+$var wire 1 ) i_din $end
+$var wire 1 * i_din_IBUF $end
+$var wire 1 + i_rst $end
+$var wire 1 , i_rst_IBUF $end
+$var wire 1 & o_dout $end
+$var wire 1 - o_dout_OBUF $end
+$scope module shift_reg_0 $end
+$var wire 1 * D [0:0] $end
+$var wire 1 - Q [0:0] $end
+$var wire 1 , SR [0:0] $end
+$var wire 1 ( i_clk_IBUF $end
+$var wire 7 . p_0_in [6:0] $end
+$upscope $end
+$upscope $end
+$scope begin Block33_27 $end
+$var reg 32 / i [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+
+#0
+$dumpvars
+b0 !
+1"
+1#
+x$
+b100 %
+x&
+1'
+1(
+x)
+x*
+1+
+1,
+x-
+bx .
+b0 /
+$end
+
+#100
+0-
+b0 .
+
+#4089
+0&
+
+#5000
+0"
+0'
+0(
+
+#10000
+1"
+0#
+0$
+1'
+1(
+0)
+0*
+0+
+0,
+
+#15000
+0"
+0'
+0(
+
+#20000
+1"
+1'
+1(
+b1 /
+
+#25000
+0"
+0'
+0(
+
+#30000
+1"
+1$
+1'
+1(
+1)
+1*
+b10 /
+
+#35000
+0"
+0'
+0(
+
+#40000
+1"
+0$
+1'
+1(
+0)
+0*
+b11 /
+
+#45000
+0"
+0'
+0(
+
+#50000
+1"
+1'
+1(
+b100 /
+
+#55000
+0"
+0'
+0(
+
+#60000
+1"
+1'
+1(
+b101 /
+
+#65000
+0"
+0'
+0(
+
+#70000
+1"
+1'
+1(
+b110 /
+
+#75000
+0"
+0'
+0(
+
+#80000
+1"
+1'
+1(
+b111 /
+
+#85000
+0"
+0'
+0(
+
+#90000
+b1000 /

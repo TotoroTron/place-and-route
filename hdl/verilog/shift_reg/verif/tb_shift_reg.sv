@@ -10,7 +10,7 @@ module tb_shift_reg;
     wire tb_dout;
 
     // instantiation unit under test 
-    shift_reg #(.LENGTH(LENGTH)) dut (
+    top_level #(.LENGTH(LENGTH)) dut (
         .i_clk(tb_clk),
         .i_rst(tb_rst),
         .i_din(tb_din),
