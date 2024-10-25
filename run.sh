@@ -11,7 +11,7 @@ export PATH="$PATH:$RAPIDWRIGHT_PATH/bin"
 export CLASSPATH=$RAPIDWRIGHT_PATH/bin:$RAPIDWRIGHT_PATH/jars/*
 export _JAVA_OPTIONS=-Xmx32736m
 
-DESIGN="shift_reg"
+DESIGN="fir_filter"
 PROJ_DIR="/home/bcheng/workspace/dev/place-and-route"
 SYNTH_TCL="$PROJ_DIR/tcl/synth.tcl"
 ROUTE_TCL="$PROJ_DIR/tcl/route.tcl"
