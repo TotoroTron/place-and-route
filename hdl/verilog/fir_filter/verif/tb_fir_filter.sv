@@ -2,18 +2,27 @@
 
 module tb_shift_reg;
 
-    localparam LENGTH = 32;
+    localparam DATA_WIDTH = 24;
+    localparam FIR_LENGTH = 128;
     int num_errors = 0;
     reg tb_clk;
     reg tb_rst;
+    reg tb_en;
     reg tb_din;
-    reg [LENGTH-1:0] tb_word;
-    wire tb_dout;
+    reg [DATA_WIDTH-1:0] tb_din;
+    wire [DATA_WIDTH-1:0] tb_dout;
+    wire tb_prod_overflow;
+    wire tb_sum_overflow;
 
     // instantiation unit under test 
-    top_level #(.LENGTH(LENGTH)) dut (
+    top_level 
+    #(
+        .DATA_WIDTH(DATA_WIDTH),
+        .FIR_LENGTH(FIR_LENGTH)
+    ) dut (
         .i_clk(tb_clk),
         .i_rst(tb_rst),
+        .i_en(tb_en),
         .i_din(tb_din),
         .o_dout(tb_dout)
     );
@@ -32,26 +41,14 @@ module tb_shift_reg;
     end
     endtask // assert_and_report
 
-    task test_word(input [LENGTH-1:0] word);
-    begin
-        tb_rst = 0;
-        // serialize word, LSB first in
-        for (int i = 0; i < LENGTH; i++) begin
-            tb_din = word[i];
-            @(posedge tb_clk);
-        end
-        // read output
-        for (int i = 0; i < LENGTH; i++) begin
-            @(posedge tb_clk);
-            assert_and_report(word[i], tb_dout);
-        end
-        tb_rst = 1; // reset the dut
-        @(posedge tb_clk);
-        tb_rst = 0;
+    task test_signal() begin
+        
     end
-    endtask // test_word
 
-    always #50 tb_clk = ~tb_clk;
+    task push_word() begin
+    end
+
+    always #10 tb_clk = ~tb_clk;
 
     initial begin
         $dumpfile("waveform.vcd");
@@ -61,12 +58,7 @@ module tb_shift_reg;
         tb_clk = 1;
         tb_rst = 1;
 
-        repeat (100) begin
-            tb_word = $urandom();
-            $display("Word: %h = %b", tb_word, tb_word);
-            test_word(tb_word);
-            $display();
-        end
+
         
         $display();
         $display("Total number of errors: %d", num_errors);

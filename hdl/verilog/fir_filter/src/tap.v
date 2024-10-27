@@ -31,7 +31,7 @@ module tap
         product_full = signed(iv_din) * signed(iv_weight);
         product_trunc = product_full[DATA_WIDTH-1:0];
 
-        sum_full = signed(product + iv_sum);
+        sum_full = signed(product_trunc + iv_sum);
         sum_trunc = sum_full[DATA_WIDTH-1:0];
 
         if (signed(product_full) < MIN_VALUE or signed(product_full) > MAX_VALUE) begin
@@ -51,6 +51,6 @@ module tap
         end
     end
 
-    assign ov_sum = sum;
+    assign ov_sum = sum_trunc;
 
 endmodule
