@@ -1,17 +1,25 @@
 module top_level
-#(parameter LENGTH = 32)
-    (
-        input wire i_clk,
-        input wire i_rst,
-        input wire i_din,
-        output wire o_dout
-    );
+#(
+    parameter DATA_WIDTH = 24,
+    parameter FIR_DEPTH = 128
+)(
+    input wire i_clk,
+    input wire i_rst,
+    input wire i_en,
+    input wire [DATA_WIDTH-1:0] iv_din,
+    output wire [DATA_WIDTH-1:0] ov_dout
+);
 
-    shift_reg #(.LENGTH(LENGTH)) shift_reg_0 (
+    fir_filter
+    #(
+        .DATA_WIDTH(DATA_WIDTH),
+        .FIR_LENGTH(FIR_LENGTH)
+    ) inst (
         .i_clk(i_clk),
         .i_rst(i_rst),
-        .i_din(i_din),
-        .o_dout(o_dout)
+        .i_en(i_en),
+        .iv_din(iv_din),
+        .ov_dout(ov_dout)
     );
 
 endmodule
