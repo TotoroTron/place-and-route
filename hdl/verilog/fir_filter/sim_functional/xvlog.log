@@ -1,0 +1,3 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/fir_filter.v" into library work
+ERROR: [VRFC 10-8386] root scope declaration is not allowed in Verilog 95/2K mode [/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/weights_pkg.v:4]
+ERROR: [VRFC 10-4982] syntax error near ''' [/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/weights_pkg.v:6]

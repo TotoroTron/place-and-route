@@ -24,23 +24,25 @@ module tap
     localparam MAX_VALUE = 2**(DATA_WIDTH-1)-1;
     // example: DATA_WIDTH=8: if (prod < -128 or prod > 127) then overflow!
 
-    always @(iv_din, iv_weight, iv_sum) begin
-        prod_overflow = 0;
-        sum_overflow = 0;
+    always @(iv_din or iv_weight or iv_sum) begin
+        o_prod_overflow = 0;
+        o_sum_overflow = 0;
 
-        product_full = signed(iv_din) * signed(iv_weight);
+        // product_full = signed(iv_din) * signed(iv_weight);
+        product_full = iv_din * iv_weight;
         product_trunc = product_full[DATA_WIDTH-1:0];
 
-        sum_full = signed(product_trunc + iv_sum);
+        // sum_full = signed(product_trunc + iv_sum);
+        sum_full = product_trunc + iv_sum;
         sum_trunc = sum_full[DATA_WIDTH-1:0];
 
-        if (signed(product_full) < MIN_VALUE or signed(product_full) > MAX_VALUE) begin
-            prod_overflow = 1;
+        if (product_full < MIN_VALUE || product_full > MAX_VALUE) begin
+            o_prod_overflow = 1;
         end
 
-        if (signed(sum_full) < MIN_VALUE or signed(sum_full) > MAX_VALUE) begin
-            sum_overflow = 1;
-        end;
+        if (sum_full < MIN_VALUE || sum_full > MAX_VALUE) begin
+            o_sum_overflow = 1;
+        end
     end
 
     always @(posedge i_clk) begin

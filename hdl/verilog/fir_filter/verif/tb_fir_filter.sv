@@ -1,9 +1,19 @@
-`timescale 1ns/1ns
-import math_pkg::*;
-
 module tb_fir_filter;
 
+    localparam DATA_WIDTH = 24;
+    localparam FIR_DEPTH = 128;
+    int num_errors = 0;
+    reg tb_clk;
+    reg tb_rst;
+    reg tb_en;
+    reg [DATA_WIDTH-1:0] tb_din;
+    wire [DATA_WIDTH-1:0] tb_dout;
+    
+    reg [7:0] tb_addr;
+    wire tb_prod_overflow;
+    wire tb_sum_overflow;
     reg tb_err;
+
     task assert_and_report(input expected, input actual);
     begin
         if (actual == expected) begin
@@ -18,39 +28,28 @@ module tb_fir_filter;
     endtask // assert_and_report
 
 
-    localparam DATA_WIDTH = 24;
-    localparam FIR_LENGTH = 128;
-    int num_errors = 0;
-    reg tb_clk;
-    reg tb_rst;
-    reg tb_en;
-    reg tb_din;
-    reg [DATA_WIDTH-1:0] tb_din;
-    wire [DATA_WIDTH-1:0] tb_dout;
-    wire tb_prod_overflow;
-    wire tb_sum_overflow;
-
     // instantiation unit under test 
-    top_level 
+    top_level
     #(
         .DATA_WIDTH(DATA_WIDTH),
-        .FIR_LENGTH(FIR_LENGTH)
+        .FIR_DEPTH(FIR_DEPTH)
     ) dut (
         .i_clk(tb_clk),
         .i_rst(tb_rst),
         .i_en(tb_en),
-        .i_din(tb_din),
-        .o_dout(tb_dout)
+        .iv_din(tb_din),
+        .ov_dout(tb_dout)
     );
-    always #10 tb_clk = ~tb_clk;
 
 
-    real PI = 3.141615926535897;
-    int SIGNAL_FREQ;
-    int SAMPLE_FREQ = 44100;
-    real SIGNAL_OFFS = 0;
-    int SAMPLES_PER_SIGNAL_PERIOD = SAMPLE_FREQ/SIGNAL_FREQ;
+    localparam real PI = 3.141615926535897;
+    localparam int SIGNAL_FREQ = 1000;
+    localparam int SAMPLE_FREQ = 44000;
+    localparam real SIGNAL_OFFS = 0;
+    localparam int SAMPLES_PER_SIGNAL_PERIOD = SAMPLE_FREQ/SIGNAL_FREQ;
 
+
+    wire tb_dbiterra, tb_sbiterra;
 
     // xpm_memory_sprom: Single Port ROM
     // Xilinx Parameterized Macro, version 2024.1
@@ -80,25 +79,28 @@ module tb_fir_filter;
         .WAKEUP_TIME("disable_sleep")  // String
     )
         xpm_memory_sprom_inst (
-        .dbiterra(dbiterra),             // 1-bit output: Leave open.
+        .dbiterra(tb_dbiterra),             // 1-bit output: Leave open.
         .douta(tb_din),                   // READ_DATA_WIDTH_A-bit output: Data output for port A read operations.
-        .sbiterra(sbiterra),             // 1-bit output: Leave open.
+        .sbiterra(tb_sbiterra),             // 1-bit output: Leave open.
         .addra(tb_addr),                   // ADDR_WIDTH_A-bit input: Address for port A read operations.
         .clka(tb_clk),                     // 1-bit input: Clock signal for port A.
         .ena(tb_en),                       // 1-bit input: Memory enable signal for port A. Must be high on clock
                                             // cycles when read operations are initiated. Pipelined internally.
 
-        .injectdbiterra(injectdbiterra), // 1-bit input: Do not change from the provided value.
-        .injectsbiterra(injectsbiterra), // 1-bit input: Do not change from the provided value.
+        .injectdbiterra(1'b0), // 1-bit input: Do not change from the provided value.
+        .injectsbiterra(1'b0), // 1-bit input: Do not change from the provided value.
         .regcea(tb_en),                 // 1-bit input: Do not change from the provided value.
         .rsta(tb_rst),                     // 1-bit input: Reset signal for the final port A output register stage.
                                             // Synchronously resets output port douta to the value specified by
                                             // parameter READ_RESET_VALUE_A.
 
-        .sleep(sleep)                    // 1-bit input: sleep signal to enable the dynamic power saving feature.
+        .sleep(1'b0)                    // 1-bit input: sleep signal to enable the dynamic power saving feature.
     );
 
+
     // End of xpm_memory_sprom_inst instantiation
+
+    always #5 tb_clk = ~tb_clk;
 
     initial begin
         $dumpfile("waveform.vcd");
@@ -108,8 +110,13 @@ module tb_fir_filter;
         tb_clk = 1;
         tb_rst = 1;
 
-        for (int t = 0; t < SAMPLES_PER_PERIOD), t++) begin
-            tb_din = $sin(SAMPLE_FREQ * t + SIGNAL_OFFS);
+        for (int i = 0; i < 100; i = i + 1) begin
+            tb_rst = 0;
+            tb_en = 1;
+            for (int t = 0; t < SAMPLES_PER_SIGNAL_PERIOD; t++) begin
+                tb_addr = t;
+                @(posedge tb_clk)
+            end
         end
 
         $display();

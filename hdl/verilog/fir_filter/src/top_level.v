@@ -14,7 +14,7 @@ module top_level
     fir_filter
     #(
         .DATA_WIDTH(DATA_WIDTH),
-        .FIR_LENGTH(FIR_LENGTH)
+        .FIR_DEPTH(FIR_DEPTH)
     ) inst (
         .i_clk(i_clk),
         .i_rst(i_rst),

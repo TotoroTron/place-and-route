@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def generate_sine_table(sine_freq, sample_freq, ampl, offset, num_samples, bit_depth):
+def generate(sine_freq, sample_freq, ampl, offset, num_samples, bit_depth):
     """
     Generates a sine wave table in hexadecimal format.
 
@@ -20,7 +20,7 @@ def generate_sine_table(sine_freq, sample_freq, ampl, offset, num_samples, bit_d
     sine_wave_int = np.round(sine_wave).astype(int)
     return sine_wave_int, t
 
-def plot_sine_table(sine_wave, t):
+def plot(sine_wave, t):
     plt.figure(figsize=(10, 4))
     plt.step(t, sine_wave, where="post", label="Step-wise Sine Wave", color="blue")
     plt.title("Step-wise Interpolation of Sine Wave")
@@ -47,15 +47,17 @@ def main():
         print(f"Amplitude {amplitude} must be between {MIN_VALUE} and {MAX_VALUE}");
         exit()
 
-    sine_wave_int, t = generate_sine_table(sine_freq, sample_freq, amplitude, offset, num_samples, bit_depth);
+    sine_wave_int, t = generate(sine_freq, sample_freq, amplitude, offset, num_samples, bit_depth);
     sine_wave_hex = [f"{(val & ((1 << bit_depth) - 1)):0{bit_depth // 4}X}" for val in sine_wave_int]
-    plot_sine_table(sine_wave_int, t)
+    plot(sine_wave_int, t)
+    print("Sine signal has been pltoted in sine.png")
 
     f = open("sine.mem", "w")
     for i, hex_val in enumerate(sine_wave_hex):
         f.write(f"@{i:02X} {hex_val}\n")
     f.close()
 
+    print("Sine signal values have been saved to sine.mem in hexadecimal format.")
 
 
 if __name__ == '__main__':

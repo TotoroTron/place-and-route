@@ -44,7 +44,10 @@ for file in "${verif_files[@]}"; do
 done
 
 # Elaboration
-xelab -debug typical -top "tb_$DESIGN" -snapshot my_tb_snap
+xelab -debug typical -top "tb_$DESIGN" -snapshot my_tb_snap \
+    -timescale 1ns/1ns \
+    -L xpm # -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver
+
 check_status "xelab"
 
 # Simulation

@@ -1,3 +1,4 @@
+`include "weights_pkg.v"
 
 module fir_filter 
 #(
@@ -7,22 +8,39 @@ module fir_filter
     input wire i_clk,
     input wire i_rst,
     input wire i_en,
-    input wire [DATA_WIDTH-1:0] iv_din,
-    output wire [DATA_WIDTH-1:0] ov_dout,
+    input wire signed [DATA_WIDTH-1:0] iv_din,
+    output wire signed [DATA_WIDTH-1:0] ov_dout,
     output wire [FIR_DEPTH-1:0] prod_overflow,
-    output wire [FIR_DEPTH-1:0] sum_overflow,
+    output wire [FIR_DEPTH-1:0] sum_overflow
 );
+    import weights_pkg::*;
+    wire signed [DATA_WIDTH-1:0] weights [FIR_DEPTH-1:0];
+    wire signed [DATA_WIDTH-1:0] buffers [FIR_DEPTH-1:0];
+    wire signed [DATA_WIDTH-1:0] sums [FIR_DEPTH-1:0];
 
-    wire [DATA_WIDTH-1:0] buffers [FIR_DEPTH-1:0];
-    wire [DATA_WIDTH-1:0] weights [FIR_DEPTH-1:0];
-    wire [DATA_WIDTH-1:0] sums [FIR_DEPTH-1:0];
+
+
+
+    import weights_pkg::*;
+
+    // Declare the weights array and assign values from the package
+    wire signed [DATA_WIDTH-1:0] weights [FIR_DEPTH-1:0];
+
+    // Generate block to assign values from the package to the weights array
+    genvar j;
+    generate
+        for (j = 0; j < FIR_DEPTH; j = j + 1) begin : weight_assignment
+            assign weights[j] = WEIGHTS[j];
+        end
+    endgenerate
+
 
     assign ov_dout = sums[FIR_DEPTH-1];
 
     genvar i;
     generate
-    for (i = 0; i < FIR_DEPTH; i++) begin
-        if (i==1) begin
+    for (i = 0; i < FIR_DEPTH; i = i + 1)begin
+        if (i==0) begin
             tap #(
                 .DATA_WIDTH(DATA_WIDTH)
             ) inst (
@@ -31,7 +49,7 @@ module fir_filter
                 .i_en(i_en),
                 .iv_din(iv_din),
                 .iv_weight(weights[i]),
-                .iv_sum(signed(0)),
+                .iv_sum( { (DATA_WIDTH){1'b0} } ),
                 .ov_sum(sums[i]),
                 .ov_dout(buffers[i]),
                 .o_prod_overflow(prod_overflow[i]),
