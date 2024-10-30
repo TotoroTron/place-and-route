@@ -6,19 +6,19 @@ module tap
     input wire i_clk,
     input wire i_rst,
     input wire i_en,
-    input wire [DATA_WIDTH-1:0] iv_din,
-    input wire [DATA_WIDTH-1:0] iv_weight,
-    input wire [DATA_WIDTH-1:0] iv_sum,
-    output wire [DATA_WIDTH-1:0] ov_sum,
-    output reg [DATA_WIDTH-1:0] ov_dout,
+    input wire signed [DATA_WIDTH-1:0] iv_din,
+    input wire signed [DATA_WIDTH-1:0] iv_weight,
+    input wire signed [DATA_WIDTH-1:0] iv_sum,
+    output wire signed [DATA_WIDTH-1:0] ov_sum,
+    output reg signed [DATA_WIDTH-1:0] ov_dout,
     output reg o_prod_overflow,
     output reg o_sum_overflow
 );
 
-    reg [DATA_WIDTH:0] sum_full;
-    reg [DATA_WIDTH-1:0] sum_trunc;
-    reg [DATA_WIDTH*2-1:0] product_full;
-    reg [DATA_WIDTH-1:0] product_trunc;
+    reg signed [DATA_WIDTH:0] sum_full;
+    reg signed [DATA_WIDTH-1:0] sum_trunc;
+    reg signed [DATA_WIDTH*2-1:0] product_full;
+    reg signed [DATA_WIDTH-1:0] product_trunc;
 
     localparam MIN_VALUE = -2**(DATA_WIDTH-1);
     localparam MAX_VALUE = 2**(DATA_WIDTH-1)-1;
@@ -28,11 +28,14 @@ module tap
         o_prod_overflow = 0;
         o_sum_overflow = 0;
 
-        // product_full = signed(iv_din) * signed(iv_weight);
-        product_full = iv_din * iv_weight;
-        product_trunc = product_full[DATA_WIDTH-1:0];
+        //
+        // NEED TO FIGURE OUT CORRECT FIXED POINT MATH
+        //
 
-        // sum_full = signed(product_trunc + iv_sum);
+        product_full = iv_din * iv_weight;
+        product_trunc = product_full >>> (DATA_WIDTH-1);
+        // product_trunc = product_full[DATA_WIDTH-1:0];
+
         sum_full = product_trunc + iv_sum;
         sum_trunc = sum_full[DATA_WIDTH-1:0];
 

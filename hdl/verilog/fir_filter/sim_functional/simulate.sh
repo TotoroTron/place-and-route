@@ -22,8 +22,19 @@ create_wave_config; add_wave /; set_property needs_save false [current_wave_conf
 EOL
 
 root_dir="/home/bcheng/workspace/dev/place-and-route"
+sim_dir="$root_dir/hdl/verilog/$DESIGN/sim_functional"
 src_dir="$root_dir/hdl/verilog/$DESIGN/src"
 verif_dir="$root_dir/hdl/verilog/$DESIGN/verif"
+
+# generate sine.mem
+cd $verif_dir
+python3 sine.py
+
+# generate weights.mem
+cd $src_dir
+python3 weights.py
+
+cd $sim_dir
 
 # Read source files and log
 src_files=("$src_dir"/*.v)
@@ -45,7 +56,7 @@ done
 
 # Elaboration
 xelab -debug typical -top "tb_$DESIGN" -snapshot my_tb_snap \
-    -timescale 1ns/1ns \
+    -timescale 10ns/1ns \
     -L xpm # -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver
 
 check_status "xelab"

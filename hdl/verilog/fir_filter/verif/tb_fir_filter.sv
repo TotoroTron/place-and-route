@@ -42,10 +42,8 @@ module tb_fir_filter;
     );
 
 
-    localparam real PI = 3.141615926535897;
     localparam int SIGNAL_FREQ = 1000;
     localparam int SAMPLE_FREQ = 44000;
-    localparam real SIGNAL_OFFS = 0;
     localparam int SAMPLES_PER_SIGNAL_PERIOD = SAMPLE_FREQ/SIGNAL_FREQ;
 
 
@@ -62,7 +60,7 @@ module tb_fir_filter;
         .ECC_MODE("no_ecc"),           // String
         .ECC_TYPE("none"),             // String
         .IGNORE_INIT_SYNTH(0),         // DECIMAL
-        .MEMORY_INIT_FILE("sine.mem"),     // String
+        .MEMORY_INIT_FILE("/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/sine.mem"),     // String
         .MEMORY_INIT_PARAM("0"),       // String
         .MEMORY_OPTIMIZATION("true"),  // String
         .MEMORY_PRIMITIVE("auto"),     // String
@@ -110,12 +108,12 @@ module tb_fir_filter;
         tb_clk = 1;
         tb_rst = 1;
 
-        for (int i = 0; i < 100; i = i + 1) begin
+        for (int i = 0; i < 10; i = i + 1) begin
             tb_rst = 0;
             tb_en = 1;
             for (int t = 0; t < SAMPLES_PER_SIGNAL_PERIOD; t++) begin
                 tb_addr = t;
-                @(posedge tb_clk)
+                @(posedge tb_clk);
             end
         end
 

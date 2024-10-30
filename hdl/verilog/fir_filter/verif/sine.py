@@ -32,7 +32,6 @@ def plot(sine_wave, t):
     
 
 def main():
-
     # Parameters
     sine_freq = 1000 # frequency of the sine wave (Hz)
     sample_freq = 44000 # sampling frequency (Hz)

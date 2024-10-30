@@ -1,5 +1,3 @@
-`include "weights_pkg.v"
-
 module fir_filter 
 #(
     parameter DATA_WIDTH = 24,
@@ -13,26 +11,10 @@ module fir_filter
     output wire [FIR_DEPTH-1:0] prod_overflow,
     output wire [FIR_DEPTH-1:0] sum_overflow
 );
-    import weights_pkg::*;
     wire signed [DATA_WIDTH-1:0] weights [FIR_DEPTH-1:0];
+    `include "weights.vh" 
     wire signed [DATA_WIDTH-1:0] buffers [FIR_DEPTH-1:0];
     wire signed [DATA_WIDTH-1:0] sums [FIR_DEPTH-1:0];
-
-
-
-
-    import weights_pkg::*;
-
-    // Declare the weights array and assign values from the package
-    wire signed [DATA_WIDTH-1:0] weights [FIR_DEPTH-1:0];
-
-    // Generate block to assign values from the package to the weights array
-    genvar j;
-    generate
-        for (j = 0; j < FIR_DEPTH; j = j + 1) begin : weight_assignment
-            assign weights[j] = WEIGHTS[j];
-        end
-    endgenerate
 
 
     assign ov_dout = sums[FIR_DEPTH-1];

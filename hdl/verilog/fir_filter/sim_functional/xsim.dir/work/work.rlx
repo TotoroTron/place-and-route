@@ -2,7 +2,8 @@
 2020.2
 Feb  8 2024
 23:58:30
-/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/fir_filter.v,1730229537,verilog,,,,fir_filter,,,,,,,,
-/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/tap.v,1730226171,verilog,,,,tap,,,,,,,,
+/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/fir_filter.v,1730239897,verilog,,,/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/weights.vh,fir_filter,,,,,,,,
+/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/tap.v,1730246337,verilog,,,,tap,,,,,,,,
 /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/top_level.v,1730226612,verilog,,,,top_level,,,,,,,,
-/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_fir_filter.sv,1730229577,systemVerilog,,,,tb_fir_filter,,,,,,,,
+/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/weights.vh,1730246340,verilog,,,,,,,,,,,,
+/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_fir_filter.sv,1730242250,systemVerilog,,,,tb_fir_filter,,,,,,,,
