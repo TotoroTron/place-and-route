@@ -3,19 +3,21 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import firwin
 
-def generate(filter_depth, data_width, cutoff_freq, sample_rate, scale_factor=1000):
+def generate(filter_depth, data_width, cutoff_freq, sample_rate):
     # Design the FIR filter with the given parameters
     fir_coefficients = firwin(filter_depth, cutoff_freq, fs=sample_rate, pass_zero=True)
     
-    # Scale coefficients to match the input signal range
-    scaled_fir_coefficients = fir_coefficients * scale_factor
-    
     # Quantize coefficients based on data width
     max_val = 2**(data_width - 1) - 1
-    quantized_coefficients = np.round(scaled_fir_coefficients * max_val).astype(int)
+    quantized_coefficients = np.round(fir_coefficients * max_val).astype(int)
 
     # Ensure coefficients fit within the data width by clipping
     quantized_coefficients = np.clip(quantized_coefficients, -max_val, max_val)
+
+    # for c in fir_coefficients:
+    #     print(c)
+    # for c in quantized_coefficients:
+    #     print(c);
 
     return quantized_coefficients
 

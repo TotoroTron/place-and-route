@@ -9,7 +9,7 @@ module tb_fir_filter;
     reg [DATA_WIDTH-1:0] tb_din;
     wire [DATA_WIDTH-1:0] tb_dout;
     
-    reg [7:0] tb_addr;
+    reg [23:0] tb_addr;
     wire tb_prod_overflow;
     wire tb_sum_overflow;
     reg tb_err;
@@ -42,7 +42,7 @@ module tb_fir_filter;
     );
 
 
-    localparam int SIGNAL_FREQ = 1000;
+    localparam int SIGNAL_FREQ = 100;
     localparam int SAMPLE_FREQ = 44000;
     localparam int SAMPLES_PER_SIGNAL_PERIOD = SAMPLE_FREQ/SIGNAL_FREQ;
 
@@ -53,7 +53,7 @@ module tb_fir_filter;
     // Xilinx Parameterized Macro, version 2024.1
 
     xpm_memory_sprom #(
-        .ADDR_WIDTH_A(8),              // DECIMAL
+        .ADDR_WIDTH_A(24),              // DECIMAL
         .AUTO_SLEEP_TIME(0),           // DECIMAL
         .CASCADE_HEIGHT(0),            // DECIMAL
         .ECC_BIT_RANGE("7:0"),         // String
@@ -108,7 +108,7 @@ module tb_fir_filter;
         tb_clk = 1;
         tb_rst = 1;
 
-        for (int i = 0; i < 10; i = i + 1) begin
+        for (int i = 0; i < 2; i = i + 1) begin
             tb_rst = 0;
             tb_en = 1;
             for (int t = 0; t < SAMPLES_PER_SIGNAL_PERIOD; t++) begin

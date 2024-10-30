@@ -31,6 +31,8 @@ module tap
         //
         // NEED TO FIGURE OUT CORRECT FIXED POINT MATH
         //
+        
+
 
         product_full = iv_din * iv_weight;
         product_trunc = product_full >>> (DATA_WIDTH-1);
