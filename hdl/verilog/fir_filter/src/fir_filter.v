@@ -6,6 +6,7 @@ module fir_filter
     input wire i_clk,
     input wire i_rst,
     input wire i_en,
+    input wire i_din_valid,
     input wire signed [DATA_WIDTH-1:0] iv_din,
     output wire signed [DATA_WIDTH-1:0] ov_dout,
     output wire [FIR_DEPTH-1:0] prod_overflow,

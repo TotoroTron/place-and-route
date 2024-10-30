@@ -1,4 +1,4 @@
-# synth.tcl
+set design "fir_filter"
 
 set root_dir "/home/bcheng/workspace/dev/place-and-route"
 set synthesized_dcp "$root_dir/outputs/synthesized.dcp" 
@@ -8,11 +8,9 @@ set synthesized_dcp "$root_dir/outputs/synthesized.dcp"
 # set verif_dir "$root_dir/hdl/vhdl/$design/$design.srcs/sim_1/new"
 # set xdc_dir "$root_dir/hdl/vhdl/$design/$design.srcs/constrs_1/new"
 
-set design "shift_reg"
 set src_dir "$root_dir/hdl/verilog/$design/src"
 set verif_dir "$root_dir/hdl/verilog/$design/verif"
 set xdc_dir "$root_dir/hdl/verilog/$design/constrs"
-# /home/bcheng/workspace/dev/place-and-route/hdl/verilog/shift_reg/src
 
 # Read in source files
 set src_files [glob -nocomplain -directory $src_dir *.v]

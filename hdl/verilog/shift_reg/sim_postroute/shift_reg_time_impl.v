@@ -2,7 +2,7 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2023.2.2 (lin64) Build 4126759 Thu Feb  8 23:52:05 MST 2024
-// Date        : Thu Oct 24 18:00:08 2024
+// Date        : Wed Oct 30 14:45:04 2024
 // Host        : bcheng-HP running 64-bit Ubuntu 22.04.5 LTS
 // Command     : write_verilog
 //               /home/bcheng/workspace/dev/place-and-route/hdl/verilog/shift_reg/sim_postroute/shift_reg_time_impl.v

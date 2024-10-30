@@ -1,9 +1,10 @@
+set design "fir_filter"
+
 set root_dir "/home/bcheng/workspace/dev/place-and-route"
 set design_name "top_level"
 set dcp_file "$root_dir/outputs/routed.dcp" 
 
 open_checkpoint $dcp_file
-set design "shift_reg"
 
 set sdf_file "$root_dir/hdl/verilog/${design}/sim_postroute/${design}_time_impl.sdf"
 set verilog_file "$root_dir/hdl/verilog/${design}/sim_postroute/${design}_time_impl.v"

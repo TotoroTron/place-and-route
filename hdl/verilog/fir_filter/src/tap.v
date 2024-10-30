@@ -15,10 +15,10 @@ module tap
     output reg o_sum_overflow
 );
 
-    reg signed [DATA_WIDTH:0] sum_full;
-    reg signed [DATA_WIDTH-1:0] sum_trunc;
-    reg signed [DATA_WIDTH*2-1:0] product_full;
-    reg signed [DATA_WIDTH-1:0] product_trunc;
+    reg signed [DATA_WIDTH:0] sum_full = 0;
+    reg signed [DATA_WIDTH-1:0] sum_trunc = 0;
+    reg signed [DATA_WIDTH*2-1:0] product_full = 0;
+    reg signed [DATA_WIDTH-1:0] product_trunc = 0;
 
     localparam MIN_VALUE = -2**(DATA_WIDTH-1);
     localparam MAX_VALUE = 2**(DATA_WIDTH-1)-1;
@@ -27,12 +27,6 @@ module tap
     always @(iv_din or iv_weight or iv_sum) begin
         o_prod_overflow = 0;
         o_sum_overflow = 0;
-
-        //
-        // NEED TO FIGURE OUT CORRECT FIXED POINT MATH
-        //
-        
-
 
         product_full = iv_din * iv_weight;
         product_trunc = product_full >>> (DATA_WIDTH-1);
