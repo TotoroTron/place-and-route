@@ -21,11 +21,11 @@ module top_level
     control_unit
     #(
         .DATA_WIDTH(DATA_WIDTH)
-    ) inst (
+    ) control_unit_inst (
         .i_clk(i_clk),
         .i_rst(i_rst),
         .i_en(i_en),
-        .i_rx_end(i_rx_end)
+        .i_rx_end(i_rx_end),
         .o_des_valid(des_dout_valid),
         .o_fir_valid(fir_dout_valid)
     );
@@ -33,11 +33,11 @@ module top_level
     deserializer
     #(
         .LENGTH(DATA_WIDTH)
-    ) inst (
+    ) deserializer_inst (
         .i_clk(i_clk),
         .i_rst(i_rst),
         .i_en(i_en),
-        .i_rx_end(i_rx_end),
+        .i_din_valid(i_rx_end),
         .i_din(i_din),
         .ov_dout(fir_input)
     );
@@ -46,7 +46,7 @@ module top_level
     #(
         .DATA_WIDTH(DATA_WIDTH),
         .FIR_DEPTH(FIR_DEPTH)
-    ) inst (
+    ) fir_filter_inst (
         .i_clk(i_clk),
         .i_rst(i_rst),
         .i_en(i_rx_end),
@@ -57,7 +57,7 @@ module top_level
     serializer
     #(
         .LENGTH(DATA_WIDTH)
-    ) inst (
+    ) serializer_inst (
         .i_clk(i_clk),
         .i_rst(i_rst),
         .i_en(i_en),
