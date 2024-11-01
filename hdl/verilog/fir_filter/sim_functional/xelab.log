@@ -1,7 +1,7 @@
 Vivado Simulator v2023.2.2
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/bin/unwrapped/lnx64.o/xelab -debug typical -top tb_deserializer -snapshot my_tb_snap -timescale 10ns/1ns -L xpm 
+Running: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/bin/unwrapped/lnx64.o/xelab -debug typical -top tb_serializer -snapshot my_tb_snap -timescale 10ns/1ns -L xpm 
 Multi-threading is on. Using 6 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
@@ -9,6 +9,6 @@ Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ns
-Compiling module work.deserializer
-Compiling module work.tb_deserializer
+Compiling module work.serializer
+Compiling module work.tb_serializer
 Built simulation snapshot my_tb_snap

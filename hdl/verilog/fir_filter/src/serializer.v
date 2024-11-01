@@ -21,7 +21,7 @@ module serializer
             if (i_din_valid) begin
                 shift_reg <= iv_din;
             end else begin
-                shift_reg <= { 1'b0, iv_din[LENGTH-1:1] };
+                shift_reg <= { 1'b0, shift_reg[LENGTH-1:1] };
             end
         end
     end
