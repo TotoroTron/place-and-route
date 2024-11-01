@@ -6,25 +6,27 @@ module tb_top_level;
     reg tb_clk;
     reg tb_rst;
     reg tb_en;
-    reg tb_din_valid;
     reg tb_din;
-    wire [LENGTH-1:0] tb_dout;
+    reg tb_din_valid;
+    wire tb_dout;
+    wire tb_dout_valid;
 
     reg [LENGTH-1:0] tb_word;
     int num_errors = 0;
     reg tb_err;
 
     // instantiation unit under test 
-    deserializer
+    top_level
     #(
         .LENGTH(LENGTH)
     ) dut (
         .i_clk(tb_clk),
         .i_rst(tb_rst),
         .i_en(tb_en),
+        .i_din(tb_din)
         .i_din_valid(tb_din_valid),
-        .i_din(tb_din),
-        .ov_dout(tb_dout)
+        .o_dout(tb_dout),
+        .o_dout_valid(tb_dout_valid)
     );
 
 

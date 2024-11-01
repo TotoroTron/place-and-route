@@ -13,8 +13,8 @@ module top_level
     output wire o_dout_valid
 );
 
-    wire [DATA_WIDTH-1:0] fir_din = { (LENGHT){1'b0} };
-    wire [DATA_WIDTH-1:0] fir_dout = { (LENGHT){1'b0} };
+    wire [DATA_WIDTH-1:0] fir_din = { (DATA_WIDTH){1'b0} };
+    wire [DATA_WIDTH-1:0] fir_dout = { (DATA_WIDTH){1'b0} };
     wire des_out_valid = 1'b0;
     wire fir_out_valid = 1'b0;
     wire ser_out_valid = 1'b0;
@@ -28,7 +28,7 @@ module top_level
         .i_en(i_en),
         .i_din(i_din),
         .i_din_valid(i_din_valid),
-        .ov_dout(fir_input),
+        .ov_dout(fir_din),
         .o_dout_valid(ser_out_valid)
     );
 
@@ -52,10 +52,12 @@ module top_level
         .i_clk(i_clk),
         .i_rst(i_rst),
         .i_en(i_en),
+        .iv_din(fir_dout),
         .i_din_valid(fir_out_valid),
-        .i_din(fir_dout),
         .o_dout(o_dout),
         .o_dout_valid(ser_out_valid)
     );
+
+    assign o_dout_valid = ser_out_valid;
 
 endmodule
