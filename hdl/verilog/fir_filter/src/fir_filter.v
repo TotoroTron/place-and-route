@@ -9,16 +9,25 @@ module fir_filter
     input wire i_din_valid,
     input wire signed [DATA_WIDTH-1:0] iv_din,
     output wire signed [DATA_WIDTH-1:0] ov_dout,
+    output wire o_dout_valid,
     output wire [FIR_DEPTH-1:0] prod_overflow,
     output wire [FIR_DEPTH-1:0] sum_overflow
 );
-    wire signed [DATA_WIDTH-1:0] weights [FIR_DEPTH-1:0];
-    `include "weights.vh" 
+
     wire signed [DATA_WIDTH-1:0] buffers [FIR_DEPTH-1:0];
     wire signed [DATA_WIDTH-1:0] sums [FIR_DEPTH-1:0];
-
+    wire signed [DATA_WIDTH-1:0] weights [FIR_DEPTH-1:0];
+    `include "weights.vh" 
 
     assign ov_dout = sums[FIR_DEPTH-1];
+
+    always @(posedge i_clk) begin
+        if (i_rst) begin
+            o_dout_valid <= { (LENGHT){1'b0} };
+        end else if (i_en) begin
+            o_dout_valid <= i_din_valid;
+        end
+    end
 
     genvar i;
     generate

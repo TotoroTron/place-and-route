@@ -8,27 +8,16 @@ module top_level
     input wire i_rst,
     input wire i_en,
     input wire i_din,
-    input wire i_rx_end,
-    output wire o_tx_end,
-    output wire o_dout
+    input wire i_din_valid,
+    output wire o_dout,
+    output wire o_dout_valid
 );
 
-    wire [DATA_WIDTH-1:0] fir_input;
-    wire [DATA_WIDTH-1:0] fir_output;
-    wire des_dout_valid;
-    wire fir_dout_valid;
-
-    control_unit
-    #(
-        .DATA_WIDTH(DATA_WIDTH)
-    ) control_unit_inst (
-        .i_clk(i_clk),
-        .i_rst(i_rst),
-        .i_en(i_en),
-        .i_rx_end(i_rx_end),
-        .o_des_valid(des_dout_valid),
-        .o_fir_valid(fir_dout_valid)
-    );
+    wire [DATA_WIDTH-1:0] fir_din = { (LENGHT){1'b0} };
+    wire [DATA_WIDTH-1:0] fir_dout = { (LENGHT){1'b0} };
+    wire des_out_valid = 1'b0;
+    wire fir_out_valid = 1'b0;
+    wire ser_out_valid = 1'b0;
 
     deserializer
     #(
@@ -37,9 +26,10 @@ module top_level
         .i_clk(i_clk),
         .i_rst(i_rst),
         .i_en(i_en),
-        .i_din_valid(i_rx_end),
         .i_din(i_din),
-        .ov_dout(fir_input)
+        .i_din_valid(i_din_valid),
+        .ov_dout(fir_input),
+        .o_dout_valid(ser_out_valid)
     );
 
     fir_filter
@@ -49,9 +39,10 @@ module top_level
     ) fir_filter_inst (
         .i_clk(i_clk),
         .i_rst(i_rst),
-        .i_en(i_rx_end),
-        .iv_din(fir_input),
-        .ov_dout(fir_output)
+        .i_en(ser_out_valid),
+        .iv_din(fir_din),
+        .ov_dout(fir_dout),
+        .o_dout_valid(fir_out_valid)
     );
 
     serializer
@@ -61,9 +52,10 @@ module top_level
         .i_clk(i_clk),
         .i_rst(i_rst),
         .i_en(i_en),
-        .o_tx_end(o_tx_end),
-        .i_din(fir_output),
-        .ov_dout(o_dout)
+        .i_din_valid(fir_out_valid),
+        .i_din(fir_dout),
+        .o_dout(o_dout),
+        .o_dout_valid(ser_out_valid)
     );
 
 endmodule

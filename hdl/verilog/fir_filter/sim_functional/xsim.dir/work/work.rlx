@@ -2,13 +2,12 @@
 2020.2
 Feb  8 2024
 23:58:30
-/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/control_unit.v,1730408583,verilog,,,,control_unit,,,,,,,,
-/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/deserializer.v,1730408795,verilog,,,,deserializer,,,,,,,,
+/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/deserializer.v,1730493735,verilog,,,,deserializer,,,,,,,,
 /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/fir_filter.v,1730331252,verilog,,,/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/weights.vh,fir_filter,,,,,,,,
-/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/serializer.v,1730420931,verilog,,,,serializer,,,,,,,,
+/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/serializer.v,1730494374,verilog,,,,serializer,,,,,,,,
 /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/tap.v,1730327231,verilog,,,,tap,,,,,,,,
-/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/top_level.v,1730408843,verilog,,,,top_level,,,,,,,,
-/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/weights.vh,1730421473,verilog,,,,,,,,,,,,
+/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/top_level.v,1730487347,verilog,,,,top_level,,,,,,,,
+/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/weights.vh,1730494388,verilog,,,,,,,,,,,,
 /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_deserializer.sv,1730410600,systemVerilog,,,,tb_deserializer,,,,,,,,
 /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_fir_filter.sv,1730408230,systemVerilog,,,,tb_fir_filter,,,,,,,,
 /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_serializer.sv,1730421461,systemVerilog,,,,tb_serializer,,,,,,,,

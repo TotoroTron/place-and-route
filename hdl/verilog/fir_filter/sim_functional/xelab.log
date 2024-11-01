@@ -5,10 +5,11 @@ Running: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/bin/unwrapped/lnx64.o
 Multi-threading is on. Using 6 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3645] port 'o_dout_valid' remains unconnected for this instance [/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_serializer.sv:19]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ns
-Compiling module work.serializer
+Compiling module work.serializer_default
 Compiling module work.tb_serializer
 Built simulation snapshot my_tb_snap
