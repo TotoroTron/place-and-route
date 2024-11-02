@@ -1,2 +1,2 @@
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_serializer.sv" into library work
-INFO: [VRFC 10-311] analyzing module tb_serializer
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_top_level.sv" into library work
+INFO: [VRFC 10-311] analyzing module tb_top_level

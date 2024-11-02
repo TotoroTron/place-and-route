@@ -13,11 +13,11 @@ module top_level
     output wire o_dout_valid
 );
 
-    wire [DATA_WIDTH-1:0] fir_din = { (DATA_WIDTH){1'b0} };
-    wire [DATA_WIDTH-1:0] fir_dout = { (DATA_WIDTH){1'b0} };
-    wire des_out_valid = 1'b0;
-    wire fir_out_valid = 1'b0;
-    wire ser_out_valid = 1'b0;
+    wire [DATA_WIDTH-1:0] fir_din;
+    wire [DATA_WIDTH-1:0] fir_dout;
+    wire des_out_valid;
+    wire fir_out_valid;
+    wire ser_out_valid;
 
     deserializer
     #(
@@ -29,7 +29,7 @@ module top_level
         .i_din(i_din),
         .i_din_valid(i_din_valid),
         .ov_dout(fir_din),
-        .o_dout_valid(ser_out_valid)
+        .o_dout_valid(des_out_valid)
     );
 
     fir_filter
@@ -39,8 +39,9 @@ module top_level
     ) fir_filter_inst (
         .i_clk(i_clk),
         .i_rst(i_rst),
-        .i_en(ser_out_valid),
+        .i_en(i_en),
         .iv_din(fir_din),
+        .i_din_valid(des_out_valid),
         .ov_dout(fir_dout),
         .o_dout_valid(fir_out_valid)
     );

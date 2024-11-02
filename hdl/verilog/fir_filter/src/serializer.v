@@ -15,18 +15,18 @@ module serializer
     reg [LENGTH-1:0] shift_reg;
     assign o_dout = shift_reg[0];
 
-    localparam LENGTH_BITS = $clog2(LENGTH)-1;
-    reg [LENGTH_BITS:0] counter = { (LENGTH){1'b0} };
+    localparam LENGTH_BITS = $clog2(LENGTH);
+    reg [LENGTH_BITS-1:0] counter = { (LENGTH){1'b0} };
 
     always @(posedge i_clk) begin
         if (i_rst) begin
-            shift_reg <= { (LENGTH){1'b0} };
+            shift_reg = { (LENGTH){1'b0} };
         end else if (i_en) begin
             if (i_din_valid) begin
-                shift_reg <= iv_din;
+                shift_reg = iv_din;
                 o_dout_valid = 1'b1;
             end else begin
-                shift_reg <= { 1'b0, shift_reg[LENGTH-1:1] };
+                shift_reg = { 1'b0, shift_reg[LENGTH-1:1] };
             end
 
             if (counter < LENGTH) begin
