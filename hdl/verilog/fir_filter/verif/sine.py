@@ -32,8 +32,8 @@ def generate(sine_freq_high, sine_freq_low, sample_freq, ampl, offset, bit_depth
 
 def main():
     # Parameters
-    sine_freq_high = 1000  # (Hz)
-    sine_freq_low = 100 # (Hz)
+    sine_freq_high = 2000  # (Hz)
+    sine_freq_low = 200 # (Hz)
     sample_freq = 44000  # (Hz)
     amplitude = 0.2  # (range between -1 and 1)
     offset = 0  # y-axis offset of the sine wave

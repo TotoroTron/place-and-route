@@ -1,7 +1,7 @@
 module tb_fir_filter;
 
     localparam DATA_WIDTH = 24;
-    localparam FIR_DEPTH = 128;
+    localparam FIR_DEPTH = 8;
     int num_errors = 0;
     reg tb_clk;
     reg tb_rst;

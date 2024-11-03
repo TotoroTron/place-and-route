@@ -1,4 +1,4 @@
-
+import sys
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import firwin
@@ -58,11 +58,13 @@ def write_verilog(weights, data_width):
 
 
 def main():
+
     # Parameters
-    FILTER_DEPTH = 128       # Number of filter taps
+    FILTER_DEPTH = 16
+    SAMPLE_RATE = 44000
+    CUTOFF_FREQ = 1000
+
     DATA_WIDTH = 24          # Number of bits for each coefficient
-    SAMPLE_RATE = 44000      # Sampling frequency (Hz)
-    CUTOFF_FREQ = 500        # Cutoff frequency (Hz)
     normalized_cutoff = CUTOFF_FREQ / (SAMPLE_RATE / 2)
 
     # Generate FIR filter weights

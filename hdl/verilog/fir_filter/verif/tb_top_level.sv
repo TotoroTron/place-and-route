@@ -3,7 +3,7 @@
 module tb_top_level;
 
     localparam DATA_WIDTH = 24;
-    localparam FIR_DEPTH = 128;
+    localparam FIR_DEPTH = 16;
     reg tb_clk;
     reg tb_rst;
     reg tb_en;
@@ -12,8 +12,13 @@ module tb_top_level;
     wire tb_dout;
     wire tb_dout_valid;
 
+    localparam int SIGNAL_FREQ = 200;
+    localparam int SAMPLE_FREQ = 44000;
+    localparam int SAMPLES_PER_SIGNAL_PERIOD = SAMPLE_FREQ/SIGNAL_FREQ;
+    localparam int ADDR_WIDTH = $clog2(SAMPLES_PER_SIGNAL_PERIOD);
+
     reg [DATA_WIDTH-1:0] tb_word;
-    reg [DATA_WIDTH-1:0] tb_addr;
+    reg [ADDR_WIDTH-1:0] tb_addr;
     int num_errors = 0;
     reg tb_err;
 
@@ -32,19 +37,13 @@ module tb_top_level;
         .o_dout_valid(tb_dout_valid)
     );
 
-
-    localparam int SIGNAL_FREQ = 100;
-    localparam int SAMPLE_FREQ = 44000;
-    localparam int SAMPLES_PER_SIGNAL_PERIOD = SAMPLE_FREQ/SIGNAL_FREQ;
-
-
     wire tb_dbiterra, tb_sbiterra;
 
     // xpm_memory_sprom: Single Port ROM
     // Xilinx Parameterized Macro, version 2024.1
 
     xpm_memory_sprom #(
-        .ADDR_WIDTH_A(DATA_WIDTH),              // DECIMAL
+        .ADDR_WIDTH_A(ADDR_WIDTH),              // DECIMAL
         .AUTO_SLEEP_TIME(0),           // DECIMAL
         .CASCADE_HEIGHT(0),            // DECIMAL
         .ECC_BIT_RANGE("7:0"),         // String
@@ -101,6 +100,8 @@ module tb_top_level;
         tb_en = 0;
         tb_din = 0;
 
+        @(posedge tb_clk);
+
         for (int i = 0; i < 2; i = i + 1) begin
             tb_rst = 0;
             tb_en = 1;
@@ -111,9 +112,9 @@ module tb_top_level;
                 tb_en = 1;
                 tb_rst = 0;
                 // serialize word, LSB first in
-                for (int i = 0; i < DATA_WIDTH; i++) begin
-                    tb_din = tb_word[i];
-                    if (i == DATA_WIDTH-1) begin
+                for (int j = 0; j < DATA_WIDTH; j++) begin
+                    tb_din = tb_word[j];
+                    if (j == DATA_WIDTH-1) begin
                         tb_din_valid = 1;
                     end
                     @(posedge tb_clk);

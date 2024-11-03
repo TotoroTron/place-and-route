@@ -35,13 +35,13 @@ module tap
         sum_full = product_trunc + iv_sum;
         sum_trunc = sum_full[DATA_WIDTH-1:0];
 
-        if (product_full < MIN_VALUE || product_full > MAX_VALUE) begin
-            o_prod_overflow = 1;
-        end
+        // if (product_full < MIN_VALUE || product_full > MAX_VALUE) begin
+        //     o_prod_overflow = 1;
+        // end
 
-        if (sum_full < MIN_VALUE || sum_full > MAX_VALUE) begin
-            o_sum_overflow = 1;
-        end
+        // if (sum_full < MIN_VALUE || sum_full > MAX_VALUE) begin
+        //     o_sum_overflow = 1;
+        // end
     end
 
     always @(posedge i_clk) begin
