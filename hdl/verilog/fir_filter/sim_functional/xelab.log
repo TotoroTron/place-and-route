@@ -5,7 +5,6 @@ Running: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/bin/unwrapped/lnx64.o
 Multi-threading is on. Using 6 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-3645] port 'prod_overflow' remains unconnected for this instance [/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/top_level.v:35]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
@@ -17,7 +16,7 @@ Compiling package xpm.axi_xil_sb_pkg_xpm_nsu
 Compiling package xpm.axi_data_integrity_checker_xpm_n...
 Compiling module work.deserializer
 Compiling module work.tap_default
-Compiling module work.fir_filter(FIR_DEPTH=16)
+Compiling module work.fir_filter_default
 Compiling module work.serializer_default
 Compiling module work.top_level
 Compiling module xpm.xpm_memory_base(MEMORY_TYPE=3,ME...

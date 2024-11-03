@@ -10,9 +10,9 @@ module tap
     input wire signed [DATA_WIDTH-1:0] iv_weight,
     input wire signed [DATA_WIDTH-1:0] iv_sum,
     output wire signed [DATA_WIDTH-1:0] ov_sum,
-    output reg signed [DATA_WIDTH-1:0] ov_dout,
-    output reg o_prod_overflow,
-    output reg o_sum_overflow
+    output reg signed [DATA_WIDTH-1:0] ov_dout
+    // output reg o_prod_overflow,
+    // output reg o_sum_overflow
 );
 
     reg signed [DATA_WIDTH:0] sum_full = 0;
@@ -25,12 +25,12 @@ module tap
     // example: DATA_WIDTH=8: if (prod < -128 or prod > 127) then overflow!
 
     always @(iv_din or iv_weight or iv_sum) begin
-        o_prod_overflow = 0;
-        o_sum_overflow = 0;
+        // o_prod_overflow = 0;
+        // o_sum_overflow = 0;
 
         product_full = iv_din * iv_weight;
-        product_trunc = product_full >>> (DATA_WIDTH-1);
-        // product_trunc = product_full[DATA_WIDTH-1:0];
+        // product_trunc = product_full >>> (DATA_WIDTH-1);
+        product_trunc = product_full[2*DATA_WIDTH-1:DATA_WIDTH];
 
         sum_full = product_trunc + iv_sum;
         sum_trunc = sum_full[DATA_WIDTH-1:0];

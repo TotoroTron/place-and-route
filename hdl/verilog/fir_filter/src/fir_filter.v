@@ -1,7 +1,7 @@
 module fir_filter 
 #(
     parameter DATA_WIDTH = 24,
-    parameter FIR_DEPTH = 128
+    parameter FIR_DEPTH = 16
 )(
     input wire i_clk,
     input wire i_rst,
@@ -9,9 +9,7 @@ module fir_filter
     input wire signed [DATA_WIDTH-1:0] iv_din,
     input wire i_din_valid,
     output wire signed [DATA_WIDTH-1:0] ov_dout,
-    output reg o_dout_valid,
-    output wire [FIR_DEPTH-1:0] prod_overflow,
-    output wire [FIR_DEPTH-1:0] sum_overflow
+    output reg o_dout_valid
 );
 
     wire signed [DATA_WIDTH-1:0] buffers [FIR_DEPTH-1:0];
@@ -43,9 +41,7 @@ module fir_filter
                 .iv_weight(weights[i]),
                 .iv_sum( { (DATA_WIDTH){1'b0} } ),
                 .ov_sum(sums[i]),
-                .ov_dout(buffers[i]),
-                .o_prod_overflow(prod_overflow[i]),
-                .o_sum_overflow(sum_overflow[i])
+                .ov_dout(buffers[i])
             );
         end else begin
             tap #(
@@ -58,12 +54,9 @@ module fir_filter
                 .iv_weight(weights[i]),
                 .iv_sum(sums[i-1]),
                 .ov_sum(sums[i]),
-                .ov_dout(buffers[i]),
-                .o_prod_overflow(prod_overflow[i]),
-                .o_sum_overflow(sum_overflow[i])
+                .ov_dout(buffers[i])
             );
         end
     end
     endgenerate
-
 endmodule
