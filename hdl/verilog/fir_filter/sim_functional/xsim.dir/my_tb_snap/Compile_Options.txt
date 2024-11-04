@@ -1,1 +1,1 @@
--debug "typical" -top "tb_deserializer" -snapshot "my_tb_snap" -timescale "10ns/1ns" -L "xpm" 
+-debug "typical" -top "tb_top_level" -snapshot "my_tb_snap" -timescale "10ns/1ns" -L "xpm" 

@@ -1,0 +1,33 @@
+#-----------------------------------------------------------
+# xsim v2023.2.2 (64-bit)
+# SW Build 4126759 on Thu Feb  8 23:52:05 MST 2024
+# IP Build 4126054 on Fri Feb  9 11:39:09 MST 2024
+# SharedData Build 4115275 on Tue Jan 30 00:40:57 MST 2024
+# Start of session at: Mon Nov  4 16:38:47 2024
+# Process ID: 38880
+# Current directory: /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/sim_functional
+# Command line: xsim -mode tcl -source {xsim.dir/my_tb_snap/xsim_script.tcl}
+# Log file: /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/sim_functional/xsim.log
+# Journal file: /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/sim_functional/xsim.jou
+# Running On: bcheng-HP, OS: Linux, CPU Frequency: 400.000 MHz, CPU Physical cores: 4, Host memory: 16397 MB
+#-----------------------------------------------------------
+source xsim.dir/my_tb_snap/xsim_script.tcl
+# xsim {my_tb_snap} -autoloadwcfg -tclbatch {xsim_cfg.tcl}
+Time resolution is 1 ps
+source xsim_cfg.tcl
+## log_wave -recursive *
+## run all
+Info: [XPM_MEMORY 20-1] MEMORY_PRIMITIVE (0) instructs Vivado Synthesis to choose the memory primitive type. Depending on their values, other XPM_MEMORY parameters may preclude the choice of certain memory primitive types. Review XPM_MEMORY documentation and parameter values to understand any limitations, or set MEMORY_PRIMITIVE to a different value. tb_top_level.dut.fir_filter_inst.xpm_memory_sprom_inst.xpm_memory_base_inst.config_drc
+Time: 1 ps  Iteration: 0  Process: /tb_top_level/dut/fir_filter_inst/xpm_memory_sprom_inst/xpm_memory_base_inst/Initial302_6  Scope: tb_top_level.dut.fir_filter_inst.xpm_memory_sprom_inst.xpm_memory_base_inst.config_drc  File: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv Line: 506
+Info: [XPM_MEMORY 20-1] MEMORY_PRIMITIVE (0) instructs Vivado Synthesis to choose the memory primitive type. Depending on their values, other XPM_MEMORY parameters may preclude the choice of certain memory primitive types. Review XPM_MEMORY documentation and parameter values to understand any limitations, or set MEMORY_PRIMITIVE to a different value. tb_top_level.dut.fir_filter_inst.xpm_memory_spram_inst.xpm_memory_base_inst.config_drc
+Time: 1 ps  Iteration: 0  Process: /tb_top_level/dut/fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/Initial302_11  Scope: tb_top_level.dut.fir_filter_inst.xpm_memory_spram_inst.xpm_memory_base_inst.config_drc  File: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv Line: 506
+Info: [XPM_MEMORY 20-2] MEMORY_INIT_FILE (none), MEMORY_INIT_PARAM together specify no memory initialization. Initial memory contents will be all 0's. tb_top_level.dut.fir_filter_inst.xpm_memory_spram_inst.xpm_memory_base_inst.config_drc 48
+Time: 1 ps  Iteration: 0  Process: /tb_top_level/dut/fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/Initial302_11  Scope: tb_top_level.dut.fir_filter_inst.xpm_memory_spram_inst.xpm_memory_base_inst.config_drc  File: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv Line: 508
+Info: [XPM_MEMORY 20-1] MEMORY_PRIMITIVE (0) instructs Vivado Synthesis to choose the memory primitive type. Depending on their values, other XPM_MEMORY parameters may preclude the choice of certain memory primitive types. Review XPM_MEMORY documentation and parameter values to understand any limitations, or set MEMORY_PRIMITIVE to a different value. tb_top_level.xpm_memory_sprom_inst.xpm_memory_base_inst.config_drc
+Time: 1 ps  Iteration: 0  Process: /tb_top_level/xpm_memory_sprom_inst/xpm_memory_base_inst/Initial302_24  Scope: tb_top_level.xpm_memory_sprom_inst.xpm_memory_base_inst.config_drc  File: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv Line: 506
+
+Total number of errors:           0
+
+$finish called at time : 1100100 ns : File "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_top_level.sv" Line 130
+## exit
+INFO: [Common 17-206] Exiting xsim at Mon Nov  4 16:38:50 2024...

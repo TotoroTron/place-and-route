@@ -1,5 +1,5 @@
 
-module fir_filter 
+module fir_filter_transposed
 #(
     parameter DATA_WIDTH = 24,
     parameter FIR_DEPTH = 16
