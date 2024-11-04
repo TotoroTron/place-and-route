@@ -53,14 +53,12 @@ module tb_deserializer;
             end
             @(posedge tb_clk);
         end
-        // read output
-        @(posedge tb_clk);
         assert_and_report(word, tb_dout);
         tb_din_valid = 0;
         tb_en = 0;
-        tb_rst = 1; // reset the dut
-        @(posedge tb_clk);
-        tb_rst = 0;
+        // tb_rst = 1; // reset the dut
+        // @(posedge tb_clk);
+        // tb_rst = 0;
     end
     endtask // test_word
 

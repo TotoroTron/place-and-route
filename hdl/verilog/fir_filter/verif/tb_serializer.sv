@@ -59,7 +59,7 @@ module tb_serializer;
         assert_and_report(word, serial_word);
 
         tb_en = 0;
-        tb_rst = 1; // reset the dut
+        // tb_rst = 1; // reset the dut
         @(posedge tb_clk);
 
     end
