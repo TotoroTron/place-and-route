@@ -10,60 +10,65 @@ module fir_filter_transposed_pipelined
     input wire i_en,
     input wire signed [DATA_WIDTH-1:0] iv_din,
     input wire i_din_valid,
-    output wire signed [DATA_WIDTH-1:0] ov_dout,
+    output reg [DATA_WIDTH-1:0] ov_dout,
     output reg o_ready,
     output reg o_dout_valid
 );
 
     localparam ADDR_WIDTH = $clog2(FIR_DEPTH);
 
-    reg we_sample = 1'b0;
-    reg re_sample = 1'b0;
-    reg [ADDR_WIDTH-1:0] re_addr_sample = 0;
-    reg [ADDR_WIDTH-1:0] wr_addr_sample = 0;
-    wire [DATA_WIDTH-1:0] data_sample;
+    reg sample_we = 1'b0;
+    reg sample_re = 1'b0;
+    wire [DATA_WIDTH-1:0] sample_data;
+    reg [ADDR_WIDTH-1:0] sample_re_addr= 0;
+    reg [ADDR_WIDTH-1:0] sample_wr_addr= 0;
+    reg [ADDR_WIDTH-1:0] sample_addr= 0;
 
-    reg re_weight = 1'b0;
-    reg [ADDR_WIDTH-1:0] re_addr_weight = 24;
-    wire [DATA_WIDTH-1:0] data_weight;
+    reg weight_re = 1'b0;
+    reg [ADDR_WIDTH-1:0] weight_re_addr = 0;
+    wire [DATA_WIDTH-1:0] weight_data;
 
     wire [DATA_WIDTH-1:0] tap_dout;
     wire [DATA_WIDTH-1:0] sum;
-    assign ov_dout = sum;
 
+    parameter S0 = 3'b001,
+        S1 = 3'b010,
+        S2 = 3'b100;
 
-    parameter S0 = 2'b00,
-        S1 = 2'b01,
-        S2 = 2'b10;
+    reg [2:0] state = S0;
+    reg [2:0] next_state;
 
-    reg [1:0] state = S0;
-    reg [1:0] next_state;
 
     // STATE REGISTER
     always @(posedge i_clk) begin
-        state <= 2'bxx;
+        state <= 3'bxxx;
         if (i_rst)  state <= S0;
         else        state <= next_state;
     end
 
     // STATE MACHINE
-    always @(state or i_din_valid or wr_addr_sample or re_addr_sample or re_addr_weight) begin
+    always @(state) begin
         // default assignments
         next_state = 2'bxx;
+
+        o_ready = 1'b0;
         o_dout_valid = 1'b0;
-        we_sample = 1'b0;
-        re_sample = 1'b0;
-        re_weight = 1'b0;
-        wr_addr_sample = wr_addr_sample;
-        re_addr_sample = re_addr_sample;
-        re_addr_weight = re_addr_weight;
+        sample_we = 1'b0;
+        sample_re = 1'b0;
+        weight_re = 1'b0;
+        sample_wr_addr = sample_wr_addr;
+        sample_re_addr = sample_re_addr;
+        weight_re_addr = weight_re_addr;
+        sample_addr = sample_addr;
 
         case (state)
         S0 : // WAIT FOR I_DIN_VALID HIGH
         begin
             if (i_din_valid) begin 
+                o_ready = 1'b0;
                 next_state = S1;
             end else begin
+                o_ready = 1'b1;
                 next_state = S0;
             end
         end
@@ -71,32 +76,39 @@ module fir_filter_transposed_pipelined
         S1 : // WRITE NEW SAMPLE INTO RAM
         begin
             next_state = S2;
-            we_sample = 1'b1;
-            if (wr_addr_sample > 0) begin
-                wr_addr_sample = wr_addr_sample - 1;
+            sample_we = 1'b1;
+            if (sample_wr_addr > 0) begin
+                sample_wr_addr = sample_wr_addr - 1;
             end else begin
-                wr_addr_sample = FIR_DEPTH;
+                sample_wr_addr = FIR_DEPTH-1;
             end
-            re_addr_sample = wr_addr_sample;
+            sample_re_addr = sample_wr_addr;
+            sample_addr = sample_wr_addr;
         end
 
         S2 : // READ SAMPLE-WEIGHT PAIRS INTO TAP ONE BY ONE
         begin
             next_state = S2;
-            if (re_addr_sample < FIR_DEPTH-1) begin
-                re_addr_sample = re_addr_sample + 1;
+            weight_re = 1'b1;
+            sample_re = 1'b1;
+            sample_we = 1'b0;
+            o_dout_valid = 1'b0;
+            if (sample_re_addr < FIR_DEPTH-1) begin
+                sample_re_addr = sample_re_addr + 1;
             end else begin
-                re_addr_sample = 0;
+                sample_re_addr = 0;
             end
-            if (re_addr_weight < FIR_DEPTH-1) begin
-                re_addr_weight = re_addr_weight + 1;
+            if (weight_re_addr < FIR_DEPTH-1) begin
+                weight_re_addr = weight_re_addr + 1;
             end else begin
-                re_addr_weight = 0;
+                weight_re_addr = 0;
                 o_dout_valid = 1'b1;
+                ov_dout = sum;
                 next_state = S0;
             end
+            sample_addr = sample_re_addr;
         end
-        default : next_state = 2'bxx;
+        default : next_state = 3'bxxx;
         endcase
     end
 
@@ -104,10 +116,10 @@ module fir_filter_transposed_pipelined
         .DATA_WIDTH(DATA_WIDTH)
     ) inst (
         .i_clk(i_clk),
-        .i_rst(i_rst),
+        .i_rst(i_rst || i_din_valid),
         .i_en(i_en),
-        .iv_din(data_sample),
-        .iv_weight(data_weight),
+        .iv_din(sample_data),
+        .iv_weight(weight_data),
         .iv_sum(sum),
         .ov_sum(sum),
         .ov_dout(tap_dout)
@@ -144,11 +156,11 @@ module fir_filter_transposed_pipelined
     )
         xpm_memory_sprom_inst (
         .dbiterra(dbiterra),             // 1-bit output: Leave open.
-        .douta(data_weight),                   // READ_DATA_WIDTH_A-bit output: Data output for port A read operations.
+        .douta(weight_data),                   // READ_DATA_WIDTH_A-bit output: Data output for port A read operations.
         .sbiterra(sbiterra),             // 1-bit output: Leave open.
-        .addra(re_addr_weight),                   // ADDR_WIDTH_A-bit input: Address for port A read operations.
+        .addra(weight_re_addr),                   // ADDR_WIDTH_A-bit input: Address for port A read operations.
         .clka(i_clk),                     // 1-bit input: Clock signal for port A.
-        .ena(i_en),                       // 1-bit input: Memory enable signal for port A. Must be high on clock
+        .ena(weight_re),                       // 1-bit input: Memory enable signal for port A. Must be high on clock
                                             // cycles when read operations are initiated. Pipelined internally.
 
         .injectdbiterra(1'b0), // 1-bit input: Do not change from the provided value.
@@ -185,7 +197,7 @@ module fir_filter_transposed_pipelined
 
         .RAM_DECOMP("auto"),           // String
         .READ_DATA_WIDTH_A(DATA_WIDTH),        // DECIMAL
-        .READ_LATENCY_A(2),            // DECIMAL
+        .READ_LATENCY_A(1),            // DECIMAL
         .READ_RESET_VALUE_A("0"),      // String
         .RST_MODE_A("SYNC"),           // String
         .SIM_ASSERT_CHK(0),            // DECIMAL; 0=disable simulation messages, 1=enable simulation messages
@@ -200,11 +212,11 @@ module fir_filter_transposed_pipelined
         .dbiterra(dbiterra),             // 1-bit output: Status signal to indicate double bit error occurrence
                                             // on the data output of port A.
 
-        .douta(data_sample),                   // READ_DATA_WIDTH_A-bit output: Data output for port A read operations.
+        .douta(sample_data),                   // READ_DATA_WIDTH_A-bit output: Data output for port A read operations.
         .sbiterra(sbiterra),             // 1-bit output: Status signal to indicate single bit error occurrence
                                             // on the data output of port A.
 
-        .addra(wr_addr_sample),                   // ADDR_WIDTH_A-bit input: Address for port A write and read operations.
+        .addra(sample_addr),                   // ADDR_WIDTH_A-bit input: Address for port A write and read operations.
         .clka(i_clk),                     // 1-bit input: Clock signal for port A.
         .dina(iv_din),                     // WRITE_DATA_WIDTH_A-bit input: Data input for port A write operations.
         .ena(i_en),                       // 1-bit input: Memory enable signal for port A. Must be high on clock
@@ -227,7 +239,7 @@ module fir_filter_transposed_pipelined
                                             // parameter READ_RESET_VALUE_A.
 
         .sleep(1'b0),                   // 1-bit input: sleep signal to enable the dynamic power saving feature.
-        .wea(we_sample)                        // WRITE_DATA_WIDTH_A/BYTE_WRITE_WIDTH_A-bit input: Write enable vector
+        .wea(sample_we)                        // WRITE_DATA_WIDTH_A/BYTE_WRITE_WIDTH_A-bit input: Write enable vector
                                             // for port A input data port dina. 1 bit wide when word-wide writes are
                                             // used. In byte-wide write configurations, each bit controls the
                                             // writing one byte of dina to address addra. For example, to
