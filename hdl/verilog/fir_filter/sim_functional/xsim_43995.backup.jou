@@ -3,15 +3,13 @@
 # SW Build 4126759 on Thu Feb  8 23:52:05 MST 2024
 # IP Build 4126054 on Fri Feb  9 11:39:09 MST 2024
 # SharedData Build 4115275 on Tue Jan 30 00:40:57 MST 2024
-# Start of session at: Wed Nov  6 19:40:20 2024
-# Process ID: 34038
+# Start of session at: Thu Nov  7 18:18:03 2024
+# Process ID: 43995
 # Current directory: /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/sim_functional
-# Command line: xsim -source {xsim.dir/my_tb_snap.wdb/xsim_script.tcl}
+# Command line: xsim -mode tcl -source {xsim.dir/my_tb_snap/xsim_script.tcl}
 # Log file: /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/sim_functional/xsim.log
 # Journal file: /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/sim_functional/xsim.jou
-# Running On: bcheng-HP, OS: Linux, CPU Frequency: 812.864 MHz, CPU Physical cores: 4, Host memory: 16397 MB
+# Running On: bcheng-HP, OS: Linux, CPU Frequency: 2622.549 MHz, CPU Physical cores: 4, Host memory: 16397 MB
 #-----------------------------------------------------------
-start_gui
-source xsim.dir/my_tb_snap.wdb/xsim_script.tcl
-source waveform.tcl
-close_sim
+source xsim.dir/my_tb_snap/xsim_script.tcl
+source xsim_cfg.tcl

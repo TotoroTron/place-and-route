@@ -19,7 +19,6 @@ module top_level
     wire [DATA_WIDTH-1:0] fir_dout;
 
     wire des_out_valid;
-    wire des_ready;
 
     wire fir_out_valid;
     wire fir_ready;

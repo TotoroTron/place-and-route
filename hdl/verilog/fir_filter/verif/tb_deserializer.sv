@@ -5,9 +5,12 @@ module tb_deserializer;
     reg tb_clk;
     reg tb_rst;
     reg tb_en;
-    reg tb_din_valid;
     reg tb_din;
+    reg tb_din_valid;
+    reg tb_fir_ready;
+    wire tb_des_ready;
     wire [LENGTH-1:0] tb_dout;
+    wire tb_dout_valid;
 
     reg [LENGTH-1:0] tb_word;
     int num_errors = 0;
@@ -21,9 +24,12 @@ module tb_deserializer;
         .i_clk(tb_clk),
         .i_rst(tb_rst),
         .i_en(tb_en),
-        .i_din_valid(tb_din_valid),
         .i_din(tb_din),
-        .ov_dout(tb_dout)
+        .i_din_valid(tb_din_valid),
+        .i_ready(tb_fir_ready),
+        .o_ready(tb_des_ready),
+        .ov_dout(tb_dout),
+        .o_dout_valid(tb_dout_valid)
     );
 
 
@@ -45,6 +51,7 @@ module tb_deserializer;
     begin
         tb_en = 1;
         tb_rst = 0;
+        tb_fir_ready = 1;
         // serialize word, LSB first in
         for (int i = 0; i < LENGTH; i++) begin
             tb_din = word[i];
@@ -59,6 +66,13 @@ module tb_deserializer;
         // tb_rst = 1; // reset the dut
         // @(posedge tb_clk);
         // tb_rst = 0;
+        wait(tb_des_ready == 1);
+        tb_fir_ready = 0;
+
+        for (int i = 0; i < 50; i++) begin
+            @(posedge tb_clk);
+        end
+
     end
     endtask // test_word
 

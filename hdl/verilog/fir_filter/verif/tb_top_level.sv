@@ -9,9 +9,10 @@ module tb_top_level;
     reg tb_en;
     reg tb_din;
     reg tb_din_valid;
+    reg tb_ready;
+    wire dut_ready;
     wire tb_dout;
     wire tb_dout_valid;
-    wire dut_ready;
 
     localparam int SIGNAL_FREQ = 200;
     localparam int SAMPLE_FREQ = 44000;
@@ -34,6 +35,7 @@ module tb_top_level;
         .i_en(tb_en),
         .i_din(tb_din),
         .i_din_valid(tb_din_valid),
+        .i_ready(tb_ready),
         .o_ready(dut_ready),
         .o_dout(tb_dout),
         .o_dout_valid(tb_dout_valid)
@@ -110,6 +112,7 @@ module tb_top_level;
             for (int t = 0; t < SAMPLES_PER_SIGNAL_PERIOD; t++) begin
                 tb_addr = t;
                 tb_din_valid = 0;
+                tb_ready = 1;
                 @(posedge tb_clk);
                 tb_en = 1;
                 tb_rst = 0;
@@ -122,7 +125,12 @@ module tb_top_level;
                     @(posedge tb_clk);
                 end
                 tb_din_valid = 0;
-                @(posedge dut_ready);
+
+                wait(dut_ready == 1'b1);
+                tb_ready = 0;
+                for (int i = 0; i < 50; i++) begin
+                    @(posedge tb_clk);
+                end
             end
         end
 

@@ -3,13 +3,13 @@
 # SW Build 4126759 on Thu Feb  8 23:52:05 MST 2024
 # IP Build 4126054 on Fri Feb  9 11:39:09 MST 2024
 # SharedData Build 4115275 on Tue Jan 30 00:40:57 MST 2024
-# Start of session at: Wed Nov  6 19:40:17 2024
-# Process ID: 33980
+# Start of session at: Thu Nov  7 18:27:00 2024
+# Process ID: 46135
 # Current directory: /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/sim_functional
 # Command line: xsim -mode tcl -source {xsim.dir/my_tb_snap/xsim_script.tcl}
 # Log file: /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/sim_functional/xsim.log
 # Journal file: /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/sim_functional/xsim.jou
-# Running On: bcheng-HP, OS: Linux, CPU Frequency: 690.663 MHz, CPU Physical cores: 4, Host memory: 16397 MB
+# Running On: bcheng-HP, OS: Linux, CPU Frequency: 400.000 MHz, CPU Physical cores: 4, Host memory: 16397 MB
 #-----------------------------------------------------------
 source xsim.dir/my_tb_snap/xsim_script.tcl
 # xsim {my_tb_snap} -autoloadwcfg -tclbatch {xsim_cfg.tcl}
@@ -28,6 +28,6 @@ Time: 1 ps  Iteration: 0  Process: /tb_top_level/xpm_memory_sprom_inst/xpm_memor
 
 Total number of errors:           0
 
-$finish called at time : 1848100 ns : File "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_top_level.sv" Line 133
+$finish called at time : 3300100 ns : File "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_top_level.sv" Line 141
 ## exit
-INFO: [Common 17-206] Exiting xsim at Wed Nov  6 19:40:19 2024...
+INFO: [Common 17-206] Exiting xsim at Thu Nov  7 18:27:03 2024...

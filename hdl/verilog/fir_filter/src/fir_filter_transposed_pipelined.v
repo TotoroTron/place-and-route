@@ -10,6 +10,7 @@ module fir_filter_transposed_pipelined
     input wire i_en,
     input wire signed [DATA_WIDTH-1:0] iv_din,
     input wire i_din_valid,
+    input wire i_ready,
     output reg o_ready,
     output reg [DATA_WIDTH-1:0] ov_dout,
     output reg o_dout_valid
@@ -65,7 +66,7 @@ module fir_filter_transposed_pipelined
         case (state)
         S0 : // WAIT FOR I_DIN_VALID HIGH
         begin
-            if (i_din_valid) begin 
+            if (i_din_valid & i_ready) begin 
                 o_ready = 1'b0;
                 next_state = S1;
             end else begin
