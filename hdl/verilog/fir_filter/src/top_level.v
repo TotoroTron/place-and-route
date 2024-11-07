@@ -9,15 +9,23 @@ module top_level
     input wire i_en,
     input wire i_din,
     input wire i_din_valid,
+    input wire i_ready,
+    output wire o_ready,
     output wire o_dout,
     output wire o_dout_valid
 );
 
     wire [DATA_WIDTH-1:0] fir_din;
     wire [DATA_WIDTH-1:0] fir_dout;
+
     wire des_out_valid;
+    wire des_ready;
+
     wire fir_out_valid;
+    wire fir_ready;
+
     wire ser_out_valid;
+    wire ser_ready;
 
     deserializer
     #(
@@ -28,6 +36,8 @@ module top_level
         .i_en(i_en),
         .i_din(i_din),
         .i_din_valid(i_din_valid),
+        .i_ready(fir_ready),
+        .o_ready(o_ready),
         .ov_dout(fir_din),
         .o_dout_valid(des_out_valid)
     );
@@ -42,6 +52,8 @@ module top_level
         .i_en(i_en),
         .iv_din(fir_din),
         .i_din_valid(des_out_valid),
+        .i_ready(ser_ready),
+        .o_ready(fir_ready),
         .ov_dout(fir_dout),
         .o_dout_valid(fir_out_valid)
     );
@@ -55,6 +67,8 @@ module top_level
         .i_en(i_en),
         .iv_din(fir_dout),
         .i_din_valid(fir_out_valid),
+        .i_ready(i_ready),
+        .o_ready(ser_ready),
         .o_dout(o_dout),
         .o_dout_valid(ser_out_valid)
     );

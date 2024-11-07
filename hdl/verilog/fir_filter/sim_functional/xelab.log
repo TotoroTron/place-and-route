@@ -5,7 +5,6 @@ Running: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/bin/unwrapped/lnx64.o
 Multi-threading is on. Using 6 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-3645] port 'o_ready' remains unconnected for this instance [/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/top_level.v:35]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis

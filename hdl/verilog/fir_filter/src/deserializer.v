@@ -15,8 +15,7 @@ module deserializer
     reg [LENGTH-1:0] shift_reg;
 
     always @(posedge i_clk) begin
-        ov_dout = ov_dout;
-        o_dout_valid = o_dout_valid;
+        o_dout_valid = 1'b0;
         shift_reg = shift_reg;
         if (i_rst) begin
             o_dout_valid = 1'b0;

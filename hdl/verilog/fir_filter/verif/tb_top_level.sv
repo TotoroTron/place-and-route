@@ -11,6 +11,7 @@ module tb_top_level;
     reg tb_din_valid;
     wire tb_dout;
     wire tb_dout_valid;
+    wire dut_ready;
 
     localparam int SIGNAL_FREQ = 200;
     localparam int SAMPLE_FREQ = 44000;
@@ -33,6 +34,7 @@ module tb_top_level;
         .i_en(tb_en),
         .i_din(tb_din),
         .i_din_valid(tb_din_valid),
+        .o_ready(dut_ready),
         .o_dout(tb_dout),
         .o_dout_valid(tb_dout_valid)
     );
@@ -119,7 +121,8 @@ module tb_top_level;
                     end
                     @(posedge tb_clk);
                 end
-
+                tb_din_valid = 0;
+                @(posedge dut_ready);
             end
         end
 

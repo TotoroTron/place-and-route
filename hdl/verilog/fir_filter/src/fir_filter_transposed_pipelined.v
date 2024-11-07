@@ -10,8 +10,8 @@ module fir_filter_transposed_pipelined
     input wire i_en,
     input wire signed [DATA_WIDTH-1:0] iv_din,
     input wire i_din_valid,
-    output reg [DATA_WIDTH-1:0] ov_dout,
     output reg o_ready,
+    output reg [DATA_WIDTH-1:0] ov_dout,
     output reg o_dout_valid
 );
 
@@ -47,6 +47,7 @@ module fir_filter_transposed_pipelined
     end
 
     // STATE MACHINE
+    // why does always @(*) produce garbage simulation?
     always @(state) begin
         // default assignments
         next_state = 2'bxx;
