@@ -53,25 +53,25 @@ module fir_filter_transposed_pipelined
         // default assignments
         next_state = 2'bxx;
 
-        o_ready = 1'b0;
-        o_dout_valid = 1'b0;
-        sample_we = 1'b0;
-        sample_re = 1'b0;
-        weight_re = 1'b0;
-        sample_wr_addr = sample_wr_addr;
-        sample_re_addr = sample_re_addr;
-        weight_re_addr = weight_re_addr;
-        sample_addr = sample_addr;
+        // o_ready = 1'b0;
+        // o_dout_valid = 1'b0;
+        // sample_we = 1'b0;
+        // sample_re = 1'b0;
+        // weight_re = 1'b0;
+        // sample_wr_addr = sample_wr_addr;
+        // sample_re_addr = sample_re_addr;
+        // weight_re_addr = weight_re_addr;
+        // sample_addr = sample_addr;
 
         case (state)
-        S0 : // WAIT FOR I_DIN_VALID HIGH
+        S0 : // WAIT FOR DES VALID & SER READY
         begin
+            o_ready = 1'b1;
+            next_state = S0;
             if (i_din_valid & i_ready) begin 
                 o_ready = 1'b0;
+                o_dout_valid = 1'b1;
                 next_state = S1;
-            end else begin
-                o_ready = 1'b1;
-                next_state = S0;
             end
         end
 
