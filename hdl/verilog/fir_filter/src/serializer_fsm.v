@@ -28,74 +28,110 @@ module serializer
     reg [3:0] state = S0;
     reg [3:0] next_state;
 
+
+    // STATE REGISTER
     always @(posedge i_clk) begin
-        state = 4'bxxxx;
+        state <= 4'bxxxx;
         if (i_rst) state <= S0;
         else if (i_en) state <= next_state;
     end
 
-    always @(state) begin
-        next_state <= 4'bxxxx;
+    // STATE MACHINE
+    always @(*) begin
+        next_state <= state;
         case (state)
             S0: begin
-                if (i_din_valid & i_ready) begin
-                    o_ready <= 1'b0;
+                // WAIT FOR INPUT DATA VALID
+                if (i_din_valid)
                     next_state <= S1;
-                    shift_reg <= iv_din;
-                end else begin
-                    o_ready <= 1'b1;
-                    next_state <= S0;
-                end
             end
-
             S1: begin
-                next_state <= S1;
-                shift_reg <= { 1'b0, shift_reg[LENGTH-1:1] };
-                if (counter < LENGTH) begin
-                    counter <= counter + 1;
-                end else begin
-                    counter <= 0;
-                    o_dout_valid <= 1'b1;
-                    o_ready <= 1'b1;
+                // DATA SHIFT
+                if (count == LENGTH)
                     next_state <= S2;
-                end
             end
-
             S2: begin
-                if (i_ready) begin
+                // WAIT FOR RECEIVER TO CONSUME OUTPUT DATA
+                if (i_ready)
                     next_state <= S0;
-                end else begin
-                    next_state <= S2;
-                end
             end
-
-            default: begin
-                next_state <= 4'bxxxx;
-            end
+            default: next_state <= S0;
         endcase
     end
 
-
-
+    // OUTPUT LOGIC
     always @(posedge i_clk) begin
-        o_ready = 1'b0;
-        o_dout_valid = 1'b0;
         if (i_rst) begin
-            shift_reg = { (LENGTH){1'b0} };
+            o_ready <= 1'b0;
+            o_dout_valid <= 1'b0;
         end else if (i_en) begin
-            if (i_din_valid & i_ready) begin
-                shift_reg = iv_din;
-            end else begin
-                shift_reg = { 1'b0, shift_reg[LENGTH-1:1] };
-            end
-
-            if (counter < LENGTH) begin
-                counter = counter + 1;
-            end else begin
-                counter = 0;
-                o_dout_valid = 1'b1;
-                o_ready = 1'b1;
-            end
+            o_ready <= 1'b0;
+            o_dout <= 1'b0;
+            case (state) 
+                S0: begin
+                    // WAIT FOR DIN VALID
+                end
+                S1: begin
+                    // SIGNAL DIN CONSUMED
+                    o_ready <= 1'b1;
+                    shift_reg <= iv_din;
+                end
+                S2: begin
+                    // DATA SHIFT
+                    shift_reg <= { 1'b0, shift_reg[LENGTH-1:1] };
+                    if (counter < LENGTH) begin
+                        counter <= counter + 1;
+                    end else begin
+                        counter <= 0;
+                    end
+                end
+                S3: begin
+                    // WAIT FOR RECEIVER TO CONSUME DOUT
+                end
+                default: begin
+                end
+            endcase
         end
+
     end
-endmodule
+
+    // OLD SHIT
+    // always @(state) begin
+    //     case (state)
+    //         S0: begin
+    //             if (i_din_valid & i_ready) begin
+    //                 o_ready <= 1'b0;
+    //                 next_state <= S1;
+    //                 shift_reg <= iv_din;
+    //             end else begin
+    //                 o_ready <= 1'b1;
+    //                 next_state <= S0;
+    //             end
+    //         end
+
+    //         S1: begin
+    //             next_state <= S1;
+    //             shift_reg <= { 1'b0, shift_reg[LENGTH-1:1] };
+    //             if (counter < LENGTH) begin
+    //                 counter <= counter + 1;
+    //             end else begin
+    //                 counter <= 0;
+    //                 o_dout_valid <= 1'b1;
+    //                 o_ready <= 1'b1;
+    //                 next_state <= S2;
+    //             end
+    //         end
+
+    //         S2: begin
+    //             if (i_ready) begin
+    //                 next_state <= S0;
+    //             end else begin
+    //                 next_state <= S2;
+    //             end
+    //         end
+
+    //         default: begin
+    //             next_state <= 4'bxxxx;
+    //         end
+    //     endcase
+    // end

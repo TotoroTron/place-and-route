@@ -32,12 +32,13 @@ module fir_filter_transposed_pipelined
     wire [DATA_WIDTH-1:0] tap_dout;
     wire [DATA_WIDTH-1:0] sum;
 
-    parameter S0 = 3'b001,
-        S1 = 3'b010,
-        S2 = 3'b100;
+    parameter S0 = 4'b0001,
+        S1 = 4'b0010,
+        S2 = 4'b0100,
+        S3 = 4'b1000;
 
-    reg [2:0] state = S0;
-    reg [2:0] next_state;
+    reg [3:0] state = S0;
+    reg [3:0] next_state;
 
 
     // STATE REGISTER
@@ -48,70 +49,99 @@ module fir_filter_transposed_pipelined
     end
 
     // STATE MACHINE
-    // why does always @(*) produce garbage simulation?
-    always @(state) begin
-        // default assignments
-        next_state = 2'bxx;
-
-        // o_ready = 1'b0;
-        // o_dout_valid = 1'b0;
-        // sample_we = 1'b0;
-        // sample_re = 1'b0;
-        // weight_re = 1'b0;
-        // sample_wr_addr = sample_wr_addr;
-        // sample_re_addr = sample_re_addr;
-        // weight_re_addr = weight_re_addr;
-        // sample_addr = sample_addr;
-
+    always @(*) begin
+        next_state <= state;
         case (state)
-        S0 : // WAIT FOR DES VALID & SER READY
-        begin
-            o_ready = 1'b1;
-            next_state = S0;
-            if (i_din_valid & i_ready) begin 
-                o_ready = 1'b0;
-                o_dout_valid = 1'b1;
-                next_state = S1;
+            S0: begin
+                // WAIT FOR INPUT DATA VALID
+                if (i_din_valid)
+                    next_state <= S1;
             end
-        end
-
-        S1 : // WRITE NEW SAMPLE INTO RAM
-        begin
-            next_state = S2;
-            sample_we = 1'b1;
-            if (sample_wr_addr > 0) begin
-                sample_wr_addr = sample_wr_addr - 1;
-            end else begin
-                sample_wr_addr = FIR_DEPTH-1;
+            S1: begin
+                // PROCESS DATA (1)
+                next_state <= S2;
             end
-            sample_re_addr = sample_wr_addr;
-            sample_addr = sample_wr_addr;
-        end
-
-        S2 : // READ SAMPLE-WEIGHT PAIRS INTO TAP ONE BY ONE
-        begin
-            next_state = S2;
-            weight_re = 1'b1;
-            sample_re = 1'b1;
-            sample_we = 1'b0;
-            o_dout_valid = 1'b0;
-            if (sample_re_addr < FIR_DEPTH-1) begin
-                sample_re_addr = sample_re_addr + 1;
-            end else begin
-                sample_re_addr = 0;
+            S2: begin
+                // PROCESS DATA (2), ASSERT OUTPUT DATA VALID WHEN FINISHED
+                if (weight_re_addr == FIR_DEPTH - 1)
+                    next_state <= S0;
             end
-            if (weight_re_addr < FIR_DEPTH-1) begin
-                weight_re_addr = weight_re_addr + 1;
-            end else begin
-                weight_re_addr = 0;
-                o_dout_valid = 1'b1;
-                ov_dout = sum;
-                next_state = S0;
+            S3: begin
+                // WAIT FOR RECEIVER TO CONSUME OUTPUT DATA
+                if (i_ready)
+                    next_state <= S0;
             end
-            sample_addr = sample_re_addr;
-        end
-        default : next_state = 3'bxxx;
+            default: next_state <= S0;
         endcase
+    end
+
+    // OUTPUT LOGIC
+    always @(posedge i_clk) begin
+        if (i_rst) begin
+            o_ready <= 1'b0;
+            o_dout_valid <= 1'b0;
+            sample_we <= 1'b0;
+            sample_re <= 1'b0;
+            weight_re <= 1'b0;
+            sample_wr_addr <= 0;
+            sample_re_addr <= 0;
+            weight_re_addr <= 0;
+            sample_addr <= 0;
+
+        end else begin
+            // Default assignments
+            o_ready <= 1'b0;
+            sample_we <= 1'b0;
+            sample_re <= 1'b0;
+            weight_re <= 1'b0;
+            case (state)
+                S0: begin
+                    // WAIT FOR INPUT DATA VALID
+                end
+
+                S1: begin
+                    // SIGNAL DATA CONSUMED
+                    // WRITE SAMPLE INTO RAM
+                    o_ready <= 1'b1;
+                    sample_we <= 1'b1;
+                    if (sample_wr_addr > 0)
+                        sample_wr_addr <= sample_wr_addr - 1;
+                    else
+                        sample_wr_addr <= FIR_DEPTH - 1;
+                    sample_re_addr <= sample_wr_addr;
+                    sample_addr <= sample_wr_addr;
+                end
+
+                S2: begin
+                    // PIPELINED MAC
+                    weight_re <= 1'b1;
+                    sample_re <= 1'b1;
+                    if (sample_re_addr < FIR_DEPTH - 1)
+                        sample_re_addr <= sample_re_addr + 1;
+                    else
+                        sample_re_addr <= 0;
+
+                    if (weight_re_addr < FIR_DEPTH - 1)
+                        weight_re_addr <= weight_re_addr + 1;
+                    else begin
+                        weight_re_addr <= 0;
+                        o_dout_valid <= 1'b1;
+                        ov_dout <= sum;
+                    end
+                    sample_addr <= sample_re_addr;
+                end
+
+                S3: begin
+                    // WAIT FOR RECEIVER TO CONSUME OUTPUT DATA
+                end
+
+                default: begin
+                    o_ready <= 1'b0;
+                    o_dout_valid <= 1'b0;
+                end
+
+            endcase
+        end
     end
 
     tap_transposed #(
