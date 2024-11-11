@@ -60,7 +60,7 @@ def write_verilog(weights, data_width):
 def main():
 
     # Parameters
-    FILTER_DEPTH = 16
+    FILTER_DEPTH = 32
     SAMPLE_RATE = 44000
     CUTOFF_FREQ = 1000
 

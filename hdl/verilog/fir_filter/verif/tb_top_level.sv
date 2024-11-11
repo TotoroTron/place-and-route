@@ -3,7 +3,7 @@
 module tb_top_level;
 
     localparam DATA_WIDTH = 24;
-    localparam FIR_DEPTH = 16;
+    localparam FIR_DEPTH = 32;
     reg tb_clk;
     reg tb_rst;
     reg tb_en;
@@ -103,41 +103,61 @@ module tb_top_level;
         tb_rst = 1;
         tb_en = 0;
         tb_din = 0;
+        tb_din_valid = 0;
+        tb_ready = 0;
 
         @(posedge tb_clk);
 
-        for (int i = 0; i < 2; i = i + 1) begin
+        // REPEAT THE SIGNAL 4 TIMES
+        for (int i = 0; i < 4; i = i + 1) begin
             tb_rst = 0;
             tb_en = 1;
+
+            // FOR EACH SAMPLE IN SIGNAL
             for (int t = 0; t < SAMPLES_PER_SIGNAL_PERIOD; t++) begin
                 tb_addr = t;
                 tb_din_valid = 0;
-                tb_ready = 1;
                 @(posedge tb_clk);
                 tb_en = 1;
                 tb_rst = 0;
-                // serialize word, LSB first in
+                tb_din_valid = 1;
+
+                wait(dut_ready == 1'b1); // waits for dut to signal ready
+
+                // FOR EACH BIT IN SAMPLE
                 for (int j = 0; j < DATA_WIDTH; j++) begin
+                    // serialize word, LSB first in
                     tb_din = tb_word[j];
-                    if (j == DATA_WIDTH-1) begin
-                        tb_din_valid = 1;
-                    end
+                    // if (j == DATA_WIDTH-1) begin
+                    //     tb_din_valid = 1;
+                    // end
                     @(posedge tb_clk);
                 end
                 tb_din_valid = 0;
 
-                wait(dut_ready == 1'b1);
+                wait(tb_dout_valid == 1'b1); // waits for dout valid from dut
+                tb_ready = 1; // consume dout from dut
+                @(posedge tb_clk);
                 tb_ready = 0;
+
+                // arbitrary wait
                 for (int i = 0; i < 50; i++) begin
                     @(posedge tb_clk);
                 end
             end
         end
 
+
         $display();
         $display("Total number of errors: %d", num_errors);
         $display();
 
+        $finish;
+    end // initial
+
+    initial begin
+        #50ms; // Wait for 1ms simulation time
+        $display("Simulation terminated after 50 milliseconds.");
         $finish;
     end // initial
 endmodule

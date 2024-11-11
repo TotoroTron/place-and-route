@@ -1,0 +1,40 @@
+#-----------------------------------------------------------
+# xsim v2023.2.2 (64-bit)
+# SW Build 4126759 on Thu Feb  8 23:52:05 MST 2024
+# IP Build 4126054 on Fri Feb  9 11:39:09 MST 2024
+# SharedData Build 4115275 on Tue Jan 30 00:40:57 MST 2024
+# Start of session at: Sun Nov 10 19:01:41 2024
+# Process ID: 88639
+# Current directory: /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/sim_functional
+# Command line: xsim -mode tcl -source {xsim.dir/my_tb_snap/xsim_script.tcl}
+# Log file: /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/sim_functional/xsim.log
+# Journal file: /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/sim_functional/xsim.jou
+# Running On: bcheng-HP, OS: Linux, CPU Frequency: 400.000 MHz, CPU Physical cores: 4, Host memory: 16397 MB
+#-----------------------------------------------------------
+source xsim.dir/my_tb_snap/xsim_script.tcl
+# xsim {my_tb_snap} -autoloadwcfg -tclbatch {xsim_cfg.tcl}
+Time resolution is 1 ns
+source xsim_cfg.tcl
+## log_wave -recursive *
+## run all
+Word: ff00ff = 111111110000000011111111
+FAILURE!
+ Expected: 111111110000000011111111
+ Actual:   111111100000000111111110
+
+Word: 00ff00 = 000000001111111100000000
+FAILURE!
+ Expected: 000000001111111100000000
+ Actual:   000000011111111000000000
+
+Word: af5eb9 = 101011110101111010111001
+FAILURE!
+ Expected: 101011110101111010111001
+ Actual:   010111101011110101110010
+
+
+Total number of errors:           3
+
+$finish called at time : 23700 ns : File "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_deserializer.sv" Line 125
+## exit
+INFO: [Common 17-206] Exiting xsim at Sun Nov 10 19:01:43 2024...

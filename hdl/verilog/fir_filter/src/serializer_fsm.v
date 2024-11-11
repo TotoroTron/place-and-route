@@ -1,6 +1,6 @@
 
 
-module serializer 
+module serializer_fsm
 #(
     parameter LENGTH = 24
 )(
@@ -23,7 +23,8 @@ module serializer
 
     parameter S0 = 4'b0001,
         S1 = 4'b0010,
-        S2 = 4'b0100;
+        S2 = 4'b0100,
+        S3 = 4'b1000;
 
     reg [3:0] state = S0;
     reg [3:0] next_state;
@@ -31,31 +32,33 @@ module serializer
 
     // STATE REGISTER
     always @(posedge i_clk) begin
-        state <= 4'bxxxx;
         if (i_rst) state <= S0;
         else if (i_en) state <= next_state;
     end
 
     // STATE MACHINE
     always @(*) begin
-        next_state <= state;
+        next_state = state;
         case (state)
             S0: begin
                 // WAIT FOR INPUT DATA VALID
                 if (i_din_valid)
-                    next_state <= S1;
+                    next_state = S1;
             end
             S1: begin
-                // DATA SHIFT
-                if (count == LENGTH)
-                    next_state <= S2;
+                next_state = S2;
             end
             S2: begin
+                // DATA SHIFT
+                if (counter == LENGTH-1)
+                    next_state = S3;
+            end
+            S3: begin
                 // WAIT FOR RECEIVER TO CONSUME OUTPUT DATA
                 if (i_ready)
-                    next_state <= S0;
+                    next_state = S0;
             end
-            default: next_state <= S0;
+            default: next_state = S0;
         endcase
     end
 
@@ -66,10 +69,10 @@ module serializer
             o_dout_valid <= 1'b0;
         end else if (i_en) begin
             o_ready <= 1'b0;
-            o_dout <= 1'b0;
             case (state) 
                 S0: begin
                     // WAIT FOR DIN VALID
+                    shift_reg <= 0;
                 end
                 S1: begin
                     // SIGNAL DIN CONSUMED
@@ -78,60 +81,20 @@ module serializer
                 end
                 S2: begin
                     // DATA SHIFT
-                    shift_reg <= { 1'b0, shift_reg[LENGTH-1:1] };
-                    if (counter < LENGTH) begin
+                    if (counter < LENGTH-1) begin
+                        shift_reg <= { 1'b0, shift_reg[LENGTH-1:1] };
                         counter <= counter + 1;
                     end else begin
                         counter <= 0;
                     end
                 end
                 S3: begin
+                    o_dout_valid <= 1'b1;
                     // WAIT FOR RECEIVER TO CONSUME DOUT
                 end
                 default: begin
                 end
             endcase
         end
-
     end
-
-    // OLD SHIT
-    // always @(state) begin
-    //     case (state)
-    //         S0: begin
-    //             if (i_din_valid & i_ready) begin
-    //                 o_ready <= 1'b0;
-    //                 next_state <= S1;
-    //                 shift_reg <= iv_din;
-    //             end else begin
-    //                 o_ready <= 1'b1;
-    //                 next_state <= S0;
-    //             end
-    //         end
-
-    //         S1: begin
-    //             next_state <= S1;
-    //             shift_reg <= { 1'b0, shift_reg[LENGTH-1:1] };
-    //             if (counter < LENGTH) begin
-    //                 counter <= counter + 1;
-    //             end else begin
-    //                 counter <= 0;
-    //                 o_dout_valid <= 1'b1;
-    //                 o_ready <= 1'b1;
-    //                 next_state <= S2;
-    //             end
-    //         end
-
-    //         S2: begin
-    //             if (i_ready) begin
-    //                 next_state <= S0;
-    //             end else begin
-    //                 next_state <= S2;
-    //             end
-    //         end
-
-    //         default: begin
-    //             next_state <= 4'bxxxx;
-    //         end
-    //     endcase
-    // end
+endmodule

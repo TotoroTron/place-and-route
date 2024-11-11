@@ -43,7 +43,6 @@ module fir_filter_transposed_pipelined
 
     // STATE REGISTER
     always @(posedge i_clk) begin
-        state <= 3'bxxx;
         if (i_rst)  state <= S0;
         else        state <= next_state;
     end
@@ -58,13 +57,15 @@ module fir_filter_transposed_pipelined
                     next_state <= S1;
             end
             S1: begin
-                // PROCESS DATA (1)
+                // SIGNAL DATA CONSUMED
+                // WRITE SAMPLE INTO RAM
                 next_state <= S2;
             end
             S2: begin
-                // PROCESS DATA (2), ASSERT OUTPUT DATA VALID WHEN FINISHED
+                // PIPELINED MAC
+                // ASSERT OUTPUT DATA VALID WHEN FINISHED
                 if (weight_re_addr == FIR_DEPTH - 1)
-                    next_state <= S0;
+                    next_state <= S3;
             end
             S3: begin
                 // WAIT FOR RECEIVER TO CONSUME OUTPUT DATA
@@ -120,7 +121,6 @@ module fir_filter_transposed_pipelined
                         sample_re_addr <= sample_re_addr + 1;
                     else
                         sample_re_addr <= 0;
-
                     if (weight_re_addr < FIR_DEPTH - 1)
                         weight_re_addr <= weight_re_addr + 1;
                     else begin

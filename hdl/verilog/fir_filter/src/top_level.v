@@ -26,7 +26,7 @@ module top_level
     wire ser_out_valid;
     wire ser_ready;
 
-    deserializer
+    deserializer_fsm
     #(
         .LENGTH(DATA_WIDTH)
     ) deserializer_inst (
@@ -57,7 +57,7 @@ module top_level
         .o_dout_valid(fir_out_valid)
     );
 
-    serializer
+    serializer_fsm
     #(
         .LENGTH(DATA_WIDTH)
     ) serializer_inst (
