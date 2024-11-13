@@ -9,7 +9,7 @@ open_checkpoint $dcp_file
 set sdf_file "$root_dir/hdl/verilog/${design}/sim_postroute/${top_level}_time_impl.sdf"
 set verilog_file "$root_dir/hdl/verilog/${design}/sim_postroute/${top_level}_time_impl.v"
 # write_verilog $verilog_file -force -mode timesim -sdf_anno true -sdf_file $sdf_file 
-write_verilog $verilog_file -force -mode timesim -nolib -sdf_anno true
+write_verilog $verilog_file -force -mode timesim -sdf_anno true
 write_sdf $sdf_file -force -mode timesim -process_corner slow 
 
 # launch_simulation 

@@ -23,6 +23,7 @@ public class Main {
             logger.log(Level.INFO, "Begin Random Placer...");
 
             PlacerFirst FPlacer = new PlacerFirst();
+            FPlacer.printUniqueSites();
             FPlacer.run();
 
             // PlacerRandom RPlacer = new PlacerRandom();

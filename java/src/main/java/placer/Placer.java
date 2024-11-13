@@ -409,4 +409,53 @@ public abstract class Placer {
         }
     } // end printNets()
 
+    public void printBELArray(BufferedWriter writer, BEL[] bels) throws IOException {
+        if (bels.length == 0)
+            writer.write("\n\t\tEmpty BEL Array.");
+        int word_count = 0;
+        writer.write("\n\t\t");
+        for (BEL bel : bels) {
+            writer.write(bel.getName() + " ");
+            word_count++;
+            if (word_count == 8) {
+                writer.write("\n\t\t");
+                word_count = 0;
+            }
+        }
+    }
+
+    public void printSiteArray(BufferedWriter writer, Site[] sites, boolean showBELs) throws IOException {
+        if (sites.length == 0)
+            writer.write("\n\tEmpty Site Array.");
+        for (Site site : sites) {
+            String s2 = String.format(
+                    "\n\tSiteType: %-30s SiteName: %-40s ", site.getSiteTypeEnum(), site.getName());
+            writer.write(s2);
+            BEL[] bels = site.getBELs();
+            if (showBELs == true)
+                printBELArray(writer, bels);
+        }
+    }
+
+    public void printUniqueSites() throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/DeviceUniqueSites.txt"));
+        // writer.write("Number of unique sites in the device: " +
+        // device.getSiteTypeCount());
+        // why is this inconsistent with unique TypeEnums?
+        writer.write("\nPrinting unique sites in the device: ");
+        writer.newLine();
+        Site[] sites = device.getAllSites();
+        Set<SiteTypeEnum> uniqueSiteTypes = new HashSet<>();
+        List<Site> uniqueSites = new ArrayList<>();
+        for (Site site : sites) {
+            if (uniqueSiteTypes.add(site.getSiteTypeEnum())) {
+                uniqueSites.add(site);
+            }
+        }
+        writer.write("\nNunmber of unique site types: " + uniqueSites.size());
+        printSiteArray(writer, uniqueSites.toArray(new Site[0]), true);
+        if (writer != null)
+            writer.close();
+    }
+
 } // end class

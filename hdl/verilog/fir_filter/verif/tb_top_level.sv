@@ -43,54 +43,13 @@ module tb_top_level;
         .o_dout_valid(tb_dout_valid)
     );
 
-    wire tb_dbiterra, tb_sbiterra;
 
-    // xpm_memory_sprom: Single Port ROM
-    // Xilinx Parameterized Macro, version 2024.1
+    wire signed [DATA_WIDTH-1:0] sine_signal [SAMPLES_PER_SIGNAL_PERIOD-1:0];
+    `include "sine_signal.vh"
 
-    xpm_memory_sprom #(
-        .ADDR_WIDTH_A(ADDR_WIDTH),              // DECIMAL
-        .AUTO_SLEEP_TIME(0),           // DECIMAL
-        .CASCADE_HEIGHT(0),            // DECIMAL
-        .ECC_BIT_RANGE("7:0"),         // String
-        .ECC_MODE("no_ecc"),           // String
-        .ECC_TYPE("none"),             // String
-        .IGNORE_INIT_SYNTH(0),         // DECIMAL
-        .MEMORY_INIT_FILE("/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/sine.mem"),     // String
-        .MEMORY_INIT_PARAM("0"),       // String
-        .MEMORY_OPTIMIZATION("true"),  // String
-        .MEMORY_PRIMITIVE("auto"),     // String
-        .MEMORY_SIZE(SAMPLES_PER_SIGNAL_PERIOD * DATA_WIDTH),            // DECIMAL
-        .MESSAGE_CONTROL(0),           // DECIMAL
-        .RAM_DECOMP("auto"),           // String
-        .READ_DATA_WIDTH_A(DATA_WIDTH),        // DECIMAL
-        .READ_LATENCY_A(1),            // DECIMAL
-        .READ_RESET_VALUE_A("0"),      // String
-        .RST_MODE_A("SYNC"),           // String
-        .SIM_ASSERT_CHK(0),            // DECIMAL; 0=disable simulation messages, 1=enable simulation messages
-        .USE_MEM_INIT(1),              // DECIMAL
-        .USE_MEM_INIT_MMI(0),          // DECIMAL
-        .WAKEUP_TIME("disable_sleep")  // String
-    )
-        xpm_memory_sprom_inst (
-        .dbiterra(tb_dbiterra),             // 1-bit output: Leave open.
-        .douta(tb_word_in),                   // READ_DATA_WIDTH_A-bit output: Data output for port A read operations.
-        .sbiterra(tb_sbiterra),             // 1-bit output: Leave open.
-        .addra(tb_addr),                   // ADDR_WIDTH_A-bit input: Address for port A read operations.
-        .clka(tb_clk),                     // 1-bit input: Clock signal for port A.
-        .ena(tb_en),                       // 1-bit input: Memory enable signal for port A. Must be high on clock
-                                            // cycles when read operations are initiated. Pipelined internally.
-
-        .injectdbiterra(1'b0), // 1-bit input: Do not change from the provided value.
-        .injectsbiterra(1'b0), // 1-bit input: Do not change from the provided value.
-        .regcea(tb_en),                 // 1-bit input: Do not change from the provided value.
-        .rsta(tb_rst),                     // 1-bit input: Reset signal for the final port A output register stage.
-                                            // Synchronously resets output port douta to the value specified by
-                                            // parameter READ_RESET_VALUE_A.
-
-        .sleep(1'b0)                    // 1-bit input: sleep signal to enable the dynamic power saving feature.
-    );
-
+    always @(tb_addr) begin
+        tb_word_in = sine_signal[tb_addr];
+    end
 
     // End of xpm_memory_sprom_inst instantiation
 

@@ -95,14 +95,15 @@ EOL
     # xvlog -sv "$PROJ_DIR/hdl/vhdl/counter/counter.srcs/sim_1/new/tb_postroute.sv"
 
     xelab \
-        -debug typical -relax -mt 8 -maxdelay \
-        -L xpm -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver \
+        -debug all -relax -mt 8 -maxdelay \
         -transport_int_delays \
         -pulse_r 0 -pulse_int_r 0 -pulse_int_e 0 \
-        -snapshot "${TOP_LEVEL}_time_impl" -top "tb_top_level" \
+        -snapshot "${TOP_LEVEL}_time_impl" -top "tb_${TOP_LEVEL}" \
         -sdfroot "$DESIGN_DIR/sim_postroute/${TOP_LEVEL}_time_impl.sdf" \
         -log elaborate.log \
+        -verbose 2 \
         glbl
+    # -L xpm -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver \
 
     xsim ${TOP_LEVEL}_time_impl -tclbatch xsim_cfg.tcl
     xsim ${TOP_LEVEL}_time_impl.wdb -gui -tclbatch waveform.tcl
