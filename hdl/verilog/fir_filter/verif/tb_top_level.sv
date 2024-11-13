@@ -19,7 +19,9 @@ module tb_top_level;
     localparam int SAMPLES_PER_SIGNAL_PERIOD = SAMPLE_FREQ/SIGNAL_FREQ;
     localparam int ADDR_WIDTH = $clog2(SAMPLES_PER_SIGNAL_PERIOD);
 
-    reg [DATA_WIDTH-1:0] tb_word;
+    reg [DATA_WIDTH-1:0] tb_word_in;
+    reg [DATA_WIDTH-1:0] serial_word;
+    reg [DATA_WIDTH-1:0] tb_word_out;
     reg [ADDR_WIDTH-1:0] tb_addr;
     int num_errors = 0;
     reg tb_err;
@@ -72,7 +74,7 @@ module tb_top_level;
     )
         xpm_memory_sprom_inst (
         .dbiterra(tb_dbiterra),             // 1-bit output: Leave open.
-        .douta(tb_word),                   // READ_DATA_WIDTH_A-bit output: Data output for port A read operations.
+        .douta(tb_word_in),                   // READ_DATA_WIDTH_A-bit output: Data output for port A read operations.
         .sbiterra(tb_sbiterra),             // 1-bit output: Leave open.
         .addra(tb_addr),                   // ADDR_WIDTH_A-bit input: Address for port A read operations.
         .clka(tb_clk),                     // 1-bit input: Clock signal for port A.
@@ -123,22 +125,19 @@ module tb_top_level;
                 tb_din_valid = 1;
 
                 wait(dut_ready == 1'b1); // waits for dut to signal ready
+                @(posedge tb_clk);
 
                 // FOR EACH BIT IN SAMPLE
                 for (int j = 0; j < DATA_WIDTH; j++) begin
                     // serialize word, LSB first in
-                    tb_din = tb_word[j];
+                    tb_din = tb_word_in[j];
                     // if (j == DATA_WIDTH-1) begin
                     //     tb_din_valid = 1;
                     // end
                     @(posedge tb_clk);
                 end
-                tb_din_valid = 0;
 
-                wait(tb_dout_valid == 1'b1); // waits for dout valid from dut
-                tb_ready = 1; // consume dout from dut
-                @(posedge tb_clk);
-                tb_ready = 0;
+                tb_din_valid = 0;
 
                 // arbitrary wait
                 for (int i = 0; i < 50; i++) begin
@@ -148,12 +147,22 @@ module tb_top_level;
         end
 
 
-        $display();
-        $display("Total number of errors: %d", num_errors);
-        $display();
-
         $finish;
     end // initial
+
+    always begin
+        wait(tb_dout_valid == 1'b1); // waits for dout valid from dut
+        @(posedge tb_clk);
+        tb_ready = 1;
+        for (int i = 0; i < DATA_WIDTH; i++) begin
+            serial_word[i] = tb_dout;
+            @(posedge tb_clk);
+        end
+        @(posedge tb_clk);
+        tb_ready = 0;
+        tb_word_out = serial_word;
+        @(posedge tb_clk);
+    end
 
     initial begin
         #50ms; // Wait for 1ms simulation time

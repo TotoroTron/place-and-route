@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DESIGN=fir_filter
-TESTBENCH=serializer
+TESTBENCH=top_level
 
 check_status() {
     if [ $? -ne 0 ]; then

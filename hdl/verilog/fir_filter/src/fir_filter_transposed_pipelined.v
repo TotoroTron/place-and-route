@@ -52,7 +52,7 @@ module fir_filter_transposed_pipelined
         next_state <= state;
         case (state)
             S0: begin
-                // WAIT FOR INPUT DATA VALID
+                // WAIT FOR DIN VALID
                 if (i_din_valid)
                     next_state <= S1;
             end

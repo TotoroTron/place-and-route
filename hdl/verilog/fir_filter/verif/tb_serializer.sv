@@ -58,23 +58,26 @@ module tb_serializer;
         tb_din = word;
         tb_din_valid = 1;
 
+        // wait for dut to be ready to accept data
         wait (dut_ready == 1'b1);
         @(posedge tb_clk);
 
-        for (int i = 0; i < LENGTH; i++) begin
-            serial_word[i] = tb_dout;
-            @(posedge tb_clk);
-        end
 
         tb_din_valid = 0;
         wait(tb_dout_valid == 1'b1); // waits for dout valid from dut
         @(posedge tb_clk);
         tb_ready = 1; // consume dout from dut
 
-        assert_and_report(word, serial_word);
+        // transmit data from tb to dut
+        for (int i = 0; i < LENGTH; i++) begin
+            serial_word[i] = tb_dout;
+            @(posedge tb_clk);
+        end
 
         @(posedge tb_clk);
         tb_ready = 0;
+
+        assert_and_report(word, serial_word);
 
         // arbitrary wait
         for (int i = 0; i < 50; i++) begin
