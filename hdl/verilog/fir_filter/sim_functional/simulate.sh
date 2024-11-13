@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DESIGN=fir_filter
-TESTBENCH=top_level
+TOP_LEVEL=top_level
 
 check_status() {
     if [ $? -ne 0 ]; then
@@ -56,7 +56,7 @@ for file in "${verif_files[@]}"; do
 done
 
 # Elaboration
-xelab -debug typical -top "tb_$TESTBENCH" -snapshot my_tb_snap \
+xelab -debug typical -top "tb_$TOP_LEVEL" -snapshot my_tb_snap \
     -timescale 10ns/1ns \
     -L xpm # -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver
 

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+DESIGN="fir_filter"
+TOP_LEVEL="top_level"
+
 export XILINX_VIVADO=/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2
 export PATH="$PATH:$XILINX_VIVADO/bin"
 
@@ -11,7 +14,6 @@ export PATH="$PATH:$RAPIDWRIGHT_PATH/bin"
 export CLASSPATH=$RAPIDWRIGHT_PATH/bin:$RAPIDWRIGHT_PATH/jars/*
 export _JAVA_OPTIONS=-Xmx32736m
 
-DESIGN="fir_filter"
 PROJ_DIR="/home/bcheng/workspace/dev/place-and-route"
 SYNTH_TCL="$PROJ_DIR/tcl/synth.tcl"
 ROUTE_TCL="$PROJ_DIR/tcl/route.tcl"
@@ -69,28 +71,41 @@ if [ "$start_stage" == "sim" ] || [ "$start_stage" == "all" ]; then
     echo "Running Post-Implementation Timing Simulation..."
     vivado -mode batch -source $SIM_TCL -nolog -nojournal
     check_exit_status "Vivado sim"
-    echo "Timing SDF and verilog file generated. Check '${DESIGN}_time_impl.sdf"
+    echo "Timing SDF and verilog file generated. Check '${TOP_LEVEL}_time_impl.sdf"
 
     DESIGN_DIR="$PROJ_DIR/hdl/verilog/${DESIGN}"
 
     cd "$DESIGN_DIR/sim_postroute"
-    xvlog "${DESIGN}_time_impl.v"
+
+    # xsim config tcl
+    cat <<EOL >xsim_cfg.tcl
+    log_wave -recursive *
+    run all
+    exit
+EOL
+
+    # waveform tcl
+    cat <<EOL >waveform.tcl
+    create_wave_config; add_wave /; set_property needs_save false [current_wave_config]
+EOL
+
+    xvlog "${TOP_LEVEL}_time_impl.v"
     xvlog "$XILINX_VIVADO/data/verilog/src/glbl.v"
-    xvlog -sv "$DESIGN_DIR/verif/tb_top_level.sv"
+    xvlog -sv "$DESIGN_DIR/verif/tb_${TOP_LEVEL}.sv"
     # xvlog -sv "$PROJ_DIR/hdl/vhdl/counter/counter.srcs/sim_1/new/tb_postroute.sv"
 
     xelab \
         -debug typical -relax -mt 8 -maxdelay \
-        -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver \
+        -L xpm -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver \
         -transport_int_delays \
         -pulse_r 0 -pulse_int_r 0 -pulse_int_e 0 \
-        -snapshot "${DESIGN}_time_impl" -top "tb_top_level" \
-        -sdfroot "$DESIGN_DIR/sim_postroute/${DESIGN}_time_impl.sdf" \
+        -snapshot "${TOP_LEVEL}_time_impl" -top "tb_top_level" \
+        -sdfroot "$DESIGN_DIR/sim_postroute/${TOP_LEVEL}_time_impl.sdf" \
         -log elaborate.log \
         glbl
 
-    xsim ${DESIGN}_time_impl -tclbatch xsim_cfg.tcl
-    xsim ${DESIGN}_time_impl.wdb -gui -tclbatch waveform.tcl
+    xsim ${TOP_LEVEL}_time_impl -tclbatch xsim_cfg.tcl
+    xsim ${TOP_LEVEL}_time_impl.wdb -gui -tclbatch waveform.tcl
     # source /home/bcheng/workspace/tools/oss-cad-suite/environment
     # gtkwave waveform.vcd
 fi

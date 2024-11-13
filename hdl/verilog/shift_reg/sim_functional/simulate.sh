@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DESIGN=shift_reg
+TOP_LEVEL=top_level
 
 check_status() {
     if [ $? -ne 0 ]; then
@@ -44,7 +45,7 @@ for file in "${verif_files[@]}"; do
 done
 
 # Elaboration
-xelab -debug typical -top "tb_$DESIGN" -snapshot my_tb_snap
+xelab -debug typical -top "tb_$TOP_LEVEL" -snapshot my_tb_snap
 check_status "xelab"
 
 # Simulation

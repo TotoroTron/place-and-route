@@ -19,13 +19,6 @@ foreach file $src_files {
     read_verilog $file
 }
 
-# Read in verif files
-# set verif_files [glob -nocomplain -directory $verif_dir *.vhd]
-# foreach file $verif_files {
-#     puts "reading: $file"
-#     read_vhdl $file
-# }
-
 # Read in constraints file
 set xdc_file $xdc_dir/constraints.xdc
 read_xdc $xdc_file
