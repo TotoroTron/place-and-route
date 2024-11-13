@@ -61,9 +61,6 @@ module tb_deserializer;
         // serialize word, LSB first in
         for (int i = 0; i < LENGTH; i++) begin
             tb_din = word[i];
-            if (i == LENGTH-1) begin
-                tb_din_valid = 1;
-            end
             @(posedge tb_clk);
         end
 
