@@ -1,10 +1,20 @@
 Vivado Simulator v2023.2.2
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/bin/unwrapped/lnx64.o/xelab -debug typical -relax -mt 8 -maxdelay -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver -transport_int_delays -pulse_r 0 -pulse_int_r 0 -pulse_int_e 0 -snapshot fir_filter_time_impl -top tb_fir_filter -sdfroot /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/sim_postroute/fir_filter_time_impl.sdf -log elaborate.log glbl 
+Running: /home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/bin/unwrapped/lnx64.o/xelab -debug typical -relax -mt 8 -maxdelay -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver -transport_int_delays -pulse_r 0 -pulse_int_r 0 -pulse_int_e 0 -snapshot fir_filter_time_impl -top tb_top_level -sdfroot /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/sim_postroute/fir_filter_time_impl.sdf -log elaborate.log glbl 
 Using 8 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-ERROR: [VRFC 10-2063] Module <top_level> not found while processing module instance <dut> [/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_fir_filter.sv:32]
-ERROR: [VRFC 10-2063] Module <xpm_memory_sprom> not found while processing module instance <xpm_memory_sprom_inst> [/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_fir_filter.sv:55]
+ERROR: [VRFC 10-3180] cannot find port 'sleep' on this module [/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_top_level.sv:91]
+ERROR: [VRFC 10-3180] cannot find port 'rsta' on this module [/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_top_level.sv:87]
+ERROR: [VRFC 10-3180] cannot find port 'regcea' on this module [/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_top_level.sv:86]
+ERROR: [VRFC 10-3180] cannot find port 'injectsbiterra' on this module [/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_top_level.sv:85]
+ERROR: [VRFC 10-3180] cannot find port 'injectdbiterra' on this module [/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_top_level.sv:84]
+ERROR: [VRFC 10-3180] cannot find port 'clka' on this module [/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_top_level.sv:80]
+ERROR: [VRFC 10-3180] cannot find port 'addra' on this module [/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_top_level.sv:79]
+ERROR: [VRFC 10-3180] cannot find port 'sbiterra' on this module [/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_top_level.sv:78]
+ERROR: [VRFC 10-3180] cannot find port 'dbiterra' on this module [/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_top_level.sv:76]
+ERROR: [VRFC 10-8530] module 'FDRE_default' is ignored due to previous errors [/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/FDRE.v:27]
+ERROR: [VRFC 10-8530] module 'FDSE_default' is ignored due to previous errors [/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/FDSE.v:27]
+ERROR: [VRFC 10-8530] module 'DSP48E1(ACASCREG=0,ALUMODEREG=0,AREG=0,BCASCREG=0,BREG=0,CARRYINREG=0,CARRYINSELREG=0,INMODEREG=0,MREG=0,OPMODEREG=0,PREG=0)' is ignored due to previous errors [/wrk/ci/prod/2023.2.2/rdi_builds/continuous/2024_02_08_4126759/data/verilog/src/unisims/DSP48E1.v:28]
 ERROR: [XSIM 43-3322] Static elaboration of top level Verilog design unit(s) in library work failed.

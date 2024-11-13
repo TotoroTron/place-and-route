@@ -1,8 +1,8 @@
-set design "fir_filter"
+set design "top_level"
 
 set root_dir "/home/bcheng/workspace/dev/place-and-route"
 set design_name "top_level"
-set dcp_file "$root_dir/outputs/routed.dcp" 
+set dcp_file "$root_dir/outputs/vivado_routed.dcp" 
 
 open_checkpoint $dcp_file
 

@@ -76,7 +76,7 @@ if [ "$start_stage" == "sim" ] || [ "$start_stage" == "all" ]; then
     cd "$DESIGN_DIR/sim_postroute"
     xvlog "${DESIGN}_time_impl.v"
     xvlog "$XILINX_VIVADO/data/verilog/src/glbl.v"
-    xvlog -sv "$DESIGN_DIR/verif/tb_${DESIGN}.sv"
+    xvlog -sv "$DESIGN_DIR/verif/tb_top_level.sv"
     # xvlog -sv "$PROJ_DIR/hdl/vhdl/counter/counter.srcs/sim_1/new/tb_postroute.sv"
 
     xelab \
@@ -84,7 +84,7 @@ if [ "$start_stage" == "sim" ] || [ "$start_stage" == "all" ]; then
         -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver \
         -transport_int_delays \
         -pulse_r 0 -pulse_int_r 0 -pulse_int_e 0 \
-        -snapshot "${DESIGN}_time_impl" -top "tb_${DESIGN}" \
+        -snapshot "${DESIGN}_time_impl" -top "tb_top_level" \
         -sdfroot "$DESIGN_DIR/sim_postroute/${DESIGN}_time_impl.sdf" \
         -log elaborate.log \
         glbl
