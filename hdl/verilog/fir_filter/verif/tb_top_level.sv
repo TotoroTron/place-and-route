@@ -53,7 +53,7 @@ module tb_top_level;
     end
 
 
-    always #5000 tb_clk = ~tb_clk;
+    always #50000 tb_clk = ~tb_clk; // always 50 ns
     initial begin
         $dumpfile("waveform.vcd");
         $dumpvars;
@@ -68,7 +68,7 @@ module tb_top_level;
 
         @(posedge tb_clk);
 
-        // REPEAT THE SIGNAL 4 TIMES
+        // REPEAT THE SIGNAL 2 TIMES
         for (int i = 0; i < 2; i = i + 1) begin
             tb_rst = 0;
             tb_en = 1;
@@ -82,8 +82,9 @@ module tb_top_level;
                 tb_rst = 0;
                 tb_din_valid = 1;
 
-                wait(dut_ready == 1'b1); // waits for dut to signal ready
-                @(posedge tb_clk);
+                @(posedge tb_clk iff(dut_ready == 1'b1));
+                // wait(dut_ready == 1'b1); // waits for dut to signal ready
+                // @(posedge tb_clk);
 
                 // FOR EACH BIT IN SAMPLE
                 for (int j = 0; j < DATA_WIDTH; j++) begin
@@ -98,7 +99,7 @@ module tb_top_level;
                 tb_din_valid = 0;
 
                 // arbitrary wait
-                for (int i = 0; i < 50; i++) begin
+                repeat (50) begin
                     @(posedge tb_clk);
                 end
             end
@@ -109,8 +110,9 @@ module tb_top_level;
     end // initial
 
     always begin
-        wait(tb_dout_valid == 1'b1); // waits for dout valid from dut
-        @(posedge tb_clk);
+        @(posedge tb_clk iff(dut_ready == 1'b1));
+        // wait(tb_dout_valid == 1'b1); // waits for dout valid from dut
+        // @(posedge tb_clk);
         tb_ready = 1;
         for (int i = 0; i < DATA_WIDTH; i++) begin
             serial_word[i] = tb_dout;

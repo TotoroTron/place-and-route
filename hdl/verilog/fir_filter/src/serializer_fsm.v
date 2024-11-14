@@ -21,11 +21,10 @@ module serializer_fsm
     localparam LENGTH_BITS = $clog2(LENGTH);
     reg [LENGTH_BITS-1:0] counter = { (LENGTH){1'b0} };
 
-    parameter S0 = 4'b0001,
-        S1 = 4'b0010,
-        S2 = 4'b0100,
-        S3 = 4'b1000;
-
+    parameter S0 = 4'b0000,
+        S1 = 4'b0001,
+        S2 = 4'b0010,
+        S3 = 4'b0011;
     reg [3:0] state = S0;
     reg [3:0] next_state;
 
@@ -38,25 +37,26 @@ module serializer_fsm
 
     // STATE MACHINE
     always @(*) begin
-        next_state = state;
         case (state)
             S0: begin
+                next_state <= S0;
                 // WAIT FOR INPUT DATA VALID
                 if (i_din_valid)
-                    next_state = S1;
+                    next_state <= S1;
             end
             S1: begin
-                next_state = S2;
+                next_state <= S2;
             end
             S2: begin
-                next_state = S3;
+                next_state <= S3;
             end
             S3: begin
+                next_state <= S3;
                 // DATA SHIFT
-                if (counter == LENGTH-1)
-                    next_state = S0;
+                if (counter == LENGTH)
+                    next_state <= S0;
             end
-            default: next_state = S0;
+            default: next_state <= S0;
         endcase
     end
 
@@ -86,7 +86,7 @@ module serializer_fsm
                 S3: begin
                     o_dout_valid <= 1'b1;
                     // DATA SHIFT
-                    if (i_ready && counter < LENGTH-1) begin
+                    if (i_ready && counter < LENGTH) begin
                         shift_reg <= { 1'b0, shift_reg[LENGTH-1:1] };
                         counter <= counter + 1;
                     end else begin

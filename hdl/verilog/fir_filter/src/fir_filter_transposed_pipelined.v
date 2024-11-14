@@ -16,7 +16,7 @@ module fir_filter_transposed_pipelined
     output reg o_dout_valid
 );
 
-    localparam ADDR_WIDTH = $clog2(FIR_DEPTH);
+    localparam ADDR_WIDTH = $clog2(FIR_DEPTH)+1;
 
     reg sample_we = 1'b0;
     reg sample_re = 1'b0;
@@ -32,11 +32,10 @@ module fir_filter_transposed_pipelined
     wire [DATA_WIDTH-1:0] tap_dout;
     wire [DATA_WIDTH-1:0] sum;
 
-    parameter S0 = 4'b0001,
-        S1 = 4'b0010,
-        S2 = 4'b0100,
-        S3 = 4'b1000;
-
+    parameter S0 = 4'b0000,
+        S1 = 4'b0001,
+        S2 = 4'b0010,
+        S3 = 4'b0011;
     reg [3:0] state = S0;
     reg [3:0] next_state;
 
@@ -49,9 +48,9 @@ module fir_filter_transposed_pipelined
 
     // STATE MACHINE
     always @(*) begin
-        next_state <= state;
         case (state)
             S0: begin
+                next_state <= S0;
                 // WAIT FOR DIN VALID
                 if (i_din_valid)
                     next_state <= S1;
@@ -62,12 +61,14 @@ module fir_filter_transposed_pipelined
                 next_state <= S2;
             end
             S2: begin
+                next_state <= S2;
                 // PIPELINED MAC
                 // ASSERT OUTPUT DATA VALID WHEN FINISHED
                 if (weight_re_addr == FIR_DEPTH - 1)
                     next_state <= S3;
             end
             S3: begin
+                next_state <= S3;
                 // WAIT FOR RECEIVER TO CONSUME OUTPUT DATA
                 if (i_ready)
                     next_state <= S0;
