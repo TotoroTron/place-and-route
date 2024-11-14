@@ -1,4 +1,6 @@
 
+`timescale 1ps/1ps
+
 module tb_deserializer;
 
     localparam LENGTH = 24;
@@ -82,7 +84,7 @@ module tb_deserializer;
     endtask // test_word
 
 
-    always #5 tb_clk = ~tb_clk;
+    always #5000 tb_clk = ~tb_clk;
     initial begin
         $dumpfile("waveform.vcd");
         $dumpvars;

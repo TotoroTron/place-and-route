@@ -57,7 +57,7 @@ done
 
 # Elaboration
 xelab -debug typical -top "tb_$TOP_LEVEL" -snapshot my_tb_snap \
-    -timescale 10ns/1ns \
+    -timescale 1ps/1ps \
     -L xpm # -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver
 
 check_status "xelab"

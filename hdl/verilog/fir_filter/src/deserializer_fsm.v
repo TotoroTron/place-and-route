@@ -81,7 +81,6 @@ module deserializer_fsm
                     // SIGNAL DIN BEING CONSUMED
                     o_ready <= 1'b1;
                     shift_reg <= { i_din, shift_reg[LENGTH-1:1] };
-                    // NEED TO INCLUDE I-READY HERE
                     if (counter < LENGTH) begin
                         counter <= counter + 1;
                     end else begin

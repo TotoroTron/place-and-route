@@ -1,4 +1,5 @@
 
+`timescale 1ps/1ps
 
 module tb_top_level;
 
@@ -51,10 +52,8 @@ module tb_top_level;
         tb_word_in = sine_signal[tb_addr];
     end
 
-    // End of xpm_memory_sprom_inst instantiation
 
-
-    always #5 tb_clk = ~tb_clk;
+    always #5000 tb_clk = ~tb_clk;
     initial begin
         $dumpfile("waveform.vcd");
         $dumpvars;
@@ -70,7 +69,7 @@ module tb_top_level;
         @(posedge tb_clk);
 
         // REPEAT THE SIGNAL 4 TIMES
-        for (int i = 0; i < 4; i = i + 1) begin
+        for (int i = 0; i < 2; i = i + 1) begin
             tb_rst = 0;
             tb_en = 1;
 

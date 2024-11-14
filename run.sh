@@ -68,12 +68,15 @@ fi
 
 # Post-Implementation Timing Simulation
 if [ "$start_stage" == "sim" ] || [ "$start_stage" == "all" ]; then
+    # Clear old sim_postroute files
+    DESIGN_DIR="$PROJ_DIR/hdl/verilog/${DESIGN}"
+    cd "$DESIGN_DIR/sim_postroute"
+    rm -r *
+    cd $PROJ_DIR
+
     echo "Running Post-Implementation Timing Simulation..."
     vivado -mode batch -source $SIM_TCL -nolog -nojournal
     check_exit_status "Vivado sim"
-    echo "Timing SDF and verilog file generated. Check '${TOP_LEVEL}_time_impl.sdf"
-
-    DESIGN_DIR="$PROJ_DIR/hdl/verilog/${DESIGN}"
 
     cd "$DESIGN_DIR/sim_postroute"
 
@@ -89,22 +92,26 @@ EOL
     create_wave_config; add_wave /; set_property needs_save false [current_wave_config]
 EOL
 
+    echo "Beginning xvlog..."
     xvlog "${TOP_LEVEL}_time_impl.v"
     xvlog "$XILINX_VIVADO/data/verilog/src/glbl.v"
     xvlog -sv "$DESIGN_DIR/verif/tb_${TOP_LEVEL}.sv"
     # xvlog -sv "$PROJ_DIR/hdl/vhdl/counter/counter.srcs/sim_1/new/tb_postroute.sv"
 
+    echo "Beginning xelab..."
     xelab \
-        -debug all -relax -mt 8 -maxdelay \
+        -debug typical -relax -mt 8 -maxdelay \
         -transport_int_delays \
         -pulse_r 0 -pulse_int_r 0 -pulse_int_e 0 \
+        -timescale 1ps/1ps \
         -snapshot "${TOP_LEVEL}_time_impl" -top "tb_${TOP_LEVEL}" \
         -sdfroot "$DESIGN_DIR/sim_postroute/${TOP_LEVEL}_time_impl.sdf" \
         -log elaborate.log \
-        -verbose 2 \
+        -verbose 0 \
         glbl
     # -L xpm -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver \
 
+    echo "Beginning xsim..."
     xsim ${TOP_LEVEL}_time_impl -tclbatch xsim_cfg.tcl
     xsim ${TOP_LEVEL}_time_impl.wdb -gui -tclbatch waveform.tcl
     # source /home/bcheng/workspace/tools/oss-cad-suite/environment

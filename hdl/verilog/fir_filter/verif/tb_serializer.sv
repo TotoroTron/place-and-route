@@ -1,4 +1,5 @@
 
+`timescale 1ps/1ps
 
 module tb_serializer;
 
@@ -88,7 +89,7 @@ module tb_serializer;
     endtask
 
 
-    always #5 tb_clk = ~tb_clk;
+    always #5000 tb_clk = ~tb_clk;
     initial begin
         $dumpfile("waveform.vcd");
         $dumpvars;

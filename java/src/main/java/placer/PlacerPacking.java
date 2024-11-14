@@ -103,39 +103,39 @@ public class PlacerPacking extends Placer {
             }
         }
 
+        /*
+         * Find the input and output pins of this CARRY cell.
+         *
+         * First, check if this carry-in is sourced by another carry or if carry-out
+         * is the source of another carry.
+         * Place those CARRY cells first in some recursive fashion.
+         * while(true) with break conditions?.
+         *
+         * Do the output pins connect to FF cells?
+         * If so, find that FF cell and place it in the same site.
+         *
+         * Do the input pins connect to LUT cells?
+         * If so, find that LUT cell and place it in the same site.
+         */
         for (Cell CARRYCell : CARRYCells) {
-            /*
-             * Find the input and output pins of this CARRY cell.
-             *
-             * First, check if this carry-in is sourced by another carry or if carry-out
-             * is the source of another carry.
-             * Place those CARRY cells first in some recursive fashion.
-             * while(true) with break conditions?.
-             *
-             * Do the output pins connect to FF cells?
-             * If so, find that FF cell and place it in the same site.
-             *
-             * Do the input pins connect to LUT cells?
-             * If so, find that LUT cell and place it in the same site.
-             */
             placeCell(CARRYCell, occupiedPlacements);
         }
 
+        /*
+         * Find the input pins of the FF cell.
+         * Do the input pins connect to LUTs?
+         * If so, find that LUT and place it in the same site.
+         */
         for (Cell FFCell : FFCells) {
-            /*
-             * Find the input pins of the FF cell.
-             * Do the input pins connect to LUTs?
-             * If so, find that LUT and place it in the same site.
-             */
             placeCell(FFCell, occupiedPlacements);
         }
 
+        /*
+         * By now, most LUTs should already be placed.
+         * If this LUT connects to other LUTs,
+         * try to place them in an *adjacent* site
+         */
         for (Cell LUTCell : LUTCells) {
-            /*
-             * By now, most LUTs should already be placed.
-             * If this LUT connects to other LUTs,
-             * try to place them in an *adjacent* site
-             */
             placeCell(LUTCell, occupiedPlacements);
         }
 

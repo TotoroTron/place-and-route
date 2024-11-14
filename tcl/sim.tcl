@@ -1,15 +1,16 @@
 set design "fir_filter"
+set top_level "top_level"
 
 set root_dir "/home/bcheng/workspace/dev/place-and-route"
-set top_level "top_level"
 set dcp_file "$root_dir/outputs/vivado_routed.dcp" 
 
 open_checkpoint $dcp_file
 
-set sdf_file "$root_dir/hdl/verilog/${design}/sim_postroute/${top_level}_time_impl.sdf"
-set verilog_file "$root_dir/hdl/verilog/${design}/sim_postroute/${top_level}_time_impl.v"
-# write_verilog $verilog_file -force -mode timesim -sdf_anno true -sdf_file $sdf_file 
-write_verilog $verilog_file -force -mode timesim -sdf_anno true
+set sim_dir "$root_dir/hdl/verilog/${design}/sim_postroute"
+set sdf_file "${sim_dir}/${top_level}_time_impl.sdf"
+set verilog_file "${sim_dir}/${top_level}_time_impl.v"
+# https://docs.amd.com/r/en-US/ug835-vivado-tcl-commands/write_verilog
+write_verilog $verilog_file -force -mode timesim -include_xilinx_libs -sdf_anno true
 write_sdf $sdf_file -force -mode timesim -process_corner slow 
 
 # launch_simulation 
