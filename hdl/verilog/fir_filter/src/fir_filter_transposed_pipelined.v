@@ -16,7 +16,7 @@ module fir_filter_transposed_pipelined
     output reg o_dout_valid
 );
 
-    localparam ADDR_WIDTH = $clog2(FIR_DEPTH)+1;
+    localparam ADDR_WIDTH = $clog2(FIR_DEPTH);
 
     reg sample_we = 1'b0;
     reg sample_re = 1'b0;
