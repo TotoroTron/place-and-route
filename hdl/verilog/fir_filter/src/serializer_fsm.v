@@ -18,7 +18,7 @@ module serializer_fsm
     reg [LENGTH-1:0] shift_reg;
     assign o_dout = shift_reg[0];
 
-    localparam LENGTH_BITS = $clog2(LENGTH);
+    localparam LENGTH_BITS = $clog2(LENGTH)+1;
     reg [LENGTH_BITS-1:0] counter = { (LENGTH){1'b0} };
 
     parameter S0 = 4'b0000,
@@ -62,12 +62,11 @@ module serializer_fsm
 
     // OUTPUT LOGIC
     always @(posedge i_clk) begin
-        o_dout_valid <= 1'b0;
-        o_ready <= 1'b0;
         if (i_rst) begin
             o_ready <= 1'b0;
             o_dout_valid <= 1'b0;
         end else if (i_en) begin
+            o_dout_valid <= 1'b0;
             o_ready <= 1'b0;
             case (state) 
                 S0: begin
@@ -84,12 +83,13 @@ module serializer_fsm
                     o_dout_valid <= 1'b1;
                 end
                 S3: begin
-                    o_dout_valid <= 1'b1;
                     // DATA SHIFT
                     if (i_ready && counter < LENGTH) begin
+                        o_dout_valid <= 1'b1;
                         shift_reg <= { 1'b0, shift_reg[LENGTH-1:1] };
                         counter <= counter + 1;
                     end else begin
+                        o_dout_valid <= 1'b0;
                         counter <= 0;
                     end
                 end

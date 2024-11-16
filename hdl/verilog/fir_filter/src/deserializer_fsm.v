@@ -16,7 +16,7 @@ module deserializer_fsm
 );
 
     reg [LENGTH-1:0] shift_reg;
-    localparam LENGTH_BITS = $clog2(LENGTH);
+    localparam LENGTH_BITS = $clog2(LENGTH)+1;
     reg [LENGTH_BITS-1:0] counter = { (LENGTH){1'b0} };
 
     parameter S0 = 4'b0000,
@@ -82,8 +82,8 @@ module deserializer_fsm
                 S2: begin
                     // SIGNAL DIN BEING CONSUMED
                     o_ready <= 1'b1;
-                    shift_reg <= { i_din, shift_reg[LENGTH-1:1] };
-                    if (counter < LENGTH) begin
+                    if (i_din_valid == 1'b1 && counter < LENGTH) begin
+                        shift_reg <= { i_din, shift_reg[LENGTH-1:1] };
                         counter <= counter + 1;
                     end else begin
                         counter <= 0;

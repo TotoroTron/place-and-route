@@ -4,7 +4,7 @@
 module tb_top_level;
 
     localparam DATA_WIDTH = 24;
-    localparam FIR_DEPTH = 32;
+    localparam FIR_DEPTH = 64;
     reg tb_clk;
     reg tb_rst;
     reg tb_en;
@@ -82,7 +82,8 @@ module tb_top_level;
                 tb_rst = 0;
                 tb_din_valid = 1;
 
-                @(posedge tb_clk iff(dut_ready == 1'b1));
+                wait(dut_ready == 1'b1);
+                // @(posedge tb_clk iff(dut_ready == 1'b1));
                 // wait(dut_ready == 1'b1); // waits for dut to signal ready
                 // @(posedge tb_clk);
 
@@ -110,17 +111,22 @@ module tb_top_level;
     end // initial
 
     always begin
-        @(posedge tb_clk iff(dut_ready == 1'b1));
+        tb_err = 0;
+        @(posedge tb_clk);
+        wait(tb_dout_valid == 1'b1);
+        // @(posedge tb_clk iff(dut_ready == 1'b1));
         // wait(tb_dout_valid == 1'b1); // waits for dout valid from dut
         // @(posedge tb_clk);
         tb_ready = 1;
+        @(posedge tb_clk);
+
         for (int i = 0; i < DATA_WIDTH; i++) begin
             serial_word[i] = tb_dout;
             @(posedge tb_clk);
         end
-        @(posedge tb_clk);
         tb_ready = 0;
         tb_word_out = serial_word;
+        tb_err = 1;
         @(posedge tb_clk);
     end
 

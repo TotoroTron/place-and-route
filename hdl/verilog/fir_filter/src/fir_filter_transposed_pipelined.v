@@ -16,7 +16,7 @@ module fir_filter_transposed_pipelined
     output reg o_dout_valid
 );
 
-    localparam ADDR_WIDTH = $clog2(FIR_DEPTH);
+    localparam ADDR_WIDTH = $clog2(FIR_DEPTH)+1;
 
     reg sample_we = 1'b0;
     reg sample_re = 1'b0;
@@ -64,7 +64,7 @@ module fir_filter_transposed_pipelined
                 next_state <= S2;
                 // PIPELINED MAC
                 // ASSERT OUTPUT DATA VALID WHEN FINISHED
-                if (weight_re_addr == FIR_DEPTH - 1)
+                if (weight_re_addr == FIR_DEPTH)
                     next_state <= S3;
             end
             S3: begin
@@ -109,7 +109,8 @@ module fir_filter_transposed_pipelined
                     if (sample_wr_addr > 0)
                         sample_wr_addr <= sample_wr_addr - 1;
                     else
-                        sample_wr_addr <= FIR_DEPTH - 1;
+                        // sample_wr_addr <= FIR_DEPTH - 1;
+                        sample_wr_addr <= FIR_DEPTH;
                     sample_re_addr <= sample_wr_addr;
                     sample_addr <= sample_wr_addr;
                 end
@@ -118,11 +119,11 @@ module fir_filter_transposed_pipelined
                     // PIPELINED MAC
                     weight_re <= 1'b1;
                     sample_re <= 1'b1;
-                    if (sample_re_addr < FIR_DEPTH - 1)
+                    if (sample_re_addr < FIR_DEPTH)
                         sample_re_addr <= sample_re_addr + 1;
                     else
                         sample_re_addr <= 0;
-                    if (weight_re_addr < FIR_DEPTH - 1)
+                    if (weight_re_addr < FIR_DEPTH)
                         weight_re_addr <= weight_re_addr + 1;
                     else begin
                         weight_re_addr <= 0;
