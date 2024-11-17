@@ -4,8 +4,11 @@ import matplotlib.pyplot as plt
 from scipy.signal import firwin
 
 def generate(filter_depth, data_width, cutoff_freq, sample_rate):
+    # normalized_cutoff = cutoff_freq / (sample_rate / 2)
+
     # Design the FIR filter with the given parameters
-    fir_coefficients = firwin(filter_depth, cutoff_freq, fs=sample_rate, pass_zero=True)
+    fir_coefficients = firwin(filter_depth, cutoff_freq, fs=sample_rate, pass_zero="lowpass")
+    plot(fir_coefficients)
     
     # Quantize coefficients based on data width
     max_val = 2**(data_width - 1) - 1
@@ -60,16 +63,14 @@ def write_verilog(weights, data_width):
 def main():
 
     # Parameters
-    FILTER_DEPTH = 64 
+    FILTER_DEPTH = 128
     SAMPLE_RATE = 44000
     CUTOFF_FREQ = 1000
 
     DATA_WIDTH = 24          # Number of bits for each coefficient
-    normalized_cutoff = CUTOFF_FREQ / (SAMPLE_RATE / 2)
 
     # Generate FIR filter weights
-    weights = generate(FILTER_DEPTH, DATA_WIDTH, normalized_cutoff, SAMPLE_RATE)
-    plot(weights)
+    weights = generate(FILTER_DEPTH, DATA_WIDTH, CUTOFF_FREQ, SAMPLE_RATE)
     write_mem(weights, DATA_WIDTH)
     write_verilog(weights, DATA_WIDTH)
 

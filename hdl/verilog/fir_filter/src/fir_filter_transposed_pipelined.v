@@ -31,6 +31,7 @@ module fir_filter_transposed_pipelined
 
     wire [DATA_WIDTH-1:0] tap_dout;
     wire [DATA_WIDTH-1:0] sum;
+    reg sum_rst;
 
     parameter S0 = 4'b0000,
         S1 = 4'b0001,
@@ -96,9 +97,11 @@ module fir_filter_transposed_pipelined
             sample_we <= 1'b0;
             sample_re <= 1'b0;
             weight_re <= 1'b0;
+            sum_rst = 1'b0;
             case (state)
                 S0: begin
                     // WAIT FOR INPUT DATA VALID
+                    sum_rst = 1'b1;
                 end
 
                 S1: begin
@@ -150,7 +153,7 @@ module fir_filter_transposed_pipelined
         .DATA_WIDTH(DATA_WIDTH)
     ) inst (
         .i_clk(i_clk),
-        .i_rst(i_rst || i_din_valid),
+        .i_rst(i_rst || sum_rst),
         .i_en(i_en),
         .iv_din(sample_data),
         .iv_weight(weight_data),

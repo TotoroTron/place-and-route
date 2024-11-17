@@ -37,7 +37,7 @@ def write_verilog(sine_signal, data_width):
         for i, sample in enumerate(sine_signal):
             hex_value = f"{(sample & ((1 << data_width) - 1)):0{data_width // 4}X}"
             f.write(f"assign sine_signal[{i}] = {data_width}'h{hex_value};\n")
-            print(f"Sample {i}: {sample} -> Hex: {hex_value}")
+            # print(f"Sample {i}: {sample} -> Hex: {hex_value}")
 
     print("Verilog header generated as sine_signal.vh.")
 

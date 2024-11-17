@@ -4,7 +4,7 @@
 module tb_top_level;
 
     localparam DATA_WIDTH = 24;
-    localparam FIR_DEPTH = 64;
+    localparam FIR_DEPTH = 128;
     reg tb_clk;
     reg tb_rst;
     reg tb_en;
