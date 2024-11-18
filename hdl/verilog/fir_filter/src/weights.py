@@ -4,35 +4,36 @@ import matplotlib.pyplot as plt
 from scipy.signal import firwin
 
 def generate(filter_depth, data_width, cutoff_freq, sample_rate):
-    # normalized_cutoff = cutoff_freq / (sample_rate / 2)
+    normalized_cutoff = cutoff_freq / (sample_rate / 2)
 
     # Design the FIR filter with the given parameters
-    fir_coefficients = firwin(filter_depth, cutoff_freq, fs=sample_rate, pass_zero="lowpass")
-    plot(fir_coefficients)
-    
+    # fir_coefficients = firwin(
+    #     numtaps=filter_depth,
+    #     cutoff=normalized_cutoff,
+    #     pass_zero=False,
+    #     scale=False,
+    #     fs=sample_rate
+    # )
+    fir_coefficients = firwin(filter_depth, normalized_cutoff)
+    plot(fir_coefficients, "fir_coeff.png")
+
     # Quantize coefficients based on data width
     max_val = 2**(data_width - 1) - 1
     quantized_coefficients = np.round(fir_coefficients * max_val).astype(int)
-
-    # Ensure coefficients fit within the data width by clipping
     quantized_coefficients = np.clip(quantized_coefficients, -max_val, max_val)
-
-    # for c in fir_coefficients:
-    #     print(c)
-    # for c in quantized_coefficients:
-    #     print(c);
+    plot(quantized_coefficients, "quant_coeff.png")
 
     return quantized_coefficients
 
 
-def plot(weights):
+def plot(weights, filename):
     plt.figure(figsize=(10, 4))
     plt.stem(range(len(weights)), weights, basefmt=" ")
     plt.title("FIR Filter Weights")
     plt.xlabel("Weight Index")
     plt.ylabel("Amplitude")
     plt.grid(True)
-    plt.savefig("weights.png")
+    plt.savefig(filename)
     print("Fir filter weights plotted in weights.png")
 
 
@@ -63,7 +64,7 @@ def write_verilog(weights, data_width):
 def main():
 
     # Parameters
-    FILTER_DEPTH = 128
+    FILTER_DEPTH = 48
     SAMPLE_RATE = 44000
     CUTOFF_FREQ = 1000
 

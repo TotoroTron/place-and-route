@@ -65,7 +65,7 @@ module fir_filter_transposed_pipelined
                 next_state <= S2;
                 // PIPELINED MAC
                 // ASSERT OUTPUT DATA VALID WHEN FINISHED
-                if (weight_re_addr == FIR_DEPTH)
+                if (weight_re_addr == FIR_DEPTH-1)
                     next_state <= S3;
             end
             S3: begin
@@ -81,22 +81,22 @@ module fir_filter_transposed_pipelined
     // OUTPUT LOGIC
     always @(posedge i_clk) begin
         if (i_rst) begin
-            o_ready <= 1'b0;
-            o_dout_valid <= 1'b0;
-            sample_we <= 1'b0;
-            sample_re <= 1'b0;
-            weight_re <= 1'b0;
-            sample_wr_addr <= 0;
-            sample_re_addr <= 0;
-            weight_re_addr <= 0;
-            sample_addr <= 0;
+            o_ready = 1'b0;
+            o_dout_valid = 1'b0;
+            sample_we = 1'b0;
+            sample_re = 1'b0;
+            weight_re = 1'b0;
+            sample_wr_addr = 0;
+            sample_re_addr = 0;
+            weight_re_addr = 0;
+            sample_addr = 0;
 
         end else begin
             // Default assignments
-            o_ready <= 1'b0;
-            sample_we <= 1'b0;
-            sample_re <= 1'b0;
-            weight_re <= 1'b0;
+            o_ready = 1'b0;
+            sample_we = 1'b0;
+            sample_re = 1'b0;
+            weight_re = 1'b0;
             sum_rst = 1'b0;
             case (state)
                 S0: begin
@@ -107,33 +107,32 @@ module fir_filter_transposed_pipelined
                 S1: begin
                     // SIGNAL DATA CONSUMED
                     // WRITE SAMPLE INTO RAM
-                    o_ready <= 1'b1;
-                    sample_we <= 1'b1;
+                    o_ready = 1'b1;
+                    sample_we = 1'b1;
                     if (sample_wr_addr > 0)
-                        sample_wr_addr <= sample_wr_addr - 1;
+                        sample_wr_addr = sample_wr_addr - 1;
                     else
-                        // sample_wr_addr <= FIR_DEPTH - 1;
-                        sample_wr_addr <= FIR_DEPTH;
-                    sample_re_addr <= sample_wr_addr;
-                    sample_addr <= sample_wr_addr;
+                        sample_wr_addr = FIR_DEPTH - 1;
+                    sample_re_addr = sample_wr_addr;
+                    sample_addr = sample_wr_addr;
                 end
 
                 S2: begin
                     // PIPELINED MAC
-                    weight_re <= 1'b1;
-                    sample_re <= 1'b1;
-                    if (sample_re_addr < FIR_DEPTH)
-                        sample_re_addr <= sample_re_addr + 1;
+                    weight_re = 1'b1;
+                    sample_re = 1'b1;
+                    if (sample_re_addr < FIR_DEPTH - 1)
+                        sample_re_addr = sample_re_addr + 1;
                     else
-                        sample_re_addr <= 0;
-                    if (weight_re_addr < FIR_DEPTH)
-                        weight_re_addr <= weight_re_addr + 1;
+                        sample_re_addr = 0;
+                    if (weight_re_addr < FIR_DEPTH - 1)
+                        weight_re_addr = weight_re_addr + 1;
                     else begin
-                        weight_re_addr <= 0;
-                        o_dout_valid <= 1'b1;
-                        ov_dout <= sum;
+                        weight_re_addr = 0;
+                        o_dout_valid = 1'b1;
+                        ov_dout = sum;
                     end
-                    sample_addr <= sample_re_addr;
+                    sample_addr = sample_re_addr;
                 end
 
                 S3: begin
@@ -141,8 +140,8 @@ module fir_filter_transposed_pipelined
                 end
 
                 default: begin
-                    o_ready <= 1'b0;
-                    o_dout_valid <= 1'b0;
+                    o_ready = 1'b0;
+                    o_dout_valid = 1'b0;
                 end
 
             endcase

@@ -7,7 +7,7 @@ module tap_transposed
     input wire i_clk,
     input wire i_rst,
     input wire i_en,
-    input wire signed [DATA_WIDTH-1:0] iv_din,
+    input wire signed [DATA_WIDTH-1:0] iv_din, // Q1.23: 1 sign bit, 23 fraction bits
     input wire signed [DATA_WIDTH-1:0] iv_weight,
     input wire signed [DATA_WIDTH-1:0] iv_sum,
     output reg signed [DATA_WIDTH-1:0] ov_sum,
@@ -28,7 +28,10 @@ module tap_transposed
     // always @(iv_din or iv_weight or iv_sum) begin
     always @(*) begin
         product_full = iv_din * iv_weight;
-        product_trunc = product_full[2*DATA_WIDTH-1:DATA_WIDTH];
+        product_trunc = product_full[2*DATA_WIDTH-2:DATA_WIDTH-1];
+        // Q1.23 x Q1.23 = Q2.46
+        // trunc down to Q1.23
+
         sum_full = product_trunc + iv_sum;
         sum_trunc = sum_full[DATA_WIDTH-1:0];
     end

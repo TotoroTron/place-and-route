@@ -4,7 +4,7 @@
 module tb_top_level;
 
     localparam DATA_WIDTH = 24;
-    localparam FIR_DEPTH = 128;
+    localparam FIR_DEPTH = 48;
     reg tb_clk;
     reg tb_rst;
     reg tb_en;
@@ -26,6 +26,7 @@ module tb_top_level;
     reg [ADDR_WIDTH-1:0] tb_addr;
     int num_errors = 0;
     reg tb_err;
+    integer fd; // file writer
 
     // instantiation unit under test 
     top_level
@@ -53,11 +54,11 @@ module tb_top_level;
     end
 
 
+
     always #50000 tb_clk = ~tb_clk; // always 50 ns
     initial begin
         $dumpfile("waveform.vcd");
         $dumpvars;
-
         num_errors = 0;
         tb_clk = 1;
         tb_rst = 1;
@@ -65,14 +66,11 @@ module tb_top_level;
         tb_din = 0;
         tb_din_valid = 0;
         tb_ready = 0;
-
         @(posedge tb_clk);
-
-        // REPEAT THE SIGNAL 2 TIMES
-        for (int i = 0; i < 2; i = i + 1) begin
+        // REPEAT THE SIGNAL 4 TIMES
+        for (int i = 0; i < 4; i = i + 1) begin
             tb_rst = 0;
             tb_en = 1;
-
             // FOR EACH SAMPLE IN SIGNAL
             for (int t = 0; t < SAMPLES_PER_SIGNAL_PERIOD; t++) begin
                 tb_addr = t;
@@ -81,32 +79,24 @@ module tb_top_level;
                 tb_en = 1;
                 tb_rst = 0;
                 tb_din_valid = 1;
-
                 wait(dut_ready == 1'b1);
                 // @(posedge tb_clk iff(dut_ready == 1'b1));
-                // wait(dut_ready == 1'b1); // waits for dut to signal ready
-                // @(posedge tb_clk);
-
                 // FOR EACH BIT IN SAMPLE
-                for (int j = 0; j < DATA_WIDTH; j++) begin
-                    // serialize word, LSB first in
+                for (int j = 0; j < DATA_WIDTH; j++) begin // LSB first
                     tb_din = tb_word_in[j];
-                    // if (j == DATA_WIDTH-1) begin
-                    //     tb_din_valid = 1;
-                    // end
                     @(posedge tb_clk);
                 end
-
                 tb_din_valid = 0;
-
                 // arbitrary wait
                 repeat (50) begin
                     @(posedge tb_clk);
                 end
             end
         end
-
-
+        repeat (1000) begin
+            @(posedge tb_clk);
+        end
+        $fclose(fd);
         $finish;
     end // initial
 
@@ -115,24 +105,24 @@ module tb_top_level;
         @(posedge tb_clk);
         wait(tb_dout_valid == 1'b1);
         // @(posedge tb_clk iff(dut_ready == 1'b1));
-        // wait(tb_dout_valid == 1'b1); // waits for dout valid from dut
-        // @(posedge tb_clk);
         tb_ready = 1;
         @(posedge tb_clk);
-
         for (int i = 0; i < DATA_WIDTH; i++) begin
             serial_word[i] = tb_dout;
             @(posedge tb_clk);
         end
         tb_ready = 0;
         tb_word_out = serial_word;
+        $fdisplay(fd, "%h", tb_word_out);
         tb_err = 1;
         @(posedge tb_clk);
     end
 
     initial begin
-        #50ms; // Wait for 1ms simulation time
-        $display("Simulation terminated after 50 milliseconds.");
+        fd = $fopen("fir_out.txt", "w");
+        #20ms;
+        $display("Simulation terminated after 20 milliseconds.");
+        $fclose(fd);
         $finish;
     end // initial
 endmodule
