@@ -61,12 +61,12 @@ public abstract class Placer {
     public void run() throws IOException {
 
         // design.flattenDesign();
-        printNets(design, "NetsBeforePlace");
-        printCells(design, "CellsBeforePlace");
+        // printDesignNets(design, "NetsBeforePlace");
+        // printDesignCells(design, "CellsBeforePlace");
         placeDesign();
-        manualIntraRouteSites();
-        printNets(design, "NetsAfterPlace");
-        printCells(design, "CellsAfterPlace");
+        // manualIntraRouteSites();
+        printDesignNets(design, "NetsAfterPlace");
+        printDesignCells(design, "CellsAfterPlace");
         writer.close();
         design.writeCheckpoint(placedDcp);
     }
@@ -106,6 +106,7 @@ public abstract class Placer {
             }
 
             Cell cell = design.createCell(ehci.getFullHierarchicalInstName(), ehci.getInst());
+            cell.setEDIFHierCellInst(ehci);
             Map<SiteTypeEnum, Set<String>> compatiblePlacements = cell.getCompatiblePlacements(device);
             if (compatiblePlacements.isEmpty()) {
                 writer.write("\n\tWARNING: Cell: " + cell.getName() + " of type: " + cell.getType()
@@ -377,7 +378,26 @@ public abstract class Placer {
         return;
     } // end printAllCompatiblePlacements()
 
-    public void printCells(Design design, String fileName) throws IOException {
+    public void printCells(Collection<Cell> cells) throws IOException {
+        for (Cell cell : cells) {
+            writer.write("\n\tCell name: " + cell.getName());
+            EDIFHierCellInst ehci = cell.getEDIFHierCellInst();
+            if (ehci == null) {
+                writer.write("\n\t\tEHCI Null!");
+                continue;
+            }
+            writer.write("\n\t\tEDIFHierCellInst name: " + ehci.getCellName());
+            writer.write("\n\t\tPrinting EDIFHierPortInsts...");
+
+            Collection<EDIFHierPortInst> ehpis = ehci.getHierPortInsts();
+            for (EDIFHierPortInst ehpi : ehpis) {
+                writer.write("\n\t\t\tEDIFHierPortInst name: " +
+                        ehpi.getFullHierarchicalInstName() + "/" + ehpi.getPortInst().getName());
+            }
+        }
+    } // end printCells
+
+    public void printDesignCells(Design design, String fileName) throws IOException {
         writer.write("\n\nPrinting All Cells...");
         Collection<Cell> cells = design.getCells();
         for (Cell cell : cells) {
@@ -393,9 +413,9 @@ public abstract class Placer {
                 writer.write(s2 + s3 + s4);
             }
         }
-    } // end printCells()
+    } // end printDesignCells()
 
-    public void printNets(Design design, String fileName) throws IOException {
+    public void printDesignNets(Design design, String fileName) throws IOException {
         writer.write("\n\nPrinting All Nets...");
         Collection<Net> nets = design.getNets();
         for (Net net : nets) {
@@ -407,7 +427,7 @@ public abstract class Placer {
                 for (SitePinInst spi : spis)
                     writer.write("\n\t\tSitePinInst: " + spi.getName() + " isRouted() = " + spi.isRouted());
         }
-    } // end printNets()
+    } // end printDesignNets()
 
     public void printBELArray(BufferedWriter writer, BEL[] bels) throws IOException {
         if (bels.length == 0)

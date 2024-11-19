@@ -20,17 +20,18 @@ public class Main {
             logger.addHandler(fileHandler);
             logger.setLevel(Level.ALL); // Set logging level to record all messages
 
-            logger.log(Level.INFO, "Begin Random Placer...");
+            logger.log(Level.INFO, "Begin Placer...");
 
-            PlacerFirst FPlacer = new PlacerFirst();
-            FPlacer.printUniqueSites();
-            FPlacer.run();
+            // PlacerFirst FPlacer = new PlacerFirst();
+            // FPlacer.printUniqueSites();
+            // FPlacer.run();
 
             // PlacerRandom RPlacer = new PlacerRandom();
             // RPlacer.run();
 
-            // PlacerPacking PPlacer = new PlacerPacking();
-            // PPlacer.run();
+            PlacerPacking PPlacer = new PlacerPacking();
+            PPlacer.printUniqueSites();
+            PPlacer.run();
 
             // ViewVivadoCheckpoint ViewVivado = new ViewVivadoCheckpoint();
             // ViewVivado.run();

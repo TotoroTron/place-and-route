@@ -2,17 +2,26 @@ package placer;
 
 import java.util.stream.Collectors;
 import java.util.Iterator;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
 import com.xilinx.rapidwright.design.Cell;
+import com.xilinx.rapidwright.edif.EDIFCellInst;
+import com.xilinx.rapidwright.edif.EDIFHierCellInst;
+import com.xilinx.rapidwright.edif.EDIFPortInst;
+import com.xilinx.rapidwright.edif.EDIFPropertyValue;
+import com.xilinx.rapidwright.edif.EDIFHierPortInst;
+import com.xilinx.rapidwright.edif.EDIFDirection;
+import com.xilinx.rapidwright.edif.EDIFNet;
 
 import com.xilinx.rapidwright.device.BEL;
 import com.xilinx.rapidwright.device.Site;
@@ -71,39 +80,57 @@ public class PlacerPacking extends Placer {
         List<Cell> CARRYCells = new ArrayList<>();
         List<Cell> FFCells = new ArrayList<>();
         List<Cell> LUTCells = new ArrayList<>();
+        List<Cell> DSPCells = new ArrayList<>();
+        List<Cell> RAMCells = new ArrayList<>();
+
+        Set<String> uniqueCellTypes = new HashSet<>();
 
         writer.write("\n\nPrinting Cell Types...");
         for (Cell cell : cells) {
             String s1 = String.format(
                     "\n\tcellName: %-40s cellType = %-10s",
                     cell.getName(), cell.getType());
-            System.out.println(s1);
+            uniqueCellTypes.add(cell.getType());
             writer.write(s1);
+        }
+
+        writer.write("\n\nSet of all Unique Cell Types... (" + uniqueCellTypes.size() + ")");
+        for (String cellType : uniqueCellTypes) {
+            writer.write("\n\t" + cellType);
         }
 
         writer.write("\n\nSorting Cells By Cell Type...");
         for (Cell cell : cells) {
             if (cell.getType().contains("CARRY4")) {
                 CARRYCells.add(cell);
-                System.out.println("\tFound CARRY cell.");
-                writer.write("\n\tFound CARRY cell.");
+                writer.write("\n\tFound CARRY cell: " + cell.getName());
                 // cells.remove(cell);
             }
             if (cell.getType().contains("FDRE")) {
                 FFCells.add(cell);
-                System.out.println("\tFound FDRE cell.");
-                writer.write("\n\tFound FDRE cell.");
+                writer.write("\n\tFound FDRE cell: " + cell.getName());
                 // cells.remove(cell);
             }
             if (cell.getType().contains("LUT")) {
                 LUTCells.add(cell);
-                System.out.println("\tFound LUT cell.");
-                writer.write("\n\tFound LUT cell.");
+                writer.write("\n\tFound LUT cell: " + cell.getName());
+                // cells.remove(cell);
+            }
+            if (cell.getType().contains("DSP")) {
+                DSPCells.add(cell);
+                writer.write("\n\tFound DSP cell: " + cell.getName());
+                // cells.remove(cell);
+            }
+            if (cell.getType().contains("RAM")) {
+                RAMCells.add(cell);
+                writer.write("\n\tFound RAM cell: " + cell.getName());
                 // cells.remove(cell);
             }
         }
 
         /*
+         * https://www.fpga4fun.com/Counters4.html
+         *
          * Find the input and output pins of this CARRY cell.
          *
          * First, check if this carry-in is sourced by another carry or if carry-out
@@ -117,8 +144,10 @@ public class PlacerPacking extends Placer {
          * Do the input pins connect to LUT cells?
          * If so, find that LUT cell and place it in the same site.
          */
-        for (Cell CARRYCell : CARRYCells) {
-            placeCell(CARRYCell, occupiedPlacements);
+        writer.write("\n\nPrinting CARRYCells... (" + CARRYCells.size() + ")");
+        printCells(CARRYCells);
+        for (Cell cell : CARRYCells) {
+            // placeCell(cell, occupiedPlacements);
         }
 
         /*
@@ -126,8 +155,10 @@ public class PlacerPacking extends Placer {
          * Do the input pins connect to LUTs?
          * If so, find that LUT and place it in the same site.
          */
-        for (Cell FFCell : FFCells) {
-            placeCell(FFCell, occupiedPlacements);
+        writer.write("\n\nPrinting FFCells... (" + FFCells.size() + ")");
+        printCells(FFCells);
+        for (Cell cell : FFCells) {
+            // placeCell(cell, occupiedPlacements);
         }
 
         /*
@@ -135,8 +166,22 @@ public class PlacerPacking extends Placer {
          * If this LUT connects to other LUTs,
          * try to place them in an *adjacent* site
          */
-        for (Cell LUTCell : LUTCells) {
-            placeCell(LUTCell, occupiedPlacements);
+        writer.write("\n\nPrinting LUTCells... (" + LUTCells.size() + ")");
+        printCells(LUTCells);
+        for (Cell cell : LUTCells) {
+            // placeCell(cell, occupiedPlacements);
+        }
+
+        writer.write("\n\nPrinting DSPCells... (" + DSPCells.size() + ")");
+        printCells(DSPCells);
+        for (Cell cell : DSPCells) {
+            // placeCell(cell, occupiedPlacements);
+        }
+
+        writer.write("\n\nPrinting RAMCells... (" + RAMCells.size() + ")");
+        printCells(RAMCells);
+        for (Cell cell : RAMCells) {
+            // placeCell(cell, occupiedPlacements);
         }
 
     } // end placeDesign()
