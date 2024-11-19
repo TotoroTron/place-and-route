@@ -3,7 +3,7 @@
 module fir_filter_transposed_pipelined
 #(
     parameter DATA_WIDTH = 24,
-    parameter FIR_DEPTH = 48
+    parameter FIR_DEPTH = 16
 )(
     input wire i_clk,
     input wire i_rst,

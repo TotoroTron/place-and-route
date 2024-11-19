@@ -34,7 +34,7 @@ if [ "$start_stage" == "synth" ] || [ "$start_stage" == "all" ]; then
 fi
 
 # Vivado Placement Stage
-if [ "$start_stage" == "place" ]; then
+if [ "$start_stage" == "place" || [ "$start_stage" == "all" ]; then
     echo "Running Vivado place..."
     vivado -mode batch -source $PLACE_TCL -nolog -nojournal
     check_exit_status "Vivado place"
