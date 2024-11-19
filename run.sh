@@ -68,11 +68,10 @@ fi
 
 # Post-Implementation Timing Simulation
 if [ "$start_stage" == "sim" ] || [ "$start_stage" == "all" ]; then
-    # Clear old sim_postroute files
     DESIGN_DIR="$PROJ_DIR/hdl/verilog/${DESIGN}"
-    cd "$DESIGN_DIR/sim_postroute"
-    rm -r *
-    cd $PROJ_DIR
+    # cd "$DESIGN_DIR/sim_postroute"
+    # rm -r *
+    # cd $PROJ_DIR
 
     echo "Running Post-Implementation Timing Simulation..."
     vivado -mode batch -source $SIM_TCL -nolog -nojournal

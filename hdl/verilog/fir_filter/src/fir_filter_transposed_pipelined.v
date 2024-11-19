@@ -3,7 +3,7 @@
 module fir_filter_transposed_pipelined
 #(
     parameter DATA_WIDTH = 24,
-    parameter FIR_DEPTH = 16
+    parameter FIR_DEPTH = 48
 )(
     input wire i_clk,
     input wire i_rst,
@@ -176,9 +176,10 @@ module fir_filter_transposed_pipelined
         .IGNORE_INIT_SYNTH(0),         // DECIMAL
         .MEMORY_INIT_FILE("/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/weights.mem"),     // String
         .MEMORY_INIT_PARAM("0"),       // String
-        .MEMORY_OPTIMIZATION("true"),  // String
-        .MEMORY_PRIMITIVE("auto"),     // String
-        .MEMORY_SIZE(FIR_DEPTH * DATA_WIDTH),            // DECIMAL
+        .MEMORY_OPTIMIZATION("false"),  // String
+        .MEMORY_PRIMITIVE("ultra"),     // String
+        // .MEMORY_SIZE(FIR_DEPTH * DATA_WIDTH),            // DECIMAL
+        .MEMORY_SIZE((2**ADDR_WIDTH) * DATA_WIDTH),            // DECIMAL
         .MESSAGE_CONTROL(0),           // DECIMAL
         .RAM_DECOMP("auto"),           // String
         .READ_DATA_WIDTH_A(DATA_WIDTH),        // DECIMAL
@@ -226,9 +227,10 @@ module fir_filter_transposed_pipelined
         .IGNORE_INIT_SYNTH(0),         // DECIMAL
         .MEMORY_INIT_FILE("none"),     // String
         .MEMORY_INIT_PARAM("0"),       // String
-        .MEMORY_OPTIMIZATION("true"),  // String
-        .MEMORY_PRIMITIVE("auto"),     // String
-        .MEMORY_SIZE(FIR_DEPTH * DATA_WIDTH),            // DECIMAL
+        .MEMORY_OPTIMIZATION("false"),  // String
+        .MEMORY_PRIMITIVE("ultra"),     // String
+        // .MEMORY_SIZE(FIR_DEPTH * DATA_WIDTH),            // DECIMAL
+        .MEMORY_SIZE((2**ADDR_WIDTH) * DATA_WIDTH),            // DECIMAL
         .MESSAGE_CONTROL(0),           // DECIMAL
 
         .RAM_DECOMP("auto"),           // String
