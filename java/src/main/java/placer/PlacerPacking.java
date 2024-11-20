@@ -23,6 +23,7 @@ import com.xilinx.rapidwright.edif.EDIFPropertyValue;
 import com.xilinx.rapidwright.edif.EDIFHierPortInst;
 import com.xilinx.rapidwright.edif.EDIFDirection;
 import com.xilinx.rapidwright.edif.EDIFNet;
+import com.xilinx.rapidwright.edif.EDIFNetlist;
 
 import com.xilinx.rapidwright.device.BEL;
 import com.xilinx.rapidwright.device.Site;
@@ -73,6 +74,83 @@ public class PlacerPacking extends Placer {
     }
 
     public @Override void placeDesign() throws IOException {
+        EDIFNetlist netlist = design.getNetlist();
+        List<EDIFHierCellInst> ehcis = netlist.getAllLeafHierCellInstances();
+
+        Set<String> uniqueEdifCellTypes = new HashSet<>();
+
+        // ordered by placement priority
+        List<EDIFHierCellInst> IBUFCells = new ArrayList<>();
+        List<EDIFHierCellInst> OBUFCells = new ArrayList<>();
+        List<EDIFHierCellInst> VCCCells = new ArrayList<>();
+        List<EDIFHierCellInst> GNDCells = new ArrayList<>();
+        List<EDIFHierCellInst> CARRYCells = new ArrayList<>();
+        List<EDIFHierCellInst> FFCells = new ArrayList<>();
+        List<EDIFHierCellInst> LUTCells = new ArrayList<>();
+        List<EDIFHierCellInst> DSPCells = new ArrayList<>();
+        List<EDIFHierCellInst> RAMCells = new ArrayList<>();
+
+        for (EDIFHierCellInst ehci : ehcis) {
+            uniqueEdifCellTypes.add(ehci.getCellType().getName());
+        }
+        writer.write("\n\nSet of all Unique EDIF Cell Types... (" + uniqueEdifCellTypes.size() + ")");
+        for (String edifCellType : uniqueEdifCellTypes) {
+            writer.write("\n\t" + edifCellType);
+        }
+
+        writer.write("\n\nSorting Cells By Cell Type...");
+        for (EDIFHierCellInst ehci : ehcis) {
+            if (ehci.getCellType().getName().contains("IBUF")) {
+                IBUFCells.add(ehci);
+                writer.write("\n\tFound IBUF cell: " + ehci.getCellName());
+            }
+            if (ehci.getCellType().getName().contains("OBUF")) {
+                OBUFCells.add(ehci);
+                writer.write("\n\tFound OBUF cell: " + ehci.getCellName());
+            }
+            if (ehci.getCellType().getName().contains("VCC")) {
+                VCCCells.add(ehci);
+                writer.write("\n\tFound VCC cell: " + ehci.getCellName());
+            }
+            if (ehci.getCellType().getName().contains("GND")) {
+                GNDCells.add(ehci);
+                writer.write("\n\tFound GND cell: " + ehci.getCellName());
+            }
+            if (ehci.getCellType().getName().contains("CARRY")) {
+                CARRYCells.add(ehci);
+                writer.write("\n\tFound CARRY cell: " + ehci.getCellName());
+            }
+            if (ehci.getCellType().getName().contains("FDRE")) {
+                FFCells.add(ehci);
+                writer.write("\n\tFound FF cell: " + ehci.getCellName());
+            }
+            if (ehci.getCellType().getName().contains("LUT")) {
+                LUTCells.add(ehci);
+                writer.write("\n\tFound LUT cell: " + ehci.getCellName());
+            }
+            if (ehci.getCellType().getName().contains("DSP")) {
+                DSPCells.add(ehci);
+                writer.write("\n\tFound DSP cell: " + ehci.getCellName());
+            }
+            if (ehci.getCellType().getName().contains("RAM")) {
+                RAMCells.add(ehci);
+                writer.write("\n\tFound RAM cell: " + ehci.getCellName());
+            }
+        }
+
+        printEDIFCellList(IBUFCells);
+        printEDIFCellList(OBUFCells);
+        printEDIFCellList(VCCCells);
+        printEDIFCellList(GNDCells);
+        printEDIFCellList(CARRYCells);
+        printEDIFCellList(FFCells);
+        printEDIFCellList(LUTCells);
+        printEDIFCellList(DSPCells);
+        printEDIFCellList(RAMCells);
+
+    }
+
+    public void placeDesignOld() throws IOException {
         // this might all just be garbage.
         // should not spawn all the Cells
         // work on the EDIFCell level first, then create and place each cell in one shot
@@ -150,7 +228,6 @@ public class PlacerPacking extends Placer {
          */
         writer.write("\n\nPrinting CARRYCells... (" + CARRYCells.size() + ")");
         printCells(CARRYCells);
-        buildCARRYChains(CARRYCells);
 
         /*
          * Find the input pins of the FF cell.

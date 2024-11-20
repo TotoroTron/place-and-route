@@ -182,61 +182,18 @@ public abstract class Placer {
 
     } // end placeCell()
 
-    protected List<LinkedList<Cell>> buildCARRYChains(List<Cell> CARRYCells) throws IOException {
-        Iterator<Cell> iterator = CARRYCells.iterator();
-        List<LinkedList<Cell>> carryChains = new ArrayList<LinkedList<Cell>>();
-
-        // while (iterator.hasNext()) {
-        // LinkedList<Cell> chain = new LinkedList<>();
-        // Cell cell = iterator.next();
-
-        // // traverse carry chain in the cout direction
-        // boolean hasCoutSink = true;
-        // while (hasCoutSink) {
-        // EDIFCellInst eci = cell.getEDIFCellInst();
-        // EDIFPortInst cout = eci.getPortInst("CO[3]");
-        // EDIFNet coutNet = cout.getNet();
-        // if (coutNet != null) {
-        // // break carry chain upward direction
-        // writer.write("\n\nPrinting coutNetPorts... ");
-        // Collection<EDIFPortInst> coutNetPorts = coutNet.getPortInsts();
-        // for (EDIFPortInst coutNetPort : coutNetPorts) {
-        // writer.write("\n\t" + coutNetPort.getName());
-        // }
-
-        // // iterator.remove(); // safely remove the current cell
-        // }
-
-        // }
-
-        // }
-
-        for (Cell cell : CARRYCells) {
-            writer.write("\n\nCell: " + cell.getName());
-
-            // traverse carry chain in the cout direction
-            EDIFCellInst eci = cell.getEDIFCellInst();
-            EDIFPortInst cout = eci.getPortInst("CO[3]");
-            if (cout == null) {
-                writer.write("\n\tcout = null!");
-                continue;
+    public void printEDIFCellList(List<EDIFHierCellInst> ehcis) throws IOException {
+        String cellType = ehcis.get(0).getCellType().getName();
+        writer.write("\n\nPrinting all EDIFHierCellInsts of type " + cellType + "... (" + ehcis.size() + ")");
+        for (EDIFHierCellInst ehci : ehcis) {
+            writer.write("\n\t" + ehci.getFullHierarchicalInstName());
+            Collection<EDIFHierPortInst> ehpis = ehci.getHierPortInsts();
+            writer.write("\n\t\tPrinting all EDIFHierPortInsts ...(" + ehpis.size() + ")");
+            for (EDIFHierPortInst ehpi : ehpis) {
+                writer.write("\n\t\t\t" + ehpi.getFullHierarchicalInstName() + "/" + ehpi.getPortInst().getName());
             }
-            EDIFNet coutNet = cout.getNet();
-            if (coutNet == null) {
-                writer.write("\n\tcoutNet = null!");
-                continue;
-            }
-            Collection<EDIFPortInst> coutNetPorts = coutNet.getPortInsts();
-            Map<String, EDIFPortInst> portMap = coutNetPorts.stream()
-                    .collect(Collectors.toMap(EDIFPortInst::getName, portInst -> portInst));
-            // this is so ass
-            EDIFPortInst coutSink = portMap.get("CI");
-            writer.write("\n\tSink: " + coutSink.getName());
-
         }
-        return carryChains;
-
-    } // end buildCARRYChains
+    }
 
     protected void traverseCarryCoutDirection(EDIFCellInst eci, LinkedList<EDIFCellInst> chain) {
         // traverse carry chain in the cout direction
