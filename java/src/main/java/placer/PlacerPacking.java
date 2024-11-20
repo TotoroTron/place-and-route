@@ -146,7 +146,34 @@ public class PlacerPacking extends Placer {
          */
         writer.write("\n\nPrinting CARRYCells... (" + CARRYCells.size() + ")");
         printCells(CARRYCells);
+
+        writer.write("\n\nPrinting CARRYCell Nets...");
         for (Cell cell : CARRYCells) {
+            writer.write("\n\tcellName: " + cell.getName());
+            EDIFCellInst eci = cell.getEDIFCellInst();
+            writer.write("\n\tedifCellInst: " + eci.getName());
+
+            writer.write("\n\tPrinting EDIFPortInsts on this cell...");
+            Collection<EDIFPortInst> cellepis = eci.getPortInsts();
+            for (EDIFPortInst cellepi : cellepis) {
+                writer.write("\n\t\tEDIFPortInst: " + cellepi.getName());
+                EDIFNet enet = cellepi.getNet();
+                writer.write("\n\t\tEDIFNet: " + enet.getName());
+
+                writer.write("\n\t\tPrinting EDIFPortInsts on this net...");
+                Collection<EDIFPortInst> netepis = enet.getPortInsts();
+                for (EDIFPortInst netepi : netepis) {
+                    EDIFCellInst neteci = netepi.getCellInst();
+                    writer.write("\n\t\t\tEDIFPortInst: " + netepi.getName() + " on EDIFCellInst: " + neteci.getName());
+                }
+            }
+
+            // EDIFHierCellInst ehci = cell.getEDIFHierCellInst();
+            // Collection<EDIFHierPortInst> ehpis = ehci.getHierPortInsts();
+            // for (EDIFHierPortInst ehpi : ehpis) {
+            // EDIFNet enet = ehpi.getNet();
+
+            // }
             // placeCell(cell, occupiedPlacements);
         }
 
