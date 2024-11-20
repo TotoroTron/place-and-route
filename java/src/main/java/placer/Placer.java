@@ -180,6 +180,10 @@ public abstract class Placer {
 
     } // end placeCell()
 
+    protected void placeCARRYCell(Cell cell, Map<String, List<String>> occupiedPlacements) {
+
+    } // end placeCARRYCell
+
     protected boolean isBufferCell(Design design, EDIFHierCellInst ehci) {
         // Filter out IBUF/OBUF cells. They are already placed by constraints.
         Set<String> buffCells = new HashSet<>(Arrays.asList("IBUF", "OBUF"));
@@ -396,6 +400,27 @@ public abstract class Placer {
             }
         }
     } // end printCells
+
+    public void printCellNets(Cell cell) throws IOException {
+        writer.write("\n\tcellName: " + cell.getName());
+        EDIFCellInst eci = cell.getEDIFCellInst();
+        writer.write("\n\tedifCellInst: " + eci.getName());
+
+        writer.write("\n\tPrinting EDIFPortInsts on this cell...");
+        Collection<EDIFPortInst> cellepis = eci.getPortInsts();
+        for (EDIFPortInst cellepi : cellepis) {
+            writer.write("\n\t\tEDIFPortInst: " + cellepi.getName());
+            EDIFNet enet = cellepi.getNet();
+            writer.write("\n\t\tEDIFNet: " + enet.getName());
+
+            writer.write("\n\t\tPrinting EDIFPortInsts on this net...");
+            Collection<EDIFPortInst> netepis = enet.getPortInsts();
+            for (EDIFPortInst netepi : netepis) {
+                EDIFCellInst neteci = netepi.getCellInst();
+                writer.write("\n\t\t\tEDIFPortInst: " + netepi.getName() + " on EDIFCellInst: " + neteci.getName());
+            }
+        }
+    }
 
     public void printDesignCells(Design design, String fileName) throws IOException {
         writer.write("\n\nPrinting All Cells...");

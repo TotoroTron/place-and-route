@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -78,6 +79,7 @@ public class PlacerPacking extends Placer {
         Map<String, List<String>> occupiedPlacements = new HashMap<>();
 
         List<Cell> CARRYCells = new ArrayList<>();
+        List<LinkedList<Cell>> carryChains = new ArrayList<LinkedList<Cell>>();
         List<Cell> FFCells = new ArrayList<>();
         List<Cell> LUTCells = new ArrayList<>();
         List<Cell> DSPCells = new ArrayList<>();
@@ -147,35 +149,63 @@ public class PlacerPacking extends Placer {
         writer.write("\n\nPrinting CARRYCells... (" + CARRYCells.size() + ")");
         printCells(CARRYCells);
 
-        writer.write("\n\nPrinting CARRYCell Nets...");
         for (Cell cell : CARRYCells) {
-            writer.write("\n\tcellName: " + cell.getName());
+            // printCellNets(cell);
+
+            // Get this cell's logical edifcell
             EDIFCellInst eci = cell.getEDIFCellInst();
-            writer.write("\n\tedifCellInst: " + eci.getName());
 
-            writer.write("\n\tPrinting EDIFPortInsts on this cell...");
-            Collection<EDIFPortInst> cellepis = eci.getPortInsts();
-            for (EDIFPortInst cellepi : cellepis) {
-                writer.write("\n\t\tEDIFPortInst: " + cellepi.getName());
-                EDIFNet enet = cellepi.getNet();
-                writer.write("\n\t\tEDIFNet: " + enet.getName());
-
-                writer.write("\n\t\tPrinting EDIFPortInsts on this net...");
-                Collection<EDIFPortInst> netepis = enet.getPortInsts();
-                for (EDIFPortInst netepi : netepis) {
-                    EDIFCellInst neteci = netepi.getCellInst();
-                    writer.write("\n\t\t\tEDIFPortInst: " + netepi.getName() + " on EDIFCellInst: " + neteci.getName());
-                }
+            EDIFPortInst cout = eci.getPortInst("CO[3]");
+            EDIFNet coutNet = cout.getNet();
+            if (coutNet == null) {
+                // break carry chain upward direction
+                // place this cell, return to previous cell
+                // CARRYCells.remove(cell);
+                // is removing a list elem within a loop iterating over the list legal?
+            } else {
+                // goto carry sink cell
             }
 
-            // EDIFHierCellInst ehci = cell.getEDIFHierCellInst();
-            // Collection<EDIFHierPortInst> ehpis = ehci.getHierPortInsts();
-            // for (EDIFHierPortInst ehpi : ehpis) {
-            // EDIFNet enet = ehpi.getNet();
+            EDIFPortInst cin = eci.getPortInst("CIN");
+            EDIFNet cinNet = cin.getNet();
+            if (cinNet == null) {
+                // break carry chain downward direction
+                // place this cell, return to previous cell
+                // CARRYCells.remove(cell);
+            } else {
+                // goto carry source cell
+            }
 
-            // }
-            // placeCell(cell, occupiedPlacements);
         }
+
+        // alternatively...
+        Iterator<Cell> iterator = CARRYCells.iterator();
+
+        while (iterator.hasNext()) {
+            Cell cell = iterator.next();
+
+            EDIFCellInst eci = cell.getEDIFCellInst();
+
+            EDIFPortInst cout = eci.getPortInst("CO[3]");
+            EDIFNet coutNet = cout.getNet();
+            if (coutNet == null) {
+                // break carry chain upward direction
+                placeCell(cell, occupiedPlacements);
+                iterator.remove(); // safely remove the current cell
+                continue;
+            }
+
+            EDIFPortInst cin = eci.getPortInst("CIN");
+            EDIFNet cinNet = cin.getNet();
+            if (cinNet == null) {
+                // break carry chain downward direction
+                iterator.remove(); // safely remove the current cell
+                continue;
+            }
+        }
+
+        // maybe better to construct list of linkedlists first? carry chains have to be
+        // placed as CLB blocks like tetris
 
         /*
          * Find the input pins of the FF cell.
