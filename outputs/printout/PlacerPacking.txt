@@ -1,4 +1,337 @@
 PlacerPacking.txt
+	Found IBUF cell: IBUF
+	Found IBUF cell: IBUF
+	Found OBUF cell: OBUF
+	Found OBUF cell: OBUF
+	Found IBUF cell: IBUF
+	Found IBUF cell: IBUF
+	Found OBUF cell: OBUF
+	Found IBUF cell: IBUF
+	Found IBUF cell: IBUF
+	Found LUT cell: LUT6
+	Found LUT cell: LUT6
+	Found LUT cell: LUT4
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT5
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT6
+	Found LUT cell: LUT4
+	Found LUT cell: LUT4
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT3
+	Found LUT cell: LUT5
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT3
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT3
+	Found VCC cell: VCC
+	Found LUT cell: LUT6
+	Found LUT cell: LUT6
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT3
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT3
+	Found GND cell: GND
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT6
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found LUT cell: LUT6
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT4
+	Found LUT cell: LUT5
+	Found LUT cell: LUT6
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT3
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT5
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT6
+	Found LUT cell: LUT6
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT4
+	Found LUT cell: LUT6
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT1
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT4
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT6
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT4
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT6
+	Found LUT cell: LUT4
+	Found LUT cell: LUT3
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT3
+	Found LUT cell: LUT5
+	Found LUT cell: LUT4
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT4
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT4
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT4
+	Found LUT cell: LUT4
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT4
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT4
+	Found LUT cell: LUT5
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT4
+	Found LUT cell: LUT4
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT4
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT4
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found GND cell: GND
+	Found LUT cell: LUT3
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT4
+	Found LUT cell: LUT4
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT5
+	Found LUT cell: LUT4
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT4
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT5
+	Found LUT cell: LUT4
+	Found LUT cell: LUT4
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT4
+	Found LUT cell: LUT4
+	Found LUT cell: LUT6
+	Found LUT cell: LUT4
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT4
+	Found LUT cell: LUT4
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT4
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found LUT cell: LUT6
+	Found LUT cell: LUT2
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found VCC cell: VCC
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT6
+	Found LUT cell: LUT4
+	Found LUT cell: LUT6
+	Found FDRE cell: FDRE
+	Found GND cell: GND
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT6
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT4
+	Found LUT cell: LUT2
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT4
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT3
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT5
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found LUT cell: LUT2
+	Found LUT cell: LUT4
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT4
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT5
+	Found LUT cell: LUT5
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT3
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found GND cell: GND
+	Found GND cell: GND
+	Found LUT cell: LUT2
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found LUT cell: LUT2
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found LUT cell: LUT2
+	Found CARRY cell: CARRY4
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found LUT cell: LUT2
+	Found GND cell: GND
+	Found CARRY cell: CARRY4
+	Found FDRE cell: FDRE
+	Found VCC cell: VCC
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found VCC cell: VCC
+	Found CARRY cell: CARRY4
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found GND cell: GND
+	Found CARRY cell: CARRY4
+	Found LUT cell: LUT2
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found LUT cell: LUT2
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found LUT cell: LUT2
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found DSP cell: DSP48E1
+	Found FDRE cell: FDRE
+	Found CARRY cell: CARRY4
+	Found LUT cell: LUT2
+	Found LUT cell: LUT2
+	Found CARRY cell: CARRY4
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found LUT cell: LUT2
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found FDRE cell: FDRE
+	Found DSP cell: DSP48E1
+	Found LUT cell: LUT2
+	Found GND cell: GND
+	Found RAM cell: RAMB18E1
+	Found VCC cell: VCC
+	Found LUT cell: LUT2
+	Found GND cell: GND
+	Found RAM cell: RAMB18E1
+	Found LUT cell: LUT2
+	Found VCC cell: VCC
 
 Set of all Unique EDIF Cell Types... (14)
 	OBUF
@@ -16,340 +349,8 @@ Set of all Unique EDIF Cell Types... (14)
 	DSP48E1
 	GND
 
-Sorting Cells By Cell Type...
-	Found IBUF cell: IBUF
-	Found IBUF cell: IBUF
-	Found OBUF cell: OBUF
-	Found OBUF cell: OBUF
-	Found IBUF cell: IBUF
-	Found IBUF cell: IBUF
-	Found OBUF cell: OBUF
-	Found IBUF cell: IBUF
-	Found IBUF cell: IBUF
-	Found LUT cell: LUT6
-	Found LUT cell: LUT6
-	Found LUT cell: LUT4
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT5
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found LUT cell: LUT6
-	Found LUT cell: LUT4
-	Found LUT cell: LUT4
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT3
-	Found LUT cell: LUT5
-	Found FF cell: FDRE
-	Found LUT cell: LUT3
-	Found FF cell: FDRE
-	Found LUT cell: LUT3
-	Found VCC cell: VCC
-	Found LUT cell: LUT6
-	Found LUT cell: LUT6
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found LUT cell: LUT3
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT3
-	Found GND cell: GND
-	Found FF cell: FDRE
-	Found LUT cell: LUT6
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found LUT cell: LUT6
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT4
-	Found LUT cell: LUT5
-	Found LUT cell: LUT6
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT3
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT5
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT6
-	Found LUT cell: LUT6
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT4
-	Found LUT cell: LUT6
-	Found FF cell: FDRE
-	Found LUT cell: LUT1
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT4
-	Found FF cell: FDRE
-	Found LUT cell: LUT6
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT4
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found LUT cell: LUT6
-	Found LUT cell: LUT4
-	Found LUT cell: LUT3
-	Found FF cell: FDRE
-	Found LUT cell: LUT3
-	Found LUT cell: LUT5
-	Found LUT cell: LUT4
-	Found FF cell: FDRE
-	Found LUT cell: LUT4
-	Found FF cell: FDRE
-	Found LUT cell: LUT4
-	Found FF cell: FDRE
-	Found LUT cell: LUT4
-	Found LUT cell: LUT4
-	Found FF cell: FDRE
-	Found LUT cell: LUT4
-	Found FF cell: FDRE
-	Found LUT cell: LUT4
-	Found LUT cell: LUT5
-	Found FF cell: FDRE
-	Found LUT cell: LUT4
-	Found LUT cell: LUT4
-	Found FF cell: FDRE
-	Found LUT cell: LUT4
-	Found FF cell: FDRE
-	Found LUT cell: LUT4
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found GND cell: GND
-	Found LUT cell: LUT3
-	Found FF cell: FDRE
-	Found LUT cell: LUT4
-	Found LUT cell: LUT4
-	Found FF cell: FDRE
-	Found LUT cell: LUT5
-	Found LUT cell: LUT4
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT4
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT5
-	Found LUT cell: LUT4
-	Found LUT cell: LUT4
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT4
-	Found LUT cell: LUT4
-	Found LUT cell: LUT6
-	Found LUT cell: LUT4
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT4
-	Found LUT cell: LUT4
-	Found FF cell: FDRE
-	Found LUT cell: LUT4
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found LUT cell: LUT6
-	Found LUT cell: LUT2
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found VCC cell: VCC
-	Found FF cell: FDRE
-	Found LUT cell: LUT6
-	Found LUT cell: LUT4
-	Found LUT cell: LUT6
-	Found FF cell: FDRE
-	Found GND cell: GND
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found LUT cell: LUT6
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT4
-	Found LUT cell: LUT2
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT4
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT3
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT5
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found LUT cell: LUT2
-	Found LUT cell: LUT4
-	Found FF cell: FDRE
-	Found LUT cell: LUT4
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found LUT cell: LUT5
-	Found LUT cell: LUT5
-	Found FF cell: FDRE
-	Found LUT cell: LUT3
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found GND cell: GND
-	Found GND cell: GND
-	Found LUT cell: LUT2
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found LUT cell: LUT2
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found LUT cell: LUT2
-	Found CARRY cell: CARRY4
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found LUT cell: LUT2
-	Found GND cell: GND
-	Found CARRY cell: CARRY4
-	Found FF cell: FDRE
-	Found VCC cell: VCC
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found VCC cell: VCC
-	Found CARRY cell: CARRY4
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found GND cell: GND
-	Found CARRY cell: CARRY4
-	Found LUT cell: LUT2
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found LUT cell: LUT2
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found LUT cell: LUT2
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found DSP cell: DSP48E1
-	Found FF cell: FDRE
-	Found CARRY cell: CARRY4
-	Found LUT cell: LUT2
-	Found LUT cell: LUT2
-	Found CARRY cell: CARRY4
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found LUT cell: LUT2
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found FF cell: FDRE
-	Found DSP cell: DSP48E1
-	Found LUT cell: LUT2
-	Found GND cell: GND
-	Found RAM cell: RAMB18E1
-	Found VCC cell: VCC
-	Found LUT cell: LUT2
-	Found GND cell: GND
-	Found RAM cell: RAMB18E1
-	Found LUT cell: LUT2
-	Found VCC cell: VCC
+Printing Cells By Type...
+IBUF Cells (6):
 
 Printing all EDIFHierCellInsts of type IBUF... (6)
 	i_din_IBUF_inst
@@ -376,6 +377,7 @@ Printing all EDIFHierCellInsts of type IBUF... (6)
 		Printing all EDIFHierPortInsts ...(2)
 			i_rst_IBUF_inst/I
 			i_rst_IBUF_inst/O
+OBUF Cells (3):
 
 Printing all EDIFHierCellInsts of type OBUF... (3)
 	o_dout_OBUF_inst
@@ -390,6 +392,7 @@ Printing all EDIFHierCellInsts of type OBUF... (3)
 		Printing all EDIFHierPortInsts ...(2)
 			o_ready_OBUF_inst/I
 			o_ready_OBUF_inst/O
+VCC Cells (6):
 
 Printing all EDIFHierCellInsts of type VCC... (6)
 	fir_filter_inst/VCC
@@ -410,6 +413,7 @@ Printing all EDIFHierCellInsts of type VCC... (6)
 	fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/VCC
 		Printing all EDIFHierPortInsts ...(1)
 			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/VCC/P
+GND Cells (9):
 
 Printing all EDIFHierCellInsts of type GND... (9)
 	fir_filter_inst/GND
@@ -439,6 +443,7 @@ Printing all EDIFHierCellInsts of type GND... (9)
 	fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/GND
 		Printing all EDIFHierPortInsts ...(1)
 			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/GND/G
+CARRY Cells (6):
 
 Printing all EDIFHierCellInsts of type CARRY4... (6)
 	fir_filter_inst/inst/ov_sum_reg[4]_i_1
@@ -560,6 +565,7 @@ Printing all EDIFHierCellInsts of type CARRY4... (6)
 			fir_filter_inst/inst/ov_sum_reg[20]_i_1/S[1]
 			fir_filter_inst/inst/ov_sum_reg[20]_i_1/S[2]
 			fir_filter_inst/inst/ov_sum_reg[20]_i_1/S[3]
+FDRE Cells (162):
 
 Printing all EDIFHierCellInsts of type FDRE... (162)
 	fir_filter_inst/o_dout_valid_reg
@@ -1696,6 +1702,7 @@ Printing all EDIFHierCellInsts of type FDRE... (162)
 			fir_filter_inst/inst/ov_sum_reg[9]/D
 			fir_filter_inst/inst/ov_sum_reg[9]/Q
 			fir_filter_inst/inst/ov_sum_reg[9]/R
+LUT Cells (137):
 
 Printing all EDIFHierCellInsts of type LUT6... (137)
 	fir_filter_inst/FSM_sequential_state[0]_i_1__0
@@ -2570,6 +2577,7 @@ Printing all EDIFHierCellInsts of type LUT6... (137)
 			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1/I0
 			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1/I1
 			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1/O
+DSP Cells (2):
 
 Printing all EDIFHierCellInsts of type DSP48E1... (2)
 	fir_filter_inst/inst/sum_trunc1__0
@@ -3228,6 +3236,7 @@ Printing all EDIFHierCellInsts of type DSP48E1... (2)
 			fir_filter_inst/inst/sum_trunc1/RSTINMODE
 			fir_filter_inst/inst/sum_trunc1/RSTM
 			fir_filter_inst/inst/sum_trunc1/RSTP
+RAM Cells (2):
 
 Printing all EDIFHierCellInsts of type RAMB18E1... (2)
 	fir_filter_inst/xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg

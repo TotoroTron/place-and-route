@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -77,77 +78,44 @@ public class PlacerPacking extends Placer {
         EDIFNetlist netlist = design.getNetlist();
         List<EDIFHierCellInst> ehcis = netlist.getAllLeafHierCellInstances();
 
+        // Create a map to group cells by type
+        Map<String, List<EDIFHierCellInst>> cellGroups = new LinkedHashMap<>();
+        cellGroups.put("IBUF", new ArrayList<>());
+        cellGroups.put("OBUF", new ArrayList<>());
+        cellGroups.put("VCC", new ArrayList<>());
+        cellGroups.put("GND", new ArrayList<>());
+        cellGroups.put("CARRY", new ArrayList<>());
+        cellGroups.put("FDRE", new ArrayList<>());
+        cellGroups.put("LUT", new ArrayList<>());
+        cellGroups.put("DSP", new ArrayList<>());
+        cellGroups.put("RAM", new ArrayList<>());
+
         Set<String> uniqueEdifCellTypes = new HashSet<>();
 
-        // ordered by placement priority
-        List<EDIFHierCellInst> IBUFCells = new ArrayList<>();
-        List<EDIFHierCellInst> OBUFCells = new ArrayList<>();
-        List<EDIFHierCellInst> VCCCells = new ArrayList<>();
-        List<EDIFHierCellInst> GNDCells = new ArrayList<>();
-        List<EDIFHierCellInst> CARRYCells = new ArrayList<>();
-        List<EDIFHierCellInst> FFCells = new ArrayList<>();
-        List<EDIFHierCellInst> LUTCells = new ArrayList<>();
-        List<EDIFHierCellInst> DSPCells = new ArrayList<>();
-        List<EDIFHierCellInst> RAMCells = new ArrayList<>();
-
         for (EDIFHierCellInst ehci : ehcis) {
+            // populate unique cell tyeps
             uniqueEdifCellTypes.add(ehci.getCellType().getName());
+
+            // add this cell to the corresponding group based on type
+            for (String cellType : cellGroups.keySet()) {
+                if (ehci.getCellType().getName().contains(cellType)) {
+                    cellGroups.get(cellType).add(ehci);
+                    writer.write("\n\tFound " + cellType + " cell: " + ehci.getCellName());
+                    break; // once matched, no need to check other types
+                }
+            }
         }
+
         writer.write("\n\nSet of all Unique EDIF Cell Types... (" + uniqueEdifCellTypes.size() + ")");
         for (String edifCellType : uniqueEdifCellTypes) {
             writer.write("\n\t" + edifCellType);
         }
 
-        writer.write("\n\nSorting Cells By Cell Type...");
-        for (EDIFHierCellInst ehci : ehcis) {
-            if (ehci.getCellType().getName().contains("IBUF")) {
-                IBUFCells.add(ehci);
-                writer.write("\n\tFound IBUF cell: " + ehci.getCellName());
-            }
-            if (ehci.getCellType().getName().contains("OBUF")) {
-                OBUFCells.add(ehci);
-                writer.write("\n\tFound OBUF cell: " + ehci.getCellName());
-            }
-            if (ehci.getCellType().getName().contains("VCC")) {
-                VCCCells.add(ehci);
-                writer.write("\n\tFound VCC cell: " + ehci.getCellName());
-            }
-            if (ehci.getCellType().getName().contains("GND")) {
-                GNDCells.add(ehci);
-                writer.write("\n\tFound GND cell: " + ehci.getCellName());
-            }
-            if (ehci.getCellType().getName().contains("CARRY")) {
-                CARRYCells.add(ehci);
-                writer.write("\n\tFound CARRY cell: " + ehci.getCellName());
-            }
-            if (ehci.getCellType().getName().contains("FDRE")) {
-                FFCells.add(ehci);
-                writer.write("\n\tFound FF cell: " + ehci.getCellName());
-            }
-            if (ehci.getCellType().getName().contains("LUT")) {
-                LUTCells.add(ehci);
-                writer.write("\n\tFound LUT cell: " + ehci.getCellName());
-            }
-            if (ehci.getCellType().getName().contains("DSP")) {
-                DSPCells.add(ehci);
-                writer.write("\n\tFound DSP cell: " + ehci.getCellName());
-            }
-            if (ehci.getCellType().getName().contains("RAM")) {
-                RAMCells.add(ehci);
-                writer.write("\n\tFound RAM cell: " + ehci.getCellName());
-            }
+        writer.write("\n\nPrinting Cells By Type...");
+        for (Map.Entry<String, List<EDIFHierCellInst>> entry : cellGroups.entrySet()) {
+            writer.write("\n" + entry.getKey() + " Cells (" + entry.getValue().size() + "):");
+            printEDIFCellList(entry.getValue());
         }
-
-        printEDIFCellList(IBUFCells);
-        printEDIFCellList(OBUFCells);
-        printEDIFCellList(VCCCells);
-        printEDIFCellList(GNDCells);
-        printEDIFCellList(CARRYCells);
-        printEDIFCellList(FFCells);
-        printEDIFCellList(LUTCells);
-        printEDIFCellList(DSPCells);
-        printEDIFCellList(RAMCells);
-
     }
 
     public void placeDesignOld() throws IOException {
