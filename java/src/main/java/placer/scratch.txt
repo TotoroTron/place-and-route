@@ -1,0 +1,60 @@
+
+        for (Cell cell : CARRYCells) {
+            // printCellNets(cell);
+
+            // Get this cell's logical edifcell
+            EDIFCellInst eci = cell.getEDIFCellInst();
+
+            EDIFPortInst cout = eci.getPortInst("CO[3]");
+            EDIFNet coutNet = cout.getNet();
+            if (coutNet == null) {
+                // break carry chain upward direction
+                // place this cell, return to previous cell
+                // CARRYCells.remove(cell);
+                // is removing a list elem within a loop iterating over the list legal?
+            } else {
+                // goto carry sink cell
+            }
+
+            EDIFPortInst cin = eci.getPortInst("CIN");
+            EDIFNet cinNet = cin.getNet();
+            if (cinNet == null) {
+                // break carry chain downward direction
+                // place this cell, return to previous cell
+                // CARRYCells.remove(cell);
+            } else {
+                // goto carry source cell
+            }
+
+        }
+
+        // alternatively...
+        // maybe better to construct list of linkedlists first? carry chains have to be
+        // placed as CLB blocks like tetris
+        Iterator<Cell> iterator = CARRYCells.iterator();
+        List<LinkedList<Cell>> carryChains = new ArrayList<LinkedList<Cell>>();
+
+        while (iterator.hasNext()) {
+            LinkedList<Cell> chain = new LinkedList<>();
+            Cell cell = iterator.next();
+
+            EDIFCellInst eci = cell.getEDIFCellInst();
+
+            EDIFPortInst cout = eci.getPortInst("CO[3]");
+            EDIFNet coutNet = cout.getNet();
+            if (coutNet == null) {
+                // break carry chain upward direction
+
+                iterator.remove(); // safely remove the current cell
+                continue;
+            }
+
+            EDIFPortInst cin = eci.getPortInst("CIN");
+            EDIFNet cinNet = cin.getNet();
+            if (cinNet == null) {
+                // break carry chain downward direction
+                iterator.remove(); // safely remove the current cell
+                continue;
+            }
+        }
+

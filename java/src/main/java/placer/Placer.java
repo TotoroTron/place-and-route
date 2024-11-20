@@ -1,9 +1,11 @@
 package placer;
 
 import java.util.stream.Collectors;
+import java.util.Iterator;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -180,9 +182,93 @@ public abstract class Placer {
 
     } // end placeCell()
 
-    protected void placeCARRYCell(Cell cell, Map<String, List<String>> occupiedPlacements) {
+    protected List<LinkedList<Cell>> buildCARRYChains(List<Cell> CARRYCells) throws IOException {
+        Iterator<Cell> iterator = CARRYCells.iterator();
+        List<LinkedList<Cell>> carryChains = new ArrayList<LinkedList<Cell>>();
 
-    } // end placeCARRYCell
+        // while (iterator.hasNext()) {
+        // LinkedList<Cell> chain = new LinkedList<>();
+        // Cell cell = iterator.next();
+
+        // // traverse carry chain in the cout direction
+        // boolean hasCoutSink = true;
+        // while (hasCoutSink) {
+        // EDIFCellInst eci = cell.getEDIFCellInst();
+        // EDIFPortInst cout = eci.getPortInst("CO[3]");
+        // EDIFNet coutNet = cout.getNet();
+        // if (coutNet != null) {
+        // // break carry chain upward direction
+        // writer.write("\n\nPrinting coutNetPorts... ");
+        // Collection<EDIFPortInst> coutNetPorts = coutNet.getPortInsts();
+        // for (EDIFPortInst coutNetPort : coutNetPorts) {
+        // writer.write("\n\t" + coutNetPort.getName());
+        // }
+
+        // // iterator.remove(); // safely remove the current cell
+        // }
+
+        // }
+
+        // }
+
+        for (Cell cell : CARRYCells) {
+            writer.write("\n\nCell: " + cell.getName());
+
+            // traverse carry chain in the cout direction
+            EDIFCellInst eci = cell.getEDIFCellInst();
+            EDIFPortInst cout = eci.getPortInst("CO[3]");
+            if (cout == null) {
+                writer.write("\n\tcout = null!");
+                continue;
+            }
+            EDIFNet coutNet = cout.getNet();
+            if (coutNet == null) {
+                writer.write("\n\tcoutNet = null!");
+                continue;
+            }
+            Collection<EDIFPortInst> coutNetPorts = coutNet.getPortInsts();
+            Map<String, EDIFPortInst> portMap = coutNetPorts.stream()
+                    .collect(Collectors.toMap(EDIFPortInst::getName, portInst -> portInst));
+            // this is so ass
+            EDIFPortInst coutSink = portMap.get("CI");
+            writer.write("\n\tSink: " + coutSink.getName());
+
+        }
+        return carryChains;
+
+    } // end buildCARRYChains
+
+    protected void traverseCarryCoutDirection(EDIFCellInst eci, LinkedList<EDIFCellInst> chain) {
+        // traverse carry chain in the cout direction
+        EDIFPortInst cout = eci.getPortInst("CO[3]");
+        if (cout != null) {
+            EDIFNet coutNet = cout.getNet();
+            Collection<EDIFPortInst> coutNetPorts = coutNet.getPortInsts();
+            Map<String, EDIFPortInst> portMap = coutNetPorts.stream()
+                    .collect(Collectors.toMap(EDIFPortInst::getName, portInst -> portInst));
+            // this is so ass
+            EDIFPortInst coutSink = portMap.get("CI");
+            EDIFCellInst coutSinkCell = coutSink.getCellInst();
+            traverseCarryCoutDirection(coutSinkCell, chain);
+        }
+        chain.addFirst(eci);
+    }
+
+    protected void traverseCarryCinDirection(EDIFCellInst eci, LinkedList<EDIFCellInst> chain) {
+        // traverse carry chain in the cin direction
+        // add as you go
+        EDIFPortInst cin = eci.getPortInst("CIN");
+        if (cin != null) {
+            EDIFNet cinNet = cin.getNet();
+            Collection<EDIFPortInst> cinNetPorts = cinNet.getPortInsts();
+            Map<String, EDIFPortInst> portMap = cinNetPorts.stream()
+                    .collect(Collectors.toMap(EDIFPortInst::getName, portInst -> portInst));
+            EDIFPortInst cinSink = portMap.get("CO[3]");
+            EDIFCellInst cinSinkCell = cinSink.getCellInst();
+            chain.addFirst(eci);
+            traverseCarryCinDirection(cinSinkCell, chain);
+        }
+    }
 
     protected boolean isBufferCell(Design design, EDIFHierCellInst ehci) {
         // Filter out IBUF/OBUF cells. They are already placed by constraints.

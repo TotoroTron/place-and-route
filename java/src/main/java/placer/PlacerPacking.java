@@ -73,13 +73,15 @@ public class PlacerPacking extends Placer {
     }
 
     public @Override void placeDesign() throws IOException {
+        // this might all just be garbage.
+        // should not spawn all the Cells
+        // work on the EDIFCell level first, then create and place each cell in one shot
         writer.write("\n\nPlacing Design...");
 
         List<Cell> cells = spawnCells(); // returns placeable cells (no buffer or port cells)
         Map<String, List<String>> occupiedPlacements = new HashMap<>();
 
         List<Cell> CARRYCells = new ArrayList<>();
-        List<LinkedList<Cell>> carryChains = new ArrayList<LinkedList<Cell>>();
         List<Cell> FFCells = new ArrayList<>();
         List<Cell> LUTCells = new ArrayList<>();
         List<Cell> DSPCells = new ArrayList<>();
@@ -148,64 +150,7 @@ public class PlacerPacking extends Placer {
          */
         writer.write("\n\nPrinting CARRYCells... (" + CARRYCells.size() + ")");
         printCells(CARRYCells);
-
-        for (Cell cell : CARRYCells) {
-            // printCellNets(cell);
-
-            // Get this cell's logical edifcell
-            EDIFCellInst eci = cell.getEDIFCellInst();
-
-            EDIFPortInst cout = eci.getPortInst("CO[3]");
-            EDIFNet coutNet = cout.getNet();
-            if (coutNet == null) {
-                // break carry chain upward direction
-                // place this cell, return to previous cell
-                // CARRYCells.remove(cell);
-                // is removing a list elem within a loop iterating over the list legal?
-            } else {
-                // goto carry sink cell
-            }
-
-            EDIFPortInst cin = eci.getPortInst("CIN");
-            EDIFNet cinNet = cin.getNet();
-            if (cinNet == null) {
-                // break carry chain downward direction
-                // place this cell, return to previous cell
-                // CARRYCells.remove(cell);
-            } else {
-                // goto carry source cell
-            }
-
-        }
-
-        // alternatively...
-        Iterator<Cell> iterator = CARRYCells.iterator();
-
-        while (iterator.hasNext()) {
-            Cell cell = iterator.next();
-
-            EDIFCellInst eci = cell.getEDIFCellInst();
-
-            EDIFPortInst cout = eci.getPortInst("CO[3]");
-            EDIFNet coutNet = cout.getNet();
-            if (coutNet == null) {
-                // break carry chain upward direction
-                placeCell(cell, occupiedPlacements);
-                iterator.remove(); // safely remove the current cell
-                continue;
-            }
-
-            EDIFPortInst cin = eci.getPortInst("CIN");
-            EDIFNet cinNet = cin.getNet();
-            if (cinNet == null) {
-                // break carry chain downward direction
-                iterator.remove(); // safely remove the current cell
-                continue;
-            }
-        }
-
-        // maybe better to construct list of linkedlists first? carry chains have to be
-        // placed as CLB blocks like tetris
+        buildCARRYChains(CARRYCells);
 
         /*
          * Find the input pins of the FF cell.
@@ -214,9 +159,6 @@ public class PlacerPacking extends Placer {
          */
         writer.write("\n\nPrinting FFCells... (" + FFCells.size() + ")");
         printCells(FFCells);
-        for (Cell cell : FFCells) {
-            // placeCell(cell, occupiedPlacements);
-        }
 
         /*
          * By now, most LUTs should already be placed.
