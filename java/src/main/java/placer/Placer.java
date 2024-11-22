@@ -195,36 +195,124 @@ public abstract class Placer {
         }
     }
 
-    protected void traverseCarryCoutDirection(EDIFCellInst eci, LinkedList<EDIFCellInst> chain) {
-        // traverse carry chain in the cout direction
-        EDIFPortInst cout = eci.getPortInst("CO[3]");
-        if (cout != null) {
-            EDIFNet coutNet = cout.getNet();
-            Collection<EDIFPortInst> coutNetPorts = coutNet.getPortInsts();
-            Map<String, EDIFPortInst> portMap = coutNetPorts.stream()
-                    .collect(Collectors.toMap(EDIFPortInst::getName, portInst -> portInst));
-            // this is so ass
-            EDIFPortInst coutSink = portMap.get("CI");
-            EDIFCellInst coutSinkCell = coutSink.getCellInst();
-            traverseCarryCoutDirection(coutSinkCell, chain);
+    protected void buildCarryChain(EDIFHierCellInst ehci, List<EDIFHierCellInst> chain) {
+        EDIFNetlist netlist = design.getNetlist();
+
+        String earliest = ehci.getFullHierarchicalInstName();
+
+        String cin = ehci.getPortInst("CI").getHierarchicalNetName();
+        System.out.println("CIN: " + cin);
+        EDIFHierPortInst cinPort = ehci.getPortInst("CI");
+        System.out.println("CINPORT: " + cinPort.getFullHierarchicalInstName());
+
+        while (true) {
+            EDIFHierNet cinNet = cinPort.getHierarchicalNet();
+            System.out.println("CINNET: " + cinNet.getHierarchicalInstName());
+            Collection<EDIFHierPortInst> cinNetPorts = cinNet.getPortInsts();
+            Map<String, EDIFHierPortInst> portMap = cinNetPorts.stream()
+                    .collect(Collectors.toMap(
+                            portInst -> portInst.getPortInst().getName(), // Key mapper
+                            portInst -> portInst // Value mapper
+                    ));
+            for (Map.Entry<String, EDIFHierPortInst> entry : portMap.entrySet()) {
+                String key = entry.getKey();
+                EDIFHierPortInst val = entry.getValue();
+                System.out.println("Key: " + key + "Value: " + val.getFullHierarchicalInstName());
+            }
+            EDIFHierPortInst cinSource = portMap.get("CO[3]");
+            EDIFPortInst cinSourceInst = cinSource.getPortInst();
+
+            EDIFCellInst cinSourceCellInst = cinSourceInst.getCellInst();
+            for (EDIFPortInst ehpi : cinSourceCellInst.getPortInsts()) {
+                System.out.println("\tCINSOURCECELLPORT: " + ehpi.getFullName() + "/"
+                        + ehpi.getName());
+            }
+            earliest = cinSourceCellInst.getCellName();
+            System.out.println("\tEarliest: " + earliest);
+            if (cinSourceCellInst.getPortInst("CI") != null) {
+                cin = cinSourceCellInst.getPortInst("CI").getFullName();
+            } else {
+                break;
+            }
         }
-        chain.addFirst(eci);
+
+        EDIFHierCellInst earliestCell = netlist.getHierCellInstFromName(earliest);
+        for (EDIFHierPortInst port : earliestCell.getHierPortInsts()) {
+            System.out.println("Earliest cell port: " + port.getPortInst().getFullName());
+        }
+
+        System.out.println("Earliest cell: " + netlist.getHierCellInstFromName(earliest).getCellName());
+
+        String cout = netlist.getHierCellInstFromName(earliest).getInst().getPortInst("CO[3]").getFullName();
+        chain.add(netlist.getHierCellInstFromName(earliest));
+        while (true) {
+            EDIFHierNet coutNet = netlist.getHierPortInstFromName(cout).getHierarchicalNet();
+            Collection<EDIFHierPortInst> coutNetPorts = coutNet.getPortInsts();
+            Map<String, EDIFHierPortInst> portMap = coutNetPorts.stream()
+                    .collect(Collectors.toMap(
+                            portInst -> portInst.getPortInst().getName(), // Key mapper
+                            portInst -> portInst // Value mapper
+                    ));
+            EDIFHierPortInst coutSink = portMap.get("CI");
+            EDIFHierCellInst coutSinkCell = coutSink.getHierarchicalInst();
+            chain.add(coutSinkCell);
+            if (coutSinkCell.getPortInst("CO[3]") != null) {
+                cout = coutSinkCell.getPortInst("CO[3]").getFullHierarchicalInstName();
+            } else {
+                break;
+            }
+        }
+
     }
 
-    protected void traverseCarryCinDirection(EDIFCellInst eci, LinkedList<EDIFCellInst> chain) {
+    protected void traverseCarryCoutDirection(EDIFHierCellInst ehci, LinkedList<EDIFHierCellInst> chain) {
+        System.out.println("Traversed edif cell: " + ehci.getFullHierarchicalInstName());
+        // traverse carry chain in the cout direction
+        EDIFHierPortInst cout = ehci.getPortInst("CO[3]");
+        if (cout == null) {
+            System.out.println("EDIFHierPortInst NULL!");
+            return;
+        }
+        EDIFHierNet coutNet = cout.getHierarchicalNet();
+        if (coutNet == null) {
+            System.out.println("EDIFHierNet NULL!");
+            return;
+        }
+        Collection<EDIFHierPortInst> coutNetPorts = coutNet.getPortInsts();
+        Map<String, EDIFHierPortInst> portMap = coutNetPorts.stream()
+                .collect(Collectors.toMap(
+                        portInst -> portInst.getPortInst().getName(), // Key mapper
+                        portInst -> portInst // Value mapper
+                ));
+        // this is so ass
+        for (Map.Entry<String, EDIFHierPortInst> entry : portMap.entrySet()) {
+            System.out.println("Port Entry: " + entry.getKey());
+        }
+        EDIFHierPortInst coutSink = portMap.get("CI");
+        EDIFHierCellInst coutSinkCell = coutSink.getHierarchicalInst();
+        traverseCarryCoutDirection(coutSinkCell, chain);
+        chain.addFirst(ehci);
+        return;
+    }
+
+    protected void traverseCarryCinDirection(EDIFHierCellInst ehci, LinkedList<EDIFHierCellInst> chain) {
         // traverse carry chain in the cin direction
         // add as you go
-        EDIFPortInst cin = eci.getPortInst("CIN");
-        if (cin != null) {
-            EDIFNet cinNet = cin.getNet();
-            Collection<EDIFPortInst> cinNetPorts = cinNet.getPortInsts();
-            Map<String, EDIFPortInst> portMap = cinNetPorts.stream()
-                    .collect(Collectors.toMap(EDIFPortInst::getName, portInst -> portInst));
-            EDIFPortInst cinSink = portMap.get("CO[3]");
-            EDIFCellInst cinSinkCell = cinSink.getCellInst();
-            chain.addFirst(eci);
-            traverseCarryCinDirection(cinSinkCell, chain);
-        }
+        List<EDIFHierCellInst> visitedCells = new ArrayList<>();
+        EDIFHierPortInst cin = ehci.getPortInst("CIN");
+        if (cin == null)
+            return;
+        EDIFHierNet cinNet = cin.getInternalNet();
+        if (cinNet == null)
+            return;
+        Collection<EDIFHierPortInst> cinNetPorts = cinNet.getPortInsts();
+        Map<String, EDIFHierPortInst> portMap = cinNetPorts.stream()
+                .collect(Collectors.toMap(EDIFHierPortInst::getFullHierarchicalInstName, portInst -> portInst));
+        // this is so ass
+        EDIFHierPortInst cinSink = portMap.get("CO[3]");
+        EDIFHierCellInst cinSinkCell = cinSink.getHierarchicalInst();
+        chain.addFirst(ehci);
+        traverseCarryCinDirection(cinSinkCell, chain);
     }
 
     protected boolean isBufferCell(Design design, EDIFHierCellInst ehci) {

@@ -84,11 +84,11 @@ public class PlacerPacking extends Placer {
         cellGroups.put("OBUF", new ArrayList<>());
         cellGroups.put("VCC", new ArrayList<>());
         cellGroups.put("GND", new ArrayList<>());
-        cellGroups.put("CARRY", new ArrayList<>());
+        cellGroups.put("CARRY4", new ArrayList<>());
         cellGroups.put("FDRE", new ArrayList<>());
         cellGroups.put("LUT", new ArrayList<>());
-        cellGroups.put("DSP", new ArrayList<>());
-        cellGroups.put("RAM", new ArrayList<>());
+        cellGroups.put("DSP48E1", new ArrayList<>());
+        cellGroups.put("RAMB18E1", new ArrayList<>());
 
         Set<String> uniqueEdifCellTypes = new HashSet<>();
 
@@ -115,6 +115,30 @@ public class PlacerPacking extends Placer {
         for (Map.Entry<String, List<EDIFHierCellInst>> entry : cellGroups.entrySet()) {
             writer.write("\n" + entry.getKey() + " Cells (" + entry.getValue().size() + "):");
             printEDIFCellList(entry.getValue());
+        }
+
+        List<List<EDIFHierCellInst>> CARRYChains = new LinkedList<>();
+        List<EDIFHierCellInst> CARRYCells = cellGroups.get("CARRY4");
+        int counter = 0;
+        while (!CARRYCells.isEmpty()) {
+            List<EDIFHierCellInst> chain = new ArrayList<>();
+            EDIFHierCellInst ehci = CARRYCells.get(0);
+            buildCarryChain(ehci, chain);
+            CARRYChains.add(chain);
+            CARRYCells.removeAll(chain);
+            writer.write("\n\nPrinting cells in this carry chain...");
+            for (EDIFHierCellInst cell : chain) {
+                writer.write("\n\t" + cell.getFullHierarchicalInstName());
+            }
+            writer.write("\n\nPrinting CARRY cell group...");
+            for (EDIFHierCellInst cell : CARRYCells) {
+                writer.write("\n\t" + cell.getFullHierarchicalInstName());
+            }
+            counter++;
+            if (counter > 40) {
+
+                break;
+            }
         }
     }
 

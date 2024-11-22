@@ -276,23 +276,23 @@ PlacerPacking.txt
 	Found FDRE cell: FDRE
 	Found LUT cell: LUT2
 	Found LUT cell: LUT2
-	Found CARRY cell: CARRY4
+	Found CARRY4 cell: CARRY4
 	Found FDRE cell: FDRE
 	Found FDRE cell: FDRE
 	Found LUT cell: LUT2
 	Found LUT cell: LUT2
 	Found GND cell: GND
-	Found CARRY cell: CARRY4
+	Found CARRY4 cell: CARRY4
 	Found FDRE cell: FDRE
 	Found VCC cell: VCC
 	Found FDRE cell: FDRE
 	Found FDRE cell: FDRE
 	Found VCC cell: VCC
-	Found CARRY cell: CARRY4
+	Found CARRY4 cell: CARRY4
 	Found FDRE cell: FDRE
 	Found FDRE cell: FDRE
 	Found GND cell: GND
-	Found CARRY cell: CARRY4
+	Found CARRY4 cell: CARRY4
 	Found LUT cell: LUT2
 	Found LUT cell: LUT2
 	Found FDRE cell: FDRE
@@ -306,12 +306,12 @@ PlacerPacking.txt
 	Found FDRE cell: FDRE
 	Found LUT cell: LUT2
 	Found FDRE cell: FDRE
-	Found DSP cell: DSP48E1
+	Found DSP48E1 cell: DSP48E1
 	Found FDRE cell: FDRE
-	Found CARRY cell: CARRY4
+	Found CARRY4 cell: CARRY4
 	Found LUT cell: LUT2
 	Found LUT cell: LUT2
-	Found CARRY cell: CARRY4
+	Found CARRY4 cell: CARRY4
 	Found LUT cell: LUT2
 	Found FDRE cell: FDRE
 	Found LUT cell: LUT2
@@ -322,14 +322,14 @@ PlacerPacking.txt
 	Found FDRE cell: FDRE
 	Found FDRE cell: FDRE
 	Found FDRE cell: FDRE
-	Found DSP cell: DSP48E1
+	Found DSP48E1 cell: DSP48E1
 	Found LUT cell: LUT2
 	Found GND cell: GND
-	Found RAM cell: RAMB18E1
+	Found RAMB18E1 cell: RAMB18E1
 	Found VCC cell: VCC
 	Found LUT cell: LUT2
 	Found GND cell: GND
-	Found RAM cell: RAMB18E1
+	Found RAMB18E1 cell: RAMB18E1
 	Found LUT cell: LUT2
 	Found VCC cell: VCC
 
@@ -443,7 +443,7 @@ Printing all EDIFHierCellInsts of type GND... (9)
 	fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/GND
 		Printing all EDIFHierPortInsts ...(1)
 			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/GND/G
-CARRY Cells (6):
+CARRY4 Cells (6):
 
 Printing all EDIFHierCellInsts of type CARRY4... (6)
 	fir_filter_inst/inst/ov_sum_reg[4]_i_1
@@ -2577,7 +2577,7 @@ Printing all EDIFHierCellInsts of type LUT6... (137)
 			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1/I0
 			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1/I1
 			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1/O
-DSP Cells (2):
+DSP48E1 Cells (2):
 
 Printing all EDIFHierCellInsts of type DSP48E1... (2)
 	fir_filter_inst/inst/sum_trunc1__0
@@ -3236,7 +3236,7 @@ Printing all EDIFHierCellInsts of type DSP48E1... (2)
 			fir_filter_inst/inst/sum_trunc1/RSTINMODE
 			fir_filter_inst/inst/sum_trunc1/RSTM
 			fir_filter_inst/inst/sum_trunc1/RSTP
-RAM Cells (2):
+RAMB18E1 Cells (2):
 
 Printing all EDIFHierCellInsts of type RAMB18E1... (2)
 	fir_filter_inst/xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg
@@ -3406,166 +3406,4 @@ Printing all EDIFHierCellInsts of type RAMB18E1... (2)
 			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DIBDI[4]
 			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DIBDI[5]
 			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DIBDI[6]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DIBDI[7]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DIBDI[8]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DIBDI[9]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DIPADIP[0]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DIPADIP[1]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DIPBDIP[0]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DIPBDIP[1]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOADO[0]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOADO[10]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOADO[11]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOADO[12]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOADO[13]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOADO[14]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOADO[15]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOADO[1]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOADO[2]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOADO[3]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOADO[4]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOADO[5]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOADO[6]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOADO[7]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOADO[8]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOADO[9]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOBDO[0]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOBDO[1]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOBDO[2]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOBDO[3]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOBDO[4]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOBDO[5]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOPADOP[0]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/DOPADOP[1]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/ENARDEN
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/ENBWREN
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/REGCEAREGCE
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/REGCEB
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/RSTRAMARSTRAM
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/RSTRAMB
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/RSTREGARSTREG
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/RSTREGB
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/WEA[0]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/WEA[1]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/WEBWE[0]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/WEBWE[1]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/WEBWE[2]
-			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/WEBWE[3]
-
-Printing All Nets...
-	Net: i_en_IBUF
-		SitePinInsts: None!
-	Net: GLOBAL_LOGIC0
-		SitePinInsts: None!
-	Net: i_din
-		SitePinInsts: None!
-	Net: i_rst
-		SitePinInsts: None!
-	Net: o_dout
-		SitePinInsts: None!
-	Net: i_rst_IBUF
-		SitePinInsts: None!
-	Net: i_din_valid
-		SitePinInsts: None!
-	Net: i_din_IBUF
-		SitePinInsts: None!
-	Net: i_ready
-		SitePinInsts: None!
-	Net: i_en
-		SitePinInsts: None!
-	Net: i_clk_IBUF
-		SitePinInsts: None!
-	Net: serializer_inst/o_dout_valid_OBUF
-		SitePinInsts: None!
-	Net: o_dout_valid
-		SitePinInsts: None!
-	Net: i_din_valid_IBUF
-		SitePinInsts: None!
-	Net: o_ready
-		SitePinInsts: None!
-	Net: deserializer_inst/o_ready_OBUF
-		SitePinInsts: None!
-	Net: i_clk
-		SitePinInsts: None!
-	Net: serializer_inst/Q[0]
-		SitePinInsts: None!
-	Net: i_ready_IBUF
-		SitePinInsts: None!
-
-Printing All Cells...
-	Cell: i_ready_IBUF_inst                        isPlaced = true      
-		Site: IOB_X1Y131
-		SiteInst: IOB_X1Y131 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: i_din                                    isPlaced = true      
-		Site: IOB_X1Y142
-		SiteInst: IOB_X1Y142 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: o_dout                                   isPlaced = true      
-		Site: IOB_X1Y87
-		SiteInst: IOB_X1Y87 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: i_rst                                    isPlaced = true      
-		Site: IOB_X1Y135
-		SiteInst: IOB_X1Y135 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: i_din_valid                              isPlaced = true      
-		Site: IOB_X1Y141
-		SiteInst: IOB_X1Y141 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: o_ready_OBUF_inst                        isPlaced = true      
-		Site: IOB_X1Y107
-		SiteInst: IOB_X1Y107 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: i_clk_IBUF_inst                          isPlaced = true      
-		Site: IOB_X1Y124
-		SiteInst: IOB_X1Y124 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: i_ready                                  isPlaced = true      
-		Site: IOB_X1Y131
-		SiteInst: IOB_X1Y131 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: i_en_IBUF_inst                           isPlaced = true      
-		Site: IOB_X1Y136
-		SiteInst: IOB_X1Y136 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: i_en                                     isPlaced = true      
-		Site: IOB_X1Y136
-		SiteInst: IOB_X1Y136 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: i_rst_IBUF_inst                          isPlaced = true      
-		Site: IOB_X1Y135
-		SiteInst: IOB_X1Y135 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: i_din_IBUF_inst                          isPlaced = true      
-		Site: IOB_X1Y142
-		SiteInst: IOB_X1Y142 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: o_dout_valid                             isPlaced = true      
-		Site: IOB_X1Y88
-		SiteInst: IOB_X1Y88 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: o_dout_OBUF_inst                         isPlaced = true      
-		Site: IOB_X1Y87
-		SiteInst: IOB_X1Y87 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: o_ready                                  isPlaced = true      
-		Site: IOB_X1Y107
-		SiteInst: IOB_X1Y107 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: o_dout_valid_OBUF_inst                   isPlaced = true      
-		Site: IOB_X1Y88
-		SiteInst: IOB_X1Y88 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: i_clk                                    isPlaced = true      
-		Site: IOB_X1Y124
-		SiteInst: IOB_X1Y124 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: i_din_valid_IBUF_inst                    isPlaced = true      
-		Site: IOB_X1Y141
-		SiteInst: IOB_X1Y141 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: <LOCKED>                                 isPlaced = false     
-		Site: OLOGIC_X1Y107
-		SiteInst: OLOGIC_X1Y107 	Placed = true
-		SiteTypeEnum: OLOGICE3
+			fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr
