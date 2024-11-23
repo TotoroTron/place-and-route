@@ -3084,4 +3084,165 @@ Printing all EDIFCellInsts of type RAMB18E1... (2)
 			gen_wr_a.gen_word_narrow.mem_reg/DOADO[10]
 			gen_wr_a.gen_word_narrow.mem_reg/DOADO[11]
 			gen_wr_a.gen_word_narrow.mem_reg/DOADO[12]
-			gen_wr_a.gen_word_narrow.mem_re
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[13]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[14]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[15]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[1]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[2]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[3]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[4]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[5]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[6]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[7]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[8]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[9]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[0]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[1]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[2]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[3]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[4]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[5]
+			gen_wr_a.gen_word_narrow.mem_reg/DOPADOP[0]
+			gen_wr_a.gen_word_narrow.mem_reg/DOPADOP[1]
+			gen_wr_a.gen_word_narrow.mem_reg/ENARDEN
+			gen_wr_a.gen_word_narrow.mem_reg/ENBWREN
+			gen_wr_a.gen_word_narrow.mem_reg/REGCEAREGCE
+			gen_wr_a.gen_word_narrow.mem_reg/REGCEB
+			gen_wr_a.gen_word_narrow.mem_reg/RSTRAMARSTRAM
+			gen_wr_a.gen_word_narrow.mem_reg/RSTRAMB
+			gen_wr_a.gen_word_narrow.mem_reg/RSTREGARSTREG
+			gen_wr_a.gen_word_narrow.mem_reg/RSTREGB
+			gen_wr_a.gen_word_narrow.mem_reg/WEA[0]
+			gen_wr_a.gen_word_narrow.mem_reg/WEA[1]
+			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[0]
+			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[1]
+			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[2]
+			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[3]
+
+Printing cells in this carry chain...
+	ov_sum_reg[0]_i_2
+	ov_sum_reg[4]_i_1
+	ov_sum_reg[8]_i_1
+	ov_sum_reg[12]_i_1
+	ov_sum_reg[16]_i_1
+	ov_sum_reg[20]_i_1
+
+Printing CARRY cell group...
+
+Printing All Nets...
+	Net: i_en_IBUF
+		SitePinInsts: None!
+	Net: GLOBAL_LOGIC0
+		SitePinInsts: None!
+	Net: i_din
+		SitePinInsts: None!
+	Net: i_rst
+		SitePinInsts: None!
+	Net: o_dout
+		SitePinInsts: None!
+	Net: i_rst_IBUF
+		SitePinInsts: None!
+	Net: i_din_valid
+		SitePinInsts: None!
+	Net: i_din_IBUF
+		SitePinInsts: None!
+	Net: i_ready
+		SitePinInsts: None!
+	Net: i_en
+		SitePinInsts: None!
+	Net: i_clk_IBUF
+		SitePinInsts: None!
+	Net: serializer_inst/o_dout_valid_OBUF
+		SitePinInsts: None!
+	Net: o_dout_valid
+		SitePinInsts: None!
+	Net: i_din_valid_IBUF
+		SitePinInsts: None!
+	Net: o_ready
+		SitePinInsts: None!
+	Net: deserializer_inst/o_ready_OBUF
+		SitePinInsts: None!
+	Net: i_clk
+		SitePinInsts: None!
+	Net: serializer_inst/Q[0]
+		SitePinInsts: None!
+	Net: i_ready_IBUF
+		SitePinInsts: None!
+
+Printing All Cells...
+	Cell: i_ready_IBUF_inst                        isPlaced = true      
+		Site: IOB_X1Y131
+		SiteInst: IOB_X1Y131 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: i_din                                    isPlaced = true      
+		Site: IOB_X1Y142
+		SiteInst: IOB_X1Y142 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: o_dout                                   isPlaced = true      
+		Site: IOB_X1Y87
+		SiteInst: IOB_X1Y87 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: i_rst                                    isPlaced = true      
+		Site: IOB_X1Y135
+		SiteInst: IOB_X1Y135 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: i_din_valid                              isPlaced = true      
+		Site: IOB_X1Y141
+		SiteInst: IOB_X1Y141 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: o_ready_OBUF_inst                        isPlaced = true      
+		Site: IOB_X1Y107
+		SiteInst: IOB_X1Y107 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: i_clk_IBUF_inst                          isPlaced = true      
+		Site: IOB_X1Y124
+		SiteInst: IOB_X1Y124 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: i_ready                                  isPlaced = true      
+		Site: IOB_X1Y131
+		SiteInst: IOB_X1Y131 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: i_en_IBUF_inst                           isPlaced = true      
+		Site: IOB_X1Y136
+		SiteInst: IOB_X1Y136 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: i_en                                     isPlaced = true      
+		Site: IOB_X1Y136
+		SiteInst: IOB_X1Y136 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: i_rst_IBUF_inst                          isPlaced = true      
+		Site: IOB_X1Y135
+		SiteInst: IOB_X1Y135 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: i_din_IBUF_inst                          isPlaced = true      
+		Site: IOB_X1Y142
+		SiteInst: IOB_X1Y142 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: o_dout_valid                             isPlaced = true      
+		Site: IOB_X1Y88
+		SiteInst: IOB_X1Y88 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: o_dout_OBUF_inst                         isPlaced = true      
+		Site: IOB_X1Y87
+		SiteInst: IOB_X1Y87 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: o_ready                                  isPlaced = true      
+		Site: IOB_X1Y107
+		SiteInst: IOB_X1Y107 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: o_dout_valid_OBUF_inst                   isPlaced = true      
+		Site: IOB_X1Y88
+		SiteInst: IOB_X1Y88 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: i_clk                                    isPlaced = true      
+		Site: IOB_X1Y124
+		SiteInst: IOB_X1Y124 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: i_din_valid_IBUF_inst                    isPlaced = true      
+		Site: IOB_X1Y141
+		SiteInst: IOB_X1Y141 	Placed = true
+		SiteTypeEnum: IOB33
+	Cell: <LOCKED>                                 isPlaced = false     
+		Site: OLOGIC_X1Y107
+		SiteInst: OLOGIC_X1Y107 	Placed = true
+		SiteTypeEnum: OLOGICE3

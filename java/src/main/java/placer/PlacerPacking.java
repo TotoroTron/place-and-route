@@ -128,11 +128,11 @@ public class PlacerPacking extends Placer {
             CARRYCells.removeAll(chain);
             writer.write("\n\nPrinting cells in this carry chain...");
             for (EDIFCellInst cell : chain) {
-                writer.write("\n\t" + cell.getCellName());
+                writer.write("\n\t" + cell.getName());
             }
             writer.write("\n\nPrinting CARRY cell group...");
             for (EDIFCellInst cell : CARRYCells) {
-                writer.write("\n\t" + cell.getCellName());
+                writer.write("\n\t" + cell.getName());
             }
             counter++;
             if (counter > 40) {

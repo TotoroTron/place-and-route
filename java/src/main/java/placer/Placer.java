@@ -209,44 +209,81 @@ public abstract class Placer {
 
     protected void buildCarryChain(EDIFCellInst eci, List<EDIFCellInst> chain) {
         EDIFCellInst currCell = eci;
-        System.out.println("ENTRY CELL: " + currCell.getName() + ", TYPE: " + currCell.getCellType());
-        System.out.println("\tPorts on this cell...");
-        for (EDIFPortInst p : currCell.getPortInsts())
-            System.out.println("\t\t" + p.getFullName());
+        // System.out.println("ENTRY CELL: " + currCell.getName() + ", TYPE: " +
+        // currCell.getCellType());
+        // System.out.println("\tPorts on this cell...");
+        // for (EDIFPortInst p : currCell.getPortInsts())
+        // System.out.println("\t\t" + p.getFullName());
 
         System.out.println();
 
         while (true) {
-            System.out.println("CURRENT CELL: " + currCell.getName() + ", TYPE: " + currCell.getCellType());
-            System.out.println("\tPorts on this cell...");
-            for (EDIFPortInst p : currCell.getPortInsts())
-                System.out.println("\t\t" + p.getFullName());
-            chain.add(currCell);
+            // System.out.println("CURRENT CELL: " + currCell.getName() + ", TYPE: " +
+            // currCell.getCellType());
+            // System.out.println("\tPorts on this cell...");
+            // for (EDIFPortInst p : currCell.getPortInsts())
+            // System.out.println("\t\t" + p.getFullName());
             EDIFPortInst currCellPort = currCell.getPortInst("CI");
             EDIFNet net = currCellPort.getNet();
-            System.out.println("\tNet connected to this port: " + net.getName());
-            System.out.println("\tPorts on this net...");
-            Collection<EDIFPortInst> netPorts = net.getPortInsts();
-            for (EDIFPortInst p : netPorts) {
-                System.out.println("\t\t" + p.getFullName());
+
+            if (net.isGND()) {
+                // System.out.println("\n\nFOUND START OF CHAIN!");
+                break;
             }
+
+            // System.out.println("\tNet connected to this port: " + net.getName());
+            // System.out.println("\tPorts on this net...");
+            Collection<EDIFPortInst> netPorts = net.getPortInsts();
+            // for (EDIFPortInst p : netPorts) {
+            // System.out.println("\t\t" + p.getFullName());
+            // }
             Map<String, EDIFPortInst> netPortsMap = netPorts.stream()
                     .collect(Collectors.toMap(
                             portInst -> portInst.getName(),
                             portInst -> portInst));
             EDIFPortInst sourceCellPort = netPortsMap.get("CO[3]");
+            // System.out.println("\tFound Source Port: " + sourceCellPort.getFullName());
+            EDIFCellInst sourceCell = sourceCellPort.getCellInst();
+            // System.out.println("\tSource Port Cell: " + sourceCell.getName());
+            currCell = sourceCell;
+        }
 
-            if (sourceCellPort == null) {
-                System.out.println("FOUND START OF CHAIN!");
-                for (EDIFCellInst c : chain)
-                    System.out.println("\t" + c.getName());
+        // we now have the starting carry cell as currCell
+        // now traverse in the opposite direction
+        // the end of the chain occurs when portinst CO[3] is null
+
+        while (true) {
+            // System.out.println("CURRENT CELL: " + currCell.getName() + ", TYPE: " +
+            // currCell.getCellType());
+            // System.out.println("\tPorts on this cell...");
+            // for (EDIFPortInst p : currCell.getPortInsts())
+            // System.out.println("\t\t" + p.getFullName());
+            chain.add(currCell);
+            EDIFPortInst currCellPort = currCell.getPortInst("CO[3]");
+
+            if (currCellPort == null) {
+                // System.out.println("\n\nFOUND END OF CHAIN!");
+                // for (EDIFCellInst c : chain)
+                // System.out.println("\t" + c.getName());
                 break;
             }
 
-            System.out.println("\tFound Source Port: " + sourceCellPort.getFullName());
-            EDIFCellInst sourceCell = sourceCellPort.getCellInst();
-            System.out.println("\tSource Port Cell: " + sourceCell.getName());
-            currCell = sourceCell;
+            EDIFNet net = currCellPort.getNet();
+            // System.out.println("\tNet connected to this port: " + net.getName());
+            // System.out.println("\tPorts on this net...");
+            Collection<EDIFPortInst> netPorts = net.getPortInsts();
+            // for (EDIFPortInst p : netPorts) {
+            // System.out.println("\t\t" + p.getFullName());
+            // }
+            Map<String, EDIFPortInst> netPortsMap = netPorts.stream()
+                    .collect(Collectors.toMap(
+                            portInst -> portInst.getName(),
+                            portInst -> portInst));
+            EDIFPortInst sinkCellPort = netPortsMap.get("CI");
+            // System.out.println("\tFound Sink Port: " + sinkCellPort.getFullName());
+            EDIFCellInst sinkCell = sinkCellPort.getCellInst();
+            // System.out.println("\tSource Port Cell: " + sinkCell.getName());
+            currCell = sinkCell;
         }
     }
 
@@ -305,129 +342,6 @@ public abstract class Placer {
                     "\tSOURCE CELL: " + sourceCell.getFullHierarchicalInstName() + "/" + sourceCell.getCellName());
             currCell = sourceCell;
         }
-    }
-
-    protected void buildCarryChainOld(EDIFHierCellInst ehci, List<EDIFHierCellInst> chain) {
-        EDIFNetlist netlist = design.getNetlist();
-
-        String earliest = ehci.getFullHierarchicalInstName();
-
-        String cin = ehci.getPortInst("CI").getHierarchicalNetName();
-        System.out.println("CIN: " + cin);
-        EDIFHierPortInst cinPort = ehci.getPortInst("CI");
-        System.out.println("CINPORT: " + cinPort.getFullHierarchicalInstName());
-
-        while (true) {
-            // EDIFHierCellInst currCell = netlist.getHierCellInstFromName(cin);
-            // EDIFHierPortInst cinPort = currCell.getPortInst("CI");
-            EDIFHierNet cinNet = cinPort.getHierarchicalNet();
-            System.out.println("CINNET: " + cinNet.getHierarchicalInstName());
-            Collection<EDIFHierPortInst> cinNetPorts = cinNet.getPortInsts();
-            Map<String, EDIFHierPortInst> portMap = cinNetPorts.stream()
-                    .collect(Collectors.toMap(
-                            portInst -> portInst.getPortInst().getName(), // Key mapper
-                            portInst -> portInst // Value mapper
-                    ));
-            for (Map.Entry<String, EDIFHierPortInst> entry : portMap.entrySet()) {
-                String key = entry.getKey();
-                EDIFHierPortInst val = entry.getValue();
-                System.out.println("Key: " + key + "Value: " + val.getFullHierarchicalInstName());
-            }
-            EDIFHierPortInst cinSource = portMap.get("CO[3]");
-            EDIFPortInst cinSourceInst = cinSource.getPortInst();
-
-            EDIFCellInst cinSourceCellInst = cinSourceInst.getCellInst();
-            for (EDIFPortInst ehpi : cinSourceCellInst.getPortInsts()) {
-                System.out.println("\tCINSOURCECELLPORT: " + ehpi.getFullName() + "/"
-                        + ehpi.getName());
-            }
-            earliest = cinSourceCellInst.getCellName();
-            System.out.println("\tEarliest: " + earliest);
-            if (cinSourceCellInst.getPortInst("CI") != null) {
-                cin = cinSourceCellInst.getPortInst("CI").getFullName();
-                System.out.println("CINNEXT: " + cin);
-            } else {
-                break;
-            }
-        }
-
-        EDIFHierCellInst earliestCell = netlist.getHierCellInstFromName(earliest);
-        for (EDIFHierPortInst port : earliestCell.getHierPortInsts()) {
-            System.out.println("Earliest cell port: " + port.getPortInst().getFullName());
-        }
-
-        System.out.println("Earliest cell: " + netlist.getHierCellInstFromName(earliest).getCellName());
-
-        String cout = netlist.getHierCellInstFromName(earliest).getInst().getPortInst("CO[3]").getFullName();
-        chain.add(netlist.getHierCellInstFromName(earliest));
-        while (true) {
-            EDIFHierNet coutNet = netlist.getHierPortInstFromName(cout).getHierarchicalNet();
-            Collection<EDIFHierPortInst> coutNetPorts = coutNet.getPortInsts();
-            Map<String, EDIFHierPortInst> portMap = coutNetPorts.stream()
-                    .collect(Collectors.toMap(
-                            portInst -> portInst.getPortInst().getName(), // Key mapper
-                            portInst -> portInst // Value mapper
-                    ));
-            EDIFHierPortInst coutSink = portMap.get("CI");
-            EDIFHierCellInst coutSinkCell = coutSink.getHierarchicalInst();
-            chain.add(coutSinkCell);
-            if (coutSinkCell.getPortInst("CO[3]") != null) {
-                cout = coutSinkCell.getPortInst("CO[3]").getFullHierarchicalInstName();
-            } else {
-                break;
-            }
-        }
-
-    }
-
-    protected void traverseCarryCoutDirection(EDIFHierCellInst ehci, LinkedList<EDIFHierCellInst> chain) {
-        System.out.println("Traversed edif cell: " + ehci.getFullHierarchicalInstName());
-        // traverse carry chain in the cout direction
-        EDIFHierPortInst cout = ehci.getPortInst("CO[3]");
-        if (cout == null) {
-            System.out.println("EDIFHierPortInst NULL!");
-            return;
-        }
-        EDIFHierNet coutNet = cout.getHierarchicalNet();
-        if (coutNet == null) {
-            System.out.println("EDIFHierNet NULL!");
-            return;
-        }
-        Collection<EDIFHierPortInst> coutNetPorts = coutNet.getPortInsts();
-        Map<String, EDIFHierPortInst> portMap = coutNetPorts.stream()
-                .collect(Collectors.toMap(
-                        portInst -> portInst.getPortInst().getName(), // Key mapper
-                        portInst -> portInst // Value mapper
-                ));
-        // this is so ass
-        for (Map.Entry<String, EDIFHierPortInst> entry : portMap.entrySet()) {
-            System.out.println("Port Entry: " + entry.getKey());
-        }
-        EDIFHierPortInst coutSink = portMap.get("CI");
-        EDIFHierCellInst coutSinkCell = coutSink.getHierarchicalInst();
-        traverseCarryCoutDirection(coutSinkCell, chain);
-        chain.addFirst(ehci);
-        return;
-    }
-
-    protected void traverseCarryCinDirection(EDIFHierCellInst ehci, LinkedList<EDIFHierCellInst> chain) {
-        // traverse carry chain in the cin direction
-        // add as you go
-        List<EDIFHierCellInst> visitedCells = new ArrayList<>();
-        EDIFHierPortInst cin = ehci.getPortInst("CIN");
-        if (cin == null)
-            return;
-        EDIFHierNet cinNet = cin.getInternalNet();
-        if (cinNet == null)
-            return;
-        Collection<EDIFHierPortInst> cinNetPorts = cinNet.getPortInsts();
-        Map<String, EDIFHierPortInst> portMap = cinNetPorts.stream()
-                .collect(Collectors.toMap(EDIFHierPortInst::getFullHierarchicalInstName, portInst -> portInst));
-        // this is so ass
-        EDIFHierPortInst cinSink = portMap.get("CO[3]");
-        EDIFHierCellInst cinSinkCell = cinSink.getHierarchicalInst();
-        chain.addFirst(ehci);
-        traverseCarryCinDirection(cinSinkCell, chain);
     }
 
     protected boolean isBufferCell(Design design, EDIFHierCellInst ehci) {
