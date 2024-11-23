@@ -196,6 +196,63 @@ public abstract class Placer {
     }
 
     protected void buildCarryChain(EDIFHierCellInst ehci, List<EDIFHierCellInst> chain) {
+        EDIFHierCellInst currCell = ehci;
+        System.out.println("ENTRY CELL: " + ehci.getFullHierarchicalInstName() + "/" + ehci.getCellName());
+        System.out.println("\tPorts on this cell... ");
+        for (EDIFHierPortInst port : currCell.getHierPortInsts()) {
+            System.out.println("\t\t" + port.getFullHierarchicalInstName());
+        }
+        List<EDIFCellInst> entryCellHierarch = ehci.getFullHierarchy();
+        System.out.println("\tCells in this hierarchy...");
+        for (EDIFCellInst cell : entryCellHierarch) {
+            System.out.println("\t\t" + cell.getCellName());
+        }
+        System.out.println();
+
+        while (true) {
+            System.out.println("CURRENT CELL: " + currCell.getFullHierarchicalInstName());
+            System.out.println("\tPorts on this cell... ");
+            for (EDIFHierPortInst port : currCell.getHierPortInsts()) {
+                System.out.println("\t\t" + port.getFullHierarchicalInstName());
+            }
+            chain.add(currCell);
+            EDIFHierPortInst currCellPort = currCell.getPortInst("CI");
+            EDIFHierNet net = currCellPort.getHierarchicalNet();
+            Collection<EDIFHierPortInst> netPorts = net.getPortInsts();
+            Map<String, EDIFHierPortInst> netPortsMap = netPorts.stream()
+                    .collect(Collectors.toMap(
+                            portInst -> portInst.getPortInst().getName(),
+                            portInst -> portInst));
+            EDIFHierPortInst sourceCellPort = netPortsMap.get("CO[3]");
+
+            if (sourceCellPort == null) {
+                System.out.println("END OF CHAIN!");
+                for (EDIFHierCellInst c : chain) {
+                    System.out.println("\t" + c.getCellName());
+                }
+                break;
+            }
+            System.out.println("\tFound Source Port: " + sourceCellPort.getFullHierarchicalInstName());
+            EDIFPortInst sourceCellPortInst = sourceCellPort.getPortInst();
+            System.out.println("\tSource Port Inst: " + sourceCellPortInst.getFullName());
+
+            EDIFHierCellInst sourceCell = sourceCellPort.getHierarchicalInst();
+            List<EDIFCellInst> sourceCellHierarch = sourceCell.getFullHierarchy();
+            System.out.println("\tCells in this hierarchy...");
+            for (EDIFCellInst cell : sourceCellHierarch) {
+                System.out.println("\t\t" + cell.getCellName());
+            }
+
+            EDIFCellInst sourceCellInst = sourceCellPort.getPortInst().getCellInst();
+            System.out.println("\tSource Cell Inst: " + sourceCellInst.getCellName());
+
+            System.out.println(
+                    "\tSOURCE CELL: " + sourceCell.getFullHierarchicalInstName() + "/" + sourceCell.getCellName());
+            currCell = sourceCell;
+        }
+    }
+
+    protected void buildCarryChainOld(EDIFHierCellInst ehci, List<EDIFHierCellInst> chain) {
         EDIFNetlist netlist = design.getNetlist();
 
         String earliest = ehci.getFullHierarchicalInstName();
@@ -206,6 +263,8 @@ public abstract class Placer {
         System.out.println("CINPORT: " + cinPort.getFullHierarchicalInstName());
 
         while (true) {
+            // EDIFHierCellInst currCell = netlist.getHierCellInstFromName(cin);
+            // EDIFHierPortInst cinPort = currCell.getPortInst("CI");
             EDIFHierNet cinNet = cinPort.getHierarchicalNet();
             System.out.println("CINNET: " + cinNet.getHierarchicalInstName());
             Collection<EDIFHierPortInst> cinNetPorts = cinNet.getPortInsts();
@@ -231,6 +290,7 @@ public abstract class Placer {
             System.out.println("\tEarliest: " + earliest);
             if (cinSourceCellInst.getPortInst("CI") != null) {
                 cin = cinSourceCellInst.getPortInst("CI").getFullName();
+                System.out.println("CINNEXT: " + cin);
             } else {
                 break;
             }
