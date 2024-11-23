@@ -76,10 +76,10 @@ public class PlacerPacking extends Placer {
 
     public @Override void placeDesign() throws IOException {
         EDIFNetlist netlist = design.getNetlist();
-        List<EDIFHierCellInst> ehcis = netlist.getAllLeafHierCellInstances();
+        List<EDIFCellInst> ecis = netlist.getAllLeafCellInstances();
 
         // Create a map to group cells by type
-        Map<String, List<EDIFHierCellInst>> cellGroups = new LinkedHashMap<>();
+        Map<String, List<EDIFCellInst>> cellGroups = new LinkedHashMap<>();
         cellGroups.put("IBUF", new ArrayList<>());
         cellGroups.put("OBUF", new ArrayList<>());
         cellGroups.put("VCC", new ArrayList<>());
@@ -92,15 +92,15 @@ public class PlacerPacking extends Placer {
 
         Set<String> uniqueEdifCellTypes = new HashSet<>();
 
-        for (EDIFHierCellInst ehci : ehcis) {
+        for (EDIFCellInst eci : ecis) {
             // populate unique cell tyeps
-            uniqueEdifCellTypes.add(ehci.getCellType().getName());
+            uniqueEdifCellTypes.add(eci.getCellType().getName());
 
             // add this cell to the corresponding group based on type
             for (String cellType : cellGroups.keySet()) {
-                if (ehci.getCellType().getName().contains(cellType)) {
-                    cellGroups.get(cellType).add(ehci);
-                    writer.write("\n\tFound " + cellType + " cell: " + ehci.getCellName());
+                if (eci.getCellType().getName().contains(cellType)) {
+                    cellGroups.get(cellType).add(eci);
+                    writer.write("\n\tFound " + cellType + " cell: " + eci.getCellName());
                     break; // once matched, no need to check other types
                 }
             }
@@ -112,31 +112,30 @@ public class PlacerPacking extends Placer {
         }
 
         writer.write("\n\nPrinting Cells By Type...");
-        for (Map.Entry<String, List<EDIFHierCellInst>> entry : cellGroups.entrySet()) {
+        for (Map.Entry<String, List<EDIFCellInst>> entry : cellGroups.entrySet()) {
             writer.write("\n" + entry.getKey() + " Cells (" + entry.getValue().size() + "):");
-            printEDIFCellList(entry.getValue());
+            printEDIFCellInstList(entry.getValue());
         }
 
-        List<List<EDIFHierCellInst>> CARRYChains = new LinkedList<>();
-        List<EDIFHierCellInst> CARRYCells = cellGroups.get("CARRY4");
+        List<List<EDIFCellInst>> CARRYChains = new LinkedList<>();
+        List<EDIFCellInst> CARRYCells = cellGroups.get("CARRY4");
         int counter = 0;
         while (!CARRYCells.isEmpty()) {
-            List<EDIFHierCellInst> chain = new ArrayList<>();
-            EDIFHierCellInst ehci = CARRYCells.get(0);
+            List<EDIFCellInst> chain = new ArrayList<>();
+            EDIFCellInst ehci = CARRYCells.get(0);
             buildCarryChain(ehci, chain);
             CARRYChains.add(chain);
             CARRYCells.removeAll(chain);
             writer.write("\n\nPrinting cells in this carry chain...");
-            for (EDIFHierCellInst cell : chain) {
-                writer.write("\n\t" + cell.getFullHierarchicalInstName());
+            for (EDIFCellInst cell : chain) {
+                writer.write("\n\t" + cell.getCellName());
             }
             writer.write("\n\nPrinting CARRY cell group...");
-            for (EDIFHierCellInst cell : CARRYCells) {
-                writer.write("\n\t" + cell.getFullHierarchicalInstName());
+            for (EDIFCellInst cell : CARRYCells) {
+                writer.write("\n\t" + cell.getCellName());
             }
             counter++;
             if (counter > 40) {
-
                 break;
             }
         }
