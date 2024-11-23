@@ -119,7 +119,6 @@ public class PlacerPacking extends Placer {
 
         List<List<EDIFCellInst>> CARRYChains = new LinkedList<>();
         List<EDIFCellInst> CARRYCells = cellGroups.get("CARRY4");
-        int counter = 0;
         while (!CARRYCells.isEmpty()) {
             List<EDIFCellInst> chain = new ArrayList<>();
             EDIFCellInst ehci = CARRYCells.get(0);
@@ -129,14 +128,6 @@ public class PlacerPacking extends Placer {
             writer.write("\n\nPrinting cells in this carry chain...");
             for (EDIFCellInst cell : chain) {
                 writer.write("\n\t" + cell.getName());
-            }
-            writer.write("\n\nPrinting CARRY cell group...");
-            for (EDIFCellInst cell : CARRYCells) {
-                writer.write("\n\t" + cell.getName());
-            }
-            counter++;
-            if (counter > 40) {
-                break;
             }
         }
     }
