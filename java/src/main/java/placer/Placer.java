@@ -184,25 +184,12 @@ public abstract class Placer {
 
     public void printEDIFCellInstList(List<EDIFCellInst> ecis) throws IOException {
         String cellType = ecis.get(0).getCellType().getName();
-        writer.write("\n\nPrinting all EDIFCellInsts of type " + cellType + "... (" + ecis.size() + ")");
+        writer.write("\n\tPrinting all EDIFCellInsts of type " + cellType + "... (" + ecis.size() + ")");
         for (EDIFCellInst eci : ecis) {
-            writer.write("\n\t\t" + eci.getCellName());
+            writer.write("\n\t\t" + eci.getCellType() + ": " + eci.getName());
             Collection<EDIFPortInst> epis = eci.getPortInsts();
             for (EDIFPortInst epi : epis) {
                 writer.write("\n\t\t\t" + epi.getFullName());
-            }
-        }
-    }
-
-    public void printEDIFHierCellInstList(List<EDIFHierCellInst> ehcis) throws IOException {
-        String cellType = ehcis.get(0).getCellType().getName();
-        writer.write("\n\nPrinting all EDIFHierCellInsts of type " + cellType + "... (" + ehcis.size() + ")");
-        for (EDIFHierCellInst ehci : ehcis) {
-            writer.write("\n\t" + ehci.getFullHierarchicalInstName());
-            Collection<EDIFHierPortInst> ehpis = ehci.getHierPortInsts();
-            writer.write("\n\t\tPrinting all EDIFHierPortInsts ...(" + ehpis.size() + ")");
-            for (EDIFHierPortInst ehpi : ehpis) {
-                writer.write("\n\t\t\t" + ehpi.getFullHierarchicalInstName() + "/" + ehpi.getPortInst().getName());
             }
         }
     }
