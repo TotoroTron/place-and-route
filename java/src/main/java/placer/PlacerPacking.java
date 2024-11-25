@@ -79,16 +79,16 @@ public class PlacerPacking extends Placer {
         List<EDIFCellInst> ecis = netlist.getAllLeafCellInstances();
 
         // Create a map to group cells by type
-        Map<String, List<EDIFCellInst>> cellGroups = new LinkedHashMap<>();
-        cellGroups.put("IBUF", new ArrayList<>());
-        cellGroups.put("OBUF", new ArrayList<>());
-        cellGroups.put("VCC", new ArrayList<>());
-        cellGroups.put("GND", new ArrayList<>());
-        cellGroups.put("CARRY4", new ArrayList<>());
-        cellGroups.put("FDRE", new ArrayList<>());
-        cellGroups.put("LUT", new ArrayList<>());
-        cellGroups.put("DSP48E1", new ArrayList<>());
-        cellGroups.put("RAMB18E1", new ArrayList<>());
+        Map<String, List<EDIFCellInst>> EDIFCellGroups = new LinkedHashMap<>();
+        EDIFCellGroups.put("IBUF", new ArrayList<>());
+        EDIFCellGroups.put("OBUF", new ArrayList<>());
+        EDIFCellGroups.put("VCC", new ArrayList<>());
+        EDIFCellGroups.put("GND", new ArrayList<>());
+        EDIFCellGroups.put("CARRY4", new ArrayList<>());
+        EDIFCellGroups.put("FDRE", new ArrayList<>());
+        EDIFCellGroups.put("LUT", new ArrayList<>());
+        EDIFCellGroups.put("DSP48E1", new ArrayList<>());
+        EDIFCellGroups.put("RAMB18E1", new ArrayList<>());
 
         Set<String> uniqueEdifCellTypes = new HashSet<>();
 
@@ -97,9 +97,9 @@ public class PlacerPacking extends Placer {
             uniqueEdifCellTypes.add(eci.getCellType().getName());
 
             // add this cell to the corresponding group based on type
-            for (String cellType : cellGroups.keySet()) {
+            for (String cellType : EDIFCellGroups.keySet()) {
                 if (eci.getCellType().getName().contains(cellType)) {
-                    cellGroups.get(cellType).add(eci);
+                    EDIFCellGroups.get(cellType).add(eci);
                     writer.write("\n\tFound " + cellType + " cell: " + eci.getCellName());
                     break; // once matched, no need to check other types
                 }
@@ -111,20 +111,20 @@ public class PlacerPacking extends Placer {
             writer.write("\n\t" + edifCellType);
         }
         writer.write("\nPrinting Cells By Type...");
-        for (Map.Entry<String, List<EDIFCellInst>> entry : cellGroups.entrySet()) {
+        for (Map.Entry<String, List<EDIFCellInst>> entry : EDIFCellGroups.entrySet()) {
             writer.write("\n\n" + entry.getKey() + " Cells (" + entry.getValue().size() + "):");
             printEDIFCellInstList(entry.getValue());
         }
 
         // BUILD CARRY CHAINS
-        List<List<EDIFCellInst>> CARRYChains = new LinkedList<>();
-        List<EDIFCellInst> CARRYCells = cellGroups.get("CARRY4");
-        while (!CARRYCells.isEmpty()) {
+        List<List<EDIFCellInst>> EDIFCarryChains = new LinkedList<>();
+        List<EDIFCellInst> EDIFCarryCells = EDIFCellGroups.get("CARRY4");
+        while (!EDIFCarryCells.isEmpty()) {
             List<EDIFCellInst> chain = new ArrayList<>();
-            EDIFCellInst ehci = CARRYCells.get(0);
+            EDIFCellInst ehci = EDIFCarryCells.get(0);
             buildCarryChain(ehci, chain);
-            CARRYChains.add(chain);
-            CARRYCells.removeAll(chain);
+            EDIFCarryChains.add(chain);
+            EDIFCarryCells.removeAll(chain);
             writer.write("\n\nPrinting cells in this carry chain...");
             for (EDIFCellInst cell : chain) {
                 writer.write("\n\t" + cell.getName());
@@ -134,7 +134,57 @@ public class PlacerPacking extends Placer {
         // PLACE ALL CARRY CELLS USING CARRY CHAIN STRUCTURE
         // PLACE EACH CONSECUTIVE CELL IN CHAIN ONE TILE ABOVE
         // FOR EACH CARRY CELL, PLACE CONNECTED LUTS AND FFS IN THE SAME SITE
-        //
+
+        Map<String, List<Cell>> cellGroups = new LinkedHashMap<>();
+        cellGroups.put("IBUF", new ArrayList<>());
+        cellGroups.put("OBUF", new ArrayList<>());
+        cellGroups.put("VCC", new ArrayList<>());
+        cellGroups.put("GND", new ArrayList<>());
+        cellGroups.put("CARRY4", new ArrayList<>());
+        cellGroups.put("FDRE", new ArrayList<>());
+        cellGroups.put("LUT", new ArrayList<>());
+        cellGroups.put("DSP48E1", new ArrayList<>());
+        cellGroups.put("RAMB18E1", new ArrayList<>());
+
+        // List of occupied BELs
+        Map<String, List<String>> occupiedPlacements = new HashMap<>();
+
+        // PLACE CARRY CHAINS
+        for (List<EDIFCellInst> chain : EDIFCarryChains) {
+            for (int i = 0; i < chain.size(); i++) {
+                Cell cell = design.createCell(chain.get(i).getName(), chain.get(i));
+                if (i == 0) {
+                    // place the cell normally, randomly
+                    placeCell(cell, occupiedPlacements);
+                } else {
+
+                    // place cell in the site above previous cell
+                }
+            }
+        }
+
+        // SPAWN CELLS IN REMAINING GROUPS
+        for (Map.Entry<String, List<EDIFCellInst>> entry : EDIFCellGroups.entrySet()) {
+            String edifCellType = entry.getKey();
+            if (edifCellType == "CARRY4")
+                continue;
+            List<EDIFCellInst> edifCells = entry.getValue();
+            for (EDIFCellInst edifCell : edifCells) {
+                cellGroups.get(edifCellType).add(design.createCell(edifCell.getName(), edifCell));
+            }
+        }
+
+        // PLACE REMAINING CELLS
+        for (Map.Entry<String, List<Cell>> entry : cellGroups.entrySet()) {
+            String cellType = entry.getKey();
+            if (cellType == "CARRY4")
+                continue;
+            List<Cell> cells = entry.getValue();
+            for (Cell cell : cells) {
+                placeCell(cell, occupiedPlacements);
+            }
+        }
+
         // IDENTIFY LUT FF PAIRS
         // PLACE THOSE LUTS AND FFS IN SAME SITE, SAME ROW
         //

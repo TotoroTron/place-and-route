@@ -536,11 +536,8 @@ public abstract class Placer {
         }
     }
 
-    public void printUniqueSites() throws IOException {
+    public Set<SiteTypeEnum> printUniqueSites() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/DeviceUniqueSites.txt"));
-        // writer.write("Number of unique sites in the device: " +
-        // device.getSiteTypeCount());
-        // why is this inconsistent with unique TypeEnums?
         writer.write("\nPrinting unique sites in the device: ");
         writer.newLine();
         Site[] sites = device.getAllSites();
@@ -555,6 +552,13 @@ public abstract class Placer {
         printSiteArray(writer, uniqueSites.toArray(new Site[0]), true);
         if (writer != null)
             writer.close();
+
+        return uniqueSiteTypes;
+    }
+
+    public void printSiteTypeGroups(Set<SiteTypeEnum> uniqueSitetypes) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/DesignSites.txt"));
+
     }
 
 } // end class
