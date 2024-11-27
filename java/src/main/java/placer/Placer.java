@@ -177,7 +177,7 @@ public abstract class Placer {
                     cell.getName(), selectedSiteName, selectedBELName);
             addToMap(occupiedPlacements, selectedPlacement[0], selectedPlacement[1]);
         } else {
-            writer.write("\n\tWARNING: Placement Failed!");
+            writer.write("\n\tWARNING: Placement Failed! Cell: " + cell.getName() + ", Type: " + cell.getType());
         }
 
     } // end placeCell()
@@ -556,9 +556,65 @@ public abstract class Placer {
         return uniqueSiteTypes;
     }
 
-    public void printSiteTypeGroups(Set<SiteTypeEnum> uniqueSitetypes) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/DesignSites.txt"));
+    public Map<String, Integer> getCoordinateMinMaxOfType(SiteTypeEnum type) throws IOException {
+        Map<String, Integer> map = new HashMap<>();
+        Site[] sites = device.getAllSitesOfType(type);
+        Integer x_min = sites[0].getInstanceX();
+        Integer x_max = sites[0].getInstanceX();
+        Integer y_min = sites[0].getInstanceY();
+        Integer y_max = sites[0].getInstanceY();
+        for (Site site : sites) {
+            int x = site.getInstanceX();
+            int y = site.getInstanceY();
+            if (x < x_min)
+                x_min = x;
+            if (x > x_max)
+                x_max = x;
+            if (y < y_min)
+                y_min = y;
+            if (y > y_max)
+                y_max = y;
+        }
+        map.put("X_MIN", x_min);
+        map.put("X_MAX", x_max);
+        map.put("Y_MIN", y_min);
+        map.put("Y_MAX", y_max);
+        return map;
+    }
 
+    public void printSitesOfType(SiteTypeEnum type) throws IOException {
+        BufferedWriter writer = new BufferedWriter(
+                new FileWriter(rootDir + "outputs/printout/AllSites_" + type + ".txt"));
+        Site[] sites = device.getAllSitesOfType(type);
+
+        writer.write("Found sites of type " + type + "(" + sites.length + ").");
+        Integer x_min = sites[0].getInstanceX();
+        Integer x_max = sites[0].getInstanceX();
+        Integer y_min = sites[0].getInstanceY();
+        Integer y_max = sites[0].getInstanceY();
+
+        for (Site site : sites) {
+            int x = site.getInstanceX();
+            int y = site.getInstanceY();
+            if (x < x_min)
+                x_min = x;
+            if (x > x_max)
+                x_max = x;
+            if (y < y_min)
+                y_min = y;
+            if (y > y_max)
+                y_max = y;
+        }
+        writer.write("\nX_MIN=" + x_min + ", X_MAX=" + x_max + ", Y_MIN=" + y_min + ", Y_MAX=" + y_max);
+
+        writer.write("\n\nPrinting Sites of Type " + type + "...");
+        for (Site site : sites) {
+            writer.write(
+                    "\n\tSiteName: " + site.getName() + ", X=" + site.getInstanceX() + ", Y=" + site.getInstanceY());
+        }
+
+        if (writer != null)
+            writer.close();
     }
 
 } // end class
