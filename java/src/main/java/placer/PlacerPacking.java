@@ -275,15 +275,6 @@ public class PlacerPacking extends Placer {
             }
         }
 
-        // IDENTIFY LUT FF PAIRS
-        // PLACE THOSE LUTS AND FFS IN SAME SITE, SAME ROW
-        //
-        // PLACE REMAINING LUTS
-        // PLACE REMAINING FFS
-        //
-        // PLACE ALL RAMS
-        // PLACE ALL DSPS
-
     }
 
 }

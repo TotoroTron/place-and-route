@@ -3128,14 +3128,14 @@ Printing cells in this carry chain...
 
 Placing carry chains... (1)
 	chain size: 6
-	selectedSiteType: SLICEM
-	X_MAX: 112, X_MIN: 0, Y_MAX: 149, Y_MIN0
-	Placed Cell: ov_sum_reg[0]_i_2, Type: CARRY4, Site: SLICE_X42Y117, BEL: CARRY4
-	Placed Cell: ov_sum_reg[4]_i_1, Type: CARRY4, Site: SLICE_X42Y118, BEL: CARRY4
-	Placed Cell: ov_sum_reg[8]_i_1, Type: CARRY4, Site: SLICE_X42Y119, BEL: CARRY4
-	Placed Cell: ov_sum_reg[12]_i_1, Type: CARRY4, Site: SLICE_X42Y120, BEL: CARRY4
-	Placed Cell: ov_sum_reg[16]_i_1, Type: CARRY4, Site: SLICE_X42Y121, BEL: CARRY4
-	Placed Cell: ov_sum_reg[20]_i_1, Type: CARRY4, Site: SLICE_X42Y122, BEL: CARRY4
+	selectedSiteType: SLICEL
+	X_MAX: 113, X_MIN: 1, Y_MAX: 149, Y_MIN0
+	Placed Cell: ov_sum_reg[0]_i_2, Type: CARRY4, Site: SLICE_X48Y78, BEL: CARRY4
+	Placed Cell: ov_sum_reg[4]_i_1, Type: CARRY4, Site: SLICE_X48Y79, BEL: CARRY4
+	Placed Cell: ov_sum_reg[8]_i_1, Type: CARRY4, Site: SLICE_X48Y80, BEL: CARRY4
+	Placed Cell: ov_sum_reg[12]_i_1, Type: CARRY4, Site: SLICE_X48Y81, BEL: CARRY4
+	Placed Cell: ov_sum_reg[16]_i_1, Type: CARRY4, Site: SLICE_X48Y82, BEL: CARRY4
+	Placed Cell: ov_sum_reg[20]_i_1, Type: CARRY4, Site: SLICE_X48Y83, BEL: CARRY4
 
 Spawning remaining cells...
 
@@ -3446,8 +3446,8 @@ Placing cells...
 		DSP48E1 : sum_trunc1
 	Placing RAMB18E1 cells...
 		RAMB18E1 : gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg
+	WARNING: Placement Failed! Cell: gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg, Type: RAMB18E1
 		RAMB18E1 : gen_wr_a.gen_word_narrow.mem_reg
-	WARNING: Placement Failed! Cell: gen_wr_a.gen_word_narrow.mem_reg, Type: RAMB18E1
 
 Printing All Nets...
 	Net: i_en_IBUF
@@ -3493,326 +3493,323 @@ Printing All Nets...
 
 Printing All Cells...
 	Cell: shift_reg[4]_i_1__0                      isPlaced = true      
-		Site: SLICE_X27Y37
-		SiteInst: SLICE_X27Y37 	Placed = true
+		Site: SLICE_X83Y145
+		SiteInst: SLICE_X83Y145 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: i_en                                     isPlaced = true      
 		Site: IOB_X1Y136
 		SiteInst: IOB_X1Y136 	Placed = true
 		SiteTypeEnum: IOB33
 	Cell: ov_sum[12]_i_5                           isPlaced = true      
-		Site: SLICE_X78Y49
-		SiteInst: SLICE_X78Y49 	Placed = true
+		Site: SLICE_X61Y5
+		SiteInst: SLICE_X61Y5 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[18]                           isPlaced = true      
-		Site: SLICE_X31Y89
-		SiteInst: SLICE_X31Y89 	Placed = true
+		Site: SLICE_X29Y27
+		SiteInst: SLICE_X29Y27 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout[23]_i_2                          isPlaced = true      
-		Site: SLICE_X107Y123
-		SiteInst: SLICE_X107Y123 	Placed = true
+		Site: SLICE_X107Y24
+		SiteInst: SLICE_X107Y24 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum[12]_i_2                           isPlaced = true      
-		Site: SLICE_X99Y4
-		SiteInst: SLICE_X99Y4 	Placed = true
+		Site: SLICE_X27Y70
+		SiteInst: SLICE_X27Y70 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout_reg[14]                          isPlaced = true      
-		Site: SLICE_X99Y114
-		SiteInst: SLICE_X99Y114 	Placed = true
+		Site: SLICE_X106Y57
+		SiteInst: SLICE_X106Y57 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum[12]_i_4                           isPlaced = true      
-		Site: SLICE_X110Y121
-		SiteInst: SLICE_X110Y121 	Placed = true
+		Site: SLICE_X31Y139
+		SiteInst: SLICE_X31Y139 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum[12]_i_3                           isPlaced = true      
-		Site: SLICE_X51Y57
-		SiteInst: SLICE_X51Y57 	Placed = true
+		Site: SLICE_X59Y40
+		SiteInst: SLICE_X59Y40 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: counter_reg[0]                           isPlaced = true      
-		Site: SLICE_X43Y126
-		SiteInst: SLICE_X43Y126 	Placed = true
+		Site: SLICE_X15Y27
+		SiteInst: SLICE_X15Y27 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout_reg[7]                           isPlaced = true      
-		Site: SLICE_X57Y96
-		SiteInst: SLICE_X57Y96 	Placed = true
+		Site: SLICE_X81Y6
+		SiteInst: SLICE_X81Y6 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_re_addr_reg[4]                    isPlaced = true      
-		Site: SLICE_X83Y129
-		SiteInst: SLICE_X83Y129 	Placed = true
+		Site: SLICE_X39Y72
+		SiteInst: SLICE_X39Y72 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: o_ready_i_1                              isPlaced = true      
-		Site: SLICE_X33Y100
-		SiteInst: SLICE_X33Y100 	Placed = true
+		Site: SLICE_X44Y143
+		SiteInst: SLICE_X44Y143 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[2]_i_1                         isPlaced = true      
-		Site: SLICE_X7Y40
-		SiteInst: SLICE_X7Y40 	Placed = true
+		Site: SLICE_X72Y31
+		SiteInst: SLICE_X72Y31 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_re_addr[1]_i_1                    isPlaced = true      
-		Site: SLICE_X64Y60
-		SiteInst: SLICE_X64Y60 	Placed = true
+		Site: SLICE_X81Y80
+		SiteInst: SLICE_X81Y80 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: FSM_sequential_state[0]_i_2__0           isPlaced = true      
-		Site: SLICE_X57Y48
-		SiteInst: SLICE_X57Y48 	Placed = true
+		Site: SLICE_X40Y142
+		SiteInst: SLICE_X40Y142 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[0]_i_1                         isPlaced = true      
-		Site: SLICE_X107Y82
-		SiteInst: SLICE_X107Y82 	Placed = true
+		Site: SLICE_X27Y138
+		SiteInst: SLICE_X27Y138 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[13]_i_1__0                     isPlaced = true      
-		Site: SLICE_X107Y105
-		SiteInst: SLICE_X107Y105 	Placed = true
+		Site: SLICE_X41Y132
+		SiteInst: SLICE_X41Y132 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: counter[1]_i_1__0                        isPlaced = true      
-		Site: SLICE_X70Y45
-		SiteInst: SLICE_X70Y45 	Placed = true
+		Site: SLICE_X31Y91
+		SiteInst: SLICE_X31Y91 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout[23]_i_1                          isPlaced = true      
-		Site: SLICE_X87Y7
-		SiteInst: SLICE_X87Y7 	Placed = true
+		Site: SLICE_X78Y8
+		SiteInst: SLICE_X78Y8 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[0]_i_2                        isPlaced = true      
-		Site: SLICE_X42Y117
-		SiteInst: SLICE_X42Y117 	Placed = true
-		SiteTypeEnum: SLICEM
+		Site: SLICE_X48Y78
+		SiteInst: SLICE_X48Y78 	Placed = true
+		SiteTypeEnum: SLICEL
 	Cell: shift_reg[18]_i_1__0                     isPlaced = true      
-		Site: SLICE_X52Y11
-		SiteInst: SLICE_X52Y11 	Placed = true
+		Site: SLICE_X28Y9
+		SiteInst: SLICE_X28Y9 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_re_addr[3]_i_4                    isPlaced = true      
-		Site: SLICE_X97Y97
-		SiteInst: SLICE_X97Y97 	Placed = true
+		Site: SLICE_X40Y73
+		SiteInst: SLICE_X40Y73 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[1]_i_1__0                      isPlaced = true      
-		Site: SLICE_X40Y11
-		SiteInst: SLICE_X40Y11 	Placed = true
+		Site: SLICE_X57Y104
+		SiteInst: SLICE_X57Y104 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout_reg[13]                          isPlaced = true      
-		Site: SLICE_X87Y78
-		SiteInst: SLICE_X87Y78 	Placed = true
+		Site: SLICE_X79Y31
+		SiteInst: SLICE_X79Y31 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_re_addr_reg[3]                    isPlaced = true      
-		Site: SLICE_X47Y70
-		SiteInst: SLICE_X47Y70 	Placed = true
+		Site: SLICE_X101Y128
+		SiteInst: SLICE_X101Y128 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_re_addr[3]_i_2                    isPlaced = true      
-		Site: SLICE_X70Y24
-		SiteInst: SLICE_X70Y24 	Placed = true
+		Site: SLICE_X63Y95
+		SiteInst: SLICE_X63Y95 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[17]                           isPlaced = true      
-		Site: SLICE_X57Y109
-		SiteInst: SLICE_X57Y109 	Placed = true
+		Site: SLICE_X41Y130
+		SiteInst: SLICE_X41Y130 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_re_addr[3]_i_3                    isPlaced = true      
-		Site: SLICE_X97Y105
-		SiteInst: SLICE_X97Y105 	Placed = true
+		Site: SLICE_X25Y3
+		SiteInst: SLICE_X25Y3 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[10]_i_1                        isPlaced = true      
-		Site: SLICE_X5Y16
-		SiteInst: SLICE_X5Y16 	Placed = true
+		Site: SLICE_X45Y91
+		SiteInst: SLICE_X45Y91 	Placed = true
 		SiteTypeEnum: SLICEL
-	Cell: gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg isPlaced = true      
-		Site: RAMB18_X4Y5
-		SiteInst: RAMB18_X4Y5 	Placed = true
-		SiteTypeEnum: RAMB18E1
+	Cell: gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg isPlaced = false     
 	Cell: sample_re_addr[3]_i_1                    isPlaced = true      
-		Site: SLICE_X43Y0
-		SiteInst: SLICE_X43Y0 	Placed = true
+		Site: SLICE_X97Y43
+		SiteInst: SLICE_X97Y43 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: counter_reg[1]                           isPlaced = true      
-		Site: SLICE_X68Y41
-		SiteInst: SLICE_X68Y41 	Placed = true
+		Site: SLICE_X48Y142
+		SiteInst: SLICE_X48Y142 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout_reg[6]                           isPlaced = true      
-		Site: SLICE_X78Y46
-		SiteInst: SLICE_X78Y46 	Placed = true
+		Site: SLICE_X77Y6
+		SiteInst: SLICE_X77Y6 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: GND                                      isPlaced = false     
 	Cell: FSM_sequential_state[1]_i_1__0           isPlaced = true      
-		Site: SLICE_X31Y71
-		SiteInst: SLICE_X31Y71 	Placed = true
+		Site: SLICE_X83Y39
+		SiteInst: SLICE_X83Y39 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: FSM_sequential_state[1]_i_1__1           isPlaced = true      
-		Site: SLICE_X71Y31
-		SiteInst: SLICE_X71Y31 	Placed = true
+		Site: SLICE_X106Y143
+		SiteInst: SLICE_X106Y143 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_re_addr[5]_i_1                    isPlaced = true      
-		Site: SLICE_X63Y42
-		SiteInst: SLICE_X63Y42 	Placed = true
+		Site: SLICE_X41Y45
+		SiteInst: SLICE_X41Y45 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: weight_re_addr[4]_i_1                    isPlaced = true      
-		Site: SLICE_X45Y26
-		SiteInst: SLICE_X45Y26 	Placed = true
+		Site: SLICE_X83Y22
+		SiteInst: SLICE_X83Y22 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: i_din                                    isPlaced = true      
 		Site: IOB_X1Y142
 		SiteInst: IOB_X1Y142 	Placed = true
 		SiteTypeEnum: IOB33
 	Cell: ov_sum[16]_i_5                           isPlaced = true      
-		Site: SLICE_X110Y116
-		SiteInst: SLICE_X110Y116 	Placed = true
+		Site: SLICE_X13Y25
+		SiteInst: SLICE_X13Y25 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_re_addr[5]_i_3                    isPlaced = true      
-		Site: SLICE_X27Y102
-		SiteInst: SLICE_X27Y102 	Placed = true
+		Site: SLICE_X105Y99
+		SiteInst: SLICE_X105Y99 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_re_addr[5]_i_2                    isPlaced = true      
-		Site: SLICE_X78Y43
-		SiteInst: SLICE_X78Y43 	Placed = true
+		Site: SLICE_X85Y121
+		SiteInst: SLICE_X85Y121 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum[0]_i_1                            isPlaced = true      
-		Site: SLICE_X59Y131
-		SiteInst: SLICE_X59Y131 	Placed = true
+		Site: SLICE_X52Y141
+		SiteInst: SLICE_X52Y141 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[19]_i_1                        isPlaced = true      
-		Site: SLICE_X27Y6
-		SiteInst: SLICE_X27Y6 	Placed = true
+		Site: SLICE_X65Y78
+		SiteInst: SLICE_X65Y78 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum[0]_i_3                            isPlaced = true      
-		Site: SLICE_X3Y44
-		SiteInst: SLICE_X3Y44 	Placed = true
+		Site: SLICE_X35Y28
+		SiteInst: SLICE_X35Y28 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum[0]_i_4                            isPlaced = true      
-		Site: SLICE_X73Y22
-		SiteInst: SLICE_X73Y22 	Placed = true
+		Site: SLICE_X99Y114
+		SiteInst: SLICE_X99Y114 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum[16]_i_2                           isPlaced = true      
-		Site: SLICE_X76Y13
-		SiteInst: SLICE_X76Y13 	Placed = true
+		Site: SLICE_X27Y120
+		SiteInst: SLICE_X27Y120 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_re_addr_reg[2]                    isPlaced = true      
-		Site: SLICE_X97Y122
-		SiteInst: SLICE_X97Y122 	Placed = true
+		Site: SLICE_X88Y57
+		SiteInst: SLICE_X88Y57 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[9]_i_1__0                      isPlaced = true      
-		Site: SLICE_X43Y78
-		SiteInst: SLICE_X43Y78 	Placed = true
+		Site: SLICE_X109Y130
+		SiteInst: SLICE_X109Y130 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum[0]_i_5                            isPlaced = true      
-		Site: SLICE_X11Y36
-		SiteInst: SLICE_X11Y36 	Placed = true
+		Site: SLICE_X87Y41
+		SiteInst: SLICE_X87Y41 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum[0]_i_6                            isPlaced = true      
-		Site: SLICE_X53Y149
-		SiteInst: SLICE_X53Y149 	Placed = true
+		Site: SLICE_X103Y102
+		SiteInst: SLICE_X103Y102 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum[16]_i_4                           isPlaced = true      
-		Site: SLICE_X67Y39
-		SiteInst: SLICE_X67Y39 	Placed = true
+		Site: SLICE_X101Y99
+		SiteInst: SLICE_X101Y99 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum[16]_i_3                           isPlaced = true      
-		Site: SLICE_X13Y37
-		SiteInst: SLICE_X13Y37 	Placed = true
+		Site: SLICE_X59Y72
+		SiteInst: SLICE_X59Y72 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout_reg[9]                           isPlaced = true      
-		Site: SLICE_X40Y46
-		SiteInst: SLICE_X40Y46 	Placed = true
+		Site: SLICE_X25Y33
+		SiteInst: SLICE_X25Y33 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[12]_i_1                        isPlaced = true      
-		Site: SLICE_X29Y144
-		SiteInst: SLICE_X29Y144 	Placed = true
+		Site: SLICE_X83Y70
+		SiteInst: SLICE_X83Y70 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sum_trunc1__0                            isPlaced = true      
-		Site: DSP48_X2Y18
-		SiteInst: DSP48_X2Y18 	Placed = true
+		Site: DSP48_X3Y35
+		SiteInst: DSP48_X3Y35 	Placed = true
 		SiteTypeEnum: DSP48E1
 	Cell: o_dout_valid_i_1                         isPlaced = true      
-		Site: SLICE_X59Y22
-		SiteInst: SLICE_X59Y22 	Placed = true
+		Site: SLICE_X83Y87
+		SiteInst: SLICE_X83Y87 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout_reg[12]                          isPlaced = true      
-		Site: SLICE_X71Y28
-		SiteInst: SLICE_X71Y28 	Placed = true
+		Site: SLICE_X5Y13
+		SiteInst: SLICE_X5Y13 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg_reg[18]                        isPlaced = true      
-		Site: SLICE_X87Y117
-		SiteInst: SLICE_X87Y117 	Placed = true
+		Site: SLICE_X97Y77
+		SiteInst: SLICE_X97Y77 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout[23]_i_1__0                       isPlaced = true      
-		Site: SLICE_X83Y128
-		SiteInst: SLICE_X83Y128 	Placed = true
+		Site: SLICE_X105Y8
+		SiteInst: SLICE_X105Y8 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[12]_i_1                       isPlaced = true      
-		Site: SLICE_X42Y120
-		SiteInst: SLICE_X42Y120 	Placed = true
-		SiteTypeEnum: SLICEM
+		Site: SLICE_X48Y81
+		SiteInst: SLICE_X48Y81 	Placed = true
+		SiteTypeEnum: SLICEL
 	Cell: counter[4]_i_1__0                        isPlaced = true      
-		Site: SLICE_X105Y51
-		SiteInst: SLICE_X105Y51 	Placed = true
+		Site: SLICE_X93Y4
+		SiteInst: SLICE_X93Y4 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[22]_i_1                        isPlaced = true      
-		Site: SLICE_X85Y25
-		SiteInst: SLICE_X85Y25 	Placed = true
+		Site: SLICE_X25Y16
+		SiteInst: SLICE_X25Y16 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: i_clk_IBUF_inst                          isPlaced = false     
 	Cell: sample_wr_addr[0]_i_1                    isPlaced = true      
-		Site: SLICE_X111Y26
-		SiteInst: SLICE_X111Y26 	Placed = true
+		Site: SLICE_X88Y148
+		SiteInst: SLICE_X88Y148 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[19]                           isPlaced = true      
-		Site: SLICE_X33Y20
-		SiteInst: SLICE_X33Y20 	Placed = true
+		Site: SLICE_X105Y98
+		SiteInst: SLICE_X105Y98 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[10]_i_1__0                     isPlaced = true      
-		Site: SLICE_X60Y128
-		SiteInst: SLICE_X60Y128 	Placed = true
+		Site: SLICE_X87Y37
+		SiteInst: SLICE_X87Y37 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_re_addr_reg[1]                    isPlaced = true      
-		Site: SLICE_X57Y19
-		SiteInst: SLICE_X57Y19 	Placed = true
+		Site: SLICE_X68Y12
+		SiteInst: SLICE_X68Y12 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[4]_i_1                         isPlaced = true      
-		Site: SLICE_X83Y37
-		SiteInst: SLICE_X83Y37 	Placed = true
+		Site: SLICE_X59Y76
+		SiteInst: SLICE_X59Y76 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout_reg[8]                           isPlaced = true      
-		Site: SLICE_X48Y146
-		SiteInst: SLICE_X48Y146 	Placed = true
+		Site: SLICE_X64Y76
+		SiteInst: SLICE_X64Y76 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout_reg[11]                          isPlaced = true      
-		Site: SLICE_X11Y27
-		SiteInst: SLICE_X11Y27 	Placed = true
+		Site: SLICE_X81Y115
+		SiteInst: SLICE_X81Y115 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout_reg[23]                          isPlaced = true      
-		Site: SLICE_X111Y60
-		SiteInst: SLICE_X111Y60 	Placed = true
+		Site: SLICE_X52Y3
+		SiteInst: SLICE_X52Y3 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[22]_i_1__0                     isPlaced = true      
-		Site: SLICE_X89Y69
-		SiteInst: SLICE_X89Y69 	Placed = true
+		Site: SLICE_X88Y99
+		SiteInst: SLICE_X88Y99 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg_reg[19]                        isPlaced = true      
-		Site: SLICE_X87Y52
-		SiteInst: SLICE_X87Y52 	Placed = true
+		Site: SLICE_X55Y78
+		SiteInst: SLICE_X55Y78 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: FSM_sequential_state[0]_i_1__0           isPlaced = true      
-		Site: SLICE_X85Y13
-		SiteInst: SLICE_X85Y13 	Placed = true
+		Site: SLICE_X105Y49
+		SiteInst: SLICE_X105Y49 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: FSM_sequential_state[0]_i_1__1           isPlaced = true      
-		Site: SLICE_X93Y19
-		SiteInst: SLICE_X93Y19 	Placed = true
+		Site: SLICE_X57Y35
+		SiteInst: SLICE_X57Y35 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum[4]_i_5                            isPlaced = true      
-		Site: SLICE_X106Y104
-		SiteInst: SLICE_X106Y104 	Placed = true
+		Site: SLICE_X65Y135
+		SiteInst: SLICE_X65Y135 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg_reg[1]                         isPlaced = true      
-		Site: SLICE_X95Y42
-		SiteInst: SLICE_X95Y42 	Placed = true
+		Site: SLICE_X106Y55
+		SiteInst: SLICE_X106Y55 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum[4]_i_4                            isPlaced = true      
-		Site: SLICE_X1Y23
-		SiteInst: SLICE_X1Y23 	Placed = true
+		Site: SLICE_X24Y37
+		SiteInst: SLICE_X24Y37 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: weight_re_addr[1]_i_1                    isPlaced = true      
-		Site: SLICE_X53Y123
-		SiteInst: SLICE_X53Y123 	Placed = true
+		Site: SLICE_X40Y44
+		SiteInst: SLICE_X40Y44 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_wr_addr_reg[3]                    isPlaced = true      
-		Site: SLICE_X41Y121
-		SiteInst: SLICE_X41Y121 	Placed = true
+		Site: SLICE_X105Y130
+		SiteInst: SLICE_X105Y130 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: i_rst                                    isPlaced = true      
 		Site: IOB_X1Y135
@@ -3820,344 +3817,347 @@ Printing All Cells...
 		SiteTypeEnum: IOB33
 	Cell: i_rst_IBUF_inst                          isPlaced = false     
 	Cell: ov_sum_reg[4]                            isPlaced = true      
-		Site: SLICE_X81Y32
-		SiteInst: SLICE_X81Y32 	Placed = true
+		Site: SLICE_X80Y71
+		SiteInst: SLICE_X80Y71 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout_reg[18]                          isPlaced = true      
-		Site: SLICE_X101Y81
-		SiteInst: SLICE_X101Y81 	Placed = true
+		Site: SLICE_X83Y60
+		SiteInst: SLICE_X83Y60 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg_reg[16]                        isPlaced = true      
-		Site: SLICE_X95Y10
-		SiteInst: SLICE_X95Y10 	Placed = true
+		Site: SLICE_X45Y103
+		SiteInst: SLICE_X45Y103 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: weight_re_addr[2]_i_1                    isPlaced = true      
-		Site: SLICE_X15Y33
-		SiteInst: SLICE_X15Y33 	Placed = true
+		Site: SLICE_X105Y131
+		SiteInst: SLICE_X105Y131 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1 isPlaced = true      
-		Site: SLICE_X52Y85
-		SiteInst: SLICE_X52Y85 	Placed = true
+		Site: SLICE_X93Y140
+		SiteInst: SLICE_X93Y140 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum[20]_i_4                           isPlaced = true      
-		Site: SLICE_X35Y127
-		SiteInst: SLICE_X35Y127 	Placed = true
+		Site: SLICE_X44Y70
+		SiteInst: SLICE_X44Y70 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum[20]_i_5                           isPlaced = true      
-		Site: SLICE_X41Y72
-		SiteInst: SLICE_X41Y72 	Placed = true
+		Site: SLICE_X103Y104
+		SiteInst: SLICE_X103Y104 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum[20]_i_2                           isPlaced = true      
-		Site: SLICE_X65Y62
-		SiteInst: SLICE_X65Y62 	Placed = true
+		Site: SLICE_X81Y43
+		SiteInst: SLICE_X81Y43 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum[20]_i_3                           isPlaced = true      
-		Site: SLICE_X29Y37
-		SiteInst: SLICE_X29Y37 	Placed = true
+		Site: SLICE_X84Y130
+		SiteInst: SLICE_X84Y130 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[4]_i_1                        isPlaced = true      
-		Site: SLICE_X42Y118
-		SiteInst: SLICE_X42Y118 	Placed = true
-		SiteTypeEnum: SLICEM
+		Site: SLICE_X48Y79
+		SiteInst: SLICE_X48Y79 	Placed = true
+		SiteTypeEnum: SLICEL
 	Cell: shift_reg[15]_i_1                        isPlaced = true      
-		Site: SLICE_X65Y119
-		SiteInst: SLICE_X65Y119 	Placed = true
+		Site: SLICE_X47Y51
+		SiteInst: SLICE_X47Y51 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: counter_reg[4]                           isPlaced = true      
-		Site: SLICE_X19Y22
-		SiteInst: SLICE_X19Y22 	Placed = true
+		Site: SLICE_X45Y107
+		SiteInst: SLICE_X45Y107 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum[4]_i_3                            isPlaced = true      
-		Site: SLICE_X37Y115
-		SiteInst: SLICE_X37Y115 	Placed = true
+		Site: SLICE_X40Y84
+		SiteInst: SLICE_X40Y84 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum[4]_i_2                            isPlaced = true      
-		Site: SLICE_X7Y36
-		SiteInst: SLICE_X7Y36 	Placed = true
+		Site: SLICE_X33Y3
+		SiteInst: SLICE_X33Y3 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout_reg[3]                           isPlaced = true      
-		Site: SLICE_X111Y54
-		SiteInst: SLICE_X111Y54 	Placed = true
+		Site: SLICE_X81Y31
+		SiteInst: SLICE_X81Y31 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: GND_1                                    isPlaced = false     
 	Cell: shift_reg_reg[0]                         isPlaced = true      
-		Site: SLICE_X88Y50
-		SiteInst: SLICE_X88Y50 	Placed = true
+		Site: SLICE_X48Y10
+		SiteInst: SLICE_X48Y10 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sum_rst_i_1                              isPlaced = true      
-		Site: SLICE_X33Y98
-		SiteInst: SLICE_X33Y98 	Placed = true
+		Site: SLICE_X55Y107
+		SiteInst: SLICE_X55Y107 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[11]_i_1__0                     isPlaced = true      
-		Site: SLICE_X106Y40
-		SiteInst: SLICE_X106Y40 	Placed = true
+		Site: SLICE_X25Y39
+		SiteInst: SLICE_X25Y39 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_wr_addr_reg[2]                    isPlaced = true      
-		Site: SLICE_X39Y129
-		SiteInst: SLICE_X39Y129 	Placed = true
+		Site: SLICE_X107Y10
+		SiteInst: SLICE_X107Y10 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[16]_i_1__0                     isPlaced = true      
-		Site: SLICE_X95Y2
-		SiteInst: SLICE_X95Y2 	Placed = true
+		Site: SLICE_X101Y66
+		SiteInst: SLICE_X101Y66 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: i_din_valid                              isPlaced = true      
 		Site: IOB_X1Y141
 		SiteInst: IOB_X1Y141 	Placed = true
 		SiteTypeEnum: IOB33
 	Cell: shift_reg[6]_i_1                         isPlaced = true      
-		Site: SLICE_X15Y4
-		SiteInst: SLICE_X15Y4 	Placed = true
+		Site: SLICE_X1Y24
+		SiteInst: SLICE_X1Y24 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout_reg[17]                          isPlaced = true      
-		Site: SLICE_X109Y23
-		SiteInst: SLICE_X109Y23 	Placed = true
+		Site: SLICE_X103Y58
+		SiteInst: SLICE_X103Y58 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg_reg[17]                        isPlaced = true      
-		Site: SLICE_X113Y106
-		SiteInst: SLICE_X113Y106 	Placed = true
+		Site: SLICE_X105Y68
+		SiteInst: SLICE_X105Y68 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[3]                            isPlaced = true      
-		Site: SLICE_X109Y22
-		SiteInst: SLICE_X109Y22 	Placed = true
+		Site: SLICE_X45Y48
+		SiteInst: SLICE_X45Y48 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[13]_i_1                        isPlaced = true      
-		Site: SLICE_X7Y14
-		SiteInst: SLICE_X7Y14 	Placed = true
+		Site: SLICE_X39Y67
+		SiteInst: SLICE_X39Y67 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: weight_re_addr[3]_i_1                    isPlaced = true      
-		Site: SLICE_X43Y140
-		SiteInst: SLICE_X43Y140 	Placed = true
+		Site: SLICE_X28Y110
+		SiteInst: SLICE_X28Y110 	Placed = true
 		SiteTypeEnum: SLICEL
-	Cell: gen_wr_a.gen_word_narrow.mem_reg         isPlaced = false     
+	Cell: gen_wr_a.gen_word_narrow.mem_reg         isPlaced = true      
+		Site: RAMB18_X4Y21
+		SiteInst: RAMB18_X4Y21 	Placed = true
+		SiteTypeEnum: RAMB18E1
 	Cell: ov_dout_reg[2]                           isPlaced = true      
-		Site: SLICE_X65Y41
-		SiteInst: SLICE_X65Y41 	Placed = true
+		Site: SLICE_X40Y17
+		SiteInst: SLICE_X40Y17 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_wr_addr[4]_i_1                    isPlaced = true      
-		Site: SLICE_X65Y56
-		SiteInst: SLICE_X65Y56 	Placed = true
+		Site: SLICE_X45Y138
+		SiteInst: SLICE_X45Y138 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: i_ready_IBUF_inst                        isPlaced = false     
 	Cell: shift_reg_reg[3]                         isPlaced = true      
-		Site: SLICE_X1Y36
-		SiteInst: SLICE_X1Y36 	Placed = true
+		Site: SLICE_X91Y72
+		SiteInst: SLICE_X91Y72 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[20]_i_1__0                     isPlaced = true      
-		Site: SLICE_X97Y31
-		SiteInst: SLICE_X97Y31 	Placed = true
+		Site: SLICE_X60Y57
+		SiteInst: SLICE_X60Y57 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_wr_addr_reg[1]                    isPlaced = true      
-		Site: SLICE_X49Y41
-		SiteInst: SLICE_X49Y41 	Placed = true
+		Site: SLICE_X64Y113
+		SiteInst: SLICE_X64Y113 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: counter[0]_i_1                           isPlaced = true      
-		Site: SLICE_X109Y137
-		SiteInst: SLICE_X109Y137 	Placed = true
+		Site: SLICE_X56Y50
+		SiteInst: SLICE_X56Y50 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: weight_re_reg                            isPlaced = true      
-		Site: SLICE_X3Y48
-		SiteInst: SLICE_X3Y48 	Placed = true
+		Site: SLICE_X60Y9
+		SiteInst: SLICE_X60Y9 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[2]                            isPlaced = true      
-		Site: SLICE_X101Y8
-		SiteInst: SLICE_X101Y8 	Placed = true
+		Site: SLICE_X77Y44
+		SiteInst: SLICE_X77Y44 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg_reg[14]                        isPlaced = true      
-		Site: SLICE_X53Y18
-		SiteInst: SLICE_X53Y18 	Placed = true
+		Site: SLICE_X106Y95
+		SiteInst: SLICE_X106Y95 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout_reg[16]                          isPlaced = true      
-		Site: SLICE_X99Y101
-		SiteInst: SLICE_X99Y101 	Placed = true
+		Site: SLICE_X35Y49
+		SiteInst: SLICE_X35Y49 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: counter_reg[2]                           isPlaced = true      
-		Site: SLICE_X7Y48
-		SiteInst: SLICE_X7Y48 	Placed = true
+		Site: SLICE_X103Y37
+		SiteInst: SLICE_X103Y37 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[7]_i_1__0                      isPlaced = true      
-		Site: SLICE_X99Y113
-		SiteInst: SLICE_X99Y113 	Placed = true
+		Site: SLICE_X111Y81
+		SiteInst: SLICE_X111Y81 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[5]_i_1                         isPlaced = true      
-		Site: SLICE_X87Y114
-		SiteInst: SLICE_X87Y114 	Placed = true
+		Site: SLICE_X27Y16
+		SiteInst: SLICE_X27Y16 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout_reg[5]                           isPlaced = true      
-		Site: SLICE_X88Y17
-		SiteInst: SLICE_X88Y17 	Placed = true
+		Site: SLICE_X53Y65
+		SiteInst: SLICE_X53Y65 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[20]                           isPlaced = true      
-		Site: SLICE_X107Y113
-		SiteInst: SLICE_X107Y113 	Placed = true
+		Site: SLICE_X45Y128
+		SiteInst: SLICE_X45Y128 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[23]_i_2__0                     isPlaced = true      
-		Site: SLICE_X29Y50
-		SiteInst: SLICE_X29Y50 	Placed = true
+		Site: SLICE_X103Y113
+		SiteInst: SLICE_X103Y113 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg_reg[2]                         isPlaced = true      
-		Site: SLICE_X33Y54
-		SiteInst: SLICE_X33Y54 	Placed = true
+		Site: SLICE_X44Y2
+		SiteInst: SLICE_X44Y2 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[14]_i_1                        isPlaced = true      
-		Site: SLICE_X63Y25
-		SiteInst: SLICE_X63Y25 	Placed = true
+		Site: SLICE_X45Y95
+		SiteInst: SLICE_X45Y95 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: o_dout                                   isPlaced = true      
 		Site: IOB_X1Y87
 		SiteInst: IOB_X1Y87 	Placed = true
 		SiteTypeEnum: IOB33
 	Cell: sample_wr_addr_reg[0]                    isPlaced = true      
-		Site: SLICE_X43Y99
-		SiteInst: SLICE_X43Y99 	Placed = true
+		Site: SLICE_X35Y118
+		SiteInst: SLICE_X35Y118 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_wr_addr[5]_i_1                    isPlaced = true      
-		Site: SLICE_X106Y31
-		SiteInst: SLICE_X106Y31 	Placed = true
+		Site: SLICE_X80Y81
+		SiteInst: SLICE_X80Y81 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[0]                            isPlaced = true      
-		Site: SLICE_X64Y95
-		SiteInst: SLICE_X64Y95 	Placed = true
+		Site: SLICE_X87Y72
+		SiteInst: SLICE_X87Y72 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: counter[2]_i_1__0                        isPlaced = true      
-		Site: SLICE_X29Y24
-		SiteInst: SLICE_X29Y24 	Placed = true
+		Site: SLICE_X65Y13
+		SiteInst: SLICE_X65Y13 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg_reg[15]                        isPlaced = true      
-		Site: SLICE_X93Y122
-		SiteInst: SLICE_X93Y122 	Placed = true
+		Site: SLICE_X37Y59
+		SiteInst: SLICE_X37Y59 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[1]                            isPlaced = true      
-		Site: SLICE_X113Y31
-		SiteInst: SLICE_X113Y31 	Placed = true
+		Site: SLICE_X110Y9
+		SiteInst: SLICE_X110Y9 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[19]_i_1__0                     isPlaced = true      
-		Site: SLICE_X31Y101
-		SiteInst: SLICE_X31Y101 	Placed = true
+		Site: SLICE_X81Y33
+		SiteInst: SLICE_X81Y33 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout_reg[15]                          isPlaced = true      
-		Site: SLICE_X99Y149
-		SiteInst: SLICE_X99Y149 	Placed = true
+		Site: SLICE_X13Y47
+		SiteInst: SLICE_X13Y47 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_re_addr_reg[5]                    isPlaced = true      
-		Site: SLICE_X110Y146
-		SiteInst: SLICE_X110Y146 	Placed = true
+		Site: SLICE_X69Y22
+		SiteInst: SLICE_X69Y22 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: counter_reg[3]                           isPlaced = true      
-		Site: SLICE_X101Y34
-		SiteInst: SLICE_X101Y34 	Placed = true
+		Site: SLICE_X95Y104
+		SiteInst: SLICE_X95Y104 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout_reg[4]                           isPlaced = true      
-		Site: SLICE_X109Y128
-		SiteInst: SLICE_X109Y128 	Placed = true
+		Site: SLICE_X28Y143
+		SiteInst: SLICE_X28Y143 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_re_addr[2]_i_1                    isPlaced = true      
-		Site: SLICE_X35Y33
-		SiteInst: SLICE_X35Y33 	Placed = true
+		Site: SLICE_X107Y41
+		SiteInst: SLICE_X107Y41 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: o_dout_valid_reg                         isPlaced = true      
-		Site: SLICE_X52Y104
-		SiteInst: SLICE_X52Y104 	Placed = true
+		Site: SLICE_X113Y147
+		SiteInst: SLICE_X113Y147 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[1]_i_1                         isPlaced = true      
-		Site: SLICE_X91Y1
-		SiteInst: SLICE_X91Y1 	Placed = true
+		Site: SLICE_X40Y39
+		SiteInst: SLICE_X40Y39 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg_reg[5]                         isPlaced = true      
-		Site: SLICE_X64Y6
-		SiteInst: SLICE_X64Y6 	Placed = true
+		Site: SLICE_X11Y14
+		SiteInst: SLICE_X11Y14 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[23]_i_3                        isPlaced = true      
-		Site: SLICE_X61Y62
-		SiteInst: SLICE_X61Y62 	Placed = true
+		Site: SLICE_X55Y135
+		SiteInst: SLICE_X55Y135 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[23]_i_2                        isPlaced = true      
-		Site: SLICE_X29Y125
-		SiteInst: SLICE_X29Y125 	Placed = true
+		Site: SLICE_X84Y123
+		SiteInst: SLICE_X84Y123 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[23]_i_1                        isPlaced = true      
-		Site: SLICE_X103Y100
-		SiteInst: SLICE_X103Y100 	Placed = true
+		Site: SLICE_X74Y24
+		SiteInst: SLICE_X74Y24 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[8]                            isPlaced = true      
-		Site: SLICE_X41Y80
-		SiteInst: SLICE_X41Y80 	Placed = true
+		Site: SLICE_X88Y61
+		SiteInst: SLICE_X88Y61 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg_reg[12]                        isPlaced = true      
-		Site: SLICE_X93Y43
-		SiteInst: SLICE_X93Y43 	Placed = true
+		Site: SLICE_X27Y131
+		SiteInst: SLICE_X27Y131 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: weight_re_addr_reg[2]                    isPlaced = true      
-		Site: SLICE_X83Y106
-		SiteInst: SLICE_X83Y106 	Placed = true
+		Site: SLICE_X95Y14
+		SiteInst: SLICE_X95Y14 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[10]                           isPlaced = true      
-		Site: SLICE_X45Y42
-		SiteInst: SLICE_X45Y42 	Placed = true
+		Site: SLICE_X81Y35
+		SiteInst: SLICE_X81Y35 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[22]                           isPlaced = true      
-		Site: SLICE_X67Y67
-		SiteInst: SLICE_X67Y67 	Placed = true
+		Site: SLICE_X49Y60
+		SiteInst: SLICE_X49Y60 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[8]_i_1__0                      isPlaced = true      
-		Site: SLICE_X55Y107
-		SiteInst: SLICE_X55Y107 	Placed = true
+		Site: SLICE_X27Y23
+		SiteInst: SLICE_X27Y23 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg_reg[4]                         isPlaced = true      
-		Site: SLICE_X109Y117
-		SiteInst: SLICE_X109Y117 	Placed = true
+		Site: SLICE_X95Y43
+		SiteInst: SLICE_X95Y43 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[3]_i_1                         isPlaced = true      
-		Site: SLICE_X87Y59
-		SiteInst: SLICE_X87Y59 	Placed = true
+		Site: SLICE_X44Y17
+		SiteInst: SLICE_X44Y17 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_re_addr[0]_i_1                    isPlaced = true      
-		Site: SLICE_X11Y35
-		SiteInst: SLICE_X11Y35 	Placed = true
+		Site: SLICE_X56Y1
+		SiteInst: SLICE_X56Y1 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg_reg[13]                        isPlaced = true      
-		Site: SLICE_X93Y99
-		SiteInst: SLICE_X93Y99 	Placed = true
+		Site: SLICE_X55Y128
+		SiteInst: SLICE_X55Y128 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[7]                            isPlaced = true      
-		Site: SLICE_X44Y4
-		SiteInst: SLICE_X44Y4 	Placed = true
+		Site: SLICE_X106Y115
+		SiteInst: SLICE_X106Y115 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: VCC                                      isPlaced = false     
 	Cell: FSM_sequential_state[0]_i_3              isPlaced = true      
-		Site: SLICE_X53Y122
-		SiteInst: SLICE_X53Y122 	Placed = true
+		Site: SLICE_X37Y94
+		SiteInst: SLICE_X37Y94 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[23]_i_1__0                     isPlaced = true      
-		Site: SLICE_X51Y70
-		SiteInst: SLICE_X51Y70 	Placed = true
+		Site: SLICE_X53Y40
+		SiteInst: SLICE_X53Y40 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[21]                           isPlaced = true      
-		Site: SLICE_X7Y3
-		SiteInst: SLICE_X7Y3 	Placed = true
+		Site: SLICE_X79Y39
+		SiteInst: SLICE_X79Y39 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: FSM_sequential_state[0]_i_2              isPlaced = true      
-		Site: SLICE_X48Y127
-		SiteInst: SLICE_X48Y127 	Placed = true
+		Site: SLICE_X37Y21
+		SiteInst: SLICE_X37Y21 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: weight_re_addr_reg[3]                    isPlaced = true      
-		Site: SLICE_X84Y36
-		SiteInst: SLICE_X84Y36 	Placed = true
+		Site: SLICE_X111Y147
+		SiteInst: SLICE_X111Y147 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: FSM_sequential_state[0]_i_1              isPlaced = true      
-		Site: SLICE_X28Y118
-		SiteInst: SLICE_X28Y118 	Placed = true
+		Site: SLICE_X81Y40
+		SiteInst: SLICE_X81Y40 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout_reg[1]                           isPlaced = true      
-		Site: SLICE_X111Y62
-		SiteInst: SLICE_X111Y62 	Placed = true
+		Site: SLICE_X52Y144
+		SiteInst: SLICE_X52Y144 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[5]_i_1__0                      isPlaced = true      
-		Site: SLICE_X80Y111
-		SiteInst: SLICE_X80Y111 	Placed = true
+		Site: SLICE_X13Y28
+		SiteInst: SLICE_X13Y28 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[18]_i_1                        isPlaced = true      
-		Site: SLICE_X109Y38
-		SiteInst: SLICE_X109Y38 	Placed = true
+		Site: SLICE_X110Y4
+		SiteInst: SLICE_X110Y4 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: o_ready_OBUF_inst                        isPlaced = false     
 	Cell: i_ready                                  isPlaced = true      
@@ -4165,230 +4165,230 @@ Printing All Cells...
 		SiteInst: IOB_X1Y131 	Placed = true
 		SiteTypeEnum: IOB33
 	Cell: shift_reg_reg[7]                         isPlaced = true      
-		Site: SLICE_X19Y45
-		SiteInst: SLICE_X19Y45 	Placed = true
+		Site: SLICE_X57Y77
+		SiteInst: SLICE_X57Y77 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: counter[1]_i_1                           isPlaced = true      
-		Site: SLICE_X27Y126
-		SiteInst: SLICE_X27Y126 	Placed = true
+		Site: SLICE_X59Y136
+		SiteInst: SLICE_X59Y136 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: gen_wr_a.gen_word_narrow.mem_reg_i_2     isPlaced = true      
-		Site: SLICE_X56Y78
-		SiteInst: SLICE_X56Y78 	Placed = true
+		Site: SLICE_X110Y37
+		SiteInst: SLICE_X110Y37 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_wr_addr_reg[5]                    isPlaced = true      
-		Site: SLICE_X83Y78
-		SiteInst: SLICE_X83Y78 	Placed = true
+		Site: SLICE_X97Y10
+		SiteInst: SLICE_X97Y10 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg_reg[22]                        isPlaced = true      
-		Site: SLICE_X77Y11
-		SiteInst: SLICE_X77Y11 	Placed = true
+		Site: SLICE_X67Y60
+		SiteInst: SLICE_X67Y60 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[6]                            isPlaced = true      
-		Site: SLICE_X101Y145
-		SiteInst: SLICE_X101Y145 	Placed = true
+		Site: SLICE_X109Y87
+		SiteInst: SLICE_X109Y87 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg_reg[10]                        isPlaced = true      
-		Site: SLICE_X51Y106
-		SiteInst: SLICE_X51Y106 	Placed = true
+		Site: SLICE_X5Y14
+		SiteInst: SLICE_X5Y14 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: weight_re_addr_reg[4]                    isPlaced = true      
-		Site: SLICE_X105Y90
-		SiteInst: SLICE_X105Y90 	Placed = true
+		Site: SLICE_X7Y17
+		SiteInst: SLICE_X7Y17 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[12]                           isPlaced = true      
-		Site: SLICE_X113Y58
-		SiteInst: SLICE_X113Y58 	Placed = true
+		Site: SLICE_X84Y83
+		SiteInst: SLICE_X84Y83 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: o_ready_reg                              isPlaced = true      
-		Site: SLICE_X47Y39
-		SiteInst: SLICE_X47Y39 	Placed = true
+		Site: SLICE_X51Y80
+		SiteInst: SLICE_X51Y80 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: gen_wr_a.gen_word_narrow.mem_reg_i_1     isPlaced = true      
-		Site: SLICE_X110Y122
-		SiteInst: SLICE_X110Y122 	Placed = true
+		Site: SLICE_X80Y59
+		SiteInst: SLICE_X80Y59 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[14]_i_1__0                     isPlaced = true      
-		Site: SLICE_X56Y86
-		SiteInst: SLICE_X56Y86 	Placed = true
+		Site: SLICE_X84Y108
+		SiteInst: SLICE_X84Y108 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: FSM_sequential_state_reg[0]              isPlaced = true      
-		Site: SLICE_X45Y18
-		SiteInst: SLICE_X45Y18 	Placed = true
+		Site: SLICE_X29Y104
+		SiteInst: SLICE_X29Y104 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout_reg[0]                           isPlaced = true      
-		Site: SLICE_X43Y34
-		SiteInst: SLICE_X43Y34 	Placed = true
+		Site: SLICE_X93Y110
+		SiteInst: SLICE_X93Y110 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: o_dout_valid_i_1__1                      isPlaced = true      
-		Site: SLICE_X69Y36
-		SiteInst: SLICE_X69Y36 	Placed = true
+		Site: SLICE_X63Y28
+		SiteInst: SLICE_X63Y28 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: o_dout_valid_i_1__0                      isPlaced = true      
-		Site: SLICE_X40Y63
-		SiteInst: SLICE_X40Y63 	Placed = true
+		Site: SLICE_X31Y140
+		SiteInst: SLICE_X31Y140 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_wr_addr[3]_i_1                    isPlaced = true      
-		Site: SLICE_X95Y67
-		SiteInst: SLICE_X95Y67 	Placed = true
+		Site: SLICE_X85Y17
+		SiteInst: SLICE_X85Y17 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[17]_i_1__0                     isPlaced = true      
-		Site: SLICE_X93Y145
-		SiteInst: SLICE_X93Y145 	Placed = true
+		Site: SLICE_X60Y114
+		SiteInst: SLICE_X60Y114 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg_reg[6]                         isPlaced = true      
-		Site: SLICE_X85Y8
-		SiteInst: SLICE_X85Y8 	Placed = true
+		Site: SLICE_X88Y108
+		SiteInst: SLICE_X88Y108 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout_reg[19]                          isPlaced = true      
-		Site: SLICE_X48Y74
-		SiteInst: SLICE_X48Y74 	Placed = true
+		Site: SLICE_X56Y139
+		SiteInst: SLICE_X56Y139 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg_reg[23]                        isPlaced = true      
-		Site: SLICE_X67Y7
-		SiteInst: SLICE_X67Y7 	Placed = true
+		Site: SLICE_X39Y139
+		SiteInst: SLICE_X39Y139 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg_reg[11]                        isPlaced = true      
-		Site: SLICE_X47Y0
-		SiteInst: SLICE_X47Y0 	Placed = true
+		Site: SLICE_X107Y93
+		SiteInst: SLICE_X107Y93 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_wr_addr_reg[4]                    isPlaced = true      
-		Site: SLICE_X7Y6
-		SiteInst: SLICE_X7Y6 	Placed = true
+		Site: SLICE_X57Y110
+		SiteInst: SLICE_X57Y110 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[5]                            isPlaced = true      
-		Site: SLICE_X28Y149
-		SiteInst: SLICE_X28Y149 	Placed = true
+		Site: SLICE_X43Y110
+		SiteInst: SLICE_X43Y110 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: o_dout_valid_OBUF_inst                   isPlaced = false     
 	Cell: ov_sum_reg[23]                           isPlaced = true      
-		Site: SLICE_X61Y18
-		SiteInst: SLICE_X61Y18 	Placed = true
+		Site: SLICE_X27Y121
+		SiteInst: SLICE_X27Y121 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: weight_re_addr_reg[5]                    isPlaced = true      
-		Site: SLICE_X111Y2
-		SiteInst: SLICE_X111Y2 	Placed = true
+		Site: SLICE_X44Y97
+		SiteInst: SLICE_X44Y97 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: <LOCKED>                                 isPlaced = false     
 		Site: OLOGIC_X1Y107
 		SiteInst: OLOGIC_X1Y107 	Placed = true
 		SiteTypeEnum: OLOGICE3
 	Cell: ov_sum_reg[11]                           isPlaced = true      
-		Site: SLICE_X28Y72
-		SiteInst: SLICE_X28Y72 	Placed = true
+		Site: SLICE_X13Y31
+		SiteInst: SLICE_X13Y31 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[7]_i_1                         isPlaced = true      
-		Site: SLICE_X113Y53
-		SiteInst: SLICE_X113Y53 	Placed = true
+		Site: SLICE_X84Y17
+		SiteInst: SLICE_X84Y17 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sum_trunc1                               isPlaced = true      
-		Site: DSP48_X3Y51
-		SiteInst: DSP48_X3Y51 	Placed = true
+		Site: DSP48_X4Y57
+		SiteInst: DSP48_X4Y57 	Placed = true
 		SiteTypeEnum: DSP48E1
 	Cell: FSM_sequential_state_reg[1]              isPlaced = true      
-		Site: SLICE_X95Y142
-		SiteInst: SLICE_X95Y142 	Placed = true
+		Site: SLICE_X31Y68
+		SiteInst: SLICE_X31Y68 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[2]_i_1__0                      isPlaced = true      
-		Site: SLICE_X106Y88
-		SiteInst: SLICE_X106Y88 	Placed = true
+		Site: SLICE_X47Y71
+		SiteInst: SLICE_X47Y71 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: counter[3]_i_1                           isPlaced = true      
-		Site: SLICE_X65Y89
-		SiteInst: SLICE_X65Y89 	Placed = true
+		Site: SLICE_X67Y107
+		SiteInst: SLICE_X67Y107 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[6]_i_1__0                      isPlaced = true      
-		Site: SLICE_X27Y133
-		SiteInst: SLICE_X27Y133 	Placed = true
+		Site: SLICE_X59Y79
+		SiteInst: SLICE_X59Y79 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[21]_i_1__0                     isPlaced = true      
-		Site: SLICE_X68Y26
-		SiteInst: SLICE_X68Y26 	Placed = true
+		Site: SLICE_X110Y95
+		SiteInst: SLICE_X110Y95 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg_reg[20]                        isPlaced = true      
-		Site: SLICE_X21Y34
-		SiteInst: SLICE_X21Y34 	Placed = true
+		Site: SLICE_X111Y31
+		SiteInst: SLICE_X111Y31 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg_reg[9]                         isPlaced = true      
-		Site: SLICE_X61Y65
-		SiteInst: SLICE_X61Y65 	Placed = true
+		Site: SLICE_X65Y21
+		SiteInst: SLICE_X65Y21 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: o_ready_i_1__0                           isPlaced = true      
-		Site: SLICE_X80Y110
-		SiteInst: SLICE_X80Y110 	Placed = true
+		Site: SLICE_X33Y147
+		SiteInst: SLICE_X33Y147 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: o_ready_i_1__1                           isPlaced = true      
-		Site: SLICE_X81Y4
-		SiteInst: SLICE_X81Y4 	Placed = true
+		Site: SLICE_X31Y75
+		SiteInst: SLICE_X31Y75 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: counter[4]_i_2                           isPlaced = true      
-		Site: SLICE_X101Y126
-		SiteInst: SLICE_X101Y126 	Placed = true
+		Site: SLICE_X91Y130
+		SiteInst: SLICE_X91Y130 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: o_dout_OBUF_inst                         isPlaced = false     
 	Cell: counter[4]_i_1                           isPlaced = true      
-		Site: SLICE_X3Y15
-		SiteInst: SLICE_X3Y15 	Placed = true
+		Site: SLICE_X35Y1
+		SiteInst: SLICE_X35Y1 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: counter[4]_i_3                           isPlaced = true      
-		Site: SLICE_X80Y29
-		SiteInst: SLICE_X80Y29 	Placed = true
+		Site: SLICE_X44Y72
+		SiteInst: SLICE_X44Y72 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: weight_re_i_1                            isPlaced = true      
-		Site: SLICE_X49Y146
-		SiteInst: SLICE_X49Y146 	Placed = true
+		Site: SLICE_X48Y29
+		SiteInst: SLICE_X48Y29 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: counter[0]_i_1__0                        isPlaced = true      
-		Site: SLICE_X53Y12
-		SiteInst: SLICE_X53Y12 	Placed = true
+		Site: SLICE_X57Y70
+		SiteInst: SLICE_X57Y70 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[14]                           isPlaced = true      
-		Site: SLICE_X47Y58
-		SiteInst: SLICE_X47Y58 	Placed = true
+		Site: SLICE_X70Y33
+		SiteInst: SLICE_X70Y33 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_re_addr_reg[0]                    isPlaced = true      
-		Site: SLICE_X110Y60
-		SiteInst: SLICE_X110Y60 	Placed = true
+		Site: SLICE_X27Y87
+		SiteInst: SLICE_X27Y87 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[8]_i_1                         isPlaced = true      
-		Site: SLICE_X81Y138
-		SiteInst: SLICE_X81Y138 	Placed = true
+		Site: SLICE_X63Y145
+		SiteInst: SLICE_X63Y145 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout_reg[10]                          isPlaced = true      
-		Site: SLICE_X60Y35
-		SiteInst: SLICE_X60Y35 	Placed = true
+		Site: SLICE_X84Y10
+		SiteInst: SLICE_X84Y10 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout_reg[22]                          isPlaced = true      
-		Site: SLICE_X11Y6
-		SiteInst: SLICE_X11Y6 	Placed = true
+		Site: SLICE_X33Y7
+		SiteInst: SLICE_X33Y7 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[15]_i_1__0                     isPlaced = true      
-		Site: SLICE_X21Y19
-		SiteInst: SLICE_X21Y19 	Placed = true
+		Site: SLICE_X99Y118
+		SiteInst: SLICE_X99Y118 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: counter[3]_i_1__0                        isPlaced = true      
-		Site: SLICE_X55Y141
-		SiteInst: SLICE_X55Y141 	Placed = true
+		Site: SLICE_X5Y23
+		SiteInst: SLICE_X5Y23 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[9]_i_1                         isPlaced = true      
-		Site: SLICE_X65Y146
-		SiteInst: SLICE_X65Y146 	Placed = true
+		Site: SLICE_X65Y50
+		SiteInst: SLICE_X65Y50 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg_reg[8]                         isPlaced = true      
-		Site: SLICE_X64Y71
-		SiteInst: SLICE_X64Y71 	Placed = true
+		Site: SLICE_X97Y70
+		SiteInst: SLICE_X97Y70 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: counter[2]_i_2                           isPlaced = true      
-		Site: SLICE_X27Y61
-		SiteInst: SLICE_X27Y61 	Placed = true
+		Site: SLICE_X87Y143
+		SiteInst: SLICE_X87Y143 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: counter[2]_i_1                           isPlaced = true      
-		Site: SLICE_X68Y37
-		SiteInst: SLICE_X68Y37 	Placed = true
+		Site: SLICE_X39Y145
+		SiteInst: SLICE_X39Y145 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[16]_i_1                        isPlaced = true      
-		Site: SLICE_X81Y11
-		SiteInst: SLICE_X81Y11 	Placed = true
+		Site: SLICE_X84Y3
+		SiteInst: SLICE_X84Y3 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: VCC_1                                    isPlaced = false     
 	Cell: o_ready                                  isPlaced = true      
@@ -4396,117 +4396,117 @@ Printing All Cells...
 		SiteInst: IOB_X1Y107 	Placed = true
 		SiteTypeEnum: IOB33
 	Cell: shift_reg_reg[21]                        isPlaced = true      
-		Site: SLICE_X45Y14
-		SiteInst: SLICE_X45Y14 	Placed = true
+		Site: SLICE_X110Y8
+		SiteInst: SLICE_X110Y8 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: i_clk                                    isPlaced = true      
 		Site: IOB_X1Y124
 		SiteInst: IOB_X1Y124 	Placed = true
 		SiteTypeEnum: IOB33
 	Cell: ov_sum_reg[16]_i_1                       isPlaced = true      
-		Site: SLICE_X42Y121
-		SiteInst: SLICE_X42Y121 	Placed = true
-		SiteTypeEnum: SLICEM
+		Site: SLICE_X48Y82
+		SiteInst: SLICE_X48Y82 	Placed = true
+		SiteTypeEnum: SLICEL
 	Cell: ov_dout_reg[21]                          isPlaced = true      
-		Site: SLICE_X35Y118
-		SiteInst: SLICE_X35Y118 	Placed = true
+		Site: SLICE_X41Y135
+		SiteInst: SLICE_X41Y135 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[13]                           isPlaced = true      
-		Site: SLICE_X57Y100
-		SiteInst: SLICE_X57Y100 	Placed = true
+		Site: SLICE_X80Y66
+		SiteInst: SLICE_X80Y66 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[3]_i_1__0                      isPlaced = true      
-		Site: SLICE_X88Y120
-		SiteInst: SLICE_X88Y120 	Placed = true
+		Site: SLICE_X27Y41
+		SiteInst: SLICE_X27Y41 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: weight_re_addr[0]_i_1                    isPlaced = true      
-		Site: SLICE_X106Y111
-		SiteInst: SLICE_X106Y111 	Placed = true
+		Site: SLICE_X53Y0
+		SiteInst: SLICE_X53Y0 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[8]_i_1                        isPlaced = true      
-		Site: SLICE_X42Y119
-		SiteInst: SLICE_X42Y119 	Placed = true
-		SiteTypeEnum: SLICEM
+		Site: SLICE_X48Y80
+		SiteInst: SLICE_X48Y80 	Placed = true
+		SiteTypeEnum: SLICEL
 	Cell: sample_wr_addr[1]_i_1                    isPlaced = true      
-		Site: SLICE_X68Y44
-		SiteInst: SLICE_X68Y44 	Placed = true
+		Site: SLICE_X106Y58
+		SiteInst: SLICE_X106Y58 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: counter[4]_i_2__0                        isPlaced = true      
-		Site: SLICE_X49Y101
-		SiteInst: SLICE_X49Y101 	Placed = true
+		Site: SLICE_X48Y48
+		SiteInst: SLICE_X48Y48 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[21]_i_1                        isPlaced = true      
-		Site: SLICE_X60Y11
-		SiteInst: SLICE_X60Y11 	Placed = true
+		Site: SLICE_X68Y0
+		SiteInst: SLICE_X68Y0 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: i_din_IBUF_inst                          isPlaced = false     
 	Cell: FSM_sequential_state[1]_i_2              isPlaced = true      
-		Site: SLICE_X87Y39
-		SiteInst: SLICE_X87Y39 	Placed = true
+		Site: SLICE_X110Y39
+		SiteInst: SLICE_X110Y39 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[16]                           isPlaced = true      
-		Site: SLICE_X81Y39
-		SiteInst: SLICE_X81Y39 	Placed = true
+		Site: SLICE_X7Y40
+		SiteInst: SLICE_X7Y40 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: weight_re_addr[5]_i_1                    isPlaced = true      
-		Site: SLICE_X74Y23
-		SiteInst: SLICE_X74Y23 	Placed = true
+		Site: SLICE_X91Y125
+		SiteInst: SLICE_X91Y125 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_wr_addr[2]_i_1                    isPlaced = true      
-		Site: SLICE_X41Y93
-		SiteInst: SLICE_X41Y93 	Placed = true
+		Site: SLICE_X77Y32
+		SiteInst: SLICE_X77Y32 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: FSM_sequential_state[1]_i_1              isPlaced = true      
-		Site: SLICE_X52Y98
-		SiteInst: SLICE_X52Y98 	Placed = true
+		Site: SLICE_X44Y65
+		SiteInst: SLICE_X44Y65 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_dout_reg[20]                          isPlaced = true      
-		Site: SLICE_X5Y37
-		SiteInst: SLICE_X5Y37 	Placed = true
+		Site: SLICE_X9Y1
+		SiteInst: SLICE_X9Y1 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sample_re_addr[4]_i_1                    isPlaced = true      
-		Site: SLICE_X109Y149
-		SiteInst: SLICE_X109Y149 	Placed = true
+		Site: SLICE_X44Y129
+		SiteInst: SLICE_X44Y129 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: weight_re_addr_reg[0]                    isPlaced = true      
-		Site: SLICE_X91Y45
-		SiteInst: SLICE_X91Y45 	Placed = true
+		Site: SLICE_X101Y13
+		SiteInst: SLICE_X101Y13 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[20]_i_1                        isPlaced = true      
-		Site: SLICE_X9Y23
-		SiteInst: SLICE_X9Y23 	Placed = true
+		Site: SLICE_X83Y24
+		SiteInst: SLICE_X83Y24 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: sum_rst_reg                              isPlaced = true      
-		Site: SLICE_X80Y23
-		SiteInst: SLICE_X80Y23 	Placed = true
+		Site: SLICE_X40Y77
+		SiteInst: SLICE_X40Y77 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum[8]_i_4                            isPlaced = true      
-		Site: SLICE_X65Y105
-		SiteInst: SLICE_X65Y105 	Placed = true
+		Site: SLICE_X81Y72
+		SiteInst: SLICE_X81Y72 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[20]_i_1                       isPlaced = true      
-		Site: SLICE_X42Y122
-		SiteInst: SLICE_X42Y122 	Placed = true
-		SiteTypeEnum: SLICEM
+		Site: SLICE_X48Y83
+		SiteInst: SLICE_X48Y83 	Placed = true
+		SiteTypeEnum: SLICEL
 	Cell: shift_reg[12]_i_1__0                     isPlaced = true      
-		Site: SLICE_X59Y98
-		SiteInst: SLICE_X59Y98 	Placed = true
+		Site: SLICE_X81Y120
+		SiteInst: SLICE_X81Y120 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum[8]_i_5                            isPlaced = true      
-		Site: SLICE_X65Y124
-		SiteInst: SLICE_X65Y124 	Placed = true
+		Site: SLICE_X95Y42
+		SiteInst: SLICE_X95Y42 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum[8]_i_2                            isPlaced = true      
-		Site: SLICE_X71Y6
-		SiteInst: SLICE_X71Y6 	Placed = true
+		Site: SLICE_X55Y94
+		SiteInst: SLICE_X55Y94 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: shift_reg[11]_i_1                        isPlaced = true      
-		Site: SLICE_X55Y40
-		SiteInst: SLICE_X55Y40 	Placed = true
+		Site: SLICE_X63Y117
+		SiteInst: SLICE_X63Y117 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum[8]_i_3                            isPlaced = true      
-		Site: SLICE_X27Y92
-		SiteInst: SLICE_X27Y92 	Placed = true
+		Site: SLICE_X61Y44
+		SiteInst: SLICE_X61Y44 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: i_en_IBUF_inst                           isPlaced = false     
 	Cell: o_dout_valid                             isPlaced = true      
@@ -4514,23 +4514,23 @@ Printing All Cells...
 		SiteInst: IOB_X1Y88 	Placed = true
 		SiteTypeEnum: IOB33
 	Cell: shift_reg[0]_i_1__0                      isPlaced = true      
-		Site: SLICE_X107Y21
-		SiteInst: SLICE_X107Y21 	Placed = true
+		Site: SLICE_X63Y61
+		SiteInst: SLICE_X63Y61 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[15]                           isPlaced = true      
-		Site: SLICE_X64Y23
-		SiteInst: SLICE_X64Y23 	Placed = true
+		Site: SLICE_X19Y17
+		SiteInst: SLICE_X19Y17 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: i_din_valid_IBUF_inst                    isPlaced = false     
 	Cell: shift_reg[17]_i_1                        isPlaced = true      
-		Site: SLICE_X107Y135
-		SiteInst: SLICE_X107Y135 	Placed = true
+		Site: SLICE_X87Y120
+		SiteInst: SLICE_X87Y120 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: ov_sum_reg[9]                            isPlaced = true      
-		Site: SLICE_X56Y61
-		SiteInst: SLICE_X56Y61 	Placed = true
+		Site: SLICE_X56Y119
+		SiteInst: SLICE_X56Y119 	Placed = true
 		SiteTypeEnum: SLICEL
 	Cell: weight_re_addr_reg[1]                    isPlaced = true      
-		Site: SLICE_X80Y19
-		SiteInst: SLICE_X80Y19 	Placed = true
+		Site: SLICE_X69Y45
+		SiteInst: SLICE_X69Y45 	Placed = true
 		SiteTypeEnum: SLICEL
