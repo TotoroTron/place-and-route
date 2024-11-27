@@ -165,7 +165,6 @@ public class PlacerPacking extends Placer {
 
             for (int i = 0; i < chain.size(); i++) {
                 Cell cell = design.createCell(chain.get(i).getName(), chain.get(i));
-                Cell anchor = null;
 
                 Map<SiteTypeEnum, Set<String>> compatiblePlacements = cell.getCompatiblePlacements(device);
                 List<SiteTypeEnum> compatibleSiteTypes = new ArrayList<>(compatiblePlacements.keySet());
@@ -179,7 +178,8 @@ public class PlacerPacking extends Placer {
                     int y_max = minmax.get("Y_MAX");
                     int y_min = minmax.get("Y_MIN");
                     writer.write("\n\tselectedSiteType: " + selectedSiteType);
-                    writer.write("\n\tX_MAX: " + x_max + ", X_MIN: " + x_min + ", Y_MAX: " + y_max + ", Y_MIN" + y_min);
+                    writer.write(
+                            "\n\tX_MAX: " + x_max + ", X_MIN: " + x_min + ", Y_MAX: " + y_max + ", Y_MIN: " + y_min);
                     String anchorSiteName = null;
                     String anchorBELName = null;
                     int x = 0;
