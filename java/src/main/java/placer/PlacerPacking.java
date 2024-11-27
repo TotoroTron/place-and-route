@@ -157,93 +157,40 @@ public class PlacerPacking extends Placer {
         writer.write("\n\nPlacing carry chains... (" + EDIFCarryChains.size() + ")");
 
         // PLACE CARRY CHAINS
-        Random rand = new Random();
         for (List<EDIFCellInst> chain : EDIFCarryChains) {
             writer.write("\n\tchain size: " + chain.size());
+            Random rand = new Random();
             int x_anchor = 0;
             int y_anchor = 0;
+            Cell cell = design.createCell(chain.get(0).getName(), chain.get(0));
 
-            for (int i = 0; i < chain.size(); i++) {
-                Cell cell = design.createCell(chain.get(i).getName(), chain.get(i));
+            Map<SiteTypeEnum, Set<String>> compatiblePlacements = cell.getCompatiblePlacements(device);
+            List<SiteTypeEnum> compatibleSiteTypes = new ArrayList<>(compatiblePlacements.keySet());
+            int randIndex = rand.nextInt(compatibleSiteTypes.size());
+            SiteTypeEnum selectedSiteType = compatibleSiteTypes.get(randIndex);
 
-                Map<SiteTypeEnum, Set<String>> compatiblePlacements = cell.getCompatiblePlacements(device);
-                List<SiteTypeEnum> compatibleSiteTypes = new ArrayList<>(compatiblePlacements.keySet());
-                int randIndex = rand.nextInt(compatibleSiteTypes.size());
-                SiteTypeEnum selectedSiteType = compatibleSiteTypes.get(randIndex);
+            String anchorSiteName = findCarryChainAnchorSiteCoords(selectedSiteType, chain);
+            String anchorBELName = "CARRY4";
+            Site anchorSite = device.getSite(anchorSiteName);
+            BEL anchorBEL = anchorSite.getBEL(anchorBELName);
 
-                if (i == 0) {
-                    Map<String, Integer> minmax = getCoordinateMinMaxOfType(selectedSiteType);
-                    int x_max = minmax.get("X_MAX");
-                    int x_min = minmax.get("X_MIN");
-                    int y_max = minmax.get("Y_MAX");
-                    int y_min = minmax.get("Y_MIN");
-                    writer.write("\n\tselectedSiteType: " + selectedSiteType);
-                    writer.write(
-                            "\n\tX_MAX: " + x_max + ", X_MIN: " + x_min + ", Y_MAX: " + y_max + ", Y_MIN: " + y_min);
-                    String anchorSiteName = null;
-                    String anchorBELName = null;
-                    int x = 0;
-                    int y = 0;
+            // find and place the anchor cell
+            if (anchorSiteName == null) {
+                writer.write("\nWARNING: COULD NOT PLACE CARRY CHAIN ANCHOR!");
+                break;
+            } else {
+                placeCarryCell(cell, anchorSite, anchorBEL, occupiedPlacements);
+            }
 
-                    boolean validAnchor = false;
-                    int attempts = 0;
-                    while (!validAnchor && attempts < 1000) {
-                        x = rand.nextInt((x_max - x_min) + 1) + x_min;
-                        y = rand.nextInt((y_max - y_min) + 1) + y_min;
-
-                        for (int j = 0; j < chain.size(); j++) {
-                            String name = "SLICE_X" + x + "Y" + (y + j);
-                            if (design.getSiteInstFromSiteName(name) != null || device.getSite(name) == null) {
-                                validAnchor = false;
-                                break;
-                            } else {
-                                validAnchor = true;
-                            }
-                        }
-                        attempts++;
-                    } // end while
-
-                    if (validAnchor) {
-                        x_anchor = x;
-                        y_anchor = y;
-                        anchorSiteName = "SLICE_X" + x_anchor + "Y" + y_anchor;
-                        anchorBELName = "CARRY4";
-                        Site anchorSite = device.getSite(anchorSiteName);
-                        BEL anchorBEL = anchorSite.getBEL(anchorBELName);
-                        if (design.placeCell(cell, anchorSite, anchorBEL)) {
-                            writer.write("\n\tPlaced Cell: " + cell.getName() + ", Type: "
-                                    + cell.getType() + ", Site: " + anchorSiteName + ", BEL: "
-                                    + anchorBELName);
-
-                            addToMap(occupiedPlacements, anchorSiteName, anchorBELName);
-                        } else {
-                            writer.write("\n\tWARNING: Placement Failed! Cell: " + cell.getName() + ", Type: "
-                                    + cell.getType() + ", Attempted Site: " + anchorSiteName + ", Attempted BEL: "
-                                    + anchorBELName);
-                        }
-                    } else {
-                        writer.write("\nCOULD NOT PLACE CARRY CHAIN ANCHOR!");
-                    }
-
-                } else {
-                    String siteName = "SLICE_X" + x_anchor + "Y" + (y_anchor + i);
-                    String belName = "CARRY4";
-                    Site site = device.getSite(siteName);
-                    BEL bel = site.getBEL(belName);
-
-                    if (design.placeCell(cell, site, bel)) {
-                        writer.write("\n\tPlaced Cell: " + cell.getName() + ", Type: "
-                                + cell.getType() + ", Site: " + siteName + ", BEL: "
-                                + belName);
-                        addToMap(occupiedPlacements, siteName, belName);
-                    } else {
-                        writer.write("\n\tWARNING: Placement Failed! Cell: " + cell.getName() + ", Type: "
-                                + cell.getType() + ", Attempted Site: " + siteName + ", Attempted BEL: "
-                                + belName);
-                    }
-                } // end if (i==0)
-
-            } // end for (int i = 0; i < chain.size(); i++)
+            // place the rest of the chain
+            for (int i = 1; i < chain.size(); i++) {
+                cell = design.createCell(chain.get(i).getName(), chain.get(i));
+                String siteName = "SLICE_X" + anchorSite.getInstanceX() + "Y" + (anchorSite.getInstanceY() + i);
+                String belName = "CARRY4";
+                Site site = device.getSite(siteName);
+                BEL bel = site.getBEL(belName);
+                placeCarryCell(cell, site, bel, occupiedPlacements);
+            }
 
         } // end for (List<EDIFCellInst> chain : EDIFCarryChains)
 
@@ -259,7 +206,7 @@ public class PlacerPacking extends Placer {
             }
         }
 
-        writer.write("\n\nPlacing cells...");
+        writer.write("\n\nPlacing remaining cells...");
         // PLACE REMAINING CELLS
         for (Map.Entry<String, List<Cell>> entry : cellGroups.entrySet()) {
             String cellType = entry.getKey();
@@ -274,7 +221,57 @@ public class PlacerPacking extends Placer {
                 placeCell(cell, occupiedPlacements);
             }
         }
+    }
 
+    private void placeCarryCell(Cell cell, Site site, BEL bel, Map<String, List<String>> occupiedPlacements)
+            throws IOException {
+        if (design.placeCell(cell, site, bel)) {
+            writer.write("\n\tPlaced Cell: " + cell.getName() + ", Type: "
+                    + cell.getType() + ", Site: " + site.getName() + ", BEL: "
+                    + bel.getName());
+            addToMap(occupiedPlacements, site.getName(), bel.getName());
+        } else {
+            writer.write("\n\tWARNING: Placement Failed! Cell: " + cell.getName() + ", Type: "
+                    + cell.getType() + ", Attempted Site: " + site.getName() + ", Attempted BEL: "
+                    + bel.getName());
+        }
+    }
+
+    private String findCarryChainAnchorSiteCoords(SiteTypeEnum selectedSiteType, List<EDIFCellInst> chain)
+            throws IOException {
+        Map<String, Integer> minmax = getCoordinateMinMaxOfType(selectedSiteType);
+        int x_max = minmax.get("X_MAX");
+        int x_min = minmax.get("X_MIN");
+        int y_max = minmax.get("Y_MAX");
+        int y_min = minmax.get("Y_MIN");
+        writer.write("\n\tselectedSiteType: " + selectedSiteType);
+        writer.write(
+                "\n\tX_MAX: " + x_max + ", X_MIN: " + x_min + ", Y_MAX: " + y_max + ", Y_MIN: " + y_min);
+        String anchorSiteName = null;
+        int x = 0;
+        int y = 0;
+
+        Random rand = new Random();
+        boolean validAnchor = false;
+        int attempts = 0;
+        while (!validAnchor && attempts < 1000) {
+            x = rand.nextInt((x_max - x_min) + 1) + x_min;
+            y = rand.nextInt((y_max - y_min) + 1) + y_min;
+
+            for (int j = 0; j < chain.size(); j++) {
+                String name = "SLICE_X" + x + "Y" + (y + j);
+                if (design.getSiteInstFromSiteName(name) != null || device.getSite(name) == null) {
+                    validAnchor = false;
+                    break;
+                } else {
+                    validAnchor = true;
+                    anchorSiteName = "SLICE_X" + x + "Y" + y;
+                }
+            }
+            attempts++;
+        }
+
+        return anchorSiteName;
     }
 
 }
