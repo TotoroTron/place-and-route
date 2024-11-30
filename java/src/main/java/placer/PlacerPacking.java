@@ -1,5 +1,7 @@
 package placer;
 
+import java.util.stream.Collectors;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -15,14 +17,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import com.xilinx.rapidwright.design.Cell;
-import com.xilinx.rapidwright.design.SiteInst;
 
 import com.xilinx.rapidwright.edif.EDIFCellInst;
 import com.xilinx.rapidwright.edif.EDIFNetlist;
+import com.xilinx.rapidwright.edif.EDIFPortInst;
+import com.xilinx.rapidwright.edif.EDIFNet;
 
 import com.xilinx.rapidwright.device.BEL;
 import com.xilinx.rapidwright.device.Site;
-
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 
 public class PlacerPacking extends Placer {
@@ -160,8 +162,6 @@ public class PlacerPacking extends Placer {
         for (List<EDIFCellInst> chain : EDIFCarryChains) {
             writer.write("\n\tchain size: " + chain.size());
             Random rand = new Random();
-            int x_anchor = 0;
-            int y_anchor = 0;
             Cell cell = design.createCell(chain.get(0).getName(), chain.get(0));
 
             Map<SiteTypeEnum, Set<String>> compatiblePlacements = cell.getCompatiblePlacements(device);
@@ -250,14 +250,12 @@ public class PlacerPacking extends Placer {
         String anchorSiteName = null;
         int x = 0;
         int y = 0;
-
         Random rand = new Random();
         boolean validAnchor = false;
         int attempts = 0;
         while (!validAnchor && attempts < 1000) {
             x = rand.nextInt((x_max - x_min) + 1) + x_min;
             y = rand.nextInt((y_max - y_min) + 1) + y_min;
-
             for (int j = 0; j < chain.size(); j++) {
                 String name = "SLICE_X" + x + "Y" + (y + j);
                 if (design.getSiteInstFromSiteName(name) != null || device.getSite(name) == null) {
@@ -270,9 +268,45 @@ public class PlacerPacking extends Placer {
             }
             attempts++;
         }
-
         return anchorSiteName;
     }
 
-}
-// end class
+    protected void buildCarryChain(EDIFCellInst eci, List<EDIFCellInst> chain) {
+        // traverse the carry chain in the cin direction to find starting cell of chain
+        // the start of chain occurs when CIN connects to GND
+        EDIFCellInst currCell = eci;
+        while (true) {
+            EDIFPortInst currCellPort = currCell.getPortInst("CI");
+            EDIFNet net = currCellPort.getNet();
+            if (net.isGND())
+                break;
+            Collection<EDIFPortInst> netPorts = net.getPortInsts();
+            Map<String, EDIFPortInst> netPortsMap = netPorts.stream()
+                    .collect(Collectors.toMap(
+                            portInst -> portInst.getName(),
+                            portInst -> portInst));
+            EDIFPortInst sourceCellPort = netPortsMap.get("CO[3]");
+            EDIFCellInst sourceCell = sourceCellPort.getCellInst();
+            currCell = sourceCell;
+        }
+        // we now have the starting carry cell as currCell
+        // now traverse in the cout direction
+        // the end of the chain occurs when portinst CO[3] is null
+        while (true) {
+            chain.add(currCell);
+            EDIFPortInst currCellPort = currCell.getPortInst("CO[3]");
+            if (currCellPort == null)
+                break;
+            EDIFNet net = currCellPort.getNet();
+            Collection<EDIFPortInst> netPorts = net.getPortInsts();
+            Map<String, EDIFPortInst> netPortsMap = netPorts.stream()
+                    .collect(Collectors.toMap(
+                            portInst -> portInst.getName(),
+                            portInst -> portInst));
+            EDIFPortInst sinkCellPort = netPortsMap.get("CI");
+            EDIFCellInst sinkCell = sinkCellPort.getCellInst();
+            currCell = sinkCell;
+        }
+    }
+
+} // end class
