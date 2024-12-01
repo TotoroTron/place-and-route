@@ -1,4 +1,341 @@
 PlacerPacking.txt
+
+Printing all EDIFHierCellInsts... (333)
+	i_din_IBUF_inst, IBUF
+	i_ready_IBUF_inst, IBUF
+	o_dout_OBUF_inst, OBUF
+	o_dout_valid_OBUF_inst, OBUF
+	i_din_valid_IBUF_inst, IBUF
+	i_clk_IBUF_inst, IBUF
+	o_ready_OBUF_inst, OBUF
+	i_en_IBUF_inst, IBUF
+	i_rst_IBUF_inst, IBUF
+	fir_filter_inst/FSM_sequential_state[0]_i_1__0, LUT6
+	fir_filter_inst/sample_re_addr[2]_i_1, LUT6
+	fir_filter_inst/weight_re_addr[1]_i_1, LUT4
+	fir_filter_inst/o_dout_valid_reg, FDRE
+	fir_filter_inst/sample_wr_addr_reg[3], FDRE
+	fir_filter_inst/ov_dout_reg[18], FDRE
+	fir_filter_inst/weight_re_addr[2]_i_1, LUT5
+	fir_filter_inst/weight_re_i_1, LUT2
+	fir_filter_inst/ov_dout_reg[14], FDRE
+	fir_filter_inst/sample_re_addr_reg[0], FDRE
+	fir_filter_inst/ov_dout_reg[10], FDRE
+	fir_filter_inst/ov_dout_reg[22], FDRE
+	fir_filter_inst/ov_dout_reg[7], FDRE
+	fir_filter_inst/weight_re_addr_reg[2], FDRE
+	fir_filter_inst/sample_re_addr_reg[4], FDRE
+	fir_filter_inst/o_ready_i_1, LUT2
+	fir_filter_inst/ov_dout_reg[3], FDRE
+	fir_filter_inst/sample_re_addr[1]_i_1, LUT6
+	fir_filter_inst/FSM_sequential_state[0]_i_2__0, LUT4
+	fir_filter_inst/sum_rst_i_1, LUT4
+	fir_filter_inst/sample_wr_addr_reg[2], FDRE
+	fir_filter_inst/ov_dout_reg[17], FDRE
+	fir_filter_inst/sample_re_addr[3]_i_4, LUT3
+	fir_filter_inst/sample_re_addr[0]_i_1, LUT5
+	fir_filter_inst/ov_dout_reg[13], FDRE
+	fir_filter_inst/sample_re_addr[3]_i_2, LUT3
+	fir_filter_inst/sample_re_addr_reg[3], FDRE
+	fir_filter_inst/sample_re_addr[3]_i_3, LUT3
+	fir_filter_inst/VCC, VCC
+	fir_filter_inst/sample_re_addr[3]_i_1, LUT6
+	fir_filter_inst/weight_re_addr[3]_i_1, LUT6
+	fir_filter_inst/FSM_sequential_state[0]_i_3, LUT2
+	fir_filter_inst/ov_dout_reg[21], FDRE
+	fir_filter_inst/weight_re_addr[0]_i_1, LUT3
+	fir_filter_inst/ov_dout_reg[6], FDRE
+	fir_filter_inst/weight_re_addr_reg[3], FDRE
+	fir_filter_inst/FSM_sequential_state[1]_i_1__0, LUT3
+	fir_filter_inst/GND, GND
+	fir_filter_inst/ov_dout_reg[2], FDRE
+	fir_filter_inst/sample_wr_addr[4]_i_1, LUT6
+	fir_filter_inst/ov_dout_reg[1], FDRE
+	fir_filter_inst/sample_re_addr[5]_i_1, LUT2
+	fir_filter_inst/weight_re_addr[4]_i_1, LUT6
+	fir_filter_inst/sample_wr_addr[1]_i_1, LUT2
+	fir_filter_inst/sample_wr_addr_reg[1], FDRE
+	fir_filter_inst/weight_re_reg, FDRE
+	fir_filter_inst/sample_re_addr[5]_i_3, LUT4
+	fir_filter_inst/sample_re_addr[5]_i_2, LUT5
+	fir_filter_inst/weight_re_addr[5]_i_1, LUT6
+	fir_filter_inst/sample_re_addr_reg[2], FDRE
+	fir_filter_inst/sample_wr_addr_reg[5], FDRE
+	fir_filter_inst/ov_dout_reg[16], FDRE
+	fir_filter_inst/sample_wr_addr[2]_i_1, LUT3
+	fir_filter_inst/ov_dout_reg[20], FDRE
+	fir_filter_inst/ov_dout_reg[9], FDRE
+	fir_filter_inst/weight_re_addr_reg[4], FDRE
+	fir_filter_inst/o_ready_reg, FDRE
+	fir_filter_inst/ov_dout_reg[12], FDRE
+	fir_filter_inst/sample_re_addr[4]_i_1, LUT5
+	fir_filter_inst/ov_dout_reg[5], FDRE
+	fir_filter_inst/weight_re_addr_reg[0], FDRE
+	fir_filter_inst/FSM_sequential_state_reg[0], FDRE
+	fir_filter_inst/ov_dout[23]_i_1__0, LUT6
+	fir_filter_inst/o_dout_valid_i_1__1, LUT6
+	fir_filter_inst/ov_dout_reg[0], FDRE
+	fir_filter_inst/sum_rst_reg, FDRE
+	fir_filter_inst/sample_wr_addr[3]_i_1, LUT4
+	fir_filter_inst/sample_wr_addr[5]_i_1, LUT6
+	fir_filter_inst/sample_wr_addr_reg[0], FDRE
+	fir_filter_inst/sample_wr_addr[0]_i_1, LUT1
+	fir_filter_inst/ov_dout_reg[19], FDRE
+	fir_filter_inst/ov_dout_reg[15], FDRE
+	fir_filter_inst/sample_re_addr_reg[1], FDRE
+	fir_filter_inst/sample_wr_addr_reg[4], FDRE
+	fir_filter_inst/ov_dout_reg[8], FDRE
+	fir_filter_inst/weight_re_addr_reg[5], FDRE
+	fir_filter_inst/ov_dout_reg[11], FDRE
+	fir_filter_inst/sample_re_addr_reg[5], FDRE
+	fir_filter_inst/ov_dout_reg[23], FDRE
+	fir_filter_inst/ov_dout_reg[4], FDRE
+	fir_filter_inst/weight_re_addr_reg[1], FDRE
+	fir_filter_inst/FSM_sequential_state_reg[1], FDRE
+	serializer_inst/FSM_sequential_state[0]_i_1__1, LUT4
+	serializer_inst/shift_reg_reg[1], FDRE
+	serializer_inst/counter[3]_i_1, LUT6
+	serializer_inst/o_dout_valid_reg, FDRE
+	serializer_inst/shift_reg_reg[20], FDRE
+	serializer_inst/shift_reg_reg[9], FDRE
+	serializer_inst/shift_reg[1]_i_1, LUT4
+	serializer_inst/o_ready_i_1__0, LUT2
+	serializer_inst/shift_reg_reg[5], FDRE
+	serializer_inst/counter[4]_i_2, LUT6
+	serializer_inst/counter[4]_i_1, LUT4
+	serializer_inst/shift_reg[23]_i_3, LUT3
+	serializer_inst/shift_reg_reg[16], FDRE
+	serializer_inst/shift_reg[23]_i_2, LUT3
+	serializer_inst/shift_reg[23]_i_1, LUT5
+	serializer_inst/counter[0]_i_1__0, LUT4
+	serializer_inst/shift_reg_reg[12], FDRE
+	serializer_inst/shift_reg[8]_i_1, LUT4
+	serializer_inst/counter_reg[0], FDRE
+	serializer_inst/shift_reg[15]_i_1, LUT4
+	serializer_inst/counter_reg[4], FDRE
+	serializer_inst/shift_reg[2]_i_1, LUT4
+	serializer_inst/shift_reg[3]_i_1, LUT4
+	serializer_inst/shift_reg_reg[4], FDRE
+	serializer_inst/shift_reg[9]_i_1, LUT4
+	serializer_inst/shift_reg_reg[0], FDRE
+	serializer_inst/shift_reg[0]_i_1, LUT4
+	serializer_inst/counter[1]_i_1__0, LUT5
+	serializer_inst/shift_reg_reg[8], FDRE
+	serializer_inst/shift_reg[6]_i_1, LUT4
+	serializer_inst/shift_reg[16]_i_1, LUT4
+	serializer_inst/shift_reg_reg[17], FDRE
+	serializer_inst/shift_reg[13]_i_1, LUT4
+	serializer_inst/shift_reg_reg[13], FDRE
+	serializer_inst/shift_reg[10]_i_1, LUT4
+	serializer_inst/shift_reg_reg[21], FDRE
+	serializer_inst/counter_reg[1], FDRE
+	serializer_inst/GND, GND
+	serializer_inst/FSM_sequential_state[1]_i_1__1, LUT3
+	serializer_inst/shift_reg_reg[3], FDRE
+	serializer_inst/shift_reg[18]_i_1, LUT4
+	serializer_inst/shift_reg[21]_i_1, LUT4
+	serializer_inst/shift_reg_reg[7], FDRE
+	serializer_inst/FSM_sequential_state[1]_i_2, LUT5
+	serializer_inst/shift_reg[19]_i_1, LUT4
+	serializer_inst/shift_reg_reg[14], FDRE
+	serializer_inst/shift_reg_reg[22], FDRE
+	serializer_inst/shift_reg_reg[10], FDRE
+	serializer_inst/shift_reg[12]_i_1, LUT4
+	serializer_inst/o_ready_reg, FDRE
+	serializer_inst/counter_reg[2], FDRE
+	serializer_inst/o_dout_valid_i_1, LUT5
+	serializer_inst/shift_reg[5]_i_1, LUT4
+	serializer_inst/shift_reg[20]_i_1, LUT4
+	serializer_inst/FSM_sequential_state_reg[0], FDRE
+	serializer_inst/shift_reg_reg[18], FDRE
+	serializer_inst/shift_reg_reg[2], FDRE
+	serializer_inst/shift_reg[14]_i_1, LUT4
+	serializer_inst/shift_reg[22]_i_1, LUT4
+	serializer_inst/counter[2]_i_1__0, LUT6
+	serializer_inst/shift_reg[11]_i_1, LUT4
+	serializer_inst/shift_reg_reg[6], FDRE
+	serializer_inst/shift_reg_reg[15], FDRE
+	serializer_inst/shift_reg_reg[23], FDRE
+	serializer_inst/shift_reg_reg[11], FDRE
+	serializer_inst/shift_reg[4]_i_1, LUT4
+	serializer_inst/shift_reg[17]_i_1, LUT4
+	serializer_inst/counter_reg[3], FDRE
+	serializer_inst/shift_reg[7]_i_1, LUT4
+	serializer_inst/FSM_sequential_state_reg[1], FDRE
+	serializer_inst/shift_reg_reg[19], FDRE
+	deserializer_inst/shift_reg[4]_i_1__0, LUT2
+	deserializer_inst/o_dout_valid_reg, FDRE
+	deserializer_inst/shift_reg_reg[5], FDRE
+	deserializer_inst/ov_dout[23]_i_2, LUT2
+	deserializer_inst/ov_dout_reg[14], FDRE
+	deserializer_inst/shift_reg_reg[12], FDRE
+	deserializer_inst/counter_reg[0], FDRE
+	deserializer_inst/ov_dout_reg[7], FDRE
+	deserializer_inst/shift_reg[8]_i_1__0, LUT2
+	deserializer_inst/shift_reg_reg[4], FDRE
+	deserializer_inst/shift_reg[13]_i_1__0, LUT2
+	deserializer_inst/ov_dout[23]_i_1, LUT6
+	deserializer_inst/shift_reg[18]_i_1__0, LUT2
+	deserializer_inst/shift_reg[1]_i_1__0, LUT2
+	deserializer_inst/ov_dout_reg[13], FDRE
+	deserializer_inst/shift_reg_reg[13], FDRE
+	deserializer_inst/VCC, VCC
+	deserializer_inst/counter_reg[1], FDRE
+	deserializer_inst/shift_reg[23]_i_1__0, LUT6
+	deserializer_inst/FSM_sequential_state[0]_i_2, LUT4
+	deserializer_inst/FSM_sequential_state[0]_i_1, LUT6
+	deserializer_inst/ov_dout_reg[6], FDRE
+	deserializer_inst/GND, GND
+	deserializer_inst/ov_dout_reg[1], FDRE
+	deserializer_inst/shift_reg[5]_i_1__0, LUT2
+	deserializer_inst/shift_reg_reg[7], FDRE
+	deserializer_inst/counter[1]_i_1, LUT6
+	deserializer_inst/shift_reg[9]_i_1__0, LUT2
+	deserializer_inst/shift_reg_reg[22], FDRE
+	deserializer_inst/shift_reg_reg[10], FDRE
+	deserializer_inst/ov_dout_reg[9], FDRE
+	deserializer_inst/o_ready_reg, FDRE
+	deserializer_inst/ov_dout_reg[12], FDRE
+	deserializer_inst/shift_reg[14]_i_1__0, LUT2
+	deserializer_inst/FSM_sequential_state_reg[0], FDRE
+	deserializer_inst/shift_reg_reg[18], FDRE
+	deserializer_inst/ov_dout_reg[0], FDRE
+	deserializer_inst/o_dout_valid_i_1__0, LUT4
+	deserializer_inst/counter[4]_i_1__0, LUT2
+	deserializer_inst/shift_reg[17]_i_1__0, LUT2
+	deserializer_inst/shift_reg_reg[6], FDRE
+	deserializer_inst/ov_dout_reg[19], FDRE
+	deserializer_inst/shift_reg[10]_i_1__0, LUT2
+	deserializer_inst/shift_reg_reg[23], FDRE
+	deserializer_inst/shift_reg_reg[11], FDRE
+	deserializer_inst/ov_dout_reg[8], FDRE
+	deserializer_inst/ov_dout_reg[11], FDRE
+	deserializer_inst/ov_dout_reg[23], FDRE
+	deserializer_inst/shift_reg[22]_i_1__0, LUT2
+	deserializer_inst/FSM_sequential_state_reg[1], FDRE
+	deserializer_inst/shift_reg_reg[19], FDRE
+	deserializer_inst/shift_reg[2]_i_1__0, LUT2
+	deserializer_inst/shift_reg_reg[1], FDRE
+	deserializer_inst/shift_reg[6]_i_1__0, LUT2
+	deserializer_inst/shift_reg[21]_i_1__0, LUT2
+	deserializer_inst/shift_reg_reg[20], FDRE
+	deserializer_inst/shift_reg_reg[9], FDRE
+	deserializer_inst/o_ready_i_1__1, LUT4
+	deserializer_inst/ov_dout_reg[18], FDRE
+	deserializer_inst/shift_reg_reg[16], FDRE
+	deserializer_inst/counter[4]_i_3, LUT3
+	deserializer_inst/ov_dout_reg[10], FDRE
+	deserializer_inst/ov_dout_reg[22], FDRE
+	deserializer_inst/shift_reg[15]_i_1__0, LUT2
+	deserializer_inst/counter_reg[4], FDRE
+	deserializer_inst/ov_dout_reg[3], FDRE
+	deserializer_inst/counter[3]_i_1__0, LUT5
+	deserializer_inst/shift_reg_reg[0], FDRE
+	deserializer_inst/shift_reg[11]_i_1__0, LUT2
+	deserializer_inst/shift_reg[16]_i_1__0, LUT2
+	deserializer_inst/counter[2]_i_2, LUT4
+	deserializer_inst/shift_reg_reg[8], FDRE
+	deserializer_inst/counter[2]_i_1, LUT4
+	deserializer_inst/ov_dout_reg[17], FDRE
+	deserializer_inst/shift_reg_reg[17], FDRE
+	deserializer_inst/shift_reg_reg[21], FDRE
+	deserializer_inst/ov_dout_reg[21], FDRE
+	deserializer_inst/shift_reg[3]_i_1__0, LUT2
+	deserializer_inst/ov_dout_reg[2], FDRE
+	deserializer_inst/shift_reg[20]_i_1__0, LUT2
+	deserializer_inst/shift_reg_reg[3], FDRE
+	deserializer_inst/counter[4]_i_2__0, LUT5
+	deserializer_inst/counter[0]_i_1, LUT5
+	deserializer_inst/shift_reg_reg[14], FDRE
+	deserializer_inst/FSM_sequential_state[1]_i_1, LUT3
+	deserializer_inst/ov_dout_reg[16], FDRE
+	deserializer_inst/ov_dout_reg[20], FDRE
+	deserializer_inst/counter_reg[2], FDRE
+	deserializer_inst/shift_reg[7]_i_1__0, LUT2
+	deserializer_inst/ov_dout_reg[5], FDRE
+	deserializer_inst/shift_reg[23]_i_2__0, LUT2
+	deserializer_inst/shift_reg_reg[2], FDRE
+	deserializer_inst/shift_reg[12]_i_1__0, LUT2
+	deserializer_inst/shift_reg[0]_i_1__0, LUT2
+	deserializer_inst/shift_reg_reg[15], FDRE
+	deserializer_inst/shift_reg[19]_i_1__0, LUT2
+	deserializer_inst/ov_dout_reg[15], FDRE
+	deserializer_inst/counter_reg[3], FDRE
+	deserializer_inst/ov_dout_reg[4], FDRE
+	fir_filter_inst/xpm_memory_sprom_inst/GND, GND
+	fir_filter_inst/xpm_memory_spram_inst/GND, GND
+	fir_filter_inst/inst/ov_sum[4]_i_5, LUT2
+	fir_filter_inst/inst/ov_sum[4]_i_4, LUT2
+	fir_filter_inst/inst/ov_sum_reg[4], FDRE
+	fir_filter_inst/inst/ov_sum[12]_i_5, LUT2
+	fir_filter_inst/inst/ov_sum_reg[18], FDRE
+	fir_filter_inst/inst/ov_sum[12]_i_2, LUT2
+	fir_filter_inst/inst/ov_sum[20]_i_4, LUT2
+	fir_filter_inst/inst/ov_sum_reg[8], FDRE
+	fir_filter_inst/inst/ov_sum[20]_i_5, LUT2
+	fir_filter_inst/inst/ov_sum[12]_i_4, LUT2
+	fir_filter_inst/inst/ov_sum[20]_i_2, LUT2
+	fir_filter_inst/inst/ov_sum_reg[14], FDRE
+	fir_filter_inst/inst/ov_sum[12]_i_3, LUT2
+	fir_filter_inst/inst/ov_sum[20]_i_3, LUT2
+	fir_filter_inst/inst/ov_sum_reg[4]_i_1, CARRY4
+	fir_filter_inst/inst/ov_sum_reg[10], FDRE
+	fir_filter_inst/inst/ov_sum_reg[22], FDRE
+	fir_filter_inst/inst/ov_sum[4]_i_3, LUT2
+	fir_filter_inst/inst/ov_sum[4]_i_2, LUT2
+	fir_filter_inst/inst/GND_1, GND
+	fir_filter_inst/inst/ov_sum_reg[0]_i_2, CARRY4
+	fir_filter_inst/inst/ov_sum_reg[3], FDRE
+	fir_filter_inst/inst/VCC_1, VCC
+	fir_filter_inst/inst/ov_sum_reg[17], FDRE
+	fir_filter_inst/inst/ov_sum_reg[7], FDRE
+	fir_filter_inst/inst/VCC, VCC
+	fir_filter_inst/inst/ov_sum_reg[16]_i_1, CARRY4
+	fir_filter_inst/inst/ov_sum_reg[13], FDRE
+	fir_filter_inst/inst/ov_sum_reg[21], FDRE
+	fir_filter_inst/inst/GND, GND
+	fir_filter_inst/inst/ov_sum_reg[8]_i_1, CARRY4
+	fir_filter_inst/inst/ov_sum[16]_i_5, LUT2
+	fir_filter_inst/inst/ov_sum[0]_i_1, LUT2
+	fir_filter_inst/inst/ov_sum_reg[2], FDRE
+	fir_filter_inst/inst/ov_sum[0]_i_3, LUT2
+	fir_filter_inst/inst/ov_sum[0]_i_4, LUT2
+	fir_filter_inst/inst/ov_sum[16]_i_2, LUT2
+	fir_filter_inst/inst/ov_sum_reg[16], FDRE
+	fir_filter_inst/inst/ov_sum[0]_i_5, LUT2
+	fir_filter_inst/inst/ov_sum[0]_i_6, LUT2
+	fir_filter_inst/inst/ov_sum[16]_i_4, LUT2
+	fir_filter_inst/inst/ov_sum_reg[6], FDRE
+	fir_filter_inst/inst/ov_sum[16]_i_3, LUT2
+	fir_filter_inst/inst/ov_sum_reg[12], FDRE
+	fir_filter_inst/inst/sum_trunc1__0, DSP48E1
+	fir_filter_inst/inst/ov_sum_reg[20], FDRE
+	fir_filter_inst/inst/ov_sum_reg[12]_i_1, CARRY4
+	fir_filter_inst/inst/ov_sum[8]_i_4, LUT2
+	fir_filter_inst/inst/ov_sum[8]_i_5, LUT2
+	fir_filter_inst/inst/ov_sum_reg[20]_i_1, CARRY4
+	fir_filter_inst/inst/ov_sum[8]_i_2, LUT2
+	fir_filter_inst/inst/ov_sum_reg[0], FDRE
+	fir_filter_inst/inst/ov_sum[8]_i_3, LUT2
+	fir_filter_inst/inst/ov_sum_reg[19], FDRE
+	fir_filter_inst/inst/ov_sum_reg[1], FDRE
+	fir_filter_inst/inst/ov_sum_reg[15], FDRE
+	fir_filter_inst/inst/ov_sum_reg[5], FDRE
+	fir_filter_inst/inst/ov_sum_reg[23], FDRE
+	fir_filter_inst/inst/ov_sum_reg[11], FDRE
+	fir_filter_inst/inst/ov_sum_reg[9], FDRE
+	fir_filter_inst/inst/sum_trunc1, DSP48E1
+	fir_filter_inst/xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1, LUT2
+	fir_filter_inst/xpm_memory_sprom_inst/xpm_memory_base_inst/GND, GND
+	fir_filter_inst/xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg, RAMB18E1
+	fir_filter_inst/xpm_memory_sprom_inst/xpm_memory_base_inst/VCC, VCC
+	fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2, LUT2
+	fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/GND, GND
+	fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg, RAMB18E1
+	fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1, LUT2
+	fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/VCC, VCC
+
+
 	Found IBUF cell: IBUF
 	Found IBUF cell: IBUF
 	Found OBUF cell: OBUF
@@ -3000,1537 +3337,4 @@ RAMB18E1 Cells (2):
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOPADOP[1]
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ENARDEN
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ENBWREN
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/REGCEAREGCE
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/REGCEB
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/RSTRAMARSTRAM
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/RSTRAMB
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/RSTREGARSTREG
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/RSTREGB
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEA[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEA[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[2]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[3]
-		RAMB18E1: gen_wr_a.gen_word_narrow.mem_reg
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[0]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[10]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[11]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[12]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[13]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[1]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[2]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[3]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[4]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[5]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[6]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[7]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[8]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[9]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[0]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[10]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[11]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[12]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[13]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[1]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[2]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[3]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[4]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[5]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[6]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[7]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[8]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[9]
-			gen_wr_a.gen_word_narrow.mem_reg/CLKARDCLK
-			gen_wr_a.gen_word_narrow.mem_reg/CLKBWRCLK
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[10]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[11]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[12]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[13]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[14]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[15]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[2]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[3]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[4]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[5]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[6]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[7]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[8]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[9]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[10]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[11]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[12]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[13]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[14]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[15]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[2]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[3]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[4]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[5]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[6]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[7]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[8]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[9]
-			gen_wr_a.gen_word_narrow.mem_reg/DIPADIP[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DIPADIP[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DIPBDIP[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DIPBDIP[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[10]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[11]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[12]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[13]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[14]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[15]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[2]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[3]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[4]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[5]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[6]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[7]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[8]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[9]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[2]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[3]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[4]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[5]
-			gen_wr_a.gen_word_narrow.mem_reg/DOPADOP[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DOPADOP[1]
-			gen_wr_a.gen_word_narrow.mem_reg/ENARDEN
-			gen_wr_a.gen_word_narrow.mem_reg/ENBWREN
-			gen_wr_a.gen_word_narrow.mem_reg/REGCEAREGCE
-			gen_wr_a.gen_word_narrow.mem_reg/REGCEB
-			gen_wr_a.gen_word_narrow.mem_reg/RSTRAMARSTRAM
-			gen_wr_a.gen_word_narrow.mem_reg/RSTRAMB
-			gen_wr_a.gen_word_narrow.mem_reg/RSTREGARSTREG
-			gen_wr_a.gen_word_narrow.mem_reg/RSTREGB
-			gen_wr_a.gen_word_narrow.mem_reg/WEA[0]
-			gen_wr_a.gen_word_narrow.mem_reg/WEA[1]
-			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[0]
-			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[1]
-			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[2]
-			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[3]
-
-Printing cells in this carry chain...
-	ov_sum_reg[0]_i_2
-	ov_sum_reg[4]_i_1
-	ov_sum_reg[8]_i_1
-	ov_sum_reg[12]_i_1
-	ov_sum_reg[16]_i_1
-	ov_sum_reg[20]_i_1
-
-Placing carry chains... (1)
-	chain size: 6
-	selectedSiteType: SLICEM
-	X_MAX: 112, X_MIN: 0, Y_MAX: 149, Y_MIN: 0
-	Placed Cell: ov_sum_reg[0]_i_2, Type: CARRY4, Site: SLICE_X64Y2, BEL: CARRY4
-	Placed Cell: ov_sum_reg[4]_i_1, Type: CARRY4, Site: SLICE_X64Y3, BEL: CARRY4
-	Placed Cell: ov_sum_reg[8]_i_1, Type: CARRY4, Site: SLICE_X64Y4, BEL: CARRY4
-	Placed Cell: ov_sum_reg[12]_i_1, Type: CARRY4, Site: SLICE_X64Y5, BEL: CARRY4
-	Placed Cell: ov_sum_reg[16]_i_1, Type: CARRY4, Site: SLICE_X64Y6, BEL: CARRY4
-	Placed Cell: ov_sum_reg[20]_i_1, Type: CARRY4, Site: SLICE_X64Y7, BEL: CARRY4
-
-Spawning remaining cells...
-
-Placing cells...
-	Placing FDRE cells...
-		FDRE : o_dout_valid_reg
-		FDRE : sample_wr_addr_reg[3]
-		FDRE : ov_dout_reg[18]
-		FDRE : ov_dout_reg[14]
-		FDRE : sample_re_addr_reg[0]
-		FDRE : ov_dout_reg[10]
-		FDRE : ov_dout_reg[22]
-		FDRE : ov_dout_reg[7]
-		FDRE : weight_re_addr_reg[2]
-		FDRE : sample_re_addr_reg[4]
-		FDRE : ov_dout_reg[3]
-		FDRE : sample_wr_addr_reg[2]
-		FDRE : ov_dout_reg[17]
-		FDRE : ov_dout_reg[13]
-		FDRE : sample_re_addr_reg[3]
-		FDRE : ov_dout_reg[21]
-		FDRE : ov_dout_reg[6]
-		FDRE : weight_re_addr_reg[3]
-		FDRE : ov_dout_reg[2]
-		FDRE : ov_dout_reg[1]
-		FDRE : sample_wr_addr_reg[1]
-		FDRE : weight_re_reg
-		FDRE : sample_re_addr_reg[2]
-		FDRE : sample_wr_addr_reg[5]
-		FDRE : ov_dout_reg[16]
-		FDRE : ov_dout_reg[20]
-		FDRE : ov_dout_reg[9]
-		FDRE : weight_re_addr_reg[4]
-		FDRE : o_ready_reg
-		FDRE : ov_dout_reg[12]
-		FDRE : ov_dout_reg[5]
-		FDRE : weight_re_addr_reg[0]
-		FDRE : FSM_sequential_state_reg[0]
-		FDRE : ov_dout_reg[0]
-		FDRE : sum_rst_reg
-		FDRE : sample_wr_addr_reg[0]
-		FDRE : ov_dout_reg[19]
-		FDRE : ov_dout_reg[15]
-		FDRE : sample_re_addr_reg[1]
-		FDRE : sample_wr_addr_reg[4]
-		FDRE : ov_dout_reg[8]
-		FDRE : weight_re_addr_reg[5]
-		FDRE : ov_dout_reg[11]
-		FDRE : sample_re_addr_reg[5]
-		FDRE : ov_dout_reg[23]
-		FDRE : ov_dout_reg[4]
-		FDRE : weight_re_addr_reg[1]
-		FDRE : FSM_sequential_state_reg[1]
-		FDRE : shift_reg_reg[1]
-		FDRE : o_dout_valid_reg
-		FDRE : shift_reg_reg[20]
-		FDRE : shift_reg_reg[9]
-		FDRE : shift_reg_reg[5]
-		FDRE : shift_reg_reg[16]
-		FDRE : shift_reg_reg[12]
-		FDRE : counter_reg[0]
-		FDRE : counter_reg[4]
-		FDRE : shift_reg_reg[4]
-		FDRE : shift_reg_reg[0]
-		FDRE : shift_reg_reg[8]
-		FDRE : shift_reg_reg[17]
-		FDRE : shift_reg_reg[13]
-		FDRE : shift_reg_reg[21]
-		FDRE : counter_reg[1]
-		FDRE : shift_reg_reg[3]
-		FDRE : shift_reg_reg[7]
-		FDRE : shift_reg_reg[14]
-		FDRE : shift_reg_reg[22]
-		FDRE : shift_reg_reg[10]
-		FDRE : o_ready_reg
-		FDRE : counter_reg[2]
-		FDRE : FSM_sequential_state_reg[0]
-		FDRE : shift_reg_reg[18]
-		FDRE : shift_reg_reg[2]
-		FDRE : shift_reg_reg[6]
-		FDRE : shift_reg_reg[15]
-		FDRE : shift_reg_reg[23]
-		FDRE : shift_reg_reg[11]
-		FDRE : counter_reg[3]
-		FDRE : FSM_sequential_state_reg[1]
-		FDRE : shift_reg_reg[19]
-		FDRE : o_dout_valid_reg
-		FDRE : shift_reg_reg[5]
-		FDRE : ov_dout_reg[14]
-		FDRE : shift_reg_reg[12]
-		FDRE : counter_reg[0]
-		FDRE : ov_dout_reg[7]
-		FDRE : shift_reg_reg[4]
-		FDRE : ov_dout_reg[13]
-		FDRE : shift_reg_reg[13]
-		FDRE : counter_reg[1]
-		FDRE : ov_dout_reg[6]
-		FDRE : ov_dout_reg[1]
-		FDRE : shift_reg_reg[7]
-		FDRE : shift_reg_reg[22]
-		FDRE : shift_reg_reg[10]
-		FDRE : ov_dout_reg[9]
-		FDRE : o_ready_reg
-		FDRE : ov_dout_reg[12]
-		FDRE : FSM_sequential_state_reg[0]
-		FDRE : shift_reg_reg[18]
-		FDRE : ov_dout_reg[0]
-		FDRE : shift_reg_reg[6]
-		FDRE : ov_dout_reg[19]
-		FDRE : shift_reg_reg[23]
-		FDRE : shift_reg_reg[11]
-		FDRE : ov_dout_reg[8]
-		FDRE : ov_dout_reg[11]
-		FDRE : ov_dout_reg[23]
-		FDRE : FSM_sequential_state_reg[1]
-		FDRE : shift_reg_reg[19]
-		FDRE : shift_reg_reg[1]
-		FDRE : shift_reg_reg[20]
-		FDRE : shift_reg_reg[9]
-		FDRE : ov_dout_reg[18]
-		FDRE : shift_reg_reg[16]
-		FDRE : ov_dout_reg[10]
-		FDRE : ov_dout_reg[22]
-		FDRE : counter_reg[4]
-		FDRE : ov_dout_reg[3]
-		FDRE : shift_reg_reg[0]
-		FDRE : shift_reg_reg[8]
-		FDRE : ov_dout_reg[17]
-		FDRE : shift_reg_reg[17]
-		FDRE : shift_reg_reg[21]
-		FDRE : ov_dout_reg[21]
-		FDRE : ov_dout_reg[2]
-		FDRE : shift_reg_reg[3]
-		FDRE : shift_reg_reg[14]
-		FDRE : ov_dout_reg[16]
-		FDRE : ov_dout_reg[20]
-		FDRE : counter_reg[2]
-		FDRE : ov_dout_reg[5]
-		FDRE : shift_reg_reg[2]
-		FDRE : shift_reg_reg[15]
-		FDRE : ov_dout_reg[15]
-		FDRE : counter_reg[3]
-		FDRE : ov_dout_reg[4]
-		FDRE : ov_sum_reg[4]
-		FDRE : ov_sum_reg[18]
-		FDRE : ov_sum_reg[8]
-		FDRE : ov_sum_reg[14]
-		FDRE : ov_sum_reg[10]
-		FDRE : ov_sum_reg[22]
-		FDRE : ov_sum_reg[3]
-		FDRE : ov_sum_reg[17]
-		FDRE : ov_sum_reg[7]
-		FDRE : ov_sum_reg[13]
-		FDRE : ov_sum_reg[21]
-		FDRE : ov_sum_reg[2]
-		FDRE : ov_sum_reg[16]
-		FDRE : ov_sum_reg[6]
-		FDRE : ov_sum_reg[12]
-		FDRE : ov_sum_reg[20]
-		FDRE : ov_sum_reg[0]
-		FDRE : ov_sum_reg[19]
-		FDRE : ov_sum_reg[1]
-		FDRE : ov_sum_reg[15]
-		FDRE : ov_sum_reg[5]
-		FDRE : ov_sum_reg[23]
-		FDRE : ov_sum_reg[11]
-		FDRE : ov_sum_reg[9]
-	Placing LUT cells...
-		LUT6 : FSM_sequential_state[0]_i_1__0
-		LUT6 : sample_re_addr[2]_i_1
-		LUT4 : weight_re_addr[1]_i_1
-		LUT5 : weight_re_addr[2]_i_1
-		LUT2 : weight_re_i_1
-		LUT2 : o_ready_i_1
-		LUT6 : sample_re_addr[1]_i_1
-		LUT4 : FSM_sequential_state[0]_i_2__0
-		LUT4 : sum_rst_i_1
-		LUT3 : sample_re_addr[3]_i_4
-		LUT5 : sample_re_addr[0]_i_1
-		LUT3 : sample_re_addr[3]_i_2
-		LUT3 : sample_re_addr[3]_i_3
-		LUT6 : sample_re_addr[3]_i_1
-		LUT6 : weight_re_addr[3]_i_1
-		LUT2 : FSM_sequential_state[0]_i_3
-		LUT3 : weight_re_addr[0]_i_1
-		LUT3 : FSM_sequential_state[1]_i_1__0
-		LUT6 : sample_wr_addr[4]_i_1
-		LUT2 : sample_re_addr[5]_i_1
-		LUT6 : weight_re_addr[4]_i_1
-		LUT2 : sample_wr_addr[1]_i_1
-		LUT4 : sample_re_addr[5]_i_3
-		LUT5 : sample_re_addr[5]_i_2
-		LUT6 : weight_re_addr[5]_i_1
-		LUT3 : sample_wr_addr[2]_i_1
-		LUT5 : sample_re_addr[4]_i_1
-		LUT6 : ov_dout[23]_i_1__0
-		LUT6 : o_dout_valid_i_1__1
-		LUT4 : sample_wr_addr[3]_i_1
-		LUT6 : sample_wr_addr[5]_i_1
-		LUT1 : sample_wr_addr[0]_i_1
-		LUT4 : FSM_sequential_state[0]_i_1__1
-		LUT6 : counter[3]_i_1
-		LUT4 : shift_reg[1]_i_1
-		LUT2 : o_ready_i_1__0
-		LUT6 : counter[4]_i_2
-		LUT4 : counter[4]_i_1
-		LUT3 : shift_reg[23]_i_3
-		LUT3 : shift_reg[23]_i_2
-		LUT5 : shift_reg[23]_i_1
-		LUT4 : counter[0]_i_1__0
-		LUT4 : shift_reg[8]_i_1
-		LUT4 : shift_reg[15]_i_1
-		LUT4 : shift_reg[2]_i_1
-		LUT4 : shift_reg[3]_i_1
-		LUT4 : shift_reg[9]_i_1
-		LUT4 : shift_reg[0]_i_1
-		LUT5 : counter[1]_i_1__0
-		LUT4 : shift_reg[6]_i_1
-		LUT4 : shift_reg[16]_i_1
-		LUT4 : shift_reg[13]_i_1
-		LUT4 : shift_reg[10]_i_1
-		LUT3 : FSM_sequential_state[1]_i_1__1
-		LUT4 : shift_reg[18]_i_1
-		LUT4 : shift_reg[21]_i_1
-		LUT5 : FSM_sequential_state[1]_i_2
-		LUT4 : shift_reg[19]_i_1
-		LUT4 : shift_reg[12]_i_1
-		LUT5 : o_dout_valid_i_1
-		LUT4 : shift_reg[5]_i_1
-		LUT4 : shift_reg[20]_i_1
-		LUT4 : shift_reg[14]_i_1
-		LUT4 : shift_reg[22]_i_1
-		LUT6 : counter[2]_i_1__0
-		LUT4 : shift_reg[11]_i_1
-		LUT4 : shift_reg[4]_i_1
-		LUT4 : shift_reg[17]_i_1
-		LUT4 : shift_reg[7]_i_1
-		LUT2 : shift_reg[4]_i_1__0
-		LUT2 : ov_dout[23]_i_2
-		LUT2 : shift_reg[8]_i_1__0
-		LUT2 : shift_reg[13]_i_1__0
-		LUT6 : ov_dout[23]_i_1
-		LUT2 : shift_reg[18]_i_1__0
-		LUT2 : shift_reg[1]_i_1__0
-		LUT6 : shift_reg[23]_i_1__0
-		LUT4 : FSM_sequential_state[0]_i_2
-		LUT6 : FSM_sequential_state[0]_i_1
-		LUT2 : shift_reg[5]_i_1__0
-		LUT6 : counter[1]_i_1
-		LUT2 : shift_reg[9]_i_1__0
-		LUT2 : shift_reg[14]_i_1__0
-		LUT4 : o_dout_valid_i_1__0
-		LUT2 : counter[4]_i_1__0
-		LUT2 : shift_reg[17]_i_1__0
-		LUT2 : shift_reg[10]_i_1__0
-		LUT2 : shift_reg[22]_i_1__0
-		LUT2 : shift_reg[2]_i_1__0
-		LUT2 : shift_reg[6]_i_1__0
-		LUT2 : shift_reg[21]_i_1__0
-		LUT4 : o_ready_i_1__1
-		LUT3 : counter[4]_i_3
-		LUT2 : shift_reg[15]_i_1__0
-		LUT5 : counter[3]_i_1__0
-		LUT2 : shift_reg[11]_i_1__0
-		LUT2 : shift_reg[16]_i_1__0
-		LUT4 : counter[2]_i_2
-		LUT4 : counter[2]_i_1
-		LUT2 : shift_reg[3]_i_1__0
-		LUT2 : shift_reg[20]_i_1__0
-		LUT5 : counter[4]_i_2__0
-		LUT5 : counter[0]_i_1
-		LUT3 : FSM_sequential_state[1]_i_1
-		LUT2 : shift_reg[7]_i_1__0
-		LUT2 : shift_reg[23]_i_2__0
-		LUT2 : shift_reg[12]_i_1__0
-		LUT2 : shift_reg[0]_i_1__0
-		LUT2 : shift_reg[19]_i_1__0
-		LUT2 : ov_sum[4]_i_5
-		LUT2 : ov_sum[4]_i_4
-		LUT2 : ov_sum[12]_i_5
-		LUT2 : ov_sum[12]_i_2
-		LUT2 : ov_sum[20]_i_4
-		LUT2 : ov_sum[20]_i_5
-		LUT2 : ov_sum[12]_i_4
-		LUT2 : ov_sum[20]_i_2
-		LUT2 : ov_sum[12]_i_3
-		LUT2 : ov_sum[20]_i_3
-		LUT2 : ov_sum[4]_i_3
-		LUT2 : ov_sum[4]_i_2
-		LUT2 : ov_sum[16]_i_5
-		LUT2 : ov_sum[0]_i_1
-		LUT2 : ov_sum[0]_i_3
-		LUT2 : ov_sum[0]_i_4
-		LUT2 : ov_sum[16]_i_2
-		LUT2 : ov_sum[0]_i_5
-		LUT2 : ov_sum[0]_i_6
-		LUT2 : ov_sum[16]_i_4
-		LUT2 : ov_sum[16]_i_3
-		LUT2 : ov_sum[8]_i_4
-		LUT2 : ov_sum[8]_i_5
-		LUT2 : ov_sum[8]_i_2
-		LUT2 : ov_sum[8]_i_3
-		LUT2 : gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
-		LUT2 : gen_wr_a.gen_word_narrow.mem_reg_i_2
-		LUT2 : gen_wr_a.gen_word_narrow.mem_reg_i_1
-	Placing DSP48E1 cells...
-		DSP48E1 : sum_trunc1__0
-		DSP48E1 : sum_trunc1
-	Placing RAMB18E1 cells...
-		RAMB18E1 : gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg
-		RAMB18E1 : gen_wr_a.gen_word_narrow.mem_reg
-	WARNING: Placement Failed! Cell: gen_wr_a.gen_word_narrow.mem_reg, Type: RAMB18E1
-
-Printing All Nets...
-	Net: i_en_IBUF
-		SitePinInsts: None!
-	Net: GLOBAL_LOGIC0
-		SitePinInsts: None!
-	Net: GLOBAL_LOGIC1
-		SitePinInsts: None!
-	Net: i_din
-		SitePinInsts: None!
-	Net: i_rst
-		SitePinInsts: None!
-	Net: o_dout
-		SitePinInsts: None!
-	Net: i_rst_IBUF
-		SitePinInsts: None!
-	Net: i_din_valid
-		SitePinInsts: None!
-	Net: i_din_IBUF
-		SitePinInsts: None!
-	Net: i_ready
-		SitePinInsts: None!
-	Net: i_en
-		SitePinInsts: None!
-	Net: i_clk_IBUF
-		SitePinInsts: None!
-	Net: serializer_inst/o_dout_valid_OBUF
-		SitePinInsts: None!
-	Net: o_dout_valid
-		SitePinInsts: None!
-	Net: i_din_valid_IBUF
-		SitePinInsts: None!
-	Net: o_ready
-		SitePinInsts: None!
-	Net: deserializer_inst/o_ready_OBUF
-		SitePinInsts: None!
-	Net: i_clk
-		SitePinInsts: None!
-	Net: serializer_inst/Q[0]
-		SitePinInsts: None!
-	Net: i_ready_IBUF
-		SitePinInsts: None!
-
-Printing All Cells...
-	Cell: shift_reg[4]_i_1__0                      isPlaced = true      
-		Site: SLICE_X107Y52
-		SiteInst: SLICE_X107Y52 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: i_en                                     isPlaced = true      
-		Site: IOB_X1Y136
-		SiteInst: IOB_X1Y136 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: ov_sum[12]_i_5                           isPlaced = true      
-		Site: SLICE_X57Y95
-		SiteInst: SLICE_X57Y95 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[18]                           isPlaced = true      
-		Site: SLICE_X49Y49
-		SiteInst: SLICE_X49Y49 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout[23]_i_2                          isPlaced = true      
-		Site: SLICE_X77Y26
-		SiteInst: SLICE_X77Y26 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum[12]_i_2                           isPlaced = true      
-		Site: SLICE_X95Y142
-		SiteInst: SLICE_X95Y142 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout_reg[14]                          isPlaced = true      
-		Site: SLICE_X44Y52
-		SiteInst: SLICE_X44Y52 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum[12]_i_4                           isPlaced = true      
-		Site: SLICE_X47Y103
-		SiteInst: SLICE_X47Y103 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum[12]_i_3                           isPlaced = true      
-		Site: SLICE_X75Y49
-		SiteInst: SLICE_X75Y49 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: counter_reg[0]                           isPlaced = true      
-		Site: SLICE_X70Y12
-		SiteInst: SLICE_X70Y12 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout_reg[7]                           isPlaced = true      
-		Site: SLICE_X88Y44
-		SiteInst: SLICE_X88Y44 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_re_addr_reg[4]                    isPlaced = true      
-		Site: SLICE_X79Y3
-		SiteInst: SLICE_X79Y3 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: o_ready_i_1                              isPlaced = true      
-		Site: SLICE_X52Y140
-		SiteInst: SLICE_X52Y140 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[2]_i_1                         isPlaced = true      
-		Site: SLICE_X60Y2
-		SiteInst: SLICE_X60Y2 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_re_addr[1]_i_1                    isPlaced = true      
-		Site: SLICE_X41Y75
-		SiteInst: SLICE_X41Y75 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: FSM_sequential_state[0]_i_2__0           isPlaced = true      
-		Site: SLICE_X61Y127
-		SiteInst: SLICE_X61Y127 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[0]_i_1                         isPlaced = true      
-		Site: SLICE_X71Y42
-		SiteInst: SLICE_X71Y42 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[13]_i_1__0                     isPlaced = true      
-		Site: SLICE_X105Y102
-		SiteInst: SLICE_X105Y102 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: counter[1]_i_1__0                        isPlaced = true      
-		Site: SLICE_X39Y113
-		SiteInst: SLICE_X39Y113 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout[23]_i_1                          isPlaced = true      
-		Site: SLICE_X5Y22
-		SiteInst: SLICE_X5Y22 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[0]_i_2                        isPlaced = true      
-		Site: SLICE_X64Y2
-		SiteInst: SLICE_X64Y2 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[18]_i_1__0                     isPlaced = true      
-		Site: SLICE_X33Y85
-		SiteInst: SLICE_X33Y85 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_re_addr[3]_i_4                    isPlaced = true      
-		Site: SLICE_X75Y38
-		SiteInst: SLICE_X75Y38 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[1]_i_1__0                      isPlaced = true      
-		Site: SLICE_X43Y40
-		SiteInst: SLICE_X43Y40 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout_reg[13]                          isPlaced = true      
-		Site: SLICE_X41Y124
-		SiteInst: SLICE_X41Y124 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_re_addr_reg[3]                    isPlaced = true      
-		Site: SLICE_X69Y6
-		SiteInst: SLICE_X69Y6 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_re_addr[3]_i_2                    isPlaced = true      
-		Site: SLICE_X99Y92
-		SiteInst: SLICE_X99Y92 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[17]                           isPlaced = true      
-		Site: SLICE_X107Y88
-		SiteInst: SLICE_X107Y88 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_re_addr[3]_i_3                    isPlaced = true      
-		Site: SLICE_X64Y41
-		SiteInst: SLICE_X64Y41 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[10]_i_1                        isPlaced = true      
-		Site: SLICE_X105Y75
-		SiteInst: SLICE_X105Y75 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg isPlaced = true      
-		Site: RAMB18_X3Y47
-		SiteInst: RAMB18_X3Y47 	Placed = true
-		SiteTypeEnum: RAMB18E1
-	Cell: sample_re_addr[3]_i_1                    isPlaced = true      
-		Site: SLICE_X73Y48
-		SiteInst: SLICE_X73Y48 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: counter_reg[1]                           isPlaced = true      
-		Site: SLICE_X83Y115
-		SiteInst: SLICE_X83Y115 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout_reg[6]                           isPlaced = true      
-		Site: SLICE_X91Y101
-		SiteInst: SLICE_X91Y101 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: GND                                      isPlaced = false     
-	Cell: FSM_sequential_state[1]_i_1__0           isPlaced = true      
-		Site: SLICE_X51Y46
-		SiteInst: SLICE_X51Y46 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: FSM_sequential_state[1]_i_1__1           isPlaced = true      
-		Site: SLICE_X59Y34
-		SiteInst: SLICE_X59Y34 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_re_addr[5]_i_1                    isPlaced = true      
-		Site: SLICE_X110Y8
-		SiteInst: SLICE_X110Y8 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: weight_re_addr[4]_i_1                    isPlaced = true      
-		Site: SLICE_X40Y128
-		SiteInst: SLICE_X40Y128 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: i_din                                    isPlaced = true      
-		Site: IOB_X1Y142
-		SiteInst: IOB_X1Y142 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: ov_sum[16]_i_5                           isPlaced = true      
-		Site: SLICE_X25Y29
-		SiteInst: SLICE_X25Y29 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_re_addr[5]_i_3                    isPlaced = true      
-		Site: SLICE_X29Y122
-		SiteInst: SLICE_X29Y122 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_re_addr[5]_i_2                    isPlaced = true      
-		Site: SLICE_X27Y73
-		SiteInst: SLICE_X27Y73 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum[0]_i_1                            isPlaced = true      
-		Site: SLICE_X89Y28
-		SiteInst: SLICE_X89Y28 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[19]_i_1                        isPlaced = true      
-		Site: SLICE_X28Y48
-		SiteInst: SLICE_X28Y48 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum[0]_i_3                            isPlaced = true      
-		Site: SLICE_X105Y53
-		SiteInst: SLICE_X105Y53 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum[0]_i_4                            isPlaced = true      
-		Site: SLICE_X106Y146
-		SiteInst: SLICE_X106Y146 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum[16]_i_2                           isPlaced = true      
-		Site: SLICE_X29Y84
-		SiteInst: SLICE_X29Y84 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_re_addr_reg[2]                    isPlaced = true      
-		Site: SLICE_X84Y145
-		SiteInst: SLICE_X84Y145 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[9]_i_1__0                      isPlaced = true      
-		Site: SLICE_X88Y39
-		SiteInst: SLICE_X88Y39 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum[0]_i_5                            isPlaced = true      
-		Site: SLICE_X19Y30
-		SiteInst: SLICE_X19Y30 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum[0]_i_6                            isPlaced = true      
-		Site: SLICE_X89Y43
-		SiteInst: SLICE_X89Y43 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum[16]_i_4                           isPlaced = true      
-		Site: SLICE_X99Y33
-		SiteInst: SLICE_X99Y33 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum[16]_i_3                           isPlaced = true      
-		Site: SLICE_X85Y95
-		SiteInst: SLICE_X85Y95 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout_reg[9]                           isPlaced = true      
-		Site: SLICE_X110Y83
-		SiteInst: SLICE_X110Y83 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[12]_i_1                        isPlaced = true      
-		Site: SLICE_X67Y133
-		SiteInst: SLICE_X67Y133 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sum_trunc1__0                            isPlaced = true      
-		Site: DSP48_X0Y3
-		SiteInst: DSP48_X0Y3 	Placed = true
-		SiteTypeEnum: DSP48E1
-	Cell: o_dout_valid_i_1                         isPlaced = true      
-		Site: SLICE_X24Y29
-		SiteInst: SLICE_X24Y29 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout_reg[12]                          isPlaced = true      
-		Site: SLICE_X65Y48
-		SiteInst: SLICE_X65Y48 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg_reg[18]                        isPlaced = true      
-		Site: SLICE_X69Y25
-		SiteInst: SLICE_X69Y25 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout[23]_i_1__0                       isPlaced = true      
-		Site: SLICE_X83Y31
-		SiteInst: SLICE_X83Y31 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[12]_i_1                       isPlaced = true      
-		Site: SLICE_X64Y5
-		SiteInst: SLICE_X64Y5 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: counter[4]_i_1__0                        isPlaced = true      
-		Site: SLICE_X57Y41
-		SiteInst: SLICE_X57Y41 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[22]_i_1                        isPlaced = true      
-		Site: SLICE_X99Y142
-		SiteInst: SLICE_X99Y142 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: i_clk_IBUF_inst                          isPlaced = false     
-	Cell: sample_wr_addr[0]_i_1                    isPlaced = true      
-		Site: SLICE_X39Y125
-		SiteInst: SLICE_X39Y125 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[19]                           isPlaced = true      
-		Site: SLICE_X89Y17
-		SiteInst: SLICE_X89Y17 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[10]_i_1__0                     isPlaced = true      
-		Site: SLICE_X55Y18
-		SiteInst: SLICE_X55Y18 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_re_addr_reg[1]                    isPlaced = true      
-		Site: SLICE_X109Y54
-		SiteInst: SLICE_X109Y54 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[4]_i_1                         isPlaced = true      
-		Site: SLICE_X59Y69
-		SiteInst: SLICE_X59Y69 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout_reg[8]                           isPlaced = true      
-		Site: SLICE_X37Y102
-		SiteInst: SLICE_X37Y102 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout_reg[11]                          isPlaced = true      
-		Site: SLICE_X56Y69
-		SiteInst: SLICE_X56Y69 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout_reg[23]                          isPlaced = true      
-		Site: SLICE_X67Y53
-		SiteInst: SLICE_X67Y53 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[22]_i_1__0                     isPlaced = true      
-		Site: SLICE_X87Y41
-		SiteInst: SLICE_X87Y41 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg_reg[19]                        isPlaced = true      
-		Site: SLICE_X68Y40
-		SiteInst: SLICE_X68Y40 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: FSM_sequential_state[0]_i_1__0           isPlaced = true      
-		Site: SLICE_X45Y95
-		SiteInst: SLICE_X45Y95 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: FSM_sequential_state[0]_i_1__1           isPlaced = true      
-		Site: SLICE_X55Y9
-		SiteInst: SLICE_X55Y9 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum[4]_i_5                            isPlaced = true      
-		Site: SLICE_X91Y115
-		SiteInst: SLICE_X91Y115 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg_reg[1]                         isPlaced = true      
-		Site: SLICE_X61Y77
-		SiteInst: SLICE_X61Y77 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum[4]_i_4                            isPlaced = true      
-		Site: SLICE_X113Y82
-		SiteInst: SLICE_X113Y82 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: weight_re_addr[1]_i_1                    isPlaced = true      
-		Site: SLICE_X76Y0
-		SiteInst: SLICE_X76Y0 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_wr_addr_reg[3]                    isPlaced = true      
-		Site: SLICE_X57Y137
-		SiteInst: SLICE_X57Y137 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: i_rst                                    isPlaced = true      
-		Site: IOB_X1Y135
-		SiteInst: IOB_X1Y135 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: i_rst_IBUF_inst                          isPlaced = false     
-	Cell: ov_sum_reg[4]                            isPlaced = true      
-		Site: SLICE_X44Y65
-		SiteInst: SLICE_X44Y65 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout_reg[18]                          isPlaced = true      
-		Site: SLICE_X113Y58
-		SiteInst: SLICE_X113Y58 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg_reg[16]                        isPlaced = true      
-		Site: SLICE_X89Y44
-		SiteInst: SLICE_X89Y44 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: weight_re_addr[2]_i_1                    isPlaced = true      
-		Site: SLICE_X61Y148
-		SiteInst: SLICE_X61Y148 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1 isPlaced = true      
-		Site: SLICE_X7Y19
-		SiteInst: SLICE_X7Y19 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum[20]_i_4                           isPlaced = true      
-		Site: SLICE_X44Y18
-		SiteInst: SLICE_X44Y18 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum[20]_i_5                           isPlaced = true      
-		Site: SLICE_X41Y98
-		SiteInst: SLICE_X41Y98 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum[20]_i_2                           isPlaced = true      
-		Site: SLICE_X51Y37
-		SiteInst: SLICE_X51Y37 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum[20]_i_3                           isPlaced = true      
-		Site: SLICE_X53Y29
-		SiteInst: SLICE_X53Y29 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[4]_i_1                        isPlaced = true      
-		Site: SLICE_X64Y3
-		SiteInst: SLICE_X64Y3 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[15]_i_1                        isPlaced = true      
-		Site: SLICE_X105Y133
-		SiteInst: SLICE_X105Y133 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: counter_reg[4]                           isPlaced = true      
-		Site: SLICE_X110Y112
-		SiteInst: SLICE_X110Y112 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum[4]_i_3                            isPlaced = true      
-		Site: SLICE_X44Y71
-		SiteInst: SLICE_X44Y71 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum[4]_i_2                            isPlaced = true      
-		Site: SLICE_X56Y58
-		SiteInst: SLICE_X56Y58 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout_reg[3]                           isPlaced = true      
-		Site: SLICE_X52Y50
-		SiteInst: SLICE_X52Y50 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: GND_1                                    isPlaced = false     
-	Cell: shift_reg_reg[0]                         isPlaced = true      
-		Site: SLICE_X52Y111
-		SiteInst: SLICE_X52Y111 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sum_rst_i_1                              isPlaced = true      
-		Site: SLICE_X74Y28
-		SiteInst: SLICE_X74Y28 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[11]_i_1__0                     isPlaced = true      
-		Site: SLICE_X37Y64
-		SiteInst: SLICE_X37Y64 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_wr_addr_reg[2]                    isPlaced = true      
-		Site: SLICE_X21Y15
-		SiteInst: SLICE_X21Y15 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[16]_i_1__0                     isPlaced = true      
-		Site: SLICE_X83Y3
-		SiteInst: SLICE_X83Y3 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: i_din_valid                              isPlaced = true      
-		Site: IOB_X1Y141
-		SiteInst: IOB_X1Y141 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: shift_reg[6]_i_1                         isPlaced = true      
-		Site: SLICE_X35Y57
-		SiteInst: SLICE_X35Y57 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout_reg[17]                          isPlaced = true      
-		Site: SLICE_X83Y109
-		SiteInst: SLICE_X83Y109 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg_reg[17]                        isPlaced = true      
-		Site: SLICE_X27Y130
-		SiteInst: SLICE_X27Y130 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[3]                            isPlaced = true      
-		Site: SLICE_X99Y8
-		SiteInst: SLICE_X99Y8 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[13]_i_1                        isPlaced = true      
-		Site: SLICE_X95Y73
-		SiteInst: SLICE_X95Y73 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: weight_re_addr[3]_i_1                    isPlaced = true      
-		Site: SLICE_X99Y58
-		SiteInst: SLICE_X99Y58 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: gen_wr_a.gen_word_narrow.mem_reg         isPlaced = false     
-	Cell: ov_dout_reg[2]                           isPlaced = true      
-		Site: SLICE_X80Y84
-		SiteInst: SLICE_X80Y84 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_wr_addr[4]_i_1                    isPlaced = true      
-		Site: SLICE_X105Y113
-		SiteInst: SLICE_X105Y113 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: i_ready_IBUF_inst                        isPlaced = false     
-	Cell: shift_reg_reg[3]                         isPlaced = true      
-		Site: SLICE_X1Y49
-		SiteInst: SLICE_X1Y49 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[20]_i_1__0                     isPlaced = true      
-		Site: SLICE_X1Y0
-		SiteInst: SLICE_X1Y0 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_wr_addr_reg[1]                    isPlaced = true      
-		Site: SLICE_X37Y117
-		SiteInst: SLICE_X37Y117 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: counter[0]_i_1                           isPlaced = true      
-		Site: SLICE_X45Y104
-		SiteInst: SLICE_X45Y104 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: weight_re_reg                            isPlaced = true      
-		Site: SLICE_X99Y119
-		SiteInst: SLICE_X99Y119 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[2]                            isPlaced = true      
-		Site: SLICE_X29Y3
-		SiteInst: SLICE_X29Y3 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg_reg[14]                        isPlaced = true      
-		Site: SLICE_X60Y93
-		SiteInst: SLICE_X60Y93 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout_reg[16]                          isPlaced = true      
-		Site: SLICE_X80Y65
-		SiteInst: SLICE_X80Y65 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: counter_reg[2]                           isPlaced = true      
-		Site: SLICE_X11Y27
-		SiteInst: SLICE_X11Y27 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[7]_i_1__0                      isPlaced = true      
-		Site: SLICE_X64Y43
-		SiteInst: SLICE_X64Y43 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[5]_i_1                         isPlaced = true      
-		Site: SLICE_X61Y55
-		SiteInst: SLICE_X61Y55 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout_reg[5]                           isPlaced = true      
-		Site: SLICE_X49Y104
-		SiteInst: SLICE_X49Y104 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[20]                           isPlaced = true      
-		Site: SLICE_X78Y26
-		SiteInst: SLICE_X78Y26 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[23]_i_2__0                     isPlaced = true      
-		Site: SLICE_X24Y1
-		SiteInst: SLICE_X24Y1 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg_reg[2]                         isPlaced = true      
-		Site: SLICE_X41Y100
-		SiteInst: SLICE_X41Y100 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[14]_i_1                        isPlaced = true      
-		Site: SLICE_X49Y121
-		SiteInst: SLICE_X49Y121 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: o_dout                                   isPlaced = true      
-		Site: IOB_X1Y87
-		SiteInst: IOB_X1Y87 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: sample_wr_addr_reg[0]                    isPlaced = true      
-		Site: SLICE_X61Y32
-		SiteInst: SLICE_X61Y32 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_wr_addr[5]_i_1                    isPlaced = true      
-		Site: SLICE_X31Y138
-		SiteInst: SLICE_X31Y138 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[0]                            isPlaced = true      
-		Site: SLICE_X52Y119
-		SiteInst: SLICE_X52Y119 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: counter[2]_i_1__0                        isPlaced = true      
-		Site: SLICE_X110Y138
-		SiteInst: SLICE_X110Y138 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg_reg[15]                        isPlaced = true      
-		Site: SLICE_X48Y84
-		SiteInst: SLICE_X48Y84 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[1]                            isPlaced = true      
-		Site: SLICE_X56Y66
-		SiteInst: SLICE_X56Y66 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[19]_i_1__0                     isPlaced = true      
-		Site: SLICE_X60Y8
-		SiteInst: SLICE_X60Y8 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout_reg[15]                          isPlaced = true      
-		Site: SLICE_X49Y78
-		SiteInst: SLICE_X49Y78 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_re_addr_reg[5]                    isPlaced = true      
-		Site: SLICE_X111Y101
-		SiteInst: SLICE_X111Y101 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: counter_reg[3]                           isPlaced = true      
-		Site: SLICE_X79Y20
-		SiteInst: SLICE_X79Y20 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout_reg[4]                           isPlaced = true      
-		Site: SLICE_X87Y92
-		SiteInst: SLICE_X87Y92 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_re_addr[2]_i_1                    isPlaced = true      
-		Site: SLICE_X27Y20
-		SiteInst: SLICE_X27Y20 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: o_dout_valid_reg                         isPlaced = true      
-		Site: SLICE_X51Y80
-		SiteInst: SLICE_X51Y80 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[1]_i_1                         isPlaced = true      
-		Site: SLICE_X9Y13
-		SiteInst: SLICE_X9Y13 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg_reg[5]                         isPlaced = true      
-		Site: SLICE_X17Y43
-		SiteInst: SLICE_X17Y43 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[23]_i_3                        isPlaced = true      
-		Site: SLICE_X87Y68
-		SiteInst: SLICE_X87Y68 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[23]_i_2                        isPlaced = true      
-		Site: SLICE_X52Y110
-		SiteInst: SLICE_X52Y110 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[23]_i_1                        isPlaced = true      
-		Site: SLICE_X49Y135
-		SiteInst: SLICE_X49Y135 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[8]                            isPlaced = true      
-		Site: SLICE_X71Y37
-		SiteInst: SLICE_X71Y37 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg_reg[12]                        isPlaced = true      
-		Site: SLICE_X59Y137
-		SiteInst: SLICE_X59Y137 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: weight_re_addr_reg[2]                    isPlaced = true      
-		Site: SLICE_X80Y149
-		SiteInst: SLICE_X80Y149 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[10]                           isPlaced = true      
-		Site: SLICE_X111Y118
-		SiteInst: SLICE_X111Y118 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[22]                           isPlaced = true      
-		Site: SLICE_X31Y24
-		SiteInst: SLICE_X31Y24 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[8]_i_1__0                      isPlaced = true      
-		Site: SLICE_X74Y19
-		SiteInst: SLICE_X74Y19 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg_reg[4]                         isPlaced = true      
-		Site: SLICE_X9Y15
-		SiteInst: SLICE_X9Y15 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[3]_i_1                         isPlaced = true      
-		Site: SLICE_X44Y125
-		SiteInst: SLICE_X44Y125 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_re_addr[0]_i_1                    isPlaced = true      
-		Site: SLICE_X109Y145
-		SiteInst: SLICE_X109Y145 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg_reg[13]                        isPlaced = true      
-		Site: SLICE_X7Y38
-		SiteInst: SLICE_X7Y38 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[7]                            isPlaced = true      
-		Site: SLICE_X65Y105
-		SiteInst: SLICE_X65Y105 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: VCC                                      isPlaced = false     
-	Cell: FSM_sequential_state[0]_i_3              isPlaced = true      
-		Site: SLICE_X65Y75
-		SiteInst: SLICE_X65Y75 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[23]_i_1__0                     isPlaced = true      
-		Site: SLICE_X44Y102
-		SiteInst: SLICE_X44Y102 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[21]                           isPlaced = true      
-		Site: SLICE_X28Y57
-		SiteInst: SLICE_X28Y57 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: FSM_sequential_state[0]_i_2              isPlaced = true      
-		Site: SLICE_X78Y14
-		SiteInst: SLICE_X78Y14 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: weight_re_addr_reg[3]                    isPlaced = true      
-		Site: SLICE_X56Y8
-		SiteInst: SLICE_X56Y8 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: FSM_sequential_state[0]_i_1              isPlaced = true      
-		Site: SLICE_X79Y15
-		SiteInst: SLICE_X79Y15 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout_reg[1]                           isPlaced = true      
-		Site: SLICE_X55Y30
-		SiteInst: SLICE_X55Y30 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[5]_i_1__0                      isPlaced = true      
-		Site: SLICE_X59Y6
-		SiteInst: SLICE_X59Y6 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[18]_i_1                        isPlaced = true      
-		Site: SLICE_X41Y130
-		SiteInst: SLICE_X41Y130 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: o_ready_OBUF_inst                        isPlaced = false     
-	Cell: i_ready                                  isPlaced = true      
-		Site: IOB_X1Y131
-		SiteInst: IOB_X1Y131 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: shift_reg_reg[7]                         isPlaced = true      
-		Site: SLICE_X63Y48
-		SiteInst: SLICE_X63Y48 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: counter[1]_i_1                           isPlaced = true      
-		Site: SLICE_X99Y27
-		SiteInst: SLICE_X99Y27 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: gen_wr_a.gen_word_narrow.mem_reg_i_2     isPlaced = true      
-		Site: SLICE_X52Y65
-		SiteInst: SLICE_X52Y65 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_wr_addr_reg[5]                    isPlaced = true      
-		Site: SLICE_X64Y97
-		SiteInst: SLICE_X64Y97 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg_reg[22]                        isPlaced = true      
-		Site: SLICE_X27Y140
-		SiteInst: SLICE_X27Y140 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[6]                            isPlaced = true      
-		Site: SLICE_X89Y149
-		SiteInst: SLICE_X89Y149 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg_reg[10]                        isPlaced = true      
-		Site: SLICE_X75Y22
-		SiteInst: SLICE_X75Y22 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: weight_re_addr_reg[4]                    isPlaced = true      
-		Site: SLICE_X60Y108
-		SiteInst: SLICE_X60Y108 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[12]                           isPlaced = true      
-		Site: SLICE_X39Y66
-		SiteInst: SLICE_X39Y66 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: o_ready_reg                              isPlaced = true      
-		Site: SLICE_X65Y49
-		SiteInst: SLICE_X65Y49 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: gen_wr_a.gen_word_narrow.mem_reg_i_1     isPlaced = true      
-		Site: SLICE_X77Y36
-		SiteInst: SLICE_X77Y36 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[14]_i_1__0                     isPlaced = true      
-		Site: SLICE_X60Y27
-		SiteInst: SLICE_X60Y27 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: FSM_sequential_state_reg[0]              isPlaced = true      
-		Site: SLICE_X24Y4
-		SiteInst: SLICE_X24Y4 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout_reg[0]                           isPlaced = true      
-		Site: SLICE_X83Y30
-		SiteInst: SLICE_X83Y30 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: o_dout_valid_i_1__1                      isPlaced = true      
-		Site: SLICE_X85Y117
-		SiteInst: SLICE_X85Y117 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: o_dout_valid_i_1__0                      isPlaced = true      
-		Site: SLICE_X57Y1
-		SiteInst: SLICE_X57Y1 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_wr_addr[3]_i_1                    isPlaced = true      
-		Site: SLICE_X35Y136
-		SiteInst: SLICE_X35Y136 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[17]_i_1__0                     isPlaced = true      
-		Site: SLICE_X61Y129
-		SiteInst: SLICE_X61Y129 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg_reg[6]                         isPlaced = true      
-		Site: SLICE_X47Y114
-		SiteInst: SLICE_X47Y114 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout_reg[19]                          isPlaced = true      
-		Site: SLICE_X40Y56
-		SiteInst: SLICE_X40Y56 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg_reg[23]                        isPlaced = true      
-		Site: SLICE_X110Y123
-		SiteInst: SLICE_X110Y123 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg_reg[11]                        isPlaced = true      
-		Site: SLICE_X60Y116
-		SiteInst: SLICE_X60Y116 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_wr_addr_reg[4]                    isPlaced = true      
-		Site: SLICE_X52Y56
-		SiteInst: SLICE_X52Y56 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[5]                            isPlaced = true      
-		Site: SLICE_X72Y33
-		SiteInst: SLICE_X72Y33 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: o_dout_valid_OBUF_inst                   isPlaced = false     
-	Cell: ov_sum_reg[23]                           isPlaced = true      
-		Site: SLICE_X13Y19
-		SiteInst: SLICE_X13Y19 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: weight_re_addr_reg[5]                    isPlaced = true      
-		Site: SLICE_X84Y34
-		SiteInst: SLICE_X84Y34 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: <LOCKED>                                 isPlaced = false     
-		Site: OLOGIC_X1Y107
-		SiteInst: OLOGIC_X1Y107 	Placed = true
-		SiteTypeEnum: OLOGICE3
-	Cell: ov_sum_reg[11]                           isPlaced = true      
-		Site: SLICE_X89Y112
-		SiteInst: SLICE_X89Y112 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[7]_i_1                         isPlaced = true      
-		Site: SLICE_X55Y13
-		SiteInst: SLICE_X55Y13 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sum_trunc1                               isPlaced = true      
-		Site: DSP48_X0Y19
-		SiteInst: DSP48_X0Y19 	Placed = true
-		SiteTypeEnum: DSP48E1
-	Cell: FSM_sequential_state_reg[1]              isPlaced = true      
-		Site: SLICE_X85Y42
-		SiteInst: SLICE_X85Y42 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[2]_i_1__0                      isPlaced = true      
-		Site: SLICE_X113Y136
-		SiteInst: SLICE_X113Y136 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: counter[3]_i_1                           isPlaced = true      
-		Site: SLICE_X56Y134
-		SiteInst: SLICE_X56Y134 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[6]_i_1__0                      isPlaced = true      
-		Site: SLICE_X93Y63
-		SiteInst: SLICE_X93Y63 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[21]_i_1__0                     isPlaced = true      
-		Site: SLICE_X35Y120
-		SiteInst: SLICE_X35Y120 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg_reg[20]                        isPlaced = true      
-		Site: SLICE_X57Y107
-		SiteInst: SLICE_X57Y107 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg_reg[9]                         isPlaced = true      
-		Site: SLICE_X39Y109
-		SiteInst: SLICE_X39Y109 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: o_ready_i_1__0                           isPlaced = true      
-		Site: SLICE_X21Y33
-		SiteInst: SLICE_X21Y33 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: o_ready_i_1__1                           isPlaced = true      
-		Site: SLICE_X85Y2
-		SiteInst: SLICE_X85Y2 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: counter[4]_i_2                           isPlaced = true      
-		Site: SLICE_X49Y46
-		SiteInst: SLICE_X49Y46 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: o_dout_OBUF_inst                         isPlaced = false     
-	Cell: counter[4]_i_1                           isPlaced = true      
-		Site: SLICE_X93Y85
-		SiteInst: SLICE_X93Y85 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: counter[4]_i_3                           isPlaced = true      
-		Site: SLICE_X28Y141
-		SiteInst: SLICE_X28Y141 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: weight_re_i_1                            isPlaced = true      
-		Site: SLICE_X80Y40
-		SiteInst: SLICE_X80Y40 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: counter[0]_i_1__0                        isPlaced = true      
-		Site: SLICE_X40Y147
-		SiteInst: SLICE_X40Y147 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[14]                           isPlaced = true      
-		Site: SLICE_X49Y66
-		SiteInst: SLICE_X49Y66 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_re_addr_reg[0]                    isPlaced = true      
-		Site: SLICE_X55Y87
-		SiteInst: SLICE_X55Y87 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[8]_i_1                         isPlaced = true      
-		Site: SLICE_X37Y84
-		SiteInst: SLICE_X37Y84 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout_reg[10]                          isPlaced = true      
-		Site: SLICE_X107Y78
-		SiteInst: SLICE_X107Y78 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout_reg[22]                          isPlaced = true      
-		Site: SLICE_X91Y145
-		SiteInst: SLICE_X91Y145 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[15]_i_1__0                     isPlaced = true      
-		Site: SLICE_X97Y142
-		SiteInst: SLICE_X97Y142 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: counter[3]_i_1__0                        isPlaced = true      
-		Site: SLICE_X97Y92
-		SiteInst: SLICE_X97Y92 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[9]_i_1                         isPlaced = true      
-		Site: SLICE_X88Y29
-		SiteInst: SLICE_X88Y29 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg_reg[8]                         isPlaced = true      
-		Site: SLICE_X33Y129
-		SiteInst: SLICE_X33Y129 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: counter[2]_i_2                           isPlaced = true      
-		Site: SLICE_X63Y124
-		SiteInst: SLICE_X63Y124 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: counter[2]_i_1                           isPlaced = true      
-		Site: SLICE_X60Y133
-		SiteInst: SLICE_X60Y133 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[16]_i_1                        isPlaced = true      
-		Site: SLICE_X41Y50
-		SiteInst: SLICE_X41Y50 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: VCC_1                                    isPlaced = false     
-	Cell: o_ready                                  isPlaced = true      
-		Site: IOB_X1Y107
-		SiteInst: IOB_X1Y107 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: shift_reg_reg[21]                        isPlaced = true      
-		Site: SLICE_X57Y138
-		SiteInst: SLICE_X57Y138 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: i_clk                                    isPlaced = true      
-		Site: IOB_X1Y124
-		SiteInst: IOB_X1Y124 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: ov_sum_reg[16]_i_1                       isPlaced = true      
-		Site: SLICE_X64Y6
-		SiteInst: SLICE_X64Y6 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout_reg[21]                          isPlaced = true      
-		Site: SLICE_X48Y48
-		SiteInst: SLICE_X48Y48 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[13]                           isPlaced = true      
-		Site: SLICE_X33Y27
-		SiteInst: SLICE_X33Y27 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[3]_i_1__0                      isPlaced = true      
-		Site: SLICE_X37Y135
-		SiteInst: SLICE_X37Y135 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: weight_re_addr[0]_i_1                    isPlaced = true      
-		Site: SLICE_X83Y41
-		SiteInst: SLICE_X83Y41 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[8]_i_1                        isPlaced = true      
-		Site: SLICE_X64Y4
-		SiteInst: SLICE_X64Y4 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_wr_addr[1]_i_1                    isPlaced = true      
-		Site: SLICE_X9Y49
-		SiteInst: SLICE_X9Y49 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: counter[4]_i_2__0                        isPlaced = true      
-		Site: SLICE_X31Y121
-		SiteInst: SLICE_X31Y121 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[21]_i_1                        isPlaced = true      
-		Site: SLICE_X40Y144
-		SiteInst: SLICE_X40Y144 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: i_din_IBUF_inst                          isPlaced = false     
-	Cell: FSM_sequential_state[1]_i_2              isPlaced = true      
-		Site: SLICE_X44Y39
-		SiteInst: SLICE_X44Y39 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[16]                           isPlaced = true      
-		Site: SLICE_X83Y125
-		SiteInst: SLICE_X83Y125 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: weight_re_addr[5]_i_1                    isPlaced = true      
-		Site: SLICE_X101Y100
-		SiteInst: SLICE_X101Y100 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_wr_addr[2]_i_1                    isPlaced = true      
-		Site: SLICE_X60Y72
-		SiteInst: SLICE_X60Y72 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: FSM_sequential_state[1]_i_1              isPlaced = true      
-		Site: SLICE_X39Y131
-		SiteInst: SLICE_X39Y131 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_dout_reg[20]                          isPlaced = true      
-		Site: SLICE_X55Y16
-		SiteInst: SLICE_X55Y16 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sample_re_addr[4]_i_1                    isPlaced = true      
-		Site: SLICE_X59Y28
-		SiteInst: SLICE_X59Y28 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: weight_re_addr_reg[0]                    isPlaced = true      
-		Site: SLICE_X44Y42
-		SiteInst: SLICE_X44Y42 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[20]_i_1                        isPlaced = true      
-		Site: SLICE_X9Y38
-		SiteInst: SLICE_X9Y38 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: sum_rst_reg                              isPlaced = true      
-		Site: SLICE_X31Y124
-		SiteInst: SLICE_X31Y124 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum[8]_i_4                            isPlaced = true      
-		Site: SLICE_X33Y87
-		SiteInst: SLICE_X33Y87 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[20]_i_1                       isPlaced = true      
-		Site: SLICE_X64Y7
-		SiteInst: SLICE_X64Y7 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[12]_i_1__0                     isPlaced = true      
-		Site: SLICE_X47Y37
-		SiteInst: SLICE_X47Y37 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum[8]_i_5                            isPlaced = true      
-		Site: SLICE_X47Y62
-		SiteInst: SLICE_X47Y62 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum[8]_i_2                            isPlaced = true      
-		Site: SLICE_X111Y23
-		SiteInst: SLICE_X111Y23 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: shift_reg[11]_i_1                        isPlaced = true      
-		Site: SLICE_X56Y106
-		SiteInst: SLICE_X56Y106 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum[8]_i_3                            isPlaced = true      
-		Site: SLICE_X67Y122
-		SiteInst: SLICE_X67Y122 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: i_en_IBUF_inst                           isPlaced = false     
-	Cell: o_dout_valid                             isPlaced = true      
-		Site: IOB_X1Y88
-		SiteInst: IOB_X1Y88 	Placed = true
-		SiteTypeEnum: IOB33
-	Cell: shift_reg[0]_i_1__0                      isPlaced = true      
-		Site: SLICE_X61Y121
-		SiteInst: SLICE_X61Y121 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[15]                           isPlaced = true      
-		Site: SLICE_X65Y56
-		SiteInst: SLICE_X65Y56 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: i_din_valid_IBUF_inst                    isPlaced = false     
-	Cell: shift_reg[17]_i_1                        isPlaced = true      
-		Site: SLICE_X75Y29
-		SiteInst: SLICE_X75Y29 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: ov_sum_reg[9]                            isPlaced = true      
-		Site: SLICE_X48Y66
-		SiteInst: SLICE_X48Y66 	Placed = true
-		SiteTypeEnum: SLICEL
-	Cell: weight_re_addr_reg[1]                    isPlaced = true      
-		Site: SLICE_X67Y111
-		SiteInst: SLICE_X67Y111 	Placed = true
-		SiteTypeEnum: SLICEL
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/REGCEAREG

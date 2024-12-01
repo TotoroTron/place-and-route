@@ -18,8 +18,8 @@ import java.io.IOException;
 
 import com.xilinx.rapidwright.design.Cell;
 
-import com.xilinx.rapidwright.edif.EDIFCellInst;
 import com.xilinx.rapidwright.edif.EDIFHierCellInst;
+import com.xilinx.rapidwright.edif.EDIFCellInst;
 import com.xilinx.rapidwright.edif.EDIFNetlist;
 import com.xilinx.rapidwright.edif.EDIFPortInst;
 import com.xilinx.rapidwright.edif.EDIFNet;
@@ -81,10 +81,10 @@ public class PlacerPacking extends Placer {
 
     public @Override void placeDesign() throws IOException {
         EDIFNetlist netlist = design.getNetlist();
-        List<EDIFCellInst> ecis = netlist.getAllLeafCellInstances();
+        List<EDIFHierCellInst> ehcis = netlist.getAllLeafHierCellInstances();
 
         // Create a map to group cells by type
-        Map<String, List<EDIFCellInst>> EDIFCellGroups = new LinkedHashMap<>();
+        Map<String, List<EDIFHierCellInst>> EDIFCellGroups = new LinkedHashMap<>();
         EDIFCellGroups.put("IBUF", new ArrayList<>());
         EDIFCellGroups.put("OBUF", new ArrayList<>());
         EDIFCellGroups.put("VCC", new ArrayList<>());
@@ -97,14 +97,15 @@ public class PlacerPacking extends Placer {
 
         Set<String> uniqueEdifCellTypes = new HashSet<>();
 
-        for (EDIFCellInst eci : ecis) {
+        for (EDIFHierCellInst ehci : ehcis) {
+            EDIFCellInst eci = ehci.getInst();
             // populate unique cell tyeps
             uniqueEdifCellTypes.add(eci.getCellType().getName());
 
             // add this cell to the corresponding group based on type
             for (String cellType : EDIFCellGroups.keySet()) {
                 if (eci.getCellType().getName().contains(cellType)) {
-                    EDIFCellGroups.get(cellType).add(eci);
+                    EDIFCellGroups.get(cellType).add(ehci);
                     writer.write("\n\tFound " + cellType + " cell: " + eci.getCellName());
                     break; // once matched, no need to check other types
                 }
@@ -116,23 +117,27 @@ public class PlacerPacking extends Placer {
             writer.write("\n\t" + edifCellType);
         }
         writer.write("\nPrinting Cells By Type...");
-        for (Map.Entry<String, List<EDIFCellInst>> entry : EDIFCellGroups.entrySet()) {
+        for (Map.Entry<String, List<EDIFHierCellInst>> entry : EDIFCellGroups.entrySet()) {
             writer.write("\n\n" + entry.getKey() + " Cells (" + entry.getValue().size() + "):");
-            printEDIFCellInstList(entry.getValue());
+            List<EDIFCellInst> cells = entry.getValue().stream()
+                    .map(e -> e.getInst()) // Assuming getInst() is a method in EDIFCellInst
+                    .collect(Collectors.toList());
+            printEDIFCellInstList(cells);
         }
 
         // BUILD CARRY CHAINS
-        List<List<EDIFCellInst>> EDIFCarryChains = new LinkedList<>();
-        List<EDIFCellInst> EDIFCarryCells = EDIFCellGroups.get("CARRY4");
+        List<List<EDIFHierCellInst>> EDIFCarryChains = new LinkedList<>();
+        List<EDIFHierCellInst> EDIFCarryCells = EDIFCellGroups.get("CARRY4");
         while (!EDIFCarryCells.isEmpty()) {
-            List<EDIFCellInst> chain = new ArrayList<>();
-            EDIFCellInst ehci = EDIFCarryCells.get(0);
+            List<EDIFHierCellInst> chain = new ArrayList<>();
+            EDIFHierCellInst ehci = EDIFCarryCells.get(0);
+            // every iteration, EDIFCarryCells gets updated so .get(0) is different.
             buildCarryChain(ehci, chain);
             EDIFCarryChains.add(chain);
             EDIFCarryCells.removeAll(chain);
             writer.write("\n\nPrinting cells in this carry chain...");
-            for (EDIFCellInst cell : chain) {
-                writer.write("\n\t" + cell.getName());
+            for (EDIFHierCellInst cell : chain) {
+                writer.write("\n\t" + cell.getInst().getName());
             }
         }
 
@@ -163,11 +168,7 @@ public class PlacerPacking extends Placer {
         for (List<EDIFCellInst> chain : EDIFCarryChains) {
             writer.write("\n\tchain size: " + chain.size());
             Random rand = new Random();
-
-            EDIFCellInst anchorCell = chain.get(0);
-            EDIFHierCellInst anchorHierCell = netlist.getHierCellInstFromName(anchorCell.getName());
-
-            Cell cell = design.createCell(anchorHierCell.getFullHierarchicalInstName(), anchorCell);
+            Cell cell = design.createCell(chain.get(0).getName(), chain.get(0));
 
             Map<SiteTypeEnum, Set<String>> compatiblePlacements = cell.getCompatiblePlacements(device);
             List<SiteTypeEnum> compatibleSiteTypes = new ArrayList<>(compatiblePlacements.keySet());
@@ -276,7 +277,8 @@ public class PlacerPacking extends Placer {
         return anchorSiteName;
     }
 
-    protected void buildCarryChain(EDIFCellInst eci, List<EDIFCellInst> chain) {
+    protected void buildCarryChain(EDIFHierCellInst ehci, List<EDIFHierCellInst> chain) {
+        EDIFCellInst eci = ehci.getInst();
         // traverse the carry chain in the cin direction to find starting cell of chain
         // the start of chain occurs when CIN connects to GND
         EDIFCellInst currCell = eci;
