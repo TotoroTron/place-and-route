@@ -136,8 +136,6 @@ public class PlacerPackingHier extends Placer {
             // every iteration, EDIFCarryCells gets updated so .get(0) is different.
             buildCarryChain(ehci, chain);
             EDIFCarryChains.add(chain);
-            // SOMETHING IS WRONG HERE!
-            // EDIFCARRYCELLS NEVER EMPTIES OUT!
             EDIFCarryCells.removeAll(chain);
             writer.write("\n\nPrinting cells in this carry chain...");
             for (EDIFHierCellInst cell : chain) {
@@ -291,43 +289,20 @@ public class PlacerPackingHier extends Placer {
         // traverse the carry chain in the cin direction to find starting cell of chain
         // the start of chain occurs when CIN connects to GND
         EDIFHierCellInst currCell = ehci;
-
-        //
-        // ==============
-        List<EDIFHierPortInst> currCellPorts = currCell.getHierPortInsts();
-        System.out.println("\nBuilding Carry Chain on " + currCell.getFullHierarchicalInstName());
-        System.out.println("\tcurrCell ports: (" + currCellPorts.size() + ")");
-        for (EDIFHierPortInst port : currCellPorts) {
-            System.out.println("\t\t" + port.getFullHierarchicalInstName() + ", FullName: "
-                    + port.getPortInst().getFullName() + ", Name: " + port.getPortInst().getName());
-        }
-        // ==============
-        //
-
         while (true) {
-            System.out.println("currCell: " + currCell.getFullHierarchicalInstName());
             EDIFHierPortInst currCellPort = currCell.getPortInst("CI");
-            System.out.println("currCellPort: " + currCellPort.getFullHierarchicalInstName());
             EDIFHierNet hnet = currCellPort.getHierarchicalNet();
-            System.out.println("EDIFHierNet: " + hnet.getHierarchicalInstName());
-            if (hnet.getNet().isGND()) {
-                System.out.println("BREAK!");
+            if (hnet.getNet().isGND())
                 break;
-            }
-
             Collection<EDIFHierPortInst> netPorts = hnet.getPortInsts();
             Map<String, EDIFHierPortInst> netPortsMap = netPorts.stream()
                     .collect(Collectors.toMap(
                             p -> p.getPortInst().getName(),
                             p -> p));
             EDIFHierPortInst sourceCellPort = netPortsMap.get("CO[3]");
-            System.out.println("sourceCellPort: " + sourceCellPort.getFullHierarchicalInstName());
             EDIFHierCellInst sourceCell = sourceCellPort.getHierarchicalInst()
                     .getChild(sourceCellPort.getPortInst().getCellInst().getName());
-            System.out.println("sourceCell: " + sourceCell.getFullHierarchicalInstName());
-
             currCell = sourceCell;
-            System.out.println("=======================");
         }
 
         // we now have the starting carry cell as currCell
@@ -339,17 +314,17 @@ public class PlacerPackingHier extends Placer {
             EDIFHierPortInst currCellPort = currCell.getPortInst("CO[3]");
             if (currCellPort == null)
                 break;
-            EDIFHierNet net = currCellPort.getHierarchicalNet();
-            Collection<EDIFHierPortInst> netPorts = net.getPortInsts();
+            EDIFHierNet hnet = currCellPort.getHierarchicalNet();
+            Collection<EDIFHierPortInst> netPorts = hnet.getPortInsts();
             Map<String, EDIFHierPortInst> netPortsMap = netPorts.stream()
                     .collect(Collectors.toMap(
-                            portInst -> portInst.getPortInst().getName(),
-                            portInst -> portInst));
+                            p -> p.getPortInst().getName(),
+                            p -> p));
             EDIFHierPortInst sinkCellPort = netPortsMap.get("CI");
-            EDIFHierCellInst sinkCell = sinkCellPort.getHierarchicalInst();
+            EDIFHierCellInst sinkCell = sinkCellPort.getHierarchicalInst()
+                    .getChild(sinkCellPort.getPortInst().getCellInst().getName());
             currCell = sinkCell;
         }
-        System.out.println("FINISHED BUILDING CARRY CHAIN!");
     }
 
 } // end class
