@@ -150,7 +150,7 @@ module fir_filter_transposed_pipelined
 
     tap_transposed #(
         .DATA_WIDTH(DATA_WIDTH)
-    ) inst (
+    ) tap_inst (
         .i_clk(i_clk),
         .i_rst(i_rst || sum_rst),
         .i_en(i_en),

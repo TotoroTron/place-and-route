@@ -23,6 +23,7 @@ import com.xilinx.rapidwright.edif.EDIFHierCellInst;
 import com.xilinx.rapidwright.edif.EDIFNetlist;
 import com.xilinx.rapidwright.edif.EDIFPortInst;
 import com.xilinx.rapidwright.edif.EDIFNet;
+import com.xilinx.rapidwright.edif.EDIFCell;
 
 import com.xilinx.rapidwright.device.BEL;
 import com.xilinx.rapidwright.device.Site;
@@ -163,11 +164,11 @@ public class PlacerPacking extends Placer {
         for (List<EDIFCellInst> chain : EDIFCarryChains) {
             writer.write("\n\tchain size: " + chain.size());
             Random rand = new Random();
-
             EDIFCellInst anchorCell = chain.get(0);
-            EDIFHierCellInst anchorHierCell = netlist.getHierCellInstFromName(anchorCell.getName());
+            EDIFCell anchorParent = anchorCell.getParentCell();
+            writer.write("\n\tParent cell: " + anchorParent.getName());
 
-            Cell cell = design.createCell(anchorHierCell.getFullHierarchicalInstName(), anchorCell);
+            Cell cell = design.createCell(anchorCell.getName(), anchorCell);
 
             Map<SiteTypeEnum, Set<String>> compatiblePlacements = cell.getCompatiblePlacements(device);
             List<SiteTypeEnum> compatibleSiteTypes = new ArrayList<>(compatiblePlacements.keySet());

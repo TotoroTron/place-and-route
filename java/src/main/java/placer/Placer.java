@@ -179,6 +179,11 @@ public abstract class Placer {
         writer.write("\n\nPrinting all EDIFHierCellInsts... (" + ehcis.size() + ")");
         for (EDIFHierCellInst ehci : ehcis) {
             writer.write("\n\t" + ehci.getFullHierarchicalInstName() + ", " + ehci.getCellName());
+            List<EDIFHierPortInst> ehpis = ehci.getHierPortInsts();
+            writer.write("\n\t\tEDIFHierPortInsts... (" + ehpis.size() + ")");
+            for (EDIFHierPortInst ehpi : ehpis) {
+                writer.write("\n\t\t\t" + ehpi.getFullHierarchicalInstName());
+            }
         }
         writer.write("\n\n");
     }

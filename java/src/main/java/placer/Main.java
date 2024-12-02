@@ -29,7 +29,7 @@ public class Main {
             // PlacerRandom RPlacer = new PlacerRandom();
             // RPlacer.run();
 
-            PlacerPacking PPlacer = new PlacerPacking();
+            PlacerPackingHier PPlacer = new PlacerPackingHier();
             PPlacer.printUniqueSites();
             PPlacer.run();
 
