@@ -16,7 +16,7 @@ public class PlacerRandom extends Placer {
 
     public PlacerRandom() throws IOException {
         super();
-        placerName = "PlacerPacking";
+        placerName = "PlacerRandom";
         writer = new FileWriter(rootDir + "outputs/printout/" + placerName + ".txt");
     }
 

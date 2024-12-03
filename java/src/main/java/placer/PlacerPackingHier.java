@@ -17,6 +17,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import com.xilinx.rapidwright.design.Cell;
+import com.xilinx.rapidwright.design.SiteInst;
+import com.xilinx.rapidwright.design.Net;
 
 import com.xilinx.rapidwright.edif.EDIFNetlist;
 import com.xilinx.rapidwright.edif.EDIFHierNet;
@@ -70,7 +72,7 @@ public class PlacerPackingHier extends Placer {
             List<String> occupiedBELs = entry.getValue();
 
             // SINGLE BEL PER SITE
-            availablePlacements.remove(siteName);
+            // availablePlacements.remove(siteName);
 
             // BEL PACKING (CAUSES ILLEGAL PLACEMENT FOR FIRST/RANDOM PLACER)
             if (availablePlacements.containsKey(siteName)) {
@@ -108,7 +110,7 @@ public class PlacerPackingHier extends Placer {
             for (String cellType : EDIFCellGroups.keySet()) {
                 if (eci.getCellType().getName().contains(cellType)) {
                     EDIFCellGroups.get(cellType).add(ehci);
-                    writer.write("\n\tFound " + cellType + " cell: " + eci.getCellName());
+                    writer.write("\n\tFound " + cellType + " cell: " + eci.getName());
                     break; // once matched, no need to check other types
                 }
             }
@@ -176,13 +178,14 @@ public class PlacerPackingHier extends Placer {
             // netlist.getHierCellInstFromName(anchorCell.getName());
 
             Cell cell = design.createCell(anchorCell.getFullHierarchicalInstName(), anchorCell.getInst());
+            // cell.setEDIFHierCellInst(anchorCell);
 
             Map<SiteTypeEnum, Set<String>> compatiblePlacements = cell.getCompatiblePlacements(device);
             List<SiteTypeEnum> compatibleSiteTypes = new ArrayList<>(compatiblePlacements.keySet());
             int randIndex = rand.nextInt(compatibleSiteTypes.size());
             SiteTypeEnum selectedSiteType = compatibleSiteTypes.get(randIndex);
 
-            String anchorSiteName = findCarryChainAnchorSiteCoords(selectedSiteType, chain);
+            String anchorSiteName = findCarryChainAnchorSite(selectedSiteType, chain);
             String anchorBELName = "CARRY4";
             Site anchorSite = device.getSite(anchorSiteName);
             BEL anchorBEL = anchorSite.getBEL(anchorBELName);
@@ -198,6 +201,7 @@ public class PlacerPackingHier extends Placer {
             // place the rest of the chain
             for (int i = 1; i < chain.size(); i++) {
                 cell = design.createCell(chain.get(i).getFullHierarchicalInstName(), chain.get(i).getInst());
+                // cell.setEDIFHierCellInst(chain.get(i));
                 String siteName = "SLICE_X" + anchorSite.getInstanceX() + "Y" + (anchorSite.getInstanceY() + i);
                 String belName = "CARRY4";
                 Site site = device.getSite(siteName);
@@ -215,8 +219,9 @@ public class PlacerPackingHier extends Placer {
                 continue;
             List<EDIFHierCellInst> edifCells = entry.getValue();
             for (EDIFHierCellInst edifCell : edifCells) {
-                cellGroups.get(edifCellType)
-                        .add(design.createCell(edifCell.getFullHierarchicalInstName(), edifCell.getInst()));
+                Cell cell = design.createCell(edifCell.getFullHierarchicalInstName(), edifCell.getInst());
+                cell.setEDIFHierCellInst(edifCell);
+                cellGroups.get(edifCellType).add(cell);
             }
         }
 
@@ -235,6 +240,9 @@ public class PlacerPackingHier extends Placer {
                 placeCell(cell, occupiedPlacements);
             }
         }
+
+        printOccupiedSites(occupiedPlacements);
+
     }
 
     private void placeCarryCell(Cell cell, Site site, BEL bel, Map<String, List<String>> occupiedPlacements)
@@ -251,7 +259,7 @@ public class PlacerPackingHier extends Placer {
         }
     }
 
-    private String findCarryChainAnchorSiteCoords(SiteTypeEnum selectedSiteType, List<EDIFHierCellInst> chain)
+    private String findCarryChainAnchorSite(SiteTypeEnum selectedSiteType, List<EDIFHierCellInst> chain)
             throws IOException {
         Map<String, Integer> minmax = getCoordinateMinMaxOfType(selectedSiteType);
         int x_max = minmax.get("X_MAX");

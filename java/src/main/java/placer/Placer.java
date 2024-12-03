@@ -1,6 +1,9 @@
 package placer;
 
 import java.util.stream.Collectors;
+
+import org.python.antlr.PythonParser.else_clause_return;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -22,6 +25,7 @@ import com.xilinx.rapidwright.design.Cell;
 import com.xilinx.rapidwright.design.SitePinInst;
 
 import com.xilinx.rapidwright.edif.EDIFNetlist;
+import com.xilinx.rapidwright.edif.EDIFHierNet;
 import com.xilinx.rapidwright.edif.EDIFNet;
 import com.xilinx.rapidwright.edif.EDIFCellInst;
 import com.xilinx.rapidwright.edif.EDIFHierCellInst;
@@ -52,7 +56,6 @@ public abstract class Placer {
     }
 
     public void run() throws IOException {
-
         // design.flattenDesign();
         // printDesignNets(design, "NetsBeforePlace");
         // printDesignCells(design, "CellsBeforePlace");
@@ -60,7 +63,7 @@ public abstract class Placer {
         placeDesign();
         // manualIntraRouteSites();
         printDesignNets(design, "NetsAfterPlace");
-        printDesignCells(design, "CellsAfterPlace");
+        // printDesignCells(design, "CellsAfterPlace");
         writer.close();
         design.writeCheckpoint(placedDcp);
     }
@@ -84,6 +87,8 @@ public abstract class Placer {
         for (Cell cell : cells) {
             placeCell(cell, occupiedPlacements);
         } // end for(Cell)
+
+        printOccupiedSites(occupiedPlacements);
 
     } // end placDesign()
 
@@ -174,6 +179,24 @@ public abstract class Placer {
 
     } // end placeCell()
 
+    public void printOccupiedSites(Map<String, List<String>> occupiedPlacements) throws IOException {
+        writer.write("\n\nPrinting sites in occupiedPlacements... (" + occupiedPlacements.keySet().size() + ")");
+        for (String siteName : occupiedPlacements.keySet()) {
+            SiteInst si = design.getSiteInst(siteName);
+            writer.write("\n\t" + siteName + ", " + si.getSiteTypeEnum());
+
+            Map<String, Cell> belCellMap = si.getCellMap();
+            for (Map.Entry<String, Cell> entry : belCellMap.entrySet()) {
+                writer.write("\n\t\tBEL: " + entry.getKey() + ", Cell: " + entry.getValue());
+            }
+
+            Set<Net> nets = si.getConnectedNets();
+            for (Net net : nets) {
+                writer.write("\n\t\tNet: " + net.getName());
+            }
+        }
+    }
+
     public void printEDIFHierCellInsts() throws IOException {
         List<EDIFHierCellInst> ehcis = design.getNetlist().getAllLeafHierCellInstances();
         writer.write("\n\nPrinting all EDIFHierCellInsts... (" + ehcis.size() + ")");
@@ -182,7 +205,15 @@ public abstract class Placer {
             List<EDIFHierPortInst> ehpis = ehci.getHierPortInsts();
             writer.write("\n\t\tEDIFHierPortInsts... (" + ehpis.size() + ")");
             for (EDIFHierPortInst ehpi : ehpis) {
-                writer.write("\n\t\t\t" + ehpi.getFullHierarchicalInstName());
+                EDIFNet net = ehpi.getNet();
+                EDIFHierNet hnet = ehpi.getInternalNet();
+                if (hnet != null) {
+                    writer.write("\n\t\t\tPort: " + ehpi.getFullHierarchicalInstName() + ", Net: "
+                            + net.getName() + ", HierNet: " + hnet.getHierarchicalNetName());
+                } else {
+                    writer.write("\n\t\t\tPort: " + ehpi.getFullHierarchicalInstName() + ", Net: "
+                            + net.getName() + ", HierNet: NULL!");
+                }
             }
         }
         writer.write("\n\n");
@@ -197,50 +228,6 @@ public abstract class Placer {
             for (EDIFPortInst epi : epis) {
                 writer.write("\n\t\t\t" + epi.getFullName());
             }
-        }
-    }
-
-    protected void buildCarryChain(EDIFCellInst eci, List<EDIFCellInst> chain) {
-        // traverse the carry chain in the cin direction to find starting cell of chain
-        // the start of chain occurs when CIN connects to GND
-        EDIFCellInst currCell = eci;
-        while (true) {
-            EDIFPortInst currCellPort = currCell.getPortInst("CI");
-            EDIFNet net = currCellPort.getNet();
-
-            if (net.isGND())
-                break;
-
-            Collection<EDIFPortInst> netPorts = net.getPortInsts();
-            Map<String, EDIFPortInst> netPortsMap = netPorts.stream()
-                    .collect(Collectors.toMap(
-                            portInst -> portInst.getName(),
-                            portInst -> portInst));
-            EDIFPortInst sourceCellPort = netPortsMap.get("CO[3]");
-            EDIFCellInst sourceCell = sourceCellPort.getCellInst();
-            currCell = sourceCell;
-        }
-
-        // we now have the starting carry cell as currCell
-        // now traverse in the cout direction
-        // the end of the chain occurs when portinst CO[3] is null
-
-        while (true) {
-            chain.add(currCell);
-            EDIFPortInst currCellPort = currCell.getPortInst("CO[3]");
-
-            if (currCellPort == null)
-                break;
-
-            EDIFNet net = currCellPort.getNet();
-            Collection<EDIFPortInst> netPorts = net.getPortInsts();
-            Map<String, EDIFPortInst> netPortsMap = netPorts.stream()
-                    .collect(Collectors.toMap(
-                            portInst -> portInst.getName(),
-                            portInst -> portInst));
-            EDIFPortInst sinkCellPort = netPortsMap.get("CI");
-            EDIFCellInst sinkCell = sinkCellPort.getCellInst();
-            currCell = sinkCell;
         }
     }
 
@@ -275,9 +262,13 @@ public abstract class Placer {
 
         for (SiteInst si : design.getSiteInsts()) {
             // route the site normally
+            if (si == null) {
+                writer.write("\n\tSiteInst: NULL!");
+                continue;
+            }
             si.routeSite();
 
-            writer.write("\n\tsiteName: " + si.getName());
+            writer.write("\n\tROUTED siteName: " + si.getName());
             for (Cell cell : si.getCells()) {
                 if (cell.getBEL() != null) {
                     String s1 = String.format(
