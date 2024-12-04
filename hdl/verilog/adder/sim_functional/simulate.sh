@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DESIGN=adder
+TOP_LEVEL=top_level
 
 check_status() {
     if [ $? -ne 0 ]; then
@@ -22,8 +23,11 @@ create_wave_config; add_wave /; set_property needs_save false [current_wave_conf
 EOL
 
 root_dir="/home/bcheng/workspace/dev/place-and-route"
+sim_dir="$root_dir/hdl/verilog/$DESIGN/sim_functional"
 src_dir="$root_dir/hdl/verilog/$DESIGN/src"
 verif_dir="$root_dir/hdl/verilog/$DESIGN/verif"
+
+cd $sim_dir
 
 # Read source files and log
 src_files=("$src_dir"/*.v)
@@ -44,7 +48,10 @@ for file in "${verif_files[@]}"; do
 done
 
 # Elaboration
-xelab -debug typical -top "tb_$DESIGN" -snapshot my_tb_snap
+xelab -debug typical -top "tb_$TOP_LEVEL" -snapshot my_tb_snap \
+    -timescale 1ps/1ps \
+    -L xpm # -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver
+
 check_status "xelab"
 
 # Simulation
