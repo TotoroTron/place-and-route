@@ -1,4 +1,4 @@
-set design "fir_filter"
+set design "adder"
 
 set root_dir "/home/bcheng/workspace/dev/place-and-route"
 set synthesized_dcp "$root_dir/outputs/synthesized.dcp" 

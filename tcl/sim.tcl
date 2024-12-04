@@ -1,4 +1,4 @@
-set design "counter"
+set design "adder"
 set top_level "top_level"
 
 set root_dir "/home/bcheng/workspace/dev/place-and-route"

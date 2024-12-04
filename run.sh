@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DESIGN="fir_filter"
+DESIGN="adder"
 TOP_LEVEL="top_level"
 
 export XILINX_VIVADO=/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2
