@@ -1,5 +1,45 @@
 PlacerPackingHier.txt
 
+Printing All Nets...
+	Net: i_en_IBUF
+		SitePinInsts: None!
+	Net: GLOBAL_LOGIC0
+		SitePinInsts: None!
+	Net: i_din
+		SitePinInsts: None!
+	Net: i_rst
+		SitePinInsts: None!
+	Net: o_dout
+		SitePinInsts: None!
+	Net: i_rst_IBUF
+		SitePinInsts: None!
+	Net: i_din_valid
+		SitePinInsts: None!
+	Net: i_din_IBUF
+		SitePinInsts: None!
+	Net: i_ready
+		SitePinInsts: None!
+	Net: i_en
+		SitePinInsts: None!
+	Net: i_clk_IBUF
+		SitePinInsts: None!
+	Net: serializer_inst/o_dout_valid_OBUF
+		SitePinInsts: None!
+	Net: o_dout_valid
+		SitePinInsts: None!
+	Net: i_din_valid_IBUF
+		SitePinInsts: None!
+	Net: o_ready
+		SitePinInsts: None!
+	Net: deserializer_inst/o_ready_OBUF
+		SitePinInsts: None!
+	Net: i_clk
+		SitePinInsts: None!
+	Net: serializer_inst/Q[0]
+		SitePinInsts: None!
+	Net: i_ready_IBUF
+		SitePinInsts: None!
+
 Printing all EDIFHierCellInsts... (333)
 	i_din_IBUF_inst, IBUF
 		EDIFHierPortInsts... (2)
@@ -6206,1040 +6246,1498 @@ Printing cells in this carry chain...
 
 Placing carry chains... (1)
 	chain size: 6
-	selectedSiteType: SLICEL
-	X_MAX: 113, X_MIN: 1, Y_MAX: 149, Y_MIN: 0
-	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2, Type: CARRY4, Site: SLICE_X66Y100, BEL: CARRY4
-	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1, Type: CARRY4, Site: SLICE_X66Y101, BEL: CARRY4
-	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1, Type: CARRY4, Site: SLICE_X66Y102, BEL: CARRY4
-	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1, Type: CARRY4, Site: SLICE_X66Y103, BEL: CARRY4
-	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1, Type: CARRY4, Site: SLICE_X66Y104, BEL: CARRY4
-	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1, Type: CARRY4, Site: SLICE_X66Y105, BEL: CARRY4
+	selectedSiteType: SLICEM
+	X_MAX: 112, X_MIN: 0, Y_MAX: 149, Y_MIN: 0
+	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2, Type: CARRY4, Site: SLICE_X32Y65, BEL: CARRY4
+	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1, Type: CARRY4, Site: SLICE_X32Y66, BEL: CARRY4
+	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1, Type: CARRY4, Site: SLICE_X32Y67, BEL: CARRY4
+	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1, Type: CARRY4, Site: SLICE_X32Y68, BEL: CARRY4
+	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1, Type: CARRY4, Site: SLICE_X32Y69, BEL: CARRY4
+	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1, Type: CARRY4, Site: SLICE_X32Y70, BEL: CARRY4
 
 Spawning remaining cells...
 
+Placing FDRE cells...
+
 Placing remaining cells...
-	Placing FDRE cells...
-		FDRE : fir_filter_inst/o_dout_valid_reg
-		FDRE : fir_filter_inst/sample_wr_addr_reg[3]
-		FDRE : fir_filter_inst/ov_dout_reg[18]
-		FDRE : fir_filter_inst/ov_dout_reg[14]
-		FDRE : fir_filter_inst/sample_re_addr_reg[0]
-		FDRE : fir_filter_inst/ov_dout_reg[10]
-		FDRE : fir_filter_inst/ov_dout_reg[22]
-		FDRE : fir_filter_inst/ov_dout_reg[7]
-		FDRE : fir_filter_inst/weight_re_addr_reg[2]
-		FDRE : fir_filter_inst/sample_re_addr_reg[4]
-		FDRE : fir_filter_inst/ov_dout_reg[3]
-		FDRE : fir_filter_inst/sample_wr_addr_reg[2]
-		FDRE : fir_filter_inst/ov_dout_reg[17]
-		FDRE : fir_filter_inst/ov_dout_reg[13]
-		FDRE : fir_filter_inst/sample_re_addr_reg[3]
-		FDRE : fir_filter_inst/ov_dout_reg[21]
-		FDRE : fir_filter_inst/ov_dout_reg[6]
-		FDRE : fir_filter_inst/weight_re_addr_reg[3]
-		FDRE : fir_filter_inst/ov_dout_reg[2]
-		FDRE : fir_filter_inst/ov_dout_reg[1]
-		FDRE : fir_filter_inst/sample_wr_addr_reg[1]
-		FDRE : fir_filter_inst/weight_re_reg
-		FDRE : fir_filter_inst/sample_re_addr_reg[2]
-		FDRE : fir_filter_inst/sample_wr_addr_reg[5]
-		FDRE : fir_filter_inst/ov_dout_reg[16]
-		FDRE : fir_filter_inst/ov_dout_reg[20]
-		FDRE : fir_filter_inst/ov_dout_reg[9]
-		FDRE : fir_filter_inst/weight_re_addr_reg[4]
-		FDRE : fir_filter_inst/o_ready_reg
-		FDRE : fir_filter_inst/ov_dout_reg[12]
-		FDRE : fir_filter_inst/ov_dout_reg[5]
-		FDRE : fir_filter_inst/weight_re_addr_reg[0]
-		FDRE : fir_filter_inst/FSM_sequential_state_reg[0]
-		FDRE : fir_filter_inst/ov_dout_reg[0]
-		FDRE : fir_filter_inst/sum_rst_reg
-		FDRE : fir_filter_inst/sample_wr_addr_reg[0]
-		FDRE : fir_filter_inst/ov_dout_reg[19]
-		FDRE : fir_filter_inst/ov_dout_reg[15]
-		FDRE : fir_filter_inst/sample_re_addr_reg[1]
-		FDRE : fir_filter_inst/sample_wr_addr_reg[4]
-		FDRE : fir_filter_inst/ov_dout_reg[8]
-		FDRE : fir_filter_inst/weight_re_addr_reg[5]
-		FDRE : fir_filter_inst/ov_dout_reg[11]
-		FDRE : fir_filter_inst/sample_re_addr_reg[5]
-		FDRE : fir_filter_inst/ov_dout_reg[23]
-		FDRE : fir_filter_inst/ov_dout_reg[4]
-		FDRE : fir_filter_inst/weight_re_addr_reg[1]
-		FDRE : fir_filter_inst/FSM_sequential_state_reg[1]
-		FDRE : serializer_inst/shift_reg_reg[1]
-		FDRE : serializer_inst/o_dout_valid_reg
-		FDRE : serializer_inst/shift_reg_reg[20]
-		FDRE : serializer_inst/shift_reg_reg[9]
-		FDRE : serializer_inst/shift_reg_reg[5]
-		FDRE : serializer_inst/shift_reg_reg[16]
-		FDRE : serializer_inst/shift_reg_reg[12]
-		FDRE : serializer_inst/counter_reg[0]
-		FDRE : serializer_inst/counter_reg[4]
-		FDRE : serializer_inst/shift_reg_reg[4]
-		FDRE : serializer_inst/shift_reg_reg[0]
-		FDRE : serializer_inst/shift_reg_reg[8]
-		FDRE : serializer_inst/shift_reg_reg[17]
-		FDRE : serializer_inst/shift_reg_reg[13]
-		FDRE : serializer_inst/shift_reg_reg[21]
-		FDRE : serializer_inst/counter_reg[1]
-		FDRE : serializer_inst/shift_reg_reg[3]
-		FDRE : serializer_inst/shift_reg_reg[7]
-		FDRE : serializer_inst/shift_reg_reg[14]
-		FDRE : serializer_inst/shift_reg_reg[22]
-		FDRE : serializer_inst/shift_reg_reg[10]
-		FDRE : serializer_inst/o_ready_reg
-		FDRE : serializer_inst/counter_reg[2]
-		FDRE : serializer_inst/FSM_sequential_state_reg[0]
-		FDRE : serializer_inst/shift_reg_reg[18]
-		FDRE : serializer_inst/shift_reg_reg[2]
-		FDRE : serializer_inst/shift_reg_reg[6]
-		FDRE : serializer_inst/shift_reg_reg[15]
-		FDRE : serializer_inst/shift_reg_reg[23]
-		FDRE : serializer_inst/shift_reg_reg[11]
-		FDRE : serializer_inst/counter_reg[3]
-		FDRE : serializer_inst/FSM_sequential_state_reg[1]
-		FDRE : serializer_inst/shift_reg_reg[19]
-		FDRE : deserializer_inst/o_dout_valid_reg
-		FDRE : deserializer_inst/shift_reg_reg[5]
-		FDRE : deserializer_inst/ov_dout_reg[14]
-		FDRE : deserializer_inst/shift_reg_reg[12]
-		FDRE : deserializer_inst/counter_reg[0]
-		FDRE : deserializer_inst/ov_dout_reg[7]
-		FDRE : deserializer_inst/shift_reg_reg[4]
-		FDRE : deserializer_inst/ov_dout_reg[13]
-		FDRE : deserializer_inst/shift_reg_reg[13]
-		FDRE : deserializer_inst/counter_reg[1]
-		FDRE : deserializer_inst/ov_dout_reg[6]
-		FDRE : deserializer_inst/ov_dout_reg[1]
-		FDRE : deserializer_inst/shift_reg_reg[7]
-		FDRE : deserializer_inst/shift_reg_reg[22]
-		FDRE : deserializer_inst/shift_reg_reg[10]
-		FDRE : deserializer_inst/ov_dout_reg[9]
-		FDRE : deserializer_inst/o_ready_reg
-		FDRE : deserializer_inst/ov_dout_reg[12]
-		FDRE : deserializer_inst/FSM_sequential_state_reg[0]
-		FDRE : deserializer_inst/shift_reg_reg[18]
-		FDRE : deserializer_inst/ov_dout_reg[0]
-		FDRE : deserializer_inst/shift_reg_reg[6]
-		FDRE : deserializer_inst/ov_dout_reg[19]
-		FDRE : deserializer_inst/shift_reg_reg[23]
-		FDRE : deserializer_inst/shift_reg_reg[11]
-		FDRE : deserializer_inst/ov_dout_reg[8]
-		FDRE : deserializer_inst/ov_dout_reg[11]
-		FDRE : deserializer_inst/ov_dout_reg[23]
-		FDRE : deserializer_inst/FSM_sequential_state_reg[1]
-		FDRE : deserializer_inst/shift_reg_reg[19]
-		FDRE : deserializer_inst/shift_reg_reg[1]
-		FDRE : deserializer_inst/shift_reg_reg[20]
-		FDRE : deserializer_inst/shift_reg_reg[9]
-		FDRE : deserializer_inst/ov_dout_reg[18]
-		FDRE : deserializer_inst/shift_reg_reg[16]
-		FDRE : deserializer_inst/ov_dout_reg[10]
-		FDRE : deserializer_inst/ov_dout_reg[22]
-		FDRE : deserializer_inst/counter_reg[4]
-		FDRE : deserializer_inst/ov_dout_reg[3]
-		FDRE : deserializer_inst/shift_reg_reg[0]
-		FDRE : deserializer_inst/shift_reg_reg[8]
-		FDRE : deserializer_inst/ov_dout_reg[17]
-		FDRE : deserializer_inst/shift_reg_reg[17]
-		FDRE : deserializer_inst/shift_reg_reg[21]
-		FDRE : deserializer_inst/ov_dout_reg[21]
-		FDRE : deserializer_inst/ov_dout_reg[2]
-		FDRE : deserializer_inst/shift_reg_reg[3]
-		FDRE : deserializer_inst/shift_reg_reg[14]
-		FDRE : deserializer_inst/ov_dout_reg[16]
-		FDRE : deserializer_inst/ov_dout_reg[20]
-		FDRE : deserializer_inst/counter_reg[2]
-		FDRE : deserializer_inst/ov_dout_reg[5]
-		FDRE : deserializer_inst/shift_reg_reg[2]
-		FDRE : deserializer_inst/shift_reg_reg[15]
-		FDRE : deserializer_inst/ov_dout_reg[15]
-		FDRE : deserializer_inst/counter_reg[3]
-		FDRE : deserializer_inst/ov_dout_reg[4]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[4]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[18]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[8]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[14]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[10]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[22]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[3]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[17]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[7]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[13]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[21]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[2]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[16]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[6]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[12]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[20]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[0]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[19]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[1]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[15]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[5]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[23]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[11]
-		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[9]
 	Placing LUT cells...
 		LUT6 : fir_filter_inst/FSM_sequential_state[0]_i_1__0
+			Placed cell: fir_filter_inst/FSM_sequential_state[0]_i_1__0 at SLICE_X57Y129 on A6LUT
 		LUT6 : fir_filter_inst/sample_re_addr[2]_i_1
+			Placed cell: fir_filter_inst/sample_re_addr[2]_i_1 at SLICE_X57Y127 on A6LUT
 		LUT4 : fir_filter_inst/weight_re_addr[1]_i_1
+			Placed cell: fir_filter_inst/weight_re_addr[1]_i_1 at SLICE_X57Y128 on A5LUT
 		LUT5 : fir_filter_inst/weight_re_addr[2]_i_1
+			Placed cell: fir_filter_inst/weight_re_addr[2]_i_1 at SLICE_X57Y125 on A5LUT
 		LUT2 : fir_filter_inst/weight_re_i_1
+			Placed cell: fir_filter_inst/weight_re_i_1 at SLICE_X57Y126 on A5LUT
 		LUT2 : fir_filter_inst/o_ready_i_1
+			Placed cell: fir_filter_inst/o_ready_i_1 at SLICE_X57Y123 on A5LUT
 		LUT6 : fir_filter_inst/sample_re_addr[1]_i_1
+			Placed cell: fir_filter_inst/sample_re_addr[1]_i_1 at SLICE_X57Y124 on A6LUT
 		LUT4 : fir_filter_inst/FSM_sequential_state[0]_i_2__0
+			Placed cell: fir_filter_inst/FSM_sequential_state[0]_i_2__0 at SLICE_X57Y121 on A5LUT
 		LUT4 : fir_filter_inst/sum_rst_i_1
+			Placed cell: fir_filter_inst/sum_rst_i_1 at SLICE_X57Y122 on A5LUT
 		LUT3 : fir_filter_inst/sample_re_addr[3]_i_4
+			Placed cell: fir_filter_inst/sample_re_addr[3]_i_4 at SLICE_X57Y120 on A5LUT
 		LUT5 : fir_filter_inst/sample_re_addr[0]_i_1
+			Placed cell: fir_filter_inst/sample_re_addr[0]_i_1 at SLICE_X57Y118 on A5LUT
 		LUT3 : fir_filter_inst/sample_re_addr[3]_i_2
+			Placed cell: fir_filter_inst/sample_re_addr[3]_i_2 at SLICE_X57Y119 on A5LUT
 		LUT3 : fir_filter_inst/sample_re_addr[3]_i_3
+			Placed cell: fir_filter_inst/sample_re_addr[3]_i_3 at SLICE_X57Y116 on A5LUT
 		LUT6 : fir_filter_inst/sample_re_addr[3]_i_1
+			Placed cell: fir_filter_inst/sample_re_addr[3]_i_1 at SLICE_X111Y97 on A6LUT
 		LUT6 : fir_filter_inst/weight_re_addr[3]_i_1
+			Placed cell: fir_filter_inst/weight_re_addr[3]_i_1 at SLICE_X57Y117 on A6LUT
 		LUT2 : fir_filter_inst/FSM_sequential_state[0]_i_3
+			Placed cell: fir_filter_inst/FSM_sequential_state[0]_i_3 at SLICE_X111Y96 on A5LUT
 		LUT3 : fir_filter_inst/weight_re_addr[0]_i_1
+			Placed cell: fir_filter_inst/weight_re_addr[0]_i_1 at SLICE_X57Y114 on A5LUT
 		LUT3 : fir_filter_inst/FSM_sequential_state[1]_i_1__0
+			Placed cell: fir_filter_inst/FSM_sequential_state[1]_i_1__0 at SLICE_X111Y99 on A5LUT
 		LUT6 : fir_filter_inst/sample_wr_addr[4]_i_1
+			Placed cell: fir_filter_inst/sample_wr_addr[4]_i_1 at SLICE_X57Y115 on A6LUT
 		LUT2 : fir_filter_inst/sample_re_addr[5]_i_1
+			Placed cell: fir_filter_inst/sample_re_addr[5]_i_1 at SLICE_X111Y98 on A5LUT
 		LUT6 : fir_filter_inst/weight_re_addr[4]_i_1
+			Placed cell: fir_filter_inst/weight_re_addr[4]_i_1 at SLICE_X57Y112 on A6LUT
 		LUT2 : fir_filter_inst/sample_wr_addr[1]_i_1
+			Placed cell: fir_filter_inst/sample_wr_addr[1]_i_1 at SLICE_X57Y113 on A5LUT
 		LUT4 : fir_filter_inst/sample_re_addr[5]_i_3
+			Placed cell: fir_filter_inst/sample_re_addr[5]_i_3 at SLICE_X57Y110 on A5LUT
 		LUT5 : fir_filter_inst/sample_re_addr[5]_i_2
+			Placed cell: fir_filter_inst/sample_re_addr[5]_i_2 at SLICE_X57Y111 on A5LUT
 		LUT6 : fir_filter_inst/weight_re_addr[5]_i_1
+			Placed cell: fir_filter_inst/weight_re_addr[5]_i_1 at SLICE_X111Y93 on A6LUT
 		LUT3 : fir_filter_inst/sample_wr_addr[2]_i_1
+			Placed cell: fir_filter_inst/sample_wr_addr[2]_i_1 at SLICE_X111Y92 on A5LUT
 		LUT5 : fir_filter_inst/sample_re_addr[4]_i_1
+			Placed cell: fir_filter_inst/sample_re_addr[4]_i_1 at SLICE_X111Y95 on A5LUT
 		LUT6 : fir_filter_inst/ov_dout[23]_i_1__0
+			Placed cell: fir_filter_inst/ov_dout[23]_i_1__0 at SLICE_X111Y94 on A6LUT
 		LUT6 : fir_filter_inst/o_dout_valid_i_1__1
+			Placed cell: fir_filter_inst/o_dout_valid_i_1__1 at SLICE_X111Y91 on A6LUT
 		LUT4 : fir_filter_inst/sample_wr_addr[3]_i_1
+			Placed cell: fir_filter_inst/sample_wr_addr[3]_i_1 at SLICE_X111Y90 on A5LUT
 		LUT6 : fir_filter_inst/sample_wr_addr[5]_i_1
+			Placed cell: fir_filter_inst/sample_wr_addr[5]_i_1 at SLICE_X57Y109 on A6LUT
 		LUT1 : fir_filter_inst/sample_wr_addr[0]_i_1
+			Placed cell: fir_filter_inst/sample_wr_addr[0]_i_1 at SLICE_X57Y107 on A5LUT
 		LUT4 : serializer_inst/FSM_sequential_state[0]_i_1__1
+			Placed cell: serializer_inst/FSM_sequential_state[0]_i_1__1 at SLICE_X57Y108 on A5LUT
 		LUT6 : serializer_inst/counter[3]_i_1
+			Placed cell: serializer_inst/counter[3]_i_1 at SLICE_X57Y105 on A6LUT
 		LUT4 : serializer_inst/shift_reg[1]_i_1
+			Placed cell: serializer_inst/shift_reg[1]_i_1 at SLICE_X57Y106 on A5LUT
 		LUT2 : serializer_inst/o_ready_i_1__0
+			Placed cell: serializer_inst/o_ready_i_1__0 at SLICE_X57Y103 on A5LUT
 		LUT6 : serializer_inst/counter[4]_i_2
+			Placed cell: serializer_inst/counter[4]_i_2 at SLICE_X57Y104 on A6LUT
 		LUT4 : serializer_inst/counter[4]_i_1
+			Placed cell: serializer_inst/counter[4]_i_1 at SLICE_X57Y101 on A5LUT
 		LUT3 : serializer_inst/shift_reg[23]_i_3
+			Placed cell: serializer_inst/shift_reg[23]_i_3 at SLICE_X57Y102 on A5LUT
 		LUT3 : serializer_inst/shift_reg[23]_i_2
+			Placed cell: serializer_inst/shift_reg[23]_i_2 at SLICE_X57Y100 on A5LUT
 		LUT5 : serializer_inst/shift_reg[23]_i_1
+			Placed cell: serializer_inst/shift_reg[23]_i_1 at SLICE_X57Y149 on A5LUT
 		LUT4 : serializer_inst/counter[0]_i_1__0
+			Placed cell: serializer_inst/counter[0]_i_1__0 at SLICE_X57Y147 on A5LUT
 		LUT4 : serializer_inst/shift_reg[8]_i_1
+			Placed cell: serializer_inst/shift_reg[8]_i_1 at SLICE_X57Y148 on A5LUT
 		LUT4 : serializer_inst/shift_reg[15]_i_1
+			Placed cell: serializer_inst/shift_reg[15]_i_1 at SLICE_X57Y145 on A5LUT
 		LUT4 : serializer_inst/shift_reg[2]_i_1
+			Placed cell: serializer_inst/shift_reg[2]_i_1 at SLICE_X39Y100 on A5LUT
 		LUT4 : serializer_inst/shift_reg[3]_i_1
+			Placed cell: serializer_inst/shift_reg[3]_i_1 at SLICE_X57Y146 on A5LUT
 		LUT4 : serializer_inst/shift_reg[9]_i_1
+			Placed cell: serializer_inst/shift_reg[9]_i_1 at SLICE_X57Y143 on A5LUT
 		LUT4 : serializer_inst/shift_reg[0]_i_1
+			Placed cell: serializer_inst/shift_reg[0]_i_1 at SLICE_X39Y102 on A5LUT
 		LUT5 : serializer_inst/counter[1]_i_1__0
+			Placed cell: serializer_inst/counter[1]_i_1__0 at SLICE_X57Y144 on A5LUT
 		LUT4 : serializer_inst/shift_reg[6]_i_1
+			Placed cell: serializer_inst/shift_reg[6]_i_1 at SLICE_X39Y101 on A5LUT
 		LUT4 : serializer_inst/shift_reg[16]_i_1
+			Placed cell: serializer_inst/shift_reg[16]_i_1 at SLICE_X57Y141 on A5LUT
 		LUT4 : serializer_inst/shift_reg[13]_i_1
+			Placed cell: serializer_inst/shift_reg[13]_i_1 at SLICE_X39Y104 on A5LUT
 		LUT4 : serializer_inst/shift_reg[10]_i_1
+			Placed cell: serializer_inst/shift_reg[10]_i_1 at SLICE_X57Y142 on A5LUT
 		LUT3 : serializer_inst/FSM_sequential_state[1]_i_1__1
+			Placed cell: serializer_inst/FSM_sequential_state[1]_i_1__1 at SLICE_X39Y103 on A5LUT
 		LUT4 : serializer_inst/shift_reg[18]_i_1
+			Placed cell: serializer_inst/shift_reg[18]_i_1 at SLICE_X39Y106 on A5LUT
 		LUT4 : serializer_inst/shift_reg[21]_i_1
+			Placed cell: serializer_inst/shift_reg[21]_i_1 at SLICE_X57Y140 on A5LUT
 		LUT5 : serializer_inst/FSM_sequential_state[1]_i_2
+			Placed cell: serializer_inst/FSM_sequential_state[1]_i_2 at SLICE_X39Y105 on A5LUT
 		LUT4 : serializer_inst/shift_reg[19]_i_1
+			Placed cell: serializer_inst/shift_reg[19]_i_1 at SLICE_X39Y108 on A5LUT
 		LUT4 : serializer_inst/shift_reg[12]_i_1
+			Placed cell: serializer_inst/shift_reg[12]_i_1 at SLICE_X39Y107 on A5LUT
 		LUT5 : serializer_inst/o_dout_valid_i_1
+			Placed cell: serializer_inst/o_dout_valid_i_1 at SLICE_X39Y109 on A5LUT
 		LUT4 : serializer_inst/shift_reg[5]_i_1
+			Placed cell: serializer_inst/shift_reg[5]_i_1 at SLICE_X57Y138 on A5LUT
 		LUT4 : serializer_inst/shift_reg[20]_i_1
+			Placed cell: serializer_inst/shift_reg[20]_i_1 at SLICE_X57Y139 on A5LUT
 		LUT4 : serializer_inst/shift_reg[14]_i_1
+			Placed cell: serializer_inst/shift_reg[14]_i_1 at SLICE_X57Y136 on A5LUT
 		LUT4 : serializer_inst/shift_reg[22]_i_1
+			Placed cell: serializer_inst/shift_reg[22]_i_1 at SLICE_X57Y137 on A5LUT
 		LUT6 : serializer_inst/counter[2]_i_1__0
+			Placed cell: serializer_inst/counter[2]_i_1__0 at SLICE_X57Y134 on A6LUT
 		LUT4 : serializer_inst/shift_reg[11]_i_1
+			Placed cell: serializer_inst/shift_reg[11]_i_1 at SLICE_X57Y135 on A5LUT
 		LUT4 : serializer_inst/shift_reg[4]_i_1
+			Placed cell: serializer_inst/shift_reg[4]_i_1 at SLICE_X57Y132 on A5LUT
 		LUT4 : serializer_inst/shift_reg[17]_i_1
+			Placed cell: serializer_inst/shift_reg[17]_i_1 at SLICE_X57Y133 on A5LUT
 		LUT4 : serializer_inst/shift_reg[7]_i_1
+			Placed cell: serializer_inst/shift_reg[7]_i_1 at SLICE_X57Y130 on A5LUT
 		LUT2 : deserializer_inst/shift_reg[4]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[4]_i_1__0 at SLICE_X57Y131 on A5LUT
 		LUT2 : deserializer_inst/ov_dout[23]_i_2
+			Placed cell: deserializer_inst/ov_dout[23]_i_2 at SLICE_X87Y1 on A5LUT
 		LUT2 : deserializer_inst/shift_reg[8]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[8]_i_1__0 at SLICE_X87Y2 on A5LUT
 		LUT2 : deserializer_inst/shift_reg[13]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[13]_i_1__0 at SLICE_X87Y0 on A5LUT
 		LUT6 : deserializer_inst/ov_dout[23]_i_1
+			Placed cell: deserializer_inst/ov_dout[23]_i_1 at SLICE_X87Y5 on A6LUT
 		LUT2 : deserializer_inst/shift_reg[18]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[18]_i_1__0 at SLICE_X87Y6 on A5LUT
 		LUT2 : deserializer_inst/shift_reg[1]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[1]_i_1__0 at SLICE_X39Y120 on A5LUT
 		LUT6 : deserializer_inst/shift_reg[23]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[23]_i_1__0 at SLICE_X87Y3 on A6LUT
 		LUT4 : deserializer_inst/FSM_sequential_state[0]_i_2
+			Placed cell: deserializer_inst/FSM_sequential_state[0]_i_2 at SLICE_X87Y4 on A5LUT
 		LUT6 : deserializer_inst/FSM_sequential_state[0]_i_1
+			Placed cell: deserializer_inst/FSM_sequential_state[0]_i_1 at SLICE_X39Y122 on A6LUT
 		LUT2 : deserializer_inst/shift_reg[5]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[5]_i_1__0 at SLICE_X87Y9 on A5LUT
 		LUT6 : deserializer_inst/counter[1]_i_1
+			Placed cell: deserializer_inst/counter[1]_i_1 at SLICE_X39Y121 on A6LUT
 		LUT2 : deserializer_inst/shift_reg[9]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[9]_i_1__0 at SLICE_X39Y124 on A5LUT
 		LUT2 : deserializer_inst/shift_reg[14]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[14]_i_1__0 at SLICE_X87Y7 on A5LUT
 		LUT4 : deserializer_inst/o_dout_valid_i_1__0
+			Placed cell: deserializer_inst/o_dout_valid_i_1__0 at SLICE_X39Y123 on A5LUT
 		LUT2 : deserializer_inst/counter[4]_i_1__0
+			Placed cell: deserializer_inst/counter[4]_i_1__0 at SLICE_X87Y8 on A5LUT
 		LUT2 : deserializer_inst/shift_reg[17]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[17]_i_1__0 at SLICE_X39Y126 on A5LUT
 		LUT2 : deserializer_inst/shift_reg[10]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[10]_i_1__0 at SLICE_X39Y125 on A5LUT
 		LUT2 : deserializer_inst/shift_reg[22]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[22]_i_1__0 at SLICE_X39Y128 on A5LUT
 		LUT2 : deserializer_inst/shift_reg[2]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[2]_i_1__0 at SLICE_X39Y127 on A5LUT
 		LUT2 : deserializer_inst/shift_reg[6]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[6]_i_1__0 at SLICE_X39Y129 on A5LUT
 		LUT2 : deserializer_inst/shift_reg[21]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[21]_i_1__0 at SLICE_X39Y111 on A5LUT
 		LUT4 : deserializer_inst/o_ready_i_1__1
+			Placed cell: deserializer_inst/o_ready_i_1__1 at SLICE_X39Y110 on A5LUT
 		LUT3 : deserializer_inst/counter[4]_i_3
+			Placed cell: deserializer_inst/counter[4]_i_3 at SLICE_X39Y113 on A5LUT
 		LUT2 : deserializer_inst/shift_reg[15]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[15]_i_1__0 at SLICE_X39Y112 on A5LUT
 		LUT5 : deserializer_inst/counter[3]_i_1__0
+			Placed cell: deserializer_inst/counter[3]_i_1__0 at SLICE_X39Y115 on A5LUT
 		LUT2 : deserializer_inst/shift_reg[11]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[11]_i_1__0 at SLICE_X39Y114 on A5LUT
 		LUT2 : deserializer_inst/shift_reg[16]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[16]_i_1__0 at SLICE_X39Y117 on A5LUT
 		LUT4 : deserializer_inst/counter[2]_i_2
+			Placed cell: deserializer_inst/counter[2]_i_2 at SLICE_X39Y116 on A5LUT
 		LUT4 : deserializer_inst/counter[2]_i_1
+			Placed cell: deserializer_inst/counter[2]_i_1 at SLICE_X39Y119 on A5LUT
 		LUT2 : deserializer_inst/shift_reg[3]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[3]_i_1__0 at SLICE_X39Y118 on A5LUT
 		LUT2 : deserializer_inst/shift_reg[20]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[20]_i_1__0 at SLICE_X39Y140 on A5LUT
 		LUT5 : deserializer_inst/counter[4]_i_2__0
+			Placed cell: deserializer_inst/counter[4]_i_2__0 at SLICE_X39Y142 on A5LUT
 		LUT5 : deserializer_inst/counter[0]_i_1
+			Placed cell: deserializer_inst/counter[0]_i_1 at SLICE_X39Y141 on A5LUT
 		LUT3 : deserializer_inst/FSM_sequential_state[1]_i_1
+			Placed cell: deserializer_inst/FSM_sequential_state[1]_i_1 at SLICE_X39Y144 on A5LUT
 		LUT2 : deserializer_inst/shift_reg[7]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[7]_i_1__0 at SLICE_X39Y143 on A5LUT
 		LUT2 : deserializer_inst/shift_reg[23]_i_2__0
+			Placed cell: deserializer_inst/shift_reg[23]_i_2__0 at SLICE_X39Y146 on A5LUT
 		LUT2 : deserializer_inst/shift_reg[12]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[12]_i_1__0 at SLICE_X39Y145 on A5LUT
 		LUT2 : deserializer_inst/shift_reg[0]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[0]_i_1__0 at SLICE_X39Y148 on A5LUT
 		LUT2 : deserializer_inst/shift_reg[19]_i_1__0
+			Placed cell: deserializer_inst/shift_reg[19]_i_1__0 at SLICE_X39Y147 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[4]_i_5
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[4]_i_5 at SLICE_X39Y149 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[4]_i_4
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[4]_i_4 at SLICE_X74Y0 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[12]_i_5
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[12]_i_5 at SLICE_X74Y3 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[12]_i_2
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[12]_i_2 at SLICE_X74Y4 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[20]_i_4
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[20]_i_4 at SLICE_X74Y1 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[20]_i_5
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[20]_i_5 at SLICE_X74Y2 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[12]_i_4
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[12]_i_4 at SLICE_X74Y7 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[20]_i_2
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[20]_i_2 at SLICE_X74Y8 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[12]_i_3
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[12]_i_3 at SLICE_X39Y131 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[20]_i_3
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[20]_i_3 at SLICE_X74Y5 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[4]_i_3
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[4]_i_3 at SLICE_X39Y130 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[4]_i_2
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[4]_i_2 at SLICE_X74Y6 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[16]_i_5
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[16]_i_5 at SLICE_X39Y133 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[0]_i_1
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[0]_i_1 at SLICE_X39Y132 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[0]_i_3
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[0]_i_3 at SLICE_X39Y135 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[0]_i_4
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[0]_i_4 at SLICE_X74Y9 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[16]_i_2
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[16]_i_2 at SLICE_X39Y134 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[0]_i_5
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[0]_i_5 at SLICE_X39Y137 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[0]_i_6
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[0]_i_6 at SLICE_X39Y136 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[16]_i_4
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[16]_i_4 at SLICE_X39Y139 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[16]_i_3
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[16]_i_3 at SLICE_X39Y138 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[8]_i_4
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[8]_i_4 at SLICE_X84Y100 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[8]_i_5
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[8]_i_5 at SLICE_X84Y137 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[8]_i_2
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[8]_i_2 at SLICE_X84Y136 on A5LUT
 		LUT2 : fir_filter_inst/tap_inst/ov_sum[8]_i_3
+			Placed cell: fir_filter_inst/tap_inst/ov_sum[8]_i_3 at SLICE_X84Y135 on A5LUT
 		LUT2 : fir_filter_inst/xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
+			Placed cell: fir_filter_inst/xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1 at SLICE_X84Y134 on A5LUT
 		LUT2 : fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
+			Placed cell: fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2 at SLICE_X84Y139 on A5LUT
 		LUT2 : fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
+			Placed cell: fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1 at SLICE_X84Y138 on A5LUT
+	Placing FDRE cells...
+		FDRE : fir_filter_inst/o_dout_valid_reg
+			Placed cell: fir_filter_inst/o_dout_valid_reg at SLICE_X84Y140 on AFF
+		FDRE : fir_filter_inst/sample_wr_addr_reg[3]
+			Placed cell: fir_filter_inst/sample_wr_addr_reg[3] at SLICE_X84Y144 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[18]
+			Placed cell: fir_filter_inst/ov_dout_reg[18] at SLICE_X84Y143 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[14]
+			Placed cell: fir_filter_inst/ov_dout_reg[14] at SLICE_X84Y142 on AFF
+		FDRE : fir_filter_inst/sample_re_addr_reg[0]
+			Placed cell: fir_filter_inst/sample_re_addr_reg[0] at SLICE_X84Y141 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[10]
+			Placed cell: fir_filter_inst/ov_dout_reg[10] at SLICE_X84Y126 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[22]
+			Placed cell: fir_filter_inst/ov_dout_reg[22] at SLICE_X84Y125 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[7]
+			Placed cell: fir_filter_inst/ov_dout_reg[7] at SLICE_X84Y124 on AFF
+		FDRE : fir_filter_inst/weight_re_addr_reg[2]
+			Placed cell: fir_filter_inst/weight_re_addr_reg[2] at SLICE_X84Y123 on AFF
+		FDRE : fir_filter_inst/sample_re_addr_reg[4]
+			Placed cell: fir_filter_inst/sample_re_addr_reg[4] at SLICE_X84Y129 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[3]
+			Placed cell: fir_filter_inst/ov_dout_reg[3] at SLICE_X84Y128 on AFF
+		FDRE : fir_filter_inst/sample_wr_addr_reg[2]
+			Placed cell: fir_filter_inst/sample_wr_addr_reg[2] at SLICE_X84Y127 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[17]
+			Placed cell: fir_filter_inst/ov_dout_reg[17] at SLICE_X84Y133 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[13]
+			Placed cell: fir_filter_inst/ov_dout_reg[13] at SLICE_X61Y0 on AFF
+		FDRE : fir_filter_inst/sample_re_addr_reg[3]
+			Placed cell: fir_filter_inst/sample_re_addr_reg[3] at SLICE_X84Y132 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[21]
+			Placed cell: fir_filter_inst/ov_dout_reg[21] at SLICE_X84Y131 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[6]
+			Placed cell: fir_filter_inst/ov_dout_reg[6] at SLICE_X61Y2 on AFF
+		FDRE : fir_filter_inst/weight_re_addr_reg[3]
+			Placed cell: fir_filter_inst/weight_re_addr_reg[3] at SLICE_X84Y130 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[2]
+			Placed cell: fir_filter_inst/ov_dout_reg[2] at SLICE_X61Y1 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[1]
+			Placed cell: fir_filter_inst/ov_dout_reg[1] at SLICE_X84Y115 on AFF
+		FDRE : fir_filter_inst/sample_wr_addr_reg[1]
+			Placed cell: fir_filter_inst/sample_wr_addr_reg[1] at SLICE_X61Y4 on AFF
+		FDRE : fir_filter_inst/weight_re_reg
+			Placed cell: fir_filter_inst/weight_re_reg at SLICE_X84Y114 on AFF
+		FDRE : fir_filter_inst/sample_re_addr_reg[2]
+			Placed cell: fir_filter_inst/sample_re_addr_reg[2] at SLICE_X61Y3 on AFF
+		FDRE : fir_filter_inst/sample_wr_addr_reg[5]
+			Placed cell: fir_filter_inst/sample_wr_addr_reg[5] at SLICE_X84Y113 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[16]
+			Placed cell: fir_filter_inst/ov_dout_reg[16] at SLICE_X61Y6 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[20]
+			Placed cell: fir_filter_inst/ov_dout_reg[20] at SLICE_X84Y112 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[9]
+			Placed cell: fir_filter_inst/ov_dout_reg[9] at SLICE_X61Y5 on AFF
+		FDRE : fir_filter_inst/weight_re_addr_reg[4]
+			Placed cell: fir_filter_inst/weight_re_addr_reg[4] at SLICE_X84Y119 on AFF
+		FDRE : fir_filter_inst/o_ready_reg
+			Placed cell: fir_filter_inst/o_ready_reg at SLICE_X61Y8 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[12]
+			Placed cell: fir_filter_inst/ov_dout_reg[12] at SLICE_X84Y118 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[5]
+			Placed cell: fir_filter_inst/ov_dout_reg[5] at SLICE_X61Y7 on AFF
+		FDRE : fir_filter_inst/weight_re_addr_reg[0]
+			Placed cell: fir_filter_inst/weight_re_addr_reg[0] at SLICE_X84Y117 on AFF
+		FDRE : fir_filter_inst/FSM_sequential_state_reg[0]
+			Placed cell: fir_filter_inst/FSM_sequential_state_reg[0] at SLICE_X84Y116 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[0]
+			Placed cell: fir_filter_inst/ov_dout_reg[0] at SLICE_X61Y9 on AFF
+		FDRE : fir_filter_inst/sum_rst_reg
+			Placed cell: fir_filter_inst/sum_rst_reg at SLICE_X91Y88 on AFF
+		FDRE : fir_filter_inst/sample_wr_addr_reg[0]
+			Placed cell: fir_filter_inst/sample_wr_addr_reg[0] at SLICE_X91Y89 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[19]
+			Placed cell: fir_filter_inst/ov_dout_reg[19] at SLICE_X91Y86 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[15]
+			Placed cell: fir_filter_inst/ov_dout_reg[15] at SLICE_X91Y87 on AFF
+		FDRE : fir_filter_inst/sample_re_addr_reg[1]
+			Placed cell: fir_filter_inst/sample_re_addr_reg[1] at SLICE_X91Y84 on AFF
+		FDRE : fir_filter_inst/sample_wr_addr_reg[4]
+			Placed cell: fir_filter_inst/sample_wr_addr_reg[4] at SLICE_X91Y85 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[8]
+			Placed cell: fir_filter_inst/ov_dout_reg[8] at SLICE_X91Y82 on AFF
+		FDRE : fir_filter_inst/weight_re_addr_reg[5]
+			Placed cell: fir_filter_inst/weight_re_addr_reg[5] at SLICE_X91Y83 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[11]
+			Placed cell: fir_filter_inst/ov_dout_reg[11] at SLICE_X91Y80 on AFF
+		FDRE : fir_filter_inst/sample_re_addr_reg[5]
+			Placed cell: fir_filter_inst/sample_re_addr_reg[5] at SLICE_X91Y81 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[23]
+			Placed cell: fir_filter_inst/ov_dout_reg[23] at SLICE_X84Y122 on AFF
+		FDRE : fir_filter_inst/ov_dout_reg[4]
+			Placed cell: fir_filter_inst/ov_dout_reg[4] at SLICE_X84Y121 on AFF
+		FDRE : fir_filter_inst/weight_re_addr_reg[1]
+			Placed cell: fir_filter_inst/weight_re_addr_reg[1] at SLICE_X84Y120 on AFF
+		FDRE : fir_filter_inst/FSM_sequential_state_reg[1]
+			Placed cell: fir_filter_inst/FSM_sequential_state_reg[1] at SLICE_X84Y104 on AFF
+		FDRE : serializer_inst/shift_reg_reg[1]
+			Placed cell: serializer_inst/shift_reg_reg[1] at SLICE_X84Y103 on AFF
+		FDRE : serializer_inst/o_dout_valid_reg
+			Placed cell: serializer_inst/o_dout_valid_reg at SLICE_X84Y102 on AFF
+		FDRE : serializer_inst/shift_reg_reg[20]
+			Placed cell: serializer_inst/shift_reg_reg[20] at SLICE_X84Y101 on AFF
+		FDRE : serializer_inst/shift_reg_reg[9]
+			Placed cell: serializer_inst/shift_reg_reg[9] at SLICE_X84Y108 on AFF
+		FDRE : serializer_inst/shift_reg_reg[5]
+			Placed cell: serializer_inst/shift_reg_reg[5] at SLICE_X84Y107 on AFF
+		FDRE : serializer_inst/shift_reg_reg[16]
+			Placed cell: serializer_inst/shift_reg_reg[16] at SLICE_X84Y106 on AFF
+		FDRE : serializer_inst/shift_reg_reg[12]
+			Placed cell: serializer_inst/shift_reg_reg[12] at SLICE_X84Y105 on AFF
+		FDRE : serializer_inst/counter_reg[0]
+			Placed cell: serializer_inst/counter_reg[0] at SLICE_X91Y99 on AFF
+		FDRE : serializer_inst/counter_reg[4]
+			Placed cell: serializer_inst/counter_reg[4] at SLICE_X91Y97 on AFF
+		FDRE : serializer_inst/shift_reg_reg[4]
+			Placed cell: serializer_inst/shift_reg_reg[4] at SLICE_X84Y109 on AFF
+		FDRE : serializer_inst/shift_reg_reg[0]
+			Placed cell: serializer_inst/shift_reg_reg[0] at SLICE_X91Y98 on AFF
+		FDRE : serializer_inst/shift_reg_reg[8]
+			Placed cell: serializer_inst/shift_reg_reg[8] at SLICE_X91Y95 on AFF
+		FDRE : serializer_inst/shift_reg_reg[17]
+			Placed cell: serializer_inst/shift_reg_reg[17] at SLICE_X91Y96 on AFF
+		FDRE : serializer_inst/shift_reg_reg[13]
+			Placed cell: serializer_inst/shift_reg_reg[13] at SLICE_X91Y93 on AFF
+		FDRE : serializer_inst/shift_reg_reg[21]
+			Placed cell: serializer_inst/shift_reg_reg[21] at SLICE_X91Y94 on AFF
+		FDRE : serializer_inst/counter_reg[1]
+			Placed cell: serializer_inst/counter_reg[1] at SLICE_X91Y91 on AFF
+		FDRE : serializer_inst/shift_reg_reg[3]
+			Placed cell: serializer_inst/shift_reg_reg[3] at SLICE_X91Y92 on AFF
+		FDRE : serializer_inst/shift_reg_reg[7]
+			Placed cell: serializer_inst/shift_reg_reg[7] at SLICE_X91Y90 on AFF
+		FDRE : serializer_inst/shift_reg_reg[14]
+			Placed cell: serializer_inst/shift_reg_reg[14] at SLICE_X84Y111 on AFF
+		FDRE : serializer_inst/shift_reg_reg[22]
+			Placed cell: serializer_inst/shift_reg_reg[22] at SLICE_X84Y110 on AFF
+		FDRE : serializer_inst/shift_reg_reg[10]
+			Placed cell: serializer_inst/shift_reg_reg[10] at SLICE_X111Y24 on AFF
+		FDRE : serializer_inst/o_ready_reg
+			Placed cell: serializer_inst/o_ready_reg at SLICE_X111Y23 on AFF
+		FDRE : serializer_inst/counter_reg[2]
+			Placed cell: serializer_inst/counter_reg[2] at SLICE_X111Y26 on AFF
+		FDRE : serializer_inst/FSM_sequential_state_reg[0]
+			Placed cell: serializer_inst/FSM_sequential_state_reg[0] at SLICE_X111Y25 on AFF
+		FDRE : serializer_inst/shift_reg_reg[18]
+			Placed cell: serializer_inst/shift_reg_reg[18] at SLICE_X111Y20 on AFF
+		FDRE : serializer_inst/shift_reg_reg[2]
+			Placed cell: serializer_inst/shift_reg_reg[2] at SLICE_X91Y68 on AFF
+		FDRE : serializer_inst/shift_reg_reg[6]
+			Placed cell: serializer_inst/shift_reg_reg[6] at SLICE_X111Y22 on AFF
+		FDRE : serializer_inst/shift_reg_reg[15]
+			Placed cell: serializer_inst/shift_reg_reg[15] at SLICE_X91Y69 on AFF
+		FDRE : serializer_inst/shift_reg_reg[23]
+			Placed cell: serializer_inst/shift_reg_reg[23] at SLICE_X111Y21 on AFF
+		FDRE : serializer_inst/shift_reg_reg[11]
+			Placed cell: serializer_inst/shift_reg_reg[11] at SLICE_X91Y66 on AFF
+		FDRE : serializer_inst/counter_reg[3]
+			Placed cell: serializer_inst/counter_reg[3] at SLICE_X91Y67 on AFF
+		FDRE : serializer_inst/FSM_sequential_state_reg[1]
+			Placed cell: serializer_inst/FSM_sequential_state_reg[1] at SLICE_X91Y64 on AFF
+		FDRE : serializer_inst/shift_reg_reg[19]
+			Placed cell: serializer_inst/shift_reg_reg[19] at SLICE_X91Y65 on AFF
+		FDRE : deserializer_inst/o_dout_valid_reg
+			Placed cell: deserializer_inst/o_dout_valid_reg at SLICE_X91Y62 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[5]
+			Placed cell: deserializer_inst/shift_reg_reg[5] at SLICE_X111Y28 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[14]
+			Placed cell: deserializer_inst/ov_dout_reg[14] at SLICE_X91Y63 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[12]
+			Placed cell: deserializer_inst/shift_reg_reg[12] at SLICE_X111Y27 on AFF
+		FDRE : deserializer_inst/counter_reg[0]
+			Placed cell: deserializer_inst/counter_reg[0] at SLICE_X91Y60 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[7]
+			Placed cell: deserializer_inst/ov_dout_reg[7] at SLICE_X91Y61 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[4]
+			Placed cell: deserializer_inst/shift_reg_reg[4] at SLICE_X111Y29 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[13]
+			Placed cell: deserializer_inst/ov_dout_reg[13] at SLICE_X111Y13 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[13]
+			Placed cell: deserializer_inst/shift_reg_reg[13] at SLICE_X111Y12 on AFF
+		FDRE : deserializer_inst/counter_reg[1]
+			Placed cell: deserializer_inst/counter_reg[1] at SLICE_X111Y15 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[6]
+			Placed cell: deserializer_inst/ov_dout_reg[6] at SLICE_X111Y14 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[1]
+			Placed cell: deserializer_inst/ov_dout_reg[1] at SLICE_X91Y79 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[7]
+			Placed cell: deserializer_inst/shift_reg_reg[7] at SLICE_X111Y11 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[22]
+			Placed cell: deserializer_inst/shift_reg_reg[22] at SLICE_X111Y10 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[10]
+			Placed cell: deserializer_inst/shift_reg_reg[10] at SLICE_X91Y77 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[9]
+			Placed cell: deserializer_inst/ov_dout_reg[9] at SLICE_X91Y78 on AFF
+		FDRE : deserializer_inst/o_ready_reg
+			Placed cell: deserializer_inst/o_ready_reg at SLICE_X91Y75 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[12]
+			Placed cell: deserializer_inst/ov_dout_reg[12] at SLICE_X91Y76 on AFF
+		FDRE : deserializer_inst/FSM_sequential_state_reg[0]
+			Placed cell: deserializer_inst/FSM_sequential_state_reg[0] at SLICE_X91Y73 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[18]
+			Placed cell: deserializer_inst/shift_reg_reg[18] at SLICE_X111Y17 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[0]
+			Placed cell: deserializer_inst/ov_dout_reg[0] at SLICE_X91Y74 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[6]
+			Placed cell: deserializer_inst/shift_reg_reg[6] at SLICE_X111Y16 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[19]
+			Placed cell: deserializer_inst/ov_dout_reg[19] at SLICE_X91Y71 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[23]
+			Placed cell: deserializer_inst/shift_reg_reg[23] at SLICE_X111Y19 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[11]
+			Placed cell: deserializer_inst/shift_reg_reg[11] at SLICE_X91Y72 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[8]
+			Placed cell: deserializer_inst/ov_dout_reg[8] at SLICE_X111Y18 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[11]
+			Placed cell: deserializer_inst/ov_dout_reg[11] at SLICE_X91Y70 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[23]
+			Placed cell: deserializer_inst/ov_dout_reg[23] at SLICE_X111Y46 on AFF
+		FDRE : deserializer_inst/FSM_sequential_state_reg[1]
+			Placed cell: deserializer_inst/FSM_sequential_state_reg[1] at SLICE_X111Y45 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[19]
+			Placed cell: deserializer_inst/shift_reg_reg[19] at SLICE_X111Y48 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[1]
+			Placed cell: deserializer_inst/shift_reg_reg[1] at SLICE_X111Y47 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[20]
+			Placed cell: deserializer_inst/shift_reg_reg[20] at SLICE_X91Y48 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[9]
+			Placed cell: deserializer_inst/shift_reg_reg[9] at SLICE_X111Y42 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[18]
+			Placed cell: deserializer_inst/ov_dout_reg[18] at SLICE_X91Y49 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[16]
+			Placed cell: deserializer_inst/shift_reg_reg[16] at SLICE_X111Y41 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[10]
+			Placed cell: deserializer_inst/ov_dout_reg[10] at SLICE_X91Y46 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[22]
+			Placed cell: deserializer_inst/ov_dout_reg[22] at SLICE_X111Y44 on AFF
+		FDRE : deserializer_inst/counter_reg[4]
+			Placed cell: deserializer_inst/counter_reg[4] at SLICE_X91Y47 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[3]
+			Placed cell: deserializer_inst/ov_dout_reg[3] at SLICE_X111Y43 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[0]
+			Placed cell: deserializer_inst/shift_reg_reg[0] at SLICE_X91Y44 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[8]
+			Placed cell: deserializer_inst/shift_reg_reg[8] at SLICE_X91Y45 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[17]
+			Placed cell: deserializer_inst/ov_dout_reg[17] at SLICE_X91Y42 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[17]
+			Placed cell: deserializer_inst/shift_reg_reg[17] at SLICE_X91Y43 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[21]
+			Placed cell: deserializer_inst/shift_reg_reg[21] at SLICE_X91Y40 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[21]
+			Placed cell: deserializer_inst/ov_dout_reg[21] at SLICE_X111Y49 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[2]
+			Placed cell: deserializer_inst/ov_dout_reg[2] at SLICE_X91Y41 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[3]
+			Placed cell: deserializer_inst/shift_reg_reg[3] at SLICE_X111Y40 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[14]
+			Placed cell: deserializer_inst/shift_reg_reg[14] at SLICE_X84Y148 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[16]
+			Placed cell: deserializer_inst/ov_dout_reg[16] at SLICE_X111Y35 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[20]
+			Placed cell: deserializer_inst/ov_dout_reg[20] at SLICE_X84Y147 on AFF
+		FDRE : deserializer_inst/counter_reg[2]
+			Placed cell: deserializer_inst/counter_reg[2] at SLICE_X111Y34 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[5]
+			Placed cell: deserializer_inst/ov_dout_reg[5] at SLICE_X84Y146 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[2]
+			Placed cell: deserializer_inst/shift_reg_reg[2] at SLICE_X111Y37 on AFF
+		FDRE : deserializer_inst/shift_reg_reg[15]
+			Placed cell: deserializer_inst/shift_reg_reg[15] at SLICE_X84Y145 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[15]
+			Placed cell: deserializer_inst/ov_dout_reg[15] at SLICE_X111Y36 on AFF
+		FDRE : deserializer_inst/counter_reg[3]
+			Placed cell: deserializer_inst/counter_reg[3] at SLICE_X91Y59 on AFF
+		FDRE : deserializer_inst/ov_dout_reg[4]
+			Placed cell: deserializer_inst/ov_dout_reg[4] at SLICE_X111Y31 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[4]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[4] at SLICE_X111Y30 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[18]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[18] at SLICE_X91Y57 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[8]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[8] at SLICE_X111Y33 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[14]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[14] at SLICE_X84Y149 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[10]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[10] at SLICE_X91Y58 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[22]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[22] at SLICE_X111Y32 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[3]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[3] at SLICE_X91Y55 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[17]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[17] at SLICE_X91Y56 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[7]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[7] at SLICE_X91Y53 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[13]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[13] at SLICE_X91Y54 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[21]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[21] at SLICE_X91Y51 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[2]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[2] at SLICE_X111Y39 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[16]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[16] at SLICE_X91Y52 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[6]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[6] at SLICE_X111Y38 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[12]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[12] at SLICE_X91Y50 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[20]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[20] at SLICE_X111Y68 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[0]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[0] at SLICE_X111Y67 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[19]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[19] at SLICE_X91Y28 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[1]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[1] at SLICE_X111Y69 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[15]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[15] at SLICE_X91Y29 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[5]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[5] at SLICE_X111Y64 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[23]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[23] at SLICE_X91Y26 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[11]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[11] at SLICE_X111Y63 on AFF
+		FDRE : fir_filter_inst/tap_inst/ov_sum_reg[9]
+			Placed cell: fir_filter_inst/tap_inst/ov_sum_reg[9] at SLICE_X91Y27 on AFF
 	Placing DSP48E1 cells...
 		DSP48E1 : fir_filter_inst/tap_inst/sum_trunc1__0
+			Placed cell: fir_filter_inst/tap_inst/sum_trunc1__0 at DSP48_X3Y50 on DSP48E1
 		DSP48E1 : fir_filter_inst/tap_inst/sum_trunc1
+			Placed cell: fir_filter_inst/tap_inst/sum_trunc1 at DSP48_X3Y48 on DSP48E1
 	Placing RAMB18E1 cells...
 		RAMB18E1 : fir_filter_inst/xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg
-	WARNING: Placement Failed! Cell: fir_filter_inst/xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg, Type: RAMB18E1
+			Placed cell: fir_filter_inst/xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg at RAMB18_X5Y19 on RAMB18E1
 		RAMB18E1 : fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg
+			Placed cell: fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg at RAMB18_X5Y11 on RAMB18E1
 
-Printing sites in occupiedPlacements... (303)
-	SLICE_X84Y10, SLICEL
-		BEL: BFF, Cell: deserializer_inst/shift_reg_reg[17](BEL: BFF)
-	SLICE_X113Y47, SLICEL
-		BEL: C6LUT, Cell: fir_filter_inst/sample_re_addr[2]_i_1(BEL: C6LUT)
-	SLICE_X65Y123, SLICEL
-		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[18](BEL: AFF)
+Printing sites in occupiedPlacements... (309)
+	SLICE_X57Y129, SLICEL
+		BEL: A6LUT, Cell: fir_filter_inst/FSM_sequential_state[0]_i_1__0(BEL: A6LUT)
+	SLICE_X57Y127, SLICEL
+		BEL: A6LUT, Cell: fir_filter_inst/sample_re_addr[2]_i_1(BEL: A6LUT)
 	SLICE_X57Y128, SLICEL
-		BEL: BFF, Cell: deserializer_inst/shift_reg_reg[23](BEL: BFF)
-	SLICE_X106Y79, SLICEL
-		BEL: B5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[0]_i_6(BEL: B5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X68Y5, SLICEL
-		BEL: BFF, Cell: serializer_inst/shift_reg_reg[16](BEL: BFF)
-	SLICE_X61Y107, SLICEL
-		BEL: DFF, Cell: serializer_inst/shift_reg_reg[0](BEL: DFF)
-	SLICE_X109Y130, SLICEL
-		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[7](BEL: AFF)
-	SLICE_X45Y9, SLICEL
-		BEL: A5LUT, Cell: serializer_inst/FSM_sequential_state[0]_i_1__1(BEL: A5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X61Y102, SLICEL
-		BEL: C6LUT, Cell: serializer_inst/counter[3]_i_1(BEL: C6LUT)
-	SLICE_X95Y34, SLICEL
-		BEL: A6LUT, Cell: deserializer_inst/shift_reg[13]_i_1__0(BEL: A6LUT)
-	SLICE_X87Y84, SLICEL
-		BEL: B6LUT, Cell: serializer_inst/shift_reg[0]_i_1(BEL: B6LUT)
-	SLICE_X113Y41, SLICEL
-		BEL: CFF, Cell: deserializer_inst/o_ready_reg(BEL: CFF)
-	SLICE_X41Y86, SLICEL
-		BEL: BFF, Cell: fir_filter_inst/sample_wr_addr_reg[1](BEL: BFF)
-	SLICE_X88Y51, SLICEL
-		BEL: DFF, Cell: serializer_inst/shift_reg_reg[11](BEL: DFF)
-	SLICE_X49Y126, SLICEL
-		BEL: D5LUT, Cell: serializer_inst/shift_reg[1]_i_1(BEL: D5LUT)
-		Net: GLOBAL_LOGIC1
-	DSP48_X3Y43, DSP48E1
-		BEL: DSP48E1, Cell: fir_filter_inst/tap_inst/sum_trunc1__0(BEL: DSP48E1)
-	SLICE_X71Y6, SLICEL
-		BEL: CFF, Cell: deserializer_inst/ov_dout_reg[5](BEL: CFF)
-	SLICE_X65Y134, SLICEL
-		BEL: D5LUT, Cell: deserializer_inst/counter[2]_i_1(BEL: D5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X13Y41, SLICEL
-		BEL: A5LUT, Cell: fir_filter_inst/sample_wr_addr[3]_i_1(BEL: A5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X93Y148, SLICEL
-		BEL: CFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[20](BEL: CFF)
-	SLICE_X101Y51, SLICEL
-		BEL: D5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[16]_i_5(BEL: D5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X53Y65, SLICEL
-		BEL: B5LUT, Cell: serializer_inst/shift_reg[23]_i_1(BEL: B5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X43Y36, SLICEL
-		BEL: C6LUT, Cell: fir_filter_inst/tap_inst/ov_sum[0]_i_1(BEL: C6LUT)
-	SLICE_X53Y63, SLICEL
-		BEL: CFF, Cell: fir_filter_inst/ov_dout_reg[20](BEL: CFF)
-	SLICE_X99Y66, SLICEL
-		BEL: CFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[1](BEL: CFF)
-	SLICE_X93Y96, SLICEL
-		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[23](BEL: AFF)
-	SLICE_X85Y131, SLICEL
-		BEL: D6LUT, Cell: serializer_inst/counter[4]_i_2(BEL: D6LUT)
-	SLICE_X113Y132, SLICEL
-		BEL: D5LUT, Cell: fir_filter_inst/weight_re_addr[2]_i_1(BEL: D5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X101Y57, SLICEL
-		BEL: C6LUT, Cell: fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2(BEL: C6LUT)
-	SLICE_X48Y42, SLICEL
-		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[12]_i_5(BEL: A5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X49Y10, SLICEL
-		BEL: B5LUT, Cell: deserializer_inst/shift_reg[9]_i_1__0(BEL: B5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X87Y91, SLICEL
-		BEL: D6LUT, Cell: serializer_inst/FSM_sequential_state[1]_i_2(BEL: D6LUT)
-	SLICE_X73Y16, SLICEL
-		BEL: CFF, Cell: serializer_inst/shift_reg_reg[5](BEL: CFF)
-	SLICE_X101Y54, SLICEL
-		BEL: D6LUT, Cell: fir_filter_inst/tap_inst/ov_sum[4]_i_3(BEL: D6LUT)
-	SLICE_X88Y63, SLICEL
-		BEL: BFF, Cell: serializer_inst/counter_reg[4](BEL: BFF)
-	SLICE_X87Y92, SLICEL
-		BEL: D6LUT, Cell: fir_filter_inst/FSM_sequential_state[0]_i_1__0(BEL: D6LUT)
-	SLICE_X47Y73, SLICEL
-		BEL: C5LUT, Cell: deserializer_inst/shift_reg[2]_i_1__0(BEL: C5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X49Y133, SLICEL
-		BEL: CFF, Cell: fir_filter_inst/sample_re_addr_reg[3](BEL: CFF)
-	SLICE_X57Y109, SLICEL
-		BEL: C5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[12]_i_4(BEL: C5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X101Y121, SLICEL
-		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[0]_i_5(BEL: A5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X93Y66, SLICEL
-		BEL: DFF, Cell: serializer_inst/shift_reg_reg[12](BEL: DFF)
-		BEL: A6LUT, Cell: deserializer_inst/counter[0]_i_1(BEL: A6LUT)
-	SLICE_X9Y25, SLICEL
-		BEL: B6LUT, Cell: fir_filter_inst/tap_inst/ov_sum[8]_i_5(BEL: B6LUT)
-	SLICE_X106Y90, SLICEL
-		BEL: D5LUT, Cell: deserializer_inst/shift_reg[19]_i_1__0(BEL: D5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X99Y56, SLICEL
-		BEL: BFF, Cell: serializer_inst/counter_reg[1](BEL: BFF)
-	SLICE_X24Y44, SLICEL
-		BEL: B6LUT, Cell: deserializer_inst/shift_reg[16]_i_1__0(BEL: B6LUT)
-	SLICE_X101Y89, SLICEL
-		BEL: A6LUT, Cell: fir_filter_inst/sample_re_addr[1]_i_1(BEL: A6LUT)
-	SLICE_X71Y46, SLICEL
-		BEL: CFF, Cell: deserializer_inst/FSM_sequential_state_reg[1](BEL: CFF)
-	SLICE_X101Y87, SLICEL
-		BEL: D5LUT, Cell: serializer_inst/shift_reg[5]_i_1(BEL: D5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X48Y57, SLICEL
-		BEL: D5LUT, Cell: fir_filter_inst/sample_re_addr[5]_i_1(BEL: D5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X19Y11, SLICEL
-		BEL: BFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[8](BEL: BFF)
-	SLICE_X45Y128, SLICEL
-		BEL: BFF, Cell: deserializer_inst/counter_reg[0](BEL: BFF)
-	SLICE_X45Y123, SLICEL
-		BEL: B5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[16]_i_2(BEL: B5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X29Y55, SLICEL
-		BEL: D6LUT, Cell: serializer_inst/counter[2]_i_1__0(BEL: D6LUT)
-	SLICE_X70Y0, SLICEL
-		BEL: BFF, Cell: deserializer_inst/ov_dout_reg[0](BEL: BFF)
-	SLICE_X103Y25, SLICEL
-		BEL: C5LUT, Cell: fir_filter_inst/sample_re_addr[0]_i_1(BEL: C5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X110Y134, SLICEL
-		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[12](BEL: AFF)
-	SLICE_X110Y131, SLICEL
-		BEL: B6LUT, Cell: deserializer_inst/counter[2]_i_2(BEL: B6LUT)
-	SLICE_X53Y129, SLICEL
-		BEL: BFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[14](BEL: BFF)
-	SLICE_X55Y1, SLICEL
-		BEL: BFF, Cell: serializer_inst/shift_reg_reg[21](BEL: BFF)
-	SLICE_X61Y20, SLICEL
-		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[13](BEL: AFF)
-	SLICE_X37Y56, SLICEL
-		BEL: DFF, Cell: fir_filter_inst/sample_wr_addr_reg[2](BEL: DFF)
-	SLICE_X78Y5, SLICEL
-		BEL: BFF, Cell: deserializer_inst/counter_reg[4](BEL: BFF)
-	SLICE_X43Y59, SLICEL
-		BEL: B6LUT, Cell: deserializer_inst/FSM_sequential_state[1]_i_1(BEL: B6LUT)
-	SLICE_X53Y85, SLICEL
-		BEL: D5LUT, Cell: serializer_inst/o_dout_valid_i_1(BEL: D5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X1Y42, SLICEL
-		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[0]_i_3(BEL: A5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X9Y38, SLICEL
-		BEL: B6LUT, Cell: deserializer_inst/shift_reg[0]_i_1__0(BEL: B6LUT)
-	SLICE_X72Y26, SLICEL
-		BEL: B5LUT, Cell: fir_filter_inst/o_ready_i_1(BEL: B5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X87Y77, SLICEL
-		BEL: D6LUT, Cell: deserializer_inst/shift_reg[15]_i_1__0(BEL: D6LUT)
-	SLICE_X49Y31, SLICEL
 		BEL: A5LUT, Cell: fir_filter_inst/weight_re_addr[1]_i_1(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
-	SLICE_X89Y11, SLICEL
-		BEL: DFF, Cell: fir_filter_inst/weight_re_addr_reg[4](BEL: DFF)
-	SLICE_X35Y147, SLICEL
-		BEL: DFF, Cell: deserializer_inst/shift_reg_reg[16](BEL: DFF)
-	SLICE_X95Y108, SLICEL
-		BEL: CFF, Cell: serializer_inst/shift_reg_reg[2](BEL: CFF)
-	SLICE_X107Y87, SLICEL
-		BEL: BFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[6](BEL: BFF)
-	SLICE_X56Y121, SLICEL
-		BEL: BFF, Cell: fir_filter_inst/ov_dout_reg[22](BEL: BFF)
-	SLICE_X1Y0, SLICEL
-		BEL: AFF, Cell: fir_filter_inst/sample_re_addr_reg[1](BEL: AFF)
-	SLICE_X65Y12, SLICEL
-		BEL: B5LUT, Cell: deserializer_inst/shift_reg[1]_i_1__0(BEL: B5LUT)
+	SLICE_X57Y125, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/weight_re_addr[2]_i_1(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
-	SLICE_X89Y119, SLICEL
-		BEL: AFF, Cell: fir_filter_inst/FSM_sequential_state_reg[0](BEL: AFF)
-	SLICE_X41Y44, SLICEL
-		BEL: DFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[16](BEL: DFF)
-	SLICE_X109Y25, SLICEL
-		BEL: B5LUT, Cell: deserializer_inst/shift_reg[18]_i_1__0(BEL: B5LUT)
+	DSP48_X3Y50, DSP48E1
+		BEL: DSP48E1, Cell: fir_filter_inst/tap_inst/sum_trunc1__0(BEL: DSP48E1)
+	SLICE_X57Y126, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/weight_re_i_1(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
-	SLICE_X51Y95, SLICEL
-		BEL: CFF, Cell: serializer_inst/shift_reg_reg[4](BEL: CFF)
-	SLICE_X47Y4, SLICEL
-		BEL: D6LUT, Cell: deserializer_inst/shift_reg[20]_i_1__0(BEL: D6LUT)
-	SLICE_X85Y9, SLICEL
-		BEL: BFF, Cell: deserializer_inst/shift_reg_reg[18](BEL: BFF)
-	SLICE_X99Y35, SLICEL
+	RAMB18_X5Y19, RAMB18E1
+		BEL: RAMB18E1, Cell: fir_filter_inst/xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg(BEL: RAMB18E1)
+	SLICE_X57Y123, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/o_ready_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X57Y124, SLICEL
+		BEL: A6LUT, Cell: fir_filter_inst/sample_re_addr[1]_i_1(BEL: A6LUT)
+	SLICE_X57Y121, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/FSM_sequential_state[0]_i_2__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X57Y122, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/sum_rst_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X57Y120, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/sample_re_addr[3]_i_4(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	RAMB18_X5Y11, RAMB18E1
+		BEL: RAMB18E1, Cell: fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg(BEL: RAMB18E1)
+	DSP48_X3Y48, DSP48E1
+		BEL: DSP48E1, Cell: fir_filter_inst/tap_inst/sum_trunc1(BEL: DSP48E1)
+	SLICE_X84Y100, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[8]_i_4(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X57Y118, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/sample_re_addr[0]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X57Y119, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/sample_re_addr[3]_i_2(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y97, SLICEL
+		BEL: A6LUT, Cell: fir_filter_inst/sample_re_addr[3]_i_1(BEL: A6LUT)
+	SLICE_X57Y116, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/sample_re_addr[3]_i_3(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y96, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/FSM_sequential_state[0]_i_3(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X57Y117, SLICEL
+		BEL: A6LUT, Cell: fir_filter_inst/weight_re_addr[3]_i_1(BEL: A6LUT)
+	SLICE_X111Y99, SLICEL
 		BEL: A5LUT, Cell: fir_filter_inst/FSM_sequential_state[1]_i_1__0(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
-	SLICE_X53Y37, SLICEL
-		BEL: D5LUT, Cell: fir_filter_inst/FSM_sequential_state[0]_i_3(BEL: D5LUT)
+	SLICE_X57Y114, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/weight_re_addr[0]_i_1(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
-	SLICE_X31Y124, SLICEL
-		BEL: BFF, Cell: fir_filter_inst/sum_rst_reg(BEL: BFF)
-	SLICE_X17Y3, SLICEL
-		BEL: BFF, Cell: deserializer_inst/ov_dout_reg[23](BEL: BFF)
-	SLICE_X71Y22, SLICEL
-		BEL: BFF, Cell: serializer_inst/shift_reg_reg[22](BEL: BFF)
-		BEL: D6LUT, Cell: serializer_inst/shift_reg[14]_i_1(BEL: D6LUT)
-	SLICE_X52Y65, SLICEL
-		BEL: DFF, Cell: fir_filter_inst/sample_wr_addr_reg[3](BEL: DFF)
-	SLICE_X103Y47, SLICEL
-		BEL: BFF, Cell: deserializer_inst/shift_reg_reg[8](BEL: BFF)
-	SLICE_X81Y60, SLICEL
-		BEL: C5LUT, Cell: deserializer_inst/ov_dout[23]_i_2(BEL: C5LUT)
+	SLICE_X111Y98, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/sample_re_addr[5]_i_1(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
-	SLICE_X87Y59, SLICEL
-		BEL: D6LUT, Cell: serializer_inst/shift_reg[7]_i_1(BEL: D6LUT)
-	SLICE_X89Y105, SLICEL
-		BEL: CFF, Cell: fir_filter_inst/weight_re_reg(BEL: CFF)
-	SLICE_X35Y0, SLICEL
-		BEL: B5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[20]_i_2(BEL: B5LUT)
+	SLICE_X57Y115, SLICEL
+		BEL: A6LUT, Cell: fir_filter_inst/sample_wr_addr[4]_i_1(BEL: A6LUT)
+	SLICE_X57Y112, SLICEL
+		BEL: A6LUT, Cell: fir_filter_inst/weight_re_addr[4]_i_1(BEL: A6LUT)
+	SLICE_X57Y113, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/sample_wr_addr[1]_i_1(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
-	SLICE_X103Y32, SLICEL
-		BEL: C6LUT, Cell: deserializer_inst/counter[3]_i_1__0(BEL: C6LUT)
-	SLICE_X73Y7, SLICEL
-		BEL: DFF, Cell: deserializer_inst/ov_dout_reg[16](BEL: DFF)
-	SLICE_X40Y100, SLICEL
-		BEL: B5LUT, Cell: deserializer_inst/shift_reg[11]_i_1__0(BEL: B5LUT)
+	SLICE_X57Y110, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/sample_re_addr[5]_i_3(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
-	SLICE_X52Y52, SLICEL
-		BEL: B6LUT, Cell: serializer_inst/shift_reg[23]_i_2(BEL: B6LUT)
-	DSP48_X2Y4, DSP48E1
-		BEL: DSP48E1, Cell: fir_filter_inst/tap_inst/sum_trunc1(BEL: DSP48E1)
-	SLICE_X83Y16, SLICEL
-		BEL: BFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[5](BEL: BFF)
-	SLICE_X39Y97, SLICEL
-		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[2](BEL: AFF)
-	SLICE_X35Y134, SLICEL
-		BEL: CFF, Cell: fir_filter_inst/ov_dout_reg[2](BEL: CFF)
-	SLICE_X21Y8, SLICEL
-		BEL: A6LUT, Cell: fir_filter_inst/tap_inst/ov_sum[8]_i_3(BEL: A6LUT)
-	SLICE_X52Y55, SLICEL
-		BEL: D6LUT, Cell: deserializer_inst/shift_reg[4]_i_1__0(BEL: D6LUT)
-	SLICE_X31Y119, SLICEL
-		BEL: A6LUT, Cell: serializer_inst/o_ready_i_1__0(BEL: A6LUT)
-	SLICE_X45Y92, SLICEL
-		BEL: B6LUT, Cell: deserializer_inst/counter[4]_i_2__0(BEL: B6LUT)
-	SLICE_X81Y40, SLICEL
-		BEL: DFF, Cell: fir_filter_inst/weight_re_addr_reg[3](BEL: DFF)
-	SLICE_X64Y66, SLICEL
-		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[15](BEL: AFF)
-	SLICE_X64Y69, SLICEL
-		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[0]_i_4(BEL: A5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X15Y10, SLICEL
-		BEL: CFF, Cell: deserializer_inst/ov_dout_reg[2](BEL: CFF)
-	SLICE_X103Y64, SLICEL
-		BEL: CFF, Cell: fir_filter_inst/sample_re_addr_reg[2](BEL: CFF)
-	SLICE_X57Y148, SLICEL
-		BEL: CFF, Cell: serializer_inst/shift_reg_reg[9](BEL: CFF)
-	SLICE_X21Y13, SLICEL
-		BEL: A6LUT, Cell: deserializer_inst/shift_reg[23]_i_1__0(BEL: A6LUT)
-	SLICE_X75Y43, SLICEL
-		BEL: CFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[21](BEL: CFF)
-	SLICE_X52Y128, SLICEL
-		BEL: C6LUT, Cell: fir_filter_inst/weight_re_addr[5]_i_1(BEL: C6LUT)
-	SLICE_X97Y76, SLICEL
-		BEL: DFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[11](BEL: DFF)
-	SLICE_X76Y14, SLICEL
-		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[2](BEL: AFF)
-	SLICE_X70Y36, SLICEL
-		BEL: D6LUT, Cell: deserializer_inst/shift_reg[8]_i_1__0(BEL: D6LUT)
-	SLICE_X85Y85, SLICEL
-		BEL: AFF, Cell: fir_filter_inst/sample_wr_addr_reg[0](BEL: AFF)
-	SLICE_X107Y108, SLICEL
-		BEL: D6LUT, Cell: fir_filter_inst/sample_re_addr[3]_i_2(BEL: D6LUT)
-	SLICE_X107Y98, SLICEL
-		BEL: A5LUT, Cell: deserializer_inst/shift_reg[5]_i_1__0(BEL: A5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X64Y56, SLICEL
-		BEL: CFF, Cell: serializer_inst/o_dout_valid_reg(BEL: CFF)
-	SLICE_X65Y24, SLICEL
-		BEL: DFF, Cell: fir_filter_inst/ov_dout_reg[19](BEL: DFF)
-	SLICE_X41Y78, SLICEL
-		BEL: B6LUT, Cell: deserializer_inst/counter[4]_i_3(BEL: B6LUT)
-	SLICE_X109Y38, SLICEL
-		BEL: CFF, Cell: deserializer_inst/ov_dout_reg[13](BEL: CFF)
-	SLICE_X59Y24, SLICEL
-		BEL: CFF, Cell: serializer_inst/shift_reg_reg[18](BEL: CFF)
-	SLICE_X31Y32, SLICEL
-		BEL: DFF, Cell: fir_filter_inst/sample_re_addr_reg[4](BEL: DFF)
-	SLICE_X105Y9, SLICEL
-		BEL: DFF, Cell: fir_filter_inst/ov_dout_reg[6](BEL: DFF)
-	SLICE_X67Y107, SLICEL
-		BEL: BFF, Cell: fir_filter_inst/weight_re_addr_reg[5](BEL: BFF)
-	SLICE_X53Y43, SLICEL
-		BEL: B6LUT, Cell: fir_filter_inst/xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1(BEL: B6LUT)
-	SLICE_X57Y135, SLICEL
-		BEL: AFF, Cell: serializer_inst/counter_reg[2](BEL: AFF)
-	SLICE_X84Y109, SLICEL
-		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[17](BEL: AFF)
-	SLICE_X57Y8, SLICEL
-		BEL: A5LUT, Cell: deserializer_inst/shift_reg[12]_i_1__0(BEL: A5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X63Y127, SLICEL
-		BEL: DFF, Cell: deserializer_inst/shift_reg_reg[12](BEL: DFF)
-	SLICE_X31Y136, SLICEL
-		BEL: D6LUT, Cell: fir_filter_inst/ov_dout[23]_i_1__0(BEL: D6LUT)
-	SLICE_X47Y59, SLICEL
-		BEL: CFF, Cell: serializer_inst/o_ready_reg(BEL: CFF)
-	SLICE_X52Y76, SLICEL
-		BEL: B6LUT, Cell: serializer_inst/counter[1]_i_1__0(BEL: B6LUT)
-	SLICE_X107Y117, SLICEL
-		BEL: D5LUT, Cell: fir_filter_inst/sample_wr_addr[2]_i_1(BEL: D5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X107Y116, SLICEL
-		BEL: BFF, Cell: serializer_inst/shift_reg_reg[8](BEL: BFF)
-	SLICE_X71Y16, SLICEL
-		BEL: C6LUT, Cell: serializer_inst/shift_reg[3]_i_1(BEL: C6LUT)
-	SLICE_X80Y86, SLICEL
-		BEL: C6LUT, Cell: serializer_inst/shift_reg[8]_i_1(BEL: C6LUT)
-	SLICE_X65Y21, SLICEL
-		BEL: CFF, Cell: fir_filter_inst/sample_wr_addr_reg[5](BEL: CFF)
-	SLICE_X41Y70, SLICEL
-		BEL: BFF, Cell: serializer_inst/shift_reg_reg[14](BEL: BFF)
-	SLICE_X87Y31, SLICEL
-		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[18](BEL: AFF)
-	SLICE_X60Y2, SLICEL
-		BEL: C5LUT, Cell: fir_filter_inst/sample_wr_addr[1]_i_1(BEL: C5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X60Y147, SLICEL
-		BEL: B5LUT, Cell: deserializer_inst/shift_reg[3]_i_1__0(BEL: B5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X49Y2, SLICEL
-		BEL: BFF, Cell: deserializer_inst/o_dout_valid_reg(BEL: BFF)
-	SLICE_X52Y149, SLICEL
-		BEL: D5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[20]_i_4(BEL: D5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X91Y129, SLICEL
-		BEL: B6LUT, Cell: fir_filter_inst/tap_inst/ov_sum[4]_i_4(BEL: B6LUT)
-	SLICE_X40Y39, SLICEL
-		BEL: BFF, Cell: fir_filter_inst/ov_dout_reg[7](BEL: BFF)
-	SLICE_X45Y42, SLICEL
-		BEL: DFF, Cell: fir_filter_inst/ov_dout_reg[11](BEL: DFF)
-	SLICE_X111Y102, SLICEL
-		BEL: A5LUT, Cell: serializer_inst/shift_reg[18]_i_1(BEL: A5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X40Y127, SLICEL
-		BEL: A6LUT, Cell: serializer_inst/shift_reg[9]_i_1(BEL: A6LUT)
-	SLICE_X44Y76, SLICEL
-		BEL: A6LUT, Cell: fir_filter_inst/tap_inst/ov_sum[16]_i_4(BEL: A6LUT)
-	SLICE_X57Y37, SLICEL
-		BEL: A5LUT, Cell: fir_filter_inst/sample_re_addr[4]_i_1(BEL: A5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X55Y119, SLICEL
-		BEL: AFF, Cell: serializer_inst/shift_reg_reg[6](BEL: AFF)
-	SLICE_X70Y17, SLICEL
-		BEL: DFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[23](BEL: DFF)
-	SLICE_X55Y116, SLICEL
-		BEL: CFF, Cell: fir_filter_inst/ov_dout_reg[12](BEL: CFF)
-	SLICE_X63Y26, SLICEL
-		BEL: DFF, Cell: serializer_inst/shift_reg_reg[3](BEL: DFF)
-	SLICE_X111Y14, SLICEL
-		BEL: D6LUT, Cell: fir_filter_inst/tap_inst/ov_sum[8]_i_2(BEL: D6LUT)
-	SLICE_X52Y3, SLICEL
-		BEL: C5LUT, Cell: deserializer_inst/shift_reg[14]_i_1__0(BEL: C5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X39Y56, SLICEL
-		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[4](BEL: AFF)
-	SLICE_X103Y120, SLICEL
-		BEL: BFF, Cell: deserializer_inst/ov_dout_reg[3](BEL: BFF)
-	SLICE_X103Y74, SLICEL
-		BEL: AFF, Cell: fir_filter_inst/sample_wr_addr_reg[4](BEL: AFF)
-	SLICE_X40Y42, SLICEL
-		BEL: B6LUT, Cell: fir_filter_inst/sample_re_addr[3]_i_1(BEL: B6LUT)
-	SLICE_X59Y149, SLICEL
-		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[18](BEL: AFF)
-	SLICE_X63Y100, SLICEL
-		BEL: A5LUT, Cell: serializer_inst/shift_reg[19]_i_1(BEL: A5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X111Y19, SLICEL
-		BEL: C5LUT, Cell: serializer_inst/FSM_sequential_state[1]_i_1__1(BEL: C5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X91Y72, SLICEL
-		BEL: D5LUT, Cell: serializer_inst/shift_reg[15]_i_1(BEL: D5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X97Y42, SLICEL
-		BEL: B6LUT, Cell: fir_filter_inst/weight_re_addr[0]_i_1(BEL: B6LUT)
-	SLICE_X111Y18, SLICEL
-		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[12](BEL: AFF)
-	SLICE_X52Y14, SLICEL
-		BEL: B6LUT, Cell: deserializer_inst/shift_reg[7]_i_1__0(BEL: B6LUT)
-	SLICE_X83Y135, SLICEL
-		BEL: CFF, Cell: deserializer_inst/shift_reg_reg[0](BEL: CFF)
-	SLICE_X91Y122, SLICEL
-		BEL: A6LUT, Cell: serializer_inst/shift_reg[21]_i_1(BEL: A6LUT)
-	SLICE_X49Y92, SLICEL
-		BEL: BFF, Cell: deserializer_inst/shift_reg_reg[9](BEL: BFF)
-	SLICE_X85Y71, SLICEL
-		BEL: DFF, Cell: serializer_inst/shift_reg_reg[23](BEL: DFF)
-	SLICE_X95Y142, SLICEL
-		BEL: AFF, Cell: serializer_inst/shift_reg_reg[17](BEL: AFF)
-	SLICE_X70Y29, SLICEL
-		BEL: C6LUT, Cell: serializer_inst/shift_reg[11]_i_1(BEL: C6LUT)
-	SLICE_X64Y147, SLICEL
-		BEL: D6LUT, Cell: serializer_inst/shift_reg[2]_i_1(BEL: D6LUT)
-	SLICE_X87Y10, SLICEL
-		BEL: BFF, Cell: deserializer_inst/shift_reg_reg[3](BEL: BFF)
-	SLICE_X52Y18, SLICEL
-		BEL: D5LUT, Cell: deserializer_inst/shift_reg[6]_i_1__0(BEL: D5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X80Y61, SLICEL
-		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[15](BEL: AFF)
-	SLICE_X57Y53, SLICEL
-		BEL: D5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[20]_i_5(BEL: D5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X11Y12, SLICEL
-		BEL: DFF, Cell: deserializer_inst/shift_reg_reg[10](BEL: DFF)
-	SLICE_X56Y87, SLICEL
-		BEL: BFF, Cell: deserializer_inst/ov_dout_reg[17](BEL: BFF)
-	SLICE_X56Y146, SLICEL
-		BEL: CFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[7](BEL: CFF)
-	SLICE_X33Y87, SLICEL
-		BEL: B6LUT, Cell: fir_filter_inst/tap_inst/ov_sum[12]_i_2(BEL: B6LUT)
-	SLICE_X63Y56, SLICEL
-		BEL: CFF, Cell: deserializer_inst/shift_reg_reg[15](BEL: CFF)
-	SLICE_X63Y9, SLICEL
-		BEL: DFF, Cell: fir_filter_inst/ov_dout_reg[16](BEL: DFF)
-	SLICE_X83Y111, SLICEL
-		BEL: DFF, Cell: deserializer_inst/shift_reg_reg[19](BEL: DFF)
-	SLICE_X51Y72, SLICEL
-		BEL: A5LUT, Cell: serializer_inst/shift_reg[10]_i_1(BEL: A5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X91Y41, SLICEL
-		BEL: BFF, Cell: deserializer_inst/counter_reg[1](BEL: BFF)
-	SLICE_X56Y81, SLICEL
-		BEL: CFF, Cell: fir_filter_inst/o_dout_valid_reg(BEL: CFF)
-	SLICE_X56Y82, SLICEL
-		BEL: BFF, Cell: serializer_inst/counter_reg[0](BEL: BFF)
-	SLICE_X27Y38, SLICEL
-		BEL: CFF, Cell: fir_filter_inst/ov_dout_reg[9](BEL: CFF)
-	SLICE_X66Y102, SLICEM
-		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1(BEL: CARRY4)
-	SLICE_X66Y101, SLICEM
-		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1(BEL: CARRY4)
-	SLICE_X44Y96, SLICEL
-		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[0](BEL: AFF)
-	SLICE_X66Y104, SLICEM
-		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1(BEL: CARRY4)
-	SLICE_X66Y103, SLICEM
-		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1(BEL: CARRY4)
-	SLICE_X66Y100, SLICEM
-		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2(BEL: CARRY4)
-	SLICE_X51Y76, SLICEL
-		BEL: D5LUT, Cell: fir_filter_inst/sample_re_addr[5]_i_3(BEL: D5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X52Y44, SLICEL
-		BEL: AFF, Cell: fir_filter_inst/FSM_sequential_state_reg[1](BEL: AFF)
-	SLICE_X105Y47, SLICEL
-		BEL: B6LUT, Cell: serializer_inst/shift_reg[6]_i_1(BEL: B6LUT)
-	SLICE_X41Y20, SLICEL
-		BEL: DFF, Cell: deserializer_inst/ov_dout_reg[11](BEL: DFF)
-	SLICE_X63Y50, SLICEL
-		BEL: DFF, Cell: serializer_inst/shift_reg_reg[10](BEL: DFF)
-	SLICE_X84Y70, SLICEL
-		BEL: DFF, Cell: fir_filter_inst/o_ready_reg(BEL: DFF)
-	SLICE_X60Y133, SLICEL
-		BEL: C5LUT, Cell: deserializer_inst/shift_reg[23]_i_2__0(BEL: C5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X66Y105, SLICEM
-		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1(BEL: CARRY4)
-	SLICE_X84Y74, SLICEL
-		BEL: C6LUT, Cell: deserializer_inst/counter[1]_i_1(BEL: C6LUT)
-	SLICE_X67Y143, SLICEL
-		BEL: A5LUT, Cell: serializer_inst/shift_reg[4]_i_1(BEL: A5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X40Y68, SLICEL
-		BEL: C5LUT, Cell: deserializer_inst/shift_reg[10]_i_1__0(BEL: C5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X51Y130, SLICEL
-		BEL: B6LUT, Cell: fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1(BEL: B6LUT)
-	SLICE_X106Y110, SLICEL
-		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[19](BEL: AFF)
-	SLICE_X74Y9, SLICEL
-		BEL: A6LUT, Cell: deserializer_inst/shift_reg[21]_i_1__0(BEL: A6LUT)
-	SLICE_X59Y8, SLICEL
-		BEL: C5LUT, Cell: deserializer_inst/shift_reg[22]_i_1__0(BEL: C5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X21Y49, SLICEL
-		BEL: BFF, Cell: deserializer_inst/ov_dout_reg[4](BEL: BFF)
-	SLICE_X103Y3, SLICEL
-		BEL: CFF, Cell: deserializer_inst/ov_dout_reg[20](BEL: CFF)
-	SLICE_X7Y16, SLICEL
-		BEL: BFF, Cell: deserializer_inst/ov_dout_reg[6](BEL: BFF)
-	SLICE_X47Y124, SLICEL
-		BEL: CFF, Cell: deserializer_inst/ov_dout_reg[1](BEL: CFF)
-	SLICE_X52Y39, SLICEL
-		BEL: BFF, Cell: fir_filter_inst/ov_dout_reg[8](BEL: BFF)
-	SLICE_X27Y26, SLICEL
-		BEL: DFF, Cell: deserializer_inst/ov_dout_reg[8](BEL: DFF)
-	SLICE_X74Y43, SLICEL
-		BEL: BFF, Cell: fir_filter_inst/sample_re_addr_reg[5](BEL: BFF)
-	SLICE_X28Y135, SLICEL
-		BEL: D5LUT, Cell: serializer_inst/counter[0]_i_1__0(BEL: D5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X40Y112, SLICEL
-		BEL: BFF, Cell: fir_filter_inst/ov_dout_reg[1](BEL: BFF)
-	SLICE_X67Y85, SLICEL
-		BEL: C5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[20]_i_3(BEL: C5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X44Y108, SLICEL
-		BEL: B6LUT, Cell: serializer_inst/shift_reg[12]_i_1(BEL: B6LUT)
-	SLICE_X105Y65, SLICEL
-		BEL: BFF, Cell: fir_filter_inst/ov_dout_reg[14](BEL: BFF)
-	SLICE_X111Y63, SLICEL
-		BEL: DFF, Cell: serializer_inst/shift_reg_reg[20](BEL: DFF)
-	SLICE_X37Y66, SLICEL
-		BEL: A6LUT, Cell: fir_filter_inst/tap_inst/ov_sum[8]_i_4(BEL: A6LUT)
-	SLICE_X97Y114, SLICEL
-		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[12]_i_3(BEL: A5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X84Y59, SLICEL
-		BEL: C5LUT, Cell: serializer_inst/shift_reg[23]_i_3(BEL: C5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X91Y25, SLICEL
-		BEL: DFF, Cell: fir_filter_inst/ov_dout_reg[5](BEL: DFF)
-	SLICE_X44Y104, SLICEL
-		BEL: C6LUT, Cell: deserializer_inst/o_dout_valid_i_1__0(BEL: C6LUT)
-	SLICE_X1Y37, SLICEL
-		BEL: DFF, Cell: serializer_inst/shift_reg_reg[1](BEL: DFF)
-	SLICE_X44Y103, SLICEL
-		BEL: D6LUT, Cell: fir_filter_inst/weight_re_addr[4]_i_1(BEL: D6LUT)
-	SLICE_X33Y135, SLICEL
-		BEL: AFF, Cell: serializer_inst/counter_reg[3](BEL: AFF)
-	SLICE_X1Y36, SLICEL
-		BEL: DFF, Cell: fir_filter_inst/ov_dout_reg[3](BEL: DFF)
-	SLICE_X61Y148, SLICEL
-		BEL: DFF, Cell: serializer_inst/shift_reg_reg[7](BEL: DFF)
-	SLICE_X79Y21, SLICEL
-		BEL: AFF, Cell: serializer_inst/shift_reg_reg[13](BEL: AFF)
-	SLICE_X49Y43, SLICEL
-		BEL: AFF, Cell: deserializer_inst/counter_reg[3](BEL: AFF)
-	SLICE_X43Y63, SLICEL
-		BEL: C6LUT, Cell: fir_filter_inst/sample_re_addr[3]_i_3(BEL: C6LUT)
-	SLICE_X88Y91, SLICEL
-		BEL: DFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[13](BEL: DFF)
-	SLICE_X31Y89, SLICEL
-		BEL: B6LUT, Cell: fir_filter_inst/weight_re_i_1(BEL: B6LUT)
-	SLICE_X67Y35, SLICEL
-		BEL: C6LUT, Cell: fir_filter_inst/tap_inst/ov_sum[16]_i_3(BEL: C6LUT)
-	SLICE_X13Y19, SLICEL
-		BEL: BFF, Cell: deserializer_inst/ov_dout_reg[21](BEL: BFF)
-	SLICE_X101Y137, SLICEL
-		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[4](BEL: AFF)
-	SLICE_X51Y17, SLICEL
-		BEL: CFF, Cell: deserializer_inst/ov_dout_reg[14](BEL: CFF)
-	SLICE_X48Y71, SLICEL
-		BEL: DFF, Cell: deserializer_inst/ov_dout_reg[7](BEL: DFF)
-	SLICE_X85Y34, SLICEL
-		BEL: BFF, Cell: fir_filter_inst/ov_dout_reg[17](BEL: BFF)
-	SLICE_X56Y11, SLICEL
-		BEL: BFF, Cell: deserializer_inst/shift_reg_reg[14](BEL: BFF)
-	SLICE_X97Y125, SLICEL
-		BEL: D6LUT, Cell: fir_filter_inst/weight_re_addr[3]_i_1(BEL: D6LUT)
-	SLICE_X31Y7, SLICEL
-		BEL: BFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[10](BEL: BFF)
-	SLICE_X1Y23, SLICEL
-		BEL: A6LUT, Cell: fir_filter_inst/o_dout_valid_i_1__1(BEL: A6LUT)
-		BEL: D5LUT, Cell: deserializer_inst/counter[4]_i_1__0(BEL: D5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X23Y48, SLICEL
-		BEL: D6LUT, Cell: fir_filter_inst/sample_wr_addr[5]_i_1(BEL: D6LUT)
-	SLICE_X80Y28, SLICEL
-		BEL: CFF, Cell: deserializer_inst/shift_reg_reg[22](BEL: CFF)
-	SLICE_X80Y26, SLICEL
-		BEL: CFF, Cell: deserializer_inst/FSM_sequential_state_reg[0](BEL: CFF)
-	SLICE_X43Y76, SLICEL
-		BEL: AFF, Cell: fir_filter_inst/sample_re_addr_reg[0](BEL: AFF)
-	SLICE_X29Y23, SLICEL
-		BEL: A6LUT, Cell: deserializer_inst/FSM_sequential_state[0]_i_1(BEL: A6LUT)
-	SLICE_X80Y24, SLICEL
-		BEL: A6LUT, Cell: fir_filter_inst/FSM_sequential_state[0]_i_2__0(BEL: A6LUT)
-	SLICE_X105Y57, SLICEL
-		BEL: A6LUT, Cell: serializer_inst/shift_reg[13]_i_1(BEL: A6LUT)
-	SLICE_X65Y88, SLICEL
-		BEL: D5LUT, Cell: fir_filter_inst/sample_wr_addr[0]_i_1(BEL: D5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X67Y21, SLICEL
-		BEL: DFF, Cell: deserializer_inst/shift_reg_reg[21](BEL: DFF)
-	SLICE_X105Y59, SLICEL
-		BEL: BFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[9](BEL: BFF)
-	SLICE_X97Y130, SLICEL
-		BEL: CFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[19](BEL: CFF)
-	SLICE_X80Y2, SLICEL
-		BEL: DFF, Cell: deserializer_inst/shift_reg_reg[5](BEL: DFF)
-	SLICE_X65Y83, SLICEL
-		BEL: A6LUT, Cell: serializer_inst/shift_reg[16]_i_1(BEL: A6LUT)
-	SLICE_X109Y119, SLICEL
-		BEL: D5LUT, Cell: fir_filter_inst/sample_re_addr[3]_i_4(BEL: D5LUT)
-		Net: GLOBAL_LOGIC1
-	SLICE_X109Y115, SLICEL
+	SLICE_X57Y111, SLICEL
 		BEL: A5LUT, Cell: fir_filter_inst/sample_re_addr[5]_i_2(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
-	SLICE_X83Y68, SLICEL
-		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[11](BEL: AFF)
-		BEL: BFF, Cell: deserializer_inst/ov_dout_reg[10](BEL: BFF)
-	SLICE_X63Y12, SLICEL
-		BEL: DFF, Cell: deserializer_inst/ov_dout_reg[22](BEL: DFF)
-	SLICE_X43Y89, SLICEL
-		BEL: D6LUT, Cell: serializer_inst/shift_reg[17]_i_1(BEL: D6LUT)
-	SLICE_X44Y57, SLICEL
-		BEL: DFF, Cell: serializer_inst/FSM_sequential_state_reg[1](BEL: DFF)
-	SLICE_X87Y126, SLICEL
+	SLICE_X111Y93, SLICEL
+		BEL: A6LUT, Cell: fir_filter_inst/weight_re_addr[5]_i_1(BEL: A6LUT)
+	SLICE_X111Y92, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/sample_wr_addr[2]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y95, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/sample_re_addr[4]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y94, SLICEL
+		BEL: A6LUT, Cell: fir_filter_inst/ov_dout[23]_i_1__0(BEL: A6LUT)
+	SLICE_X111Y91, SLICEL
+		BEL: A6LUT, Cell: fir_filter_inst/o_dout_valid_i_1__1(BEL: A6LUT)
+	SLICE_X111Y90, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/sample_wr_addr[3]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X57Y109, SLICEL
+		BEL: A6LUT, Cell: fir_filter_inst/sample_wr_addr[5]_i_1(BEL: A6LUT)
+	SLICE_X57Y107, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/sample_wr_addr[0]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X57Y108, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/FSM_sequential_state[0]_i_1__1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X57Y105, SLICEL
+		BEL: A6LUT, Cell: serializer_inst/counter[3]_i_1(BEL: A6LUT)
+	SLICE_X57Y106, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[1]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X57Y103, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/o_ready_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X57Y104, SLICEL
+		BEL: A6LUT, Cell: serializer_inst/counter[4]_i_2(BEL: A6LUT)
+	SLICE_X57Y101, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/counter[4]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X57Y102, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[23]_i_3(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X57Y100, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[23]_i_2(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X84Y137, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[8]_i_5(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X84Y136, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[8]_i_2(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X84Y135, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[8]_i_3(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X84Y134, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X84Y139, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X84Y138, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X84Y140, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/o_dout_valid_reg(BEL: AFF)
+	SLICE_X84Y144, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/sample_wr_addr_reg[3](BEL: AFF)
+	SLICE_X84Y143, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[18](BEL: AFF)
+	SLICE_X84Y142, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[14](BEL: AFF)
+	SLICE_X84Y141, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/sample_re_addr_reg[0](BEL: AFF)
+	SLICE_X84Y126, SLICEL
 		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[10](BEL: AFF)
-	SLICE_X73Y23, SLICEL
-		BEL: DFF, Cell: fir_filter_inst/weight_re_addr_reg[0](BEL: DFF)
-	SLICE_X105Y136, SLICEL
-		BEL: D5LUT, Cell: serializer_inst/counter[4]_i_1(BEL: D5LUT)
+	SLICE_X84Y125, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[22](BEL: AFF)
+	SLICE_X84Y124, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[7](BEL: AFF)
+	SLICE_X84Y123, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/weight_re_addr_reg[2](BEL: AFF)
+	SLICE_X84Y129, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/sample_re_addr_reg[4](BEL: AFF)
+	SLICE_X84Y128, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[3](BEL: AFF)
+	SLICE_X84Y127, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/sample_wr_addr_reg[2](BEL: AFF)
+	SLICE_X61Y0, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[13](BEL: AFF)
+	SLICE_X84Y133, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[17](BEL: AFF)
+	SLICE_X84Y132, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/sample_re_addr_reg[3](BEL: AFF)
+	SLICE_X61Y2, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[6](BEL: AFF)
+	SLICE_X84Y131, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[21](BEL: AFF)
+	SLICE_X61Y1, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[2](BEL: AFF)
+	SLICE_X84Y130, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/weight_re_addr_reg[3](BEL: AFF)
+	SLICE_X61Y4, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/sample_wr_addr_reg[1](BEL: AFF)
+	SLICE_X84Y115, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[1](BEL: AFF)
+	SLICE_X61Y3, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/sample_re_addr_reg[2](BEL: AFF)
+	SLICE_X84Y114, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/weight_re_reg(BEL: AFF)
+	SLICE_X61Y6, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[16](BEL: AFF)
+	SLICE_X84Y113, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/sample_wr_addr_reg[5](BEL: AFF)
+	SLICE_X61Y5, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[9](BEL: AFF)
+	SLICE_X84Y112, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[20](BEL: AFF)
+	SLICE_X61Y8, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/o_ready_reg(BEL: AFF)
+	SLICE_X84Y119, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/weight_re_addr_reg[4](BEL: AFF)
+	SLICE_X57Y149, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[23]_i_1(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
-	SLICE_X51Y33, SLICEL
+	SLICE_X61Y7, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[5](BEL: AFF)
+	SLICE_X84Y118, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[12](BEL: AFF)
+	SLICE_X84Y117, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/weight_re_addr_reg[0](BEL: AFF)
+	SLICE_X57Y147, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/counter[0]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X61Y9, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[0](BEL: AFF)
+	SLICE_X84Y116, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/FSM_sequential_state_reg[0](BEL: AFF)
+	SLICE_X57Y148, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[8]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y88, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/sum_rst_reg(BEL: AFF)
+	SLICE_X39Y100, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[2]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X57Y145, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[15]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y89, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/sample_wr_addr_reg[0](BEL: AFF)
+	SLICE_X57Y146, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[3]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y86, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[19](BEL: AFF)
+	SLICE_X39Y102, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[0]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X57Y143, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[9]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y87, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[15](BEL: AFF)
+	SLICE_X39Y101, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[6]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X57Y144, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/counter[1]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y84, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/sample_re_addr_reg[1](BEL: AFF)
+	SLICE_X39Y104, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[13]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X57Y141, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[16]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y85, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/sample_wr_addr_reg[4](BEL: AFF)
+	SLICE_X39Y103, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/FSM_sequential_state[1]_i_1__1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X57Y142, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[10]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y82, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[8](BEL: AFF)
+	SLICE_X39Y106, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[18]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y83, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/weight_re_addr_reg[5](BEL: AFF)
+	SLICE_X39Y105, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/FSM_sequential_state[1]_i_2(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X57Y140, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[21]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y80, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[11](BEL: AFF)
+	SLICE_X39Y108, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[19]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y81, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/sample_re_addr_reg[5](BEL: AFF)
+	SLICE_X39Y107, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[12]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X39Y109, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/o_dout_valid_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X84Y122, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[23](BEL: AFF)
+	SLICE_X84Y121, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[4](BEL: AFF)
+	SLICE_X84Y120, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/weight_re_addr_reg[1](BEL: AFF)
+	SLICE_X84Y104, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/FSM_sequential_state_reg[1](BEL: AFF)
+	SLICE_X84Y103, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[1](BEL: AFF)
+	SLICE_X84Y102, SLICEL
+		BEL: AFF, Cell: serializer_inst/o_dout_valid_reg(BEL: AFF)
+	SLICE_X84Y101, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[20](BEL: AFF)
+	SLICE_X84Y108, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[9](BEL: AFF)
+	SLICE_X57Y138, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[5]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X84Y107, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[5](BEL: AFF)
+	SLICE_X57Y139, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[20]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X84Y106, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[16](BEL: AFF)
+	SLICE_X57Y136, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[14]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X84Y105, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[12](BEL: AFF)
+	SLICE_X57Y137, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[22]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y99, SLICEL
+		BEL: AFF, Cell: serializer_inst/counter_reg[0](BEL: AFF)
+	SLICE_X57Y134, SLICEL
+		BEL: A6LUT, Cell: serializer_inst/counter[2]_i_1__0(BEL: A6LUT)
+	SLICE_X57Y135, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[11]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y97, SLICEL
+		BEL: AFF, Cell: serializer_inst/counter_reg[4](BEL: AFF)
+	SLICE_X57Y132, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[4]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y98, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[0](BEL: AFF)
+	SLICE_X84Y109, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[4](BEL: AFF)
+	SLICE_X57Y133, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[17]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y95, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[8](BEL: AFF)
+	SLICE_X57Y130, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[7]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y96, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[17](BEL: AFF)
+	SLICE_X57Y131, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[4]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y93, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[13](BEL: AFF)
+	SLICE_X91Y94, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[21](BEL: AFF)
+	SLICE_X91Y91, SLICEL
+		BEL: AFF, Cell: serializer_inst/counter_reg[1](BEL: AFF)
+	SLICE_X91Y92, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[3](BEL: AFF)
+	SLICE_X91Y90, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[7](BEL: AFF)
+	SLICE_X84Y111, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[14](BEL: AFF)
+	SLICE_X84Y110, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[22](BEL: AFF)
+	SLICE_X111Y24, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[10](BEL: AFF)
+	SLICE_X87Y1, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/ov_dout[23]_i_2(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y23, SLICEL
+		BEL: AFF, Cell: serializer_inst/o_ready_reg(BEL: AFF)
+	SLICE_X87Y2, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[8]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y26, SLICEL
+		BEL: AFF, Cell: serializer_inst/counter_reg[2](BEL: AFF)
+	SLICE_X111Y25, SLICEL
+		BEL: AFF, Cell: serializer_inst/FSM_sequential_state_reg[0](BEL: AFF)
+	SLICE_X87Y0, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[13]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y20, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[18](BEL: AFF)
+	SLICE_X87Y5, SLICEL
+		BEL: A6LUT, Cell: deserializer_inst/ov_dout[23]_i_1(BEL: A6LUT)
+	SLICE_X87Y6, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[18]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y22, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[6](BEL: AFF)
+	SLICE_X91Y68, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[2](BEL: AFF)
+	SLICE_X87Y3, SLICEL
+		BEL: A6LUT, Cell: deserializer_inst/shift_reg[23]_i_1__0(BEL: A6LUT)
+	SLICE_X39Y120, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[1]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y21, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[23](BEL: AFF)
+	SLICE_X91Y69, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[15](BEL: AFF)
+	SLICE_X87Y4, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/FSM_sequential_state[0]_i_2(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y66, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[11](BEL: AFF)
+	SLICE_X87Y9, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[5]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X39Y122, SLICEL
+		BEL: A6LUT, Cell: deserializer_inst/FSM_sequential_state[0]_i_1(BEL: A6LUT)
+	SLICE_X91Y67, SLICEL
+		BEL: AFF, Cell: serializer_inst/counter_reg[3](BEL: AFF)
+	SLICE_X39Y121, SLICEL
+		BEL: A6LUT, Cell: deserializer_inst/counter[1]_i_1(BEL: A6LUT)
+	SLICE_X91Y64, SLICEL
+		BEL: AFF, Cell: serializer_inst/FSM_sequential_state_reg[1](BEL: AFF)
+	SLICE_X87Y7, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[14]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X39Y124, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[9]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y65, SLICEL
 		BEL: AFF, Cell: serializer_inst/shift_reg_reg[19](BEL: AFF)
-	SLICE_X49Y60, SLICEL
-		BEL: D5LUT, Cell: deserializer_inst/shift_reg[17]_i_1__0(BEL: D5LUT)
+	SLICE_X87Y8, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/counter[4]_i_1__0(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
-	SLICE_X57Y15, SLICEL
-		BEL: CFF, Cell: fir_filter_inst/weight_re_addr_reg[1](BEL: CFF)
-	SLICE_X89Y41, SLICEL
-		BEL: BFF, Cell: deserializer_inst/ov_dout_reg[9](BEL: BFF)
-	SLICE_X111Y83, SLICEL
-		BEL: B5LUT, Cell: deserializer_inst/FSM_sequential_state[0]_i_2(BEL: B5LUT)
+	SLICE_X39Y123, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/o_dout_valid_i_1__0(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
-	RAMB18_X4Y23, RAMB18E1
-		BEL: RAMB18E1, Cell: fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg(BEL: RAMB18E1)
-	SLICE_X61Y68, SLICEL
-		BEL: D6LUT, Cell: fir_filter_inst/tap_inst/ov_sum[4]_i_2(BEL: D6LUT)
-	SLICE_X113Y14, SLICEL
-		BEL: A6LUT, Cell: fir_filter_inst/tap_inst/ov_sum[4]_i_5(BEL: A6LUT)
-	SLICE_X65Y113, SLICEL
+	SLICE_X111Y28, SLICEL
+		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[5](BEL: AFF)
+	SLICE_X91Y62, SLICEL
+		BEL: AFF, Cell: deserializer_inst/o_dout_valid_reg(BEL: AFF)
+	SLICE_X39Y126, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[17]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y27, SLICEL
+		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[12](BEL: AFF)
+	SLICE_X91Y63, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[14](BEL: AFF)
+	SLICE_X39Y125, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[10]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y60, SLICEL
+		BEL: AFF, Cell: deserializer_inst/counter_reg[0](BEL: AFF)
+	SLICE_X39Y128, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[22]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y29, SLICEL
+		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[4](BEL: AFF)
+	SLICE_X91Y61, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[7](BEL: AFF)
+	SLICE_X39Y127, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[2]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X39Y129, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[6]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y13, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[13](BEL: AFF)
+	SLICE_X111Y12, SLICEL
+		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[13](BEL: AFF)
+	SLICE_X111Y15, SLICEL
+		BEL: AFF, Cell: deserializer_inst/counter_reg[1](BEL: AFF)
+	SLICE_X111Y14, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[6](BEL: AFF)
+	SLICE_X111Y11, SLICEL
+		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[7](BEL: AFF)
+	SLICE_X91Y79, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[1](BEL: AFF)
+	SLICE_X111Y10, SLICEL
+		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[22](BEL: AFF)
+	SLICE_X91Y77, SLICEL
+		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[10](BEL: AFF)
+	SLICE_X39Y111, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[21]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y78, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[9](BEL: AFF)
+	SLICE_X39Y110, SLICEL
 		BEL: A5LUT, Cell: deserializer_inst/o_ready_i_1__1(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
-	SLICE_X56Y33, SLICEL
-		BEL: D6LUT, Cell: serializer_inst/shift_reg[20]_i_1(BEL: D6LUT)
-	SLICE_X68Y16, SLICEL
-		BEL: BFF, Cell: fir_filter_inst/ov_dout_reg[13](BEL: BFF)
-		BEL: A6LUT, Cell: serializer_inst/shift_reg[22]_i_1(BEL: A6LUT)
-	SLICE_X53Y6, SLICEL
-		BEL: C6LUT, Cell: deserializer_inst/ov_dout[23]_i_1(BEL: C6LUT)
-	SLICE_X55Y67, SLICEL
-		BEL: DFF, Cell: fir_filter_inst/ov_dout_reg[21](BEL: DFF)
-	SLICE_X45Y39, SLICEL
-		BEL: BFF, Cell: fir_filter_inst/weight_re_addr_reg[2](BEL: BFF)
-	SLICE_X101Y5, SLICEL
-		BEL: D6LUT, Cell: fir_filter_inst/sum_rst_i_1(BEL: D6LUT)
-	SLICE_X105Y126, SLICEL
-		BEL: DFF, Cell: deserializer_inst/shift_reg_reg[1](BEL: DFF)
-	SLICE_X23Y24, SLICEL
-		BEL: DFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[3](BEL: DFF)
-	SLICE_X101Y34, SLICEL
-		BEL: CFF, Cell: deserializer_inst/shift_reg_reg[6](BEL: CFF)
-	SLICE_X27Y67, SLICEL
-		BEL: CFF, Cell: serializer_inst/shift_reg_reg[15](BEL: CFF)
-	SLICE_X73Y36, SLICEL
-		BEL: DFF, Cell: fir_filter_inst/ov_dout_reg[15](BEL: DFF)
-	SLICE_X33Y59, SLICEL
-		BEL: A6LUT, Cell: fir_filter_inst/sample_wr_addr[4]_i_1(BEL: A6LUT)
-	SLICE_X107Y16, SLICEL
-		BEL: DFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[22](BEL: DFF)
-	SLICE_X88Y82, SLICEL
-		BEL: CFF, Cell: deserializer_inst/counter_reg[2](BEL: CFF)
-	SLICE_X28Y30, SLICEL
-		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[4](BEL: AFF)
-	SLICE_X88Y89, SLICEL
-		BEL: BFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[0](BEL: BFF)
-	SLICE_X49Y75, SLICEL
-		BEL: CFF, Cell: serializer_inst/FSM_sequential_state_reg[0](BEL: CFF)
-	SLICE_X49Y73, SLICEL
+	SLICE_X91Y75, SLICEL
+		BEL: AFF, Cell: deserializer_inst/o_ready_reg(BEL: AFF)
+	SLICE_X39Y113, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/counter[4]_i_3(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y76, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[12](BEL: AFF)
+	SLICE_X39Y112, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[15]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y17, SLICEL
+		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[18](BEL: AFF)
+	SLICE_X91Y73, SLICEL
+		BEL: AFF, Cell: deserializer_inst/FSM_sequential_state_reg[0](BEL: AFF)
+	SLICE_X39Y115, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/counter[3]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y16, SLICEL
+		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[6](BEL: AFF)
+	SLICE_X91Y74, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[0](BEL: AFF)
+	SLICE_X39Y114, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[11]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y19, SLICEL
+		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[23](BEL: AFF)
+	SLICE_X91Y71, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[19](BEL: AFF)
+	SLICE_X39Y117, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[16]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y18, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[8](BEL: AFF)
+	SLICE_X91Y72, SLICEL
+		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[11](BEL: AFF)
+	SLICE_X39Y116, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/counter[2]_i_2(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X39Y119, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/counter[2]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y70, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[11](BEL: AFF)
+	SLICE_X39Y118, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[3]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y46, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[23](BEL: AFF)
+	SLICE_X111Y45, SLICEL
+		BEL: AFF, Cell: deserializer_inst/FSM_sequential_state_reg[1](BEL: AFF)
+	SLICE_X111Y48, SLICEL
+		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[19](BEL: AFF)
+	SLICE_X111Y47, SLICEL
+		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[1](BEL: AFF)
+	SLICE_X111Y42, SLICEL
+		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[9](BEL: AFF)
+	SLICE_X91Y48, SLICEL
 		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[20](BEL: AFF)
-
-Printing All Nets...
-	Net: i_en_IBUF
-		SitePinInsts: None!
-	Net: GLOBAL_LOGIC0
-		SitePinInsts: None!
-	Net: GLOBAL_LOGIC1
-		SitePinInsts: None!
-	Net: i_din
-		SitePinInsts: None!
-	Net: i_rst
-		SitePinInsts: None!
-	Net: o_dout
-		SitePinInsts: None!
-	Net: i_rst_IBUF
-		SitePinInsts: None!
-	Net: i_din_valid
-		SitePinInsts: None!
-	Net: i_din_IBUF
-		SitePinInsts: None!
-	Net: i_ready
-		SitePinInsts: None!
-	Net: i_en
-		SitePinInsts: None!
-	Net: i_clk_IBUF
-		SitePinInsts: None!
-	Net: serializer_inst/o_dout_valid_OBUF
-		SitePinInsts: None!
-	Net: o_dout_valid
-		SitePinInsts: None!
-	Net: i_din_valid_IBUF
-		SitePinInsts: None!
-	Net: o_ready
-		SitePinInsts: None!
-	Net: deserializer_inst/o_ready_OBUF
-		SitePinInsts: None!
-	Net: i_clk
-		SitePinInsts: None!
-	Net: serializer_inst/Q[0]
-		SitePinInsts: None!
-	Net: i_ready_IBUF
-		SitePinInsts: None!
+	SLICE_X39Y140, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[20]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y41, SLICEL
+		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[16](BEL: AFF)
+	SLICE_X91Y49, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[18](BEL: AFF)
+	SLICE_X111Y44, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[22](BEL: AFF)
+	SLICE_X91Y46, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[10](BEL: AFF)
+	SLICE_X39Y142, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/counter[4]_i_2__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y43, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[3](BEL: AFF)
+	SLICE_X91Y47, SLICEL
+		BEL: AFF, Cell: deserializer_inst/counter_reg[4](BEL: AFF)
+	SLICE_X39Y141, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/counter[0]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y44, SLICEL
+		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[0](BEL: AFF)
+	SLICE_X39Y144, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/FSM_sequential_state[1]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y45, SLICEL
+		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[8](BEL: AFF)
+	SLICE_X39Y143, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[7]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y42, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[17](BEL: AFF)
+	SLICE_X39Y146, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[23]_i_2__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y43, SLICEL
+		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[17](BEL: AFF)
+	SLICE_X39Y145, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[12]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y40, SLICEL
+		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[21](BEL: AFF)
+	SLICE_X39Y148, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[0]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y41, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[2](BEL: AFF)
+	SLICE_X111Y49, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[21](BEL: AFF)
+	SLICE_X39Y147, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst/shift_reg[19]_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X39Y149, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[4]_i_5(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y40, SLICEL
+		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[3](BEL: AFF)
+	SLICE_X74Y0, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[4]_i_4(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y35, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[16](BEL: AFF)
+	SLICE_X84Y148, SLICEL
+		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[14](BEL: AFF)
+	SLICE_X74Y3, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[12]_i_5(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y34, SLICEL
+		BEL: AFF, Cell: deserializer_inst/counter_reg[2](BEL: AFF)
+	SLICE_X84Y147, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[20](BEL: AFF)
+	SLICE_X74Y4, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[12]_i_2(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y37, SLICEL
+		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[2](BEL: AFF)
+	SLICE_X84Y146, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[5](BEL: AFF)
+	SLICE_X74Y1, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[20]_i_4(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y36, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[15](BEL: AFF)
+	SLICE_X84Y145, SLICEL
+		BEL: AFF, Cell: deserializer_inst/shift_reg_reg[15](BEL: AFF)
+	SLICE_X74Y2, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[20]_i_5(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y31, SLICEL
+		BEL: AFF, Cell: deserializer_inst/ov_dout_reg[4](BEL: AFF)
+	SLICE_X91Y59, SLICEL
+		BEL: AFF, Cell: deserializer_inst/counter_reg[3](BEL: AFF)
+	SLICE_X74Y7, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[12]_i_4(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y30, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[4](BEL: AFF)
+	SLICE_X74Y8, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[20]_i_2(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y33, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[8](BEL: AFF)
+	SLICE_X91Y57, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[18](BEL: AFF)
+	SLICE_X74Y5, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[20]_i_3(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X39Y131, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[12]_i_3(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y32, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[22](BEL: AFF)
+	SLICE_X91Y58, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[10](BEL: AFF)
+	SLICE_X84Y149, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[14](BEL: AFF)
+	SLICE_X74Y6, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[4]_i_2(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X39Y130, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[4]_i_3(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y55, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[3](BEL: AFF)
+	SLICE_X39Y133, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[16]_i_5(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y56, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[17](BEL: AFF)
+	SLICE_X39Y132, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[0]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y53, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[7](BEL: AFF)
+	SLICE_X74Y9, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[0]_i_4(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X39Y135, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[0]_i_3(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y54, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[13](BEL: AFF)
+	SLICE_X39Y134, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[16]_i_2(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y39, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[2](BEL: AFF)
+	SLICE_X91Y51, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[21](BEL: AFF)
+	SLICE_X39Y137, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[0]_i_5(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y38, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[6](BEL: AFF)
+	SLICE_X91Y52, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[16](BEL: AFF)
+	SLICE_X39Y136, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[0]_i_6(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X39Y139, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[16]_i_4(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y50, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[12](BEL: AFF)
+	SLICE_X39Y138, SLICEL
+		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[16]_i_3(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y68, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[20](BEL: AFF)
+	SLICE_X111Y67, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[0](BEL: AFF)
+	SLICE_X91Y28, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[19](BEL: AFF)
+	SLICE_X91Y29, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[15](BEL: AFF)
+	SLICE_X111Y69, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[1](BEL: AFF)
+	SLICE_X91Y26, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[23](BEL: AFF)
+	SLICE_X111Y64, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[5](BEL: AFF)
+	SLICE_X91Y27, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[9](BEL: AFF)
+	SLICE_X111Y63, SLICEL
+		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[11](BEL: AFF)
+	SLICE_X32Y65, SLICEM
+		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2(BEL: CARRY4)
+	SLICE_X32Y66, SLICEM
+		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1(BEL: CARRY4)
+	SLICE_X32Y69, SLICEM
+		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1(BEL: CARRY4)
+	SLICE_X32Y67, SLICEM
+		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1(BEL: CARRY4)
+	SLICE_X32Y68, SLICEM
+		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1(BEL: CARRY4)
+	SLICE_X32Y70, SLICEM
+		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1(BEL: CARRY4)
+SiteInst: SLICE_X57Y129, Type: SLICEL
+	Cell: fir_filter_inst/FSM_sequential_state[0]_i_1__0, BEL: A6LUT
+		BELPin: A1
+			BELPin: A1 @BEL: A1(PORT)
+		BELPin: A2
+			BELPin: A2 @BEL: A2(PORT)
+		BELPin: A3
+			BELPin: A3 @BEL: A3(PORT)
+		BELPin: A4
+			BELPin: A4 @BEL: A4(PORT)
+		BELPin: A5
+			BELPin: A5 @BEL: A5(PORT)
+		BELPin: A6
+			BELPin: A6 @BEL: A6(PORT)
+		BELPin: O6
+			BELPin: 0 @BEL: AUSED(RBEL)
+			BELPin: 1 @BEL: F7AMUX(BEL)
+			BELPin: O6 @BEL: AOUTMUX(RBEL)
+			BELPin: O6 @BEL: AFFMUX(RBEL)
+			BELPin: S0 @BEL: CARRY4(BEL)
+			BELPin: S0 @BEL: CARRY4_AMUX(BEL)
+			BELPin: 0 @BEL: CARRY4_AXOR(BEL)
+SiteInst: SLICE_X57Y127, Type: SLICEL
+	Cell: fir_filter_inst/sample_re_addr[2]_i_1, BEL: A6LUT
+		BELPin: A1
+			BELPin: A1 @BEL: A1(PORT)
+		BELPin: A2
+			BELPin: A2 @BEL: A2(PORT)
+		BELPin: A3
+			BELPin: A3 @BEL: A3(PORT)
+		BELPin: A4
+			BELPin: A4 @BEL: A4(PORT)
+		BELPin: A5
+			BELPin: A5 @BEL: A5(PORT)
+		BELPin: A6
+			BELPin: A6 @BEL: A6(PORT)
+		BELPin: O6
+			BELPin: 0 @BEL: AUSED(RBEL)
+			BELPin: 1 @BEL: F7AMUX(BEL)
+			BELPin: O6 @BEL: AOUTMUX(RBEL)
+			BELPin: O6 @BEL: AFFMUX(RBEL)
+			BELPin: S0 @BEL: CARRY4(BEL)
+			BELPin: S0 @BEL: CARRY4_AMUX(BEL)
+			BELPin: 0 @BEL: CARRY4_AXOR(BEL)
+SiteInst: SLICE_X57Y128, Type: SLICEL
+	Cell: fir_filter_inst/weight_re_addr[1]_i_1, BEL: A5LUT
+		BELPin: A1
+			BELPin: A1 @BEL: A1(PORT)
+		BELPin: A2
+			BELPin: A2 @BEL: A2(PORT)
+		BELPin: A3
+			BELPin: A3 @BEL: A3(PORT)
+		BELPin: A4
+			BELPin: A4 @BEL: A4(PORT)
+		BELPin: A5
+			BELPin: A5 @BEL: A5(PORT)
+		BELPin: O5
+			BELPin: IN_A @BEL: A5FFMUX(RBEL)
+			BELPin: O5 @BEL: AOUTMUX(RBEL)
+			BELPin: O5 @BEL: AFFMUX(RBEL)
+			BELPin: O5 @BEL: ACY0(RBEL)
+SiteInst: SLICE_X57Y125, Type: SLICEL
+	Cell: fir_filter_inst/weight_re_addr[2]_i_1, BEL: A5LUT
+		BELPin: A1
+			BELPin: A1 @BEL: A1(PORT)
+		BELPin: A2
+			BELPin: A2 @BEL: A2(PORT)
+		BELPin: A3
+			BELPin: A3 @BEL: A3(PORT)
+		BELPin: A4
+			BELPin: A4 @BEL: A4(PORT)
+		BELPin: A5
+			BELPin: A5 @BEL: A5(PORT)
+		BELPin: O5
+			BELPin: IN_A @BEL: A5FFMUX(RBEL)
+			BELPin: O5 @BEL: AOUTMUX(RBEL)
+			BELPin: O5 @BEL: AFFMUX(RBEL)
+			BELPin: O5 @BEL: ACY0(RBEL)
+SiteInst: SLICE_X57Y126, Type: SLICEL
+	Cell: fir_filter_inst/weight_re_i_1, BEL: A5LUT
+		BELPin: A1
+			BELPin: A1 @BEL: A1(PORT)
+		BELPin: A2
+			BELPin: A2 @BEL: A2(PORT)
+		BELPin: A3
+			BELPin: A3 @BEL: A3(PORT)
+		BELPin: A4
+			BELPin: A4 @BEL: A4(PORT)
+		BELPin: A5
+			BELPin: A5 @BEL: A5(PORT)
+		BELPin: O5
+			BELPin: IN_A @BEL: A5FFMUX(RBEL)
+			BELPin: O5 @BEL: AOUTMUX(RBEL)
+			BELPin: O5 @BEL: AFFMUX(RBEL)
+			BELPin: O5 @BEL: ACY0(RBEL)
+SiteInst: SLICE_X57Y123, Type: SLICEL
+	Cell: fir_filter_inst/o_ready_i_1, BEL: A5LUT
+		BELPin: A1
+			BELPin: A1 @BEL: A1(PORT)
+		BELPin: A2
+			BELPin: A2 @BEL: A2(PORT)
+		BELPin: A3
+			BELPin: A3 @BEL: A3(PORT)
+		BELPin: A4
+			BELPin: A4 @BEL: A4(PORT)
+		BELPin: A5
+			BELPin: A5 @BEL: A5(PORT)
+		BELPin: O5
+			BELPin: IN_A @BEL: A5FFMUX(RBEL)
+			BELPin: O5 @BEL: AOUTMUX(RBEL)
+			BELPin: O5 @BEL: AFFMUX(RBEL)
+			BELPin: O5 @BEL: ACY0(RBEL)
+SiteInst: SLICE_X57Y124, Type: SLICEL
+	Cell: fir_filter_inst/sample_re_addr[1]_i_1, BEL: A6LUT
+		BELPin: A1
+			BELPin: A1 @BEL: A1(PORT)
+		BELPin: A2
+			BELPin: A2 @BEL: A2(PORT)
+		BELPin: A3
+			BELPin: A3 @BEL: A3(PORT)
+		BELPin: A4
+			BELPin: A4 @BEL: A4(PORT)
+		BELPin: A5
+			BELPin: A5 @BEL: A5(PORT)
+		BELPin: A6
+			BELPin: A6 @BEL: A6(PORT)
+		BELPin: O6
+			BELPin: 0 @BEL: AUSED(RBEL)
+			BELPin: 1 @BEL: F7AMUX(BEL)
+			BELPin: O6 @BEL: AOUTMUX(RBEL)
+			BELPin: O6 @BEL: AFFMUX(RBEL)
+	

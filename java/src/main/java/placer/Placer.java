@@ -57,13 +57,11 @@ public abstract class Placer {
 
     public void run() throws IOException {
         // design.flattenDesign();
-        // printDesignNets(design, "NetsBeforePlace");
-        // printDesignCells(design, "CellsBeforePlace");
+        printDesignNets(design);
         printEDIFHierCellInsts();
         placeDesign();
         // manualIntraRouteSites();
-        printDesignNets(design, "NetsAfterPlace");
-        // printDesignCells(design, "CellsAfterPlace");
+        printDesignNets(design);
         writer.close();
         design.writeCheckpoint(placedDcp);
     }
@@ -86,6 +84,7 @@ public abstract class Placer {
 
         for (Cell cell : cells) {
             placeCell(cell, occupiedPlacements);
+            writer.write("\n\tPlaced cell: " + cell.getName() + " at " + cell.getSiteInst().getName());
         } // end for(Cell)
 
         printOccupiedSites(occupiedPlacements);
@@ -169,9 +168,6 @@ public abstract class Placer {
         Site selectedSite = device.getSite(selectedSiteName);
         BEL selectedBEL = selectedSite.getBEL(selectedBELName);
         if (design.placeCell(cell, selectedSite, selectedBEL)) {
-            String s1 = String.format(
-                    "\n\tcellName: %-40s Site: %-10s BEL: %-10s",
-                    cell.getName(), selectedSiteName, selectedBELName);
             addToMap(occupiedPlacements, selectedPlacement[0], selectedPlacement[1]);
         } else {
             writer.write("\n\tWARNING: Placement Failed! Cell: " + cell.getName() + ", Type: " + cell.getType());
@@ -473,7 +469,7 @@ public abstract class Placer {
         }
     }
 
-    public void printDesignCells(Design design, String fileName) throws IOException {
+    public void printDesignCells(Design design) throws IOException {
         writer.write("\n\nPrinting All Cells...");
         Collection<Cell> cells = design.getCells();
         for (Cell cell : cells) {
@@ -491,7 +487,7 @@ public abstract class Placer {
         }
     } // end printDesignCells()
 
-    public void printDesignNets(Design design, String fileName) throws IOException {
+    public void printDesignNets(Design design) throws IOException {
         writer.write("\n\nPrinting All Nets...");
         Collection<Net> nets = design.getNets();
         for (Net net : nets) {

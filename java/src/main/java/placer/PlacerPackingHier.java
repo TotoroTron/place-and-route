@@ -29,6 +29,7 @@ import com.xilinx.rapidwright.edif.EDIFCellInst;
 import com.xilinx.rapidwright.edif.EDIFPortInst;
 
 import com.xilinx.rapidwright.device.BEL;
+import com.xilinx.rapidwright.device.BELPin;
 import com.xilinx.rapidwright.device.Site;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 
@@ -54,12 +55,19 @@ public class PlacerPackingHier extends Placer {
     protected String[] selectSiteAndBEL(
             Map<String, List<String>> availablePlacements) throws IOException {
 
-        Random random = new Random();
-        List<String> availableSiteNames = new ArrayList<>(availablePlacements.keySet());
-        String selectedSiteName = availableSiteNames.get(random.nextInt(availableSiteNames.size()));
+        // Random random = new Random();
+        // List<String> availableSiteNames = new
+        // ArrayList<>(availablePlacements.keySet());
+        // String selectedSiteName =
+        // availableSiteNames.get(random.nextInt(availableSiteNames.size()));
 
-        List<String> availableBELNames = availablePlacements.get(selectedSiteName);
-        String selectedBELName = availableBELNames.get(random.nextInt(availableBELNames.size()));
+        // List<String> availableBELNames = availablePlacements.get(selectedSiteName);
+        // String selectedBELName =
+        // availableBELNames.get(random.nextInt(availableBELNames.size()));
+
+        // Select first site and in first site, first BEL
+        String selectedSiteName = availablePlacements.keySet().iterator().next();
+        String selectedBELName = availablePlacements.get(selectedSiteName).get(0);
 
         return new String[] { selectedSiteName, selectedBELName };
     }
@@ -72,14 +80,14 @@ public class PlacerPackingHier extends Placer {
             List<String> occupiedBELs = entry.getValue();
 
             // SINGLE BEL PER SITE
-            // availablePlacements.remove(siteName);
+            availablePlacements.remove(siteName);
 
-            // BEL PACKING (CAUSES ILLEGAL PLACEMENT FOR FIRST/RANDOM PLACER)
-            if (availablePlacements.containsKey(siteName)) {
-                availablePlacements.get(siteName).removeAll(occupiedBELs);
-                if (availablePlacements.get(siteName).isEmpty())
-                    availablePlacements.remove(siteName);
-            }
+            // // BEL PACKING (CAUSES ILLEGAL PLACEMENT FOR FIRST/RANDOM PLACER)
+            // if (availablePlacements.containsKey(siteName)) {
+            // availablePlacements.get(siteName).removeAll(occupiedBELs);
+            // if (availablePlacements.get(siteName).isEmpty())
+            // availablePlacements.remove(siteName);
+            // }
         }
     }
 
@@ -155,8 +163,8 @@ public class PlacerPackingHier extends Placer {
         cellGroups.put("VCC", new ArrayList<>());
         cellGroups.put("GND", new ArrayList<>());
         cellGroups.put("CARRY4", new ArrayList<>());
-        cellGroups.put("FDRE", new ArrayList<>());
         cellGroups.put("LUT", new ArrayList<>());
+        cellGroups.put("FDRE", new ArrayList<>());
         cellGroups.put("DSP48E1", new ArrayList<>());
         cellGroups.put("RAMB18E1", new ArrayList<>());
 
@@ -200,13 +208,13 @@ public class PlacerPackingHier extends Placer {
 
             // place the rest of the chain
             for (int i = 1; i < chain.size(); i++) {
-                cell = design.createCell(chain.get(i).getFullHierarchicalInstName(), chain.get(i).getInst());
+                Cell c = design.createCell(chain.get(i).getFullHierarchicalInstName(), chain.get(i).getInst());
                 // cell.setEDIFHierCellInst(chain.get(i));
                 String siteName = "SLICE_X" + anchorSite.getInstanceX() + "Y" + (anchorSite.getInstanceY() + i);
                 String belName = "CARRY4";
                 Site site = device.getSite(siteName);
                 BEL bel = site.getBEL(belName);
-                placeCarryCell(cell, site, bel, occupiedPlacements);
+                placeCarryCell(c, site, bel, occupiedPlacements);
             }
 
         } // end for (List<EDIFCellInst> chain : EDIFCarryChains)
@@ -215,14 +223,17 @@ public class PlacerPackingHier extends Placer {
         // SPAWN CELLS IN REMAINING GROUPS
         for (Map.Entry<String, List<EDIFHierCellInst>> entry : EDIFCellGroups.entrySet()) {
             String edifCellType = entry.getKey();
-            if (edifCellType == "CARRY4")
-                continue;
             List<EDIFHierCellInst> edifCells = entry.getValue();
             for (EDIFHierCellInst edifCell : edifCells) {
                 Cell cell = design.createCell(edifCell.getFullHierarchicalInstName(), edifCell.getInst());
-                cell.setEDIFHierCellInst(edifCell);
+                // cell.setEDIFHierCellInst(edifCell);
                 cellGroups.get(edifCellType).add(cell);
             }
+        }
+
+        writer.write("\n\nPlacing FDRE cells...");
+        for (Cell cell : cellGroups.get("FDRE")) {
+
         }
 
         writer.write("\n\nPlacing remaining cells...");
@@ -237,12 +248,73 @@ public class PlacerPackingHier extends Placer {
             writer.write("\n\tPlacing " + cellType + " cells...");
             for (Cell cell : cells) {
                 writer.write("\n\t\t" + cell.getType() + " : " + cell.getName());
+
                 placeCell(cell, occupiedPlacements);
+                writer.write("\n\t\t\tPlaced cell: " + cell.getName() + " at " + cell.getSiteInst().getName() + " on "
+                        + cell.getBELName());
             }
         }
 
         printOccupiedSites(occupiedPlacements);
+        for (String siteName : occupiedPlacements.keySet()) {
+            design.getSiteInst(siteName).routeSite();
+        }
 
+        // routeAllSites(occupiedPlacements);
+
+        printOccupiedSites(occupiedPlacements);
+    }
+
+    private void routeAllSites(Map<String, List<String>> occupiedPlacements) throws IOException {
+        for (String siteName : occupiedPlacements.keySet()) {
+            SiteInst si = design.getSiteInst(siteName);
+            if (si.getSiteTypeEnum() == SiteTypeEnum.DSP48E1) {
+                System.out.println("Skipping: " + si.getName());
+                continue;
+            }
+            if (si.getSiteTypeEnum() == SiteTypeEnum.RAMB18E1) {
+                // routeRAMSite(si);
+                System.out.println("Skipping: " + si.getName());
+                continue;
+            }
+            Collection<Cell> cells = si.getCells();
+            if (cells.stream().anyMatch(cell -> "FDRE".equals(cell.getType()))) {
+                // si.routeSite();
+                System.out.println("Skipping: " + si.getName());
+                continue;
+            }
+
+            writer.write("\nSiteInst: " + si.getName() + ", Type: " + si.getSiteTypeEnum());
+            System.out.println("SiteInst: " + si.getName() + ", Type: " + si.getSiteTypeEnum());
+            boolean isFDRE = false;
+            for (Cell cell : si.getCells()) {
+                System.out.println(cell.getType());
+                if (cell.getType().contains("FDRE")) {
+                    isFDRE = true;
+                    System.out.println("Found FDRE.");
+                }
+
+                BEL bel = cell.getBEL();
+                writer.write("\n\tCell: " + cell.getName() + ", BEL: " + bel.getName());
+                System.out.print("\tCell: " + cell.getName() + ", BEL: " + bel.getName());
+
+                BELPin[] belpins = bel.getPins();
+                for (BELPin bp : belpins) {
+                    writer.write("\n\t\tBELPin: " + bp.getName());
+                    System.out.println("\t\tBELPin: " + bp.getName());
+                    ArrayList<BELPin> conns = bp.getSiteConns();
+                    for (BELPin c : conns) {
+                        writer.write("\n\t\t\tBELPin: " + c.getName() + " @BEL: " + c.getBEL());
+                        System.out.println("\t\t\tBELPin: " + c.getName() + " @BEL: " + c.getBEL());
+                    }
+                }
+            }
+            design.writeCheckpoint(placedDcp);
+            System.out.println("Attempting route: " + si.getName());
+            si.routeSite();
+            System.out.println("Route success!");
+            System.out.println();
+        }
     }
 
     private void placeCarryCell(Cell cell, Site site, BEL bel, Map<String, List<String>> occupiedPlacements)
@@ -332,6 +404,19 @@ public class PlacerPackingHier extends Placer {
             EDIFHierCellInst sinkCell = sinkCellPort.getHierarchicalInst()
                     .getChild(sinkCellPort.getPortInst().getCellInst().getName());
             currCell = sinkCell;
+        }
+    }
+
+    protected void routeRAMSite(SiteInst si) throws IOException {
+        writer.write("\n\nPrinting RAM Site Nets.../" + si.getName());
+        Map<Net, List<String>> map = si.getNetToSiteWiresMap();
+        for (Map.Entry<Net, List<String>> entry : map.entrySet()) {
+            Net net = entry.getKey();
+            List<String> wires = entry.getValue();
+            writer.write("\n\tNet: " + net.getName());
+            for (String wire : wires) {
+                writer.write("\n\t\tWire: " + wire);
+            }
         }
     }
 
