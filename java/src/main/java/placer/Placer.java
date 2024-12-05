@@ -205,10 +205,10 @@ public abstract class Placer {
                 EDIFHierNet hnet = ehpi.getInternalNet();
                 if (hnet != null) {
                     writer.write("\n\t\t\tPort: " + ehpi.getFullHierarchicalInstName() + ", Net: "
-                            + net.getName() + ", HierNet: " + hnet.getHierarchicalNetName());
+                            + net.getName());
                 } else {
                     writer.write("\n\t\t\tPort: " + ehpi.getFullHierarchicalInstName() + ", Net: "
-                            + net.getName() + ", HierNet: NULL!");
+                            + net.getName());
                 }
             }
         }
@@ -216,8 +216,10 @@ public abstract class Placer {
     }
 
     public void printEDIFCellInstList(List<EDIFCellInst> ecis) throws IOException {
-        String cellType = ecis.get(0).getCellType().getName();
-        writer.write("\n\tPrinting all EDIFCellInsts of type " + cellType + "... (" + ecis.size() + ")");
+        if (ecis.size() > 0) {
+            String cellType = ecis.get(0).getCellType().getName();
+            writer.write("\n\tPrinting all EDIFCellInsts of type " + cellType + "... (" + ecis.size() + ")");
+        }
         for (EDIFCellInst eci : ecis) {
             writer.write("\n\t\t" + eci.getCellType() + ": " + eci.getName());
             Collection<EDIFPortInst> epis = eci.getPortInsts();

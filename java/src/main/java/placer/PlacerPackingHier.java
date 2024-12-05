@@ -1,10 +1,14 @@
 package placer;
 
 import java.util.stream.Collectors;
+
+import org.python.antlr.PythonParser.else_clause_return;
+
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.LinkedHashMap;
@@ -231,19 +235,13 @@ public class PlacerPackingHier extends Placer {
             }
         }
 
-        writer.write("\n\nPlacing FDRE cells...");
-        for (Cell cell : cellGroups.get("FDRE")) {
-
-        }
-
         writer.write("\n\nPlacing remaining cells...");
         // PLACE REMAINING CELLS
         for (Map.Entry<String, List<Cell>> entry : cellGroups.entrySet()) {
             String cellType = entry.getKey();
-            if (cellType == "IBUF" || cellType == "OBUF" || cellType == "GND"
-                    || cellType == "VCC" || cellType == "CARRY4") {
+            List<String> skip = Arrays.asList("IBUF", "OBUF", "GND", "VCC", "CARRY4");
+            if (skip.contains(cellType))
                 continue;
-            }
             List<Cell> cells = entry.getValue();
             writer.write("\n\tPlacing " + cellType + " cells...");
             for (Cell cell : cells) {
@@ -255,10 +253,64 @@ public class PlacerPackingHier extends Placer {
             }
         }
 
-        printOccupiedSites(occupiedPlacements);
-        for (String siteName : occupiedPlacements.keySet()) {
-            design.getSiteInst(siteName).routeSite();
+        Collection<SiteInst> siteInsts = design.getSiteInsts();
+        writer.write("\n\nRouting all siteInsts in design... (" + siteInsts.size() + ")");
+        System.out.println("\nRouting all siteInsts in design... (" + siteInsts.size() + ")");
+        for (SiteInst si : siteInsts) {
+            writer.write("\n\tsiteInst: " + si.getSiteTypeEnum() + ": " + si.getName());
+            System.out.println("\tsiteInst: " + si.getSiteTypeEnum() + ": " + si.getName());
+            Collection<Cell> cells = si.getCells();
+            for (Cell cell : cells) {
+                writer.write("\n\t\tCell: " + cell.getType() + ": " + cell.getName());
+                System.out.println("\t\tCell: " + cell.getType() + ": " + cell.getName());
+                EDIFHierCellInst ehci = cell.getEDIFHierCellInst();
+                writer.write("\n\t\tEDIFCell: " + ehci.getFullHierarchicalInstName());
+                System.out.println("\t\tEDIFCell: " + ehci.getFullHierarchicalInstName());
+                List<EDIFHierPortInst> ehpis = ehci.getHierPortInsts();
+                for (EDIFHierPortInst ehpi : ehpis) {
+                    writer.write("\n\t\t\tEDIFHierPortInst: " + ehpi.getFullHierarchicalInstName());
+                    System.out.println("\t\t\tEDIFHierPortInst: " + ehpi.getFullHierarchicalInstName());
+                    EDIFNet net = ehpi.getNet();
+                    writer.write("\n\t\t\t\tNet: " + net.getName());
+                    System.out.println("\t\t\t\tNet: " + net.getName());
+                    Collection<EDIFPortInst> ports = net.getPortInsts();
+                    for (EDIFPortInst port : ports) {
+                        writer.write("\n\t\t\t\t\tPortInst: " + port.getFullName());
+                        System.out.println("\t\t\t\t\tPortInst: " + port.getFullName());
+                        EDIFCellInst inst = port.getCellInst();
+                        if (inst != null) {
+                            writer.write("\n\t\t\t\t\t\tCellInst: "
+                                    + port.getCellInst().getName() + ": " + port.getCellInst().getCellType());
+                            System.out.println("\t\t\t\t\t\tCellInst: "
+                                    + port.getCellInst().getName() + ": " + port.getCellInst().getCellType());
+                        } else {
+                            writer.write("\n\t\t\t\t\t\tCellInst: NULL!");
+                            System.out.println("\t\t\t\t\t\tCellInst: NULL!");
+                        }
+                    }
+                    // EDIFHierNet hnet = ehpi.getHierarchicalNet();
+                    // System.out.println("\t\t\t\tNet: " + hnet.getNet().getName());
+                    // Collection<EDIFHierPortInst> ports = hnet.getLeafHierPortInsts();
+                    // for (EDIFHierPortInst port : ports) {
+                    // System.out.println("\t\t\t\t\tPortInst: " +
+                    // port.getFullHierarchicalInstName());
+                    // EDIFHierCellInst inst = port.getHierarchicalInst();
+                    // if (inst != null)
+                    // System.out.println("\t\t\t\t\t\tCellInst: "
+                    // + port.getHierarchicalInst().getFullHierarchicalInstName());
+                    // else
+                    // System.out.println("\t\t\t\t\t\tCellInst: NULL!");
+                    // }
+                }
+            }
+
+            si.routeSite();
         }
+
+        // // printOccupiedSites(occupiedPlacements);
+        // for (String siteName : occupiedPlacements.keySet()) {
+        // design.getSiteInst(siteName).routeSite();
+        // }
 
         // routeAllSites(occupiedPlacements);
 

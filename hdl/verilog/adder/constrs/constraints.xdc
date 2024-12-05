@@ -10,7 +10,7 @@ create_clock -add -name sys_clk_pin -period 100.00 -waveform {0 4} [get_ports { 
 
 ## Switches
 set_property -dict { PACKAGE_PIN M20    IOSTANDARD LVCMOS33 } [get_ports { i_rst }]; #IO_L7N_T1_AD2N_35 Sch=SW0
-set_property -dict { PACKAGE_PIN M19    IOSTANDARD LVCMOS33 } [get_ports { i_cin }]; #IO_L7P_T1_AD2P_35 Sch=SW1
+set_property -dict { PACKAGE_PIN M19    IOSTANDARD LVCMOS33 } [get_ports { i_en }]; #IO_L7P_T1_AD2P_35 Sch=SW1
 
 ## RGB LEDs
 #set_property -dict { PACKAGE_PIN L15    IOSTANDARD LVCMOS33 } [get_ports { led4_b }]; #IO_L22N_T3_AD7P_35 Sch=LED4_B
@@ -21,14 +21,14 @@ set_property -dict { PACKAGE_PIN M19    IOSTANDARD LVCMOS33 } [get_ports { i_cin
 #set_property -dict { PACKAGE_PIN M15    IOSTANDARD LVCMOS33 } [get_ports { led5_r }]; #IO_L23N_T3_35 Sch=LED5_R
 
 ## LEDs
-set_property -dict { PACKAGE_PIN R14    IOSTANDARD LVCMOS33 } [get_ports { o_dout }]; #IO_L6N_T0_VREF_34 Sch=LED0
-# set_property -dict { PACKAGE_PIN P14    IOSTANDARD LVCMOS33 } [get_ports { ov_led[1] }]; #IO_L6P_T0_34 Sch=LED1
-# set_property -dict { PACKAGE_PIN N16    IOSTANDARD LVCMOS33 } [get_ports { ov_led[2] }]; #IO_L21N_T3_DQS_AD14N_35 Sch=LED2
-# set_property -dict { PACKAGE_PIN M14    IOSTANDARD LVCMOS33 } [get_ports { ov_led[3] }]; #IO_L23P_T3_35 Sch=LED3
+set_property -dict { PACKAGE_PIN R14    IOSTANDARD LVCMOS33 } [get_ports { o_ready }]; #IO_L6N_T0_VREF_34 Sch=LED0
+set_property -dict { PACKAGE_PIN P14    IOSTANDARD LVCMOS33 } [get_ports { o_sum   }]; #IO_L6P_T0_34 Sch=LED1
+set_property -dict { PACKAGE_PIN N16    IOSTANDARD LVCMOS33 } [get_ports { o_cout  }]; #IO_L21N_T3_DQS_AD14N_35 Sch=LED2
+set_property -dict { PACKAGE_PIN M14    IOSTANDARD LVCMOS33 } [get_ports { o_valid }]; #IO_L23P_T3_35 Sch=LED3
 
 ## Manually Set Output Buffers
-set_property IO_BUFFER_TYPE OBUF [ get_ports { o_dout } ]
-set_property IO_BUFFER_TYPE IBUF [ get_ports { i_clk i_rst i_din_a i_din_b i_cin i_valid i_ready} ]
+set_property IO_BUFFER_TYPE OBUF [ get_ports { o_ready o_sum o_cout o_valid} ]
+set_property IO_BUFFER_TYPE IBUF [ get_ports { i_clk i_rst i_en i_din_a i_din_b i_cin i_valid i_ready} ]
 
 ## Buttons
 set_property -dict { PACKAGE_PIN D19    IOSTANDARD LVCMOS33 } [get_ports { i_din_a }]; #IO_L4P_T0_35 Sch=BTN0
