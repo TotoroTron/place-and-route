@@ -2322,7 +2322,7 @@ Set of all Unique EDIF Cell Types... (10)
 	LUT4
 	LUT3
 	GND
-Printing Cells By Type...
+Printing EDIFCells By Type...
 
 IBUF Cells (7):
 	Printing all EDIFCellInsts of type IBUF... (7)
@@ -4581,237 +4581,3504 @@ Placing remaining cells...
 	Placing DSP48E1 cells...
 	Placing RAMB18E1 cells...
 
-Routing all siteInsts in design... (300)
-	siteInst: SLICEL: SLICE_X57Y129
-		Cell: LUT4: serializer_inst/shift_reg[1]_i_1
-		EDIFCell: serializer_inst/shift_reg[1]_i_1
-			EDIFHierPortInst: serializer_inst/shift_reg[1]_i_1
-				Net: shift_reg_reg_n_0_[2]
-					PortInst: shift_reg[1]_i_1/I0
-						CellInst: shift_reg[1]_i_1: LUT4
-					PortInst: shift_reg_reg[2]/Q
-						CellInst: shift_reg_reg[2]: FDRE
-			EDIFHierPortInst: serializer_inst/shift_reg[1]_i_1
-				Net: shift_reg_reg[15]_0[1]
-					PortInst: shift_reg[1]_i_1/I1
-						CellInst: shift_reg[1]_i_1: LUT4
-					PortInst: shift_reg_reg[15]_0[1]
-						CellInst: NULL!
-			EDIFHierPortInst: serializer_inst/shift_reg[1]_i_1
-				Net: state[0]
-					PortInst: FSM_sequential_state[0]_i_1/I0
-						CellInst: FSM_sequential_state[0]_i_1: LUT4
-					PortInst: FSM_sequential_state[1]_i_1__1/I2
-						CellInst: FSM_sequential_state[1]_i_1__1: LUT3
-					PortInst: FSM_sequential_state[1]_i_2/I4
-						CellInst: FSM_sequential_state[1]_i_2: LUT6
-					PortInst: FSM_sequential_state_reg[0]/Q
-						CellInst: FSM_sequential_state_reg[0]: FDRE
-					PortInst: counter[4]_i_1/I1
-						CellInst: counter[4]_i_1: LUT4
-					PortInst: o_dout_valid_i_1/I0
-						CellInst: o_dout_valid_i_1: LUT4
-					PortInst: o_ready_i_1__1/I0
-						CellInst: o_ready_i_1__1: LUT2
-					PortInst: shift_reg[0]_i_1/I2
-						CellInst: shift_reg[0]_i_1: LUT4
-					PortInst: shift_reg[10]_i_1/I2
-						CellInst: shift_reg[10]_i_1: LUT4
-					PortInst: shift_reg[11]_i_1/I2
-						CellInst: shift_reg[11]_i_1: LUT4
-					PortInst: shift_reg[12]_i_1/I2
-						CellInst: shift_reg[12]_i_1: LUT4
-					PortInst: shift_reg[13]_i_1/I2
-						CellInst: shift_reg[13]_i_1: LUT4
-					PortInst: shift_reg[14]_i_1/I2
-						CellInst: shift_reg[14]_i_1: LUT4
-					PortInst: shift_reg[15]_i_1__1/I5
-						CellInst: shift_reg[15]_i_1__1: LUT6
-					PortInst: shift_reg[15]_i_2/I1
-						CellInst: shift_reg[15]_i_2: LUT3
-					PortInst: shift_reg[1]_i_1/I2
-						CellInst: shift_reg[1]_i_1: LUT4
-					PortInst: shift_reg[2]_i_1/I2
-						CellInst: shift_reg[2]_i_1: LUT4
-					PortInst: shift_reg[3]_i_1/I2
-						CellInst: shift_reg[3]_i_1: LUT4
-					PortInst: shift_reg[4]_i_1/I2
-						CellInst: shift_reg[4]_i_1: LUT4
-					PortInst: shift_reg[5]_i_1/I2
-						CellInst: shift_reg[5]_i_1: LUT4
-					PortInst: shift_reg[6]_i_1/I2
-						CellInst: shift_reg[6]_i_1: LUT4
-					PortInst: shift_reg[7]_i_1/I2
-						CellInst: shift_reg[7]_i_1: LUT4
-					PortInst: shift_reg[8]_i_1/I2
-						CellInst: shift_reg[8]_i_1: LUT4
-					PortInst: shift_reg[9]_i_1/I2
-						CellInst: shift_reg[9]_i_1: LUT4
-			EDIFHierPortInst: serializer_inst/shift_reg[1]_i_1
-				Net: state[1]
-					PortInst: FSM_sequential_state[0]_i_1/I2
-						CellInst: FSM_sequential_state[0]_i_1: LUT4
-					PortInst: FSM_sequential_state[1]_i_1__1/I1
-						CellInst: FSM_sequential_state[1]_i_1__1: LUT3
-					PortInst: FSM_sequential_state_reg[1]/Q
-						CellInst: FSM_sequential_state_reg[1]: FDRE
-					PortInst: counter[4]_i_1/I0
-						CellInst: counter[4]_i_1: LUT4
-					PortInst: o_dout_valid_i_1/I1
-						CellInst: o_dout_valid_i_1: LUT4
-					PortInst: o_ready_i_1__1/I1
-						CellInst: o_ready_i_1__1: LUT2
-					PortInst: shift_reg[0]_i_1/I3
-						CellInst: shift_reg[0]_i_1: LUT4
-					PortInst: shift_reg[10]_i_1/I3
-						CellInst: shift_reg[10]_i_1: LUT4
-					PortInst: shift_reg[11]_i_1/I3
-						CellInst: shift_reg[11]_i_1: LUT4
-					PortInst: shift_reg[12]_i_1/I3
-						CellInst: shift_reg[12]_i_1: LUT4
-					PortInst: shift_reg[13]_i_1/I3
-						CellInst: shift_reg[13]_i_1: LUT4
-					PortInst: shift_reg[14]_i_1/I3
-						CellInst: shift_reg[14]_i_1: LUT4
-					PortInst: shift_reg[15]_i_1__1/I0
-						CellInst: shift_reg[15]_i_1__1: LUT6
-					PortInst: shift_reg[15]_i_2/I0
-						CellInst: shift_reg[15]_i_2: LUT3
-					PortInst: shift_reg[1]_i_1/I3
-						CellInst: shift_reg[1]_i_1: LUT4
-					PortInst: shift_reg[2]_i_1/I3
-						CellInst: shift_reg[2]_i_1: LUT4
-					PortInst: shift_reg[3]_i_1/I3
-						CellInst: shift_reg[3]_i_1: LUT4
-					PortInst: shift_reg[4]_i_1/I3
-						CellInst: shift_reg[4]_i_1: LUT4
-					PortInst: shift_reg[5]_i_1/I3
-						CellInst: shift_reg[5]_i_1: LUT4
-					PortInst: shift_reg[6]_i_1/I3
-						CellInst: shift_reg[6]_i_1: LUT4
-					PortInst: shift_reg[7]_i_1/I3
-						CellInst: shift_reg[7]_i_1: LUT4
-					PortInst: shift_reg[8]_i_1/I3
-						CellInst: shift_reg[8]_i_1: LUT4
-					PortInst: shift_reg[9]_i_1/I3
-						CellInst: shift_reg[9]_i_1: LUT4
-			EDIFHierPortInst: serializer_inst/shift_reg[1]_i_1
-				Net: shift_reg[1]
-					PortInst: shift_reg[1]_i_1/O
-						CellInst: shift_reg[1]_i_1: LUT4
-					PortInst: shift_reg_reg[1]/D
-						CellInst: shift_reg_reg[1]: FDRE
-	siteInst: SLICEL: SLICE_X57Y127
-		Cell: LUT2: serializer_inst/o_ready_i_1__1
-		EDIFCell: serializer_inst/o_ready_i_1__1
-			EDIFHierPortInst: serializer_inst/o_ready_i_1__1
-				Net: state[0]
-					PortInst: FSM_sequential_state[0]_i_1/I0
-						CellInst: FSM_sequential_state[0]_i_1: LUT4
-					PortInst: FSM_sequential_state[1]_i_1__1/I2
-						CellInst: FSM_sequential_state[1]_i_1__1: LUT3
-					PortInst: FSM_sequential_state[1]_i_2/I4
-						CellInst: FSM_sequential_state[1]_i_2: LUT6
-					PortInst: FSM_sequential_state_reg[0]/Q
-						CellInst: FSM_sequential_state_reg[0]: FDRE
-					PortInst: counter[4]_i_1/I1
-						CellInst: counter[4]_i_1: LUT4
-					PortInst: o_dout_valid_i_1/I0
-						CellInst: o_dout_valid_i_1: LUT4
-					PortInst: o_ready_i_1__1/I0
-						CellInst: o_ready_i_1__1: LUT2
-					PortInst: shift_reg[0]_i_1/I2
-						CellInst: shift_reg[0]_i_1: LUT4
-					PortInst: shift_reg[10]_i_1/I2
-						CellInst: shift_reg[10]_i_1: LUT4
-					PortInst: shift_reg[11]_i_1/I2
-						CellInst: shift_reg[11]_i_1: LUT4
-					PortInst: shift_reg[12]_i_1/I2
-						CellInst: shift_reg[12]_i_1: LUT4
-					PortInst: shift_reg[13]_i_1/I2
-						CellInst: shift_reg[13]_i_1: LUT4
-					PortInst: shift_reg[14]_i_1/I2
-						CellInst: shift_reg[14]_i_1: LUT4
-					PortInst: shift_reg[15]_i_1__1/I5
-						CellInst: shift_reg[15]_i_1__1: LUT6
-					PortInst: shift_reg[15]_i_2/I1
-						CellInst: shift_reg[15]_i_2: LUT3
-					PortInst: shift_reg[1]_i_1/I2
-						CellInst: shift_reg[1]_i_1: LUT4
-					PortInst: shift_reg[2]_i_1/I2
-						CellInst: shift_reg[2]_i_1: LUT4
-					PortInst: shift_reg[3]_i_1/I2
-						CellInst: shift_reg[3]_i_1: LUT4
-					PortInst: shift_reg[4]_i_1/I2
-						CellInst: shift_reg[4]_i_1: LUT4
-					PortInst: shift_reg[5]_i_1/I2
-						CellInst: shift_reg[5]_i_1: LUT4
-					PortInst: shift_reg[6]_i_1/I2
-						CellInst: shift_reg[6]_i_1: LUT4
-					PortInst: shift_reg[7]_i_1/I2
-						CellInst: shift_reg[7]_i_1: LUT4
-					PortInst: shift_reg[8]_i_1/I2
-						CellInst: shift_reg[8]_i_1: LUT4
-					PortInst: shift_reg[9]_i_1/I2
-						CellInst: shift_reg[9]_i_1: LUT4
-			EDIFHierPortInst: serializer_inst/o_ready_i_1__1
-				Net: state[1]
-					PortInst: FSM_sequential_state[0]_i_1/I2
-						CellInst: FSM_sequential_state[0]_i_1: LUT4
-					PortInst: FSM_sequential_state[1]_i_1__1/I1
-						CellInst: FSM_sequential_state[1]_i_1__1: LUT3
-					PortInst: FSM_sequential_state_reg[1]/Q
-						CellInst: FSM_sequential_state_reg[1]: FDRE
-					PortInst: counter[4]_i_1/I0
-						CellInst: counter[4]_i_1: LUT4
-					PortInst: o_dout_valid_i_1/I1
-						CellInst: o_dout_valid_i_1: LUT4
-					PortInst: o_ready_i_1__1/I1
-						CellInst: o_ready_i_1__1: LUT2
-					PortInst: shift_reg[0]_i_1/I3
-						CellInst: shift_reg[0]_i_1: LUT4
-					PortInst: shift_reg[10]_i_1/I3
-						CellInst: shift_reg[10]_i_1: LUT4
-					PortInst: shift_reg[11]_i_1/I3
-						CellInst: shift_reg[11]_i_1: LUT4
-					PortInst: shift_reg[12]_i_1/I3
-						CellInst: shift_reg[12]_i_1: LUT4
-					PortInst: shift_reg[13]_i_1/I3
-						CellInst: shift_reg[13]_i_1: LUT4
-					PortInst: shift_reg[14]_i_1/I3
-						CellInst: shift_reg[14]_i_1: LUT4
-					PortInst: shift_reg[15]_i_1__1/I0
-						CellInst: shift_reg[15]_i_1__1: LUT6
-					PortInst: shift_reg[15]_i_2/I0
-						CellInst: shift_reg[15]_i_2: LUT3
-					PortInst: shift_reg[1]_i_1/I3
-						CellInst: shift_reg[1]_i_1: LUT4
-					PortInst: shift_reg[2]_i_1/I3
-						CellInst: shift_reg[2]_i_1: LUT4
-					PortInst: shift_reg[3]_i_1/I3
-						CellInst: shift_reg[3]_i_1: LUT4
-					PortInst: shift_reg[4]_i_1/I3
-						CellInst: shift_reg[4]_i_1: LUT4
-					PortInst: shift_reg[5]_i_1/I3
-						CellInst: shift_reg[5]_i_1: LUT4
-					PortInst: shift_reg[6]_i_1/I3
-						CellInst: shift_reg[6]_i_1: LUT4
-					PortInst: shift_reg[7]_i_1/I3
-						CellInst: shift_reg[7]_i_1: LUT4
-					PortInst: shift_reg[8]_i_1/I3
-						CellInst: shift_reg[8]_i_1: LUT4
-					PortInst: shift_reg[9]_i_1/I3
-						CellInst: shift_reg[9]_i_1: LUT4
-			EDIFHierPortInst: serializer_inst/o_ready_i_1__1
-				Net: o_ready_i_1__1_n_0
-					PortInst: o_ready_i_1__1/O
-						CellInst: o_ready_i_1__1: LUT2
-					PortInst: o_ready_reg/D
-						CellInst: o_ready_reg: FDRE
-	siteInst: SLICEL: SLICE_X57Y128
-		Cell: LUT4: serializer_inst/counter[4]_i_1
-		EDIFCell: serializer_inst/counter[4]_i_1
-			EDIFHierPortInst: serializer_inst/counter[4]_i_1
-				Net: state[1]
-					PortInst: FSM_sequential_state[0]_i_1/I2
-						CellInst: FSM_sequ
+Intra-Routing SiteInsts... 
+
+Printing sites in occupiedPlacements... (278)
+	SLICE_X57Y129, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[1]_i_1(BEL: A5LUT)
+		Net: serializer_inst/state[0]
+		Net: serializer_inst/state[1]
+		Net: serializer_inst/shift_reg[1]
+		Net: GLOBAL_LOGIC1
+		Net: clas/ov_sum_reg[15]_0[1]
+		Net: serializer_inst/shift_reg_reg_n_0_[2]
+	SLICE_X57Y127, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/o_ready_i_1__1(BEL: A5LUT)
+		Net: serializer_inst/state[0]
+		Net: serializer_inst/state[1]
+		Net: GLOBAL_LOGIC1
+		Net: serializer_inst/o_ready_i_1__1_n_0
+	SLICE_X57Y128, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/counter[4]_i_1(BEL: A5LUT)
+		Net: i_en_IBUF
+		Net: serializer_inst/state[0]
+		Net: serializer_inst/state[1]
+		Net: GLOBAL_LOGIC1
+		Net: serializer_inst/counter[4]_i_1_n_0
+		Net: i_rst_IBUF
+	SLICE_X57Y125, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/counter[0]_i_1__1(BEL: A5LUT)
+		Net: serializer_inst/p_0_in[0]
+		Net: GLOBAL_LOGIC1
+		Net: serializer_inst/counter_reg[4]
+		Net: serializer_inst/counter_reg[0]
+		Net: i_ready_IBUF
+	SLICE_X57Y126, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[8]_i_1(BEL: A5LUT)
+		Net: serializer_inst/state[0]
+		Net: serializer_inst/state[1]
+		Net: serializer_inst/shift_reg_reg_n_0_[9]
+		Net: GLOBAL_LOGIC1
+		Net: clas/ov_sum_reg[15]_0[8]
+		Net: serializer_inst/shift_reg[8]
+	SLICE_X57Y123, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[15]_i_2(BEL: A5LUT)
+		Net: clas/ov_sum_reg[15]_0[15]
+		Net: serializer_inst/state[0]
+		Net: serializer_inst/state[1]
+		Net: GLOBAL_LOGIC1
+		Net: serializer_inst/shift_reg[15]
+	SLICE_X57Y124, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[2]_i_1(BEL: A5LUT)
+		Net: serializer_inst/state[0]
+		Net: serializer_inst/shift_reg[2]
+		Net: serializer_inst/state[1]
+		Net: GLOBAL_LOGIC1
+		Net: clas/ov_sum_reg[15]_0[2]
+		Net: serializer_inst/shift_reg_reg_n_0_[3]
+	SLICE_X57Y121, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[3]_i_1(BEL: A5LUT)
+		Net: serializer_inst/shift_reg[3]
+		Net: serializer_inst/state[0]
+		Net: serializer_inst/state[1]
+		Net: GLOBAL_LOGIC1
+		Net: serializer_inst/shift_reg_reg_n_0_[4]
+		Net: clas/ov_sum_reg[15]_0[3]
+	SLICE_X57Y122, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[9]_i_1(BEL: A5LUT)
+		Net: serializer_inst/state[0]
+		Net: clas/ov_sum_reg[15]_0[9]
+		Net: serializer_inst/state[1]
+		Net: GLOBAL_LOGIC1
+		Net: serializer_inst/shift_reg_reg_n_0_[10]
+		Net: serializer_inst/shift_reg[9]
+	SLICE_X57Y120, SLICEL
+		BEL: A6LUT, Cell: serializer_inst/counter[3]_i_1__1(BEL: A6LUT)
+		Net: serializer_inst/counter_reg[3]
+		Net: serializer_inst/counter_reg[4]
+		Net: serializer_inst/counter_reg[1]
+		Net: serializer_inst/counter_reg[2]
+		Net: serializer_inst/counter_reg[0]
+		Net: i_ready_IBUF
+		Net: serializer_inst/p_0_in[3]
+	SLICE_X84Y100, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[0](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: serializer_inst/shift_reg[0]
+		Net: GLOBAL_LOGIC0
+		Net: serializer_inst/Q[0]
+		Net: serializer_inst/shift_reg[15]_i_1__1_n_0
+	SLICE_X57Y118, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[0]_i_1(BEL: A5LUT)
+		Net: serializer_inst/state[0]
+		Net: serializer_inst/state[1]
+		Net: serializer_inst/shift_reg[0]
+		Net: GLOBAL_LOGIC1
+		Net: serializer_inst/shift_reg_reg_n_0_[1]
+		Net: clas/ov_sum_reg[15]_0[0]
+	SLICE_X57Y119, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/counter[1]_i_1__1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+		Net: serializer_inst/counter_reg[4]
+		Net: serializer_inst/counter_reg[1]
+		Net: serializer_inst/counter_reg[0]
+		Net: i_ready_IBUF
+		Net: serializer_inst/p_0_in[1]
+	SLICE_X111Y97, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[13]_i_1(BEL: A5LUT)
+		Net: serializer_inst/state[0]
+		Net: serializer_inst/state[1]
+		Net: clas/ov_sum_reg[15]_0[13]
+		Net: GLOBAL_LOGIC1
+		Net: serializer_inst/shift_reg[13]
+		Net: serializer_inst/shift_reg_reg_n_0_[14]
+	SLICE_X57Y116, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[6]_i_1(BEL: A5LUT)
+		Net: serializer_inst/state[0]
+		Net: serializer_inst/state[1]
+		Net: clas/ov_sum_reg[15]_0[6]
+		Net: GLOBAL_LOGIC1
+		Net: serializer_inst/shift_reg_reg_n_0_[7]
+		Net: serializer_inst/shift_reg[6]
+	SLICE_X111Y96, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/FSM_sequential_state[0]_i_1(BEL: A5LUT)
+		Net: serializer_inst/state[0]
+		Net: serializer_inst/state[1]
+		Net: GLOBAL_LOGIC1
+		Net: des_o_valid
+		Net: serializer_inst/next_state[0]
+		Net: serializer_inst/FSM_sequential_state[1]_i_2_n_0
+	SLICE_X57Y117, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[10]_i_1(BEL: A5LUT)
+		Net: serializer_inst/state[0]
+		Net: serializer_inst/state[1]
+		Net: GLOBAL_LOGIC1
+		Net: clas/ov_sum_reg[15]_0[10]
+		Net: serializer_inst/shift_reg_reg_n_0_[11]
+		Net: serializer_inst/shift_reg[10]
+	SLICE_X111Y99, SLICEL
+		BEL: A6LUT, Cell: serializer_inst/counter[4]_i_2__1(BEL: A6LUT)
+		Net: serializer_inst/counter_reg[3]
+		Net: serializer_inst/counter_reg[4]
+		Net: serializer_inst/counter_reg[1]
+		Net: serializer_inst/counter_reg[2]
+		Net: serializer_inst/counter_reg[0]
+		Net: i_ready_IBUF
+		Net: serializer_inst/p_0_in[4]
+	SLICE_X57Y114, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/FSM_sequential_state[1]_i_1__1(BEL: A5LUT)
+		Net: serializer_inst/state[0]
+		Net: serializer_inst/state[1]
+		Net: GLOBAL_LOGIC1
+		Net: serializer_inst/next_state[1]
+		Net: serializer_inst/FSM_sequential_state[1]_i_2_n_0
+	SLICE_X111Y98, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[12]_i_1(BEL: A5LUT)
+		Net: serializer_inst/state[0]
+		Net: serializer_inst/state[1]
+		Net: clas/ov_sum_reg[15]_0[12]
+		Net: GLOBAL_LOGIC1
+		Net: serializer_inst/shift_reg_reg_n_0_[13]
+		Net: serializer_inst/shift_reg[12]
+	SLICE_X57Y115, SLICEL
+		BEL: A6LUT, Cell: serializer_inst/FSM_sequential_state[1]_i_2(BEL: A6LUT)
+		Net: serializer_inst/state[0]
+		Net: serializer_inst/counter_reg[3]
+		Net: serializer_inst/counter_reg[4]
+		Net: serializer_inst/counter_reg[1]
+		Net: serializer_inst/counter_reg[2]
+		Net: serializer_inst/counter_reg[0]
+		Net: serializer_inst/FSM_sequential_state[1]_i_2_n_0
+	SLICE_X57Y112, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/o_dout_valid_i_1(BEL: A5LUT)
+		Net: serializer_inst/state[0]
+		Net: serializer_inst/state[1]
+		Net: GLOBAL_LOGIC1
+		Net: serializer_inst/counter_reg[4]
+		Net: serializer_inst/o_dout_valid_i_1_n_0
+		Net: i_ready_IBUF
+	SLICE_X57Y113, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[5]_i_1(BEL: A5LUT)
+		Net: serializer_inst/state[0]
+		Net: serializer_inst/state[1]
+		Net: GLOBAL_LOGIC1
+		Net: clas/ov_sum_reg[15]_0[5]
+		Net: serializer_inst/shift_reg_reg_n_0_[6]
+		Net: serializer_inst/shift_reg[5]
+	SLICE_X57Y110, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[14]_i_1(BEL: A5LUT)
+		Net: serializer_inst/state[0]
+		Net: clas/ov_sum_reg[15]_0[14]
+		Net: serializer_inst/state[1]
+		Net: GLOBAL_LOGIC1
+		Net: serializer_inst/shift_reg[14]
+		Net: serializer_inst/shift_reg_reg_n_0_[15]
+	SLICE_X57Y111, SLICEL
+		BEL: A6LUT, Cell: serializer_inst/shift_reg[15]_i_1__1(BEL: A6LUT)
+		Net: serializer_inst/state[0]
+		Net: i_en_IBUF
+		Net: serializer_inst/state[1]
+		Net: serializer_inst/counter_reg[4]
+		Net: serializer_inst/shift_reg[15]_i_1__1_n_0
+		Net: i_ready_IBUF
+		Net: i_rst_IBUF
+	SLICE_X111Y93, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/counter[2]_i_1__1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+		Net: serializer_inst/counter_reg[4]
+		Net: serializer_inst/counter_reg[1]
+		Net: serializer_inst/counter_reg[2]
+		Net: serializer_inst/counter_reg[0]
+		Net: serializer_inst/p_0_in[2]
+		Net: i_ready_IBUF
+	SLICE_X111Y92, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[11]_i_1(BEL: A5LUT)
+		Net: serializer_inst/state[0]
+		Net: serializer_inst/state[1]
+		Net: clas/ov_sum_reg[15]_0[11]
+		Net: GLOBAL_LOGIC1
+		Net: serializer_inst/shift_reg_reg_n_0_[12]
+		Net: serializer_inst/shift_reg[11]
+	SLICE_X111Y95, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[4]_i_1(BEL: A5LUT)
+		Net: serializer_inst/shift_reg[4]
+		Net: serializer_inst/state[0]
+		Net: serializer_inst/state[1]
+		Net: GLOBAL_LOGIC1
+		Net: clas/ov_sum_reg[15]_0[4]
+		Net: serializer_inst/shift_reg_reg_n_0_[5]
+	SLICE_X111Y94, SLICEL
+		BEL: A5LUT, Cell: serializer_inst/shift_reg[7]_i_1(BEL: A5LUT)
+		Net: serializer_inst/state[0]
+		Net: serializer_inst/state[1]
+		Net: GLOBAL_LOGIC1
+		Net: clas/ov_sum_reg[15]_0[7]
+		Net: serializer_inst/shift_reg_reg_n_0_[8]
+		Net: serializer_inst/shift_reg[7]
+	SLICE_X111Y91, SLICEL
+		BEL: A5LUT, Cell: clas/ov_sum[12]_i_2(BEL: A5LUT)
+		Net: clas/a[9]
+		Net: clas/cla/c_9__2
+		Net: clas/b[9]
+		Net: GLOBAL_LOGIC1
+		Net: clas/cla/c_11__2
+		Net: clas/a[10]
+		Net: clas/b[10]
+	SLICE_X111Y90, SLICEL
+		BEL: A5LUT, Cell: clas/ov_sum[12]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+		Net: clas/a[12]
+		Net: clas/a[11]
+		Net: clas/cla/c_11__2
+		Net: clas/b[11]
+		Net: clas/b[12]
+		Net: clas/comb_sum[12]
+	SLICE_X57Y109, SLICEL
+		BEL: A5LUT, Cell: clas/ov_sum[13]_i_1(BEL: A5LUT)
+		Net: clas/a[13]
+		Net: GLOBAL_LOGIC1
+		Net: clas/cla/c_13__2
+		Net: clas/b[13]
+		Net: clas/comb_sum[13]
+	SLICE_X57Y107, SLICEL
+		BEL: A6LUT, Cell: clas/ov_sum[4]_i_2(BEL: A6LUT)
+		Net: clas/b[2]
+		Net: clas/a[0]
+		Net: clas/a[1]
+		Net: clas/b[0]
+		Net: clas/a[2]
+		Net: clas/b[1]
+		Net: clas/cla/c_3__2
+	SLICE_X57Y108, SLICEL
+		BEL: A5LUT, Cell: clas/ov_sum[4]_i_1(BEL: A5LUT)
+		Net: clas/a[3]
+		Net: GLOBAL_LOGIC1
+		Net: clas/a[4]
+		Net: clas/b[3]
+		Net: clas/b[4]
+		Net: clas/comb_sum[4]
+		Net: clas/cla/c_3__2
+	SLICE_X57Y105, SLICEL
+		BEL: A6LUT, Cell: clas/o_cout_i_5(BEL: A6LUT)
+		Net: clas/a[7]
+		Net: clas/b[6]
+		Net: clas/b[7]
+		Net: clas/a[6]
+		Net: clas/cla/c_8__2
+		Net: clas/c_60
+		Net: clas/g_5
+	SLICE_X57Y106, SLICEL
+		BEL: A5LUT, Cell: clas/o_cout_i_4(BEL: A5LUT)
+		Net: clas/a[8]
+		Net: clas/a[9]
+		Net: clas/b[8]
+		Net: clas/b[9]
+		Net: GLOBAL_LOGIC1
+		Net: clas/cla/c_100_out
+		Net: clas/cla/c_8__2
+	SLICE_X57Y103, SLICEL
+		BEL: A5LUT, Cell: clas/o_cout_i_3(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+		Net: clas/a[11]
+		Net: clas/cla/c_12__2
+		Net: clas/a[10]
+		Net: clas/b[10]
+		Net: clas/b[11]
+		Net: clas/cla/c_100_out
+	SLICE_X57Y104, SLICEL
+		BEL: A5LUT, Cell: clas/o_cout_i_2(BEL: A5LUT)
+		Net: clas/a[13]
+		Net: GLOBAL_LOGIC1
+		Net: clas/a[12]
+		Net: clas/cla/c_12__2
+		Net: clas/cla/c_14__2
+		Net: clas/b[12]
+		Net: clas/b[13]
+	SLICE_X57Y101, SLICEL
+		BEL: A5LUT, Cell: clas/o_cout_i_8(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+		Net: clas/a[5]
+		Net: clas/b[5]
+		Net: clas/cla/p_5__0
+	SLICE_X57Y102, SLICEL
+		BEL: A6LUT, Cell: clas/o_cout_i_7(BEL: A6LUT)
+		Net: clas/a[3]
+		Net: clas/b[3]
+		Net: clas/a[4]
+		Net: clas/b[4]
+		Net: clas/c_60
+		Net: clas/cla/p_5__0
+		Net: clas/cla/c_3__2
+	SLICE_X57Y100, SLICEL
+		BEL: A5LUT, Cell: clas/o_cout_i_6(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+		Net: clas/a[5]
+		Net: clas/b[5]
+		Net: clas/g_5
+	SLICE_X84Y137, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[8](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC0
+		Net: serializer_inst/shift_reg[15]_i_1__1_n_0
+		Net: serializer_inst/shift_reg[8]
+		Net: serializer_inst/shift_reg_reg_n_0_[8]
+	SLICE_X84Y136, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[13](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC0
+		Net: serializer_inst/shift_reg_reg_n_0_[13]
+		Net: serializer_inst/shift_reg[15]_i_1__1_n_0
+		Net: serializer_inst/shift_reg[13]
+	SLICE_X84Y135, SLICEL
+		BEL: AFF, Cell: serializer_inst/counter_reg[1](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: serializer_inst/counter[4]_i_1_n_0
+		Net: GLOBAL_LOGIC0
+		Net: serializer_inst/counter_reg[1]
+		Net: serializer_inst/p_0_in[1]
+	SLICE_X84Y134, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[3](BEL: AFF)
+		Net: serializer_inst/shift_reg[3]
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC0
+		Net: serializer_inst/shift_reg[15]_i_1__1_n_0
+		Net: serializer_inst/shift_reg_reg_n_0_[3]
+	SLICE_X84Y139, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[7](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC0
+		Net: serializer_inst/shift_reg[15]_i_1__1_n_0
+		Net: serializer_inst/shift_reg[7]
+		Net: serializer_inst/shift_reg_reg_n_0_[7]
+	SLICE_X84Y138, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[14](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC0
+		Net: serializer_inst/shift_reg[14]
+		Net: serializer_inst/shift_reg[15]_i_1__1_n_0
+		Net: serializer_inst/shift_reg_reg_n_0_[14]
+	SLICE_X84Y140, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[10](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC0
+		Net: serializer_inst/shift_reg_reg_n_0_[10]
+		Net: serializer_inst/shift_reg[15]_i_1__1_n_0
+		Net: serializer_inst/shift_reg[10]
+	SLICE_X84Y144, SLICEL
+		BEL: AFF, Cell: serializer_inst/o_ready_reg(BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: serializer_inst/ser_ready
+		Net: serializer_inst/o_ready_i_1__1_n_0
+		Net: i_rst_IBUF
+	SLICE_X84Y143, SLICEL
+		BEL: AFF, Cell: serializer_inst/counter_reg[2](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: serializer_inst/counter[4]_i_1_n_0
+		Net: GLOBAL_LOGIC0
+		Net: serializer_inst/counter_reg[2]
+		Net: serializer_inst/p_0_in[2]
+	SLICE_X84Y142, SLICEL
+		BEL: AFF, Cell: serializer_inst/FSM_sequential_state_reg[0](BEL: AFF)
+		Net: i_en_IBUF
+		Net: serializer_inst/state[0]
+		Net: i_clk_IBUF
+		Net: i_rst_IBUF
+		Net: serializer_inst/next_state[0]
+	SLICE_X84Y141, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[2](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: serializer_inst/shift_reg[2]
+		Net: GLOBAL_LOGIC0
+		Net: serializer_inst/shift_reg[15]_i_1__1_n_0
+		Net: serializer_inst/shift_reg_reg_n_0_[2]
+	SLICE_X84Y126, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[6](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC0
+		Net: serializer_inst/shift_reg[15]_i_1__1_n_0
+		Net: serializer_inst/shift_reg[6]
+		Net: serializer_inst/shift_reg_reg_n_0_[6]
+	SLICE_X84Y125, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[15](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC0
+		Net: serializer_inst/shift_reg[15]
+		Net: serializer_inst/shift_reg[15]_i_1__1_n_0
+		Net: serializer_inst/shift_reg_reg_n_0_[15]
+	SLICE_X84Y124, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[11](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: serializer_inst/shift_reg_reg_n_0_[11]
+		Net: GLOBAL_LOGIC0
+		Net: serializer_inst/shift_reg[15]_i_1__1_n_0
+		Net: serializer_inst/shift_reg[11]
+	SLICE_X84Y123, SLICEL
+		BEL: AFF, Cell: serializer_inst/counter_reg[3](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: serializer_inst/counter[4]_i_1_n_0
+		Net: serializer_inst/counter_reg[3]
+		Net: GLOBAL_LOGIC0
+		Net: serializer_inst/p_0_in[3]
+	SLICE_X84Y129, SLICEL
+		BEL: AFF, Cell: serializer_inst/FSM_sequential_state_reg[1](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: serializer_inst/state[1]
+		Net: i_rst_IBUF
+		Net: serializer_inst/next_state[1]
+	SLICE_X84Y128, SLICEL
+		BEL: AFF, Cell: clas/b_reg[13](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/b[13]
+		Net: i_rst_IBUF
+		Net: deserializer_inst_b/Q[13]
+	SLICE_X84Y127, SLICEL
+		BEL: AFF, Cell: clas/b_reg[6](BEL: AFF)
+		Net: clas/b[6]
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/Q[6]
+		Net: i_rst_IBUF
+	SLICE_X61Y0, SLICEL
+		BEL: AFF, Cell: clas/a_reg[6](BEL: AFF)
+		Net: deserializer_inst_a/Q[6]
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/a[6]
+		Net: i_rst_IBUF
+	SLICE_X84Y133, SLICEL
+		BEL: AFF, Cell: clas/b_reg[2](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/b[2]
+		Net: i_rst_IBUF
+		Net: deserializer_inst_b/Q[2]
+	SLICE_X84Y132, SLICEL
+		BEL: AFF, Cell: clas/a_reg[15](BEL: AFF)
+		Net: deserializer_inst_a/Q[15]
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/a[15]
+		Net: i_rst_IBUF
+	SLICE_X61Y2, SLICEL
+		BEL: AFF, Cell: clas/ov_sum_reg[4](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/ov_sum_reg[15]_0[4]
+		Net: i_rst_IBUF
+		Net: clas/comb_sum[4]
+	SLICE_X84Y131, SLICEL
+		BEL: AFF, Cell: clas/a_reg[11](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/Q[11]
+		Net: clas/a[11]
+		Net: i_rst_IBUF
+	SLICE_X61Y1, SLICEL
+		BEL: AFF, Cell: clas/ov_sum_reg[14](BEL: AFF)
+		Net: clas/comb_sum[14]
+		Net: i_en_IBUF
+		Net: clas/ov_sum_reg[15]_0[14]
+		Net: i_clk_IBUF
+		Net: i_rst_IBUF
+	SLICE_X84Y130, SLICEL
+		BEL: AFF, Cell: clas/ov_sum_reg[8](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/comb_sum[8]
+		Net: clas/ov_sum_reg[15]_0[8]
+		Net: i_rst_IBUF
+	SLICE_X61Y4, SLICEL
+		BEL: AFF, Cell: clas/ov_sum_reg[10](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/ov_sum_reg[15]_0[10]
+		Net: i_rst_IBUF
+		Net: clas/comb_sum[10]
+	SLICE_X84Y115, SLICEL
+		BEL: AFF, Cell: clas/a_reg[2](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/Q[2]
+		Net: clas/a[2]
+		Net: i_rst_IBUF
+	SLICE_X61Y3, SLICEL
+		BEL: AFF, Cell: clas/b_reg[9](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/b[9]
+		Net: deserializer_inst_b/Q[9]
+		Net: i_rst_IBUF
+	SLICE_X84Y114, SLICEL
+		BEL: AFF, Cell: clas/a_reg[7](BEL: AFF)
+		Net: clas/a[7]
+		Net: deserializer_inst_a/Q[7]
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: i_rst_IBUF
+	SLICE_X61Y6, SLICEL
+		BEL: AFF, Cell: clas/a_reg[3](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/a[3]
+		Net: deserializer_inst_a/Q[3]
+		Net: i_rst_IBUF
+	SLICE_X84Y113, SLICEL
+		BEL: AFF, Cell: clas/a_reg[14](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/a[14]
+		Net: deserializer_inst_a/Q[14]
+		Net: i_rst_IBUF
+	SLICE_X61Y5, SLICEL
+		BEL: AFF, Cell: clas/a_reg[10](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/a[10]
+		Net: deserializer_inst_a/Q[10]
+		Net: i_rst_IBUF
+	SLICE_X84Y112, SLICEL
+		BEL: AFF, Cell: clas/b_reg[5](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/b[5]
+		Net: deserializer_inst_b/Q[5]
+		Net: i_rst_IBUF
+	SLICE_X61Y8, SLICEL
+		BEL: AFF, Cell: clas/ov_sum_reg[3](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/ov_sum_reg[15]_0[3]
+		Net: i_rst_IBUF
+		Net: clas/comb_sum[3]
+	SLICE_X84Y119, SLICEL
+		BEL: AFF, Cell: clas/b_reg[12](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/b[12]
+		Net: i_rst_IBUF
+		Net: deserializer_inst_b/Q[12]
+	SLICE_X57Y149, SLICEL
+		BEL: A5LUT, Cell: clas/o_cout_i_1(BEL: A5LUT)
+		Net: clas/a[15]
+		Net: clas/a[14]
+		Net: GLOBAL_LOGIC1
+		Net: clas/cla/c_14__2
+		Net: clas/b[14]
+		Net: clas/comb_cout
+		Net: clas/b[15]
+	SLICE_X61Y7, SLICEL
+		BEL: AFF, Cell: clas/ov_sum_reg[13](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/ov_sum_reg[15]_0[13]
+		Net: i_rst_IBUF
+		Net: clas/comb_sum[13]
+	SLICE_X84Y118, SLICEL
+		BEL: AFF, Cell: clas/ov_sum_reg[7](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/comb_sum[7]
+		Net: clas/ov_sum_reg[15]_0[7]
+		Net: i_rst_IBUF
+	SLICE_X84Y117, SLICEL
+		BEL: AFF, Cell: clas/b_reg[1](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/b[1]
+		Net: i_rst_IBUF
+		Net: deserializer_inst_b/Q[1]
+	SLICE_X57Y147, SLICEL
+		BEL: A5LUT, Cell: clas/ov_sum[3]_i_1(BEL: A5LUT)
+		Net: clas/a[3]
+		Net: GLOBAL_LOGIC1
+		Net: clas/b[3]
+		Net: clas/comb_sum[3]
+		Net: clas/cla/c_3__2
+	SLICE_X61Y9, SLICEL
+		BEL: AFF, Cell: clas/b_reg[8](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/b[8]
+		Net: deserializer_inst_b/Q[8]
+		Net: i_rst_IBUF
+	SLICE_X84Y116, SLICEL
+		BEL: AFF, Cell: clas/b_reg[15](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/b[15]
+		Net: i_rst_IBUF
+		Net: deserializer_inst_b/Q[15]
+	SLICE_X57Y148, SLICEL
+		BEL: A5LUT, Cell: clas/ov_sum[6]_i_2(BEL: A5LUT)
+		Net: clas/a[3]
+		Net: GLOBAL_LOGIC1
+		Net: clas/a[4]
+		Net: clas/b[3]
+		Net: clas/b[4]
+		Net: clas/cla/c_5__2
+		Net: clas/cla/c_3__2
+	SLICE_X91Y88, SLICEL
+		BEL: AFF, Cell: clas/a_reg[8](BEL: AFF)
+		Net: i_en_IBUF
+		Net: clas/a[8]
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/Q[8]
+		Net: i_rst_IBUF
+	SLICE_X39Y100, SLICEL
+		BEL: A5LUT, Cell: clas/ov_sum[6]_i_1(BEL: A5LUT)
+		Net: clas/b[6]
+		Net: GLOBAL_LOGIC1
+		Net: clas/a[5]
+		Net: clas/a[6]
+		Net: clas/b[5]
+		Net: clas/cla/c_5__2
+		Net: clas/comb_sum[6]
+	SLICE_X57Y145, SLICEL
+		BEL: A5LUT, Cell: clas/ov_sum[9]_i_1(BEL: A5LUT)
+		Net: clas/comb_sum[9]
+		Net: clas/a[9]
+		Net: clas/cla/c_9__2
+		Net: clas/b[9]
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y89, SLICEL
+		BEL: AFF, Cell: clas/a_reg[13](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/a[13]
+		Net: deserializer_inst_a/Q[13]
+		Net: i_rst_IBUF
+	SLICE_X57Y146, SLICEL
+		BEL: A5LUT, Cell: clas/ov_sum[1]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+		Net: clas/comb_sum[1]
+		Net: clas/a[0]
+		Net: clas/a[1]
+		Net: clas/b[0]
+		Net: clas/b[1]
+	SLICE_X91Y86, SLICEL
+		BEL: AFF, Cell: clas/b_reg[4](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/b[4]
+		Net: deserializer_inst_b/Q[4]
+		Net: i_rst_IBUF
+	SLICE_X39Y102, SLICEL
+		BEL: A5LUT, Cell: clas/ov_sum[10]_i_1(BEL: A5LUT)
+		Net: clas/cla/c_9__2
+		Net: clas/a[9]
+		Net: clas/b[9]
+		Net: GLOBAL_LOGIC1
+		Net: clas/b[10]
+		Net: clas/a[10]
+		Net: clas/comb_sum[10]
+	SLICE_X57Y143, SLICEL
+		BEL: A5LUT, Cell: clas/ov_sum[15]_i_1(BEL: A5LUT)
+		Net: clas/comb_sum[15]
+		Net: clas/a[15]
+		Net: clas/a[14]
+		Net: GLOBAL_LOGIC1
+		Net: clas/cla/c_14__2
+		Net: clas/b[14]
+		Net: clas/b[15]
+	SLICE_X91Y87, SLICEL
+		BEL: AFF, Cell: clas/a_reg[4](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/a[4]
+		Net: deserializer_inst_a/Q[4]
+		Net: i_rst_IBUF
+	SLICE_X39Y101, SLICEL
+		BEL: A5LUT, Cell: clas/ov_sum[0]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+		Net: clas/a[0]
+		Net: clas/b[0]
+		Net: clas/cla/p_0
+	SLICE_X57Y144, SLICEL
+		BEL: A5LUT, Cell: clas/ov_sum[10]_i_2(BEL: A5LUT)
+		Net: clas/a[7]
+		Net: clas/a[8]
+		Net: clas/b[7]
+		Net: clas/cla/c_9__2
+		Net: clas/b[8]
+		Net: GLOBAL_LOGIC1
+		Net: clas/cla/c_7__2
+	SLICE_X91Y84, SLICEL
+		BEL: AFF, Cell: clas/b_reg[11](BEL: AFF)
+		Net: deserializer_inst_b/Q[11]
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/b[11]
+		Net: i_rst_IBUF
+	SLICE_X39Y104, SLICEL
+		BEL: A5LUT, Cell: clas/ov_sum[11]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+		Net: clas/a[11]
+		Net: clas/cla/c_11__2
+		Net: clas/b[11]
+		Net: clas/comb_sum[11]
+	SLICE_X57Y141, SLICEL
+		BEL: A5LUT, Cell: clas/ov_sum[7]_i_1(BEL: A5LUT)
+		Net: clas/a[7]
+		Net: clas/b[7]
+		Net: clas/comb_sum[7]
+		Net: GLOBAL_LOGIC1
+		Net: clas/cla/c_7__2
+	SLICE_X91Y85, SLICEL
+		BEL: AFF, Cell: clas/ov_sum_reg[2](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/comb_sum[2]
+		Net: clas/ov_sum_reg[15]_0[2]
+		Net: i_rst_IBUF
+	SLICE_X39Y103, SLICEL
+		BEL: A5LUT, Cell: clas/ov_sum[14]_i_1(BEL: A5LUT)
+		Net: clas/comb_sum[14]
+		Net: clas/a[14]
+		Net: clas/a[13]
+		Net: GLOBAL_LOGIC1
+		Net: clas/cla/c_13__2
+		Net: clas/b[13]
+		Net: clas/b[14]
+	SLICE_X57Y142, SLICEL
+		BEL: A5LUT, Cell: clas/ov_sum[14]_i_2(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+		Net: clas/a[12]
+		Net: clas/cla/c_13__2
+		Net: clas/a[11]
+		Net: clas/cla/c_11__2
+		Net: clas/b[11]
+		Net: clas/b[12]
+	SLICE_X91Y82, SLICEL
+		BEL: AFF, Cell: clas/ov_sum_reg[6](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/ov_sum_reg[15]_0[6]
+		Net: clas/comb_sum[6]
+		Net: i_rst_IBUF
+	SLICE_X39Y106, SLICEL
+		BEL: A5LUT, Cell: clas/ov_sum[5]_i_1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+		Net: clas/a[5]
+		Net: clas/b[5]
+		Net: clas/cla/c_5__2
+		Net: clas/comb_sum[5]
+	SLICE_X91Y83, SLICEL
+		BEL: AFF, Cell: clas/ov_sum_reg[12](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/ov_sum_reg[15]_0[12]
+		Net: i_rst_IBUF
+		Net: clas/comb_sum[12]
+	SLICE_X39Y105, SLICEL
+		BEL: A5LUT, Cell: clas/ov_sum[8]_i_2(BEL: A5LUT)
+		Net: clas/b[6]
+		Net: GLOBAL_LOGIC1
+		Net: clas/a[5]
+		Net: clas/a[6]
+		Net: clas/b[5]
+		Net: clas/cla/c_5__2
+		Net: clas/cla/c_7__2
+	SLICE_X57Y140, SLICEL
+		BEL: A6LUT, Cell: clas/ov_sum[2]_i_1(BEL: A6LUT)
+		Net: clas/b[2]
+		Net: clas/comb_sum[2]
+		Net: clas/a[0]
+		Net: clas/b[0]
+		Net: clas/a[1]
+		Net: clas/a[2]
+		Net: clas/b[1]
+	SLICE_X91Y80, SLICEL
+		BEL: AFF, Cell: clas/b_reg[0](BEL: AFF)
+		Net: deserializer_inst_b/Q[0]
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/b[0]
+		Net: i_rst_IBUF
+	SLICE_X39Y108, SLICEL
+		BEL: A5LUT, Cell: clas/ov_sum[8]_i_1(BEL: A5LUT)
+		Net: clas/a[7]
+		Net: clas/a[8]
+		Net: clas/b[7]
+		Net: clas/comb_sum[8]
+		Net: clas/b[8]
+		Net: GLOBAL_LOGIC1
+		Net: clas/cla/c_7__2
+	SLICE_X91Y81, SLICEL
+		BEL: AFF, Cell: clas/a_reg[0](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/a[0]
+		Net: deserializer_inst_a/Q[0]
+		Net: i_rst_IBUF
+	SLICE_X39Y107, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/FSM_sequential_state[0]_i_1__1(BEL: A5LUT)
+		Net: deserializer_inst_b/FSM_sequential_state[0]_i_2__0_n_0
+		Net: i_valid_IBUF
+		Net: deserializer_inst_b/next_state[0]
+		Net: serializer_inst/ser_ready
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/state[1]
+		Net: deserializer_inst_b/state[0]
+	SLICE_X39Y109, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/o_ready_i_2(BEL: A5LUT)
+		Net: deserializer_inst_b/o_ready_i_2_n_0
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/state[1]
+		Net: deserializer_inst_b/state[0]
+	SLICE_X84Y122, SLICEL
+		BEL: AFF, Cell: clas/a_reg[9](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/a[9]
+		Net: deserializer_inst_a/Q[9]
+		Net: i_rst_IBUF
+	SLICE_X84Y121, SLICEL
+		BEL: AFF, Cell: clas/b_reg[14](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/b[14]
+		Net: deserializer_inst_b/Q[14]
+		Net: i_rst_IBUF
+	SLICE_X84Y120, SLICEL
+		BEL: AFF, Cell: clas/b_reg[7](BEL: AFF)
+		Net: i_en_IBUF
+		Net: clas/b[7]
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/Q[7]
+		Net: i_rst_IBUF
+	SLICE_X84Y104, SLICEL
+		BEL: AFF, Cell: clas/a_reg[12](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/Q[12]
+		Net: clas/a[12]
+		Net: i_rst_IBUF
+	SLICE_X84Y103, SLICEL
+		BEL: AFF, Cell: clas/a_reg[5](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/a[5]
+		Net: deserializer_inst_a/Q[5]
+		Net: i_rst_IBUF
+	SLICE_X84Y102, SLICEL
+		BEL: AFF, Cell: clas/b_reg[3](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/b[3]
+		Net: i_rst_IBUF
+		Net: deserializer_inst_b/Q[3]
+	SLICE_X84Y101, SLICEL
+		BEL: AFF, Cell: clas/o_cout_reg(BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/o_cout_OBUF
+		Net: clas/comb_cout
+		Net: i_rst_IBUF
+	SLICE_X84Y108, SLICEL
+		BEL: AFF, Cell: clas/ov_sum_reg[0](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/cla/p_0
+		Net: i_rst_IBUF
+		Net: clas/ov_sum_reg[15]_0[0]
+	SLICE_X57Y138, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/shift_reg[6]_i_1__1(BEL: A5LUT)
+		Net: deserializer_inst_b/shift_reg[6]_i_1__1_n_0
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[7]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/state[1]
+	SLICE_X84Y107, SLICEL
+		BEL: AFF, Cell: clas/b_reg[10](BEL: AFF)
+		Net: deserializer_inst_b/Q[10]
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/b[10]
+		Net: i_rst_IBUF
+	SLICE_X57Y139, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/shift_reg[4]_i_1__1(BEL: A5LUT)
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[5]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/shift_reg[4]_i_1__1_n_0
+		Net: deserializer_inst_b/state[1]
+	SLICE_X84Y106, SLICEL
+		BEL: AFF, Cell: clas/ov_sum_reg[1](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/comb_sum[1]
+		Net: clas/ov_sum_reg[15]_0[1]
+		Net: i_rst_IBUF
+	SLICE_X57Y136, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/counter[0]_i_1__0(BEL: A5LUT)
+		Net: deserializer_inst_b/counter[0]_i_1__0_n_0
+		Net: i_valid_IBUF
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/state[1]
+		Net: deserializer_inst_b/counter_reg_n_0_[0]
+		Net: deserializer_inst_b/counter_reg_n_0_[4]
+	SLICE_X84Y105, SLICEL
+		BEL: AFF, Cell: clas/ov_sum_reg[15](BEL: AFF)
+		Net: clas/comb_sum[15]
+		Net: clas/ov_sum_reg[15]_0[15]
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: i_rst_IBUF
+	SLICE_X57Y137, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/shift_reg[8]_i_1__1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/shift_reg[8]_i_1__1_n_0
+		Net: deserializer_inst_b/state[1]
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[9]
+	SLICE_X91Y99, SLICEL
+		BEL: AFF, Cell: clas/ov_sum_reg[5](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/ov_sum_reg[15]_0[5]
+		Net: i_rst_IBUF
+		Net: clas/comb_sum[5]
+	SLICE_X57Y134, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/shift_reg[15]_i_1__0(BEL: A5LUT)
+		Net: i_valid_IBUF
+		Net: i_en_IBUF
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/state[1]
+		Net: deserializer_inst_b/state[0]
+		Net: deserializer_inst_b/shift_reg[15]_i_1__0_n_0
+		Net: deserializer_inst_b/counter_reg_n_0_[4]
+	SLICE_X57Y135, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/counter[3]_i_1__0(BEL: A5LUT)
+		Net: deserializer_inst_b/counter[4]_i_3__0_n_0
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/counter[3]_i_1__0_n_0
+		Net: deserializer_inst_b/counter_reg_n_0_[0]
+		Net: deserializer_inst_b/counter_reg_n_0_[1]
+		Net: deserializer_inst_b/counter_reg_n_0_[2]
+		Net: deserializer_inst_b/counter_reg_n_0_[3]
+	SLICE_X91Y97, SLICEL
+		BEL: AFF, Cell: clas/a_reg[1](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/a[1]
+		Net: deserializer_inst_a/Q[1]
+		Net: i_rst_IBUF
+	SLICE_X57Y132, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/shift_reg[13]_i_1__1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/state[1]
+		Net: deserializer_inst_b/shift_reg[13]_i_1__1_n_0
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[14]
+	SLICE_X91Y98, SLICEL
+		BEL: AFF, Cell: clas/ov_sum_reg[9](BEL: AFF)
+		Net: clas/comb_sum[9]
+		Net: i_en_IBUF
+		Net: clas/ov_sum_reg[15]_0[9]
+		Net: i_clk_IBUF
+		Net: i_rst_IBUF
+	SLICE_X84Y109, SLICEL
+		BEL: AFF, Cell: clas/ov_sum_reg[11](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: clas/ov_sum_reg[15]_0[11]
+		Net: clas/comb_sum[11]
+		Net: i_rst_IBUF
+	SLICE_X57Y133, SLICEL
+		BEL: A6LUT, Cell: deserializer_inst_b/FSM_sequential_state[0]_i_2__0(BEL: A6LUT)
+		Net: deserializer_inst_b/FSM_sequential_state[0]_i_2__0_n_0
+		Net: deserializer_inst_b/state[1]
+		Net: deserializer_inst_b/counter_reg_n_0_[0]
+		Net: deserializer_inst_b/counter_reg_n_0_[1]
+		Net: deserializer_inst_b/counter_reg_n_0_[2]
+		Net: deserializer_inst_b/counter_reg_n_0_[3]
+		Net: deserializer_inst_b/counter_reg_n_0_[4]
+	SLICE_X91Y95, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/shift_reg_reg[1](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/shift_reg[1]_i_1__1_n_0
+		Net: deserializer_inst_b/shift_reg[15]_i_1__0_n_0
+		Net: i_rst_IBUF
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[1]
+	SLICE_X57Y130, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/counter[1]_i_1__0(BEL: A5LUT)
+		Net: i_valid_IBUF
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/state[1]
+		Net: deserializer_inst_b/counter_reg_n_0_[0]
+		Net: deserializer_inst_b/counter_reg_n_0_[1]
+		Net: deserializer_inst_b/counter_reg_n_0_[4]
+		Net: deserializer_inst_b/counter[1]_i_1__0_n_0
+	SLICE_X91Y96, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/o_dout_valid_reg(BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/o_dout_valid_reg_0
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/o_dout_valid_i_1__0_n_0
+		Net: deserializer_inst_a/o_dout_valid
+	SLICE_X57Y131, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/shift_reg[11]_i_1__1(BEL: A5LUT)
+		Net: deserializer_inst_b/shift_reg[11]_i_1__1_n_0
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/state[1]
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[12]
+	SLICE_X91Y93, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/shift_reg_reg[9](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/shift_reg[9]_i_1__1_n_0
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[9]
+		Net: deserializer_inst_b/shift_reg[15]_i_1__0_n_0
+		Net: i_rst_IBUF
+	SLICE_X91Y94, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/shift_reg_reg[5](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[5]
+		Net: deserializer_inst_b/shift_reg[5]_i_1__1_n_0
+		Net: deserializer_inst_b/shift_reg[15]_i_1__0_n_0
+		Net: i_rst_IBUF
+	SLICE_X91Y91, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/ov_dout_reg[14](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC0
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[14]
+		Net: deserializer_inst_b/ov_dout[15]_i_1__0_n_0
+		Net: deserializer_inst_b/Q[14]
+	SLICE_X91Y92, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/shift_reg_reg[12](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/shift_reg[15]_i_1__0_n_0
+		Net: i_rst_IBUF
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[12]
+		Net: deserializer_inst_b/shift_reg[12]_i_1__1_n_0
+	SLICE_X91Y90, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/counter_reg[0](BEL: AFF)
+		Net: deserializer_inst_b/counter[0]_i_1__0_n_0
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/counter_reg_n_0_[0]
+		Net: deserializer_inst_b/counter[4]_i_1__1_n_0
+		Net: i_rst_IBUF
+	SLICE_X84Y111, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/ov_dout_reg[10](BEL: AFF)
+		Net: deserializer_inst_b/Q[10]
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC0
+		Net: deserializer_inst_b/ov_dout[15]_i_1__0_n_0
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[10]
+	SLICE_X84Y110, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/ov_dout_reg[7](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[7]
+		Net: GLOBAL_LOGIC0
+		Net: deserializer_inst_b/Q[7]
+		Net: deserializer_inst_b/ov_dout[15]_i_1__0_n_0
+	SLICE_X111Y24, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/counter_reg[4](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/counter[4]_i_1__1_n_0
+		Net: deserializer_inst_b/counter[4]_i_2__0_n_0
+		Net: deserializer_inst_b/counter_reg_n_0_[4]
+		Net: i_rst_IBUF
+	SLICE_X87Y1, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/shift_reg[1]_i_1__1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/shift_reg[1]_i_1__1_n_0
+		Net: deserializer_inst_b/state[1]
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[2]
+	SLICE_X111Y23, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/ov_dout_reg[3](BEL: AFF)
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[3]
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC0
+		Net: deserializer_inst_b/ov_dout[15]_i_1__0_n_0
+		Net: deserializer_inst_b/Q[3]
+	SLICE_X87Y2, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/shift_reg[3]_i_1__1(BEL: A5LUT)
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[4]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/state[1]
+		Net: deserializer_inst_b/shift_reg[3]_i_1__1_n_0
+	SLICE_X111Y26, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/shift_reg_reg[4](BEL: AFF)
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[4]
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/shift_reg[4]_i_1__1_n_0
+		Net: deserializer_inst_b/shift_reg[15]_i_1__0_n_0
+		Net: i_rst_IBUF
+	SLICE_X111Y25, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/shift_reg_reg[0](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/shift_reg[0]_i_1__1_n_0
+		Net: deserializer_inst_b/shift_reg[15]_i_1__0_n_0
+		Net: i_rst_IBUF
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[0]
+	SLICE_X87Y0, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/counter[4]_i_3__0(BEL: A5LUT)
+		Net: i_valid_IBUF
+		Net: deserializer_inst_b/counter[4]_i_3__0_n_0
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/state[1]
+		Net: deserializer_inst_b/counter_reg_n_0_[4]
+	SLICE_X111Y20, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/shift_reg_reg[8](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/shift_reg[8]_i_1__1_n_0
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[8]
+		Net: deserializer_inst_b/shift_reg[15]_i_1__0_n_0
+		Net: i_rst_IBUF
+	SLICE_X87Y5, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/shift_reg[15]_i_2__1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/state[1]
+		Net: i_din_b_IBUF
+		Net: deserializer_inst_b/shift_reg[15]_i_2__1_n_0
+	SLICE_X87Y6, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/shift_reg[5]_i_1__1(BEL: A5LUT)
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[6]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/shift_reg[5]_i_1__1_n_0
+		Net: deserializer_inst_b/state[1]
+	SLICE_X111Y22, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/shift_reg_reg[13](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/shift_reg[13]_i_1__1_n_0
+		Net: deserializer_inst_b/shift_reg[15]_i_1__0_n_0
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[13]
+		Net: i_rst_IBUF
+	SLICE_X91Y68, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/ov_dout_reg[13](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC0
+		Net: deserializer_inst_b/ov_dout[15]_i_1__0_n_0
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[13]
+		Net: deserializer_inst_b/Q[13]
+	SLICE_X87Y3, SLICEL
+		BEL: A6LUT, Cell: deserializer_inst_b/ov_dout[15]_i_1__0(BEL: A6LUT)
+		Net: i_valid_IBUF
+		Net: i_en_IBUF
+		Net: deserializer_inst_b/state[1]
+		Net: deserializer_inst_b/state[0]
+		Net: deserializer_inst_b/ov_dout[15]_i_1__0_n_0
+		Net: deserializer_inst_b/counter_reg_n_0_[4]
+		Net: i_rst_IBUF
+	SLICE_X39Y120, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/counter[4]_i_2__0(BEL: A5LUT)
+		Net: deserializer_inst_b/counter[4]_i_3__0_n_0
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/counter_reg_n_0_[0]
+		Net: deserializer_inst_b/counter_reg_n_0_[1]
+		Net: deserializer_inst_b/counter_reg_n_0_[2]
+		Net: deserializer_inst_b/counter[4]_i_2__0_n_0
+		Net: deserializer_inst_b/counter_reg_n_0_[3]
+	SLICE_X111Y21, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/ov_dout_reg[6](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[6]
+		Net: GLOBAL_LOGIC0
+		Net: deserializer_inst_b/Q[6]
+		Net: deserializer_inst_b/ov_dout[15]_i_1__0_n_0
+	SLICE_X91Y69, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/counter_reg[1](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/counter_reg_n_0_[1]
+		Net: deserializer_inst_b/counter[4]_i_1__1_n_0
+		Net: i_rst_IBUF
+		Net: deserializer_inst_b/counter[1]_i_1__0_n_0
+	SLICE_X87Y4, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/shift_reg[9]_i_1__1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/shift_reg[9]_i_1__1_n_0
+		Net: deserializer_inst_b/state[1]
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[10]
+	SLICE_X91Y66, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/ov_dout_reg[2](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC0
+		Net: deserializer_inst_b/ov_dout[15]_i_1__0_n_0
+		Net: deserializer_inst_b/Q[2]
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[2]
+	SLICE_X87Y9, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/shift_reg[7]_i_1__1(BEL: A5LUT)
+		Net: deserializer_inst_b/shift_reg[7]_i_1__1_n_0
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[8]
+		Net: deserializer_inst_b/state[1]
+	SLICE_X39Y122, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/FSM_sequential_state[1]_i_1(BEL: A5LUT)
+		Net: serializer_inst/ser_ready
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/state[1]
+		Net: deserializer_inst_b/state[0]
+		Net: deserializer_inst_b/next_state[1]
+	SLICE_X91Y67, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/ov_dout_reg[1](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC0
+		Net: deserializer_inst_b/ov_dout[15]_i_1__0_n_0
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[1]
+		Net: deserializer_inst_b/Q[1]
+	SLICE_X39Y121, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/shift_reg[14]_i_1__1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/state[1]
+		Net: deserializer_inst_b/shift_reg[14]_i_1__1_n_0
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[15]
+	SLICE_X91Y64, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/shift_reg_reg[3](BEL: AFF)
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[3]
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/shift_reg[3]_i_1__1_n_0
+		Net: deserializer_inst_b/shift_reg[15]_i_1__0_n_0
+		Net: i_rst_IBUF
+	SLICE_X87Y7, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/o_dout_valid_i_1__0(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/state[1]
+		Net: deserializer_inst_b/state[0]
+		Net: deserializer_inst_b/o_dout_valid_i_1__0_n_0
+	SLICE_X39Y124, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/counter[4]_i_1__1(BEL: A5LUT)
+		Net: i_en_IBUF
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/state[0]
+		Net: deserializer_inst_b/counter[4]_i_1__1_n_0
+	SLICE_X91Y65, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/shift_reg_reg[7](BEL: AFF)
+		Net: deserializer_inst_b/shift_reg[7]_i_1__1_n_0
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[7]
+		Net: deserializer_inst_b/shift_reg[15]_i_1__0_n_0
+		Net: i_rst_IBUF
+	SLICE_X87Y8, SLICEL
+		BEL: A6LUT, Cell: deserializer_inst_b/counter[2]_i_1__0(BEL: A6LUT)
+		Net: i_valid_IBUF
+		Net: deserializer_inst_b/state[1]
+		Net: deserializer_inst_b/counter_reg_n_0_[0]
+		Net: deserializer_inst_b/counter_reg_n_0_[1]
+		Net: deserializer_inst_b/counter_reg_n_0_[2]
+		Net: deserializer_inst_b/counter[2]_i_1__0_n_0
+		Net: deserializer_inst_b/counter_reg_n_0_[4]
+	SLICE_X39Y123, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/shift_reg[12]_i_1__1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/state[1]
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[13]
+		Net: deserializer_inst_b/shift_reg[12]_i_1__1_n_0
+	SLICE_X111Y28, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/shift_reg_reg[10](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/shift_reg[10]_i_1__1_n_0
+		Net: deserializer_inst_b/shift_reg[15]_i_1__0_n_0
+		Net: i_rst_IBUF
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[10]
+	SLICE_X91Y62, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/shift_reg_reg[14](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/shift_reg[14]_i_1__1_n_0
+		Net: deserializer_inst_b/shift_reg[15]_i_1__0_n_0
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[14]
+		Net: i_rst_IBUF
+	SLICE_X39Y126, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/shift_reg[0]_i_1__1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/shift_reg[0]_i_1__1_n_0
+		Net: deserializer_inst_b/state[1]
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[1]
+	SLICE_X111Y27, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/o_ready_reg(BEL: AFF)
+		Net: deserializer_inst_b/o_ready_i_2_n_0
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/o_ready_reg_0
+		Net: deserializer_inst_a/o_dout_valid
+	SLICE_X91Y63, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/ov_dout_reg[9](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[9]
+		Net: GLOBAL_LOGIC0
+		Net: deserializer_inst_b/Q[9]
+		Net: deserializer_inst_b/ov_dout[15]_i_1__0_n_0
+	SLICE_X39Y125, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/shift_reg[10]_i_1__1(BEL: A5LUT)
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/state[1]
+		Net: deserializer_inst_b/shift_reg[10]_i_1__1_n_0
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[11]
+	SLICE_X91Y60, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/counter_reg[2](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/counter[4]_i_1__1_n_0
+		Net: deserializer_inst_b/counter_reg_n_0_[2]
+		Net: deserializer_inst_b/counter[2]_i_1__0_n_0
+		Net: i_rst_IBUF
+	SLICE_X39Y128, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_b/shift_reg[2]_i_1__1(BEL: A5LUT)
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[3]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/state[1]
+		Net: deserializer_inst_b/shift_reg[2]_i_1__1_n_0
+	SLICE_X111Y29, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/ov_dout_reg[5](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[5]
+		Net: GLOBAL_LOGIC0
+		Net: deserializer_inst_b/ov_dout[15]_i_1__0_n_0
+		Net: deserializer_inst_b/Q[5]
+	SLICE_X91Y61, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/ov_dout_reg[12](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC0
+		Net: deserializer_inst_b/ov_dout[15]_i_1__0_n_0
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[12]
+		Net: deserializer_inst_b/Q[12]
+	SLICE_X39Y127, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/FSM_sequential_state[0]_i_1__0(BEL: A5LUT)
+		Net: i_valid_IBUF
+		Net: deserializer_inst_a/state[1]
+		Net: deserializer_inst_a/state[0]
+		Net: serializer_inst/ser_ready
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/FSM_sequential_state[0]_i_2_n_0
+		Net: deserializer_inst_a/next_state[0]
+	SLICE_X39Y129, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/shift_reg[4]_i_1__0(BEL: A5LUT)
+		Net: deserializer_inst_a/state[1]
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[5]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/shift_reg0_in[4]
+	SLICE_X111Y13, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/FSM_sequential_state_reg[0](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/next_state[0]
+		Net: deserializer_inst_b/state[0]
+		Net: i_rst_IBUF
+	SLICE_X111Y12, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/ov_dout_reg[0](BEL: AFF)
+		Net: deserializer_inst_b/Q[0]
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC0
+		Net: deserializer_inst_b/ov_dout[15]_i_1__0_n_0
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[0]
+	SLICE_X111Y15, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/shift_reg_reg[2](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/shift_reg[2]_i_1__1_n_0
+		Net: deserializer_inst_b/shift_reg[15]_i_1__0_n_0
+		Net: i_rst_IBUF
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[2]
+	SLICE_X111Y14, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/shift_reg_reg[6](BEL: AFF)
+		Net: deserializer_inst_b/shift_reg[6]_i_1__1_n_0
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[6]
+		Net: deserializer_inst_b/shift_reg[15]_i_1__0_n_0
+		Net: i_rst_IBUF
+	SLICE_X111Y11, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/ov_dout_reg[15](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC0
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[15]
+		Net: deserializer_inst_b/ov_dout[15]_i_1__0_n_0
+		Net: deserializer_inst_b/Q[15]
+	SLICE_X91Y79, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/shift_reg_reg[15](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[15]
+		Net: deserializer_inst_b/shift_reg[15]_i_2__1_n_0
+		Net: deserializer_inst_b/shift_reg[15]_i_1__0_n_0
+		Net: i_rst_IBUF
+	SLICE_X111Y10, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/shift_reg_reg[11](BEL: AFF)
+		Net: deserializer_inst_b/shift_reg[11]_i_1__1_n_0
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/shift_reg[15]_i_1__0_n_0
+		Net: i_rst_IBUF
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[11]
+	SLICE_X91Y77, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/ov_dout_reg[8](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[8]
+		Net: GLOBAL_LOGIC0
+		Net: deserializer_inst_b/Q[8]
+		Net: deserializer_inst_b/ov_dout[15]_i_1__0_n_0
+	SLICE_X39Y111, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/counter[3]_i_1(BEL: A5LUT)
+		Net: deserializer_inst_a/counter_reg_n_0_[0]
+		Net: deserializer_inst_a/counter[4]_i_3_n_0
+		Net: deserializer_inst_a/counter_reg_n_0_[2]
+		Net: deserializer_inst_a/counter_reg_n_0_[1]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/counter_reg_n_0_[3]
+		Net: deserializer_inst_a/counter[3]
+	SLICE_X91Y78, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/ov_dout_reg[11](BEL: AFF)
+		Net: deserializer_inst_b/Q[11]
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC0
+		Net: deserializer_inst_b/ov_dout[15]_i_1__0_n_0
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[11]
+	SLICE_X39Y110, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/shift_reg[6]_i_1__0(BEL: A5LUT)
+		Net: deserializer_inst_a/state[1]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[7]
+		Net: deserializer_inst_a/shift_reg0_in[6]
+	SLICE_X91Y75, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/counter_reg[3](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/counter[3]_i_1__0_n_0
+		Net: deserializer_inst_b/counter[4]_i_1__1_n_0
+		Net: deserializer_inst_b/counter_reg_n_0_[3]
+		Net: i_rst_IBUF
+	SLICE_X39Y113, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/o_ready_i_1__0(BEL: A5LUT)
+		Net: deserializer_inst_a/state[1]
+		Net: deserializer_inst_a/state[0]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/o_ready_i_1__0_n_0
+	SLICE_X91Y76, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/ov_dout_reg[4](BEL: AFF)
+		Net: deserializer_inst_b/shift_reg_reg_n_0_[4]
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC0
+		Net: deserializer_inst_b/ov_dout[15]_i_1__0_n_0
+		Net: deserializer_inst_b/Q[4]
+	SLICE_X39Y112, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/counter[4]_i_2(BEL: A5LUT)
+		Net: deserializer_inst_a/counter_reg_n_0_[0]
+		Net: deserializer_inst_a/counter[4]_i_3_n_0
+		Net: deserializer_inst_a/counter_reg_n_0_[2]
+		Net: deserializer_inst_a/counter_reg_n_0_[1]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/counter_reg_n_0_[3]
+		Net: deserializer_inst_a/counter[4]
+	SLICE_X111Y17, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/shift_reg_reg[1](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/shift_reg0_in[1]
+		Net: i_rst_IBUF
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[1]
+		Net: deserializer_inst_a/shift_reg[15]_i_1_n_0
+	SLICE_X91Y73, SLICEL
+		BEL: AFF, Cell: deserializer_inst_b/FSM_sequential_state_reg[1](BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: deserializer_inst_b/state[1]
+		Net: deserializer_inst_b/next_state[1]
+		Net: i_rst_IBUF
+	SLICE_X39Y115, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/counter[4]_i_3(BEL: A5LUT)
+		Net: i_valid_IBUF
+		Net: deserializer_inst_a/state[1]
+		Net: deserializer_inst_a/counter[4]_i_3_n_0
+		Net: deserializer_inst_a/counter_reg_n_0_[4]
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y16, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/shift_reg_reg[9](BEL: AFF)
+		Net: deserializer_inst_a/shift_reg0_in[9]
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[9]
+		Net: i_rst_IBUF
+		Net: deserializer_inst_a/shift_reg[15]_i_1_n_0
+	SLICE_X91Y74, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/o_dout_valid_reg(BEL: AFF)
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/o_dout_valid_reg_n_0
+		Net: deserializer_inst_a/o_dout_valid_i_1__1_n_0
+		Net: deserializer_inst_a/o_dout_valid
+	SLICE_X39Y114, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/shift_reg[15]_i_1(BEL: A5LUT)
+		Net: i_valid_IBUF
+		Net: deserializer_inst_a/state[1]
+		Net: i_en_IBUF
+		Net: deserializer_inst_a/state[0]
+		Net: deserializer_inst_a/counter_reg_n_0_[4]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/shift_reg[15]_i_1_n_0
+	SLICE_X111Y19, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/ov_dout_reg[14](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[14]
+		Net: deserializer_inst_a/ov_dout
+		Net: GLOBAL_LOGIC0
+		Net: deserializer_inst_a/Q[14]
+	SLICE_X91Y71, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/shift_reg_reg[5](BEL: AFF)
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[5]
+		Net: i_clk_IBUF
+		Net: i_rst_IBUF
+		Net: deserializer_inst_a/shift_reg0_in[5]
+		Net: deserializer_inst_a/shift_reg[15]_i_1_n_0
+	SLICE_X39Y117, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/o_ready_i_1(BEL: A5LUT)
+		Net: i_en_IBUF
+		Net: GLOBAL_LOGIC1
+		Net: i_rst_IBUF
+		Net: deserializer_inst_a/o_dout_valid
+	SLICE_X111Y18, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/counter_reg[0](BEL: AFF)
+		Net: deserializer_inst_a/counter_reg_n_0_[0]
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/counter[0]
+		Net: deserializer_inst_a/counter[4]_i_1__0_n_0
+		Net: i_rst_IBUF
+	SLICE_X91Y72, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/shift_reg_reg[12](BEL: AFF)
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[12]
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/shift_reg0_in[12]
+		Net: i_rst_IBUF
+		Net: deserializer_inst_a/shift_reg[15]_i_1_n_0
+	SLICE_X39Y116, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/shift_reg[8]_i_1__0(BEL: A5LUT)
+		Net: deserializer_inst_a/state[1]
+		Net: deserializer_inst_a/shift_reg0_in[8]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[9]
+	SLICE_X39Y119, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/shift_reg[13]_i_1__0(BEL: A5LUT)
+		Net: deserializer_inst_a/state[1]
+		Net: deserializer_inst_a/shift_reg0_in[13]
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[14]
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y70, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/ov_dout_reg[10](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/ov_dout
+		Net: GLOBAL_LOGIC0
+		Net: deserializer_inst_a/Q[10]
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[10]
+	SLICE_X39Y118, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/shift_reg[11]_i_1__0(BEL: A5LUT)
+		Net: deserializer_inst_a/state[1]
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[12]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/shift_reg0_in[11]
+	SLICE_X111Y46, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/ov_dout_reg[7](BEL: AFF)
+		Net: deserializer_inst_a/Q[7]
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/ov_dout
+		Net: GLOBAL_LOGIC0
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[7]
+	SLICE_X111Y45, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/counter_reg[4](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/counter_reg_n_0_[4]
+		Net: deserializer_inst_a/counter[4]
+		Net: deserializer_inst_a/counter[4]_i_1__0_n_0
+		Net: i_rst_IBUF
+	SLICE_X111Y48, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/ov_dout_reg[3](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[3]
+		Net: deserializer_inst_a/ov_dout
+		Net: deserializer_inst_a/Q[3]
+		Net: GLOBAL_LOGIC0
+	SLICE_X111Y47, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/shift_reg_reg[4](BEL: AFF)
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[4]
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/shift_reg0_in[4]
+		Net: i_rst_IBUF
+		Net: deserializer_inst_a/shift_reg[15]_i_1_n_0
+	SLICE_X111Y42, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/shift_reg_reg[8](BEL: AFF)
+		Net: deserializer_inst_a/shift_reg0_in[8]
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[8]
+		Net: i_rst_IBUF
+		Net: deserializer_inst_a/shift_reg[15]_i_1_n_0
+	SLICE_X91Y48, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/shift_reg_reg[0](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/shift_reg0_in[0]
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[0]
+		Net: i_rst_IBUF
+		Net: deserializer_inst_a/shift_reg[15]_i_1_n_0
+	SLICE_X39Y140, SLICEL
+		BEL: A6LUT, Cell: deserializer_inst_a/ov_dout[15]_i_1(BEL: A6LUT)
+		Net: i_valid_IBUF
+		Net: deserializer_inst_a/state[1]
+		Net: i_en_IBUF
+		Net: deserializer_inst_a/state[0]
+		Net: deserializer_inst_a/counter_reg_n_0_[4]
+		Net: deserializer_inst_a/ov_dout
+		Net: i_rst_IBUF
+	SLICE_X111Y41, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/shift_reg_reg[13](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[13]
+		Net: deserializer_inst_a/shift_reg0_in[13]
+		Net: i_rst_IBUF
+		Net: deserializer_inst_a/shift_reg[15]_i_1_n_0
+	SLICE_X91Y49, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/ov_dout_reg[13](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[13]
+		Net: deserializer_inst_a/ov_dout
+		Net: deserializer_inst_a/Q[13]
+		Net: GLOBAL_LOGIC0
+	SLICE_X111Y44, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/ov_dout_reg[6](BEL: AFF)
+		Net: deserializer_inst_a/Q[6]
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/ov_dout
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[6]
+		Net: GLOBAL_LOGIC0
+	SLICE_X91Y46, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/counter_reg[1](BEL: AFF)
+		Net: deserializer_inst_a/counter[1]
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/counter_reg_n_0_[1]
+		Net: deserializer_inst_a/counter[4]_i_1__0_n_0
+		Net: i_rst_IBUF
+	SLICE_X39Y142, SLICEL
+		BEL: A6LUT, Cell: deserializer_inst_a/counter[2]_i_1(BEL: A6LUT)
+		Net: deserializer_inst_a/counter[2]
+		Net: deserializer_inst_a/counter_reg_n_0_[0]
+		Net: i_valid_IBUF
+		Net: deserializer_inst_a/state[1]
+		Net: deserializer_inst_a/counter_reg_n_0_[2]
+		Net: deserializer_inst_a/counter_reg_n_0_[1]
+		Net: deserializer_inst_a/counter_reg_n_0_[4]
+	SLICE_X111Y43, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/ov_dout_reg[1](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/ov_dout
+		Net: GLOBAL_LOGIC0
+		Net: deserializer_inst_a/Q[1]
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[1]
+	SLICE_X91Y47, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/ov_dout_reg[2](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[2]
+		Net: deserializer_inst_a/Q[2]
+		Net: deserializer_inst_a/ov_dout
+		Net: GLOBAL_LOGIC0
+	SLICE_X39Y141, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/shift_reg[1]_i_1__0(BEL: A5LUT)
+		Net: deserializer_inst_a/state[1]
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[2]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/shift_reg0_in[1]
+	SLICE_X91Y44, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/shift_reg_reg[3](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[3]
+		Net: deserializer_inst_a/shift_reg0_in[3]
+		Net: i_rst_IBUF
+		Net: deserializer_inst_a/shift_reg[15]_i_1_n_0
+	SLICE_X39Y144, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/shift_reg[3]_i_1__0(BEL: A5LUT)
+		Net: deserializer_inst_a/state[1]
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[4]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/shift_reg0_in[3]
+	SLICE_X91Y45, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/shift_reg_reg[7](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[7]
+		Net: i_rst_IBUF
+		Net: deserializer_inst_a/shift_reg[15]_i_1_n_0
+		Net: deserializer_inst_a/shift_reg0_in[7]
+	SLICE_X39Y143, SLICEL
+		BEL: A6LUT, Cell: deserializer_inst_a/FSM_sequential_state[0]_i_2(BEL: A6LUT)
+		Net: deserializer_inst_a/state[1]
+		Net: deserializer_inst_a/counter_reg_n_0_[0]
+		Net: deserializer_inst_a/counter_reg_n_0_[2]
+		Net: deserializer_inst_a/counter_reg_n_0_[1]
+		Net: deserializer_inst_a/counter_reg_n_0_[4]
+		Net: deserializer_inst_a/counter_reg_n_0_[3]
+		Net: deserializer_inst_a/FSM_sequential_state[0]_i_2_n_0
+	SLICE_X91Y42, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/shift_reg_reg[14](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/shift_reg0_in[14]
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[14]
+		Net: i_rst_IBUF
+		Net: deserializer_inst_a/shift_reg[15]_i_1_n_0
+	SLICE_X39Y146, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/shift_reg[15]_i_2__0(BEL: A5LUT)
+		Net: deserializer_inst_a/state[1]
+		Net: deserializer_inst_a/shift_reg0_in[15]
+		Net: i_din_a_IBUF
+		Net: GLOBAL_LOGIC1
+	SLICE_X91Y43, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/shift_reg_reg[10](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: i_rst_IBUF
+		Net: deserializer_inst_a/shift_reg0_in[10]
+		Net: deserializer_inst_a/shift_reg[15]_i_1_n_0
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[10]
+	SLICE_X39Y145, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/FSM_sequential_state[1]_i_1__0(BEL: A5LUT)
+		Net: deserializer_inst_a/state[1]
+		Net: deserializer_inst_a/state[0]
+		Net: serializer_inst/ser_ready
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/next_state[1]
+	SLICE_X91Y40, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/ov_dout_reg[9](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/Q[9]
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[9]
+		Net: deserializer_inst_a/ov_dout
+		Net: GLOBAL_LOGIC0
+	SLICE_X39Y148, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/shift_reg[5]_i_1__0(BEL: A5LUT)
+		Net: deserializer_inst_a/state[1]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[6]
+		Net: deserializer_inst_a/shift_reg0_in[5]
+	SLICE_X91Y41, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/counter_reg[2](BEL: AFF)
+		Net: deserializer_inst_a/counter[2]
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/counter_reg_n_0_[2]
+		Net: deserializer_inst_a/counter[4]_i_1__0_n_0
+		Net: i_rst_IBUF
+	SLICE_X111Y49, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/o_ready_reg(BEL: AFF)
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/o_ready_reg_n_0
+		Net: deserializer_inst_a/o_ready_i_1__0_n_0
+		Net: deserializer_inst_a/o_dout_valid
+	SLICE_X39Y147, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/counter[0]_i_1(BEL: A5LUT)
+		Net: deserializer_inst_a/counter_reg_n_0_[0]
+		Net: deserializer_inst_a/state[1]
+		Net: i_valid_IBUF
+		Net: deserializer_inst_a/counter[0]
+		Net: deserializer_inst_a/counter_reg_n_0_[4]
+		Net: GLOBAL_LOGIC1
+	SLICE_X39Y149, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/counter[1]_i_1(BEL: A5LUT)
+		Net: deserializer_inst_a/counter_reg_n_0_[0]
+		Net: i_valid_IBUF
+		Net: deserializer_inst_a/state[1]
+		Net: deserializer_inst_a/counter[1]
+		Net: deserializer_inst_a/counter_reg_n_0_[1]
+		Net: deserializer_inst_a/counter_reg_n_0_[4]
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y40, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/ov_dout_reg[12](BEL: AFF)
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[12]
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/ov_dout
+		Net: deserializer_inst_a/Q[12]
+		Net: GLOBAL_LOGIC0
+	SLICE_X74Y0, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/o_ready_OBUF_inst_i_1(BEL: A5LUT)
+		Net: deserializer_inst_a/o_ready_OBUF
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_b/o_ready_reg_0
+		Net: deserializer_inst_a/o_ready_reg_n_0
+	SLICE_X111Y35, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/FSM_sequential_state_reg[0](BEL: AFF)
+		Net: i_en_IBUF
+		Net: deserializer_inst_a/state[0]
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/next_state[0]
+		Net: i_rst_IBUF
+	SLICE_X84Y148, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/ov_dout_reg[5](BEL: AFF)
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[5]
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/ov_dout
+		Net: GLOBAL_LOGIC0
+		Net: deserializer_inst_a/Q[5]
+	SLICE_X74Y3, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/shift_reg[9]_i_1__0(BEL: A5LUT)
+		Net: deserializer_inst_a/state[1]
+		Net: deserializer_inst_a/shift_reg0_in[9]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[10]
+	SLICE_X111Y34, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/shift_reg_reg[2](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[2]
+		Net: deserializer_inst_a/shift_reg0_in[2]
+		Net: i_rst_IBUF
+		Net: deserializer_inst_a/shift_reg[15]_i_1_n_0
+	SLICE_X84Y147, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/ov_dout_reg[0](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/ov_dout
+		Net: GLOBAL_LOGIC0
+		Net: deserializer_inst_a/Q[0]
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[0]
+	SLICE_X74Y4, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/des_o_valid_i_1(BEL: A5LUT)
+		Net: deserializer_inst_b/o_dout_valid_reg_0
+		Net: deserializer_inst_a/o_dout_valid_reg_n_0
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/des_o_valid0
+	SLICE_X111Y37, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/shift_reg_reg[15](BEL: AFF)
+		Net: deserializer_inst_a/shift_reg0_in[15]
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[15]
+		Net: i_rst_IBUF
+		Net: deserializer_inst_a/shift_reg[15]_i_1_n_0
+	SLICE_X84Y146, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/shift_reg_reg[6](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[6]
+		Net: i_rst_IBUF
+		Net: deserializer_inst_a/shift_reg0_in[6]
+		Net: deserializer_inst_a/shift_reg[15]_i_1_n_0
+	SLICE_X74Y1, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/shift_reg[7]_i_1__0(BEL: A5LUT)
+		Net: deserializer_inst_a/state[1]
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[8]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/shift_reg0_in[7]
+	SLICE_X111Y36, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/shift_reg_reg[11](BEL: AFF)
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[11]
+		Net: i_clk_IBUF
+		Net: i_rst_IBUF
+		Net: deserializer_inst_a/shift_reg0_in[11]
+		Net: deserializer_inst_a/shift_reg[15]_i_1_n_0
+	SLICE_X84Y145, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/ov_dout_reg[15](BEL: AFF)
+		Net: deserializer_inst_a/Q[15]
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[15]
+		Net: deserializer_inst_a/ov_dout
+		Net: GLOBAL_LOGIC0
+	SLICE_X74Y2, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/shift_reg[14]_i_1__0(BEL: A5LUT)
+		Net: deserializer_inst_a/state[1]
+		Net: deserializer_inst_a/shift_reg0_in[14]
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[15]
+		Net: GLOBAL_LOGIC1
+	SLICE_X111Y31, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/ov_dout_reg[11](BEL: AFF)
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[11]
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/Q[11]
+		Net: deserializer_inst_a/ov_dout
+		Net: GLOBAL_LOGIC0
+	SLICE_X91Y59, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/ov_dout_reg[8](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/Q[8]
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[8]
+		Net: deserializer_inst_a/ov_dout
+		Net: GLOBAL_LOGIC0
+	SLICE_X74Y7, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/o_dout_valid_i_1__1(BEL: A5LUT)
+		Net: deserializer_inst_a/state[1]
+		Net: deserializer_inst_a/state[0]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/o_dout_valid_i_1__1_n_0
+	SLICE_X111Y30, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/counter_reg[3](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/counter_reg_n_0_[3]
+		Net: deserializer_inst_a/counter[3]
+		Net: deserializer_inst_a/counter[4]_i_1__0_n_0
+		Net: i_rst_IBUF
+	SLICE_X74Y8, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/counter[4]_i_1__0(BEL: A5LUT)
+		Net: i_en_IBUF
+		Net: deserializer_inst_a/state[0]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/counter[4]_i_1__0_n_0
+	SLICE_X111Y33, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/FSM_sequential_state_reg[1](BEL: AFF)
+		Net: deserializer_inst_a/state[1]
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/next_state[1]
+		Net: i_rst_IBUF
+	SLICE_X91Y57, SLICEL
+		BEL: AFF, Cell: deserializer_inst_a/ov_dout_reg[4](BEL: AFF)
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[4]
+		Net: i_clk_IBUF
+		Net: deserializer_inst_a/ov_dout
+		Net: deserializer_inst_a/Q[4]
+		Net: GLOBAL_LOGIC0
+	SLICE_X74Y5, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/shift_reg[0]_i_1__0(BEL: A5LUT)
+		Net: deserializer_inst_a/state[1]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/shift_reg0_in[0]
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[1]
+	SLICE_X39Y131, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/shift_reg[12]_i_1__0(BEL: A5LUT)
+		Net: deserializer_inst_a/state[1]
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[13]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/shift_reg0_in[12]
+	SLICE_X74Y6, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/shift_reg[2]_i_1__0(BEL: A5LUT)
+		Net: deserializer_inst_a/state[1]
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[3]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/shift_reg0_in[2]
+	SLICE_X39Y130, SLICEL
+		BEL: A5LUT, Cell: deserializer_inst_a/shift_reg[10]_i_1__0(BEL: A5LUT)
+		Net: deserializer_inst_a/state[1]
+		Net: deserializer_inst_a/shift_reg_reg_n_0_[11]
+		Net: GLOBAL_LOGIC1
+		Net: deserializer_inst_a/shift_reg0_in[10]
+	SLICE_X39Y133, SLICEL
+		BEL: AFF, Cell: des_o_valid_reg(BEL: AFF)
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC1
+		Net: GLOBAL_LOGIC0
+		Net: des_o_valid
+		Net: deserializer_inst_a/des_o_valid0
+	SLICE_X39Y132, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[1](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: serializer_inst/shift_reg[1]
+		Net: GLOBAL_LOGIC0
+		Net: serializer_inst/shift_reg[15]_i_1__1_n_0
+		Net: serializer_inst/shift_reg_reg_n_0_[1]
+	SLICE_X74Y9, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[9](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: serializer_inst/shift_reg_reg_n_0_[9]
+		Net: GLOBAL_LOGIC0
+		Net: serializer_inst/shift_reg[15]_i_1__1_n_0
+		Net: serializer_inst/shift_reg[9]
+	SLICE_X39Y135, SLICEL
+		BEL: AFF, Cell: serializer_inst/o_dout_valid_reg(BEL: AFF)
+		Net: i_en_IBUF
+		Net: i_clk_IBUF
+		Net: serializer_inst/o_dout_valid_i_1_n_0
+		Net: i_rst_IBUF
+		Net: serializer_inst/o_valid_OBUF
+	SLICE_X39Y134, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[5](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC0
+		Net: serializer_inst/shift_reg[15]_i_1__1_n_0
+		Net: serializer_inst/shift_reg[5]
+		Net: serializer_inst/shift_reg_reg_n_0_[5]
+	SLICE_X39Y137, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[12](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC0
+		Net: serializer_inst/shift_reg[15]_i_1__1_n_0
+		Net: serializer_inst/shift_reg_reg_n_0_[12]
+		Net: serializer_inst/shift_reg[12]
+	SLICE_X39Y136, SLICEL
+		BEL: AFF, Cell: serializer_inst/counter_reg[0](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: serializer_inst/p_0_in[0]
+		Net: serializer_inst/counter[4]_i_1_n_0
+		Net: GLOBAL_LOGIC0
+		Net: serializer_inst/counter_reg[0]
+	SLICE_X39Y139, SLICEL
+		BEL: AFF, Cell: serializer_inst/counter_reg[4](BEL: AFF)
+		Net: i_clk_IBUF
+		Net: serializer_inst/counter[4]_i_1_n_0
+		Net: GLOBAL_LOGIC0
+		Net: serializer_inst/counter_reg[4]
+		Net: serializer_inst/p_0_in[4]
+	SLICE_X39Y138, SLICEL
+		BEL: AFF, Cell: serializer_inst/shift_reg_reg[4](BEL: AFF)
+		Net: serializer_inst/shift_reg[4]
+		Net: i_clk_IBUF
+		Net: GLOBAL_LOGIC0
+		Net: serializer_inst/shift_reg_reg_n_0_[4]
+		Net: serializer_inst/shift_reg[15]_i_1__1_n_0
+
+Printing All Nets...
+	Net: serializer_inst/shift_reg[1]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: clas/b[3]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: i_din_a_IBUF
+		SitePinInst: A5 isRouted() = false
+	Net: clas/ov_sum_reg[15]_0[11]
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/a[6]
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+	Net: clas/b[12]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A4 isRouted() = false
+	Net: deserializer_inst_b/o_dout_valid_i_1__0_n_0
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: deserializer_inst_a/Q[0]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/cla/c_100_out
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: A1 isRouted() = false
+	Net: i_en
+		SitePinInsts: None!
+	Net: deserializer_inst_b/shift_reg_reg_n_0_[2]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_a/o_ready_i_1__0_n_0
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: clas/comb_sum[4]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_b/Q[12]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_a/shift_reg0_in[15]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_a/Q[15]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_b/Q[9]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_b/shift_reg_reg_n_0_[15]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/ov_sum_reg[15]_0[0]
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_a/counter[0]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: serializer_inst/shift_reg_reg_n_0_[10]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: serializer_inst/shift_reg[0]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: clas/a[5]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/ov_sum_reg[15]_0[10]
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/comb_sum[3]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: clas/b[13]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A2 isRouted() = false
+	Net: deserializer_inst_b/shift_reg[15]_i_2__1_n_0
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: clas/b[2]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A6 isRouted() = false
+	Net: deserializer_inst_b/shift_reg_reg_n_0_[3]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A5 isRouted() = false
+	Net: deserializer_inst_b/Q[11]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: o_sum
+		SitePinInsts: None!
+	Net: deserializer_inst_a/shift_reg0_in[14]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: deserializer_inst_b/o_ready_reg_0
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A5 isRouted() = false
+	Net: serializer_inst/shift_reg[15]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_b/Q[8]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/a[8]
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+	Net: deserializer_inst_a/counter[1]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: clas/ov_sum_reg[15]_0[13]
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: serializer_inst/shift_reg_reg_n_0_[1]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/b[5]
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+	Net: clas/comb_sum[2]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: A isRouted() = false
+	Net: deserializer_inst_b/shift_reg_reg_n_0_[0]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_b/Q[10]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/b[10]
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_b/ov_dout[15]_i_1__0_n_0
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: A isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+	Net: clas/ov_sum_reg[15]_0[2]
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_b/counter_reg_n_0_[3]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/o_cout_OBUF
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_a/counter[2]
+		SitePinInst: A isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_b/next_state[1]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: clas/ov_sum_reg[15]_0[12]
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/b[4]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/a[7]
+		SitePinInst: A6 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+	Net: serializer_inst/o_dout_valid_i_1_n_0
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: i_rst_IBUF
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+	Net: clas/comb_sum[1]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_b/shift_reg_reg_n_0_[1]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+		SitePinInst: A5 isRouted() = false
+	Net: deserializer_inst_b/o_dout_valid_reg_0
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A5 isRouted() = false
+	Net: clas/b[11]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+	Net: deserializer_inst_b/counter_reg_n_0_[4]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A6 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+	Net: clas/ov_sum_reg[15]_0[1]
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_b/next_state[0]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_b/counter_reg_n_0_[0]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+	Net: i_rst
+		SitePinInsts: None!
+	Net: serializer_inst/shift_reg_reg_n_0_[3]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/a[2]
+		SitePinInst: A6 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A5 isRouted() = false
+	Net: clas/comb_sum[10]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: deserializer_inst_a/shift_reg0_in[11]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: i_valid_IBUF
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A6 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A6 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+	Net: deserializer_inst_a/counter_reg_n_0_[0]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+	Net: clas/comb_sum[9]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: serializer_inst/p_0_in[0]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_a/Q[4]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_a/shift_reg_reg_n_0_[7]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_b/counter_reg_n_0_[1]
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A4 isRouted() = false
+	Net: deserializer_inst_a/shift_reg0_in[1]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: serializer_inst/shift_reg_reg_n_0_[13]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: i_ready_IBUF
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+	Net: deserializer_inst_a/shift_reg_reg_n_0_[10]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A5 isRouted() = false
+	Net: clas/cla/c_5__2
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+	Net: GLOBAL_LOGIC0
+		SitePinInsts: None!
+	Net: GLOBAL_LOGIC1
+		SitePinInsts: None!
+	Net: clas/a[1]
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: serializer_inst/shift_reg_reg_n_0_[2]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/comb_sum[7]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: deserializer_inst_a/shift_reg0_in[10]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: o_valid
+		SitePinInsts: None!
+	Net: deserializer_inst_a/shift_reg_reg_n_0_[6]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/comb_sum[8]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: deserializer_inst_a/Q[3]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/cla/c_11__2
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+	Net: deserializer_inst_a/shift_reg0_in[0]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: serializer_inst/shift_reg_reg_n_0_[14]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_b/counter_reg_n_0_[2]
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A6 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: serializer_inst/next_state[0]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_a/shift_reg_reg_n_0_[11]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+		SitePinInst: A5 isRouted() = false
+	Net: deserializer_inst_a/shift_reg_reg_n_0_[12]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_b/o_ready_i_2_n_0
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: clas/a[4]
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: des_o_valid
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: serializer_inst/shift_reg_reg_n_0_[11]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: serializer_inst/shift_reg_reg_n_0_[5]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/b[1]
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+	Net: deserializer_inst_b/counter[4]_i_2__0_n_0
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: deserializer_inst_a/Q[2]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/comb_sum[12]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_a/shift_reg0_in[13]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: clas/comb_sum[6]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_a/counter_reg_n_0_[2]
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A6 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_a/shift_reg_reg_n_0_[9]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_a/shift_reg0_in[3]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: serializer_inst/p_0_in[2]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: serializer_inst/next_state[1]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_a/shift_reg_reg_n_0_[13]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+		SitePinInst: A5 isRouted() = false
+	Net: serializer_inst/shift_reg_reg_n_0_[12]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: i_din_a
+		SitePinInsts: None!
+	Net: serializer_inst/shift_reg_reg_n_0_[4]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/b[0]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_a/Q[1]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: i_din_b
+		SitePinInsts: None!
+	Net: clas/a[3]
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+	Net: serializer_inst/ser_ready
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+	Net: clas/comb_sum[11]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_a/shift_reg0_in[12]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: serializer_inst/shift_reg[15]_i_1__1_n_0
+		SitePinInst: CE isRouted() = false
+		SitePinInst: A isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+	Net: clas/comb_sum[5]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: serializer_inst/FSM_sequential_state[1]_i_2_n_0
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A isRouted() = false
+	Net: deserializer_inst_a/counter_reg_n_0_[1]
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+	Net: deserializer_inst_a/counter[4]_i_3_n_0
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: serializer_inst/p_0_in[1]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_a/shift_reg_reg_n_0_[8]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_a/counter[4]_i_1__0_n_0
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: deserializer_inst_a/shift_reg0_in[2]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: deserializer_inst_b/shift_reg[15]_i_1__0_n_0
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+	Net: clas/c_60
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A isRouted() = false
+	Net: serializer_inst/state[0]
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A6 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_b/Q[1]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_a/shift_reg_reg_n_0_[14]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: o_cout
+		SitePinInsts: None!
+	Net: serializer_inst/shift_reg[9]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: serializer_inst/shift_reg_reg_n_0_[7]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/comb_sum[14]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: deserializer_inst_a/o_ready_OBUF
+		SitePinInst: AMUX isRouted() = false
+	Net: deserializer_inst_a/Q[8]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/comb_sum[15]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_a/shift_reg_reg_n_0_[3]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A5 isRouted() = false
+	Net: clas/a[15]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+	Net: clas/cla/c_12__2
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: A1 isRouted() = false
+	Net: deserializer_inst_a/counter_reg_n_0_[4]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A6 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+	Net: clas/ov_sum_reg[15]_0[8]
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_a/shift_reg0_in[5]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: clas/cla/c_9__2
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: serializer_inst/p_0_in[4]
+		SitePinInst: A isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: serializer_inst/state[1]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_b/Q[0]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_a/state[1]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+	Net: deserializer_inst_a/shift_reg_reg_n_0_[15]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+		SitePinInst: A5 isRouted() = false
+	Net: deserializer_inst_a/next_state[0]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_a/o_ready_reg_n_0
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A4 isRouted() = false
+	Net: deserializer_inst_a/des_o_valid0
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: serializer_inst/shift_reg[8]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: serializer_inst/shift_reg_reg_n_0_[6]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/comb_sum[13]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: clas/cla/p_0
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_a/Q[7]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_b/FSM_sequential_state[0]_i_2__0_n_0
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A isRouted() = false
+	Net: deserializer_inst_a/counter_reg_n_0_[3]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/ov_sum_reg[15]_0[7]
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/a[14]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+	Net: deserializer_inst_a/shift_reg0_in[4]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: serializer_inst/p_0_in[3]
+		SitePinInst: A isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_a/shift_reg_reg_n_0_[2]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_a/state[0]
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+	Net: deserializer_inst_b/counter[0]_i_1__0_n_0
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_b/counter[2]_i_1__0_n_0
+		SitePinInst: A isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_b/shift_reg_reg_n_0_[8]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_b/counter[3]_i_1__0_n_0
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: clas/a[0]
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_a/next_state[1]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: serializer_inst/shift_reg_reg_n_0_[9]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: i_ready
+		SitePinInsts: None!
+	Net: serializer_inst/shift_reg[7]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_b/shift_reg[7]_i_1__1_n_0
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_a/shift_reg_reg_n_0_[5]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_b/shift_reg[9]_i_1__1_n_0
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: deserializer_inst_b/shift_reg[8]_i_1__1_n_0
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_a/Q[6]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: serializer_inst/shift_reg_reg_n_0_[15]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/cla/c_3__2
+		SitePinInst: A isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A6 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+	Net: deserializer_inst_b/Q[3]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_a/shift_reg0_in[7]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: serializer_inst/shift_reg[10]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: clas/cla/p_5__0
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: A1 isRouted() = false
+	Net: deserializer_inst_b/counter[1]_i_1__0_n_0
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_b/shift_reg_reg_n_0_[10]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_b/shift_reg[1]_i_1__1_n_0
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: deserializer_inst_b/shift_reg_reg_n_0_[9]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: serializer_inst/counter_reg[4]
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_b/shift_reg[0]_i_1__1_n_0
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: deserializer_inst_a/o_dout_valid_i_1__1_n_0
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: serializer_inst/shift_reg_reg_n_0_[8]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_b/shift_reg[6]_i_1__1_n_0
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: serializer_inst/shift_reg[6]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_b/shift_reg[11]_i_1__1_n_0
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_a/shift_reg_reg_n_0_[4]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_b/shift_reg[13]_i_1__1_n_0
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_b/shift_reg[5]_i_1__1_n_0
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: i_din_b_IBUF
+		SitePinInst: A5 isRouted() = false
+	Net: clas/ov_sum_reg[15]_0[9]
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_a/Q[5]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_b/shift_reg[4]_i_1__1_n_0
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_b/shift_reg[14]_i_1__1_n_0
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: clas/cla/c_13__2
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: deserializer_inst_b/shift_reg[10]_i_1__1_n_0
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: deserializer_inst_b/shift_reg[3]_i_1__1_n_0
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: serializer_inst/Q[0]
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_a/Q[10]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/cla/c_8__2
+		SitePinInst: A isRouted() = false
+		SitePinInst: A1 isRouted() = false
+	Net: deserializer_inst_a/shift_reg0_in[6]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_b/shift_reg[2]_i_1__1_n_0
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_b/Q[2]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_b/shift_reg[12]_i_1__1_n_0
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: serializer_inst/shift_reg[5]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: clas/b[7]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_a/counter[3]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_a/shift_reg0_in[9]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: clas/ov_sum_reg[15]_0[15]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_b/shift_reg_reg_n_0_[6]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_a/FSM_sequential_state[0]_i_2_n_0
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A isRouted() = false
+	Net: clas/comb_cout
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: clas/g_5
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+	Net: i_valid
+		SitePinInsts: None!
+	Net: clas/a[11]
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+	Net: serializer_inst/counter_reg[3]
+		SitePinInst: A6 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/ov_sum_reg[15]_0[4]
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_a/Q[11]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_b/Q[5]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: serializer_inst/shift_reg[12]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_a/o_dout_valid
+		SitePinInst: AMUX isRouted() = false
+	Net: deserializer_inst_b/shift_reg_reg_n_0_[11]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: serializer_inst/shift_reg[4]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: clas/a[9]
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/ov_sum_reg[15]_0[14]
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_b/shift_reg_reg_n_0_[7]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/b[6]
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+	Net: deserializer_inst_a/counter[4]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: clas/a[10]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A4 isRouted() = false
+	Net: serializer_inst/counter[4]_i_1_n_0
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+	Net: serializer_inst/o_ready_i_1__1_n_0
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_a/Q[12]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: o_ready
+		SitePinInsts: None!
+	Net: i_clk
+		SitePinInsts: None!
+	Net: clas/ov_sum_reg[15]_0[3]
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: serializer_inst/counter_reg[2]
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: serializer_inst/shift_reg[11]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_b/Q[15]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_b/Q[4]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: serializer_inst/o_valid_OBUF
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_b/shift_reg_reg_n_0_[12]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_a/shift_reg0_in[8]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_b/shift_reg_reg_n_0_[4]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: serializer_inst/shift_reg[3]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: clas/b[9]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+	Net: deserializer_inst_a/ov_dout
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: A isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+	Net: deserializer_inst_b/state[1]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/b[14]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_b/counter[4]_i_3__0_n_0
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: A2 isRouted() = false
+	Net: i_clk_IBUF
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+		SitePinInst: CLK isRouted() = false
+	Net: clas/ov_sum_reg[15]_0[6]
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/a[13]
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A1 isRouted() = false
+	Net: deserializer_inst_a/Q[13]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/cla/c_14__2
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+	Net: deserializer_inst_b/Q[7]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: serializer_inst/counter_reg[1]
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A6 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: serializer_inst/shift_reg[14]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_a/shift_reg_reg_n_0_[1]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+		SitePinInst: A5 isRouted() = false
+	Net: deserializer_inst_b/shift_reg_reg_n_0_[13]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+		SitePinInst: A5 isRouted() = false
+	Net: clas/cla/c_7__2
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: A3 isRouted() = false
+	Net: deserializer_inst_b/Q[14]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/b[8]
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+	Net: deserializer_inst_b/shift_reg_reg_n_0_[5]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: i_en_IBUF
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+	Net: serializer_inst/shift_reg[2]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst_b/state[0]
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: clas/b[15]
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A5 isRouted() = false
+	Net: deserializer_inst_a/Q[9]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_a/o_dout_valid_reg_n_0
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: A4 isRouted() = false
+	Net: clas/a[12]
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_a/Q[14]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: serializer_inst/counter_reg[0]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A2 isRouted() = false
+		SitePinInst: A4 isRouted() = false
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: A6 isRouted() = false
+		SitePinInst: A1 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: serializer_inst/shift_reg[13]
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: AX isRouted() = false
+	Net: clas/ov_sum_reg[15]_0[5]
+		SitePinInst: A3 isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_b/Q[6]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_b/counter[4]_i_1__1_n_0
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+	Net: deserializer_inst_b/shift_reg_reg_n_0_[14]
+		SitePinInst: A5 isRouted() = false
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_a/shift_reg[15]_i_1_n_0
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: AMUX isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+		SitePinInst: CE isRouted() = false
+	Net: deserializer_inst_b/Q[13]
+		SitePinInst: AX isRouted() = false
+		SitePinInst: AQ isRouted() = false
+	Net: deserializer_inst_a/shift_reg_reg_n_0_[0]
+		SitePinInst: AQ isRouted() = false
+		SitePinInst: AX isRouted() = false

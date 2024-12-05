@@ -132,7 +132,7 @@ public class PlacerPackingHier extends Placer {
         for (String edifCellType : uniqueEdifCellTypes) {
             writer.write("\n\t" + edifCellType);
         }
-        writer.write("\nPrinting Cells By Type...");
+        writer.write("\nPrinting EDIFCells By Type...");
         for (Map.Entry<String, List<EDIFHierCellInst>> entry : EDIFCellGroups.entrySet()) {
             writer.write("\n\n" + entry.getKey() + " Cells (" + entry.getValue().size() + "):");
             List<EDIFCellInst> cells = entry.getValue().stream()
@@ -223,9 +223,13 @@ public class PlacerPackingHier extends Placer {
 
         } // end for (List<EDIFCellInst> chain : EDIFCarryChains)
 
-        writer.write("\n\nSpawning remaining cells...");
+        List<String> skipCells = Arrays.asList("IBUF", "OBUF", "GND", "VCC", "CARRY4");
+
         // SPAWN CELLS IN REMAINING GROUPS
+        writer.write("\n\nSpawning remaining cells...");
         for (Map.Entry<String, List<EDIFHierCellInst>> entry : EDIFCellGroups.entrySet()) {
+            if (skipCells.contains(entry.getKey()))
+                continue;
             String edifCellType = entry.getKey();
             List<EDIFHierCellInst> edifCells = entry.getValue();
             for (EDIFHierCellInst edifCell : edifCells) {
@@ -235,12 +239,11 @@ public class PlacerPackingHier extends Placer {
             }
         }
 
-        writer.write("\n\nPlacing remaining cells...");
         // PLACE REMAINING CELLS
+        writer.write("\n\nPlacing remaining cells...");
         for (Map.Entry<String, List<Cell>> entry : cellGroups.entrySet()) {
             String cellType = entry.getKey();
-            List<String> skip = Arrays.asList("IBUF", "OBUF", "GND", "VCC", "CARRY4");
-            if (skip.contains(cellType))
+            if (skipCells.contains(cellType))
                 continue;
             List<Cell> cells = entry.getValue();
             writer.write("\n\tPlacing " + cellType + " cells...");
@@ -253,120 +256,29 @@ public class PlacerPackingHier extends Placer {
             }
         }
 
-        Collection<SiteInst> siteInsts = design.getSiteInsts();
-        writer.write("\n\nRouting all siteInsts in design... (" + siteInsts.size() + ")");
-        System.out.println("\nRouting all siteInsts in design... (" + siteInsts.size() + ")");
-        for (SiteInst si : siteInsts) {
-            writer.write("\n\tsiteInst: " + si.getSiteTypeEnum() + ": " + si.getName());
-            System.out.println("\tsiteInst: " + si.getSiteTypeEnum() + ": " + si.getName());
-            Collection<Cell> cells = si.getCells();
-            for (Cell cell : cells) {
-                writer.write("\n\t\tCell: " + cell.getType() + ": " + cell.getName());
-                System.out.println("\t\tCell: " + cell.getType() + ": " + cell.getName());
-                EDIFHierCellInst ehci = cell.getEDIFHierCellInst();
-                writer.write("\n\t\tEDIFCell: " + ehci.getFullHierarchicalInstName());
-                System.out.println("\t\tEDIFCell: " + ehci.getFullHierarchicalInstName());
-                List<EDIFHierPortInst> ehpis = ehci.getHierPortInsts();
-                for (EDIFHierPortInst ehpi : ehpis) {
-                    writer.write("\n\t\t\tEDIFHierPortInst: " + ehpi.getFullHierarchicalInstName());
-                    System.out.println("\t\t\tEDIFHierPortInst: " + ehpi.getFullHierarchicalInstName());
-                    EDIFNet net = ehpi.getNet();
-                    writer.write("\n\t\t\t\tNet: " + net.getName());
-                    System.out.println("\t\t\t\tNet: " + net.getName());
-                    Collection<EDIFPortInst> ports = net.getPortInsts();
-                    for (EDIFPortInst port : ports) {
-                        writer.write("\n\t\t\t\t\tPortInst: " + port.getFullName());
-                        System.out.println("\t\t\t\t\tPortInst: " + port.getFullName());
-                        EDIFCellInst inst = port.getCellInst();
-                        if (inst != null) {
-                            writer.write("\n\t\t\t\t\t\tCellInst: "
-                                    + port.getCellInst().getName() + ": " + port.getCellInst().getCellType());
-                            System.out.println("\t\t\t\t\t\tCellInst: "
-                                    + port.getCellInst().getName() + ": " + port.getCellInst().getCellType());
-                        } else {
-                            writer.write("\n\t\t\t\t\t\tCellInst: NULL!");
-                            System.out.println("\t\t\t\t\t\tCellInst: NULL!");
-                        }
-                    }
-                    // EDIFHierNet hnet = ehpi.getHierarchicalNet();
-                    // System.out.println("\t\t\t\tNet: " + hnet.getNet().getName());
-                    // Collection<EDIFHierPortInst> ports = hnet.getLeafHierPortInsts();
-                    // for (EDIFHierPortInst port : ports) {
-                    // System.out.println("\t\t\t\t\tPortInst: " +
-                    // port.getFullHierarchicalInstName());
-                    // EDIFHierCellInst inst = port.getHierarchicalInst();
-                    // if (inst != null)
-                    // System.out.println("\t\t\t\t\t\tCellInst: "
-                    // + port.getHierarchicalInst().getFullHierarchicalInstName());
-                    // else
-                    // System.out.println("\t\t\t\t\t\tCellInst: NULL!");
-                    // }
-                }
-            }
+        writer.write("\n\nIntra-Routing SiteInsts... ");
 
-            si.routeSite();
-        }
-
-        // // printOccupiedSites(occupiedPlacements);
-        // for (String siteName : occupiedPlacements.keySet()) {
-        // design.getSiteInst(siteName).routeSite();
+        // List<SiteTypeEnum> skipSites = Arrays.asList(
+        // SiteTypeEnum.ILOGICE2,
+        // SiteTypeEnum.ILOGICE3,
+        // SiteTypeEnum.OLOGICE2,
+        // SiteTypeEnum.OLOGICE3,
+        // SiteTypeEnum.IOB33,
+        // SiteTypeEnum.IOB18,
+        // SiteTypeEnum.OPAD);
+        // for (SiteInst si : design.getSiteInsts()) {
+        // writer.write("\n\tsiteInst: " + si.getName() + ": " + si.getSiteTypeEnum());
+        // if (skipSites.contains(si.getSiteTypeEnum())) {
+        // writer.write("SKIPPING!");
+        // continue;
+        // }
+        // si.routeSite();
         // }
 
-        // routeAllSites(occupiedPlacements);
-
-        printOccupiedSites(occupiedPlacements);
-    }
-
-    private void routeAllSites(Map<String, List<String>> occupiedPlacements) throws IOException {
         for (String siteName : occupiedPlacements.keySet()) {
-            SiteInst si = design.getSiteInst(siteName);
-            if (si.getSiteTypeEnum() == SiteTypeEnum.DSP48E1) {
-                System.out.println("Skipping: " + si.getName());
-                continue;
-            }
-            if (si.getSiteTypeEnum() == SiteTypeEnum.RAMB18E1) {
-                // routeRAMSite(si);
-                System.out.println("Skipping: " + si.getName());
-                continue;
-            }
-            Collection<Cell> cells = si.getCells();
-            if (cells.stream().anyMatch(cell -> "FDRE".equals(cell.getType()))) {
-                // si.routeSite();
-                System.out.println("Skipping: " + si.getName());
-                continue;
-            }
-
-            writer.write("\nSiteInst: " + si.getName() + ", Type: " + si.getSiteTypeEnum());
-            System.out.println("SiteInst: " + si.getName() + ", Type: " + si.getSiteTypeEnum());
-            boolean isFDRE = false;
-            for (Cell cell : si.getCells()) {
-                System.out.println(cell.getType());
-                if (cell.getType().contains("FDRE")) {
-                    isFDRE = true;
-                    System.out.println("Found FDRE.");
-                }
-
-                BEL bel = cell.getBEL();
-                writer.write("\n\tCell: " + cell.getName() + ", BEL: " + bel.getName());
-                System.out.print("\tCell: " + cell.getName() + ", BEL: " + bel.getName());
-
-                BELPin[] belpins = bel.getPins();
-                for (BELPin bp : belpins) {
-                    writer.write("\n\t\tBELPin: " + bp.getName());
-                    System.out.println("\t\tBELPin: " + bp.getName());
-                    ArrayList<BELPin> conns = bp.getSiteConns();
-                    for (BELPin c : conns) {
-                        writer.write("\n\t\t\tBELPin: " + c.getName() + " @BEL: " + c.getBEL());
-                        System.out.println("\t\t\tBELPin: " + c.getName() + " @BEL: " + c.getBEL());
-                    }
-                }
-            }
-            design.writeCheckpoint(placedDcp);
-            System.out.println("Attempting route: " + si.getName());
-            si.routeSite();
-            System.out.println("Route success!");
-            System.out.println();
+            design.getSiteInst(siteName).routeSite();
         }
+        printOccupiedSites(occupiedPlacements);
     }
 
     private void placeCarryCell(Cell cell, Site site, BEL bel, Map<String, List<String>> occupiedPlacements)

@@ -1,4 +1,83 @@
 
+        // List<SiteTypeEnum> skipSites = Arrays.asList(
+        // SiteTypeEnum.ILOGICE2,
+        // SiteTypeEnum.ILOGICE3,
+        // SiteTypeEnum.OLOGICE2,
+        // SiteTypeEnum.OLOGICE3,
+        // SiteTypeEnum.IOB33,
+        // SiteTypeEnum.IOB18,
+        // SiteTypeEnum.OPAD);
+        // for (SiteInst si : design.getSiteInsts()) {
+        // writer.write("\n\tsiteInst: " + si.getName() + ": " + si.getSiteTypeEnum());
+        // if (skipSites.contains(si.getSiteTypeEnum())) {
+        // writer.write("SKIPPING!");
+        // continue;
+        // }
+        // si.routeSite();
+        // }
+
+
+
+        Collection<SiteInst> siteInsts = design.getSiteInsts();
+        writer.write("\n\nRouting all siteInsts in design... (" + siteInsts.size() + ")");
+        System.out.println("\nRouting all siteInsts in design... (" + siteInsts.size() + ")");
+        for (SiteInst si : siteInsts) {
+            writer.write("\n\tsiteInst: " + si.getSiteTypeEnum() + ": " + si.getName());
+            System.out.println("\tsiteInst: " + si.getSiteTypeEnum() + ": " + si.getName());
+            if (skipSites.contains(si.getSiteTypeEnum())) {
+                writer.write("\n\tSKIPPING!");
+                System.out.println("\tSKIPPING!");
+                continue;
+            }
+            Collection<Cell> cells = si.getCells();
+            for (Cell cell : cells) {
+                writer.write("\n\t\tCell: " + cell.getType() + ": " + cell.getName());
+                System.out.println("\t\tCell: " + cell.getType() + ": " + cell.getName());
+                EDIFHierCellInst ehci = cell.getEDIFHierCellInst();
+                writer.write("\n\t\tEDIFCell: " + ehci.getFullHierarchicalInstName());
+                System.out.println("\t\tEDIFCell: " + ehci.getFullHierarchicalInstName());
+                List<EDIFHierPortInst> ehpis = ehci.getHierPortInsts();
+                for (EDIFHierPortInst ehpi : ehpis) {
+                    writer.write("\n\t\t\tEDIFHierPortInst: " + ehpi.getFullHierarchicalInstName());
+                    System.out.println("\t\t\tEDIFHierPortInst: " + ehpi.getFullHierarchicalInstName());
+                    EDIFNet net = ehpi.getNet();
+                    writer.write("\n\t\t\t\tNet: " + net.getName());
+                    System.out.println("\t\t\t\tNet: " + net.getName());
+                    Collection<EDIFPortInst> ports = net.getPortInsts();
+                    for (EDIFPortInst port : ports) {
+                        writer.write("\n\t\t\t\t\tPortInst: " + port.getFullName());
+                        System.out.println("\t\t\t\t\tPortInst: " + port.getFullName());
+                        EDIFCellInst inst = port.getCellInst();
+                        if (inst != null) {
+                            writer.write("\n\t\t\t\t\t\tCellInst: "
+                                    + port.getCellInst().getName() + ": " + port.getCellInst().getCellType());
+                            System.out.println("\t\t\t\t\t\tCellInst: "
+                                    + port.getCellInst().getName() + ": " + port.getCellInst().getCellType());
+                        } else {
+                            writer.write("\n\t\t\t\t\t\tCellInst: NULL!");
+                            System.out.println("\t\t\t\t\t\tCellInst: NULL!");
+                        }
+                    }
+                    // EDIFHierNet hnet = ehpi.getHierarchicalNet();
+                    // System.out.println("\t\t\t\tNet: " + hnet.getNet().getName());
+                    // Collection<EDIFHierPortInst> ports = hnet.getLeafHierPortInsts();
+                    // for (EDIFHierPortInst port : ports) {
+                    // System.out.println("\t\t\t\t\tPortInst: " +
+                    // port.getFullHierarchicalInstName());
+                    // EDIFHierCellInst inst = port.getHierarchicalInst();
+                    // if (inst != null)
+                    // System.out.println("\t\t\t\t\t\tCellInst: "
+                    // + port.getHierarchicalInst().getFullHierarchicalInstName());
+                    // else
+                    // System.out.println("\t\t\t\t\t\tCellInst: NULL!");
+                    // }
+                }
+            }
+
+            si.routeSite();
+        }
+
+
         for (Cell cell : CARRYCells) {
             // printCellNets(cell);
 
