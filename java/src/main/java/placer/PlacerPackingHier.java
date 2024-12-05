@@ -256,28 +256,10 @@ public class PlacerPackingHier extends Placer {
             }
         }
 
-        writer.write("\n\nIntra-Routing SiteInsts... ");
-
-        // List<SiteTypeEnum> skipSites = Arrays.asList(
-        // SiteTypeEnum.ILOGICE2,
-        // SiteTypeEnum.ILOGICE3,
-        // SiteTypeEnum.OLOGICE2,
-        // SiteTypeEnum.OLOGICE3,
-        // SiteTypeEnum.IOB33,
-        // SiteTypeEnum.IOB18,
-        // SiteTypeEnum.OPAD);
-        // for (SiteInst si : design.getSiteInsts()) {
-        // writer.write("\n\tsiteInst: " + si.getName() + ": " + si.getSiteTypeEnum());
-        // if (skipSites.contains(si.getSiteTypeEnum())) {
-        // writer.write("SKIPPING!");
-        // continue;
+        // writer.write("\n\nIntra-Routing SiteInsts... ");
+        // for (String siteName : occupiedPlacements.keySet()) {
+        // design.getSiteInst(siteName).routeSite();
         // }
-        // si.routeSite();
-        // }
-
-        for (String siteName : occupiedPlacements.keySet()) {
-            design.getSiteInst(siteName).routeSite();
-        }
         printOccupiedSites(occupiedPlacements);
     }
 

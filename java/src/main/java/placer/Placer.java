@@ -60,7 +60,7 @@ public abstract class Placer {
         printDesignNets(design);
         printEDIFHierCellInsts();
         placeDesign();
-        // manualIntraRouteSites();
+        manualIntraRouteSites();
         printDesignNets(design);
         writer.close();
         design.writeCheckpoint(placedDcp);
