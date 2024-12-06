@@ -1,4 +1,4 @@
-set design "adder"
+set design "fir_filter"
 set top_level "top_level"
 
 set root_dir "/home/bcheng/workspace/dev/place-and-route"

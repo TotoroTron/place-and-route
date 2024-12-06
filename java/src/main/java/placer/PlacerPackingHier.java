@@ -142,7 +142,7 @@ public class PlacerPackingHier extends Placer {
         }
 
         // BUILD CARRY CHAINS
-        List<List<EDIFHierCellInst>> EDIFCarryChains = new LinkedList<>();
+        List<List<EDIFHierCellInst>> EDIFCarryChains = new ArrayList<>();
         List<EDIFHierCellInst> EDIFCarryCells = EDIFCellGroups.get("CARRY4");
         while (!EDIFCarryCells.isEmpty()) {
             List<EDIFHierCellInst> chain = new ArrayList<>();
@@ -157,9 +157,17 @@ public class PlacerPackingHier extends Placer {
             }
         }
 
-        // PLACE ALL CARRY CELLS USING CARRY CHAIN STRUCTURE
-        // PLACE EACH CONSECUTIVE CELL IN CHAIN ONE TILE ABOVE
-        // FOR EACH CARRY CELL, PLACE CONNECTED LUTS AND FFS IN THE SAME SITE
+        List<List<EDIFHierCellInst>> EDIFDSPPairs = new ArrayList<>();
+        List<EDIFHierCellInst> EDIFDSPCells = EDIFCellGroups.get("DSP48E1");
+        // while (!EDIFDSPCells.isEmpty()) {
+
+        // }
+
+        List<List<EDIFHierCellInst>> EDIFLUTFFPairs = new ArrayList<>();
+        List<EDIFHierCellInst> EDIFFDRECells = EDIFCellGroups.get("FDRE");
+        // while (!EDIFFDRECells.isEmpty()) {
+
+        // }
 
         Map<String, List<Cell>> cellGroups = new LinkedHashMap<>();
         cellGroups.put("IBUF", new ArrayList<>());
@@ -175,9 +183,58 @@ public class PlacerPackingHier extends Placer {
         // List of occupied BELs
         Map<String, List<String>> occupiedPlacements = new HashMap<>();
 
-        printSitesOfType(SiteTypeEnum.SLICEL);
-        printSitesOfType(SiteTypeEnum.SLICEM);
+        placeCarryChains(EDIFCarryChains, occupiedPlacements);
 
+        List<String> skipCells = Arrays.asList("IBUF", "OBUF", "GND", "VCC", "CARRY4", "DSP48E1");
+
+        // SPAWN CELLS IN REMAINING GROUPS
+        writer.write("\n\nSpawning remaining cells...");
+        for (Map.Entry<String, List<EDIFHierCellInst>> entry : EDIFCellGroups.entrySet()) {
+            if (skipCells.contains(entry.getKey()))
+                continue;
+            String edifCellType = entry.getKey();
+            List<EDIFHierCellInst> edifCells = entry.getValue();
+            for (EDIFHierCellInst edifCell : edifCells) {
+                Cell cell = design.createCell(edifCell.getFullHierarchicalInstName(), edifCell.getInst());
+                // cell.setEDIFHierCellInst(edifCell);
+                cellGroups.get(edifCellType).add(cell);
+            }
+        }
+
+        // PLACE REMAINING CELLS
+        writer.write("\n\nPlacing remaining cells...");
+        for (Map.Entry<String, List<Cell>> entry : cellGroups.entrySet()) {
+            String cellType = entry.getKey();
+            if (skipCells.contains(cellType))
+                continue;
+            List<Cell> cells = entry.getValue();
+            writer.write("\n\tPlacing " + cellType + " cells...");
+            for (Cell cell : cells) {
+                writer.write("\n\t\t" + cell.getType() + " : " + cell.getName());
+
+                placeCell(cell, occupiedPlacements);
+                writer.write("\n\t\t\tPlaced cell: " + cell.getName() + " at " + cell.getSiteInst().getName() + " on "
+                        + cell.getBELName());
+            }
+        }
+
+        // writer.write("\n\nIntra-Routing SiteInsts... ");
+        // for (String siteName : occupiedPlacements.keySet()) {
+        // design.getSiteInst(siteName).routeSite();
+        // }
+        printOccupiedSites(occupiedPlacements);
+    }
+
+    private void placeDSPPairs(List<List<EDIFHierCellInst>> EDIFDSPPairs) {
+
+    }
+
+    private void placeLUTFFPairs(List<List<EDIFHierCellInst>> EDIFLUTFFPairs) {
+
+    }
+
+    private void placeCarryChains(List<List<EDIFHierCellInst>> EDIFCarryChains,
+            Map<String, List<String>> occupiedPlacements) throws IOException {
         writer.write("\n\nPlacing carry chains... (" + EDIFCarryChains.size() + ")");
 
         // PLACE CARRY CHAINS
@@ -223,44 +280,6 @@ public class PlacerPackingHier extends Placer {
 
         } // end for (List<EDIFCellInst> chain : EDIFCarryChains)
 
-        List<String> skipCells = Arrays.asList("IBUF", "OBUF", "GND", "VCC", "CARRY4");
-
-        // SPAWN CELLS IN REMAINING GROUPS
-        writer.write("\n\nSpawning remaining cells...");
-        for (Map.Entry<String, List<EDIFHierCellInst>> entry : EDIFCellGroups.entrySet()) {
-            if (skipCells.contains(entry.getKey()))
-                continue;
-            String edifCellType = entry.getKey();
-            List<EDIFHierCellInst> edifCells = entry.getValue();
-            for (EDIFHierCellInst edifCell : edifCells) {
-                Cell cell = design.createCell(edifCell.getFullHierarchicalInstName(), edifCell.getInst());
-                // cell.setEDIFHierCellInst(edifCell);
-                cellGroups.get(edifCellType).add(cell);
-            }
-        }
-
-        // PLACE REMAINING CELLS
-        writer.write("\n\nPlacing remaining cells...");
-        for (Map.Entry<String, List<Cell>> entry : cellGroups.entrySet()) {
-            String cellType = entry.getKey();
-            if (skipCells.contains(cellType))
-                continue;
-            List<Cell> cells = entry.getValue();
-            writer.write("\n\tPlacing " + cellType + " cells...");
-            for (Cell cell : cells) {
-                writer.write("\n\t\t" + cell.getType() + " : " + cell.getName());
-
-                placeCell(cell, occupiedPlacements);
-                writer.write("\n\t\t\tPlaced cell: " + cell.getName() + " at " + cell.getSiteInst().getName() + " on "
-                        + cell.getBELName());
-            }
-        }
-
-        // writer.write("\n\nIntra-Routing SiteInsts... ");
-        // for (String siteName : occupiedPlacements.keySet()) {
-        // design.getSiteInst(siteName).routeSite();
-        // }
-        printOccupiedSites(occupiedPlacements);
     }
 
     private void placeCarryCell(Cell cell, Site site, BEL bel, Map<String, List<String>> occupiedPlacements)
@@ -275,6 +294,15 @@ public class PlacerPackingHier extends Placer {
                     + cell.getType() + ", Attempted Site: " + site.getName() + ", Attempted BEL: "
                     + bel.getName());
         }
+    }
+
+    protected List<SiteInst> buildCarrySiteInsts(List<EDIFHierCellInst> chain) throws IOException {
+        List<SiteInst> carrySiteInsts = new ArrayList<>();
+        for (EDIFHierCellInst ehci : chain) {
+            SiteInst si = new SiteInst();
+
+        }
+        return carrySiteInsts;
     }
 
     private String findCarryChainAnchorSite(SiteTypeEnum selectedSiteType, List<EDIFHierCellInst> chain)
