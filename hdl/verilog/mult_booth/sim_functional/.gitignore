@@ -1,0 +1,5 @@
+*
+!.gitignore
+!simulate.sh
+!xsim_cfg.tcl
+!waveform.tcl

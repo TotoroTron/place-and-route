@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DESIGN="fir_filter"
+DESIGN="mult_booth"
 TOP_LEVEL="top_level"
 
 export XILINX_VIVADO=/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2
