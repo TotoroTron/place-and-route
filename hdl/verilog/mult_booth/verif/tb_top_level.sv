@@ -3,7 +3,7 @@
 
 module tb_top_level;
 
-    localparam DATA_WIDTH = 4;
+    localparam DATA_WIDTH = 16;
 
     reg tb_clk;
     reg tb_rst;
