@@ -296,10 +296,33 @@ public class PlacerPackingHier extends Placer {
         }
     }
 
-    protected List<SiteInst> buildCarrySiteInsts(List<EDIFHierCellInst> chain) throws IOException {
+    protected List<SiteInst> buildCarrySiteInsts(List<EDIFHierCellInst> chain,
+            Map<String, List<String>> occupiedPlacements) throws IOException {
         List<SiteInst> carrySiteInsts = new ArrayList<>();
         for (EDIFHierCellInst ehci : chain) {
             SiteInst si = new SiteInst();
+            si.createCell(ehci, si.getBEL("CARRY4"));
+
+            EDIFHierPortInst O0 = ehci.getPortInst("O0");
+            EDIFHierNet netO0 = O0.getHierarchicalNet();
+            EDIFHierPortInst sinkportO0 = netO0.getLeafHierPortInsts(false, true).get(0); // exclude sources, include
+            EDIFHierCellInst sinkcellO0 = sinkportO0.getHierarchicalInst()
+                    .getChild(sinkportO0.getPortInst().getCellInst().getName());
+            if (sinkcellO0.getCellType().getName() == "FDRE") {
+                si.createCell(sinkcellO0, si.getBEL("AFF"));
+            }
+
+            EDIFHierPortInst O1 = ehci.getPortInst("O1");
+            EDIFHierNet netO1 = O1.getHierarchicalNet();
+            EDIFHierPortInst O2 = ehci.getPortInst("O2");
+            EDIFHierNet netO2 = O2.getHierarchicalNet();
+            EDIFHierPortInst O3 = ehci.getPortInst("O3");
+            EDIFHierNet netO3 = O3.getHierarchicalNet();
+
+            EDIFHierPortInst S0 = ehci.getPortInst("S0");
+            EDIFHierPortInst S1 = ehci.getPortInst("S1");
+            EDIFHierPortInst S2 = ehci.getPortInst("S2");
+            EDIFHierPortInst S3 = ehci.getPortInst("S3");
 
         }
         return carrySiteInsts;
