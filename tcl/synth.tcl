@@ -1,4 +1,4 @@
-set design "mult_booth"
+set design "fir_filter"
 
 set root_dir "/home/bcheng/workspace/dev/place-and-route"
 set synthesized_dcp "$root_dir/outputs/synthesized.dcp" 

@@ -100,7 +100,7 @@ public class PlacerPackingHier extends Placer {
         List<EDIFHierCellInst> ehcis = netlist.getAllLeafHierCellInstances();
 
         // Create a map to group cells by type
-        Map<String, List<EDIFHierCellInst>> EDIFCellGroups = new LinkedHashMap<>();
+        Map<String, List<EDIFHierCellInst>> EDIFCellGroups = new HashMap<>();
         EDIFCellGroups.put("IBUF", new ArrayList<>());
         EDIFCellGroups.put("OBUF", new ArrayList<>());
         EDIFCellGroups.put("VCC", new ArrayList<>());
@@ -297,34 +297,74 @@ public class PlacerPackingHier extends Placer {
     }
 
     protected List<SiteInst> buildCarrySiteInsts(List<EDIFHierCellInst> chain,
-            Map<String, List<String>> occupiedPlacements) throws IOException {
+            Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
+
         List<SiteInst> carrySiteInsts = new ArrayList<>();
         for (EDIFHierCellInst ehci : chain) {
             SiteInst si = new SiteInst();
             si.createCell(ehci, si.getBEL("CARRY4"));
 
-            EDIFHierPortInst O0 = ehci.getPortInst("O0");
-            EDIFHierNet netO0 = O0.getHierarchicalNet();
-            EDIFHierPortInst sinkportO0 = netO0.getLeafHierPortInsts(false, true).get(0); // exclude sources, include
-            EDIFHierCellInst sinkcellO0 = sinkportO0.getHierarchicalInst()
-                    .getChild(sinkportO0.getPortInst().getCellInst().getName());
-            if (sinkcellO0.getCellType().getName() == "FDRE") {
-                si.createCell(sinkcellO0, si.getBEL("AFF"));
+            Map<String, String> S_CARRY_FF_MAP = new HashMap<>();
+            S_CARRY_FF_MAP.put("O0", "AFF");
+            S_CARRY_FF_MAP.put("O1", "BFF");
+            S_CARRY_FF_MAP.put("O2", "CFF");
+            S_CARRY_FF_MAP.put("O3", "DFF");
+            Map<String, String> S_CARRY_5FF_MAP = new HashMap<>();
+            S_CARRY_5FF_MAP.put("O0", "A5FF");
+            S_CARRY_5FF_MAP.put("O1", "B5FF");
+            S_CARRY_5FF_MAP.put("O2", "C5FF");
+            S_CARRY_5FF_MAP.put("O3", "D5FF");
+
+            for (Map.Entry<String, String> entry : S_CARRY_FF_MAP.entrySet()) {
+                String PORTNAME = entry.getKey();
+                String XFFNAME = entry.getValue();
+                String X5FFNAME = S_CARRY_5FF_MAP.get(PORTNAME);
+                EDIFHierPortInst ehpi = ehci.getPortInst(PORTNAME);
+                EDIFHierNet hnet = ehpi.getHierarchicalNet();
+                // bool include sources, bool include sinks
+                EDIFHierPortInst sinkPort = hnet.getLeafHierPortInsts(false, true).get(0);
+                EDIFHierCellInst sinkCell = sinkPort.getHierarchicalInst()
+                        .getChild(sinkPort.getPortInst().getCellInst().getName());
+                // for now, just always use FF not 5FF
+                if (sinkCell.getCellType().getName() == "FDRE") {
+                    si.createCell(sinkCell, si.getBEL(XFFNAME));
+                    EDIFCellGroups.get("FDRE").remove(sinkCell);
+                }
             }
 
-            EDIFHierPortInst O1 = ehci.getPortInst("O1");
-            EDIFHierNet netO1 = O1.getHierarchicalNet();
-            EDIFHierPortInst O2 = ehci.getPortInst("O2");
-            EDIFHierNet netO2 = O2.getHierarchicalNet();
-            EDIFHierPortInst O3 = ehci.getPortInst("O3");
-            EDIFHierNet netO3 = O3.getHierarchicalNet();
+            Map<String, String> S_CARRY_LUT5_MAP = new HashMap<>();
+            S_CARRY_LUT5_MAP.put("S0", "A5LUT");
+            S_CARRY_LUT5_MAP.put("S1", "B5LUT");
+            S_CARRY_LUT5_MAP.put("S2", "C5LUT");
+            S_CARRY_LUT5_MAP.put("S3", "D5LUT");
+            Map<String, String> S_CARRY_LUT6_MAP = new HashMap<>();
+            S_CARRY_LUT6_MAP.put("S0", "A6LUT");
+            S_CARRY_LUT6_MAP.put("S1", "B6LUT");
+            S_CARRY_LUT6_MAP.put("S2", "C6LUT");
+            S_CARRY_LUT6_MAP.put("S3", "D6LUT");
 
-            EDIFHierPortInst S0 = ehci.getPortInst("S0");
-            EDIFHierPortInst S1 = ehci.getPortInst("S1");
-            EDIFHierPortInst S2 = ehci.getPortInst("S2");
-            EDIFHierPortInst S3 = ehci.getPortInst("S3");
+            for (Map.Entry<String, String> entry : S_CARRY_LUT5_MAP.entrySet()) {
+                String PORTNAME = entry.getKey();
+                String X5LUTNAME = entry.getValue();
+                String X6LUTNAME = S_CARRY_LUT6_MAP.get(PORTNAME);
+                EDIFHierPortInst ehpi = ehci.getPortInst(PORTNAME);
+                EDIFHierNet hnet = ehpi.getHierarchicalNet();
+                // bool include sources, bool include sinks
+                EDIFHierPortInst sourcePort = hnet.getLeafHierPortInsts(true, false).get(0);
+                EDIFHierCellInst sourceCell = sourcePort.getHierarchicalInst()
+                        .getChild(sourcePort.getPortInst().getCellInst().getName());
+                String sourceCellType = sourceCell.getCellType().getName();
+                if (sourceCellType == "LUT6") {
+                    si.createCell(sourceCell, si.getBEL(X6LUTNAME));
+                    EDIFCellGroups.get("LUT").remove(sourceCell);
+                } else if (sourceCellType.contains("LUT")) {
+                    si.createCell(sourceCell, si.getBEL(X5LUTNAME));
+                    EDIFCellGroups.get("LUT").remove(sourceCell);
+                }
+            }
 
-        }
+        } // end for (EDIFHierCellInst ehci : chain)
+
         return carrySiteInsts;
     }
 
@@ -401,19 +441,6 @@ public class PlacerPackingHier extends Placer {
             EDIFHierCellInst sinkCell = sinkCellPort.getHierarchicalInst()
                     .getChild(sinkCellPort.getPortInst().getCellInst().getName());
             currCell = sinkCell;
-        }
-    }
-
-    protected void routeRAMSite(SiteInst si) throws IOException {
-        writer.write("\n\nPrinting RAM Site Nets.../" + si.getName());
-        Map<Net, List<String>> map = si.getNetToSiteWiresMap();
-        for (Map.Entry<Net, List<String>> entry : map.entrySet()) {
-            Net net = entry.getKey();
-            List<String> wires = entry.getValue();
-            writer.write("\n\tNet: " + net.getName());
-            for (String wire : wires) {
-                writer.write("\n\t\tWire: " + wire);
-            }
         }
     }
 

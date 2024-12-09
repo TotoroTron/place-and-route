@@ -3468,27 +3468,6 @@ Set of all Unique EDIF Cell Types... (14)
 	GND
 Printing EDIFCells By Type...
 
-IBUF Cells (6):
-	Printing all EDIFCellInsts of type IBUF... (6)
-		IBUF: i_din_IBUF_inst
-			i_din_IBUF_inst/I
-			i_din_IBUF_inst/O
-		IBUF: i_ready_IBUF_inst
-			i_ready_IBUF_inst/I
-			i_ready_IBUF_inst/O
-		IBUF: i_din_valid_IBUF_inst
-			i_din_valid_IBUF_inst/I
-			i_din_valid_IBUF_inst/O
-		IBUF: i_clk_IBUF_inst
-			i_clk_IBUF_inst/I
-			i_clk_IBUF_inst/O
-		IBUF: i_en_IBUF_inst
-			i_en_IBUF_inst/I
-			i_en_IBUF_inst/O
-		IBUF: i_rst_IBUF_inst
-			i_rst_IBUF_inst/I
-			i_rst_IBUF_inst/O
-
 OBUF Cells (3):
 	Printing all EDIFCellInsts of type OBUF... (3)
 		OBUF: o_dout_OBUF_inst
@@ -3500,158 +3479,6 @@ OBUF Cells (3):
 		OBUF: o_ready_OBUF_inst
 			o_ready_OBUF_inst/I
 			o_ready_OBUF_inst/O
-
-VCC Cells (6):
-	Printing all EDIFCellInsts of type VCC... (6)
-		VCC: VCC
-			VCC/P
-		VCC: VCC
-			VCC/P
-		VCC: VCC_1
-			VCC_1/P
-		VCC: VCC
-			VCC/P
-		VCC: VCC
-			VCC/P
-		VCC: VCC
-			VCC/P
-
-GND Cells (9):
-	Printing all EDIFCellInsts of type GND... (9)
-		GND: GND
-			GND/G
-		GND: GND
-			GND/G
-		GND: GND
-			GND/G
-		GND: GND_1
-			GND_1/G
-		GND: GND
-			GND/G
-		GND: GND
-			GND/G
-		GND: GND
-			GND/G
-		GND: GND
-			GND/G
-		GND: GND
-			GND/G
-
-CARRY4 Cells (6):
-	Printing all EDIFCellInsts of type CARRY4... (6)
-		CARRY4: ov_sum_reg[4]_i_1
-			ov_sum_reg[4]_i_1/CI
-			ov_sum_reg[4]_i_1/CO[0]
-			ov_sum_reg[4]_i_1/CO[1]
-			ov_sum_reg[4]_i_1/CO[2]
-			ov_sum_reg[4]_i_1/CO[3]
-			ov_sum_reg[4]_i_1/CYINIT
-			ov_sum_reg[4]_i_1/DI[0]
-			ov_sum_reg[4]_i_1/DI[1]
-			ov_sum_reg[4]_i_1/DI[2]
-			ov_sum_reg[4]_i_1/DI[3]
-			ov_sum_reg[4]_i_1/O[0]
-			ov_sum_reg[4]_i_1/O[1]
-			ov_sum_reg[4]_i_1/O[2]
-			ov_sum_reg[4]_i_1/O[3]
-			ov_sum_reg[4]_i_1/S[0]
-			ov_sum_reg[4]_i_1/S[1]
-			ov_sum_reg[4]_i_1/S[2]
-			ov_sum_reg[4]_i_1/S[3]
-		CARRY4: ov_sum_reg[0]_i_2
-			ov_sum_reg[0]_i_2/CI
-			ov_sum_reg[0]_i_2/CO[0]
-			ov_sum_reg[0]_i_2/CO[1]
-			ov_sum_reg[0]_i_2/CO[2]
-			ov_sum_reg[0]_i_2/CO[3]
-			ov_sum_reg[0]_i_2/CYINIT
-			ov_sum_reg[0]_i_2/DI[0]
-			ov_sum_reg[0]_i_2/DI[1]
-			ov_sum_reg[0]_i_2/DI[2]
-			ov_sum_reg[0]_i_2/DI[3]
-			ov_sum_reg[0]_i_2/O[0]
-			ov_sum_reg[0]_i_2/O[1]
-			ov_sum_reg[0]_i_2/O[2]
-			ov_sum_reg[0]_i_2/O[3]
-			ov_sum_reg[0]_i_2/S[0]
-			ov_sum_reg[0]_i_2/S[1]
-			ov_sum_reg[0]_i_2/S[2]
-			ov_sum_reg[0]_i_2/S[3]
-		CARRY4: ov_sum_reg[16]_i_1
-			ov_sum_reg[16]_i_1/CI
-			ov_sum_reg[16]_i_1/CO[0]
-			ov_sum_reg[16]_i_1/CO[1]
-			ov_sum_reg[16]_i_1/CO[2]
-			ov_sum_reg[16]_i_1/CO[3]
-			ov_sum_reg[16]_i_1/CYINIT
-			ov_sum_reg[16]_i_1/DI[0]
-			ov_sum_reg[16]_i_1/DI[1]
-			ov_sum_reg[16]_i_1/DI[2]
-			ov_sum_reg[16]_i_1/DI[3]
-			ov_sum_reg[16]_i_1/O[0]
-			ov_sum_reg[16]_i_1/O[1]
-			ov_sum_reg[16]_i_1/O[2]
-			ov_sum_reg[16]_i_1/O[3]
-			ov_sum_reg[16]_i_1/S[0]
-			ov_sum_reg[16]_i_1/S[1]
-			ov_sum_reg[16]_i_1/S[2]
-			ov_sum_reg[16]_i_1/S[3]
-		CARRY4: ov_sum_reg[8]_i_1
-			ov_sum_reg[8]_i_1/CI
-			ov_sum_reg[8]_i_1/CO[0]
-			ov_sum_reg[8]_i_1/CO[1]
-			ov_sum_reg[8]_i_1/CO[2]
-			ov_sum_reg[8]_i_1/CO[3]
-			ov_sum_reg[8]_i_1/CYINIT
-			ov_sum_reg[8]_i_1/DI[0]
-			ov_sum_reg[8]_i_1/DI[1]
-			ov_sum_reg[8]_i_1/DI[2]
-			ov_sum_reg[8]_i_1/DI[3]
-			ov_sum_reg[8]_i_1/O[0]
-			ov_sum_reg[8]_i_1/O[1]
-			ov_sum_reg[8]_i_1/O[2]
-			ov_sum_reg[8]_i_1/O[3]
-			ov_sum_reg[8]_i_1/S[0]
-			ov_sum_reg[8]_i_1/S[1]
-			ov_sum_reg[8]_i_1/S[2]
-			ov_sum_reg[8]_i_1/S[3]
-		CARRY4: ov_sum_reg[12]_i_1
-			ov_sum_reg[12]_i_1/CI
-			ov_sum_reg[12]_i_1/CO[0]
-			ov_sum_reg[12]_i_1/CO[1]
-			ov_sum_reg[12]_i_1/CO[2]
-			ov_sum_reg[12]_i_1/CO[3]
-			ov_sum_reg[12]_i_1/CYINIT
-			ov_sum_reg[12]_i_1/DI[0]
-			ov_sum_reg[12]_i_1/DI[1]
-			ov_sum_reg[12]_i_1/DI[2]
-			ov_sum_reg[12]_i_1/DI[3]
-			ov_sum_reg[12]_i_1/O[0]
-			ov_sum_reg[12]_i_1/O[1]
-			ov_sum_reg[12]_i_1/O[2]
-			ov_sum_reg[12]_i_1/O[3]
-			ov_sum_reg[12]_i_1/S[0]
-			ov_sum_reg[12]_i_1/S[1]
-			ov_sum_reg[12]_i_1/S[2]
-			ov_sum_reg[12]_i_1/S[3]
-		CARRY4: ov_sum_reg[20]_i_1
-			ov_sum_reg[20]_i_1/CI
-			ov_sum_reg[20]_i_1/CO[0]
-			ov_sum_reg[20]_i_1/CO[1]
-			ov_sum_reg[20]_i_1/CO[2]
-			ov_sum_reg[20]_i_1/CYINIT
-			ov_sum_reg[20]_i_1/DI[0]
-			ov_sum_reg[20]_i_1/DI[1]
-			ov_sum_reg[20]_i_1/DI[2]
-			ov_sum_reg[20]_i_1/DI[3]
-			ov_sum_reg[20]_i_1/O[0]
-			ov_sum_reg[20]_i_1/O[1]
-			ov_sum_reg[20]_i_1/O[2]
-			ov_sum_reg[20]_i_1/O[3]
-			ov_sum_reg[20]_i_1/S[0]
-			ov_sum_reg[20]_i_1/S[1]
-			ov_sum_reg[20]_i_1/S[2]
-			ov_sum_reg[20]_i_1/S[3]
 
 FDRE Cells (162):
 	Printing all EDIFCellInsts of type FDRE... (162)
@@ -4628,6 +4455,1028 @@ FDRE Cells (162):
 			ov_sum_reg[9]/Q
 			ov_sum_reg[9]/R
 
+RAMB18E1 Cells (2):
+	Printing all EDIFCellInsts of type RAMB18E1... (2)
+		RAMB18E1: gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[0]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[10]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[11]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[12]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[13]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[1]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[2]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[3]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[4]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[5]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[6]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[7]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[8]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[9]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[0]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[10]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[11]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[12]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[13]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[1]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[2]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[3]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[4]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[5]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[6]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[7]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[8]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[9]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/CLKARDCLK
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/CLKBWRCLK
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[0]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[10]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[11]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[12]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[13]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[14]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[15]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[1]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[2]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[3]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[4]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[5]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[6]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[7]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[8]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[9]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[0]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[10]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[11]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[12]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[13]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[14]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[15]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[1]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[2]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[3]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[4]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[5]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[6]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[7]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[8]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[9]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIPADIP[0]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIPADIP[1]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIPBDIP[0]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIPBDIP[1]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[0]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[10]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[11]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[12]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[13]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[14]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[15]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[1]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[2]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[3]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[4]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[5]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[6]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[7]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[8]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[9]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[0]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[1]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[2]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[3]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[4]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[5]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOPADOP[0]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOPADOP[1]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ENARDEN
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ENBWREN
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/REGCEAREGCE
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/REGCEB
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/RSTRAMARSTRAM
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/RSTRAMB
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/RSTREGARSTREG
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/RSTREGB
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEA[0]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEA[1]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[0]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[1]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[2]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[3]
+		RAMB18E1: gen_wr_a.gen_word_narrow.mem_reg
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[0]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[10]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[11]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[12]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[13]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[1]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[2]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[3]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[4]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[5]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[6]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[7]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[8]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[9]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[0]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[10]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[11]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[12]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[13]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[1]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[2]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[3]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[4]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[5]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[6]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[7]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[8]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[9]
+			gen_wr_a.gen_word_narrow.mem_reg/CLKARDCLK
+			gen_wr_a.gen_word_narrow.mem_reg/CLKBWRCLK
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[0]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[10]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[11]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[12]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[13]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[14]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[15]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[1]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[2]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[3]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[4]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[5]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[6]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[7]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[8]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[9]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[0]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[10]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[11]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[12]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[13]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[14]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[15]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[1]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[2]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[3]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[4]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[5]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[6]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[7]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[8]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[9]
+			gen_wr_a.gen_word_narrow.mem_reg/DIPADIP[0]
+			gen_wr_a.gen_word_narrow.mem_reg/DIPADIP[1]
+			gen_wr_a.gen_word_narrow.mem_reg/DIPBDIP[0]
+			gen_wr_a.gen_word_narrow.mem_reg/DIPBDIP[1]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[0]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[10]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[11]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[12]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[13]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[14]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[15]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[1]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[2]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[3]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[4]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[5]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[6]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[7]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[8]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[9]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[0]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[1]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[2]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[3]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[4]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[5]
+			gen_wr_a.gen_word_narrow.mem_reg/DOPADOP[0]
+			gen_wr_a.gen_word_narrow.mem_reg/DOPADOP[1]
+			gen_wr_a.gen_word_narrow.mem_reg/ENARDEN
+			gen_wr_a.gen_word_narrow.mem_reg/ENBWREN
+			gen_wr_a.gen_word_narrow.mem_reg/REGCEAREGCE
+			gen_wr_a.gen_word_narrow.mem_reg/REGCEB
+			gen_wr_a.gen_word_narrow.mem_reg/RSTRAMARSTRAM
+			gen_wr_a.gen_word_narrow.mem_reg/RSTRAMB
+			gen_wr_a.gen_word_narrow.mem_reg/RSTREGARSTREG
+			gen_wr_a.gen_word_narrow.mem_reg/RSTREGB
+			gen_wr_a.gen_word_narrow.mem_reg/WEA[0]
+			gen_wr_a.gen_word_narrow.mem_reg/WEA[1]
+			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[0]
+			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[1]
+			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[2]
+			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[3]
+
+CARRY4 Cells (6):
+	Printing all EDIFCellInsts of type CARRY4... (6)
+		CARRY4: ov_sum_reg[4]_i_1
+			ov_sum_reg[4]_i_1/CI
+			ov_sum_reg[4]_i_1/CO[0]
+			ov_sum_reg[4]_i_1/CO[1]
+			ov_sum_reg[4]_i_1/CO[2]
+			ov_sum_reg[4]_i_1/CO[3]
+			ov_sum_reg[4]_i_1/CYINIT
+			ov_sum_reg[4]_i_1/DI[0]
+			ov_sum_reg[4]_i_1/DI[1]
+			ov_sum_reg[4]_i_1/DI[2]
+			ov_sum_reg[4]_i_1/DI[3]
+			ov_sum_reg[4]_i_1/O[0]
+			ov_sum_reg[4]_i_1/O[1]
+			ov_sum_reg[4]_i_1/O[2]
+			ov_sum_reg[4]_i_1/O[3]
+			ov_sum_reg[4]_i_1/S[0]
+			ov_sum_reg[4]_i_1/S[1]
+			ov_sum_reg[4]_i_1/S[2]
+			ov_sum_reg[4]_i_1/S[3]
+		CARRY4: ov_sum_reg[0]_i_2
+			ov_sum_reg[0]_i_2/CI
+			ov_sum_reg[0]_i_2/CO[0]
+			ov_sum_reg[0]_i_2/CO[1]
+			ov_sum_reg[0]_i_2/CO[2]
+			ov_sum_reg[0]_i_2/CO[3]
+			ov_sum_reg[0]_i_2/CYINIT
+			ov_sum_reg[0]_i_2/DI[0]
+			ov_sum_reg[0]_i_2/DI[1]
+			ov_sum_reg[0]_i_2/DI[2]
+			ov_sum_reg[0]_i_2/DI[3]
+			ov_sum_reg[0]_i_2/O[0]
+			ov_sum_reg[0]_i_2/O[1]
+			ov_sum_reg[0]_i_2/O[2]
+			ov_sum_reg[0]_i_2/O[3]
+			ov_sum_reg[0]_i_2/S[0]
+			ov_sum_reg[0]_i_2/S[1]
+			ov_sum_reg[0]_i_2/S[2]
+			ov_sum_reg[0]_i_2/S[3]
+		CARRY4: ov_sum_reg[16]_i_1
+			ov_sum_reg[16]_i_1/CI
+			ov_sum_reg[16]_i_1/CO[0]
+			ov_sum_reg[16]_i_1/CO[1]
+			ov_sum_reg[16]_i_1/CO[2]
+			ov_sum_reg[16]_i_1/CO[3]
+			ov_sum_reg[16]_i_1/CYINIT
+			ov_sum_reg[16]_i_1/DI[0]
+			ov_sum_reg[16]_i_1/DI[1]
+			ov_sum_reg[16]_i_1/DI[2]
+			ov_sum_reg[16]_i_1/DI[3]
+			ov_sum_reg[16]_i_1/O[0]
+			ov_sum_reg[16]_i_1/O[1]
+			ov_sum_reg[16]_i_1/O[2]
+			ov_sum_reg[16]_i_1/O[3]
+			ov_sum_reg[16]_i_1/S[0]
+			ov_sum_reg[16]_i_1/S[1]
+			ov_sum_reg[16]_i_1/S[2]
+			ov_sum_reg[16]_i_1/S[3]
+		CARRY4: ov_sum_reg[8]_i_1
+			ov_sum_reg[8]_i_1/CI
+			ov_sum_reg[8]_i_1/CO[0]
+			ov_sum_reg[8]_i_1/CO[1]
+			ov_sum_reg[8]_i_1/CO[2]
+			ov_sum_reg[8]_i_1/CO[3]
+			ov_sum_reg[8]_i_1/CYINIT
+			ov_sum_reg[8]_i_1/DI[0]
+			ov_sum_reg[8]_i_1/DI[1]
+			ov_sum_reg[8]_i_1/DI[2]
+			ov_sum_reg[8]_i_1/DI[3]
+			ov_sum_reg[8]_i_1/O[0]
+			ov_sum_reg[8]_i_1/O[1]
+			ov_sum_reg[8]_i_1/O[2]
+			ov_sum_reg[8]_i_1/O[3]
+			ov_sum_reg[8]_i_1/S[0]
+			ov_sum_reg[8]_i_1/S[1]
+			ov_sum_reg[8]_i_1/S[2]
+			ov_sum_reg[8]_i_1/S[3]
+		CARRY4: ov_sum_reg[12]_i_1
+			ov_sum_reg[12]_i_1/CI
+			ov_sum_reg[12]_i_1/CO[0]
+			ov_sum_reg[12]_i_1/CO[1]
+			ov_sum_reg[12]_i_1/CO[2]
+			ov_sum_reg[12]_i_1/CO[3]
+			ov_sum_reg[12]_i_1/CYINIT
+			ov_sum_reg[12]_i_1/DI[0]
+			ov_sum_reg[12]_i_1/DI[1]
+			ov_sum_reg[12]_i_1/DI[2]
+			ov_sum_reg[12]_i_1/DI[3]
+			ov_sum_reg[12]_i_1/O[0]
+			ov_sum_reg[12]_i_1/O[1]
+			ov_sum_reg[12]_i_1/O[2]
+			ov_sum_reg[12]_i_1/O[3]
+			ov_sum_reg[12]_i_1/S[0]
+			ov_sum_reg[12]_i_1/S[1]
+			ov_sum_reg[12]_i_1/S[2]
+			ov_sum_reg[12]_i_1/S[3]
+		CARRY4: ov_sum_reg[20]_i_1
+			ov_sum_reg[20]_i_1/CI
+			ov_sum_reg[20]_i_1/CO[0]
+			ov_sum_reg[20]_i_1/CO[1]
+			ov_sum_reg[20]_i_1/CO[2]
+			ov_sum_reg[20]_i_1/CYINIT
+			ov_sum_reg[20]_i_1/DI[0]
+			ov_sum_reg[20]_i_1/DI[1]
+			ov_sum_reg[20]_i_1/DI[2]
+			ov_sum_reg[20]_i_1/DI[3]
+			ov_sum_reg[20]_i_1/O[0]
+			ov_sum_reg[20]_i_1/O[1]
+			ov_sum_reg[20]_i_1/O[2]
+			ov_sum_reg[20]_i_1/O[3]
+			ov_sum_reg[20]_i_1/S[0]
+			ov_sum_reg[20]_i_1/S[1]
+			ov_sum_reg[20]_i_1/S[2]
+			ov_sum_reg[20]_i_1/S[3]
+
+VCC Cells (6):
+	Printing all EDIFCellInsts of type VCC... (6)
+		VCC: VCC
+			VCC/P
+		VCC: VCC
+			VCC/P
+		VCC: VCC_1
+			VCC_1/P
+		VCC: VCC
+			VCC/P
+		VCC: VCC
+			VCC/P
+		VCC: VCC
+			VCC/P
+
+IBUF Cells (6):
+	Printing all EDIFCellInsts of type IBUF... (6)
+		IBUF: i_din_IBUF_inst
+			i_din_IBUF_inst/I
+			i_din_IBUF_inst/O
+		IBUF: i_ready_IBUF_inst
+			i_ready_IBUF_inst/I
+			i_ready_IBUF_inst/O
+		IBUF: i_din_valid_IBUF_inst
+			i_din_valid_IBUF_inst/I
+			i_din_valid_IBUF_inst/O
+		IBUF: i_clk_IBUF_inst
+			i_clk_IBUF_inst/I
+			i_clk_IBUF_inst/O
+		IBUF: i_en_IBUF_inst
+			i_en_IBUF_inst/I
+			i_en_IBUF_inst/O
+		IBUF: i_rst_IBUF_inst
+			i_rst_IBUF_inst/I
+			i_rst_IBUF_inst/O
+
+DSP48E1 Cells (2):
+	Printing all EDIFCellInsts of type DSP48E1... (2)
+		DSP48E1: sum_trunc1__0
+			sum_trunc1__0/ACIN[0]
+			sum_trunc1__0/ACIN[10]
+			sum_trunc1__0/ACIN[11]
+			sum_trunc1__0/ACIN[12]
+			sum_trunc1__0/ACIN[13]
+			sum_trunc1__0/ACIN[14]
+			sum_trunc1__0/ACIN[15]
+			sum_trunc1__0/ACIN[16]
+			sum_trunc1__0/ACIN[17]
+			sum_trunc1__0/ACIN[18]
+			sum_trunc1__0/ACIN[19]
+			sum_trunc1__0/ACIN[1]
+			sum_trunc1__0/ACIN[20]
+			sum_trunc1__0/ACIN[21]
+			sum_trunc1__0/ACIN[22]
+			sum_trunc1__0/ACIN[23]
+			sum_trunc1__0/ACIN[24]
+			sum_trunc1__0/ACIN[25]
+			sum_trunc1__0/ACIN[26]
+			sum_trunc1__0/ACIN[27]
+			sum_trunc1__0/ACIN[28]
+			sum_trunc1__0/ACIN[29]
+			sum_trunc1__0/ACIN[2]
+			sum_trunc1__0/ACIN[3]
+			sum_trunc1__0/ACIN[4]
+			sum_trunc1__0/ACIN[5]
+			sum_trunc1__0/ACIN[6]
+			sum_trunc1__0/ACIN[7]
+			sum_trunc1__0/ACIN[8]
+			sum_trunc1__0/ACIN[9]
+			sum_trunc1__0/ALUMODE[0]
+			sum_trunc1__0/ALUMODE[1]
+			sum_trunc1__0/ALUMODE[2]
+			sum_trunc1__0/ALUMODE[3]
+			sum_trunc1__0/A[0]
+			sum_trunc1__0/A[10]
+			sum_trunc1__0/A[11]
+			sum_trunc1__0/A[12]
+			sum_trunc1__0/A[13]
+			sum_trunc1__0/A[14]
+			sum_trunc1__0/A[15]
+			sum_trunc1__0/A[16]
+			sum_trunc1__0/A[17]
+			sum_trunc1__0/A[18]
+			sum_trunc1__0/A[19]
+			sum_trunc1__0/A[1]
+			sum_trunc1__0/A[20]
+			sum_trunc1__0/A[21]
+			sum_trunc1__0/A[22]
+			sum_trunc1__0/A[23]
+			sum_trunc1__0/A[24]
+			sum_trunc1__0/A[25]
+			sum_trunc1__0/A[26]
+			sum_trunc1__0/A[27]
+			sum_trunc1__0/A[28]
+			sum_trunc1__0/A[29]
+			sum_trunc1__0/A[2]
+			sum_trunc1__0/A[3]
+			sum_trunc1__0/A[4]
+			sum_trunc1__0/A[5]
+			sum_trunc1__0/A[6]
+			sum_trunc1__0/A[7]
+			sum_trunc1__0/A[8]
+			sum_trunc1__0/A[9]
+			sum_trunc1__0/BCIN[0]
+			sum_trunc1__0/BCIN[10]
+			sum_trunc1__0/BCIN[11]
+			sum_trunc1__0/BCIN[12]
+			sum_trunc1__0/BCIN[13]
+			sum_trunc1__0/BCIN[14]
+			sum_trunc1__0/BCIN[15]
+			sum_trunc1__0/BCIN[16]
+			sum_trunc1__0/BCIN[17]
+			sum_trunc1__0/BCIN[1]
+			sum_trunc1__0/BCIN[2]
+			sum_trunc1__0/BCIN[3]
+			sum_trunc1__0/BCIN[4]
+			sum_trunc1__0/BCIN[5]
+			sum_trunc1__0/BCIN[6]
+			sum_trunc1__0/BCIN[7]
+			sum_trunc1__0/BCIN[8]
+			sum_trunc1__0/BCIN[9]
+			sum_trunc1__0/B[0]
+			sum_trunc1__0/B[10]
+			sum_trunc1__0/B[11]
+			sum_trunc1__0/B[12]
+			sum_trunc1__0/B[13]
+			sum_trunc1__0/B[14]
+			sum_trunc1__0/B[15]
+			sum_trunc1__0/B[16]
+			sum_trunc1__0/B[17]
+			sum_trunc1__0/B[1]
+			sum_trunc1__0/B[2]
+			sum_trunc1__0/B[3]
+			sum_trunc1__0/B[4]
+			sum_trunc1__0/B[5]
+			sum_trunc1__0/B[6]
+			sum_trunc1__0/B[7]
+			sum_trunc1__0/B[8]
+			sum_trunc1__0/B[9]
+			sum_trunc1__0/CARRYCASCIN
+			sum_trunc1__0/CARRYIN
+			sum_trunc1__0/CARRYINSEL[0]
+			sum_trunc1__0/CARRYINSEL[1]
+			sum_trunc1__0/CARRYINSEL[2]
+			sum_trunc1__0/CEA1
+			sum_trunc1__0/CEA2
+			sum_trunc1__0/CEAD
+			sum_trunc1__0/CEALUMODE
+			sum_trunc1__0/CEB1
+			sum_trunc1__0/CEB2
+			sum_trunc1__0/CEC
+			sum_trunc1__0/CECARRYIN
+			sum_trunc1__0/CECTRL
+			sum_trunc1__0/CED
+			sum_trunc1__0/CEINMODE
+			sum_trunc1__0/CEM
+			sum_trunc1__0/CEP
+			sum_trunc1__0/CLK
+			sum_trunc1__0/C[0]
+			sum_trunc1__0/C[10]
+			sum_trunc1__0/C[11]
+			sum_trunc1__0/C[12]
+			sum_trunc1__0/C[13]
+			sum_trunc1__0/C[14]
+			sum_trunc1__0/C[15]
+			sum_trunc1__0/C[16]
+			sum_trunc1__0/C[17]
+			sum_trunc1__0/C[18]
+			sum_trunc1__0/C[19]
+			sum_trunc1__0/C[1]
+			sum_trunc1__0/C[20]
+			sum_trunc1__0/C[21]
+			sum_trunc1__0/C[22]
+			sum_trunc1__0/C[23]
+			sum_trunc1__0/C[24]
+			sum_trunc1__0/C[25]
+			sum_trunc1__0/C[26]
+			sum_trunc1__0/C[27]
+			sum_trunc1__0/C[28]
+			sum_trunc1__0/C[29]
+			sum_trunc1__0/C[2]
+			sum_trunc1__0/C[30]
+			sum_trunc1__0/C[31]
+			sum_trunc1__0/C[32]
+			sum_trunc1__0/C[33]
+			sum_trunc1__0/C[34]
+			sum_trunc1__0/C[35]
+			sum_trunc1__0/C[36]
+			sum_trunc1__0/C[37]
+			sum_trunc1__0/C[38]
+			sum_trunc1__0/C[39]
+			sum_trunc1__0/C[3]
+			sum_trunc1__0/C[40]
+			sum_trunc1__0/C[41]
+			sum_trunc1__0/C[42]
+			sum_trunc1__0/C[43]
+			sum_trunc1__0/C[44]
+			sum_trunc1__0/C[45]
+			sum_trunc1__0/C[46]
+			sum_trunc1__0/C[47]
+			sum_trunc1__0/C[4]
+			sum_trunc1__0/C[5]
+			sum_trunc1__0/C[6]
+			sum_trunc1__0/C[7]
+			sum_trunc1__0/C[8]
+			sum_trunc1__0/C[9]
+			sum_trunc1__0/D[0]
+			sum_trunc1__0/D[10]
+			sum_trunc1__0/D[11]
+			sum_trunc1__0/D[12]
+			sum_trunc1__0/D[13]
+			sum_trunc1__0/D[14]
+			sum_trunc1__0/D[15]
+			sum_trunc1__0/D[16]
+			sum_trunc1__0/D[17]
+			sum_trunc1__0/D[18]
+			sum_trunc1__0/D[19]
+			sum_trunc1__0/D[1]
+			sum_trunc1__0/D[20]
+			sum_trunc1__0/D[21]
+			sum_trunc1__0/D[22]
+			sum_trunc1__0/D[23]
+			sum_trunc1__0/D[24]
+			sum_trunc1__0/D[2]
+			sum_trunc1__0/D[3]
+			sum_trunc1__0/D[4]
+			sum_trunc1__0/D[5]
+			sum_trunc1__0/D[6]
+			sum_trunc1__0/D[7]
+			sum_trunc1__0/D[8]
+			sum_trunc1__0/D[9]
+			sum_trunc1__0/INMODE[0]
+			sum_trunc1__0/INMODE[1]
+			sum_trunc1__0/INMODE[2]
+			sum_trunc1__0/INMODE[3]
+			sum_trunc1__0/INMODE[4]
+			sum_trunc1__0/MULTSIGNIN
+			sum_trunc1__0/OPMODE[0]
+			sum_trunc1__0/OPMODE[1]
+			sum_trunc1__0/OPMODE[2]
+			sum_trunc1__0/OPMODE[3]
+			sum_trunc1__0/OPMODE[4]
+			sum_trunc1__0/OPMODE[5]
+			sum_trunc1__0/OPMODE[6]
+			sum_trunc1__0/PCIN[0]
+			sum_trunc1__0/PCIN[10]
+			sum_trunc1__0/PCIN[11]
+			sum_trunc1__0/PCIN[12]
+			sum_trunc1__0/PCIN[13]
+			sum_trunc1__0/PCIN[14]
+			sum_trunc1__0/PCIN[15]
+			sum_trunc1__0/PCIN[16]
+			sum_trunc1__0/PCIN[17]
+			sum_trunc1__0/PCIN[18]
+			sum_trunc1__0/PCIN[19]
+			sum_trunc1__0/PCIN[1]
+			sum_trunc1__0/PCIN[20]
+			sum_trunc1__0/PCIN[21]
+			sum_trunc1__0/PCIN[22]
+			sum_trunc1__0/PCIN[23]
+			sum_trunc1__0/PCIN[24]
+			sum_trunc1__0/PCIN[25]
+			sum_trunc1__0/PCIN[26]
+			sum_trunc1__0/PCIN[27]
+			sum_trunc1__0/PCIN[28]
+			sum_trunc1__0/PCIN[29]
+			sum_trunc1__0/PCIN[2]
+			sum_trunc1__0/PCIN[30]
+			sum_trunc1__0/PCIN[31]
+			sum_trunc1__0/PCIN[32]
+			sum_trunc1__0/PCIN[33]
+			sum_trunc1__0/PCIN[34]
+			sum_trunc1__0/PCIN[35]
+			sum_trunc1__0/PCIN[36]
+			sum_trunc1__0/PCIN[37]
+			sum_trunc1__0/PCIN[38]
+			sum_trunc1__0/PCIN[39]
+			sum_trunc1__0/PCIN[3]
+			sum_trunc1__0/PCIN[40]
+			sum_trunc1__0/PCIN[41]
+			sum_trunc1__0/PCIN[42]
+			sum_trunc1__0/PCIN[43]
+			sum_trunc1__0/PCIN[44]
+			sum_trunc1__0/PCIN[45]
+			sum_trunc1__0/PCIN[46]
+			sum_trunc1__0/PCIN[47]
+			sum_trunc1__0/PCIN[4]
+			sum_trunc1__0/PCIN[5]
+			sum_trunc1__0/PCIN[6]
+			sum_trunc1__0/PCIN[7]
+			sum_trunc1__0/PCIN[8]
+			sum_trunc1__0/PCIN[9]
+			sum_trunc1__0/P[0]
+			sum_trunc1__0/P[10]
+			sum_trunc1__0/P[11]
+			sum_trunc1__0/P[12]
+			sum_trunc1__0/P[13]
+			sum_trunc1__0/P[14]
+			sum_trunc1__0/P[15]
+			sum_trunc1__0/P[16]
+			sum_trunc1__0/P[17]
+			sum_trunc1__0/P[18]
+			sum_trunc1__0/P[19]
+			sum_trunc1__0/P[1]
+			sum_trunc1__0/P[20]
+			sum_trunc1__0/P[21]
+			sum_trunc1__0/P[22]
+			sum_trunc1__0/P[23]
+			sum_trunc1__0/P[24]
+			sum_trunc1__0/P[25]
+			sum_trunc1__0/P[26]
+			sum_trunc1__0/P[27]
+			sum_trunc1__0/P[28]
+			sum_trunc1__0/P[29]
+			sum_trunc1__0/P[2]
+			sum_trunc1__0/P[3]
+			sum_trunc1__0/P[4]
+			sum_trunc1__0/P[5]
+			sum_trunc1__0/P[6]
+			sum_trunc1__0/P[7]
+			sum_trunc1__0/P[8]
+			sum_trunc1__0/P[9]
+			sum_trunc1__0/RSTA
+			sum_trunc1__0/RSTALLCARRYIN
+			sum_trunc1__0/RSTALUMODE
+			sum_trunc1__0/RSTB
+			sum_trunc1__0/RSTC
+			sum_trunc1__0/RSTCTRL
+			sum_trunc1__0/RSTD
+			sum_trunc1__0/RSTINMODE
+			sum_trunc1__0/RSTM
+			sum_trunc1__0/RSTP
+		DSP48E1: sum_trunc1
+			sum_trunc1/ACIN[0]
+			sum_trunc1/ACIN[10]
+			sum_trunc1/ACIN[11]
+			sum_trunc1/ACIN[12]
+			sum_trunc1/ACIN[13]
+			sum_trunc1/ACIN[14]
+			sum_trunc1/ACIN[15]
+			sum_trunc1/ACIN[16]
+			sum_trunc1/ACIN[17]
+			sum_trunc1/ACIN[18]
+			sum_trunc1/ACIN[19]
+			sum_trunc1/ACIN[1]
+			sum_trunc1/ACIN[20]
+			sum_trunc1/ACIN[21]
+			sum_trunc1/ACIN[22]
+			sum_trunc1/ACIN[23]
+			sum_trunc1/ACIN[24]
+			sum_trunc1/ACIN[25]
+			sum_trunc1/ACIN[26]
+			sum_trunc1/ACIN[27]
+			sum_trunc1/ACIN[28]
+			sum_trunc1/ACIN[29]
+			sum_trunc1/ACIN[2]
+			sum_trunc1/ACIN[3]
+			sum_trunc1/ACIN[4]
+			sum_trunc1/ACIN[5]
+			sum_trunc1/ACIN[6]
+			sum_trunc1/ACIN[7]
+			sum_trunc1/ACIN[8]
+			sum_trunc1/ACIN[9]
+			sum_trunc1/ALUMODE[0]
+			sum_trunc1/ALUMODE[1]
+			sum_trunc1/ALUMODE[2]
+			sum_trunc1/ALUMODE[3]
+			sum_trunc1/A[0]
+			sum_trunc1/A[10]
+			sum_trunc1/A[11]
+			sum_trunc1/A[12]
+			sum_trunc1/A[13]
+			sum_trunc1/A[14]
+			sum_trunc1/A[15]
+			sum_trunc1/A[16]
+			sum_trunc1/A[17]
+			sum_trunc1/A[18]
+			sum_trunc1/A[19]
+			sum_trunc1/A[1]
+			sum_trunc1/A[20]
+			sum_trunc1/A[21]
+			sum_trunc1/A[22]
+			sum_trunc1/A[23]
+			sum_trunc1/A[24]
+			sum_trunc1/A[25]
+			sum_trunc1/A[26]
+			sum_trunc1/A[27]
+			sum_trunc1/A[28]
+			sum_trunc1/A[29]
+			sum_trunc1/A[2]
+			sum_trunc1/A[3]
+			sum_trunc1/A[4]
+			sum_trunc1/A[5]
+			sum_trunc1/A[6]
+			sum_trunc1/A[7]
+			sum_trunc1/A[8]
+			sum_trunc1/A[9]
+			sum_trunc1/BCIN[0]
+			sum_trunc1/BCIN[10]
+			sum_trunc1/BCIN[11]
+			sum_trunc1/BCIN[12]
+			sum_trunc1/BCIN[13]
+			sum_trunc1/BCIN[14]
+			sum_trunc1/BCIN[15]
+			sum_trunc1/BCIN[16]
+			sum_trunc1/BCIN[17]
+			sum_trunc1/BCIN[1]
+			sum_trunc1/BCIN[2]
+			sum_trunc1/BCIN[3]
+			sum_trunc1/BCIN[4]
+			sum_trunc1/BCIN[5]
+			sum_trunc1/BCIN[6]
+			sum_trunc1/BCIN[7]
+			sum_trunc1/BCIN[8]
+			sum_trunc1/BCIN[9]
+			sum_trunc1/B[0]
+			sum_trunc1/B[10]
+			sum_trunc1/B[11]
+			sum_trunc1/B[12]
+			sum_trunc1/B[13]
+			sum_trunc1/B[14]
+			sum_trunc1/B[15]
+			sum_trunc1/B[16]
+			sum_trunc1/B[17]
+			sum_trunc1/B[1]
+			sum_trunc1/B[2]
+			sum_trunc1/B[3]
+			sum_trunc1/B[4]
+			sum_trunc1/B[5]
+			sum_trunc1/B[6]
+			sum_trunc1/B[7]
+			sum_trunc1/B[8]
+			sum_trunc1/B[9]
+			sum_trunc1/CARRYCASCIN
+			sum_trunc1/CARRYIN
+			sum_trunc1/CARRYINSEL[0]
+			sum_trunc1/CARRYINSEL[1]
+			sum_trunc1/CARRYINSEL[2]
+			sum_trunc1/CEA1
+			sum_trunc1/CEA2
+			sum_trunc1/CEAD
+			sum_trunc1/CEALUMODE
+			sum_trunc1/CEB1
+			sum_trunc1/CEB2
+			sum_trunc1/CEC
+			sum_trunc1/CECARRYIN
+			sum_trunc1/CECTRL
+			sum_trunc1/CED
+			sum_trunc1/CEINMODE
+			sum_trunc1/CEM
+			sum_trunc1/CEP
+			sum_trunc1/CLK
+			sum_trunc1/C[0]
+			sum_trunc1/C[10]
+			sum_trunc1/C[11]
+			sum_trunc1/C[12]
+			sum_trunc1/C[13]
+			sum_trunc1/C[14]
+			sum_trunc1/C[15]
+			sum_trunc1/C[16]
+			sum_trunc1/C[17]
+			sum_trunc1/C[18]
+			sum_trunc1/C[19]
+			sum_trunc1/C[1]
+			sum_trunc1/C[20]
+			sum_trunc1/C[21]
+			sum_trunc1/C[22]
+			sum_trunc1/C[23]
+			sum_trunc1/C[24]
+			sum_trunc1/C[25]
+			sum_trunc1/C[26]
+			sum_trunc1/C[27]
+			sum_trunc1/C[28]
+			sum_trunc1/C[29]
+			sum_trunc1/C[2]
+			sum_trunc1/C[30]
+			sum_trunc1/C[31]
+			sum_trunc1/C[32]
+			sum_trunc1/C[33]
+			sum_trunc1/C[34]
+			sum_trunc1/C[35]
+			sum_trunc1/C[36]
+			sum_trunc1/C[37]
+			sum_trunc1/C[38]
+			sum_trunc1/C[39]
+			sum_trunc1/C[3]
+			sum_trunc1/C[40]
+			sum_trunc1/C[41]
+			sum_trunc1/C[42]
+			sum_trunc1/C[43]
+			sum_trunc1/C[44]
+			sum_trunc1/C[45]
+			sum_trunc1/C[46]
+			sum_trunc1/C[47]
+			sum_trunc1/C[4]
+			sum_trunc1/C[5]
+			sum_trunc1/C[6]
+			sum_trunc1/C[7]
+			sum_trunc1/C[8]
+			sum_trunc1/C[9]
+			sum_trunc1/D[0]
+			sum_trunc1/D[10]
+			sum_trunc1/D[11]
+			sum_trunc1/D[12]
+			sum_trunc1/D[13]
+			sum_trunc1/D[14]
+			sum_trunc1/D[15]
+			sum_trunc1/D[16]
+			sum_trunc1/D[17]
+			sum_trunc1/D[18]
+			sum_trunc1/D[19]
+			sum_trunc1/D[1]
+			sum_trunc1/D[20]
+			sum_trunc1/D[21]
+			sum_trunc1/D[22]
+			sum_trunc1/D[23]
+			sum_trunc1/D[24]
+			sum_trunc1/D[2]
+			sum_trunc1/D[3]
+			sum_trunc1/D[4]
+			sum_trunc1/D[5]
+			sum_trunc1/D[6]
+			sum_trunc1/D[7]
+			sum_trunc1/D[8]
+			sum_trunc1/D[9]
+			sum_trunc1/INMODE[0]
+			sum_trunc1/INMODE[1]
+			sum_trunc1/INMODE[2]
+			sum_trunc1/INMODE[3]
+			sum_trunc1/INMODE[4]
+			sum_trunc1/MULTSIGNIN
+			sum_trunc1/OPMODE[0]
+			sum_trunc1/OPMODE[1]
+			sum_trunc1/OPMODE[2]
+			sum_trunc1/OPMODE[3]
+			sum_trunc1/OPMODE[4]
+			sum_trunc1/OPMODE[5]
+			sum_trunc1/OPMODE[6]
+			sum_trunc1/PCIN[0]
+			sum_trunc1/PCIN[10]
+			sum_trunc1/PCIN[11]
+			sum_trunc1/PCIN[12]
+			sum_trunc1/PCIN[13]
+			sum_trunc1/PCIN[14]
+			sum_trunc1/PCIN[15]
+			sum_trunc1/PCIN[16]
+			sum_trunc1/PCIN[17]
+			sum_trunc1/PCIN[18]
+			sum_trunc1/PCIN[19]
+			sum_trunc1/PCIN[1]
+			sum_trunc1/PCIN[20]
+			sum_trunc1/PCIN[21]
+			sum_trunc1/PCIN[22]
+			sum_trunc1/PCIN[23]
+			sum_trunc1/PCIN[24]
+			sum_trunc1/PCIN[25]
+			sum_trunc1/PCIN[26]
+			sum_trunc1/PCIN[27]
+			sum_trunc1/PCIN[28]
+			sum_trunc1/PCIN[29]
+			sum_trunc1/PCIN[2]
+			sum_trunc1/PCIN[30]
+			sum_trunc1/PCIN[31]
+			sum_trunc1/PCIN[32]
+			sum_trunc1/PCIN[33]
+			sum_trunc1/PCIN[34]
+			sum_trunc1/PCIN[35]
+			sum_trunc1/PCIN[36]
+			sum_trunc1/PCIN[37]
+			sum_trunc1/PCIN[38]
+			sum_trunc1/PCIN[39]
+			sum_trunc1/PCIN[3]
+			sum_trunc1/PCIN[40]
+			sum_trunc1/PCIN[41]
+			sum_trunc1/PCIN[42]
+			sum_trunc1/PCIN[43]
+			sum_trunc1/PCIN[44]
+			sum_trunc1/PCIN[45]
+			sum_trunc1/PCIN[46]
+			sum_trunc1/PCIN[47]
+			sum_trunc1/PCIN[4]
+			sum_trunc1/PCIN[5]
+			sum_trunc1/PCIN[6]
+			sum_trunc1/PCIN[7]
+			sum_trunc1/PCIN[8]
+			sum_trunc1/PCIN[9]
+			sum_trunc1/PCOUT[0]
+			sum_trunc1/PCOUT[10]
+			sum_trunc1/PCOUT[11]
+			sum_trunc1/PCOUT[12]
+			sum_trunc1/PCOUT[13]
+			sum_trunc1/PCOUT[14]
+			sum_trunc1/PCOUT[15]
+			sum_trunc1/PCOUT[16]
+			sum_trunc1/PCOUT[17]
+			sum_trunc1/PCOUT[18]
+			sum_trunc1/PCOUT[19]
+			sum_trunc1/PCOUT[1]
+			sum_trunc1/PCOUT[20]
+			sum_trunc1/PCOUT[21]
+			sum_trunc1/PCOUT[22]
+			sum_trunc1/PCOUT[23]
+			sum_trunc1/PCOUT[24]
+			sum_trunc1/PCOUT[25]
+			sum_trunc1/PCOUT[26]
+			sum_trunc1/PCOUT[27]
+			sum_trunc1/PCOUT[28]
+			sum_trunc1/PCOUT[29]
+			sum_trunc1/PCOUT[2]
+			sum_trunc1/PCOUT[30]
+			sum_trunc1/PCOUT[31]
+			sum_trunc1/PCOUT[32]
+			sum_trunc1/PCOUT[33]
+			sum_trunc1/PCOUT[34]
+			sum_trunc1/PCOUT[35]
+			sum_trunc1/PCOUT[36]
+			sum_trunc1/PCOUT[37]
+			sum_trunc1/PCOUT[38]
+			sum_trunc1/PCOUT[39]
+			sum_trunc1/PCOUT[3]
+			sum_trunc1/PCOUT[40]
+			sum_trunc1/PCOUT[41]
+			sum_trunc1/PCOUT[42]
+			sum_trunc1/PCOUT[43]
+			sum_trunc1/PCOUT[44]
+			sum_trunc1/PCOUT[45]
+			sum_trunc1/PCOUT[46]
+			sum_trunc1/PCOUT[47]
+			sum_trunc1/PCOUT[4]
+			sum_trunc1/PCOUT[5]
+			sum_trunc1/PCOUT[6]
+			sum_trunc1/PCOUT[7]
+			sum_trunc1/PCOUT[8]
+			sum_trunc1/PCOUT[9]
+			sum_trunc1/P[0]
+			sum_trunc1/P[10]
+			sum_trunc1/P[11]
+			sum_trunc1/P[12]
+			sum_trunc1/P[13]
+			sum_trunc1/P[14]
+			sum_trunc1/P[15]
+			sum_trunc1/P[16]
+			sum_trunc1/P[17]
+			sum_trunc1/P[18]
+			sum_trunc1/P[19]
+			sum_trunc1/P[1]
+			sum_trunc1/P[20]
+			sum_trunc1/P[21]
+			sum_trunc1/P[22]
+			sum_trunc1/P[23]
+			sum_trunc1/P[24]
+			sum_trunc1/P[25]
+			sum_trunc1/P[26]
+			sum_trunc1/P[27]
+			sum_trunc1/P[28]
+			sum_trunc1/P[29]
+			sum_trunc1/P[2]
+			sum_trunc1/P[30]
+			sum_trunc1/P[31]
+			sum_trunc1/P[32]
+			sum_trunc1/P[33]
+			sum_trunc1/P[34]
+			sum_trunc1/P[35]
+			sum_trunc1/P[36]
+			sum_trunc1/P[37]
+			sum_trunc1/P[38]
+			sum_trunc1/P[39]
+			sum_trunc1/P[3]
+			sum_trunc1/P[40]
+			sum_trunc1/P[41]
+			sum_trunc1/P[42]
+			sum_trunc1/P[43]
+			sum_trunc1/P[44]
+			sum_trunc1/P[45]
+			sum_trunc1/P[46]
+			sum_trunc1/P[47]
+			sum_trunc1/P[4]
+			sum_trunc1/P[5]
+			sum_trunc1/P[6]
+			sum_trunc1/P[7]
+			sum_trunc1/P[8]
+			sum_trunc1/P[9]
+			sum_trunc1/RSTA
+			sum_trunc1/RSTALLCARRYIN
+			sum_trunc1/RSTALUMODE
+			sum_trunc1/RSTB
+			sum_trunc1/RSTC
+			sum_trunc1/RSTCTRL
+			sum_trunc1/RSTD
+			sum_trunc1/RSTINMODE
+			sum_trunc1/RSTM
+			sum_trunc1/RSTP
+
 LUT Cells (137):
 	Printing all EDIFCellInsts of type LUT6... (137)
 		LUT6: FSM_sequential_state[0]_i_1__0
@@ -5366,875 +6215,26 @@ LUT Cells (137):
 			gen_wr_a.gen_word_narrow.mem_reg_i_1/I1
 			gen_wr_a.gen_word_narrow.mem_reg_i_1/O
 
-DSP48E1 Cells (2):
-	Printing all EDIFCellInsts of type DSP48E1... (2)
-		DSP48E1: sum_trunc1__0
-			sum_trunc1__0/ACIN[0]
-			sum_trunc1__0/ACIN[10]
-			sum_trunc1__0/ACIN[11]
-			sum_trunc1__0/ACIN[12]
-			sum_trunc1__0/ACIN[13]
-			sum_trunc1__0/ACIN[14]
-			sum_trunc1__0/ACIN[15]
-			sum_trunc1__0/ACIN[16]
-			sum_trunc1__0/ACIN[17]
-			sum_trunc1__0/ACIN[18]
-			sum_trunc1__0/ACIN[19]
-			sum_trunc1__0/ACIN[1]
-			sum_trunc1__0/ACIN[20]
-			sum_trunc1__0/ACIN[21]
-			sum_trunc1__0/ACIN[22]
-			sum_trunc1__0/ACIN[23]
-			sum_trunc1__0/ACIN[24]
-			sum_trunc1__0/ACIN[25]
-			sum_trunc1__0/ACIN[26]
-			sum_trunc1__0/ACIN[27]
-			sum_trunc1__0/ACIN[28]
-			sum_trunc1__0/ACIN[29]
-			sum_trunc1__0/ACIN[2]
-			sum_trunc1__0/ACIN[3]
-			sum_trunc1__0/ACIN[4]
-			sum_trunc1__0/ACIN[5]
-			sum_trunc1__0/ACIN[6]
-			sum_trunc1__0/ACIN[7]
-			sum_trunc1__0/ACIN[8]
-			sum_trunc1__0/ACIN[9]
-			sum_trunc1__0/ALUMODE[0]
-			sum_trunc1__0/ALUMODE[1]
-			sum_trunc1__0/ALUMODE[2]
-			sum_trunc1__0/ALUMODE[3]
-			sum_trunc1__0/A[0]
-			sum_trunc1__0/A[10]
-			sum_trunc1__0/A[11]
-			sum_trunc1__0/A[12]
-			sum_trunc1__0/A[13]
-			sum_trunc1__0/A[14]
-			sum_trunc1__0/A[15]
-			sum_trunc1__0/A[16]
-			sum_trunc1__0/A[17]
-			sum_trunc1__0/A[18]
-			sum_trunc1__0/A[19]
-			sum_trunc1__0/A[1]
-			sum_trunc1__0/A[20]
-			sum_trunc1__0/A[21]
-			sum_trunc1__0/A[22]
-			sum_trunc1__0/A[23]
-			sum_trunc1__0/A[24]
-			sum_trunc1__0/A[25]
-			sum_trunc1__0/A[26]
-			sum_trunc1__0/A[27]
-			sum_trunc1__0/A[28]
-			sum_trunc1__0/A[29]
-			sum_trunc1__0/A[2]
-			sum_trunc1__0/A[3]
-			sum_trunc1__0/A[4]
-			sum_trunc1__0/A[5]
-			sum_trunc1__0/A[6]
-			sum_trunc1__0/A[7]
-			sum_trunc1__0/A[8]
-			sum_trunc1__0/A[9]
-			sum_trunc1__0/BCIN[0]
-			sum_trunc1__0/BCIN[10]
-			sum_trunc1__0/BCIN[11]
-			sum_trunc1__0/BCIN[12]
-			sum_trunc1__0/BCIN[13]
-			sum_trunc1__0/BCIN[14]
-			sum_trunc1__0/BCIN[15]
-			sum_trunc1__0/BCIN[16]
-			sum_trunc1__0/BCIN[17]
-			sum_trunc1__0/BCIN[1]
-			sum_trunc1__0/BCIN[2]
-			sum_trunc1__0/BCIN[3]
-			sum_trunc1__0/BCIN[4]
-			sum_trunc1__0/BCIN[5]
-			sum_trunc1__0/BCIN[6]
-			sum_trunc1__0/BCIN[7]
-			sum_trunc1__0/BCIN[8]
-			sum_trunc1__0/BCIN[9]
-			sum_trunc1__0/B[0]
-			sum_trunc1__0/B[10]
-			sum_trunc1__0/B[11]
-			sum_trunc1__0/B[12]
-			sum_trunc1__0/B[13]
-			sum_trunc1__0/B[14]
-			sum_trunc1__0/B[15]
-			sum_trunc1__0/B[16]
-			sum_trunc1__0/B[17]
-			sum_trunc1__0/B[1]
-			sum_trunc1__0/B[2]
-			sum_trunc1__0/B[3]
-			sum_trunc1__0/B[4]
-			sum_trunc1__0/B[5]
-			sum_trunc1__0/B[6]
-			sum_trunc1__0/B[7]
-			sum_trunc1__0/B[8]
-			sum_trunc1__0/B[9]
-			sum_trunc1__0/CARRYCASCIN
-			sum_trunc1__0/CARRYIN
-			sum_trunc1__0/CARRYINSEL[0]
-			sum_trunc1__0/CARRYINSEL[1]
-			sum_trunc1__0/CARRYINSEL[2]
-			sum_trunc1__0/CEA1
-			sum_trunc1__0/CEA2
-			sum_trunc1__0/CEAD
-			sum_trunc1__0/CEALUMODE
-			sum_trunc1__0/CEB1
-			sum_trunc1__0/CEB2
-			sum_trunc1__0/CEC
-			sum_trunc1__0/CECARRYIN
-			sum_trunc1__0/CECTRL
-			sum_trunc1__0/CED
-			sum_trunc1__0/CEINMODE
-			sum_trunc1__0/CEM
-			sum_trunc1__0/CEP
-			sum_trunc1__0/CLK
-			sum_trunc1__0/C[0]
-			sum_trunc1__0/C[10]
-			sum_trunc1__0/C[11]
-			sum_trunc1__0/C[12]
-			sum_trunc1__0/C[13]
-			sum_trunc1__0/C[14]
-			sum_trunc1__0/C[15]
-			sum_trunc1__0/C[16]
-			sum_trunc1__0/C[17]
-			sum_trunc1__0/C[18]
-			sum_trunc1__0/C[19]
-			sum_trunc1__0/C[1]
-			sum_trunc1__0/C[20]
-			sum_trunc1__0/C[21]
-			sum_trunc1__0/C[22]
-			sum_trunc1__0/C[23]
-			sum_trunc1__0/C[24]
-			sum_trunc1__0/C[25]
-			sum_trunc1__0/C[26]
-			sum_trunc1__0/C[27]
-			sum_trunc1__0/C[28]
-			sum_trunc1__0/C[29]
-			sum_trunc1__0/C[2]
-			sum_trunc1__0/C[30]
-			sum_trunc1__0/C[31]
-			sum_trunc1__0/C[32]
-			sum_trunc1__0/C[33]
-			sum_trunc1__0/C[34]
-			sum_trunc1__0/C[35]
-			sum_trunc1__0/C[36]
-			sum_trunc1__0/C[37]
-			sum_trunc1__0/C[38]
-			sum_trunc1__0/C[39]
-			sum_trunc1__0/C[3]
-			sum_trunc1__0/C[40]
-			sum_trunc1__0/C[41]
-			sum_trunc1__0/C[42]
-			sum_trunc1__0/C[43]
-			sum_trunc1__0/C[44]
-			sum_trunc1__0/C[45]
-			sum_trunc1__0/C[46]
-			sum_trunc1__0/C[47]
-			sum_trunc1__0/C[4]
-			sum_trunc1__0/C[5]
-			sum_trunc1__0/C[6]
-			sum_trunc1__0/C[7]
-			sum_trunc1__0/C[8]
-			sum_trunc1__0/C[9]
-			sum_trunc1__0/D[0]
-			sum_trunc1__0/D[10]
-			sum_trunc1__0/D[11]
-			sum_trunc1__0/D[12]
-			sum_trunc1__0/D[13]
-			sum_trunc1__0/D[14]
-			sum_trunc1__0/D[15]
-			sum_trunc1__0/D[16]
-			sum_trunc1__0/D[17]
-			sum_trunc1__0/D[18]
-			sum_trunc1__0/D[19]
-			sum_trunc1__0/D[1]
-			sum_trunc1__0/D[20]
-			sum_trunc1__0/D[21]
-			sum_trunc1__0/D[22]
-			sum_trunc1__0/D[23]
-			sum_trunc1__0/D[24]
-			sum_trunc1__0/D[2]
-			sum_trunc1__0/D[3]
-			sum_trunc1__0/D[4]
-			sum_trunc1__0/D[5]
-			sum_trunc1__0/D[6]
-			sum_trunc1__0/D[7]
-			sum_trunc1__0/D[8]
-			sum_trunc1__0/D[9]
-			sum_trunc1__0/INMODE[0]
-			sum_trunc1__0/INMODE[1]
-			sum_trunc1__0/INMODE[2]
-			sum_trunc1__0/INMODE[3]
-			sum_trunc1__0/INMODE[4]
-			sum_trunc1__0/MULTSIGNIN
-			sum_trunc1__0/OPMODE[0]
-			sum_trunc1__0/OPMODE[1]
-			sum_trunc1__0/OPMODE[2]
-			sum_trunc1__0/OPMODE[3]
-			sum_trunc1__0/OPMODE[4]
-			sum_trunc1__0/OPMODE[5]
-			sum_trunc1__0/OPMODE[6]
-			sum_trunc1__0/PCIN[0]
-			sum_trunc1__0/PCIN[10]
-			sum_trunc1__0/PCIN[11]
-			sum_trunc1__0/PCIN[12]
-			sum_trunc1__0/PCIN[13]
-			sum_trunc1__0/PCIN[14]
-			sum_trunc1__0/PCIN[15]
-			sum_trunc1__0/PCIN[16]
-			sum_trunc1__0/PCIN[17]
-			sum_trunc1__0/PCIN[18]
-			sum_trunc1__0/PCIN[19]
-			sum_trunc1__0/PCIN[1]
-			sum_trunc1__0/PCIN[20]
-			sum_trunc1__0/PCIN[21]
-			sum_trunc1__0/PCIN[22]
-			sum_trunc1__0/PCIN[23]
-			sum_trunc1__0/PCIN[24]
-			sum_trunc1__0/PCIN[25]
-			sum_trunc1__0/PCIN[26]
-			sum_trunc1__0/PCIN[27]
-			sum_trunc1__0/PCIN[28]
-			sum_trunc1__0/PCIN[29]
-			sum_trunc1__0/PCIN[2]
-			sum_trunc1__0/PCIN[30]
-			sum_trunc1__0/PCIN[31]
-			sum_trunc1__0/PCIN[32]
-			sum_trunc1__0/PCIN[33]
-			sum_trunc1__0/PCIN[34]
-			sum_trunc1__0/PCIN[35]
-			sum_trunc1__0/PCIN[36]
-			sum_trunc1__0/PCIN[37]
-			sum_trunc1__0/PCIN[38]
-			sum_trunc1__0/PCIN[39]
-			sum_trunc1__0/PCIN[3]
-			sum_trunc1__0/PCIN[40]
-			sum_trunc1__0/PCIN[41]
-			sum_trunc1__0/PCIN[42]
-			sum_trunc1__0/PCIN[43]
-			sum_trunc1__0/PCIN[44]
-			sum_trunc1__0/PCIN[45]
-			sum_trunc1__0/PCIN[46]
-			sum_trunc1__0/PCIN[47]
-			sum_trunc1__0/PCIN[4]
-			sum_trunc1__0/PCIN[5]
-			sum_trunc1__0/PCIN[6]
-			sum_trunc1__0/PCIN[7]
-			sum_trunc1__0/PCIN[8]
-			sum_trunc1__0/PCIN[9]
-			sum_trunc1__0/P[0]
-			sum_trunc1__0/P[10]
-			sum_trunc1__0/P[11]
-			sum_trunc1__0/P[12]
-			sum_trunc1__0/P[13]
-			sum_trunc1__0/P[14]
-			sum_trunc1__0/P[15]
-			sum_trunc1__0/P[16]
-			sum_trunc1__0/P[17]
-			sum_trunc1__0/P[18]
-			sum_trunc1__0/P[19]
-			sum_trunc1__0/P[1]
-			sum_trunc1__0/P[20]
-			sum_trunc1__0/P[21]
-			sum_trunc1__0/P[22]
-			sum_trunc1__0/P[23]
-			sum_trunc1__0/P[24]
-			sum_trunc1__0/P[25]
-			sum_trunc1__0/P[26]
-			sum_trunc1__0/P[27]
-			sum_trunc1__0/P[28]
-			sum_trunc1__0/P[29]
-			sum_trunc1__0/P[2]
-			sum_trunc1__0/P[3]
-			sum_trunc1__0/P[4]
-			sum_trunc1__0/P[5]
-			sum_trunc1__0/P[6]
-			sum_trunc1__0/P[7]
-			sum_trunc1__0/P[8]
-			sum_trunc1__0/P[9]
-			sum_trunc1__0/RSTA
-			sum_trunc1__0/RSTALLCARRYIN
-			sum_trunc1__0/RSTALUMODE
-			sum_trunc1__0/RSTB
-			sum_trunc1__0/RSTC
-			sum_trunc1__0/RSTCTRL
-			sum_trunc1__0/RSTD
-			sum_trunc1__0/RSTINMODE
-			sum_trunc1__0/RSTM
-			sum_trunc1__0/RSTP
-		DSP48E1: sum_trunc1
-			sum_trunc1/ACIN[0]
-			sum_trunc1/ACIN[10]
-			sum_trunc1/ACIN[11]
-			sum_trunc1/ACIN[12]
-			sum_trunc1/ACIN[13]
-			sum_trunc1/ACIN[14]
-			sum_trunc1/ACIN[15]
-			sum_trunc1/ACIN[16]
-			sum_trunc1/ACIN[17]
-			sum_trunc1/ACIN[18]
-			sum_trunc1/ACIN[19]
-			sum_trunc1/ACIN[1]
-			sum_trunc1/ACIN[20]
-			sum_trunc1/ACIN[21]
-			sum_trunc1/ACIN[22]
-			sum_trunc1/ACIN[23]
-			sum_trunc1/ACIN[24]
-			sum_trunc1/ACIN[25]
-			sum_trunc1/ACIN[26]
-			sum_trunc1/ACIN[27]
-			sum_trunc1/ACIN[28]
-			sum_trunc1/ACIN[29]
-			sum_trunc1/ACIN[2]
-			sum_trunc1/ACIN[3]
-			sum_trunc1/ACIN[4]
-			sum_trunc1/ACIN[5]
-			sum_trunc1/ACIN[6]
-			sum_trunc1/ACIN[7]
-			sum_trunc1/ACIN[8]
-			sum_trunc1/ACIN[9]
-			sum_trunc1/ALUMODE[0]
-			sum_trunc1/ALUMODE[1]
-			sum_trunc1/ALUMODE[2]
-			sum_trunc1/ALUMODE[3]
-			sum_trunc1/A[0]
-			sum_trunc1/A[10]
-			sum_trunc1/A[11]
-			sum_trunc1/A[12]
-			sum_trunc1/A[13]
-			sum_trunc1/A[14]
-			sum_trunc1/A[15]
-			sum_trunc1/A[16]
-			sum_trunc1/A[17]
-			sum_trunc1/A[18]
-			sum_trunc1/A[19]
-			sum_trunc1/A[1]
-			sum_trunc1/A[20]
-			sum_trunc1/A[21]
-			sum_trunc1/A[22]
-			sum_trunc1/A[23]
-			sum_trunc1/A[24]
-			sum_trunc1/A[25]
-			sum_trunc1/A[26]
-			sum_trunc1/A[27]
-			sum_trunc1/A[28]
-			sum_trunc1/A[29]
-			sum_trunc1/A[2]
-			sum_trunc1/A[3]
-			sum_trunc1/A[4]
-			sum_trunc1/A[5]
-			sum_trunc1/A[6]
-			sum_trunc1/A[7]
-			sum_trunc1/A[8]
-			sum_trunc1/A[9]
-			sum_trunc1/BCIN[0]
-			sum_trunc1/BCIN[10]
-			sum_trunc1/BCIN[11]
-			sum_trunc1/BCIN[12]
-			sum_trunc1/BCIN[13]
-			sum_trunc1/BCIN[14]
-			sum_trunc1/BCIN[15]
-			sum_trunc1/BCIN[16]
-			sum_trunc1/BCIN[17]
-			sum_trunc1/BCIN[1]
-			sum_trunc1/BCIN[2]
-			sum_trunc1/BCIN[3]
-			sum_trunc1/BCIN[4]
-			sum_trunc1/BCIN[5]
-			sum_trunc1/BCIN[6]
-			sum_trunc1/BCIN[7]
-			sum_trunc1/BCIN[8]
-			sum_trunc1/BCIN[9]
-			sum_trunc1/B[0]
-			sum_trunc1/B[10]
-			sum_trunc1/B[11]
-			sum_trunc1/B[12]
-			sum_trunc1/B[13]
-			sum_trunc1/B[14]
-			sum_trunc1/B[15]
-			sum_trunc1/B[16]
-			sum_trunc1/B[17]
-			sum_trunc1/B[1]
-			sum_trunc1/B[2]
-			sum_trunc1/B[3]
-			sum_trunc1/B[4]
-			sum_trunc1/B[5]
-			sum_trunc1/B[6]
-			sum_trunc1/B[7]
-			sum_trunc1/B[8]
-			sum_trunc1/B[9]
-			sum_trunc1/CARRYCASCIN
-			sum_trunc1/CARRYIN
-			sum_trunc1/CARRYINSEL[0]
-			sum_trunc1/CARRYINSEL[1]
-			sum_trunc1/CARRYINSEL[2]
-			sum_trunc1/CEA1
-			sum_trunc1/CEA2
-			sum_trunc1/CEAD
-			sum_trunc1/CEALUMODE
-			sum_trunc1/CEB1
-			sum_trunc1/CEB2
-			sum_trunc1/CEC
-			sum_trunc1/CECARRYIN
-			sum_trunc1/CECTRL
-			sum_trunc1/CED
-			sum_trunc1/CEINMODE
-			sum_trunc1/CEM
-			sum_trunc1/CEP
-			sum_trunc1/CLK
-			sum_trunc1/C[0]
-			sum_trunc1/C[10]
-			sum_trunc1/C[11]
-			sum_trunc1/C[12]
-			sum_trunc1/C[13]
-			sum_trunc1/C[14]
-			sum_trunc1/C[15]
-			sum_trunc1/C[16]
-			sum_trunc1/C[17]
-			sum_trunc1/C[18]
-			sum_trunc1/C[19]
-			sum_trunc1/C[1]
-			sum_trunc1/C[20]
-			sum_trunc1/C[21]
-			sum_trunc1/C[22]
-			sum_trunc1/C[23]
-			sum_trunc1/C[24]
-			sum_trunc1/C[25]
-			sum_trunc1/C[26]
-			sum_trunc1/C[27]
-			sum_trunc1/C[28]
-			sum_trunc1/C[29]
-			sum_trunc1/C[2]
-			sum_trunc1/C[30]
-			sum_trunc1/C[31]
-			sum_trunc1/C[32]
-			sum_trunc1/C[33]
-			sum_trunc1/C[34]
-			sum_trunc1/C[35]
-			sum_trunc1/C[36]
-			sum_trunc1/C[37]
-			sum_trunc1/C[38]
-			sum_trunc1/C[39]
-			sum_trunc1/C[3]
-			sum_trunc1/C[40]
-			sum_trunc1/C[41]
-			sum_trunc1/C[42]
-			sum_trunc1/C[43]
-			sum_trunc1/C[44]
-			sum_trunc1/C[45]
-			sum_trunc1/C[46]
-			sum_trunc1/C[47]
-			sum_trunc1/C[4]
-			sum_trunc1/C[5]
-			sum_trunc1/C[6]
-			sum_trunc1/C[7]
-			sum_trunc1/C[8]
-			sum_trunc1/C[9]
-			sum_trunc1/D[0]
-			sum_trunc1/D[10]
-			sum_trunc1/D[11]
-			sum_trunc1/D[12]
-			sum_trunc1/D[13]
-			sum_trunc1/D[14]
-			sum_trunc1/D[15]
-			sum_trunc1/D[16]
-			sum_trunc1/D[17]
-			sum_trunc1/D[18]
-			sum_trunc1/D[19]
-			sum_trunc1/D[1]
-			sum_trunc1/D[20]
-			sum_trunc1/D[21]
-			sum_trunc1/D[22]
-			sum_trunc1/D[23]
-			sum_trunc1/D[24]
-			sum_trunc1/D[2]
-			sum_trunc1/D[3]
-			sum_trunc1/D[4]
-			sum_trunc1/D[5]
-			sum_trunc1/D[6]
-			sum_trunc1/D[7]
-			sum_trunc1/D[8]
-			sum_trunc1/D[9]
-			sum_trunc1/INMODE[0]
-			sum_trunc1/INMODE[1]
-			sum_trunc1/INMODE[2]
-			sum_trunc1/INMODE[3]
-			sum_trunc1/INMODE[4]
-			sum_trunc1/MULTSIGNIN
-			sum_trunc1/OPMODE[0]
-			sum_trunc1/OPMODE[1]
-			sum_trunc1/OPMODE[2]
-			sum_trunc1/OPMODE[3]
-			sum_trunc1/OPMODE[4]
-			sum_trunc1/OPMODE[5]
-			sum_trunc1/OPMODE[6]
-			sum_trunc1/PCIN[0]
-			sum_trunc1/PCIN[10]
-			sum_trunc1/PCIN[11]
-			sum_trunc1/PCIN[12]
-			sum_trunc1/PCIN[13]
-			sum_trunc1/PCIN[14]
-			sum_trunc1/PCIN[15]
-			sum_trunc1/PCIN[16]
-			sum_trunc1/PCIN[17]
-			sum_trunc1/PCIN[18]
-			sum_trunc1/PCIN[19]
-			sum_trunc1/PCIN[1]
-			sum_trunc1/PCIN[20]
-			sum_trunc1/PCIN[21]
-			sum_trunc1/PCIN[22]
-			sum_trunc1/PCIN[23]
-			sum_trunc1/PCIN[24]
-			sum_trunc1/PCIN[25]
-			sum_trunc1/PCIN[26]
-			sum_trunc1/PCIN[27]
-			sum_trunc1/PCIN[28]
-			sum_trunc1/PCIN[29]
-			sum_trunc1/PCIN[2]
-			sum_trunc1/PCIN[30]
-			sum_trunc1/PCIN[31]
-			sum_trunc1/PCIN[32]
-			sum_trunc1/PCIN[33]
-			sum_trunc1/PCIN[34]
-			sum_trunc1/PCIN[35]
-			sum_trunc1/PCIN[36]
-			sum_trunc1/PCIN[37]
-			sum_trunc1/PCIN[38]
-			sum_trunc1/PCIN[39]
-			sum_trunc1/PCIN[3]
-			sum_trunc1/PCIN[40]
-			sum_trunc1/PCIN[41]
-			sum_trunc1/PCIN[42]
-			sum_trunc1/PCIN[43]
-			sum_trunc1/PCIN[44]
-			sum_trunc1/PCIN[45]
-			sum_trunc1/PCIN[46]
-			sum_trunc1/PCIN[47]
-			sum_trunc1/PCIN[4]
-			sum_trunc1/PCIN[5]
-			sum_trunc1/PCIN[6]
-			sum_trunc1/PCIN[7]
-			sum_trunc1/PCIN[8]
-			sum_trunc1/PCIN[9]
-			sum_trunc1/PCOUT[0]
-			sum_trunc1/PCOUT[10]
-			sum_trunc1/PCOUT[11]
-			sum_trunc1/PCOUT[12]
-			sum_trunc1/PCOUT[13]
-			sum_trunc1/PCOUT[14]
-			sum_trunc1/PCOUT[15]
-			sum_trunc1/PCOUT[16]
-			sum_trunc1/PCOUT[17]
-			sum_trunc1/PCOUT[18]
-			sum_trunc1/PCOUT[19]
-			sum_trunc1/PCOUT[1]
-			sum_trunc1/PCOUT[20]
-			sum_trunc1/PCOUT[21]
-			sum_trunc1/PCOUT[22]
-			sum_trunc1/PCOUT[23]
-			sum_trunc1/PCOUT[24]
-			sum_trunc1/PCOUT[25]
-			sum_trunc1/PCOUT[26]
-			sum_trunc1/PCOUT[27]
-			sum_trunc1/PCOUT[28]
-			sum_trunc1/PCOUT[29]
-			sum_trunc1/PCOUT[2]
-			sum_trunc1/PCOUT[30]
-			sum_trunc1/PCOUT[31]
-			sum_trunc1/PCOUT[32]
-			sum_trunc1/PCOUT[33]
-			sum_trunc1/PCOUT[34]
-			sum_trunc1/PCOUT[35]
-			sum_trunc1/PCOUT[36]
-			sum_trunc1/PCOUT[37]
-			sum_trunc1/PCOUT[38]
-			sum_trunc1/PCOUT[39]
-			sum_trunc1/PCOUT[3]
-			sum_trunc1/PCOUT[40]
-			sum_trunc1/PCOUT[41]
-			sum_trunc1/PCOUT[42]
-			sum_trunc1/PCOUT[43]
-			sum_trunc1/PCOUT[44]
-			sum_trunc1/PCOUT[45]
-			sum_trunc1/PCOUT[46]
-			sum_trunc1/PCOUT[47]
-			sum_trunc1/PCOUT[4]
-			sum_trunc1/PCOUT[5]
-			sum_trunc1/PCOUT[6]
-			sum_trunc1/PCOUT[7]
-			sum_trunc1/PCOUT[8]
-			sum_trunc1/PCOUT[9]
-			sum_trunc1/P[0]
-			sum_trunc1/P[10]
-			sum_trunc1/P[11]
-			sum_trunc1/P[12]
-			sum_trunc1/P[13]
-			sum_trunc1/P[14]
-			sum_trunc1/P[15]
-			sum_trunc1/P[16]
-			sum_trunc1/P[17]
-			sum_trunc1/P[18]
-			sum_trunc1/P[19]
-			sum_trunc1/P[1]
-			sum_trunc1/P[20]
-			sum_trunc1/P[21]
-			sum_trunc1/P[22]
-			sum_trunc1/P[23]
-			sum_trunc1/P[24]
-			sum_trunc1/P[25]
-			sum_trunc1/P[26]
-			sum_trunc1/P[27]
-			sum_trunc1/P[28]
-			sum_trunc1/P[29]
-			sum_trunc1/P[2]
-			sum_trunc1/P[30]
-			sum_trunc1/P[31]
-			sum_trunc1/P[32]
-			sum_trunc1/P[33]
-			sum_trunc1/P[34]
-			sum_trunc1/P[35]
-			sum_trunc1/P[36]
-			sum_trunc1/P[37]
-			sum_trunc1/P[38]
-			sum_trunc1/P[39]
-			sum_trunc1/P[3]
-			sum_trunc1/P[40]
-			sum_trunc1/P[41]
-			sum_trunc1/P[42]
-			sum_trunc1/P[43]
-			sum_trunc1/P[44]
-			sum_trunc1/P[45]
-			sum_trunc1/P[46]
-			sum_trunc1/P[47]
-			sum_trunc1/P[4]
-			sum_trunc1/P[5]
-			sum_trunc1/P[6]
-			sum_trunc1/P[7]
-			sum_trunc1/P[8]
-			sum_trunc1/P[9]
-			sum_trunc1/RSTA
-			sum_trunc1/RSTALLCARRYIN
-			sum_trunc1/RSTALUMODE
-			sum_trunc1/RSTB
-			sum_trunc1/RSTC
-			sum_trunc1/RSTCTRL
-			sum_trunc1/RSTD
-			sum_trunc1/RSTINMODE
-			sum_trunc1/RSTM
-			sum_trunc1/RSTP
-
-RAMB18E1 Cells (2):
-	Printing all EDIFCellInsts of type RAMB18E1... (2)
-		RAMB18E1: gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[10]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[11]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[12]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[13]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[2]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[3]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[4]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[5]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[6]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[7]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[8]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[9]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[10]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[11]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[12]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[13]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[2]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[3]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[4]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[5]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[6]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[7]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[8]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[9]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/CLKARDCLK
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/CLKBWRCLK
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[10]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[11]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[12]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[13]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[14]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[15]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[2]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[3]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[4]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[5]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[6]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[7]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[8]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[9]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[10]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[11]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[12]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[13]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[14]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[15]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[2]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[3]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[4]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[5]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[6]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[7]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[8]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[9]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIPADIP[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIPADIP[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIPBDIP[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIPBDIP[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[10]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[11]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[12]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[13]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[14]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[15]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[2]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[3]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[4]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[5]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[6]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[7]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[8]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[9]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[2]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[3]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[4]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[5]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOPADOP[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOPADOP[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ENARDEN
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ENBWREN
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/REGCEAREGCE
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/REGCEB
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/RSTRAMARSTRAM
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/RSTRAMB
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/RSTREGARSTREG
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/RSTREGB
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEA[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEA[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[2]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[3]
-		RAMB18E1: gen_wr_a.gen_word_narrow.mem_reg
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[0]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[10]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[11]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[12]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[13]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[1]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[2]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[3]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[4]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[5]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[6]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[7]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[8]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[9]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[0]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[10]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[11]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[12]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[13]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[1]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[2]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[3]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[4]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[5]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[6]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[7]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[8]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[9]
-			gen_wr_a.gen_word_narrow.mem_reg/CLKARDCLK
-			gen_wr_a.gen_word_narrow.mem_reg/CLKBWRCLK
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[10]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[11]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[12]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[13]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[14]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[15]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[2]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[3]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[4]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[5]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[6]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[7]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[8]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[9]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[10]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[11]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[12]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[13]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[14]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[15]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[2]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[3]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[4]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[5]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[6]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[7]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[8]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[9]
-			gen_wr_a.gen_word_narrow.mem_reg/DIPADIP[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DIPADIP[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DIPBDIP[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DIPBDIP[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[10]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[11]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[12]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[13]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[14]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[15]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[2]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[3]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[4]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[5]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[6]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[7]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[8]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[9]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[2]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[3]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[4]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[5]
-			gen_wr_a.gen_word_narrow.mem_reg/DOPADOP[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DOPADOP[1]
-			gen_wr_a.gen_word_narrow.mem_reg/ENARDEN
-			gen_wr_a.gen_word_narrow.mem_reg/ENBWREN
-			gen_wr_a.gen_word_narrow.mem_reg/REGCEAREGCE
-			gen_wr_a.gen_word_narrow.mem_reg/REGCEB
-			gen_wr_a.gen_word_narrow.mem_reg/RSTRAMARSTRAM
-			gen_wr_a.gen_word_narrow.mem_reg/RSTRAMB
-			gen_wr_a.gen_word_narrow.mem_reg/RSTREGARSTREG
-			gen_wr_a.gen_word_narrow.mem_reg/RSTREGB
-			gen_wr_a.gen_word_narrow.mem_reg/WEA[0]
-			gen_wr_a.gen_word_narrow.mem_reg/WEA[1]
-			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[0]
-			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[1]
-			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[2]
-			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[3]
+GND Cells (9):
+	Printing all EDIFCellInsts of type GND... (9)
+		GND: GND
+			GND/G
+		GND: GND
+			GND/G
+		GND: GND
+			GND/G
+		GND: GND_1
+			GND_1/G
+		GND: GND
+			GND/G
+		GND: GND
+			GND/G
+		GND: GND
+			GND/G
+		GND: GND
+			GND/G
+		GND: GND
+			GND/G
 
 Printing cells in this carry chain...
 	ov_sum_reg[0]_i_2
@@ -6244,18 +6244,16 @@ Printing cells in this carry chain...
 	ov_sum_reg[16]_i_1
 	ov_sum_reg[20]_i_1
 
-EDIFCarryCells remaning: 0
-
 Placing carry chains... (1)
 	chain size: 6
 	selectedSiteType: SLICEM
 	X_MAX: 112, X_MIN: 0, Y_MAX: 149, Y_MIN: 0
-	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2, Type: CARRY4, Site: SLICE_X101Y85, BEL: CARRY4
-	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1, Type: CARRY4, Site: SLICE_X101Y86, BEL: CARRY4
-	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1, Type: CARRY4, Site: SLICE_X101Y87, BEL: CARRY4
-	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1, Type: CARRY4, Site: SLICE_X101Y88, BEL: CARRY4
-	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1, Type: CARRY4, Site: SLICE_X101Y89, BEL: CARRY4
-	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1, Type: CARRY4, Site: SLICE_X101Y90, BEL: CARRY4
+	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2, Type: CARRY4, Site: SLICE_X64Y87, BEL: CARRY4
+	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1, Type: CARRY4, Site: SLICE_X64Y88, BEL: CARRY4
+	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1, Type: CARRY4, Site: SLICE_X64Y89, BEL: CARRY4
+	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1, Type: CARRY4, Site: SLICE_X64Y90, BEL: CARRY4
+	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1, Type: CARRY4, Site: SLICE_X64Y91, BEL: CARRY4
+	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1, Type: CARRY4, Site: SLICE_X64Y92, BEL: CARRY4
 
 Spawning remaining cells...
 
@@ -6871,9 +6869,13 @@ Printing sites in occupiedPlacements... (307)
 		BEL: A6LUT, Cell: fir_filter_inst/FSM_sequential_state[0]_i_1__0(BEL: A6LUT)
 	SLICE_X57Y127, SLICEL
 		BEL: A6LUT, Cell: fir_filter_inst/sample_re_addr[2]_i_1(BEL: A6LUT)
+	SLICE_X64Y89, SLICEL
+		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1(BEL: CARRY4)
 	SLICE_X57Y128, SLICEL
 		BEL: A5LUT, Cell: fir_filter_inst/weight_re_addr[1]_i_1(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
+	SLICE_X64Y88, SLICEL
+		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1(BEL: CARRY4)
 	SLICE_X57Y125, SLICEL
 		BEL: A5LUT, Cell: fir_filter_inst/weight_re_addr[2]_i_1(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
@@ -6898,6 +6900,8 @@ Printing sites in occupiedPlacements... (307)
 		Net: GLOBAL_LOGIC1
 	RAMB18_X5Y11, RAMB18E1
 		BEL: RAMB18E1, Cell: fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg(BEL: RAMB18E1)
+	SLICE_X64Y87, SLICEL
+		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2(BEL: CARRY4)
 	SLICE_X84Y100, SLICEL
 		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[8]_i_4(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
@@ -6975,22 +6979,18 @@ Printing sites in occupiedPlacements... (307)
 	SLICE_X57Y101, SLICEL
 		BEL: A5LUT, Cell: serializer_inst/counter[4]_i_1(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
-	SLICE_X101Y85, SLICEL
-		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2(BEL: CARRY4)
 	SLICE_X57Y102, SLICEL
 		BEL: A5LUT, Cell: serializer_inst/shift_reg[23]_i_3(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
 	SLICE_X57Y100, SLICEL
 		BEL: A5LUT, Cell: serializer_inst/shift_reg[23]_i_2(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
-	SLICE_X101Y89, SLICEL
-		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1(BEL: CARRY4)
-	SLICE_X101Y88, SLICEL
+	SLICE_X64Y90, SLICEL
 		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1(BEL: CARRY4)
-	SLICE_X101Y87, SLICEL
-		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1(BEL: CARRY4)
-	SLICE_X101Y86, SLICEL
-		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1(BEL: CARRY4)
+	SLICE_X64Y92, SLICEL
+		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1(BEL: CARRY4)
+	SLICE_X64Y91, SLICEL
+		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1(BEL: CARRY4)
 	SLICE_X84Y137, SLICEL
 		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[8]_i_5(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
@@ -7033,8 +7033,6 @@ Printing sites in occupiedPlacements... (307)
 		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[3](BEL: AFF)
 	SLICE_X84Y127, SLICEL
 		BEL: AFF, Cell: fir_filter_inst/sample_wr_addr_reg[2](BEL: AFF)
-	SLICE_X101Y90, SLICEL
-		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1(BEL: CARRY4)
 	SLICE_X61Y0, SLICEL
 		BEL: AFF, Cell: fir_filter_inst/ov_dout_reg[13](BEL: AFF)
 	SLICE_X84Y133, SLICEL
@@ -7604,8 +7602,22 @@ Printing sites in occupiedPlacements... (307)
 Beginning Intra-Routing...
 	ROUTED siteName: SLICE_X57Y129
 		cellName: fir_filter_inst/FSM_sequential_state[0]_i_1__0 cellType: LUT6       BELName: A6LUT      BELType: LUT6      
+	ROUTED siteName: SLICE_X64Y89
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
+		Found CARRY cell.
 	ROUTED siteName: SLICE_X57Y127
 		cellName: fir_filter_inst/sample_re_addr[2]_i_1    cellType: LUT6       BELName: A6LUT      BELType: LUT6      
+	ROUTED siteName: SLICE_X64Y88
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
+		Found CARRY cell.
 	ROUTED siteName: SLICE_X57Y128
 		cellName: fir_filter_inst/weight_re_addr[1]_i_1    cellType: LUT4       BELName: A5LUT      BELType: LUT5      
 	ROUTED siteName: SLICE_X57Y125
@@ -7626,6 +7638,13 @@ Beginning Intra-Routing...
 		cellName: fir_filter_inst/sample_re_addr[3]_i_4    cellType: LUT3       BELName: A5LUT      BELType: LUT5      
 	ROUTED siteName: RAMB18_X5Y11
 		cellName: fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg cellType: RAMB18E1   BELName: RAMB18E1   BELType: RAMB18E1_RAMB18E1
+	ROUTED siteName: SLICE_X64Y87
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
+		Found CARRY cell.
 	ROUTED siteName: SLICE_X84Y100
 		cellName: fir_filter_inst/tap_inst/ov_sum[8]_i_4   cellType: LUT2       BELName: A5LUT      BELType: LUT5      
 	ROUTED siteName: SLICE_X57Y118
@@ -7682,13 +7701,6 @@ Beginning Intra-Routing...
 		cellName: serializer_inst/o_ready_i_1__0           cellType: LUT2       BELName: A5LUT      BELType: LUT5      
 	ROUTED siteName: SLICE_X57Y104
 		cellName: serializer_inst/counter[4]_i_2           cellType: LUT6       BELName: A6LUT      BELType: LUT6      
-	ROUTED siteName: SLICE_X101Y85
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
-		Found CARRY cell.
 	ROUTED siteName: SLICE_X57Y101
 		cellName: serializer_inst/counter[4]_i_1           cellType: LUT4       BELName: A5LUT      BELType: LUT5      
 	ROUTED siteName: SLICE_X57Y102
@@ -7699,34 +7711,6 @@ Beginning Intra-Routing...
 		Null!
 	ROUTED siteName: ILOGIC_X1Y142
 		Null!
-	ROUTED siteName: SLICE_X101Y89
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
-		Found CARRY cell.
-	ROUTED siteName: SLICE_X101Y88
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
-		Found CARRY cell.
-	ROUTED siteName: SLICE_X101Y87
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
-		Found CARRY cell.
-	ROUTED siteName: SLICE_X101Y86
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
-		Found CARRY cell.
 	ROUTED siteName: ILOGIC_X1Y135
 		Null!
 	ROUTED siteName: ILOGIC_X1Y136
@@ -7737,6 +7721,27 @@ Beginning Intra-Routing...
 		Null!
 	ROUTED siteName: OLOGIC_X1Y87
 		Null!
+	ROUTED siteName: SLICE_X64Y90
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
+		Found CARRY cell.
+	ROUTED siteName: SLICE_X64Y92
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
+		Found CARRY cell.
+	ROUTED siteName: SLICE_X64Y91
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
+		Found CARRY cell.
 	ROUTED siteName: SLICE_X84Y137
 		cellName: fir_filter_inst/tap_inst/ov_sum[8]_i_5   cellType: LUT2       BELName: A5LUT      BELType: LUT5      
 	ROUTED siteName: SLICE_X84Y136
@@ -7787,13 +7792,6 @@ Beginning Intra-Routing...
 	ROUTED siteName: SLICE_X84Y127
 		cellName: fir_filter_inst/sample_wr_addr_reg[2]    cellType: FDRE       BELName: AFF        BELType: REG_INIT  
 		Found FF cell.
-	ROUTED siteName: SLICE_X101Y90
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
-		Found CARRY cell.
 	ROUTED siteName: SLICE_X84Y133
 		cellName: fir_filter_inst/ov_dout_reg[17]          cellType: FDRE       BELName: AFF        BELType: REG_INIT  
 		Found FF cell.
@@ -8459,11 +8457,11 @@ Printing All Nets...
 		SitePinInst: DOADO14 isRouted() = false
 	Net: fir_filter_inst/tap_inst/ov_sum[4]_i_5_n_0
 		SitePinInst: AMUX isRouted() = false
+	Net: fir_filter_inst/tap_inst/ov_sum[20]_i_5_n_0
+		SitePinInst: AMUX isRouted() = false
 	Net: fir_filter_inst/ov_dout_reg[23]_0[18]
 		SitePinInst: AQ isRouted() = false
 		SitePinInst: A3 isRouted() = false
-	Net: fir_filter_inst/tap_inst/ov_sum[20]_i_5_n_0
-		SitePinInst: AMUX isRouted() = false
 	Net: i_en
 		SitePinInsts: None!
 	Net: deserializer_inst/Q[17]
@@ -8859,6 +8857,8 @@ Printing All Nets...
 	Net: deserializer_inst/Q[18]
 		SitePinInst: DIBDI0 isRouted() = false
 		SitePinInst: AQ isRouted() = false
+	Net: fir_filter_inst/tap_inst/p_0_in[11]
+		SitePinInst: A4 isRouted() = false
 	Net: fir_filter_inst/sample_addr[0]
 		SitePinInst: A5 isRouted() = false
 		SitePinInst: A6 isRouted() = false
@@ -8868,8 +8868,6 @@ Printing All Nets...
 		SitePinInst: A1 isRouted() = false
 		SitePinInst: A3 isRouted() = false
 		SitePinInst: AQ isRouted() = false
-	Net: fir_filter_inst/tap_inst/p_0_in[11]
-		SitePinInst: A4 isRouted() = false
 	Net: fir_filter_inst/next_state[0]
 		SitePinInst: A isRouted() = false
 		SitePinInst: AX isRouted() = false
@@ -9507,8 +9505,8 @@ Printing All Nets...
 	Net: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1_n_1
 		SitePinInsts: None!
 	Net: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1_n_0
-		SitePinInst: CIN isRouted() = false
 		SitePinInst: COUT isRouted() = false
+		SitePinInst: CIN isRouted() = false
 	Net: deserializer_inst/Q[9]
 		SitePinInst: DIADI9 isRouted() = false
 		SitePinInst: AQ isRouted() = false
@@ -9886,8 +9884,8 @@ Printing All Nets...
 	Net: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2_n_1
 		SitePinInsts: None!
 	Net: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2_n_0
-		SitePinInst: COUT isRouted() = false
 		SitePinInst: CIN isRouted() = false
+		SitePinInst: COUT isRouted() = false
 	Net: serializer_inst/shift_reg[15]_i_1_n_0
 		SitePinInst: AMUX isRouted() = false
 		SitePinInst: AX isRouted() = false
@@ -10088,15 +10086,15 @@ Printing All Nets...
 	Net: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1_n_6
 		SitePinInst: BMUX isRouted() = false
 		SitePinInst: AX isRouted() = false
-	Net: deserializer_inst/Q[0]
-		SitePinInst: DIADI0 isRouted() = false
-		SitePinInst: AQ isRouted() = false
 	Net: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1_n_5
 		SitePinInst: CMUX isRouted() = false
 		SitePinInst: AX isRouted() = false
+	Net: deserializer_inst/Q[0]
+		SitePinInst: DIADI0 isRouted() = false
+		SitePinInst: AQ isRouted() = false
 	Net: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1_n_0
-		SitePinInst: CIN isRouted() = false
 		SitePinInst: COUT isRouted() = false
+		SitePinInst: CIN isRouted() = false
 	Net: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1_n_6
 		SitePinInst: BMUX isRouted() = false
 		SitePinInst: AX isRouted() = false
@@ -10235,8 +10233,8 @@ Printing All Nets...
 	Net: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1_n_1
 		SitePinInsts: None!
 	Net: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1_n_0
-		SitePinInst: COUT isRouted() = false
 		SitePinInst: CIN isRouted() = false
+		SitePinInst: COUT isRouted() = false
 	Net: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1_n_3
 		SitePinInsts: None!
 	Net: fir_filter_inst/xpm_memory_sprom_inst/xpm_memory_base_inst/douta[3]
@@ -10305,11 +10303,11 @@ Printing All Nets...
 	Net: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1_n_5
 		SitePinInst: CMUX isRouted() = false
 		SitePinInst: AX isRouted() = false
+	Net: fir_filter_inst/tap_inst/ov_sum[8]_i_3_n_0
+		SitePinInst: AMUX isRouted() = false
 	Net: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1_n_4
 		SitePinInst: DMUX isRouted() = false
 		SitePinInst: AX isRouted() = false
-	Net: fir_filter_inst/tap_inst/ov_sum[8]_i_3_n_0
-		SitePinInst: AMUX isRouted() = false
 	Net: fir_filter_inst/FSM_sequential_state[0]_i_2__0_n_0
 		SitePinInst: A3 isRouted() = false
 		SitePinInst: AMUX isRouted() = false
