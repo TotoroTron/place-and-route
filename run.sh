@@ -16,6 +16,7 @@ export _JAVA_OPTIONS=-Xmx32736m
 
 PROJ_DIR="/home/bcheng/workspace/dev/place-and-route"
 SYNTH_TCL="$PROJ_DIR/tcl/synth.tcl"
+RTL_TCL="$PROJ_DIR/tcl/rtl.tcl"
 ROUTE_TCL="$PROJ_DIR/tcl/route.tcl"
 SIM_TCL="$PROJ_DIR/tcl/sim.tcl"
 
@@ -34,6 +35,14 @@ if [ "$start_stage" == "synth" ] || [ "$start_stage" == "all" ]; then
     vivado -mode batch -source $SYNTH_TCL -nolog -nojournal
     check_exit_status "Vivado synthesis"
     echo "Vivado synthesis completed. Check 'synthesized.dcp'."
+fi
+
+# Vivado Synthesis Stage
+if [ "$start_stage" == "rtl" ]; then
+    echo "Running Vivado RTL synthesis..."
+    vivado -mode batch -source $RTL_TCL -nolog -nojournal
+    check_exit_status "Vivado RTL"
+    echo "Vivado synthesis completed. Starting GUI."
 fi
 
 # Gradle Build Stage (replaces Java Compilation)
