@@ -12,13 +12,11 @@ module mult_booth_radix_4
     output [DATA_WIDTH*2-1:0] ov_prod
 );
 
-    // partial product wires
-
     // booth encoding groups
     localparam NUM_PARTIALS = DATA_WIDTH/2 + 1; // ALSO PARTIAL STACK SIZE
 
     // decision vectors
-    wire [NUM_GROUPS-1:0] decisions[2:0]; // WHICH OPERATION?
+    wire [NUM_PARTIALS-1:0] decisions[2:0]; // WHICH OPERATION?
 
     // partial sums
     wire [DATA_WIDTH-1:0] partials[DATA_WIDTH-1:0];

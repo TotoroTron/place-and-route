@@ -6246,14 +6246,14 @@ Printing cells in this carry chain...
 
 Placing carry chains... (1)
 	chain size: 6
-	selectedSiteType: SLICEM
-	X_MAX: 112, X_MIN: 0, Y_MAX: 149, Y_MIN: 0
-	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2, Type: CARRY4, Site: SLICE_X64Y87, BEL: CARRY4
-	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1, Type: CARRY4, Site: SLICE_X64Y88, BEL: CARRY4
-	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1, Type: CARRY4, Site: SLICE_X64Y89, BEL: CARRY4
-	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1, Type: CARRY4, Site: SLICE_X64Y90, BEL: CARRY4
-	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1, Type: CARRY4, Site: SLICE_X64Y91, BEL: CARRY4
-	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1, Type: CARRY4, Site: SLICE_X64Y92, BEL: CARRY4
+	selectedSiteType: SLICEL
+	X_MAX: 113, X_MIN: 1, Y_MAX: 149, Y_MIN: 0
+	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2, Type: CARRY4, Site: SLICE_X101Y119, BEL: CARRY4
+	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1, Type: CARRY4, Site: SLICE_X101Y120, BEL: CARRY4
+	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1, Type: CARRY4, Site: SLICE_X101Y121, BEL: CARRY4
+	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1, Type: CARRY4, Site: SLICE_X101Y122, BEL: CARRY4
+	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1, Type: CARRY4, Site: SLICE_X101Y123, BEL: CARRY4
+	Placed Cell: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1, Type: CARRY4, Site: SLICE_X101Y124, BEL: CARRY4
 
 Spawning remaining cells...
 
@@ -6869,13 +6869,9 @@ Printing sites in occupiedPlacements... (307)
 		BEL: A6LUT, Cell: fir_filter_inst/FSM_sequential_state[0]_i_1__0(BEL: A6LUT)
 	SLICE_X57Y127, SLICEL
 		BEL: A6LUT, Cell: fir_filter_inst/sample_re_addr[2]_i_1(BEL: A6LUT)
-	SLICE_X64Y89, SLICEL
-		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1(BEL: CARRY4)
 	SLICE_X57Y128, SLICEL
 		BEL: A5LUT, Cell: fir_filter_inst/weight_re_addr[1]_i_1(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
-	SLICE_X64Y88, SLICEL
-		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1(BEL: CARRY4)
 	SLICE_X57Y125, SLICEL
 		BEL: A5LUT, Cell: fir_filter_inst/weight_re_addr[2]_i_1(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
@@ -6900,8 +6896,6 @@ Printing sites in occupiedPlacements... (307)
 		Net: GLOBAL_LOGIC1
 	RAMB18_X5Y11, RAMB18E1
 		BEL: RAMB18E1, Cell: fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg(BEL: RAMB18E1)
-	SLICE_X64Y87, SLICEL
-		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2(BEL: CARRY4)
 	SLICE_X84Y100, SLICEL
 		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[8]_i_4(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
@@ -6960,9 +6954,15 @@ Printing sites in occupiedPlacements... (307)
 		Net: GLOBAL_LOGIC1
 	SLICE_X57Y109, SLICEL
 		BEL: A6LUT, Cell: fir_filter_inst/sample_wr_addr[5]_i_1(BEL: A6LUT)
+	SLICE_X101Y122, SLICEL
+		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1(BEL: CARRY4)
+	SLICE_X101Y121, SLICEL
+		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1(BEL: CARRY4)
 	SLICE_X57Y107, SLICEL
 		BEL: A5LUT, Cell: fir_filter_inst/sample_wr_addr[0]_i_1(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
+	SLICE_X101Y120, SLICEL
+		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1(BEL: CARRY4)
 	SLICE_X57Y108, SLICEL
 		BEL: A5LUT, Cell: serializer_inst/FSM_sequential_state[0]_i_1__1(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
@@ -6985,12 +6985,8 @@ Printing sites in occupiedPlacements... (307)
 	SLICE_X57Y100, SLICEL
 		BEL: A5LUT, Cell: serializer_inst/shift_reg[23]_i_2(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
-	SLICE_X64Y90, SLICEL
-		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1(BEL: CARRY4)
-	SLICE_X64Y92, SLICEL
-		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1(BEL: CARRY4)
-	SLICE_X64Y91, SLICEL
-		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1(BEL: CARRY4)
+	SLICE_X101Y119, SLICEL
+		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2(BEL: CARRY4)
 	SLICE_X84Y137, SLICEL
 		BEL: A5LUT, Cell: fir_filter_inst/tap_inst/ov_sum[8]_i_5(BEL: A5LUT)
 		Net: GLOBAL_LOGIC1
@@ -7598,26 +7594,16 @@ Printing sites in occupiedPlacements... (307)
 		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[9](BEL: AFF)
 	SLICE_X111Y63, SLICEL
 		BEL: AFF, Cell: fir_filter_inst/tap_inst/ov_sum_reg[11](BEL: AFF)
+	SLICE_X101Y124, SLICEL
+		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1(BEL: CARRY4)
+	SLICE_X101Y123, SLICEL
+		BEL: CARRY4, Cell: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1(BEL: CARRY4)
 
 Beginning Intra-Routing...
 	ROUTED siteName: SLICE_X57Y129
 		cellName: fir_filter_inst/FSM_sequential_state[0]_i_1__0 cellType: LUT6       BELName: A6LUT      BELType: LUT6      
-	ROUTED siteName: SLICE_X64Y89
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
-		Found CARRY cell.
 	ROUTED siteName: SLICE_X57Y127
 		cellName: fir_filter_inst/sample_re_addr[2]_i_1    cellType: LUT6       BELName: A6LUT      BELType: LUT6      
-	ROUTED siteName: SLICE_X64Y88
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
-		Found CARRY cell.
 	ROUTED siteName: SLICE_X57Y128
 		cellName: fir_filter_inst/weight_re_addr[1]_i_1    cellType: LUT4       BELName: A5LUT      BELType: LUT5      
 	ROUTED siteName: SLICE_X57Y125
@@ -7638,13 +7624,6 @@ Beginning Intra-Routing...
 		cellName: fir_filter_inst/sample_re_addr[3]_i_4    cellType: LUT3       BELName: A5LUT      BELType: LUT5      
 	ROUTED siteName: RAMB18_X5Y11
 		cellName: fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg cellType: RAMB18E1   BELName: RAMB18E1   BELType: RAMB18E1_RAMB18E1
-	ROUTED siteName: SLICE_X64Y87
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
-		Found CARRY cell.
 	ROUTED siteName: SLICE_X84Y100
 		cellName: fir_filter_inst/tap_inst/ov_sum[8]_i_4   cellType: LUT2       BELName: A5LUT      BELType: LUT5      
 	ROUTED siteName: SLICE_X57Y118
@@ -7687,8 +7666,29 @@ Beginning Intra-Routing...
 		cellName: fir_filter_inst/o_dout_valid_i_1__1      cellType: LUT6       BELName: A6LUT      BELType: LUT6      
 	ROUTED siteName: SLICE_X111Y90
 		cellName: fir_filter_inst/sample_wr_addr[3]_i_1    cellType: LUT4       BELName: A5LUT      BELType: LUT5      
+	ROUTED siteName: SLICE_X101Y122
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
+		Found CARRY cell.
 	ROUTED siteName: SLICE_X57Y109
 		cellName: fir_filter_inst/sample_wr_addr[5]_i_1    cellType: LUT6       BELName: A6LUT      BELType: LUT6      
+	ROUTED siteName: SLICE_X101Y121
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
+		Found CARRY cell.
+	ROUTED siteName: SLICE_X101Y120
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
+		Found CARRY cell.
 	ROUTED siteName: SLICE_X57Y107
 		cellName: fir_filter_inst/sample_wr_addr[0]_i_1    cellType: LUT1       BELName: A5LUT      BELType: LUT5      
 	ROUTED siteName: SLICE_X57Y108
@@ -7711,6 +7711,13 @@ Beginning Intra-Routing...
 		Null!
 	ROUTED siteName: ILOGIC_X1Y142
 		Null!
+	ROUTED siteName: SLICE_X101Y119
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
+		Found CARRY cell.
 	ROUTED siteName: ILOGIC_X1Y135
 		Null!
 	ROUTED siteName: ILOGIC_X1Y136
@@ -7721,27 +7728,6 @@ Beginning Intra-Routing...
 		Null!
 	ROUTED siteName: OLOGIC_X1Y87
 		Null!
-	ROUTED siteName: SLICE_X64Y90
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
-		Found CARRY cell.
-	ROUTED siteName: SLICE_X64Y92
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
-		Found CARRY cell.
-	ROUTED siteName: SLICE_X64Y91
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
-		cellName: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
-		Found CARRY cell.
 	ROUTED siteName: SLICE_X84Y137
 		cellName: fir_filter_inst/tap_inst/ov_sum[8]_i_5   cellType: LUT2       BELName: A5LUT      BELType: LUT5      
 	ROUTED siteName: SLICE_X84Y136
@@ -8439,6 +8425,20 @@ Beginning Intra-Routing...
 	ROUTED siteName: IOB_X1Y107
 		cellName: o_ready                                  cellType: <PORT>     BELName: PAD        BELType: PAD       
 		cellName: o_ready_OBUF_inst                        cellType: OBUF       BELName: OUTBUF     BELType: IOB33_OUTBUF
+	ROUTED siteName: SLICE_X101Y124
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
+		Found CARRY cell.
+	ROUTED siteName: SLICE_X101Y123
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1 cellType: CARRY4     BELName: C6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1 cellType: CARRY4     BELName: CARRY4     BELType: CARRY4    
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1 cellType: CARRY4     BELName: A6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1 cellType: CARRY4     BELName: B6LUT      BELType: LUT6      
+		cellName: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1 cellType: CARRY4     BELName: D6LUT      BELType: LUT6      
+		Found CARRY cell.
 	ROUTED siteName: IOB_X1Y124
 		cellName: i_clk_IBUF_inst                          cellType: IBUF       BELName: INBUF_EN   BELType: IOB33_INBUF_EN
 		cellName: i_clk                                    cellType: <PORT>     BELName: PAD        BELType: PAD       
@@ -8457,11 +8457,11 @@ Printing All Nets...
 		SitePinInst: DOADO14 isRouted() = false
 	Net: fir_filter_inst/tap_inst/ov_sum[4]_i_5_n_0
 		SitePinInst: AMUX isRouted() = false
-	Net: fir_filter_inst/tap_inst/ov_sum[20]_i_5_n_0
-		SitePinInst: AMUX isRouted() = false
 	Net: fir_filter_inst/ov_dout_reg[23]_0[18]
 		SitePinInst: AQ isRouted() = false
 		SitePinInst: A3 isRouted() = false
+	Net: fir_filter_inst/tap_inst/ov_sum[20]_i_5_n_0
+		SitePinInst: AMUX isRouted() = false
 	Net: i_en
 		SitePinInsts: None!
 	Net: deserializer_inst/Q[17]
@@ -8547,8 +8547,6 @@ Printing All Nets...
 	Net: serializer_inst/p_0_in__2[1]
 		SitePinInst: AMUX isRouted() = false
 		SitePinInst: AX isRouted() = false
-	Net: fir_filter_inst/tap_inst/p_0_in[20]
-		SitePinInst: A4 isRouted() = false
 	Net: deserializer_inst/counter[4]_i_1__0_n_0
 		SitePinInst: AMUX isRouted() = false
 		SitePinInst: CE isRouted() = false
@@ -8556,6 +8554,8 @@ Printing All Nets...
 		SitePinInst: CE isRouted() = false
 		SitePinInst: CE isRouted() = false
 		SitePinInst: CE isRouted() = false
+	Net: fir_filter_inst/tap_inst/p_0_in[20]
+		SitePinInst: A4 isRouted() = false
 	Net: deserializer_inst/shift_reg[17]
 		SitePinInst: AMUX isRouted() = false
 		SitePinInst: AX isRouted() = false
@@ -8599,12 +8599,12 @@ Printing All Nets...
 		SitePinInst: A4 isRouted() = false
 		SitePinInst: A2 isRouted() = false
 		SitePinInst: AQ isRouted() = false
-	Net: fir_filter_inst/tap_inst/ov_sum[20]_i_4_n_0
-		SitePinInst: AMUX isRouted() = false
 	Net: fir_filter_inst/tap_inst/D[20]
 		SitePinInst: AX isRouted() = false
 		SitePinInst: A5 isRouted() = false
 		SitePinInst: AQ isRouted() = false
+	Net: fir_filter_inst/tap_inst/ov_sum[20]_i_4_n_0
+		SitePinInst: AMUX isRouted() = false
 	Net: fir_filter_inst/xpm_memory_sprom_inst/xpm_memory_base_inst/douta[22]
 		SitePinInst: DOBDO4 isRouted() = false
 	Net: fir_filter_inst/tap_inst/p_0_in[23]
@@ -8857,8 +8857,6 @@ Printing All Nets...
 	Net: deserializer_inst/Q[18]
 		SitePinInst: DIBDI0 isRouted() = false
 		SitePinInst: AQ isRouted() = false
-	Net: fir_filter_inst/tap_inst/p_0_in[11]
-		SitePinInst: A4 isRouted() = false
 	Net: fir_filter_inst/sample_addr[0]
 		SitePinInst: A5 isRouted() = false
 		SitePinInst: A6 isRouted() = false
@@ -8868,6 +8866,8 @@ Printing All Nets...
 		SitePinInst: A1 isRouted() = false
 		SitePinInst: A3 isRouted() = false
 		SitePinInst: AQ isRouted() = false
+	Net: fir_filter_inst/tap_inst/p_0_in[11]
+		SitePinInst: A4 isRouted() = false
 	Net: fir_filter_inst/next_state[0]
 		SitePinInst: A isRouted() = false
 		SitePinInst: AX isRouted() = false
@@ -9032,12 +9032,12 @@ Printing All Nets...
 	Net: serializer_inst/shift_reg[1]_i_1_n_0
 		SitePinInst: AMUX isRouted() = false
 		SitePinInst: AX isRouted() = false
-	Net: fir_filter_inst/tap_inst/p_0_in[17]
-		SitePinInst: A4 isRouted() = false
 	Net: fir_filter_inst/tap_inst/D[10]
 		SitePinInst: A5 isRouted() = false
 		SitePinInst: AX isRouted() = false
 		SitePinInst: AQ isRouted() = false
+	Net: fir_filter_inst/tap_inst/p_0_in[17]
+		SitePinInst: A4 isRouted() = false
 	Net: fir_filter_inst/ov_dout_reg[23]_0[12]
 		SitePinInst: AQ isRouted() = false
 		SitePinInst: A3 isRouted() = false
@@ -10059,15 +10059,15 @@ Printing All Nets...
 		SitePinInsts: None!
 	Net: fir_filter_inst/xpm_memory_spram_inst/xpm_memory_base_inst/douta[1]
 		SitePinInst: DOADO1 isRouted() = false
-	Net: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1_n_1
-		SitePinInsts: None!
 	Net: deserializer_inst/shift_reg_reg_n_0_[3]
 		SitePinInst: A4 isRouted() = false
 		SitePinInst: AX isRouted() = false
 		SitePinInst: AQ isRouted() = false
+	Net: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1_n_1
+		SitePinInsts: None!
 	Net: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1_n_4
-		SitePinInst: DMUX isRouted() = false
 		SitePinInst: AX isRouted() = false
+		SitePinInst: DMUX isRouted() = false
 	Net: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1_n_3
 		SitePinInsts: None!
 	Net: fir_filter_inst/ov_dout_reg[23]_0[21]
@@ -10086,31 +10086,31 @@ Printing All Nets...
 	Net: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1_n_6
 		SitePinInst: BMUX isRouted() = false
 		SitePinInst: AX isRouted() = false
-	Net: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1_n_5
-		SitePinInst: CMUX isRouted() = false
-		SitePinInst: AX isRouted() = false
 	Net: deserializer_inst/Q[0]
 		SitePinInst: DIADI0 isRouted() = false
 		SitePinInst: AQ isRouted() = false
-	Net: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1_n_0
-		SitePinInst: COUT isRouted() = false
-		SitePinInst: CIN isRouted() = false
-	Net: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1_n_6
-		SitePinInst: BMUX isRouted() = false
+	Net: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1_n_5
+		SitePinInst: CMUX isRouted() = false
 		SitePinInst: AX isRouted() = false
+	Net: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1_n_0
+		SitePinInst: CIN isRouted() = false
+		SitePinInst: COUT isRouted() = false
 	Net: deserializer_inst/shift_reg[2]
 		SitePinInst: AMUX isRouted() = false
 		SitePinInst: AX isRouted() = false
-	Net: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1_n_5
-		SitePinInst: CMUX isRouted() = false
+	Net: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1_n_6
 		SitePinInst: AX isRouted() = false
+		SitePinInst: BMUX isRouted() = false
+	Net: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1_n_5
+		SitePinInst: AX isRouted() = false
+		SitePinInst: CMUX isRouted() = false
 	Net: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1_n_2
 		SitePinInsts: None!
 	Net: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1_n_1
 		SitePinInsts: None!
 	Net: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1_n_7
-		SitePinInst: AMUX isRouted() = false
 		SitePinInst: AX isRouted() = false
+		SitePinInst: AMUX isRouted() = false
 	Net: fir_filter_inst/sample_wr_addr[5]_i_1_n_0
 		SitePinInst: A1 isRouted() = false
 		SitePinInst: A isRouted() = false
@@ -10301,13 +10301,13 @@ Printing All Nets...
 		SitePinInst: A isRouted() = false
 		SitePinInst: AX isRouted() = false
 	Net: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1_n_5
-		SitePinInst: CMUX isRouted() = false
 		SitePinInst: AX isRouted() = false
+		SitePinInst: CMUX isRouted() = false
 	Net: fir_filter_inst/tap_inst/ov_sum[8]_i_3_n_0
 		SitePinInst: AMUX isRouted() = false
 	Net: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1_n_4
-		SitePinInst: DMUX isRouted() = false
 		SitePinInst: AX isRouted() = false
+		SitePinInst: DMUX isRouted() = false
 	Net: fir_filter_inst/FSM_sequential_state[0]_i_2__0_n_0
 		SitePinInst: A3 isRouted() = false
 		SitePinInst: AMUX isRouted() = false
@@ -10317,15 +10317,15 @@ Printing All Nets...
 		SitePinInst: AMUX isRouted() = false
 		SitePinInst: AX isRouted() = false
 	Net: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1_n_7
+		SitePinInst: AX isRouted() = false
 		SitePinInst: AMUX isRouted() = false
-		SitePinInst: AX isRouted() = false
-	Net: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1_n_6
-		SitePinInst: BMUX isRouted() = false
-		SitePinInst: AX isRouted() = false
 	Net: deserializer_inst/shift_reg_reg_n_0_[9]
 		SitePinInst: A5 isRouted() = false
 		SitePinInst: AX isRouted() = false
 		SitePinInst: AQ isRouted() = false
+	Net: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1_n_6
+		SitePinInst: AX isRouted() = false
+		SitePinInst: BMUX isRouted() = false
 	Net: fir_filter_inst/sum_rst_reg_n_0
 		SitePinInst: A2 isRouted() = false
 		SitePinInst: AQ isRouted() = false

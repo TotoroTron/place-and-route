@@ -30,7 +30,7 @@ module mult_booth_sync
         end
     end
 
-    mult_booth
+    mult_booth_old
     #(
         .DATA_WIDTH(DATA_WIDTH)
     ) mult_booth_inst (

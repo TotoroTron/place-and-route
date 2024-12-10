@@ -1,4 +1,4 @@
-set design "fir_filter"
+set design "mult_booth"
 
 set root_dir "/home/bcheng/workspace/dev/place-and-route"
 set rtl_synth "$root_dir/outputs/rtl_synth.dcp" 

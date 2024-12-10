@@ -3,84 +3,47 @@
 // NEED TO GENERALIZE FOR ANY DATA_WIDTH
 //
 
-module mult_booth
+module mult_booth_old
 #(
-    parameter DATA_WIDTH = 16
+    parameter DATA_WIDTH = 4
 )(
     input [DATA_WIDTH-1:0] A,
     input [DATA_WIDTH-1:0] B,
     output [DATA_WIDTH*2-1:0] z
 );
 
-    // partial product wires
     wire [DATA_WIDTH-1:0] p[DATA_WIDTH-1:0];
+    wire [10:0] c; // c represents carry of HA/FA
+    wire [5:0] s;  // s represents sum of HA/FA
+    genvar g;
 
-    // intermediate carry and sum wires
-    wire [(DATA_WIDTH*2)-2:0] c; // carry wires
-    wire [(DATA_WIDTH*2)-2:0] s; // sum wires
-
-    // partial products
-    genvar i, j;
     generate
-        for (i = 0; i < DATA_WIDTH; i = i + 1) begin
-            for (j = 0; j < DATA_WIDTH; j = j + 1) begin
-                assign p[i][j] = A[i] & B[j];
-            end
-        end
+    for(g = 0; g < 4; g = g + 1) begin
+        assign p[g][0] = A[g] & B[0];
+        assign p[g][1] = A[g] & B[1];
+        assign p[g][2] = A[g] & B[2];
+        assign p[g][3] = A[g] & B[3];
+    end
     endgenerate
-
-    // assign the least significant bit of the output
     assign z[0] = p[0][0];
 
-    // generate adders for each bit
-    genvar row, col;
-    generate
-        // Loop through rows of adders
-        for (row = 0; row < DATA_WIDTH - 1; row = row + 1) begin
-            for (col = 0; col < DATA_WIDTH - row; col = col + 1) begin
-                if (col == 0) begin
-                    // half adder for the first column in each row
-                    half_adder ha (
-                        .i_a(       p[ row       ][ col+1 ] ),
-                        .i_b(       p[ row+1     ][ col   ] ),
-                        .o_sum(     z[ row+col+1 ]          ),
-                        .o_cout(    c[ row+col   ]          )
-                    );
-                end else begin
-                    // fulladder for the remaining columns
-                    full_adder fa (
-                        .i_a(       p[ row           ][ col + 1 ] ),
-                        .i_b(       c[ row + col - 1 ]            ),
-                        .i_cin(     s[ row + col - 1 ]            ),
-                        .o_sum(     s[ row + col     ]            ),
-                        .o_cout(    c[ row + col     ]            )
-                    );
-                end
-            end
-        end
-    endgenerate
+    //row 0
+    half_adder h0(p[0][1], p[1][0], z[1], c[0]);
+    half_adder h1(p[1][1], p[2][0], s[0], c[1]);
+    half_adder h2(p[2][1], p[3][0], s[1], c[2]);
 
-    // handle final row
-    generate
-        for (col = 0; col < DATA_WIDTH - 1; col = col + 1) begin
-            if (col == 0) begin
-                half_adder ha_final (
-                    .i_a(       c[ (DATA_WIDTH-2) + col   ] ),
-                    .i_b(       s[ (DATA_WIDTH-2) + col   ] ),
-                    .o_sum(     z[  DATA_WIDTH    + col   ] ),
-                    .o_cout(    c[ (DATA_WIDTH-1) + col   ] )
-                );
-            end else begin
-                full_adder fa_final (
-                    .i_a(       c[ (DATA_WIDTH-2) + col   ] ),
-                    .i_b(       s[ (DATA_WIDTH-2) + col   ] ),
-                    .i_cin(     c[ (DATA_WIDTH-1) + col-1 ] ),
-                    .o_sum(     z[  DATA_WIDTH    + col   ] ),
-                    .o_cout(    c[ (DATA_WIDTH-1) + col   ] )
-                );
-            end
-        end
-        assign z[DATA_WIDTH*2-1] = c[(DATA_WIDTH*2)-2];
-    endgenerate
+    //row1
+    full_adder f0(p[0][2], c[0], s[0], z[2], c[3]);
+    full_adder f1(p[1][2], c[1], s[1], s[2], c[4]);
+    full_adder f2(p[2][2], c[2], p[3][1], s[3], c[5]);
 
+    //row2
+    full_adder f3(p[0][3], c[3], s[2], z[3], c[6]);
+    full_adder f4(p[1][3], c[4], s[3], s[4], c[7]);
+    full_adder f5(p[2][3], c[5], p[3][2], s[5], c[8]);
+
+    //row3
+    half_adder h3(c[6], s[4], z[4], c[9]);
+    full_adder f6(c[9], c[7], s[5], z[5], c[10]);
+    full_adder f7(c[10], c[8], p[3][3], z[6], z[7]);
 endmodule
