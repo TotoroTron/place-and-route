@@ -206,17 +206,16 @@ public class PlacerPackingSiteCentric extends Placer {
             }
         }
 
+        List<EDIFHierCellInst[]> DSPPairs = findDSPPairs(EDIFCellGroups);
+        Map<EDIFHierCellInst, List<EDIFHierCellInst>> LUTFFTrees = findLUTFFTrees(EDIFCellGroups);
+        List<EDIFHierCellInst[]> LUTFFPairs = findLUTFFPairs(EDIFCellGroups);
+        List<List<EDIFHierCellInst>> CARRYChains = findCarryChains(EDIFCellGroups);
+
         // writer.write("\n\nIntra-Routing SiteInsts... ");
         // for (String siteName : occupiedPlacements.keySet()) {
         // design.getSiteInst(siteName).routeSite();
         // }
         printOccupiedSites(occupiedPlacements);
-    }
-
-    private List<EDIFHierCellInst[]> findDSPPairs(List<List<EDIFHierCellInst>> EDIFDSPPairs) {
-        List<EDIFHierCellInst[]> pairs = new ArrayList<>();
-
-        return pairs;
     }
 
     private Map<EDIFHierCellInst, List<EDIFHierCellInst>> findLUTFFTrees(
@@ -239,7 +238,6 @@ public class PlacerPackingSiteCentric extends Placer {
             EDIFCellGroups.get("LUT").remove(LUT_EHCI);
             EDIFCellGroups.get("FDRE").removeAll(FF_EHCIS);
         }
-
         return trees;
     }
 
@@ -258,7 +256,6 @@ public class PlacerPackingSiteCentric extends Placer {
                     .getChild(FF_EHPI.getPortInst().getCellInst().getName());
             if (!FF_EHCI.getCellType().getName().contains("FDRE"))
                 continue;
-
             EDIFHierCellInst[] pair = new EDIFHierCellInst[2];
             pair[0] = LUT_EHCI;
             pair[1] = FF_EHCI;
@@ -267,6 +264,80 @@ public class PlacerPackingSiteCentric extends Placer {
             pairs.add(pair);
         }
         return pairs;
+    }
+
+    private List<EDIFHierCellInst[]> findDSPPairs(Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
+        List<EDIFHierCellInst[]> pairs = new ArrayList<>();
+        for (EDIFHierCellInst DSP_EHCI : EDIFCellGroups.get("DSP48E1")) {
+            List<EDIFHierPortInst> pcins = DSP_EHCI.getHierPortInsts().stream()
+                    .filter(ehpi -> ehpi.getPortInst().getName().contains("PCIN"))
+                    .collect(Collectors.toList());
+            if (pcins.isEmpty())
+                continue;
+            List<EDIFHierPortInst> pcouts = pcins.stream()
+                    .map(cin -> cin.getHierarchicalNet().getLeafHierPortInsts(true, false).get(0))
+                    .collect(Collectors.toList());
+
+            Set<EDIFHierCellInst> pcoutCells = pcouts.stream()
+                    .map(cout -> cout.getHierarchicalInst().getChild(cout.getPortInst().getCellInst().getName()))
+                    .collect(Collectors.toSet());
+
+            //
+            // ************WIP************
+            // FIND ANY/ALL DSP CELLS CONNECTED TO THIS CELL'S CIN PORTS
+            // IF MORE THAN ONE CONNECTED DSP, AN ERROR HAS OCCURRED
+            //
+            //
+        }
+
+        return pairs;
+    }
+
+    private List<List<EDIFHierCellInst>> findCarryChains(Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
+        List<List<EDIFHierCellInst>> chains = new ArrayList<>();
+        while (!EDIFCellGroups.get("CARRY4").isEmpty()) {
+            List<EDIFHierCellInst> chain = new ArrayList<>();
+            EDIFHierCellInst currCell = EDIFCellGroups.get("CARRY4").get(0);
+            // every iteration, EDIFCarryCells gets updated so .get(0) is different.
+            while (true) {
+                EDIFHierPortInst currCellPort = currCell.getPortInst("CI");
+                EDIFHierNet hnet = currCellPort.getHierarchicalNet();
+                if (hnet.getNet().isGND())
+                    break;
+                Collection<EDIFHierPortInst> netPorts = hnet.getPortInsts();
+                Map<String, EDIFHierPortInst> netPortsMap = netPorts.stream()
+                        .collect(Collectors.toMap(
+                                p -> p.getPortInst().getName(),
+                                p -> p));
+                EDIFHierPortInst sourceCellPort = netPortsMap.get("CO[3]");
+                EDIFHierCellInst sourceCell = sourceCellPort.getHierarchicalInst()
+                        .getChild(sourceCellPort.getPortInst().getCellInst().getName());
+                currCell = sourceCell;
+            }
+
+            // we now have the starting carry cell as currCell
+            // now traverse in the cout direction
+            // the end of the chain occurs when portinst CO[3] is null
+
+            while (true) {
+                chain.add(currCell);
+                EDIFHierPortInst currCellPort = currCell.getPortInst("CO[3]");
+                if (currCellPort == null)
+                    break;
+                EDIFHierNet hnet = currCellPort.getHierarchicalNet();
+                Collection<EDIFHierPortInst> netPorts = hnet.getPortInsts();
+                Map<String, EDIFHierPortInst> netPortsMap = netPorts.stream()
+                        .collect(Collectors.toMap(
+                                p -> p.getPortInst().getName(),
+                                p -> p));
+                EDIFHierPortInst sinkCellPort = netPortsMap.get("CI");
+                EDIFHierCellInst sinkCell = sinkCellPort.getHierarchicalInst()
+                        .getChild(sinkCellPort.getPortInst().getCellInst().getName());
+                currCell = sinkCell;
+            }
+            chains.add(chain);
+        }
+        return chains;
     }
 
     private List<SiteInst> buildCarrySiteInsts(List<EDIFHierCellInst> chain,
@@ -278,21 +349,14 @@ public class PlacerPackingSiteCentric extends Placer {
             si.createCell(ehci, si.getBEL("CARRY4"));
             EDIFCellGroups.get("CARRY4").remove(ehci);
 
-            Map<String, String> S_CARRY_FF_MAP = new HashMap<>();
-            S_CARRY_FF_MAP.put("O0", "AFF");
-            S_CARRY_FF_MAP.put("O1", "BFF");
-            S_CARRY_FF_MAP.put("O2", "CFF");
-            S_CARRY_FF_MAP.put("O3", "DFF");
-            Map<String, String> S_CARRY_5FF_MAP = new HashMap<>();
-            S_CARRY_5FF_MAP.put("O0", "A5FF");
-            S_CARRY_5FF_MAP.put("O1", "B5FF");
-            S_CARRY_5FF_MAP.put("O2", "C5FF");
-            S_CARRY_5FF_MAP.put("O3", "D5FF");
+            Map<String, String[]> O_CARRY_FF_MAP = new HashMap<>();
+            O_CARRY_FF_MAP.put("O0", new String[] { "AFF", "A5FF" });
+            O_CARRY_FF_MAP.put("O1", new String[] { "BFF", "B5FF" });
+            O_CARRY_FF_MAP.put("O2", new String[] { "CFF", "C5FF" });
+            O_CARRY_FF_MAP.put("O3", new String[] { "DFF", "D5FF" });
 
-            for (Map.Entry<String, String> entry : S_CARRY_FF_MAP.entrySet()) {
+            for (Map.Entry<String, String[]> entry : O_CARRY_FF_MAP.entrySet()) {
                 String PORT_NAME = entry.getKey();
-                String XFF_NAME = entry.getValue();
-                String X5FF_NAME = S_CARRY_5FF_MAP.get(PORT_NAME);
                 EDIFHierPortInst ehpi = ehci.getPortInst(PORT_NAME);
                 EDIFHierNet hnet = ehpi.getHierarchicalNet();
                 // bool include sources, bool include sinks
@@ -301,26 +365,19 @@ public class PlacerPackingSiteCentric extends Placer {
                         .getChild(sinkPort.getPortInst().getCellInst().getName());
                 // for now, just always use FF not 5FF
                 if (sinkCell.getCellType().getName() == "FDRE") {
-                    si.createCell(sinkCell, si.getBEL(XFF_NAME));
+                    si.createCell(sinkCell, si.getBEL(entry.getValue()[0])); // XFF
                     EDIFCellGroups.get("FDRE").remove(sinkCell);
                 }
             }
 
-            Map<String, String> S_CARRY_LUT5_MAP = new HashMap<>();
-            S_CARRY_LUT5_MAP.put("S0", "A5LUT");
-            S_CARRY_LUT5_MAP.put("S1", "B5LUT");
-            S_CARRY_LUT5_MAP.put("S2", "C5LUT");
-            S_CARRY_LUT5_MAP.put("S3", "D5LUT");
-            Map<String, String> S_CARRY_LUT6_MAP = new HashMap<>();
-            S_CARRY_LUT6_MAP.put("S0", "A6LUT");
-            S_CARRY_LUT6_MAP.put("S1", "B6LUT");
-            S_CARRY_LUT6_MAP.put("S2", "C6LUT");
-            S_CARRY_LUT6_MAP.put("S3", "D6LUT");
+            Map<String, String[]> S_CARRY_LUT_MAP = new HashMap<>();
+            S_CARRY_LUT_MAP.put("S0", new String[] { "A5LUT", "A6LUT" });
+            S_CARRY_LUT_MAP.put("S1", new String[] { "B5LUT", "B6LUT" });
+            S_CARRY_LUT_MAP.put("S2", new String[] { "C5LUT", "C6LUT" });
+            S_CARRY_LUT_MAP.put("S3", new String[] { "D5LUT", "D6LUT" });
 
-            for (Map.Entry<String, String> entry : S_CARRY_LUT5_MAP.entrySet()) {
+            for (Map.Entry<String, String[]> entry : S_CARRY_LUT_MAP.entrySet()) {
                 String PORT_NAME = entry.getKey();
-                String X5LUT_NAME = entry.getValue();
-                String X6LUT_NAME = S_CARRY_LUT6_MAP.get(PORT_NAME);
                 EDIFHierPortInst ehpi = ehci.getPortInst(PORT_NAME);
                 EDIFHierNet hnet = ehpi.getHierarchicalNet();
                 // bool include sources, bool include sinks
@@ -329,10 +386,10 @@ public class PlacerPackingSiteCentric extends Placer {
                         .getChild(sourcePort.getPortInst().getCellInst().getName());
                 String sourceCellType = sourceCell.getCellType().getName();
                 if (sourceCellType == "LUT6") {
-                    si.createCell(sourceCell, si.getBEL(X6LUT_NAME));
+                    si.createCell(sourceCell, si.getBEL(entry.getValue()[1])); // X6LUT
                     EDIFCellGroups.get("LUT").remove(sourceCell);
                 } else if (sourceCellType.contains("LUT")) {
-                    si.createCell(sourceCell, si.getBEL(X5LUT_NAME));
+                    si.createCell(sourceCell, si.getBEL(entry.getValue()[0])); // X5LUT
                     EDIFCellGroups.get("LUT").remove(sourceCell);
                 }
             }
