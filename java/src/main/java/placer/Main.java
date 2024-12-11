@@ -28,9 +28,13 @@ public class Main {
             // PlacerRandom RPlacer = new PlacerRandom();
             // RPlacer.run();
 
-            PlacerPackingHier PPlacer = new PlacerPackingHier();
-            PPlacer.printUniqueSites();
-            PPlacer.run();
+            // PlacerPackingHier PPlacer = new PlacerPackingHier();
+            // PPlacer.printUniqueSites();
+            // PPlacer.run();
+
+            PlacerPackingSiteCentric SCPlacer = new PlacerPackingSiteCentric();
+            SCPlacer.printUniqueSites();
+            SCPlacer.run();
 
             // ViewVivadoCheckpoint ViewVivado = new ViewVivadoCheckpoint();
             // ViewVivado.run();

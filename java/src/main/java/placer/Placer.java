@@ -57,11 +57,11 @@ public abstract class Placer {
 
     public void run() throws IOException {
         // design.flattenDesign();
-        printDesignNets(design);
-        printEDIFHierCellInsts();
+        // printDesignNets(design);
+        // printEDIFHierCellInsts();
         placeDesign();
-        manualIntraRouteSites();
-        printDesignNets(design);
+        // manualIntraRouteSites();
+        // printDesignNets(design);
         writer.close();
         design.writeCheckpoint(placedDcp);
     }
