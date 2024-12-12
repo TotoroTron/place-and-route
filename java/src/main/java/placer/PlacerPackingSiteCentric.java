@@ -92,119 +92,6 @@ public class PlacerPackingSiteCentric extends Placer {
         }
     }
 
-    public @Override void placeDesign() throws IOException {
-        EDIFNetlist netlist = design.getNetlist();
-        List<EDIFHierCellInst> ehcis = netlist.getAllLeafHierCellInstances();
-
-        // Create a map to group cells by type
-        Map<String, List<EDIFHierCellInst>> EDIFCellGroups = new HashMap<>();
-        EDIFCellGroups.put("IBUF", new ArrayList<>());
-        EDIFCellGroups.put("OBUF", new ArrayList<>());
-        EDIFCellGroups.put("VCC", new ArrayList<>());
-        EDIFCellGroups.put("GND", new ArrayList<>());
-        EDIFCellGroups.put("CARRY4", new ArrayList<>());
-        EDIFCellGroups.put("FDRE", new ArrayList<>());
-        EDIFCellGroups.put("LUT", new ArrayList<>());
-        EDIFCellGroups.put("DSP48E1", new ArrayList<>());
-        EDIFCellGroups.put("RAMB18E1", new ArrayList<>());
-
-        Set<String> uniqueEdifCellTypes = new HashSet<>();
-
-        for (EDIFHierCellInst ehci : ehcis) {
-            EDIFCellInst eci = ehci.getInst();
-            // populate unique cell tyeps
-            uniqueEdifCellTypes.add(eci.getCellType().getName());
-
-            // add this cell to the corresponding group based on type
-            for (String cellType : EDIFCellGroups.keySet()) {
-                if (eci.getCellType().getName().contains(cellType)) {
-                    EDIFCellGroups.get(cellType).add(ehci);
-                    writer.write("\n\tFound " + cellType + " cell: " + eci.getName());
-                    break; // once matched, no need to check other types
-                }
-            }
-        }
-
-        writer.write("\n\nSet of all Unique EDIF Cell Types... (" + uniqueEdifCellTypes.size() + ")");
-        for (String edifCellType : uniqueEdifCellTypes) {
-            writer.write("\n\t" + edifCellType);
-        }
-        writer.write("\nPrinting EDIFCells By Type...");
-        for (Map.Entry<String, List<EDIFHierCellInst>> entry : EDIFCellGroups.entrySet()) {
-            writer.write("\n\n" + entry.getKey() + " Cells (" + entry.getValue().size() + "):");
-            List<EDIFCellInst> cells = entry.getValue().stream()
-                    .map(e -> e.getInst()) // Assuming getInst() is a method in EDIFCellInst
-                    .collect(Collectors.toList());
-            printEDIFCellInstList(cells);
-        }
-
-        Map<EDIFHierCellInst, List<EDIFHierCellInst>> LUTFFTrees = findLUTFFTrees(EDIFCellGroups);
-        List<EDIFHierCellInst[]> LUTFFPairs = findLUTFFPairs(EDIFCellGroups);
-        List<EDIFHierCellInst[]> DSPPairs = findDSPPairs(EDIFCellGroups);
-        List<List<EDIFHierCellInst>> CARRYChains = findCarryChains(EDIFCellGroups);
-
-        writer.write("\n\nPrinting LUTFFPairs... (" + LUTFFPairs.size() + ")");
-        for (EDIFHierCellInst[] pair : LUTFFPairs) {
-            writer.write("\n\t(" + pair[0].getCellType().getName() + ": " + pair[0].getFullHierarchicalInstName()
-                    + ", " + pair[1].getCellType().getName() + ": " + pair[1].getFullHierarchicalInstName() + ")");
-        }
-        writer.write("\n\nPrinting LUTFFTrees... (" + LUTFFTrees.size() + ")");
-        for (Map.Entry<EDIFHierCellInst, List<EDIFHierCellInst>> entry : LUTFFTrees.entrySet()) {
-            EDIFHierCellInst LUT = entry.getKey();
-            List<EDIFHierCellInst> FFS = entry.getValue();
-            writer.write("\n\tRoot LUT: " + LUT.getCellType().getName() + ": " + LUT.getFullHierarchicalInstName());
-            for (EDIFHierCellInst FF : FFS)
-                writer.write("\n\t\tLeaf FF: " + FF.getCellType().getName() + ": " + FF.getFullHierarchicalInstName());
-        }
-
-        writer.write("\n\nPrinting DSPPairs... (" + DSPPairs.size() + ")");
-        for (EDIFHierCellInst[] pair : DSPPairs) {
-            writer.write("\n\t(" + pair[0].getCellType().getName() + ": " + pair[0].getFullHierarchicalInstName()
-                    + ", " + pair[1].getCellType().getName() + ": " + pair[1].getFullHierarchicalInstName() + ")");
-        }
-
-        writer.write("\n\nPrinting CARRYChains... (" + CARRYChains.size() + ")");
-        for (List<EDIFHierCellInst> chain : CARRYChains) {
-            writer.write("\n\tAnchor: " + chain.get(0).getFullHierarchicalInstName());
-            for (int i = 1; i < chain.size(); i++) {
-                writer.write("\n\t\t" + chain.get(i).getFullHierarchicalInstName());
-            }
-        }
-
-        // List<List<SiteInst>> CARRYSiteInsts = CARRYChains.stream()
-        // .map(chain -> buildCarryChainSiteInsts(chain, EDIFCellGroups))
-        // .collect(Collectors.toList());
-
-        List<List<SiteInst>> CARRYSiteInsts = new ArrayList<>();
-        for (List<EDIFHierCellInst> edifChain : CARRYChains) {
-            List<SiteInst> siteChain = buildCarryChainSiteInsts(edifChain, EDIFCellGroups);
-            CARRYSiteInsts.add(siteChain);
-        }
-
-        writer.write("\n\nPrinting Carry SiteInsts... (" + CARRYSiteInsts.size() + ")");
-        for (List<SiteInst> chain : CARRYSiteInsts) {
-            writer.write("\n\tCarry SiteInst Cells...");
-            for (SiteInst si : chain) {
-                Map<String, Cell> BEL_CELL_MAP = si.getCellMap();
-                for (Map.Entry<String, Cell> entry : BEL_CELL_MAP.entrySet()) {
-                    writer.write("\n\t\tCell: " + entry.getValue().getName() + ", BEL: " + entry.getKey());
-                }
-            }
-        }
-
-        Map<String, List<Cell>> cellGroups = new HashMap<>();
-        cellGroups.put("IBUF", new ArrayList<>());
-        cellGroups.put("OBUF", new ArrayList<>());
-        cellGroups.put("VCC", new ArrayList<>());
-        cellGroups.put("GND", new ArrayList<>());
-        cellGroups.put("CARRY4", new ArrayList<>());
-        cellGroups.put("LUT", new ArrayList<>());
-        cellGroups.put("FDRE", new ArrayList<>());
-        cellGroups.put("DSP48E1", new ArrayList<>());
-        cellGroups.put("RAMB18E1", new ArrayList<>());
-
-    }
-
     private Map<EDIFHierCellInst, List<EDIFHierCellInst>> findLUTFFTrees(
             Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
         List<EDIFHierCellInst> visitedLUTs = new ArrayList<>();
@@ -355,6 +242,7 @@ public class PlacerPackingSiteCentric extends Placer {
             SiteInst si = new SiteInst(ehci.getFullHierarchicalInstName(), design, SiteTypeEnum.SLICEL,
                     device.getSite("SLICE_X91Y103"));
             si.unPlace();
+            System.out.println("SiteTypeEnum: " + si.getSiteTypeEnum());
             /*
              * SO APPARENTLY, SITEINSTS CANT ACCESS THEIR BELS UNLESS THEY ARE PLACED ON A
              * SPECIFIC SITE, MEANING THEY ARE BLIND TO SITETYPEENUMS
@@ -422,5 +310,122 @@ public class PlacerPackingSiteCentric extends Placer {
 
         return carrySiteInsts;
     } // end buildCarrySiteInsts()
+
+    public @Override void placeDesign() throws IOException {
+        EDIFNetlist netlist = design.getNetlist();
+        List<EDIFHierCellInst> ehcis = netlist.getAllLeafHierCellInstances();
+
+        // Create a map to group cells by type
+        Map<String, List<EDIFHierCellInst>> EDIFCellGroups = new HashMap<>();
+        EDIFCellGroups.put("IBUF", new ArrayList<>());
+        EDIFCellGroups.put("OBUF", new ArrayList<>());
+        EDIFCellGroups.put("VCC", new ArrayList<>());
+        EDIFCellGroups.put("GND", new ArrayList<>());
+        EDIFCellGroups.put("CARRY4", new ArrayList<>());
+        EDIFCellGroups.put("FDRE", new ArrayList<>());
+        EDIFCellGroups.put("LUT", new ArrayList<>());
+        EDIFCellGroups.put("DSP48E1", new ArrayList<>());
+        EDIFCellGroups.put("RAMB18E1", new ArrayList<>());
+
+        Set<String> uniqueEdifCellTypes = new HashSet<>();
+
+        for (EDIFHierCellInst ehci : ehcis) {
+            EDIFCellInst eci = ehci.getInst();
+            // populate unique cell tyeps
+            uniqueEdifCellTypes.add(eci.getCellType().getName());
+
+            // add this cell to the corresponding group based on type
+            for (String cellType : EDIFCellGroups.keySet()) {
+                if (eci.getCellType().getName().contains(cellType)) {
+                    EDIFCellGroups.get(cellType).add(ehci);
+                    writer.write("\n\tFound " + cellType + " cell: " + eci.getName());
+                    break; // once matched, no need to check other types
+                }
+            }
+        }
+
+        writer.write("\n\nSet of all Unique EDIF Cell Types... (" + uniqueEdifCellTypes.size() + ")");
+        for (String edifCellType : uniqueEdifCellTypes) {
+            writer.write("\n\t" + edifCellType);
+        }
+        writer.write("\nPrinting EDIFCells By Type...");
+        for (Map.Entry<String, List<EDIFHierCellInst>> entry : EDIFCellGroups.entrySet()) {
+            writer.write("\n\n" + entry.getKey() + " Cells (" + entry.getValue().size() + "):");
+            List<EDIFCellInst> cells = entry.getValue().stream()
+                    .map(e -> e.getInst())
+                    .collect(Collectors.toList());
+            printEDIFCellInstList(cells);
+        }
+
+        Map<EDIFHierCellInst, List<EDIFHierCellInst>> LUTFFTrees = findLUTFFTrees(EDIFCellGroups);
+        List<EDIFHierCellInst[]> LUTFFPairs = findLUTFFPairs(EDIFCellGroups);
+        List<EDIFHierCellInst[]> DSPPairs = findDSPPairs(EDIFCellGroups);
+        List<List<EDIFHierCellInst>> CARRYChains = findCarryChains(EDIFCellGroups);
+
+        writer.write("\n\nPrinting LUTFFPairs... (" + LUTFFPairs.size() + ")");
+        for (EDIFHierCellInst[] pair : LUTFFPairs) {
+            writer.write("\n\t(" + pair[0].getCellType().getName() + ": " + pair[0].getFullHierarchicalInstName()
+                    + ", " + pair[1].getCellType().getName() + ": " + pair[1].getFullHierarchicalInstName() + ")");
+        }
+        writer.write("\n\nPrinting LUTFFTrees... (" + LUTFFTrees.size() + ")");
+        for (Map.Entry<EDIFHierCellInst, List<EDIFHierCellInst>> entry : LUTFFTrees.entrySet()) {
+            EDIFHierCellInst LUT = entry.getKey();
+            List<EDIFHierCellInst> FFS = entry.getValue();
+            writer.write("\n\tRoot LUT: " + LUT.getCellType().getName() + ": " + LUT.getFullHierarchicalInstName());
+            for (EDIFHierCellInst FF : FFS)
+                writer.write("\n\t\tLeaf FF: " + FF.getCellType().getName() + ": " + FF.getFullHierarchicalInstName());
+        }
+
+        writer.write("\n\nPrinting DSPPairs... (" + DSPPairs.size() + ")");
+        for (EDIFHierCellInst[] pair : DSPPairs) {
+            writer.write("\n\t(" + pair[0].getCellType().getName() + ": " + pair[0].getFullHierarchicalInstName()
+                    + ", " + pair[1].getCellType().getName() + ": " + pair[1].getFullHierarchicalInstName() + ")");
+        }
+
+        writer.write("\n\nPrinting CARRYChains... (" + CARRYChains.size() + ")");
+        for (List<EDIFHierCellInst> chain : CARRYChains) {
+            writer.write("\n\tAnchor: " + chain.get(0).getFullHierarchicalInstName());
+            for (int i = 1; i < chain.size(); i++) {
+                writer.write("\n\t\t" + chain.get(i).getFullHierarchicalInstName());
+            }
+        }
+
+        // List<List<SiteInst>> CARRYSiteInsts = CARRYChains.stream()
+        // .map(chain -> buildCarryChainSiteInsts(chain, EDIFCellGroups))
+        // .collect(Collectors.toList());
+        //
+        List<String> occupiedDSPs = new ArrayList<>();
+        List<String> occupiedRAMs = new ArrayList<>();
+        Map<String, List<String>> occupiedSLICELanes = new HashMap<>();
+
+        List<List<SiteInst>> CARRYSiteInsts = new ArrayList<>();
+        for (List<EDIFHierCellInst> edifChain : CARRYChains) {
+            List<SiteInst> siteChain = buildCarryChainSiteInsts(edifChain, EDIFCellGroups);
+            CARRYSiteInsts.add(siteChain);
+        }
+
+        writer.write("\n\nPrinting Carry SiteInsts... (" + CARRYSiteInsts.size() + ")");
+        for (List<SiteInst> chain : CARRYSiteInsts) {
+            writer.write("\n\tCarry SiteInst Cells...");
+            for (SiteInst si : chain) {
+                Map<String, Cell> BEL_CELL_MAP = si.getCellMap();
+                for (Map.Entry<String, Cell> entry : BEL_CELL_MAP.entrySet()) {
+                    writer.write("\n\t\tCell: " + entry.getValue().getName() + ", BEL: " + entry.getKey());
+                }
+            }
+        }
+
+        Map<String, List<Cell>> cellGroups = new HashMap<>();
+        cellGroups.put("IBUF", new ArrayList<>());
+        cellGroups.put("OBUF", new ArrayList<>());
+        cellGroups.put("VCC", new ArrayList<>());
+        cellGroups.put("GND", new ArrayList<>());
+        cellGroups.put("CARRY4", new ArrayList<>());
+        cellGroups.put("LUT", new ArrayList<>());
+        cellGroups.put("FDRE", new ArrayList<>());
+        cellGroups.put("DSP48E1", new ArrayList<>());
+        cellGroups.put("RAMB18E1", new ArrayList<>());
+
+    } // end placeDesign()
 
 } // end class
