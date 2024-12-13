@@ -390,30 +390,9 @@ public class PlacerPackingSiteCentric extends Placer {
             }
         }
 
-        // List<List<SiteInst>> CARRYSiteInsts = CARRYChains.stream()
-        // .map(chain -> buildCarryChainSiteInsts(chain, EDIFCellGroups))
-        // .collect(Collectors.toList());
-        //
-        List<String> occupiedDSPs = new ArrayList<>();
-        List<String> occupiedRAMs = new ArrayList<>();
+        List<String> occupiedDSPSites = new ArrayList<>();
+        List<String> occupiedRAMSites = new ArrayList<>();
         Map<String, List<String>> occupiedSLICELanes = new HashMap<>();
-
-        List<List<SiteInst>> CARRYSiteInsts = new ArrayList<>();
-        for (List<EDIFHierCellInst> edifChain : CARRYChains) {
-            List<SiteInst> siteChain = buildCarryChainSiteInsts(edifChain, EDIFCellGroups);
-            CARRYSiteInsts.add(siteChain);
-        }
-
-        writer.write("\n\nPrinting Carry SiteInsts... (" + CARRYSiteInsts.size() + ")");
-        for (List<SiteInst> chain : CARRYSiteInsts) {
-            writer.write("\n\tCarry SiteInst Cells...");
-            for (SiteInst si : chain) {
-                Map<String, Cell> BEL_CELL_MAP = si.getCellMap();
-                for (Map.Entry<String, Cell> entry : BEL_CELL_MAP.entrySet()) {
-                    writer.write("\n\t\tCell: " + entry.getValue().getName() + ", BEL: " + entry.getKey());
-                }
-            }
-        }
 
         Map<String, List<Cell>> cellGroups = new HashMap<>();
         cellGroups.put("IBUF", new ArrayList<>());
@@ -428,4 +407,30 @@ public class PlacerPackingSiteCentric extends Placer {
 
     } // end placeDesign()
 
+    private void placeDSPPairs(List<EDIFHierCellInst[]> pairs, List<String> occupiedDSPSites) {
+
+    }
+
 } // end class
+
+// List<List<SiteInst>> CARRYSiteInsts = CARRYChains.stream()
+// .map(chain -> buildCarryChainSiteInsts(chain, EDIFCellGroups))
+// .collect(Collectors.toList());
+// List<List<SiteInst>> CARRYSiteInsts = new ArrayList<>();
+// for (List<EDIFHierCellInst> edifChain : CARRYChains) {
+// List<SiteInst> siteChain = buildCarryChainSiteInsts(edifChain,
+// EDIFCellGroups);
+// CARRYSiteInsts.add(siteChain);
+// }
+// writer.write("\n\nPrinting Carry SiteInsts... (" + CARRYSiteInsts.size() +
+// ")");
+// for (List<SiteInst> chain : CARRYSiteInsts) {
+// writer.write("\n\tCarry SiteInst Cells...");
+// for (SiteInst si : chain) {
+// Map<String, Cell> BEL_CELL_MAP = si.getCellMap();
+// for (Map.Entry<String, Cell> entry : BEL_CELL_MAP.entrySet()) {
+// writer.write("\n\t\tCell: " + entry.getValue().getName() + ", BEL: " +
+// entry.getKey());
+// }
+// }
+// }
