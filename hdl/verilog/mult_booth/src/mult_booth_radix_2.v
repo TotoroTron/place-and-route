@@ -3,7 +3,7 @@
 // NEED TO GENERALIZE FOR ANY DATA_WIDTH
 //
 
-module mult_booth_old
+module mult_booth_radix_2
 #(
     parameter DATA_WIDTH = 4
 )(

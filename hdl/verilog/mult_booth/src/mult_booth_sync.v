@@ -1,7 +1,7 @@
 
 module mult_booth_sync 
 #(
-    parameter DATA_WIDTH = 16
+    parameter DATA_WIDTH = 4
 )(
     input wire i_clk,
     input wire i_rst,
