@@ -33,6 +33,7 @@ import com.xilinx.rapidwright.edif.EDIFCellInst;
 import com.xilinx.rapidwright.device.BEL;
 import com.xilinx.rapidwright.device.Site;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
+import com.xilinx.rapidwright.device.Tile;
 
 public class PlacerPackingSiteCentric extends Placer {
 
@@ -185,6 +186,32 @@ public class PlacerPackingSiteCentric extends Placer {
         return pairs;
     }
 
+    private void placeDSPPairSites(List<EDIFHierCellInst[]> EDIFDSPPairs, List<String> occupiedDSPSites,
+            Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
+        Random rand = new Random();
+        List<Site> compatibleSites = new ArrayList<Site>(
+                Arrays.asList(device.getAllCompatibleSites(SiteTypeEnum.DSP48E1)));
+        for (EDIFHierCellInst[] pair : EDIFDSPPairs) {
+            Tile selectedTile = compatibleSites.get(rand.nextInt(compatibleSites.size())).getTile();
+            Site[] dspSitePair = selectedTile.getSites();
+
+            SiteInst si0 = new SiteInst(pair[0].getFullHierarchicalInstName(), design, SiteTypeEnum.DSP48E1,
+                    dspSitePair[0]);
+            si0.createCell(pair[0], si0.getBEL("DSP48E1"));
+            // si0.routeSite();
+
+            SiteInst si1 = new SiteInst(pair[1].getFullHierarchicalInstName(), design, SiteTypeEnum.DSP48E1,
+                    dspSitePair[1]);
+            si1.createCell(pair[1], si1.getBEL("DSP48E1"));
+            // si1.routeSite();
+
+            compatibleSites.remove(dspSitePair[0]);
+            compatibleSites.remove(dspSitePair[1]);
+            occupiedDSPSites.add(dspSitePair[0].getName());
+            occupiedDSPSites.add(dspSitePair[1].getName());
+        }
+    } // end placeDSPPairSites()
+
     private List<List<EDIFHierCellInst>> findCarryChains(Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
         List<List<EDIFHierCellInst>> chains = new ArrayList<>();
         while (!EDIFCellGroups.get("CARRY4").isEmpty()) {
@@ -277,18 +304,8 @@ public class PlacerPackingSiteCentric extends Placer {
             Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
 
         System.out.println("SiteTypeEnum: " + si.getSiteTypeEnum());
-        // System.out.println("BELs in this site... ");
-        // BEL[] bels = si.getBELs();
-        // for (BEL bel : bels) {
-        // System.out.println("\t" + bel.getName());
-        // }
         si.createCell(carryCell, si.getBEL("CARRY4"));
         System.out.println("Created CARRY4");
-
-        // System.out.println("EDIFHierPortInsts... ");
-        // for (EDIFHierPortInst ehpi : carryCell.getHierPortInsts()) {
-        // System.out.println("\t" + ehpi.getFullHierarchicalInstName());
-        // }
 
         Map<String, String[]> O_CARRY_FF_MAP = new HashMap<>();
         O_CARRY_FF_MAP.put("O[0]", new String[] { "AFF", "A5FF" });
@@ -378,7 +395,7 @@ public class PlacerPackingSiteCentric extends Placer {
             }
 
         } // end for (List<EDIFCellInst> chain : EDIFCarryChains)
-    }
+    } // end placeCarryChainSites()
 
     public @Override void placeDesign() throws IOException {
         EDIFNetlist netlist = design.getNetlist();
@@ -465,6 +482,7 @@ public class PlacerPackingSiteCentric extends Placer {
         Map<String, List<String>> occupiedSLICELanes = new HashMap<>();
 
         placeCarryChainSites(CARRYChains, occupiedSLICELanes, EDIFCellGroups);
+        placeDSPPairSites(DSPPairs, occupiedDSPSites, EDIFCellGroups);
 
         Map<String, List<Cell>> cellGroups = new HashMap<>();
         cellGroups.put("IBUF", new ArrayList<>());
@@ -478,10 +496,6 @@ public class PlacerPackingSiteCentric extends Placer {
         cellGroups.put("RAMB18E1", new ArrayList<>());
 
     } // end placeDesign()
-
-    private void placeDSPPairs(List<EDIFHierCellInst[]> pairs, List<String> occupiedDSPSites) {
-
-    }
 
 } // end class
 
