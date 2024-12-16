@@ -3305,4 +3305,75 @@ Printing LUTFFTrees... (10)
 		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[4]
 		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[5]
 		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[6]
-		Leaf FF: FDRE: fir_filter_inst/ov_
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[7]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[8]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[9]
+	Root LUT: LUT2: fir_filter_inst/weight_re_i_1
+		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[0]
+		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[1]
+		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[2]
+		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[3]
+		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[4]
+		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[5]
+		Leaf FF: FDRE: fir_filter_inst/weight_re_reg
+	Root LUT: LUT6: deserializer_inst/shift_reg[23]_i_1__0
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[0]
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[10]
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[11]
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[12]
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[13]
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[14]
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[15]
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[16]
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[17]
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[18]
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[19]
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[1]
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[20]
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[21]
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[22]
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[23]
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[2]
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[3]
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[4]
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[5]
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[6]
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[7]
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[8]
+		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[9]
+	Root LUT: LUT2: fir_filter_inst/tap_inst/ov_sum[0]_i_1
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[0]
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[10]
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[11]
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[12]
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[13]
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[14]
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[15]
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[16]
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[17]
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[18]
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[19]
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[1]
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[20]
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[21]
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[22]
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[23]
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[2]
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[3]
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[4]
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[5]
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[6]
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[7]
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[8]
+		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[9]
+
+Printing DSPPairs... (1)
+	(DSP48E1: fir_filter_inst/tap_inst/sum_trunc1__0, DSP48E1: fir_filter_inst/tap_inst/sum_trunc1)
+
+Printing CARRYChains... (1)
+	Anchor: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2
+		fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1
+		fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1
+		fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1
+		fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1
+		fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1

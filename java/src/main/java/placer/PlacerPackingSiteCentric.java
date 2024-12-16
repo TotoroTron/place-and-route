@@ -234,6 +234,95 @@ public class PlacerPackingSiteCentric extends Placer {
         return chains;
     }
 
+    private String findCarryChainAnchorSite(SiteTypeEnum selectedSiteType, List<EDIFHierCellInst> chain)
+            throws IOException {
+        Map<String, Integer> minmax = getCoordinateMinMaxOfType(selectedSiteType);
+        int x_max = minmax.get("X_MAX");
+        int x_min = minmax.get("X_MIN");
+        int y_max = minmax.get("Y_MAX");
+        int y_min = minmax.get("Y_MIN");
+        writer.write("\n\tselectedSiteType: " + selectedSiteType);
+        writer.write(
+                "\n\tX_MAX: " + x_max + ", X_MIN: " + x_min + ", Y_MAX: " + y_max + ", Y_MIN: " + y_min);
+        String anchorSiteName = null;
+        int x = 0;
+        int y = 0;
+        Random rand = new Random();
+        boolean validAnchor = false;
+        int attempts = 0;
+        while (!validAnchor && attempts < 1000) {
+            x = rand.nextInt((x_max - x_min) + 1) + x_min;
+            y = rand.nextInt((y_max - y_min) + 1) + y_min;
+            for (int j = 0; j < chain.size(); j++) {
+                String name = "SLICE_X" + x + "Y" + (y + j);
+                if (design.getSiteInstFromSiteName(name) != null || device.getSite(name) == null) {
+                    validAnchor = false;
+                    break;
+                } else {
+                    validAnchor = true;
+                    anchorSiteName = "SLICE_X" + x + "Y" + y;
+                }
+            }
+            attempts++;
+        }
+        return anchorSiteName;
+    }
+
+    private void placeCarrySite(SiteInst si, Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
+
+    }
+
+    private void placeCarryChains(List<List<EDIFHierCellInst>> EDIFCarryChains,
+            Map<String, List<String>> occupiedPlacements, Map<String, List<EDIFHierCellInst>> EDIFCellGroups)
+            throws IOException {
+        writer.write("\n\nPlacing carry chains... (" + EDIFCarryChains.size() + ")");
+
+        // PLACE CARRY CHAINS
+        for (List<EDIFHierCellInst> chain : EDIFCarryChains) {
+            writer.write("\n\tchain size: " + chain.size());
+            Random rand = new Random();
+
+            EDIFHierCellInst anchorCell = chain.get(0);
+
+            List<SiteTypeEnum> compatibleSiteTypes = new ArrayList<SiteTypeEnum>() {
+                {
+                    add(SiteTypeEnum.SLICEL);
+                    add(SiteTypeEnum.SLICEM);
+                }
+            };
+            int randIndex = rand.nextInt(compatibleSiteTypes.size());
+            SiteTypeEnum selectedSiteType = compatibleSiteTypes.get(randIndex);
+
+            String anchorSiteName = findCarryChainAnchorSite(selectedSiteType, chain);
+            String anchorBELName = "CARRY4";
+            Site anchorSite = device.getSite(anchorSiteName);
+            BEL anchorBEL = anchorSite.getBEL(anchorBELName);
+
+            SiteInst si = new SiteInst(anchorCell.getFullHierarchicalInstName(), design, selectedSiteType, anchorSite);
+
+            // find and place the anchor cell
+            if (anchorSiteName == null) {
+                writer.write("\nWARNING: COULD NOT PLACE CARRY CHAIN ANCHOR!");
+                break;
+            } else {
+                placeCarrySite(anchorSite, occupiedPlacements, EDIFCellGroups);
+            }
+
+            // place the rest of the chain
+            for (int i = 1; i < chain.size(); i++) {
+                Cell c = design.createCell(chain.get(i).getFullHierarchicalInstName(), chain.get(i).getInst());
+                // cell.setEDIFHierCellInst(chain.get(i));
+                String siteName = "SLICE_X" + anchorSite.getInstanceX() + "Y" + (anchorSite.getInstanceY() + i);
+                String belName = "CARRY4";
+                Site site = device.getSite(siteName);
+                BEL bel = site.getBEL(belName);
+                placeCarryCell(c, site, bel, occupiedPlacements);
+            }
+
+        } // end for (List<EDIFCellInst> chain : EDIFCarryChains)
+
+    }
+
     private List<SiteInst> buildCarryChainSiteInsts(List<EDIFHierCellInst> chain,
             Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
 
@@ -241,7 +330,6 @@ public class PlacerPackingSiteCentric extends Placer {
         for (EDIFHierCellInst ehci : chain) {
             SiteInst si = new SiteInst(ehci.getFullHierarchicalInstName(), design, SiteTypeEnum.SLICEL,
                     device.getSite("SLICE_X91Y103"));
-            si.unPlace();
             System.out.println("SiteTypeEnum: " + si.getSiteTypeEnum());
             /*
              * SO APPARENTLY, SITEINSTS CANT ACCESS THEIR BELS UNLESS THEY ARE PLACED ON A
@@ -367,6 +455,7 @@ public class PlacerPackingSiteCentric extends Placer {
             writer.write("\n\t(" + pair[0].getCellType().getName() + ": " + pair[0].getFullHierarchicalInstName()
                     + ", " + pair[1].getCellType().getName() + ": " + pair[1].getFullHierarchicalInstName() + ")");
         }
+
         writer.write("\n\nPrinting LUTFFTrees... (" + LUTFFTrees.size() + ")");
         for (Map.Entry<EDIFHierCellInst, List<EDIFHierCellInst>> entry : LUTFFTrees.entrySet()) {
             EDIFHierCellInst LUT = entry.getKey();
