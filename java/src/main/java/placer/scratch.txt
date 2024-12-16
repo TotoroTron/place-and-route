@@ -1,4 +1,86 @@
 
+    private List<SiteInst> buildCarryChainSiteInsts(List<EDIFHierCellInst> chain,
+            Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
+
+        List<SiteInst> carrySiteInsts = new ArrayList<>();
+        for (EDIFHierCellInst ehci : chain) {
+            SiteInst si = new SiteInst(ehci.getFullHierarchicalInstName(), design, SiteTypeEnum.SLICEL,
+                    device.getSite("SLICE_X91Y103"));
+            System.out.println("SiteTypeEnum: " + si.getSiteTypeEnum());
+            /*
+             * SO APPARENTLY, SITEINSTS CANT ACCESS THEIR BELS UNLESS THEY ARE PLACED ON A
+             * SPECIFIC SITE, MEANING THEY ARE BLIND TO SITETYPEENUMS
+             * ONLY SITES ARE AWARE OF SITETYPEENUMS
+             * buildCarryChainSiteInsts must inherently place sites while assembling them
+             * this will make simulated annealing pretty slow
+             *
+             */
+            System.out.println("BELs in this site... ");
+            BEL[] bels = si.getBELs();
+            for (BEL bel : bels) {
+                System.out.println("\t" + bel.getName());
+            }
+            si.createCell(ehci, si.getBEL("CARRY4"));
+            System.out.println("Created CARRY4");
+
+            Map<String, String[]> O_CARRY_FF_MAP = new HashMap<>();
+            O_CARRY_FF_MAP.put("O0", new String[] { "AFF", "A5FF" });
+            O_CARRY_FF_MAP.put("O1", new String[] { "BFF", "B5FF" });
+            O_CARRY_FF_MAP.put("O2", new String[] { "CFF", "C5FF" });
+            O_CARRY_FF_MAP.put("O3", new String[] { "DFF", "D5FF" });
+
+            for (Map.Entry<String, String[]> entry : O_CARRY_FF_MAP.entrySet()) {
+                String PORT_NAME = entry.getKey();
+                EDIFHierPortInst ehpi = ehci.getPortInst(PORT_NAME);
+                EDIFHierNet hnet = ehpi.getHierarchicalNet();
+                // bool include sources, bool include sinks
+                EDIFHierPortInst sinkPort = hnet.getLeafHierPortInsts(false, true).get(0);
+                EDIFHierCellInst sinkCell = sinkPort.getHierarchicalInst()
+                        .getChild(sinkPort.getPortInst().getCellInst().getName());
+                // for now, just always use FF not 5FF
+                if (sinkCell.getCellType().getName() == "FDRE") {
+                    si.createCell(sinkCell, si.getBEL(entry.getValue()[0])); // XFF
+                    System.out.println("Created FDRE");
+                }
+            }
+
+            Map<String, String[]> S_CARRY_LUT_MAP = new HashMap<>();
+            S_CARRY_LUT_MAP.put("S0", new String[] { "A5LUT", "A6LUT" });
+            S_CARRY_LUT_MAP.put("S1", new String[] { "B5LUT", "B6LUT" });
+            S_CARRY_LUT_MAP.put("S2", new String[] { "C5LUT", "C6LUT" });
+            S_CARRY_LUT_MAP.put("S3", new String[] { "D5LUT", "D6LUT" });
+
+            for (Map.Entry<String, String[]> entry : S_CARRY_LUT_MAP.entrySet()) {
+                String PORT_NAME = entry.getKey();
+                EDIFHierPortInst ehpi = ehci.getPortInst(PORT_NAME);
+                EDIFHierNet hnet = ehpi.getHierarchicalNet();
+                // bool include sources, bool include sinks
+                EDIFHierPortInst sourcePort = hnet.getLeafHierPortInsts(true, false).get(0);
+                EDIFHierCellInst sourceCell = sourcePort.getHierarchicalInst()
+                        .getChild(sourcePort.getPortInst().getCellInst().getName());
+                String sourceCellType = sourceCell.getCellType().getName();
+                if (sourceCellType == "LUT6") {
+                    si.createCell(sourceCell, si.getBEL(entry.getValue()[1])); // X6LUT
+                    System.out.println("Created LUT6");
+
+                } else if (sourceCellType.contains("LUT")) {
+                    si.createCell(sourceCell, si.getBEL(entry.getValue()[0])); // X5LUT
+                    System.out.println("Created LUT5");
+                }
+            }
+
+            carrySiteInsts.add(si);
+        } // end for (EDIFHierCellInst ehci : chain)
+
+        return carrySiteInsts;
+    } // end buildCarrySiteInsts()
+
+
+
+
+
+
+
         // List<SiteTypeEnum> skipSites = Arrays.asList(
         // SiteTypeEnum.ILOGICE2,
         // SiteTypeEnum.ILOGICE3,

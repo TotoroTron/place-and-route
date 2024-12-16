@@ -186,7 +186,6 @@ public class PlacerPackingSiteCentric extends Placer {
     }
 
     private List<List<EDIFHierCellInst>> findCarryChains(Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
-        List<EDIFHierCellInst> visitedCARRYs = new ArrayList<>();
         List<List<EDIFHierCellInst>> chains = new ArrayList<>();
         while (!EDIFCellGroups.get("CARRY4").isEmpty()) {
             List<EDIFHierCellInst> chain = new ArrayList<>();
@@ -250,12 +249,17 @@ public class PlacerPackingSiteCentric extends Placer {
         Random rand = new Random();
         boolean validAnchor = false;
         int attempts = 0;
+        Site[] compatibleSites = device.getAllCompatibleSites(selectedSiteType);
         while (!validAnchor && attempts < 1000) {
-            x = rand.nextInt((x_max - x_min) + 1) + x_min;
-            y = rand.nextInt((y_max - y_min) + 1) + y_min;
+            // x = rand.nextInt((x_max - x_min) + 1) + x_min;
+            // y = rand.nextInt((y_max - y_min) + 1) + y_min;
+            Site selectedSite = compatibleSites[rand.nextInt(compatibleSites.length)];
+            x = selectedSite.getInstanceX();
+            y = selectedSite.getInstanceY();
             for (int j = 0; j < chain.size(); j++) {
                 String name = "SLICE_X" + x + "Y" + (y + j);
                 if (design.getSiteInstFromSiteName(name) != null || device.getSite(name) == null) {
+                    // if site is already occupied OR if site doesnt exist
                     validAnchor = false;
                     break;
                 } else {
@@ -268,136 +272,113 @@ public class PlacerPackingSiteCentric extends Placer {
         return anchorSiteName;
     }
 
-    private void placeCarrySite(SiteInst si, Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
+    private void placeCarrySite(EDIFHierCellInst carryCell, SiteInst si,
+            Map<String, List<String>> occupiedSLICELanes,
+            Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
 
+        System.out.println("SiteTypeEnum: " + si.getSiteTypeEnum());
+        // System.out.println("BELs in this site... ");
+        // BEL[] bels = si.getBELs();
+        // for (BEL bel : bels) {
+        // System.out.println("\t" + bel.getName());
+        // }
+        si.createCell(carryCell, si.getBEL("CARRY4"));
+        System.out.println("Created CARRY4");
+
+        // System.out.println("EDIFHierPortInsts... ");
+        // for (EDIFHierPortInst ehpi : carryCell.getHierPortInsts()) {
+        // System.out.println("\t" + ehpi.getFullHierarchicalInstName());
+        // }
+
+        Map<String, String[]> O_CARRY_FF_MAP = new HashMap<>();
+        O_CARRY_FF_MAP.put("O[0]", new String[] { "AFF", "A5FF" });
+        O_CARRY_FF_MAP.put("O[1]", new String[] { "BFF", "B5FF" });
+        O_CARRY_FF_MAP.put("O[2]", new String[] { "CFF", "C5FF" });
+        O_CARRY_FF_MAP.put("O[3]", new String[] { "DFF", "D5FF" });
+
+        for (Map.Entry<String, String[]> entry : O_CARRY_FF_MAP.entrySet()) {
+            String PORT_NAME = entry.getKey();
+            System.out.println("PORT_NAME: " + PORT_NAME);
+            EDIFHierPortInst ehpi = carryCell.getPortInst(PORT_NAME);
+            EDIFHierNet hnet = ehpi.getHierarchicalNet();
+            // bool include sources, bool include sinks
+            EDIFHierPortInst sinkPort = hnet.getLeafHierPortInsts(false, true).get(0);
+            EDIFHierCellInst sinkCell = sinkPort.getHierarchicalInst()
+                    .getChild(sinkPort.getPortInst().getCellInst().getName());
+            // for now, just always use FF not 5FF
+            // System.out.println("sinkCell: " + sinkCell.getCellType().getName());
+            if (sinkCell.getCellType().getName().contains("FDRE")) {
+                si.createCell(sinkCell, si.getBEL(entry.getValue()[0])); // XFF
+                System.out.println("Created FDRE");
+            }
+        }
+
+        Map<String, String[]> S_CARRY_LUT_MAP = new HashMap<>();
+        S_CARRY_LUT_MAP.put("S[0]", new String[] { "A5LUT", "A6LUT" });
+        S_CARRY_LUT_MAP.put("S[1]", new String[] { "B5LUT", "B6LUT" });
+        S_CARRY_LUT_MAP.put("S[2]", new String[] { "C5LUT", "C6LUT" });
+        S_CARRY_LUT_MAP.put("S[3]", new String[] { "D5LUT", "D6LUT" });
+
+        for (Map.Entry<String, String[]> entry : S_CARRY_LUT_MAP.entrySet()) {
+            String PORT_NAME = entry.getKey();
+            EDIFHierPortInst ehpi = carryCell.getPortInst(PORT_NAME);
+            EDIFHierNet hnet = ehpi.getHierarchicalNet();
+            // bool include sources, bool include sinks
+            EDIFHierPortInst sourcePort = hnet.getLeafHierPortInsts(true, false).get(0);
+            EDIFHierCellInst sourceCell = sourcePort.getHierarchicalInst()
+                    .getChild(sourcePort.getPortInst().getCellInst().getName());
+            String sourceCellType = sourceCell.getCellType().getName();
+            // if (sourceCellType == "LUT6") {
+            // si.createCell(sourceCell, si.getBEL(entry.getValue()[1])); // X6LUT
+            // System.out.println("Created LUT6");
+            // } else if (sourceCellType.contains("LUT")) {
+            // si.createCell(sourceCell, si.getBEL(entry.getValue()[0])); // X5LUT
+            // System.out.println("Created LUT5");
+            // }
+            if (sourceCellType.contains("LUT")) {
+                si.createCell(sourceCell, si.getBEL(entry.getValue()[1])); // X6LUT
+            }
+        }
     }
 
-    private void placeCarryChains(List<List<EDIFHierCellInst>> EDIFCarryChains,
-            Map<String, List<String>> occupiedPlacements, Map<String, List<EDIFHierCellInst>> EDIFCellGroups)
+    private void placeCarryChainSites(List<List<EDIFHierCellInst>> EDIFCarryChains,
+            Map<String, List<String>> occupiedSLICELanes, Map<String, List<EDIFHierCellInst>> EDIFCellGroups)
             throws IOException {
         writer.write("\n\nPlacing carry chains... (" + EDIFCarryChains.size() + ")");
-
         // PLACE CARRY CHAINS
         for (List<EDIFHierCellInst> chain : EDIFCarryChains) {
             writer.write("\n\tchain size: " + chain.size());
             Random rand = new Random();
-
             EDIFHierCellInst anchorCell = chain.get(0);
+            List<SiteTypeEnum> compatibleSiteTypes = new ArrayList<SiteTypeEnum>();
+            compatibleSiteTypes.add(SiteTypeEnum.SLICEL);
+            compatibleSiteTypes.add(SiteTypeEnum.SLICEM);
 
-            List<SiteTypeEnum> compatibleSiteTypes = new ArrayList<SiteTypeEnum>() {
-                {
-                    add(SiteTypeEnum.SLICEL);
-                    add(SiteTypeEnum.SLICEM);
-                }
-            };
             int randIndex = rand.nextInt(compatibleSiteTypes.size());
             SiteTypeEnum selectedSiteType = compatibleSiteTypes.get(randIndex);
-
             String anchorSiteName = findCarryChainAnchorSite(selectedSiteType, chain);
-            String anchorBELName = "CARRY4";
             Site anchorSite = device.getSite(anchorSiteName);
-            BEL anchorBEL = anchorSite.getBEL(anchorBELName);
-
-            SiteInst si = new SiteInst(anchorCell.getFullHierarchicalInstName(), design, selectedSiteType, anchorSite);
 
             // find and place the anchor cell
             if (anchorSiteName == null) {
                 writer.write("\nWARNING: COULD NOT PLACE CARRY CHAIN ANCHOR!");
                 break;
             } else {
-                placeCarrySite(anchorSite, occupiedPlacements, EDIFCellGroups);
+                SiteInst si = new SiteInst(anchorCell.getFullHierarchicalInstName(), design, selectedSiteType,
+                        anchorSite);
+                placeCarrySite(chain.get(0), si, occupiedSLICELanes, EDIFCellGroups);
             }
 
-            // place the rest of the chain
+            // place the rest of the chain vertically
             for (int i = 1; i < chain.size(); i++) {
-                Cell c = design.createCell(chain.get(i).getFullHierarchicalInstName(), chain.get(i).getInst());
-                // cell.setEDIFHierCellInst(chain.get(i));
                 String siteName = "SLICE_X" + anchorSite.getInstanceX() + "Y" + (anchorSite.getInstanceY() + i);
-                String belName = "CARRY4";
                 Site site = device.getSite(siteName);
-                BEL bel = site.getBEL(belName);
-                placeCarryCell(c, site, bel, occupiedPlacements);
+                SiteInst si = new SiteInst(chain.get(i).getFullHierarchicalInstName(), design, selectedSiteType, site);
+                placeCarrySite(chain.get(i), si, occupiedSLICELanes, EDIFCellGroups);
             }
 
         } // end for (List<EDIFCellInst> chain : EDIFCarryChains)
-
     }
-
-    private List<SiteInst> buildCarryChainSiteInsts(List<EDIFHierCellInst> chain,
-            Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
-
-        List<SiteInst> carrySiteInsts = new ArrayList<>();
-        for (EDIFHierCellInst ehci : chain) {
-            SiteInst si = new SiteInst(ehci.getFullHierarchicalInstName(), design, SiteTypeEnum.SLICEL,
-                    device.getSite("SLICE_X91Y103"));
-            System.out.println("SiteTypeEnum: " + si.getSiteTypeEnum());
-            /*
-             * SO APPARENTLY, SITEINSTS CANT ACCESS THEIR BELS UNLESS THEY ARE PLACED ON A
-             * SPECIFIC SITE, MEANING THEY ARE BLIND TO SITETYPEENUMS
-             * ONLY SITES ARE AWARE OF SITETYPEENUMS
-             * buildCarryChainSiteInsts must inherently place sites while assembling them
-             * this will make simulated annealing pretty slow
-             *
-             */
-            System.out.println("BELs in this site... ");
-            BEL[] bels = si.getBELs();
-            for (BEL bel : bels) {
-                System.out.println("\t" + bel.getName());
-            }
-            si.createCell(ehci, si.getBEL("CARRY4"));
-            System.out.println("Created CARRY4");
-
-            Map<String, String[]> O_CARRY_FF_MAP = new HashMap<>();
-            O_CARRY_FF_MAP.put("O0", new String[] { "AFF", "A5FF" });
-            O_CARRY_FF_MAP.put("O1", new String[] { "BFF", "B5FF" });
-            O_CARRY_FF_MAP.put("O2", new String[] { "CFF", "C5FF" });
-            O_CARRY_FF_MAP.put("O3", new String[] { "DFF", "D5FF" });
-
-            for (Map.Entry<String, String[]> entry : O_CARRY_FF_MAP.entrySet()) {
-                String PORT_NAME = entry.getKey();
-                EDIFHierPortInst ehpi = ehci.getPortInst(PORT_NAME);
-                EDIFHierNet hnet = ehpi.getHierarchicalNet();
-                // bool include sources, bool include sinks
-                EDIFHierPortInst sinkPort = hnet.getLeafHierPortInsts(false, true).get(0);
-                EDIFHierCellInst sinkCell = sinkPort.getHierarchicalInst()
-                        .getChild(sinkPort.getPortInst().getCellInst().getName());
-                // for now, just always use FF not 5FF
-                if (sinkCell.getCellType().getName() == "FDRE") {
-                    si.createCell(sinkCell, si.getBEL(entry.getValue()[0])); // XFF
-                    System.out.println("Created FDRE");
-                }
-            }
-
-            Map<String, String[]> S_CARRY_LUT_MAP = new HashMap<>();
-            S_CARRY_LUT_MAP.put("S0", new String[] { "A5LUT", "A6LUT" });
-            S_CARRY_LUT_MAP.put("S1", new String[] { "B5LUT", "B6LUT" });
-            S_CARRY_LUT_MAP.put("S2", new String[] { "C5LUT", "C6LUT" });
-            S_CARRY_LUT_MAP.put("S3", new String[] { "D5LUT", "D6LUT" });
-
-            for (Map.Entry<String, String[]> entry : S_CARRY_LUT_MAP.entrySet()) {
-                String PORT_NAME = entry.getKey();
-                EDIFHierPortInst ehpi = ehci.getPortInst(PORT_NAME);
-                EDIFHierNet hnet = ehpi.getHierarchicalNet();
-                // bool include sources, bool include sinks
-                EDIFHierPortInst sourcePort = hnet.getLeafHierPortInsts(true, false).get(0);
-                EDIFHierCellInst sourceCell = sourcePort.getHierarchicalInst()
-                        .getChild(sourcePort.getPortInst().getCellInst().getName());
-                String sourceCellType = sourceCell.getCellType().getName();
-                if (sourceCellType == "LUT6") {
-                    si.createCell(sourceCell, si.getBEL(entry.getValue()[1])); // X6LUT
-                    System.out.println("Created LUT6");
-
-                } else if (sourceCellType.contains("LUT")) {
-                    si.createCell(sourceCell, si.getBEL(entry.getValue()[0])); // X5LUT
-                    System.out.println("Created LUT5");
-                }
-            }
-
-            carrySiteInsts.add(si);
-        } // end for (EDIFHierCellInst ehci : chain)
-
-        return carrySiteInsts;
-    } // end buildCarrySiteInsts()
 
     public @Override void placeDesign() throws IOException {
         EDIFNetlist netlist = design.getNetlist();
@@ -482,6 +463,8 @@ public class PlacerPackingSiteCentric extends Placer {
         List<String> occupiedDSPSites = new ArrayList<>();
         List<String> occupiedRAMSites = new ArrayList<>();
         Map<String, List<String>> occupiedSLICELanes = new HashMap<>();
+
+        placeCarryChainSites(CARRYChains, occupiedSLICELanes, EDIFCellGroups);
 
         Map<String, List<Cell>> cellGroups = new HashMap<>();
         cellGroups.put("IBUF", new ArrayList<>());

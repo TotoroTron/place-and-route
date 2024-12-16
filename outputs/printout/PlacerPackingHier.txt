@@ -3377,3 +3377,8 @@ Printing CARRYChains... (1)
 		fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1
 		fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1
 		fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1
+
+Placing carry chains... (1)
+	chain size: 6
+	selectedSiteType: SLICEM
+	X_MAX: 112, X_MIN: 0, Y_MAX: 149, Y_MIN: 0
