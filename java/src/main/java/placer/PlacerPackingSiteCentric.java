@@ -121,6 +121,49 @@ public class PlacerPackingSiteCentric extends Placer {
         return trees;
     }
 
+    private Map<EDIFHierNet, List<EDIFHierCellInst[]>> groupLUTFFPairsByNet(List<EDIFHierCellInst[]> LUTFFPairs,
+            String PORT_NAME) {
+        Map<EDIFHierNet, List<EDIFHierCellInst[]>> map = new HashMap<>();
+        for (EDIFHierCellInst[] pair : LUTFFPairs) {
+            EDIFHierCellInst FF_EHCI = pair[1];
+            EDIFHierPortInst FF_EHPI = FF_EHCI.getPortInst(PORT_NAME);
+            if (FF_EHPI == null) {
+                System.out.println(FF_EHCI.getFullHierarchicalInstName() + " does not use " + PORT_NAME + "!");
+                continue;
+            }
+            EDIFHierNet hnet = FF_EHPI.getHierarchicalNet();
+            List<EDIFHierCellInst[]> list = map.get(hnet);
+            if (list != null) {
+                list.add(pair);
+            } else {
+                map.put(hnet, new ArrayList<EDIFHierCellInst[]>());
+                map.get(hnet).add(pair);
+            }
+        }
+        return map;
+    }
+
+    private Map<EDIFHierNet, List<EDIFHierCellInst>> groupFFCellsByNet(List<EDIFHierCellInst> FFCells,
+            String PORT_NAME) {
+        Map<EDIFHierNet, List<EDIFHierCellInst>> map = new HashMap<>();
+        for (EDIFHierCellInst FF_EHCI : FFCells) {
+            EDIFHierPortInst FF_EHPI = FF_EHCI.getPortInst(PORT_NAME);
+            if (FF_EHPI == null) {
+                System.out.println(FF_EHCI.getFullHierarchicalInstName() + " does not use " + PORT_NAME + "!");
+                continue;
+            }
+            EDIFHierNet hnet = FF_EHPI.getHierarchicalNet();
+            List<EDIFHierCellInst> list = map.get(hnet);
+            if (list != null) {
+                list.add(FF_EHCI);
+            } else {
+                map.put(hnet, new ArrayList<EDIFHierCellInst>());
+                map.get(hnet).add(FF_EHCI);
+            }
+        }
+        return map;
+    }
+
     private List<EDIFHierCellInst[]> findLUTFFPairs(Map<String, List<EDIFHierCellInst>> EDIFCellGroups)
             throws IOException {
         List<EDIFHierCellInst> visitedLUTs = new ArrayList<>();
@@ -492,6 +535,19 @@ public class PlacerPackingSiteCentric extends Placer {
             }
         }
 
+        writer.write("\n\nNumber of stray FDRE cells: " + EDIFCellGroups.get("FDRE").size());
+        writer.write("\n\nNumber of stray LUT cells: " + EDIFCellGroups.get("LUT").size());
+
+        printFFCellNetMap(groupFFCellsByNet(EDIFCellGroups.get("FDRE"), "R"), "R");
+        printFFCellNetMap(groupFFCellsByNet(EDIFCellGroups.get("FDRE"), "D"), "D");
+        printFFCellNetMap(groupFFCellsByNet(EDIFCellGroups.get("FDRE"), "CE"), "CE");
+        printFFCellNetMap(groupFFCellsByNet(EDIFCellGroups.get("FDRE"), "C"), "C");
+
+        printLUTFFPairNetMap(groupLUTFFPairsByNet(LUTFFPairs, "R"), "R"); // set reset
+        printLUTFFPairNetMap(groupLUTFFPairsByNet(LUTFFPairs, "D"), "D"); // data in
+        printLUTFFPairNetMap(groupLUTFFPairsByNet(LUTFFPairs, "CE"), "CE"); // clock enable
+        printLUTFFPairNetMap(groupLUTFFPairsByNet(LUTFFPairs, "C"), "C"); // clock
+
         List<String> occupiedDSPSites = new ArrayList<>();
         List<String> occupiedRAMSites = new ArrayList<>();
         Map<String, List<String>> occupiedBELs = new HashMap<>();
@@ -512,26 +568,29 @@ public class PlacerPackingSiteCentric extends Placer {
 
     } // end placeDesign()
 
-} // end class
+    private void printFFCellNetMap(Map<EDIFHierNet, List<EDIFHierCellInst>> netMap, String PORT_NAME)
+            throws IOException {
+        writer.write("\n\nPrinting " + PORT_NAME + "Net Map... # of Nets: (" + netMap.entrySet().size() + ")");
+        for (Map.Entry<EDIFHierNet, List<EDIFHierCellInst>> entry : netMap.entrySet()) {
+            writer.write("\n\tEDIFHierNet: " + entry.getKey().getHierarchicalNetName() + "... # of Pairs: ("
+                    + entry.getValue().size() + ")");
+            for (EDIFHierCellInst cell : entry.getValue()) {
+                writer.write("\n\t\tFFCell : (" + cell.getFullHierarchicalInstName());
+            }
+        }
+    }
 
-// List<List<SiteInst>> CARRYSiteInsts = CARRYChains.stream()
-// .map(chain -> buildCarryChainSiteInsts(chain, EDIFCellGroups))
-// .collect(Collectors.toList());
-// List<List<SiteInst>> CARRYSiteInsts = new ArrayList<>();
-// for (List<EDIFHierCellInst> edifChain : CARRYChains) {
-// List<SiteInst> siteChain = buildCarryChainSiteInsts(edifChain,
-// EDIFCellGroups);
-// CARRYSiteInsts.add(siteChain);
-// }
-// writer.write("\n\nPrinting Carry SiteInsts... (" + CARRYSiteInsts.size() +
-// ")");
-// for (List<SiteInst> chain : CARRYSiteInsts) {
-// writer.write("\n\tCarry SiteInst Cells...");
-// for (SiteInst si : chain) {
-// Map<String, Cell> BEL_CELL_MAP = si.getCellMap();
-// for (Map.Entry<String, Cell> entry : BEL_CELL_MAP.entrySet()) {
-// writer.write("\n\t\tCell: " + entry.getValue().getName() + ", BEL: " +
-// entry.getKey());
-// }
-// }
-// }
+    private void printLUTFFPairNetMap(Map<EDIFHierNet, List<EDIFHierCellInst[]>> netMap, String PORT_NAME)
+            throws IOException {
+        writer.write("\n\nPrinting " + PORT_NAME + "Net Map... # of Nets: (" + netMap.entrySet().size() + ")");
+        for (Map.Entry<EDIFHierNet, List<EDIFHierCellInst[]>> entry : netMap.entrySet()) {
+            writer.write("\n\tEDIFHierNet: " + entry.getKey().getHierarchicalNetName() + "... # of Pairs: ("
+                    + entry.getValue().size() + ")");
+            for (EDIFHierCellInst[] pair : entry.getValue()) {
+                writer.write("\n\t\tLUTFFPair : (" + pair[0].getFullHierarchicalInstName() + " => "
+                        + pair[1].getFullHierarchicalInstName() + ")");
+            }
+        }
+    }
+
+} // end class
