@@ -300,12 +300,17 @@ public class PlacerPackingSiteCentric extends Placer {
     }
 
     private void placeCarrySite(EDIFHierCellInst carryCell, SiteInst si,
-            Map<String, List<String>> occupiedSLICELanes,
+            Map<String, List<String>> occupiedBELs,
             Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
 
         System.out.println("SiteTypeEnum: " + si.getSiteTypeEnum());
         si.createCell(carryCell, si.getBEL("CARRY4"));
         System.out.println("Created CARRY4");
+
+        // if a carry is used, just treat all the site's lanes as used
+        occupiedBELs.put(si.getName(), new ArrayList<>(
+                List.of("AFF", "A5FF", "BFF", "B5FF", "CFF", "C5FF", "DFF", "D5FF",
+                        "A5LUT", "A6LUT", "B5LUT", "B6LUT", "C5LUT", "C6LUT", "D5LUT", "D6LUT")));
 
         Map<String, String[]> O_CARRY_FF_MAP = new HashMap<>();
         O_CARRY_FF_MAP.put("O[0]", new String[] { "AFF", "A5FF" });
@@ -359,7 +364,7 @@ public class PlacerPackingSiteCentric extends Placer {
     }
 
     private void placeCarryChainSites(List<List<EDIFHierCellInst>> EDIFCarryChains,
-            Map<String, List<String>> occupiedSLICELanes, Map<String, List<EDIFHierCellInst>> EDIFCellGroups)
+            Map<String, List<String>> occupiedBELs, Map<String, List<EDIFHierCellInst>> EDIFCellGroups)
             throws IOException {
         writer.write("\n\nPlacing carry chains... (" + EDIFCarryChains.size() + ")");
         // PLACE CARRY CHAINS
@@ -383,7 +388,7 @@ public class PlacerPackingSiteCentric extends Placer {
             } else {
                 SiteInst si = new SiteInst(anchorCell.getFullHierarchicalInstName(), design, selectedSiteType,
                         anchorSite);
-                placeCarrySite(chain.get(0), si, occupiedSLICELanes, EDIFCellGroups);
+                placeCarrySite(chain.get(0), si, occupiedBELs, EDIFCellGroups);
             }
 
             // place the rest of the chain vertically
@@ -391,11 +396,21 @@ public class PlacerPackingSiteCentric extends Placer {
                 String siteName = "SLICE_X" + anchorSite.getInstanceX() + "Y" + (anchorSite.getInstanceY() + i);
                 Site site = device.getSite(siteName);
                 SiteInst si = new SiteInst(chain.get(i).getFullHierarchicalInstName(), design, selectedSiteType, site);
-                placeCarrySite(chain.get(i), si, occupiedSLICELanes, EDIFCellGroups);
+                placeCarrySite(chain.get(i), si, occupiedBELs, EDIFCellGroups);
             }
 
         } // end for (List<EDIFCellInst> chain : EDIFCarryChains)
     } // end placeCarryChainSites()
+
+    private void placeLUTFFTrees(Map<EDIFHierCellInst, List<EDIFHierCellInst>> LUTFFTrees,
+            Map<String, List<String>> occupiedBELs, Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
+
+    }
+
+    private void placeLUTFFPairs(List<EDIFHierCellInst[]> LUTFFPairs, Map<String, List<String>> occupiedBELs,
+            Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
+
+    }
 
     public @Override void placeDesign() throws IOException {
         EDIFNetlist netlist = design.getNetlist();
@@ -443,10 +458,10 @@ public class PlacerPackingSiteCentric extends Placer {
             printEDIFCellInstList(cells);
         }
 
-        Map<EDIFHierCellInst, List<EDIFHierCellInst>> LUTFFTrees = findLUTFFTrees(EDIFCellGroups);
-        List<EDIFHierCellInst[]> LUTFFPairs = findLUTFFPairs(EDIFCellGroups);
         List<EDIFHierCellInst[]> DSPPairs = findDSPPairs(EDIFCellGroups);
         List<List<EDIFHierCellInst>> CARRYChains = findCarryChains(EDIFCellGroups);
+        Map<EDIFHierCellInst, List<EDIFHierCellInst>> LUTFFTrees = findLUTFFTrees(EDIFCellGroups);
+        List<EDIFHierCellInst[]> LUTFFPairs = findLUTFFPairs(EDIFCellGroups);
 
         writer.write("\n\nPrinting LUTFFPairs... (" + LUTFFPairs.size() + ")");
         for (EDIFHierCellInst[] pair : LUTFFPairs) {
@@ -479,9 +494,9 @@ public class PlacerPackingSiteCentric extends Placer {
 
         List<String> occupiedDSPSites = new ArrayList<>();
         List<String> occupiedRAMSites = new ArrayList<>();
-        Map<String, List<String>> occupiedSLICELanes = new HashMap<>();
+        Map<String, List<String>> occupiedBELs = new HashMap<>();
 
-        placeCarryChainSites(CARRYChains, occupiedSLICELanes, EDIFCellGroups);
+        placeCarryChainSites(CARRYChains, occupiedBELs, EDIFCellGroups);
         placeDSPPairSites(DSPPairs, occupiedDSPSites, EDIFCellGroups);
 
         Map<String, List<Cell>> cellGroups = new HashMap<>();
