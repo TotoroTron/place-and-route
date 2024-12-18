@@ -17,6 +17,7 @@ export _JAVA_OPTIONS=-Xmx32736m
 PROJ_DIR="/home/bcheng/workspace/dev/place-and-route"
 SYNTH_TCL="$PROJ_DIR/tcl/synth.tcl"
 RTL_TCL="$PROJ_DIR/tcl/rtl.tcl"
+PLACE_TCL="$PROJ_DIR/tcl/place.tcl"
 ROUTE_TCL="$PROJ_DIR/tcl/route.tcl"
 SIM_TCL="$PROJ_DIR/tcl/sim.tcl"
 
@@ -61,6 +62,7 @@ if [ "$start_stage" == "place" ] || [ "$start_stage" == "all" ]; then
     cd $PROJ_DIR/java
     gradle run
     check_exit_status "Gradle run"
+    vivado -mode batch -source $PLACE_TCL -nolog -nojournal
     echo "Java placement executed. Check 'logger.txt' for output."
 fi
 

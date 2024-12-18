@@ -1,4 +1,40 @@
 
+    private Map<EDIFHierCellInst, List<EDIFHierCellInst>> findLUTFFTrees(
+            Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
+        List<EDIFHierCellInst> visitedLUTs = new ArrayList<>();
+        List<EDIFHierCellInst> visitedFFs = new ArrayList<>();
+        Map<EDIFHierCellInst, List<EDIFHierCellInst>> trees = new HashMap<>();
+        for (EDIFHierCellInst LUT_EHCI : EDIFCellGroups.get("LUT")) {
+            EDIFHierPortInst LUT_EHPI = LUT_EHCI.getPortInst("O");
+            EDIFHierNet HNET = LUT_EHPI.getHierarchicalNet();
+            // exclude sources, include sinks
+            List<EDIFHierPortInst> sinkPorts = HNET.getLeafHierPortInsts(false, true);
+            if (sinkPorts.size() < 2) // less than 2 sinks?
+                continue;
+            List<EDIFHierCellInst> FF_EHCIS = sinkPorts.stream()
+                    .map(ehpi -> ehpi.getHierarchicalInst().getChild(ehpi.getPortInst().getCellInst().getName()))
+                    .filter(ehci -> ehci.getCellType().getName().equals("FDRE"))
+                    .collect(Collectors.toList());
+            if (FF_EHCIS.size() < 2) // less than 2 ff sinks?
+                continue;
+            for (EDIFHierCellInst ff : FF_EHCIS)
+                visitedLUTs.add(LUT_EHCI);
+            visitedFFs.addAll(FF_EHCIS);
+            trees.put(LUT_EHCI, FF_EHCIS);
+        }
+        EDIFCellGroups.get("LUT").removeAll(visitedLUTs);
+        EDIFCellGroups.get("FDRE").removeAll(visitedFFs);
+        return trees;
+    }
+
+
+
+
+
+
+
+
+
     private List<SiteInst> buildCarryChainSiteInsts(List<EDIFHierCellInst> chain,
             Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
 

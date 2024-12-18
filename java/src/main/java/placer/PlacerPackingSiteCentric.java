@@ -93,7 +93,7 @@ public class PlacerPackingSiteCentric extends Placer {
         }
     }
 
-    private Map<EDIFHierCellInst, List<EDIFHierCellInst>> findLUTFFTrees(
+    private Map<EDIFHierCellInst, List<EDIFHierCellInst>> findResetTrees(
             Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
         List<EDIFHierCellInst> visitedLUTs = new ArrayList<>();
         List<EDIFHierCellInst> visitedFFs = new ArrayList<>();
@@ -103,9 +103,37 @@ public class PlacerPackingSiteCentric extends Placer {
             EDIFHierNet HNET = LUT_EHPI.getHierarchicalNet();
             // exclude sources, include sinks
             List<EDIFHierPortInst> sinkPorts = HNET.getLeafHierPortInsts(false, true);
-            if (sinkPorts.size() < 2) // less than 2 sinks?
-                continue;
+
             List<EDIFHierCellInst> FF_EHCIS = sinkPorts.stream()
+                    .filter(ehpi -> ehpi.getPortInst().getName().equals("R"))
+                    .map(ehpi -> ehpi.getHierarchicalInst().getChild(ehpi.getPortInst().getCellInst().getName()))
+                    .filter(ehci -> ehci.getCellType().getName().equals("FDRE"))
+                    .collect(Collectors.toList());
+            if (FF_EHCIS.size() < 2) // less than 2 ff sinks?
+                continue;
+            for (EDIFHierCellInst ff : FF_EHCIS)
+                visitedLUTs.add(LUT_EHCI);
+            visitedFFs.addAll(FF_EHCIS);
+            trees.put(LUT_EHCI, FF_EHCIS);
+        }
+        EDIFCellGroups.get("LUT").removeAll(visitedLUTs);
+        EDIFCellGroups.get("FDRE").removeAll(visitedFFs);
+        return trees;
+    }
+
+    private Map<EDIFHierCellInst, List<EDIFHierCellInst>> findClockEnableTrees(
+            Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
+        List<EDIFHierCellInst> visitedLUTs = new ArrayList<>();
+        List<EDIFHierCellInst> visitedFFs = new ArrayList<>();
+        Map<EDIFHierCellInst, List<EDIFHierCellInst>> trees = new HashMap<>();
+        for (EDIFHierCellInst LUT_EHCI : EDIFCellGroups.get("LUT")) {
+            EDIFHierPortInst LUT_EHPI = LUT_EHCI.getPortInst("O");
+            EDIFHierNet HNET = LUT_EHPI.getHierarchicalNet();
+            // exclude sources, include sinks
+            List<EDIFHierPortInst> sinkPorts = HNET.getLeafHierPortInsts(false, true);
+
+            List<EDIFHierCellInst> FF_EHCIS = sinkPorts.stream()
+                    .filter(ehpi -> ehpi.getPortInst().getName().equals("CE"))
                     .map(ehpi -> ehpi.getHierarchicalInst().getChild(ehpi.getPortInst().getCellInst().getName()))
                     .filter(ehci -> ehci.getCellType().getName().equals("FDRE"))
                     .collect(Collectors.toList());
@@ -503,7 +531,8 @@ public class PlacerPackingSiteCentric extends Placer {
 
         List<EDIFHierCellInst[]> DSPPairs = findDSPPairs(EDIFCellGroups);
         List<List<EDIFHierCellInst>> CARRYChains = findCarryChains(EDIFCellGroups);
-        Map<EDIFHierCellInst, List<EDIFHierCellInst>> LUTFFTrees = findLUTFFTrees(EDIFCellGroups);
+        Map<EDIFHierCellInst, List<EDIFHierCellInst>> ClockEnableTrees = findClockEnableTrees(EDIFCellGroups);
+        Map<EDIFHierCellInst, List<EDIFHierCellInst>> ResetTrees = findResetTrees(EDIFCellGroups);
         List<EDIFHierCellInst[]> LUTFFPairs = findLUTFFPairs(EDIFCellGroups);
 
         writer.write("\n\nPrinting LUTFFPairs... (" + LUTFFPairs.size() + ")");
@@ -512,8 +541,17 @@ public class PlacerPackingSiteCentric extends Placer {
                     + ", " + pair[1].getCellType().getName() + ": " + pair[1].getFullHierarchicalInstName() + ")");
         }
 
-        writer.write("\n\nPrinting LUTFFTrees... (" + LUTFFTrees.size() + ")");
-        for (Map.Entry<EDIFHierCellInst, List<EDIFHierCellInst>> entry : LUTFFTrees.entrySet()) {
+        writer.write("\n\nPrinting ClockEnableTrees... (" + ClockEnableTrees.size() + ")");
+        for (Map.Entry<EDIFHierCellInst, List<EDIFHierCellInst>> entry : ClockEnableTrees.entrySet()) {
+            EDIFHierCellInst LUT = entry.getKey();
+            List<EDIFHierCellInst> FFS = entry.getValue();
+            writer.write("\n\tRoot LUT: " + LUT.getCellType().getName() + ": " + LUT.getFullHierarchicalInstName());
+            for (EDIFHierCellInst FF : FFS)
+                writer.write("\n\t\tLeaf FF: " + FF.getCellType().getName() + ": " + FF.getFullHierarchicalInstName());
+        }
+
+        writer.write("\n\nPrinting ResetTrees... (" + ResetTrees.size() + ")");
+        for (Map.Entry<EDIFHierCellInst, List<EDIFHierCellInst>> entry : ResetTrees.entrySet()) {
             EDIFHierCellInst LUT = entry.getKey();
             List<EDIFHierCellInst> FFS = entry.getValue();
             writer.write("\n\tRoot LUT: " + LUT.getCellType().getName() + ": " + LUT.getFullHierarchicalInstName());

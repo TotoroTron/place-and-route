@@ -3205,7 +3205,7 @@ Printing LUTFFPairs... (85)
 	(LUT2: deserializer_inst/shift_reg[0]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[0])
 	(LUT2: deserializer_inst/shift_reg[19]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[19])
 
-Printing LUTFFTrees... (10)
+Printing ClockEnableTrees... (9)
 	Root LUT: LUT5: serializer_inst/shift_reg[23]_i_1
 		Leaf FF: FDRE: serializer_inst/shift_reg_reg[0]
 		Leaf FF: FDRE: serializer_inst/shift_reg_reg[10]
@@ -3263,7 +3263,6 @@ Printing LUTFFTrees... (10)
 		Leaf FF: FDRE: deserializer_inst/counter_reg[3]
 		Leaf FF: FDRE: deserializer_inst/counter_reg[4]
 	Root LUT: LUT2: fir_filter_inst/o_ready_i_1
-		Leaf FF: FDRE: fir_filter_inst/o_ready_reg
 		Leaf FF: FDRE: fir_filter_inst/sample_wr_addr_reg[0]
 		Leaf FF: FDRE: fir_filter_inst/sample_wr_addr_reg[1]
 		Leaf FF: FDRE: fir_filter_inst/sample_wr_addr_reg[2]
@@ -3315,7 +3314,6 @@ Printing LUTFFTrees... (10)
 		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[3]
 		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[4]
 		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[5]
-		Leaf FF: FDRE: fir_filter_inst/weight_re_reg
 	Root LUT: LUT6: deserializer_inst/shift_reg[23]_i_1__0
 		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[0]
 		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[10]
@@ -3341,6 +3339,8 @@ Printing LUTFFTrees... (10)
 		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[7]
 		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[8]
 		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[9]
+
+Printing ResetTrees... (1)
 	Root LUT: LUT2: fir_filter_inst/tap_inst/ov_sum[0]_i_1
 		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[0]
 		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[10]
@@ -3378,17 +3378,30 @@ Printing CARRYChains... (1)
 		fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1
 		fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1
 
-Number of stray FDRE cells: 0
+Number of stray FDRE cells: 2
 
 Number of stray LUT cells: 42
 
-Printing RNet Map... # of Nets: (0)
+Printing RNet Map... # of Nets: (1)
+	EDIFHierNet: fir_filter_inst/i_rst_IBUF... # of Pairs: (2)
+		FFCell : (fir_filter_inst/weight_re_reg
+		FFCell : (fir_filter_inst/o_ready_reg
 
-Printing DNet Map... # of Nets: (0)
+Printing DNet Map... # of Nets: (2)
+	EDIFHierNet: fir_filter_inst/weight_re... # of Pairs: (1)
+		FFCell : (fir_filter_inst/weight_re_reg
+	EDIFHierNet: fir_filter_inst/o_ready_i_1_n_0... # of Pairs: (1)
+		FFCell : (fir_filter_inst/o_ready_reg
 
-Printing CENet Map... # of Nets: (0)
+Printing CENet Map... # of Nets: (1)
+	EDIFHierNet: fir_filter_inst/<const1>... # of Pairs: (2)
+		FFCell : (fir_filter_inst/weight_re_reg
+		FFCell : (fir_filter_inst/o_ready_reg
 
-Printing CNet Map... # of Nets: (0)
+Printing CNet Map... # of Nets: (1)
+	EDIFHierNet: fir_filter_inst/CLK... # of Pairs: (2)
+		FFCell : (fir_filter_inst/weight_re_reg
+		FFCell : (fir_filter_inst/o_ready_reg
 
 Printing RNet Map... # of Nets: (6)
 	EDIFHierNet: fir_filter_inst/i_rst_IBUF... # of Pairs: (18)
