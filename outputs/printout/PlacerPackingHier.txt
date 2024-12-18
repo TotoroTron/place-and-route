@@ -3858,5 +3858,5 @@ Printing CNet Map... # of Nets: (3)
 
 Placing carry chains... (1)
 	chain size: 6
-	selectedSiteType: SLICEL
-	X_MAX: 113, X_MIN: 1, Y_MAX: 149, Y_MIN: 0
+	selectedSiteType: SLICEM
+	X_MAX: 112, X_MIN: 0, Y_MAX: 149, Y_MIN: 0

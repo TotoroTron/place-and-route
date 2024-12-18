@@ -76,6 +76,9 @@ public abstract class Placer {
             Map<String, List<String>> occupiedPlacements,
             Map<String, List<String>> availablePlacements) throws IOException;
 
+    public record Pair<K, V>(K key, V value) {
+    }
+
     public void placeDesign() throws IOException {
         writer.write("\nPlacing Cells...");
 
