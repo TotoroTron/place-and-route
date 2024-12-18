@@ -3119,93 +3119,145 @@ GND Cells (9):
 			GND/G
 
 Printing LUTFFPairs... (85)
-	(LUT6: fir_filter_inst/FSM_sequential_state[0]_i_1__0, FDRE: fir_filter_inst/FSM_sequential_state_reg[0])
-	(LUT6: fir_filter_inst/sample_re_addr[2]_i_1, FDRE: fir_filter_inst/sample_re_addr_reg[2])
-	(LUT4: fir_filter_inst/weight_re_addr[1]_i_1, FDRE: fir_filter_inst/weight_re_addr_reg[1])
-	(LUT5: fir_filter_inst/weight_re_addr[2]_i_1, FDRE: fir_filter_inst/weight_re_addr_reg[2])
-	(LUT6: fir_filter_inst/sample_re_addr[1]_i_1, FDRE: fir_filter_inst/sample_re_addr_reg[1])
-	(LUT4: fir_filter_inst/sum_rst_i_1, FDRE: fir_filter_inst/sum_rst_reg)
-	(LUT5: fir_filter_inst/sample_re_addr[0]_i_1, FDRE: fir_filter_inst/sample_re_addr_reg[0])
-	(LUT6: fir_filter_inst/sample_re_addr[3]_i_1, FDRE: fir_filter_inst/sample_re_addr_reg[3])
-	(LUT6: fir_filter_inst/weight_re_addr[3]_i_1, FDRE: fir_filter_inst/weight_re_addr_reg[3])
-	(LUT3: fir_filter_inst/weight_re_addr[0]_i_1, FDRE: fir_filter_inst/weight_re_addr_reg[0])
-	(LUT3: fir_filter_inst/FSM_sequential_state[1]_i_1__0, FDRE: fir_filter_inst/FSM_sequential_state_reg[1])
-	(LUT6: fir_filter_inst/weight_re_addr[4]_i_1, FDRE: fir_filter_inst/weight_re_addr_reg[4])
-	(LUT2: fir_filter_inst/sample_wr_addr[1]_i_1, FDRE: fir_filter_inst/sample_wr_addr_reg[1])
-	(LUT5: fir_filter_inst/sample_re_addr[5]_i_2, FDRE: fir_filter_inst/sample_re_addr_reg[5])
-	(LUT6: fir_filter_inst/weight_re_addr[5]_i_1, FDRE: fir_filter_inst/weight_re_addr_reg[5])
-	(LUT5: fir_filter_inst/sample_re_addr[4]_i_1, FDRE: fir_filter_inst/sample_re_addr_reg[4])
-	(LUT6: fir_filter_inst/o_dout_valid_i_1__1, FDRE: fir_filter_inst/o_dout_valid_reg)
-	(LUT4: fir_filter_inst/sample_wr_addr[3]_i_1, FDRE: fir_filter_inst/sample_wr_addr_reg[3])
-	(LUT1: fir_filter_inst/sample_wr_addr[0]_i_1, FDRE: fir_filter_inst/sample_wr_addr_reg[0])
-	(LUT4: serializer_inst/FSM_sequential_state[0]_i_1__1, FDRE: serializer_inst/FSM_sequential_state_reg[0])
-	(LUT6: serializer_inst/counter[3]_i_1, FDRE: serializer_inst/counter_reg[3])
-	(LUT4: serializer_inst/shift_reg[1]_i_1, FDRE: serializer_inst/shift_reg_reg[1])
-	(LUT2: serializer_inst/o_ready_i_1__0, FDRE: serializer_inst/o_ready_reg)
-	(LUT6: serializer_inst/counter[4]_i_2, FDRE: serializer_inst/counter_reg[4])
-	(LUT3: serializer_inst/shift_reg[23]_i_2, FDRE: serializer_inst/shift_reg_reg[23])
-	(LUT4: serializer_inst/counter[0]_i_1__0, FDRE: serializer_inst/counter_reg[0])
-	(LUT4: serializer_inst/shift_reg[8]_i_1, FDRE: serializer_inst/shift_reg_reg[8])
-	(LUT4: serializer_inst/shift_reg[15]_i_1, FDRE: serializer_inst/shift_reg_reg[15])
-	(LUT4: serializer_inst/shift_reg[2]_i_1, FDRE: serializer_inst/shift_reg_reg[2])
-	(LUT4: serializer_inst/shift_reg[3]_i_1, FDRE: serializer_inst/shift_reg_reg[3])
-	(LUT4: serializer_inst/shift_reg[9]_i_1, FDRE: serializer_inst/shift_reg_reg[9])
-	(LUT4: serializer_inst/shift_reg[0]_i_1, FDRE: serializer_inst/shift_reg_reg[0])
-	(LUT5: serializer_inst/counter[1]_i_1__0, FDRE: serializer_inst/counter_reg[1])
-	(LUT4: serializer_inst/shift_reg[6]_i_1, FDRE: serializer_inst/shift_reg_reg[6])
-	(LUT4: serializer_inst/shift_reg[16]_i_1, FDRE: serializer_inst/shift_reg_reg[16])
-	(LUT4: serializer_inst/shift_reg[13]_i_1, FDRE: serializer_inst/shift_reg_reg[13])
-	(LUT4: serializer_inst/shift_reg[10]_i_1, FDRE: serializer_inst/shift_reg_reg[10])
-	(LUT3: serializer_inst/FSM_sequential_state[1]_i_1__1, FDRE: serializer_inst/FSM_sequential_state_reg[1])
-	(LUT4: serializer_inst/shift_reg[18]_i_1, FDRE: serializer_inst/shift_reg_reg[18])
-	(LUT4: serializer_inst/shift_reg[21]_i_1, FDRE: serializer_inst/shift_reg_reg[21])
-	(LUT4: serializer_inst/shift_reg[19]_i_1, FDRE: serializer_inst/shift_reg_reg[19])
-	(LUT4: serializer_inst/shift_reg[12]_i_1, FDRE: serializer_inst/shift_reg_reg[12])
-	(LUT5: serializer_inst/o_dout_valid_i_1, FDRE: serializer_inst/o_dout_valid_reg)
-	(LUT4: serializer_inst/shift_reg[5]_i_1, FDRE: serializer_inst/shift_reg_reg[5])
-	(LUT4: serializer_inst/shift_reg[20]_i_1, FDRE: serializer_inst/shift_reg_reg[20])
-	(LUT4: serializer_inst/shift_reg[14]_i_1, FDRE: serializer_inst/shift_reg_reg[14])
-	(LUT4: serializer_inst/shift_reg[22]_i_1, FDRE: serializer_inst/shift_reg_reg[22])
-	(LUT6: serializer_inst/counter[2]_i_1__0, FDRE: serializer_inst/counter_reg[2])
-	(LUT4: serializer_inst/shift_reg[11]_i_1, FDRE: serializer_inst/shift_reg_reg[11])
-	(LUT4: serializer_inst/shift_reg[4]_i_1, FDRE: serializer_inst/shift_reg_reg[4])
-	(LUT4: serializer_inst/shift_reg[17]_i_1, FDRE: serializer_inst/shift_reg_reg[17])
-	(LUT4: serializer_inst/shift_reg[7]_i_1, FDRE: serializer_inst/shift_reg_reg[7])
-	(LUT2: deserializer_inst/shift_reg[4]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[4])
-	(LUT2: deserializer_inst/shift_reg[8]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[8])
-	(LUT2: deserializer_inst/shift_reg[13]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[13])
-	(LUT2: deserializer_inst/shift_reg[18]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[18])
-	(LUT2: deserializer_inst/shift_reg[1]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[1])
-	(LUT6: deserializer_inst/FSM_sequential_state[0]_i_1, FDRE: deserializer_inst/FSM_sequential_state_reg[0])
-	(LUT2: deserializer_inst/shift_reg[5]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[5])
-	(LUT6: deserializer_inst/counter[1]_i_1, FDRE: deserializer_inst/counter_reg[1])
-	(LUT2: deserializer_inst/shift_reg[9]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[9])
-	(LUT2: deserializer_inst/shift_reg[14]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[14])
-	(LUT4: deserializer_inst/o_dout_valid_i_1__0, FDRE: deserializer_inst/o_dout_valid_reg)
-	(LUT2: deserializer_inst/shift_reg[17]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[17])
-	(LUT2: deserializer_inst/shift_reg[10]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[10])
-	(LUT2: deserializer_inst/shift_reg[22]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[22])
-	(LUT2: deserializer_inst/shift_reg[2]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[2])
-	(LUT2: deserializer_inst/shift_reg[6]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[6])
-	(LUT2: deserializer_inst/shift_reg[21]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[21])
-	(LUT4: deserializer_inst/o_ready_i_1__1, FDRE: deserializer_inst/o_ready_reg)
-	(LUT2: deserializer_inst/shift_reg[15]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[15])
-	(LUT5: deserializer_inst/counter[3]_i_1__0, FDRE: deserializer_inst/counter_reg[3])
-	(LUT2: deserializer_inst/shift_reg[11]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[11])
-	(LUT2: deserializer_inst/shift_reg[16]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[16])
-	(LUT4: deserializer_inst/counter[2]_i_1, FDRE: deserializer_inst/counter_reg[2])
-	(LUT2: deserializer_inst/shift_reg[3]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[3])
-	(LUT2: deserializer_inst/shift_reg[20]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[20])
-	(LUT5: deserializer_inst/counter[4]_i_2__0, FDRE: deserializer_inst/counter_reg[4])
-	(LUT5: deserializer_inst/counter[0]_i_1, FDRE: deserializer_inst/counter_reg[0])
-	(LUT3: deserializer_inst/FSM_sequential_state[1]_i_1, FDRE: deserializer_inst/FSM_sequential_state_reg[1])
-	(LUT2: deserializer_inst/shift_reg[7]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[7])
-	(LUT2: deserializer_inst/shift_reg[23]_i_2__0, FDRE: deserializer_inst/shift_reg_reg[23])
-	(LUT2: deserializer_inst/shift_reg[12]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[12])
-	(LUT2: deserializer_inst/shift_reg[0]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[0])
-	(LUT2: deserializer_inst/shift_reg[19]_i_1__0, FDRE: deserializer_inst/shift_reg_reg[19])
+	(LUT6: fir_filter_inst/FSM_sequential_state[0]_i_1__0 => FDRE: fir_filter_inst/FSM_sequential_state_reg[0])
+	(LUT6: fir_filter_inst/sample_re_addr[2]_i_1 => FDRE: fir_filter_inst/sample_re_addr_reg[2])
+	(LUT4: fir_filter_inst/weight_re_addr[1]_i_1 => FDRE: fir_filter_inst/weight_re_addr_reg[1])
+	(LUT5: fir_filter_inst/weight_re_addr[2]_i_1 => FDRE: fir_filter_inst/weight_re_addr_reg[2])
+	(LUT6: fir_filter_inst/sample_re_addr[1]_i_1 => FDRE: fir_filter_inst/sample_re_addr_reg[1])
+	(LUT4: fir_filter_inst/sum_rst_i_1 => FDRE: fir_filter_inst/sum_rst_reg)
+	(LUT5: fir_filter_inst/sample_re_addr[0]_i_1 => FDRE: fir_filter_inst/sample_re_addr_reg[0])
+	(LUT6: fir_filter_inst/sample_re_addr[3]_i_1 => FDRE: fir_filter_inst/sample_re_addr_reg[3])
+	(LUT6: fir_filter_inst/weight_re_addr[3]_i_1 => FDRE: fir_filter_inst/weight_re_addr_reg[3])
+	(LUT3: fir_filter_inst/weight_re_addr[0]_i_1 => FDRE: fir_filter_inst/weight_re_addr_reg[0])
+	(LUT3: fir_filter_inst/FSM_sequential_state[1]_i_1__0 => FDRE: fir_filter_inst/FSM_sequential_state_reg[1])
+	(LUT6: fir_filter_inst/weight_re_addr[4]_i_1 => FDRE: fir_filter_inst/weight_re_addr_reg[4])
+	(LUT2: fir_filter_inst/sample_wr_addr[1]_i_1 => FDRE: fir_filter_inst/sample_wr_addr_reg[1])
+	(LUT5: fir_filter_inst/sample_re_addr[5]_i_2 => FDRE: fir_filter_inst/sample_re_addr_reg[5])
+	(LUT6: fir_filter_inst/weight_re_addr[5]_i_1 => FDRE: fir_filter_inst/weight_re_addr_reg[5])
+	(LUT5: fir_filter_inst/sample_re_addr[4]_i_1 => FDRE: fir_filter_inst/sample_re_addr_reg[4])
+	(LUT6: fir_filter_inst/o_dout_valid_i_1__1 => FDRE: fir_filter_inst/o_dout_valid_reg)
+	(LUT4: fir_filter_inst/sample_wr_addr[3]_i_1 => FDRE: fir_filter_inst/sample_wr_addr_reg[3])
+	(LUT1: fir_filter_inst/sample_wr_addr[0]_i_1 => FDRE: fir_filter_inst/sample_wr_addr_reg[0])
+	(LUT4: serializer_inst/FSM_sequential_state[0]_i_1__1 => FDRE: serializer_inst/FSM_sequential_state_reg[0])
+	(LUT6: serializer_inst/counter[3]_i_1 => FDRE: serializer_inst/counter_reg[3])
+	(LUT4: serializer_inst/shift_reg[1]_i_1 => FDRE: serializer_inst/shift_reg_reg[1])
+	(LUT2: serializer_inst/o_ready_i_1__0 => FDRE: serializer_inst/o_ready_reg)
+	(LUT6: serializer_inst/counter[4]_i_2 => FDRE: serializer_inst/counter_reg[4])
+	(LUT3: serializer_inst/shift_reg[23]_i_2 => FDRE: serializer_inst/shift_reg_reg[23])
+	(LUT4: serializer_inst/counter[0]_i_1__0 => FDRE: serializer_inst/counter_reg[0])
+	(LUT4: serializer_inst/shift_reg[8]_i_1 => FDRE: serializer_inst/shift_reg_reg[8])
+	(LUT4: serializer_inst/shift_reg[15]_i_1 => FDRE: serializer_inst/shift_reg_reg[15])
+	(LUT4: serializer_inst/shift_reg[2]_i_1 => FDRE: serializer_inst/shift_reg_reg[2])
+	(LUT4: serializer_inst/shift_reg[3]_i_1 => FDRE: serializer_inst/shift_reg_reg[3])
+	(LUT4: serializer_inst/shift_reg[9]_i_1 => FDRE: serializer_inst/shift_reg_reg[9])
+	(LUT4: serializer_inst/shift_reg[0]_i_1 => FDRE: serializer_inst/shift_reg_reg[0])
+	(LUT5: serializer_inst/counter[1]_i_1__0 => FDRE: serializer_inst/counter_reg[1])
+	(LUT4: serializer_inst/shift_reg[6]_i_1 => FDRE: serializer_inst/shift_reg_reg[6])
+	(LUT4: serializer_inst/shift_reg[16]_i_1 => FDRE: serializer_inst/shift_reg_reg[16])
+	(LUT4: serializer_inst/shift_reg[13]_i_1 => FDRE: serializer_inst/shift_reg_reg[13])
+	(LUT4: serializer_inst/shift_reg[10]_i_1 => FDRE: serializer_inst/shift_reg_reg[10])
+	(LUT3: serializer_inst/FSM_sequential_state[1]_i_1__1 => FDRE: serializer_inst/FSM_sequential_state_reg[1])
+	(LUT4: serializer_inst/shift_reg[18]_i_1 => FDRE: serializer_inst/shift_reg_reg[18])
+	(LUT4: serializer_inst/shift_reg[21]_i_1 => FDRE: serializer_inst/shift_reg_reg[21])
+	(LUT4: serializer_inst/shift_reg[19]_i_1 => FDRE: serializer_inst/shift_reg_reg[19])
+	(LUT4: serializer_inst/shift_reg[12]_i_1 => FDRE: serializer_inst/shift_reg_reg[12])
+	(LUT5: serializer_inst/o_dout_valid_i_1 => FDRE: serializer_inst/o_dout_valid_reg)
+	(LUT4: serializer_inst/shift_reg[5]_i_1 => FDRE: serializer_inst/shift_reg_reg[5])
+	(LUT4: serializer_inst/shift_reg[20]_i_1 => FDRE: serializer_inst/shift_reg_reg[20])
+	(LUT4: serializer_inst/shift_reg[14]_i_1 => FDRE: serializer_inst/shift_reg_reg[14])
+	(LUT4: serializer_inst/shift_reg[22]_i_1 => FDRE: serializer_inst/shift_reg_reg[22])
+	(LUT6: serializer_inst/counter[2]_i_1__0 => FDRE: serializer_inst/counter_reg[2])
+	(LUT4: serializer_inst/shift_reg[11]_i_1 => FDRE: serializer_inst/shift_reg_reg[11])
+	(LUT4: serializer_inst/shift_reg[4]_i_1 => FDRE: serializer_inst/shift_reg_reg[4])
+	(LUT4: serializer_inst/shift_reg[17]_i_1 => FDRE: serializer_inst/shift_reg_reg[17])
+	(LUT4: serializer_inst/shift_reg[7]_i_1 => FDRE: serializer_inst/shift_reg_reg[7])
+	(LUT2: deserializer_inst/shift_reg[4]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[4])
+	(LUT2: deserializer_inst/shift_reg[8]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[8])
+	(LUT2: deserializer_inst/shift_reg[13]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[13])
+	(LUT2: deserializer_inst/shift_reg[18]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[18])
+	(LUT2: deserializer_inst/shift_reg[1]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[1])
+	(LUT6: deserializer_inst/FSM_sequential_state[0]_i_1 => FDRE: deserializer_inst/FSM_sequential_state_reg[0])
+	(LUT2: deserializer_inst/shift_reg[5]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[5])
+	(LUT6: deserializer_inst/counter[1]_i_1 => FDRE: deserializer_inst/counter_reg[1])
+	(LUT2: deserializer_inst/shift_reg[9]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[9])
+	(LUT2: deserializer_inst/shift_reg[14]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[14])
+	(LUT4: deserializer_inst/o_dout_valid_i_1__0 => FDRE: deserializer_inst/o_dout_valid_reg)
+	(LUT2: deserializer_inst/shift_reg[17]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[17])
+	(LUT2: deserializer_inst/shift_reg[10]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[10])
+	(LUT2: deserializer_inst/shift_reg[22]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[22])
+	(LUT2: deserializer_inst/shift_reg[2]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[2])
+	(LUT2: deserializer_inst/shift_reg[6]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[6])
+	(LUT2: deserializer_inst/shift_reg[21]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[21])
+	(LUT4: deserializer_inst/o_ready_i_1__1 => FDRE: deserializer_inst/o_ready_reg)
+	(LUT2: deserializer_inst/shift_reg[15]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[15])
+	(LUT5: deserializer_inst/counter[3]_i_1__0 => FDRE: deserializer_inst/counter_reg[3])
+	(LUT2: deserializer_inst/shift_reg[11]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[11])
+	(LUT2: deserializer_inst/shift_reg[16]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[16])
+	(LUT4: deserializer_inst/counter[2]_i_1 => FDRE: deserializer_inst/counter_reg[2])
+	(LUT2: deserializer_inst/shift_reg[3]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[3])
+	(LUT2: deserializer_inst/shift_reg[20]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[20])
+	(LUT5: deserializer_inst/counter[4]_i_2__0 => FDRE: deserializer_inst/counter_reg[4])
+	(LUT5: deserializer_inst/counter[0]_i_1 => FDRE: deserializer_inst/counter_reg[0])
+	(LUT3: deserializer_inst/FSM_sequential_state[1]_i_1 => FDRE: deserializer_inst/FSM_sequential_state_reg[1])
+	(LUT2: deserializer_inst/shift_reg[7]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[7])
+	(LUT2: deserializer_inst/shift_reg[23]_i_2__0 => FDRE: deserializer_inst/shift_reg_reg[23])
+	(LUT2: deserializer_inst/shift_reg[12]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[12])
+	(LUT2: deserializer_inst/shift_reg[0]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[0])
+	(LUT2: deserializer_inst/shift_reg[19]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[19])
 
-Printing ClockEnableTrees... (9)
+Printing LUT-ClockEnable Trees... (9)
+	Root LUT: LUT2: fir_filter_inst/weight_re_i_1
+		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[0]
+		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[1]
+		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[2]
+		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[3]
+		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[4]
+		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[5]
+	Root LUT: LUT2: fir_filter_inst/o_ready_i_1
+		Leaf FF: FDRE: fir_filter_inst/sample_wr_addr_reg[0]
+		Leaf FF: FDRE: fir_filter_inst/sample_wr_addr_reg[1]
+		Leaf FF: FDRE: fir_filter_inst/sample_wr_addr_reg[2]
+		Leaf FF: FDRE: fir_filter_inst/sample_wr_addr_reg[3]
+		Leaf FF: FDRE: fir_filter_inst/sample_wr_addr_reg[4]
+		Leaf FF: FDRE: fir_filter_inst/sample_wr_addr_reg[5]
+	Root LUT: LUT2: fir_filter_inst/sample_re_addr[5]_i_1
+		Leaf FF: FDRE: fir_filter_inst/sample_re_addr_reg[0]
+		Leaf FF: FDRE: fir_filter_inst/sample_re_addr_reg[1]
+		Leaf FF: FDRE: fir_filter_inst/sample_re_addr_reg[2]
+		Leaf FF: FDRE: fir_filter_inst/sample_re_addr_reg[3]
+		Leaf FF: FDRE: fir_filter_inst/sample_re_addr_reg[4]
+		Leaf FF: FDRE: fir_filter_inst/sample_re_addr_reg[5]
+	Root LUT: LUT6: fir_filter_inst/ov_dout[23]_i_1__0
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[0]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[10]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[11]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[12]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[13]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[14]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[15]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[16]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[17]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[18]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[19]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[1]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[20]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[21]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[22]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[23]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[2]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[3]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[4]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[5]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[6]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[7]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[8]
+		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[9]
+	Root LUT: LUT4: serializer_inst/counter[4]_i_1
+		Leaf FF: FDRE: serializer_inst/counter_reg[0]
+		Leaf FF: FDRE: serializer_inst/counter_reg[1]
+		Leaf FF: FDRE: serializer_inst/counter_reg[2]
+		Leaf FF: FDRE: serializer_inst/counter_reg[3]
+		Leaf FF: FDRE: serializer_inst/counter_reg[4]
 	Root LUT: LUT5: serializer_inst/shift_reg[23]_i_1
 		Leaf FF: FDRE: serializer_inst/shift_reg_reg[0]
 		Leaf FF: FDRE: serializer_inst/shift_reg_reg[10]
@@ -3256,64 +3308,6 @@ Printing ClockEnableTrees... (9)
 		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[7]
 		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[8]
 		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[9]
-	Root LUT: LUT2: deserializer_inst/counter[4]_i_1__0
-		Leaf FF: FDRE: deserializer_inst/counter_reg[0]
-		Leaf FF: FDRE: deserializer_inst/counter_reg[1]
-		Leaf FF: FDRE: deserializer_inst/counter_reg[2]
-		Leaf FF: FDRE: deserializer_inst/counter_reg[3]
-		Leaf FF: FDRE: deserializer_inst/counter_reg[4]
-	Root LUT: LUT2: fir_filter_inst/o_ready_i_1
-		Leaf FF: FDRE: fir_filter_inst/sample_wr_addr_reg[0]
-		Leaf FF: FDRE: fir_filter_inst/sample_wr_addr_reg[1]
-		Leaf FF: FDRE: fir_filter_inst/sample_wr_addr_reg[2]
-		Leaf FF: FDRE: fir_filter_inst/sample_wr_addr_reg[3]
-		Leaf FF: FDRE: fir_filter_inst/sample_wr_addr_reg[4]
-		Leaf FF: FDRE: fir_filter_inst/sample_wr_addr_reg[5]
-	Root LUT: LUT4: serializer_inst/counter[4]_i_1
-		Leaf FF: FDRE: serializer_inst/counter_reg[0]
-		Leaf FF: FDRE: serializer_inst/counter_reg[1]
-		Leaf FF: FDRE: serializer_inst/counter_reg[2]
-		Leaf FF: FDRE: serializer_inst/counter_reg[3]
-		Leaf FF: FDRE: serializer_inst/counter_reg[4]
-	Root LUT: LUT2: fir_filter_inst/sample_re_addr[5]_i_1
-		Leaf FF: FDRE: fir_filter_inst/sample_re_addr_reg[0]
-		Leaf FF: FDRE: fir_filter_inst/sample_re_addr_reg[1]
-		Leaf FF: FDRE: fir_filter_inst/sample_re_addr_reg[2]
-		Leaf FF: FDRE: fir_filter_inst/sample_re_addr_reg[3]
-		Leaf FF: FDRE: fir_filter_inst/sample_re_addr_reg[4]
-		Leaf FF: FDRE: fir_filter_inst/sample_re_addr_reg[5]
-	Root LUT: LUT6: fir_filter_inst/ov_dout[23]_i_1__0
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[0]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[10]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[11]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[12]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[13]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[14]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[15]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[16]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[17]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[18]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[19]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[1]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[20]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[21]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[22]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[23]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[2]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[3]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[4]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[5]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[6]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[7]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[8]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[9]
-	Root LUT: LUT2: fir_filter_inst/weight_re_i_1
-		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[0]
-		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[1]
-		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[2]
-		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[3]
-		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[4]
-		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[5]
 	Root LUT: LUT6: deserializer_inst/shift_reg[23]_i_1__0
 		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[0]
 		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[10]
@@ -3339,8 +3333,14 @@ Printing ClockEnableTrees... (9)
 		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[7]
 		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[8]
 		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[9]
+	Root LUT: LUT2: deserializer_inst/counter[4]_i_1__0
+		Leaf FF: FDRE: deserializer_inst/counter_reg[0]
+		Leaf FF: FDRE: deserializer_inst/counter_reg[1]
+		Leaf FF: FDRE: deserializer_inst/counter_reg[2]
+		Leaf FF: FDRE: deserializer_inst/counter_reg[3]
+		Leaf FF: FDRE: deserializer_inst/counter_reg[4]
 
-Printing ResetTrees... (1)
+Printing LUT-Reset Trees... (1)
 	Root LUT: LUT2: fir_filter_inst/tap_inst/ov_sum[0]_i_1
 		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[0]
 		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[10]
@@ -3383,25 +3383,25 @@ Number of stray FDRE cells: 2
 Number of stray LUT cells: 42
 
 Printing RNet Map... # of Nets: (1)
-	EDIFHierNet: fir_filter_inst/i_rst_IBUF... # of Pairs: (2)
-		FFCell : (fir_filter_inst/weight_re_reg
-		FFCell : (fir_filter_inst/o_ready_reg
+	EDIFHierNet: fir_filter_inst/i_rst_IBUF... # of Cells: (2)
+		FFCell : fir_filter_inst/weight_re_reg
+		FFCell : fir_filter_inst/o_ready_reg
 
 Printing DNet Map... # of Nets: (2)
-	EDIFHierNet: fir_filter_inst/weight_re... # of Pairs: (1)
-		FFCell : (fir_filter_inst/weight_re_reg
-	EDIFHierNet: fir_filter_inst/o_ready_i_1_n_0... # of Pairs: (1)
-		FFCell : (fir_filter_inst/o_ready_reg
+	EDIFHierNet: fir_filter_inst/weight_re... # of Cells: (1)
+		FFCell : fir_filter_inst/weight_re_reg
+	EDIFHierNet: fir_filter_inst/o_ready_i_1_n_0... # of Cells: (1)
+		FFCell : fir_filter_inst/o_ready_reg
 
 Printing CENet Map... # of Nets: (1)
-	EDIFHierNet: fir_filter_inst/<const1>... # of Pairs: (2)
-		FFCell : (fir_filter_inst/weight_re_reg
-		FFCell : (fir_filter_inst/o_ready_reg
+	EDIFHierNet: fir_filter_inst/<const1>... # of Cells: (2)
+		FFCell : fir_filter_inst/weight_re_reg
+		FFCell : fir_filter_inst/o_ready_reg
 
 Printing CNet Map... # of Nets: (1)
-	EDIFHierNet: fir_filter_inst/CLK... # of Pairs: (2)
-		FFCell : (fir_filter_inst/weight_re_reg
-		FFCell : (fir_filter_inst/o_ready_reg
+	EDIFHierNet: fir_filter_inst/CLK... # of Cells: (2)
+		FFCell : fir_filter_inst/weight_re_reg
+		FFCell : fir_filter_inst/o_ready_reg
 
 Printing RNet Map... # of Nets: (6)
 	EDIFHierNet: fir_filter_inst/i_rst_IBUF... # of Pairs: (18)
