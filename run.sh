@@ -62,7 +62,7 @@ if [ "$start_stage" == "place" ] || [ "$start_stage" == "all" ]; then
     cd $PROJ_DIR/java
     gradle run
     check_exit_status "Gradle run"
-    vivado -mode batch -source $PLACE_TCL -nolog -nojournal
+    # vivado -mode batch -source $PLACE_TCL -nolog -nojournal
     echo "Java placement executed. Check 'logger.txt' for output."
 fi
 

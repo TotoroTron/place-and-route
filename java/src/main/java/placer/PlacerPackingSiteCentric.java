@@ -414,6 +414,12 @@ public class PlacerPackingSiteCentric extends Placer {
 
         writer.write("\n\nNumber of stray FF cells ... (" + EDIFCellGroups.get("FDRE").size() + ")");
 
+        writer.write("\n\nPrinting Unique CE-R pairs... " + FFEnableResetGroups.size() + ")");
+        for (Pair<String, String> pair : FFEnableResetGroups.keySet()) {
+            String s1 = String.format("\n\tCE: %-50s R: %-50s", pair.key(), pair.value());
+            writer.write(s1);
+        }
+
         writer.write("\n\nPrinting Unique CE-R pairs with associated FF Cells... (" + FFEnableResetGroups.size() + ")");
         for (Map.Entry<Pair<String, String>, List<EDIFHierCellInst>> entry : FFEnableResetGroups.entrySet()) {
             Pair<String, String> netPair = entry.getKey();
@@ -446,30 +452,4 @@ public class PlacerPackingSiteCentric extends Placer {
         placeDSPPairSites(DSPPairs, occupiedDSPSites, EDIFCellGroups);
 
     } // end placeDesign()
-
-    private void printFFCellNetMap(Map<EDIFHierNet, List<EDIFHierCellInst>> netMap, String PORT_NAME)
-            throws IOException {
-        writer.write("\n\nPrinting " + PORT_NAME + "Net Map... # of Nets: (" + netMap.entrySet().size() + ")");
-        for (Map.Entry<EDIFHierNet, List<EDIFHierCellInst>> entry : netMap.entrySet()) {
-            writer.write("\n\tEDIFHierNet: " + entry.getKey().getHierarchicalNetName() + "... # of Cells: ("
-                    + entry.getValue().size() + ")");
-            for (EDIFHierCellInst cell : entry.getValue()) {
-                writer.write("\n\t\tFFCell : " + cell.getFullHierarchicalInstName());
-            }
-        }
-    }
-
-    private void printLUTFFPairNetMap(Map<EDIFHierNet, List<Pair<EDIFHierCellInst, EDIFHierCellInst>>> netMap,
-            String PORT_NAME) throws IOException {
-        writer.write("\n\nPrinting " + PORT_NAME + "Net Map... # of Nets: (" + netMap.entrySet().size() + ")");
-        for (Map.Entry<EDIFHierNet, List<Pair<EDIFHierCellInst, EDIFHierCellInst>>> entry : netMap.entrySet()) {
-            writer.write("\n\tEDIFHierNet: " + entry.getKey().getHierarchicalNetName() + "... # of Pairs: ("
-                    + entry.getValue().size() + ")");
-            for (Pair<EDIFHierCellInst, EDIFHierCellInst> pair : entry.getValue()) {
-                writer.write("\n\t\tLUTFFPair : (" + pair.key().getFullHierarchicalInstName() + " => "
-                        + pair.value().getFullHierarchicalInstName() + ")");
-            }
-        }
-    }
-
 } // end class

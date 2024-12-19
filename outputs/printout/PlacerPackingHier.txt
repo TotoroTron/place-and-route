@@ -3118,7 +3118,24 @@ GND Cells (9):
 		GND: GND
 			GND/G
 
-Number of stray FF cells ... (0
+Number of stray FF cells ... (0)
+
+Printing Unique CE-R pairs... 15)
+	CE: serializer_inst/i_en_IBUF                          R: serializer_inst/i_rst_IBUF                        
+	CE: deserializer_inst/<const1>                         R: deserializer_inst/<const0>                        
+	CE: deserializer_inst/counter[4]_i_1__0_n_0            R: deserializer_inst/i_rst_IBUF                      
+	CE: fir_filter_inst/ov_dout[23]_i_1__0_n_0             R: fir_filter_inst/<const0>                          
+	CE: fir_filter_inst/<const1>                           R: fir_filter_inst/<const0>                          
+	CE: fir_filter_inst/weight_re                          R: fir_filter_inst/i_rst_IBUF                        
+	CE: fir_filter_inst/sample_re_addr[5]_i_1_n_0          R: fir_filter_inst/i_rst_IBUF                        
+	CE: deserializer_inst/ov_dout[23]_i_1_n_0              R: deserializer_inst/<const0>                        
+	CE: fir_filter_inst/<const1>                           R: fir_filter_inst/i_rst_IBUF                        
+	CE: fir_filter_inst/tap_inst/i_en_IBUF                 R: fir_filter_inst/tap_inst/ov_sum[0]_i_1_n_0        
+	CE: deserializer_inst/shift_reg[23]_i_1__0_n_0         R: deserializer_inst/i_rst_IBUF                      
+	CE: serializer_inst/shift_reg[23]_i_1_n_0              R: serializer_inst/<const0>                          
+	CE: serializer_inst/counter[4]_i_1_n_0                 R: serializer_inst/<const0>                          
+	CE: deserializer_inst/i_en_IBUF                        R: deserializer_inst/i_rst_IBUF                      
+	CE: fir_filter_inst/o_ready_i_1_n_0                    R: fir_filter_inst/i_rst_IBUF                        
 
 Printing Unique CE-R pairs with associated FF Cells... (15)
 	CENet: serializer_inst/i_en_IBUF, RNet: serializer_inst/i_rst_IBUF with cells... (4)
