@@ -3118,254 +3118,186 @@ GND Cells (9):
 		GND: GND
 			GND/G
 
-Printing LUTFFPairs... (85)
-	(LUT6: fir_filter_inst/FSM_sequential_state[0]_i_1__0 => FDRE: fir_filter_inst/FSM_sequential_state_reg[0])
-	(LUT6: fir_filter_inst/sample_re_addr[2]_i_1 => FDRE: fir_filter_inst/sample_re_addr_reg[2])
-	(LUT4: fir_filter_inst/weight_re_addr[1]_i_1 => FDRE: fir_filter_inst/weight_re_addr_reg[1])
-	(LUT5: fir_filter_inst/weight_re_addr[2]_i_1 => FDRE: fir_filter_inst/weight_re_addr_reg[2])
-	(LUT6: fir_filter_inst/sample_re_addr[1]_i_1 => FDRE: fir_filter_inst/sample_re_addr_reg[1])
-	(LUT4: fir_filter_inst/sum_rst_i_1 => FDRE: fir_filter_inst/sum_rst_reg)
-	(LUT5: fir_filter_inst/sample_re_addr[0]_i_1 => FDRE: fir_filter_inst/sample_re_addr_reg[0])
-	(LUT6: fir_filter_inst/sample_re_addr[3]_i_1 => FDRE: fir_filter_inst/sample_re_addr_reg[3])
-	(LUT6: fir_filter_inst/weight_re_addr[3]_i_1 => FDRE: fir_filter_inst/weight_re_addr_reg[3])
-	(LUT3: fir_filter_inst/weight_re_addr[0]_i_1 => FDRE: fir_filter_inst/weight_re_addr_reg[0])
-	(LUT3: fir_filter_inst/FSM_sequential_state[1]_i_1__0 => FDRE: fir_filter_inst/FSM_sequential_state_reg[1])
-	(LUT6: fir_filter_inst/weight_re_addr[4]_i_1 => FDRE: fir_filter_inst/weight_re_addr_reg[4])
-	(LUT2: fir_filter_inst/sample_wr_addr[1]_i_1 => FDRE: fir_filter_inst/sample_wr_addr_reg[1])
-	(LUT5: fir_filter_inst/sample_re_addr[5]_i_2 => FDRE: fir_filter_inst/sample_re_addr_reg[5])
-	(LUT6: fir_filter_inst/weight_re_addr[5]_i_1 => FDRE: fir_filter_inst/weight_re_addr_reg[5])
-	(LUT5: fir_filter_inst/sample_re_addr[4]_i_1 => FDRE: fir_filter_inst/sample_re_addr_reg[4])
-	(LUT6: fir_filter_inst/o_dout_valid_i_1__1 => FDRE: fir_filter_inst/o_dout_valid_reg)
-	(LUT4: fir_filter_inst/sample_wr_addr[3]_i_1 => FDRE: fir_filter_inst/sample_wr_addr_reg[3])
-	(LUT1: fir_filter_inst/sample_wr_addr[0]_i_1 => FDRE: fir_filter_inst/sample_wr_addr_reg[0])
-	(LUT4: serializer_inst/FSM_sequential_state[0]_i_1__1 => FDRE: serializer_inst/FSM_sequential_state_reg[0])
-	(LUT6: serializer_inst/counter[3]_i_1 => FDRE: serializer_inst/counter_reg[3])
-	(LUT4: serializer_inst/shift_reg[1]_i_1 => FDRE: serializer_inst/shift_reg_reg[1])
-	(LUT2: serializer_inst/o_ready_i_1__0 => FDRE: serializer_inst/o_ready_reg)
-	(LUT6: serializer_inst/counter[4]_i_2 => FDRE: serializer_inst/counter_reg[4])
-	(LUT3: serializer_inst/shift_reg[23]_i_2 => FDRE: serializer_inst/shift_reg_reg[23])
-	(LUT4: serializer_inst/counter[0]_i_1__0 => FDRE: serializer_inst/counter_reg[0])
-	(LUT4: serializer_inst/shift_reg[8]_i_1 => FDRE: serializer_inst/shift_reg_reg[8])
-	(LUT4: serializer_inst/shift_reg[15]_i_1 => FDRE: serializer_inst/shift_reg_reg[15])
-	(LUT4: serializer_inst/shift_reg[2]_i_1 => FDRE: serializer_inst/shift_reg_reg[2])
-	(LUT4: serializer_inst/shift_reg[3]_i_1 => FDRE: serializer_inst/shift_reg_reg[3])
-	(LUT4: serializer_inst/shift_reg[9]_i_1 => FDRE: serializer_inst/shift_reg_reg[9])
-	(LUT4: serializer_inst/shift_reg[0]_i_1 => FDRE: serializer_inst/shift_reg_reg[0])
-	(LUT5: serializer_inst/counter[1]_i_1__0 => FDRE: serializer_inst/counter_reg[1])
-	(LUT4: serializer_inst/shift_reg[6]_i_1 => FDRE: serializer_inst/shift_reg_reg[6])
-	(LUT4: serializer_inst/shift_reg[16]_i_1 => FDRE: serializer_inst/shift_reg_reg[16])
-	(LUT4: serializer_inst/shift_reg[13]_i_1 => FDRE: serializer_inst/shift_reg_reg[13])
-	(LUT4: serializer_inst/shift_reg[10]_i_1 => FDRE: serializer_inst/shift_reg_reg[10])
-	(LUT3: serializer_inst/FSM_sequential_state[1]_i_1__1 => FDRE: serializer_inst/FSM_sequential_state_reg[1])
-	(LUT4: serializer_inst/shift_reg[18]_i_1 => FDRE: serializer_inst/shift_reg_reg[18])
-	(LUT4: serializer_inst/shift_reg[21]_i_1 => FDRE: serializer_inst/shift_reg_reg[21])
-	(LUT4: serializer_inst/shift_reg[19]_i_1 => FDRE: serializer_inst/shift_reg_reg[19])
-	(LUT4: serializer_inst/shift_reg[12]_i_1 => FDRE: serializer_inst/shift_reg_reg[12])
-	(LUT5: serializer_inst/o_dout_valid_i_1 => FDRE: serializer_inst/o_dout_valid_reg)
-	(LUT4: serializer_inst/shift_reg[5]_i_1 => FDRE: serializer_inst/shift_reg_reg[5])
-	(LUT4: serializer_inst/shift_reg[20]_i_1 => FDRE: serializer_inst/shift_reg_reg[20])
-	(LUT4: serializer_inst/shift_reg[14]_i_1 => FDRE: serializer_inst/shift_reg_reg[14])
-	(LUT4: serializer_inst/shift_reg[22]_i_1 => FDRE: serializer_inst/shift_reg_reg[22])
-	(LUT6: serializer_inst/counter[2]_i_1__0 => FDRE: serializer_inst/counter_reg[2])
-	(LUT4: serializer_inst/shift_reg[11]_i_1 => FDRE: serializer_inst/shift_reg_reg[11])
-	(LUT4: serializer_inst/shift_reg[4]_i_1 => FDRE: serializer_inst/shift_reg_reg[4])
-	(LUT4: serializer_inst/shift_reg[17]_i_1 => FDRE: serializer_inst/shift_reg_reg[17])
-	(LUT4: serializer_inst/shift_reg[7]_i_1 => FDRE: serializer_inst/shift_reg_reg[7])
-	(LUT2: deserializer_inst/shift_reg[4]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[4])
-	(LUT2: deserializer_inst/shift_reg[8]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[8])
-	(LUT2: deserializer_inst/shift_reg[13]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[13])
-	(LUT2: deserializer_inst/shift_reg[18]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[18])
-	(LUT2: deserializer_inst/shift_reg[1]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[1])
-	(LUT6: deserializer_inst/FSM_sequential_state[0]_i_1 => FDRE: deserializer_inst/FSM_sequential_state_reg[0])
-	(LUT2: deserializer_inst/shift_reg[5]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[5])
-	(LUT6: deserializer_inst/counter[1]_i_1 => FDRE: deserializer_inst/counter_reg[1])
-	(LUT2: deserializer_inst/shift_reg[9]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[9])
-	(LUT2: deserializer_inst/shift_reg[14]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[14])
-	(LUT4: deserializer_inst/o_dout_valid_i_1__0 => FDRE: deserializer_inst/o_dout_valid_reg)
-	(LUT2: deserializer_inst/shift_reg[17]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[17])
-	(LUT2: deserializer_inst/shift_reg[10]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[10])
-	(LUT2: deserializer_inst/shift_reg[22]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[22])
-	(LUT2: deserializer_inst/shift_reg[2]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[2])
-	(LUT2: deserializer_inst/shift_reg[6]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[6])
-	(LUT2: deserializer_inst/shift_reg[21]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[21])
-	(LUT4: deserializer_inst/o_ready_i_1__1 => FDRE: deserializer_inst/o_ready_reg)
-	(LUT2: deserializer_inst/shift_reg[15]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[15])
-	(LUT5: deserializer_inst/counter[3]_i_1__0 => FDRE: deserializer_inst/counter_reg[3])
-	(LUT2: deserializer_inst/shift_reg[11]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[11])
-	(LUT2: deserializer_inst/shift_reg[16]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[16])
-	(LUT4: deserializer_inst/counter[2]_i_1 => FDRE: deserializer_inst/counter_reg[2])
-	(LUT2: deserializer_inst/shift_reg[3]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[3])
-	(LUT2: deserializer_inst/shift_reg[20]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[20])
-	(LUT5: deserializer_inst/counter[4]_i_2__0 => FDRE: deserializer_inst/counter_reg[4])
-	(LUT5: deserializer_inst/counter[0]_i_1 => FDRE: deserializer_inst/counter_reg[0])
-	(LUT3: deserializer_inst/FSM_sequential_state[1]_i_1 => FDRE: deserializer_inst/FSM_sequential_state_reg[1])
-	(LUT2: deserializer_inst/shift_reg[7]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[7])
-	(LUT2: deserializer_inst/shift_reg[23]_i_2__0 => FDRE: deserializer_inst/shift_reg_reg[23])
-	(LUT2: deserializer_inst/shift_reg[12]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[12])
-	(LUT2: deserializer_inst/shift_reg[0]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[0])
-	(LUT2: deserializer_inst/shift_reg[19]_i_1__0 => FDRE: deserializer_inst/shift_reg_reg[19])
+Number of stray FF cells ... (0
 
-Printing LUT-ClockEnable Trees... (9)
-	Root LUT: LUT2: fir_filter_inst/weight_re_i_1
-		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[0]
-		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[1]
-		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[2]
-		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[3]
-		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[4]
-		Leaf FF: FDRE: fir_filter_inst/weight_re_addr_reg[5]
-	Root LUT: LUT2: fir_filter_inst/o_ready_i_1
-		Leaf FF: FDRE: fir_filter_inst/sample_wr_addr_reg[0]
-		Leaf FF: FDRE: fir_filter_inst/sample_wr_addr_reg[1]
-		Leaf FF: FDRE: fir_filter_inst/sample_wr_addr_reg[2]
-		Leaf FF: FDRE: fir_filter_inst/sample_wr_addr_reg[3]
-		Leaf FF: FDRE: fir_filter_inst/sample_wr_addr_reg[4]
-		Leaf FF: FDRE: fir_filter_inst/sample_wr_addr_reg[5]
-	Root LUT: LUT2: fir_filter_inst/sample_re_addr[5]_i_1
-		Leaf FF: FDRE: fir_filter_inst/sample_re_addr_reg[0]
-		Leaf FF: FDRE: fir_filter_inst/sample_re_addr_reg[1]
-		Leaf FF: FDRE: fir_filter_inst/sample_re_addr_reg[2]
-		Leaf FF: FDRE: fir_filter_inst/sample_re_addr_reg[3]
-		Leaf FF: FDRE: fir_filter_inst/sample_re_addr_reg[4]
-		Leaf FF: FDRE: fir_filter_inst/sample_re_addr_reg[5]
-	Root LUT: LUT6: fir_filter_inst/ov_dout[23]_i_1__0
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[0]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[10]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[11]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[12]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[13]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[14]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[15]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[16]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[17]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[18]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[19]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[1]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[20]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[21]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[22]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[23]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[2]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[3]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[4]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[5]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[6]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[7]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[8]
-		Leaf FF: FDRE: fir_filter_inst/ov_dout_reg[9]
-	Root LUT: LUT4: serializer_inst/counter[4]_i_1
-		Leaf FF: FDRE: serializer_inst/counter_reg[0]
-		Leaf FF: FDRE: serializer_inst/counter_reg[1]
-		Leaf FF: FDRE: serializer_inst/counter_reg[2]
-		Leaf FF: FDRE: serializer_inst/counter_reg[3]
-		Leaf FF: FDRE: serializer_inst/counter_reg[4]
-	Root LUT: LUT5: serializer_inst/shift_reg[23]_i_1
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[0]
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[10]
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[11]
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[12]
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[13]
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[14]
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[15]
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[16]
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[17]
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[18]
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[19]
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[1]
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[20]
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[21]
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[22]
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[23]
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[2]
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[3]
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[4]
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[5]
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[6]
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[7]
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[8]
-		Leaf FF: FDRE: serializer_inst/shift_reg_reg[9]
-	Root LUT: LUT6: deserializer_inst/ov_dout[23]_i_1
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[0]
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[10]
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[11]
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[12]
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[13]
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[14]
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[15]
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[16]
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[17]
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[18]
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[19]
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[1]
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[20]
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[21]
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[22]
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[23]
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[2]
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[3]
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[4]
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[5]
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[6]
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[7]
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[8]
-		Leaf FF: FDRE: deserializer_inst/ov_dout_reg[9]
-	Root LUT: LUT6: deserializer_inst/shift_reg[23]_i_1__0
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[0]
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[10]
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[11]
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[12]
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[13]
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[14]
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[15]
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[16]
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[17]
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[18]
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[19]
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[1]
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[20]
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[21]
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[22]
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[23]
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[2]
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[3]
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[4]
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[5]
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[6]
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[7]
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[8]
-		Leaf FF: FDRE: deserializer_inst/shift_reg_reg[9]
-	Root LUT: LUT2: deserializer_inst/counter[4]_i_1__0
-		Leaf FF: FDRE: deserializer_inst/counter_reg[0]
-		Leaf FF: FDRE: deserializer_inst/counter_reg[1]
-		Leaf FF: FDRE: deserializer_inst/counter_reg[2]
-		Leaf FF: FDRE: deserializer_inst/counter_reg[3]
-		Leaf FF: FDRE: deserializer_inst/counter_reg[4]
-
-Printing LUT-Reset Trees... (1)
-	Root LUT: LUT2: fir_filter_inst/tap_inst/ov_sum[0]_i_1
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[0]
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[10]
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[11]
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[12]
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[13]
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[14]
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[15]
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[16]
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[17]
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[18]
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[19]
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[1]
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[20]
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[21]
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[22]
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[23]
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[2]
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[3]
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[4]
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[5]
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[6]
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[7]
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[8]
-		Leaf FF: FDRE: fir_filter_inst/tap_inst/ov_sum_reg[9]
+Printing Unique CE-R pairs with associated FF Cells... (15)
+	CENet: serializer_inst/i_en_IBUF, RNet: serializer_inst/i_rst_IBUF with cells... (4)
+		cell: serializer_inst/o_dout_valid_reg
+		cell: serializer_inst/o_ready_reg
+		cell: serializer_inst/FSM_sequential_state_reg[0]
+		cell: serializer_inst/FSM_sequential_state_reg[1]
+	CENet: deserializer_inst/<const1>, RNet: deserializer_inst/<const0> with cells... (2)
+		cell: deserializer_inst/o_dout_valid_reg
+		cell: deserializer_inst/o_ready_reg
+	CENet: deserializer_inst/counter[4]_i_1__0_n_0, RNet: deserializer_inst/i_rst_IBUF with cells... (5)
+		cell: deserializer_inst/counter_reg[0]
+		cell: deserializer_inst/counter_reg[1]
+		cell: deserializer_inst/counter_reg[4]
+		cell: deserializer_inst/counter_reg[2]
+		cell: deserializer_inst/counter_reg[3]
+	CENet: fir_filter_inst/ov_dout[23]_i_1__0_n_0, RNet: fir_filter_inst/<const0> with cells... (24)
+		cell: fir_filter_inst/ov_dout_reg[18]
+		cell: fir_filter_inst/ov_dout_reg[14]
+		cell: fir_filter_inst/ov_dout_reg[10]
+		cell: fir_filter_inst/ov_dout_reg[22]
+		cell: fir_filter_inst/ov_dout_reg[7]
+		cell: fir_filter_inst/ov_dout_reg[3]
+		cell: fir_filter_inst/ov_dout_reg[17]
+		cell: fir_filter_inst/ov_dout_reg[13]
+		cell: fir_filter_inst/ov_dout_reg[21]
+		cell: fir_filter_inst/ov_dout_reg[6]
+		cell: fir_filter_inst/ov_dout_reg[2]
+		cell: fir_filter_inst/ov_dout_reg[1]
+		cell: fir_filter_inst/ov_dout_reg[16]
+		cell: fir_filter_inst/ov_dout_reg[20]
+		cell: fir_filter_inst/ov_dout_reg[9]
+		cell: fir_filter_inst/ov_dout_reg[12]
+		cell: fir_filter_inst/ov_dout_reg[5]
+		cell: fir_filter_inst/ov_dout_reg[0]
+		cell: fir_filter_inst/ov_dout_reg[19]
+		cell: fir_filter_inst/ov_dout_reg[15]
+		cell: fir_filter_inst/ov_dout_reg[8]
+		cell: fir_filter_inst/ov_dout_reg[11]
+		cell: fir_filter_inst/ov_dout_reg[23]
+		cell: fir_filter_inst/ov_dout_reg[4]
+	CENet: fir_filter_inst/<const1>, RNet: fir_filter_inst/<const0> with cells... (1)
+		cell: fir_filter_inst/sum_rst_reg
+	CENet: fir_filter_inst/weight_re, RNet: fir_filter_inst/i_rst_IBUF with cells... (6)
+		cell: fir_filter_inst/weight_re_addr_reg[2]
+		cell: fir_filter_inst/weight_re_addr_reg[3]
+		cell: fir_filter_inst/weight_re_addr_reg[4]
+		cell: fir_filter_inst/weight_re_addr_reg[0]
+		cell: fir_filter_inst/weight_re_addr_reg[5]
+		cell: fir_filter_inst/weight_re_addr_reg[1]
+	CENet: fir_filter_inst/sample_re_addr[5]_i_1_n_0, RNet: fir_filter_inst/i_rst_IBUF with cells... (6)
+		cell: fir_filter_inst/sample_re_addr_reg[0]
+		cell: fir_filter_inst/sample_re_addr_reg[4]
+		cell: fir_filter_inst/sample_re_addr_reg[3]
+		cell: fir_filter_inst/sample_re_addr_reg[2]
+		cell: fir_filter_inst/sample_re_addr_reg[1]
+		cell: fir_filter_inst/sample_re_addr_reg[5]
+	CENet: deserializer_inst/ov_dout[23]_i_1_n_0, RNet: deserializer_inst/<const0> with cells... (24)
+		cell: deserializer_inst/ov_dout_reg[14]
+		cell: deserializer_inst/ov_dout_reg[7]
+		cell: deserializer_inst/ov_dout_reg[13]
+		cell: deserializer_inst/ov_dout_reg[6]
+		cell: deserializer_inst/ov_dout_reg[1]
+		cell: deserializer_inst/ov_dout_reg[9]
+		cell: deserializer_inst/ov_dout_reg[12]
+		cell: deserializer_inst/ov_dout_reg[0]
+		cell: deserializer_inst/ov_dout_reg[19]
+		cell: deserializer_inst/ov_dout_reg[8]
+		cell: deserializer_inst/ov_dout_reg[11]
+		cell: deserializer_inst/ov_dout_reg[23]
+		cell: deserializer_inst/ov_dout_reg[18]
+		cell: deserializer_inst/ov_dout_reg[10]
+		cell: deserializer_inst/ov_dout_reg[22]
+		cell: deserializer_inst/ov_dout_reg[3]
+		cell: deserializer_inst/ov_dout_reg[17]
+		cell: deserializer_inst/ov_dout_reg[21]
+		cell: deserializer_inst/ov_dout_reg[2]
+		cell: deserializer_inst/ov_dout_reg[16]
+		cell: deserializer_inst/ov_dout_reg[20]
+		cell: deserializer_inst/ov_dout_reg[5]
+		cell: deserializer_inst/ov_dout_reg[15]
+		cell: deserializer_inst/ov_dout_reg[4]
+	CENet: fir_filter_inst/<const1>, RNet: fir_filter_inst/i_rst_IBUF with cells... (5)
+		cell: fir_filter_inst/o_dout_valid_reg
+		cell: fir_filter_inst/weight_re_reg
+		cell: fir_filter_inst/o_ready_reg
+		cell: fir_filter_inst/FSM_sequential_state_reg[0]
+		cell: fir_filter_inst/FSM_sequential_state_reg[1]
+	CENet: fir_filter_inst/tap_inst/i_en_IBUF, RNet: fir_filter_inst/tap_inst/ov_sum[0]_i_1_n_0 with cells... (24)
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[4]
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[18]
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[8]
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[14]
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[10]
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[22]
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[3]
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[17]
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[7]
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[13]
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[21]
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[2]
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[16]
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[6]
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[12]
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[20]
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[0]
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[19]
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[1]
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[15]
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[5]
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[23]
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[11]
+		cell: fir_filter_inst/tap_inst/ov_sum_reg[9]
+	CENet: deserializer_inst/shift_reg[23]_i_1__0_n_0, RNet: deserializer_inst/i_rst_IBUF with cells... (24)
+		cell: deserializer_inst/shift_reg_reg[5]
+		cell: deserializer_inst/shift_reg_reg[12]
+		cell: deserializer_inst/shift_reg_reg[4]
+		cell: deserializer_inst/shift_reg_reg[13]
+		cell: deserializer_inst/shift_reg_reg[7]
+		cell: deserializer_inst/shift_reg_reg[22]
+		cell: deserializer_inst/shift_reg_reg[10]
+		cell: deserializer_inst/shift_reg_reg[18]
+		cell: deserializer_inst/shift_reg_reg[6]
+		cell: deserializer_inst/shift_reg_reg[23]
+		cell: deserializer_inst/shift_reg_reg[11]
+		cell: deserializer_inst/shift_reg_reg[19]
+		cell: deserializer_inst/shift_reg_reg[1]
+		cell: deserializer_inst/shift_reg_reg[20]
+		cell: deserializer_inst/shift_reg_reg[9]
+		cell: deserializer_inst/shift_reg_reg[16]
+		cell: deserializer_inst/shift_reg_reg[0]
+		cell: deserializer_inst/shift_reg_reg[8]
+		cell: deserializer_inst/shift_reg_reg[17]
+		cell: deserializer_inst/shift_reg_reg[21]
+		cell: deserializer_inst/shift_reg_reg[3]
+		cell: deserializer_inst/shift_reg_reg[14]
+		cell: deserializer_inst/shift_reg_reg[2]
+		cell: deserializer_inst/shift_reg_reg[15]
+	CENet: serializer_inst/shift_reg[23]_i_1_n_0, RNet: serializer_inst/<const0> with cells... (24)
+		cell: serializer_inst/shift_reg_reg[1]
+		cell: serializer_inst/shift_reg_reg[20]
+		cell: serializer_inst/shift_reg_reg[9]
+		cell: serializer_inst/shift_reg_reg[5]
+		cell: serializer_inst/shift_reg_reg[16]
+		cell: serializer_inst/shift_reg_reg[12]
+		cell: serializer_inst/shift_reg_reg[4]
+		cell: serializer_inst/shift_reg_reg[0]
+		cell: serializer_inst/shift_reg_reg[8]
+		cell: serializer_inst/shift_reg_reg[17]
+		cell: serializer_inst/shift_reg_reg[13]
+		cell: serializer_inst/shift_reg_reg[21]
+		cell: serializer_inst/shift_reg_reg[3]
+		cell: serializer_inst/shift_reg_reg[7]
+		cell: serializer_inst/shift_reg_reg[14]
+		cell: serializer_inst/shift_reg_reg[22]
+		cell: serializer_inst/shift_reg_reg[10]
+		cell: serializer_inst/shift_reg_reg[18]
+		cell: serializer_inst/shift_reg_reg[2]
+		cell: serializer_inst/shift_reg_reg[6]
+		cell: serializer_inst/shift_reg_reg[15]
+		cell: serializer_inst/shift_reg_reg[23]
+		cell: serializer_inst/shift_reg_reg[11]
+		cell: serializer_inst/shift_reg_reg[19]
+	CENet: serializer_inst/counter[4]_i_1_n_0, RNet: serializer_inst/<const0> with cells... (5)
+		cell: serializer_inst/counter_reg[0]
+		cell: serializer_inst/counter_reg[4]
+		cell: serializer_inst/counter_reg[1]
+		cell: serializer_inst/counter_reg[2]
+		cell: serializer_inst/counter_reg[3]
+	CENet: deserializer_inst/i_en_IBUF, RNet: deserializer_inst/i_rst_IBUF with cells... (2)
+		cell: deserializer_inst/FSM_sequential_state_reg[0]
+		cell: deserializer_inst/FSM_sequential_state_reg[1]
+	CENet: fir_filter_inst/o_ready_i_1_n_0, RNet: fir_filter_inst/i_rst_IBUF with cells... (6)
+		cell: fir_filter_inst/sample_wr_addr_reg[3]
+		cell: fir_filter_inst/sample_wr_addr_reg[2]
+		cell: fir_filter_inst/sample_wr_addr_reg[1]
+		cell: fir_filter_inst/sample_wr_addr_reg[5]
+		cell: fir_filter_inst/sample_wr_addr_reg[0]
+		cell: fir_filter_inst/sample_wr_addr_reg[4]
 
 Printing DSPPairs... (1)
 	(DSP48E1: fir_filter_inst/tap_inst/sum_trunc1__0, DSP48E1: fir_filter_inst/tap_inst/sum_trunc1)
@@ -3378,485 +3310,7 @@ Printing CARRYChains... (1)
 		fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1
 		fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1
 
-Number of stray FDRE cells: 2
-
-Number of stray LUT cells: 42
-
-Printing RNet Map... # of Nets: (1)
-	EDIFHierNet: fir_filter_inst/i_rst_IBUF... # of Cells: (2)
-		FFCell : fir_filter_inst/weight_re_reg
-		FFCell : fir_filter_inst/o_ready_reg
-
-Printing DNet Map... # of Nets: (2)
-	EDIFHierNet: fir_filter_inst/weight_re... # of Cells: (1)
-		FFCell : fir_filter_inst/weight_re_reg
-	EDIFHierNet: fir_filter_inst/o_ready_i_1_n_0... # of Cells: (1)
-		FFCell : fir_filter_inst/o_ready_reg
-
-Printing CENet Map... # of Nets: (1)
-	EDIFHierNet: fir_filter_inst/<const1>... # of Cells: (2)
-		FFCell : fir_filter_inst/weight_re_reg
-		FFCell : fir_filter_inst/o_ready_reg
-
-Printing CNet Map... # of Nets: (1)
-	EDIFHierNet: fir_filter_inst/CLK... # of Cells: (2)
-		FFCell : fir_filter_inst/weight_re_reg
-		FFCell : fir_filter_inst/o_ready_reg
-
-Printing RNet Map... # of Nets: (6)
-	EDIFHierNet: fir_filter_inst/i_rst_IBUF... # of Pairs: (18)
-		LUTFFPair : (fir_filter_inst/FSM_sequential_state[0]_i_1__0 => fir_filter_inst/FSM_sequential_state_reg[0])
-		LUTFFPair : (fir_filter_inst/sample_re_addr[2]_i_1 => fir_filter_inst/sample_re_addr_reg[2])
-		LUTFFPair : (fir_filter_inst/weight_re_addr[1]_i_1 => fir_filter_inst/weight_re_addr_reg[1])
-		LUTFFPair : (fir_filter_inst/weight_re_addr[2]_i_1 => fir_filter_inst/weight_re_addr_reg[2])
-		LUTFFPair : (fir_filter_inst/sample_re_addr[1]_i_1 => fir_filter_inst/sample_re_addr_reg[1])
-		LUTFFPair : (fir_filter_inst/sample_re_addr[0]_i_1 => fir_filter_inst/sample_re_addr_reg[0])
-		LUTFFPair : (fir_filter_inst/sample_re_addr[3]_i_1 => fir_filter_inst/sample_re_addr_reg[3])
-		LUTFFPair : (fir_filter_inst/weight_re_addr[3]_i_1 => fir_filter_inst/weight_re_addr_reg[3])
-		LUTFFPair : (fir_filter_inst/weight_re_addr[0]_i_1 => fir_filter_inst/weight_re_addr_reg[0])
-		LUTFFPair : (fir_filter_inst/FSM_sequential_state[1]_i_1__0 => fir_filter_inst/FSM_sequential_state_reg[1])
-		LUTFFPair : (fir_filter_inst/weight_re_addr[4]_i_1 => fir_filter_inst/weight_re_addr_reg[4])
-		LUTFFPair : (fir_filter_inst/sample_wr_addr[1]_i_1 => fir_filter_inst/sample_wr_addr_reg[1])
-		LUTFFPair : (fir_filter_inst/sample_re_addr[5]_i_2 => fir_filter_inst/sample_re_addr_reg[5])
-		LUTFFPair : (fir_filter_inst/weight_re_addr[5]_i_1 => fir_filter_inst/weight_re_addr_reg[5])
-		LUTFFPair : (fir_filter_inst/sample_re_addr[4]_i_1 => fir_filter_inst/sample_re_addr_reg[4])
-		LUTFFPair : (fir_filter_inst/o_dout_valid_i_1__1 => fir_filter_inst/o_dout_valid_reg)
-		LUTFFPair : (fir_filter_inst/sample_wr_addr[3]_i_1 => fir_filter_inst/sample_wr_addr_reg[3])
-		LUTFFPair : (fir_filter_inst/sample_wr_addr[0]_i_1 => fir_filter_inst/sample_wr_addr_reg[0])
-	EDIFHierNet: fir_filter_inst/<const0>... # of Pairs: (1)
-		LUTFFPair : (fir_filter_inst/sum_rst_i_1 => fir_filter_inst/sum_rst_reg)
-	EDIFHierNet: deserializer_inst/<const0>... # of Pairs: (2)
-		LUTFFPair : (deserializer_inst/o_dout_valid_i_1__0 => deserializer_inst/o_dout_valid_reg)
-		LUTFFPair : (deserializer_inst/o_ready_i_1__1 => deserializer_inst/o_ready_reg)
-	EDIFHierNet: serializer_inst/i_rst_IBUF... # of Pairs: (4)
-		LUTFFPair : (serializer_inst/FSM_sequential_state[0]_i_1__1 => serializer_inst/FSM_sequential_state_reg[0])
-		LUTFFPair : (serializer_inst/o_ready_i_1__0 => serializer_inst/o_ready_reg)
-		LUTFFPair : (serializer_inst/FSM_sequential_state[1]_i_1__1 => serializer_inst/FSM_sequential_state_reg[1])
-		LUTFFPair : (serializer_inst/o_dout_valid_i_1 => serializer_inst/o_dout_valid_reg)
-	EDIFHierNet: deserializer_inst/i_rst_IBUF... # of Pairs: (31)
-		LUTFFPair : (deserializer_inst/shift_reg[4]_i_1__0 => deserializer_inst/shift_reg_reg[4])
-		LUTFFPair : (deserializer_inst/shift_reg[8]_i_1__0 => deserializer_inst/shift_reg_reg[8])
-		LUTFFPair : (deserializer_inst/shift_reg[13]_i_1__0 => deserializer_inst/shift_reg_reg[13])
-		LUTFFPair : (deserializer_inst/shift_reg[18]_i_1__0 => deserializer_inst/shift_reg_reg[18])
-		LUTFFPair : (deserializer_inst/shift_reg[1]_i_1__0 => deserializer_inst/shift_reg_reg[1])
-		LUTFFPair : (deserializer_inst/FSM_sequential_state[0]_i_1 => deserializer_inst/FSM_sequential_state_reg[0])
-		LUTFFPair : (deserializer_inst/shift_reg[5]_i_1__0 => deserializer_inst/shift_reg_reg[5])
-		LUTFFPair : (deserializer_inst/counter[1]_i_1 => deserializer_inst/counter_reg[1])
-		LUTFFPair : (deserializer_inst/shift_reg[9]_i_1__0 => deserializer_inst/shift_reg_reg[9])
-		LUTFFPair : (deserializer_inst/shift_reg[14]_i_1__0 => deserializer_inst/shift_reg_reg[14])
-		LUTFFPair : (deserializer_inst/shift_reg[17]_i_1__0 => deserializer_inst/shift_reg_reg[17])
-		LUTFFPair : (deserializer_inst/shift_reg[10]_i_1__0 => deserializer_inst/shift_reg_reg[10])
-		LUTFFPair : (deserializer_inst/shift_reg[22]_i_1__0 => deserializer_inst/shift_reg_reg[22])
-		LUTFFPair : (deserializer_inst/shift_reg[2]_i_1__0 => deserializer_inst/shift_reg_reg[2])
-		LUTFFPair : (deserializer_inst/shift_reg[6]_i_1__0 => deserializer_inst/shift_reg_reg[6])
-		LUTFFPair : (deserializer_inst/shift_reg[21]_i_1__0 => deserializer_inst/shift_reg_reg[21])
-		LUTFFPair : (deserializer_inst/shift_reg[15]_i_1__0 => deserializer_inst/shift_reg_reg[15])
-		LUTFFPair : (deserializer_inst/counter[3]_i_1__0 => deserializer_inst/counter_reg[3])
-		LUTFFPair : (deserializer_inst/shift_reg[11]_i_1__0 => deserializer_inst/shift_reg_reg[11])
-		LUTFFPair : (deserializer_inst/shift_reg[16]_i_1__0 => deserializer_inst/shift_reg_reg[16])
-		LUTFFPair : (deserializer_inst/counter[2]_i_1 => deserializer_inst/counter_reg[2])
-		LUTFFPair : (deserializer_inst/shift_reg[3]_i_1__0 => deserializer_inst/shift_reg_reg[3])
-		LUTFFPair : (deserializer_inst/shift_reg[20]_i_1__0 => deserializer_inst/shift_reg_reg[20])
-		LUTFFPair : (deserializer_inst/counter[4]_i_2__0 => deserializer_inst/counter_reg[4])
-		LUTFFPair : (deserializer_inst/counter[0]_i_1 => deserializer_inst/counter_reg[0])
-		LUTFFPair : (deserializer_inst/FSM_sequential_state[1]_i_1 => deserializer_inst/FSM_sequential_state_reg[1])
-		LUTFFPair : (deserializer_inst/shift_reg[7]_i_1__0 => deserializer_inst/shift_reg_reg[7])
-		LUTFFPair : (deserializer_inst/shift_reg[23]_i_2__0 => deserializer_inst/shift_reg_reg[23])
-		LUTFFPair : (deserializer_inst/shift_reg[12]_i_1__0 => deserializer_inst/shift_reg_reg[12])
-		LUTFFPair : (deserializer_inst/shift_reg[0]_i_1__0 => deserializer_inst/shift_reg_reg[0])
-		LUTFFPair : (deserializer_inst/shift_reg[19]_i_1__0 => deserializer_inst/shift_reg_reg[19])
-	EDIFHierNet: serializer_inst/<const0>... # of Pairs: (29)
-		LUTFFPair : (serializer_inst/counter[3]_i_1 => serializer_inst/counter_reg[3])
-		LUTFFPair : (serializer_inst/shift_reg[1]_i_1 => serializer_inst/shift_reg_reg[1])
-		LUTFFPair : (serializer_inst/counter[4]_i_2 => serializer_inst/counter_reg[4])
-		LUTFFPair : (serializer_inst/shift_reg[23]_i_2 => serializer_inst/shift_reg_reg[23])
-		LUTFFPair : (serializer_inst/counter[0]_i_1__0 => serializer_inst/counter_reg[0])
-		LUTFFPair : (serializer_inst/shift_reg[8]_i_1 => serializer_inst/shift_reg_reg[8])
-		LUTFFPair : (serializer_inst/shift_reg[15]_i_1 => serializer_inst/shift_reg_reg[15])
-		LUTFFPair : (serializer_inst/shift_reg[2]_i_1 => serializer_inst/shift_reg_reg[2])
-		LUTFFPair : (serializer_inst/shift_reg[3]_i_1 => serializer_inst/shift_reg_reg[3])
-		LUTFFPair : (serializer_inst/shift_reg[9]_i_1 => serializer_inst/shift_reg_reg[9])
-		LUTFFPair : (serializer_inst/shift_reg[0]_i_1 => serializer_inst/shift_reg_reg[0])
-		LUTFFPair : (serializer_inst/counter[1]_i_1__0 => serializer_inst/counter_reg[1])
-		LUTFFPair : (serializer_inst/shift_reg[6]_i_1 => serializer_inst/shift_reg_reg[6])
-		LUTFFPair : (serializer_inst/shift_reg[16]_i_1 => serializer_inst/shift_reg_reg[16])
-		LUTFFPair : (serializer_inst/shift_reg[13]_i_1 => serializer_inst/shift_reg_reg[13])
-		LUTFFPair : (serializer_inst/shift_reg[10]_i_1 => serializer_inst/shift_reg_reg[10])
-		LUTFFPair : (serializer_inst/shift_reg[18]_i_1 => serializer_inst/shift_reg_reg[18])
-		LUTFFPair : (serializer_inst/shift_reg[21]_i_1 => serializer_inst/shift_reg_reg[21])
-		LUTFFPair : (serializer_inst/shift_reg[19]_i_1 => serializer_inst/shift_reg_reg[19])
-		LUTFFPair : (serializer_inst/shift_reg[12]_i_1 => serializer_inst/shift_reg_reg[12])
-		LUTFFPair : (serializer_inst/shift_reg[5]_i_1 => serializer_inst/shift_reg_reg[5])
-		LUTFFPair : (serializer_inst/shift_reg[20]_i_1 => serializer_inst/shift_reg_reg[20])
-		LUTFFPair : (serializer_inst/shift_reg[14]_i_1 => serializer_inst/shift_reg_reg[14])
-		LUTFFPair : (serializer_inst/shift_reg[22]_i_1 => serializer_inst/shift_reg_reg[22])
-		LUTFFPair : (serializer_inst/counter[2]_i_1__0 => serializer_inst/counter_reg[2])
-		LUTFFPair : (serializer_inst/shift_reg[11]_i_1 => serializer_inst/shift_reg_reg[11])
-		LUTFFPair : (serializer_inst/shift_reg[4]_i_1 => serializer_inst/shift_reg_reg[4])
-		LUTFFPair : (serializer_inst/shift_reg[17]_i_1 => serializer_inst/shift_reg_reg[17])
-		LUTFFPair : (serializer_inst/shift_reg[7]_i_1 => serializer_inst/shift_reg_reg[7])
-
-Printing DNet Map... # of Nets: (85)
-	EDIFHierNet: fir_filter_inst/sample_wr_addr[1]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (fir_filter_inst/sample_wr_addr[1]_i_1 => fir_filter_inst/sample_wr_addr_reg[1])
-	EDIFHierNet: fir_filter_inst/p_0_in__0[0]... # of Pairs: (1)
-		LUTFFPair : (fir_filter_inst/weight_re_addr[0]_i_1 => fir_filter_inst/weight_re_addr_reg[0])
-	EDIFHierNet: serializer_inst/shift_reg[2]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[2]_i_1 => serializer_inst/shift_reg_reg[2])
-	EDIFHierNet: fir_filter_inst/sample_re_addr[0]... # of Pairs: (1)
-		LUTFFPair : (fir_filter_inst/sample_re_addr[0]_i_1 => fir_filter_inst/sample_re_addr_reg[0])
-	EDIFHierNet: serializer_inst/shift_reg[8]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[8]_i_1 => serializer_inst/shift_reg_reg[8])
-	EDIFHierNet: deserializer_inst/counter[1]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/counter[1]_i_1 => deserializer_inst/counter_reg[1])
-	EDIFHierNet: deserializer_inst/shift_reg[6]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[6]_i_1__0 => deserializer_inst/shift_reg_reg[6])
-	EDIFHierNet: fir_filter_inst/sample_re_addr[4]... # of Pairs: (1)
-		LUTFFPair : (fir_filter_inst/sample_re_addr[4]_i_1 => fir_filter_inst/sample_re_addr_reg[4])
-	EDIFHierNet: serializer_inst/shift_reg[18]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[18]_i_1 => serializer_inst/shift_reg_reg[18])
-	EDIFHierNet: serializer_inst/shift_reg[5]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[5]_i_1 => serializer_inst/shift_reg_reg[5])
-	EDIFHierNet: deserializer_inst/shift_reg[11]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[11]_i_1__0 => deserializer_inst/shift_reg_reg[11])
-	EDIFHierNet: serializer_inst/p_0_in__2[4]... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/counter[4]_i_2 => serializer_inst/counter_reg[4])
-	EDIFHierNet: deserializer_inst/counter[3]_i_1__0_n_0... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/counter[3]_i_1__0 => deserializer_inst/counter_reg[3])
-	EDIFHierNet: deserializer_inst/shift_reg[15]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[15]_i_1__0 => deserializer_inst/shift_reg_reg[15])
-	EDIFHierNet: deserializer_inst/shift_reg[2]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[2]_i_1__0 => deserializer_inst/shift_reg_reg[2])
-	EDIFHierNet: serializer_inst/shift_reg[23]_i_2_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[23]_i_2 => serializer_inst/shift_reg_reg[23])
-	EDIFHierNet: deserializer_inst/shift_reg[23]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[23]_i_2__0 => deserializer_inst/shift_reg_reg[23])
-	EDIFHierNet: fir_filter_inst/p_0_in__0[4]... # of Pairs: (1)
-		LUTFFPair : (fir_filter_inst/weight_re_addr[4]_i_1 => fir_filter_inst/weight_re_addr_reg[4])
-	EDIFHierNet: deserializer_inst/shift_reg[19]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[19]_i_1__0 => deserializer_inst/shift_reg_reg[19])
-	EDIFHierNet: serializer_inst/p_0_in__2[0]... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/counter[0]_i_1__0 => serializer_inst/counter_reg[0])
-	EDIFHierNet: serializer_inst/next_state[0]... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/FSM_sequential_state[0]_i_1__1 => serializer_inst/FSM_sequential_state_reg[0])
-	EDIFHierNet: deserializer_inst/next_state[0]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/FSM_sequential_state[0]_i_1 => deserializer_inst/FSM_sequential_state_reg[0])
-	EDIFHierNet: fir_filter_inst/p_0_in__0[1]... # of Pairs: (1)
-		LUTFFPair : (fir_filter_inst/weight_re_addr[1]_i_1 => fir_filter_inst/weight_re_addr_reg[1])
-	EDIFHierNet: serializer_inst/o_ready_i_1__0_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/o_ready_i_1__0 => serializer_inst/o_ready_reg)
-	EDIFHierNet: fir_filter_inst/sum_rst_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (fir_filter_inst/sum_rst_i_1 => fir_filter_inst/sum_rst_reg)
-	EDIFHierNet: serializer_inst/shift_reg[6]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[6]_i_1 => serializer_inst/shift_reg_reg[6])
-	EDIFHierNet: deserializer_inst/shift_reg[7]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[7]_i_1__0 => deserializer_inst/shift_reg_reg[7])
-	EDIFHierNet: fir_filter_inst/sample_re_addr[3]... # of Pairs: (1)
-		LUTFFPair : (fir_filter_inst/sample_re_addr[3]_i_1 => fir_filter_inst/sample_re_addr_reg[3])
-	EDIFHierNet: serializer_inst/shift_reg[14]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[14]_i_1 => serializer_inst/shift_reg_reg[14])
-	EDIFHierNet: fir_filter_inst/next_state[1]... # of Pairs: (1)
-		LUTFFPair : (fir_filter_inst/FSM_sequential_state[1]_i_1__0 => fir_filter_inst/FSM_sequential_state_reg[1])
-	EDIFHierNet: serializer_inst/shift_reg[20]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[20]_i_1 => serializer_inst/shift_reg_reg[20])
-	EDIFHierNet: deserializer_inst/o_ready_i_1__1_n_0... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/o_ready_i_1__1 => deserializer_inst/o_ready_reg)
-	EDIFHierNet: serializer_inst/shift_reg[15]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[15]_i_1 => serializer_inst/shift_reg_reg[15])
-	EDIFHierNet: deserializer_inst/shift_reg[20]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[20]_i_1__0 => deserializer_inst/shift_reg_reg[20])
-	EDIFHierNet: deserializer_inst/shift_reg[3]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[3]_i_1__0 => deserializer_inst/shift_reg_reg[3])
-	EDIFHierNet: fir_filter_inst/sample_wr_addr[3]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (fir_filter_inst/sample_wr_addr[3]_i_1 => fir_filter_inst/sample_wr_addr_reg[3])
-	EDIFHierNet: deserializer_inst/shift_reg[12]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[12]_i_1__0 => deserializer_inst/shift_reg_reg[12])
-	EDIFHierNet: serializer_inst/shift_reg[21]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[21]_i_1 => serializer_inst/shift_reg_reg[21])
-	EDIFHierNet: fir_filter_inst/p_0_in__0[5]... # of Pairs: (1)
-		LUTFFPair : (fir_filter_inst/weight_re_addr[5]_i_1 => fir_filter_inst/weight_re_addr_reg[5])
-	EDIFHierNet: serializer_inst/shift_reg[0]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[0]_i_1 => serializer_inst/shift_reg_reg[0])
-	EDIFHierNet: deserializer_inst/shift_reg[16]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[16]_i_1__0 => deserializer_inst/shift_reg_reg[16])
-	EDIFHierNet: serializer_inst/p_0_in__2[3]... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/counter[3]_i_1 => serializer_inst/counter_reg[3])
-	EDIFHierNet: deserializer_inst/counter[2]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/counter[2]_i_1 => deserializer_inst/counter_reg[2])
-	EDIFHierNet: serializer_inst/next_state[1]... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/FSM_sequential_state[1]_i_1__1 => serializer_inst/FSM_sequential_state_reg[1])
-	EDIFHierNet: fir_filter_inst/p_0_in__0[2]... # of Pairs: (1)
-		LUTFFPair : (fir_filter_inst/weight_re_addr[2]_i_1 => fir_filter_inst/weight_re_addr_reg[2])
-	EDIFHierNet: deserializer_inst/next_state[1]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/FSM_sequential_state[1]_i_1 => deserializer_inst/FSM_sequential_state_reg[1])
-	EDIFHierNet: fir_filter_inst/sample_re_addr[2]... # of Pairs: (1)
-		LUTFFPair : (fir_filter_inst/sample_re_addr[2]_i_1 => fir_filter_inst/sample_re_addr_reg[2])
-	EDIFHierNet: serializer_inst/shift_reg[19]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[19]_i_1 => serializer_inst/shift_reg_reg[19])
-	EDIFHierNet: serializer_inst/shift_reg[10]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[10]_i_1 => serializer_inst/shift_reg_reg[10])
-	EDIFHierNet: deserializer_inst/shift_reg[8]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[8]_i_1__0 => deserializer_inst/shift_reg_reg[8])
-	EDIFHierNet: fir_filter_inst/next_state[0]... # of Pairs: (1)
-		LUTFFPair : (fir_filter_inst/FSM_sequential_state[0]_i_1__0 => fir_filter_inst/FSM_sequential_state_reg[0])
-	EDIFHierNet: serializer_inst/shift_reg[7]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[7]_i_1 => serializer_inst/shift_reg_reg[7])
-	EDIFHierNet: serializer_inst/shift_reg[1]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[1]_i_1 => serializer_inst/shift_reg_reg[1])
-	EDIFHierNet: deserializer_inst/shift_reg[21]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[21]_i_1__0 => deserializer_inst/shift_reg_reg[21])
-	EDIFHierNet: deserializer_inst/shift_reg[0]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[0]_i_1__0 => deserializer_inst/shift_reg_reg[0])
-	EDIFHierNet: deserializer_inst/shift_reg[13]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[13]_i_1__0 => deserializer_inst/shift_reg_reg[13])
-	EDIFHierNet: serializer_inst/shift_reg[4]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[4]_i_1 => serializer_inst/shift_reg_reg[4])
-	EDIFHierNet: deserializer_inst/shift_reg[4]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[4]_i_1__0 => deserializer_inst/shift_reg_reg[4])
-	EDIFHierNet: serializer_inst/shift_reg[16]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[16]_i_1 => serializer_inst/shift_reg_reg[16])
-	EDIFHierNet: serializer_inst/shift_reg[13]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[13]_i_1 => serializer_inst/shift_reg_reg[13])
-	EDIFHierNet: deserializer_inst/shift_reg[17]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[17]_i_1__0 => deserializer_inst/shift_reg_reg[17])
-	EDIFHierNet: serializer_inst/p_0_in__2[2]... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/counter[2]_i_1__0 => serializer_inst/counter_reg[2])
-	EDIFHierNet: serializer_inst/shift_reg[22]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[22]_i_1 => serializer_inst/shift_reg_reg[22])
-	EDIFHierNet: serializer_inst/shift_reg[17]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[17]_i_1 => serializer_inst/shift_reg_reg[17])
-	EDIFHierNet: fir_filter_inst/p_0_in__0[3]... # of Pairs: (1)
-		LUTFFPair : (fir_filter_inst/weight_re_addr[3]_i_1 => fir_filter_inst/weight_re_addr_reg[3])
-	EDIFHierNet: deserializer_inst/shift_reg[5]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[5]_i_1__0 => deserializer_inst/shift_reg_reg[5])
-	EDIFHierNet: fir_filter_inst/sample_re_addr[1]... # of Pairs: (1)
-		LUTFFPair : (fir_filter_inst/sample_re_addr[1]_i_1 => fir_filter_inst/sample_re_addr_reg[1])
-	EDIFHierNet: serializer_inst/o_dout_valid_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/o_dout_valid_i_1 => serializer_inst/o_dout_valid_reg)
-	EDIFHierNet: deserializer_inst/o_dout_valid_i_1__0_n_0... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/o_dout_valid_i_1__0 => deserializer_inst/o_dout_valid_reg)
-	EDIFHierNet: serializer_inst/shift_reg[11]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[11]_i_1 => serializer_inst/shift_reg_reg[11])
-	EDIFHierNet: deserializer_inst/shift_reg[9]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[9]_i_1__0 => deserializer_inst/shift_reg_reg[9])
-	EDIFHierNet: fir_filter_inst/sample_re_addr[5]... # of Pairs: (1)
-		LUTFFPair : (fir_filter_inst/sample_re_addr[5]_i_2 => fir_filter_inst/sample_re_addr_reg[5])
-	EDIFHierNet: fir_filter_inst/sample_wr_addr[0]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (fir_filter_inst/sample_wr_addr[0]_i_1 => fir_filter_inst/sample_wr_addr_reg[0])
-	EDIFHierNet: serializer_inst/shift_reg[9]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[9]_i_1 => serializer_inst/shift_reg_reg[9])
-	EDIFHierNet: deserializer_inst/counter[4]_i_2__0_n_0... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/counter[4]_i_2__0 => deserializer_inst/counter_reg[4])
-	EDIFHierNet: deserializer_inst/counter[0]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/counter[0]_i_1 => deserializer_inst/counter_reg[0])
-	EDIFHierNet: deserializer_inst/shift_reg[22]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[22]_i_1__0 => deserializer_inst/shift_reg_reg[22])
-	EDIFHierNet: deserializer_inst/shift_reg[10]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[10]_i_1__0 => deserializer_inst/shift_reg_reg[10])
-	EDIFHierNet: serializer_inst/shift_reg[12]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[12]_i_1 => serializer_inst/shift_reg_reg[12])
-	EDIFHierNet: deserializer_inst/shift_reg[1]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[1]_i_1__0 => deserializer_inst/shift_reg_reg[1])
-	EDIFHierNet: deserializer_inst/shift_reg[14]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[14]_i_1__0 => deserializer_inst/shift_reg_reg[14])
-	EDIFHierNet: deserializer_inst/shift_reg[18]... # of Pairs: (1)
-		LUTFFPair : (deserializer_inst/shift_reg[18]_i_1__0 => deserializer_inst/shift_reg_reg[18])
-	EDIFHierNet: fir_filter_inst/o_dout_valid_i_1__1_n_0... # of Pairs: (1)
-		LUTFFPair : (fir_filter_inst/o_dout_valid_i_1__1 => fir_filter_inst/o_dout_valid_reg)
-	EDIFHierNet: serializer_inst/shift_reg[3]_i_1_n_0... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/shift_reg[3]_i_1 => serializer_inst/shift_reg_reg[3])
-	EDIFHierNet: serializer_inst/p_0_in__2[1]... # of Pairs: (1)
-		LUTFFPair : (serializer_inst/counter[1]_i_1__0 => serializer_inst/counter_reg[1])
-
-Printing CENet Map... # of Nets: (11)
-	EDIFHierNet: fir_filter_inst/<const1>... # of Pairs: (4)
-		LUTFFPair : (fir_filter_inst/FSM_sequential_state[0]_i_1__0 => fir_filter_inst/FSM_sequential_state_reg[0])
-		LUTFFPair : (fir_filter_inst/sum_rst_i_1 => fir_filter_inst/sum_rst_reg)
-		LUTFFPair : (fir_filter_inst/FSM_sequential_state[1]_i_1__0 => fir_filter_inst/FSM_sequential_state_reg[1])
-		LUTFFPair : (fir_filter_inst/o_dout_valid_i_1__1 => fir_filter_inst/o_dout_valid_reg)
-	EDIFHierNet: deserializer_inst/counter[4]_i_1__0_n_0... # of Pairs: (5)
-		LUTFFPair : (deserializer_inst/counter[1]_i_1 => deserializer_inst/counter_reg[1])
-		LUTFFPair : (deserializer_inst/counter[3]_i_1__0 => deserializer_inst/counter_reg[3])
-		LUTFFPair : (deserializer_inst/counter[2]_i_1 => deserializer_inst/counter_reg[2])
-		LUTFFPair : (deserializer_inst/counter[4]_i_2__0 => deserializer_inst/counter_reg[4])
-		LUTFFPair : (deserializer_inst/counter[0]_i_1 => deserializer_inst/counter_reg[0])
-	EDIFHierNet: fir_filter_inst/weight_re... # of Pairs: (6)
-		LUTFFPair : (fir_filter_inst/weight_re_addr[1]_i_1 => fir_filter_inst/weight_re_addr_reg[1])
-		LUTFFPair : (fir_filter_inst/weight_re_addr[2]_i_1 => fir_filter_inst/weight_re_addr_reg[2])
-		LUTFFPair : (fir_filter_inst/weight_re_addr[3]_i_1 => fir_filter_inst/weight_re_addr_reg[3])
-		LUTFFPair : (fir_filter_inst/weight_re_addr[0]_i_1 => fir_filter_inst/weight_re_addr_reg[0])
-		LUTFFPair : (fir_filter_inst/weight_re_addr[4]_i_1 => fir_filter_inst/weight_re_addr_reg[4])
-		LUTFFPair : (fir_filter_inst/weight_re_addr[5]_i_1 => fir_filter_inst/weight_re_addr_reg[5])
-	EDIFHierNet: serializer_inst/shift_reg[23]_i_1_n_0... # of Pairs: (24)
-		LUTFFPair : (serializer_inst/shift_reg[1]_i_1 => serializer_inst/shift_reg_reg[1])
-		LUTFFPair : (serializer_inst/shift_reg[23]_i_2 => serializer_inst/shift_reg_reg[23])
-		LUTFFPair : (serializer_inst/shift_reg[8]_i_1 => serializer_inst/shift_reg_reg[8])
-		LUTFFPair : (serializer_inst/shift_reg[15]_i_1 => serializer_inst/shift_reg_reg[15])
-		LUTFFPair : (serializer_inst/shift_reg[2]_i_1 => serializer_inst/shift_reg_reg[2])
-		LUTFFPair : (serializer_inst/shift_reg[3]_i_1 => serializer_inst/shift_reg_reg[3])
-		LUTFFPair : (serializer_inst/shift_reg[9]_i_1 => serializer_inst/shift_reg_reg[9])
-		LUTFFPair : (serializer_inst/shift_reg[0]_i_1 => serializer_inst/shift_reg_reg[0])
-		LUTFFPair : (serializer_inst/shift_reg[6]_i_1 => serializer_inst/shift_reg_reg[6])
-		LUTFFPair : (serializer_inst/shift_reg[16]_i_1 => serializer_inst/shift_reg_reg[16])
-		LUTFFPair : (serializer_inst/shift_reg[13]_i_1 => serializer_inst/shift_reg_reg[13])
-		LUTFFPair : (serializer_inst/shift_reg[10]_i_1 => serializer_inst/shift_reg_reg[10])
-		LUTFFPair : (serializer_inst/shift_reg[18]_i_1 => serializer_inst/shift_reg_reg[18])
-		LUTFFPair : (serializer_inst/shift_reg[21]_i_1 => serializer_inst/shift_reg_reg[21])
-		LUTFFPair : (serializer_inst/shift_reg[19]_i_1 => serializer_inst/shift_reg_reg[19])
-		LUTFFPair : (serializer_inst/shift_reg[12]_i_1 => serializer_inst/shift_reg_reg[12])
-		LUTFFPair : (serializer_inst/shift_reg[5]_i_1 => serializer_inst/shift_reg_reg[5])
-		LUTFFPair : (serializer_inst/shift_reg[20]_i_1 => serializer_inst/shift_reg_reg[20])
-		LUTFFPair : (serializer_inst/shift_reg[14]_i_1 => serializer_inst/shift_reg_reg[14])
-		LUTFFPair : (serializer_inst/shift_reg[22]_i_1 => serializer_inst/shift_reg_reg[22])
-		LUTFFPair : (serializer_inst/shift_reg[11]_i_1 => serializer_inst/shift_reg_reg[11])
-		LUTFFPair : (serializer_inst/shift_reg[4]_i_1 => serializer_inst/shift_reg_reg[4])
-		LUTFFPair : (serializer_inst/shift_reg[17]_i_1 => serializer_inst/shift_reg_reg[17])
-		LUTFFPair : (serializer_inst/shift_reg[7]_i_1 => serializer_inst/shift_reg_reg[7])
-	EDIFHierNet: deserializer_inst/shift_reg[23]_i_1__0_n_0... # of Pairs: (24)
-		LUTFFPair : (deserializer_inst/shift_reg[4]_i_1__0 => deserializer_inst/shift_reg_reg[4])
-		LUTFFPair : (deserializer_inst/shift_reg[8]_i_1__0 => deserializer_inst/shift_reg_reg[8])
-		LUTFFPair : (deserializer_inst/shift_reg[13]_i_1__0 => deserializer_inst/shift_reg_reg[13])
-		LUTFFPair : (deserializer_inst/shift_reg[18]_i_1__0 => deserializer_inst/shift_reg_reg[18])
-		LUTFFPair : (deserializer_inst/shift_reg[1]_i_1__0 => deserializer_inst/shift_reg_reg[1])
-		LUTFFPair : (deserializer_inst/shift_reg[5]_i_1__0 => deserializer_inst/shift_reg_reg[5])
-		LUTFFPair : (deserializer_inst/shift_reg[9]_i_1__0 => deserializer_inst/shift_reg_reg[9])
-		LUTFFPair : (deserializer_inst/shift_reg[14]_i_1__0 => deserializer_inst/shift_reg_reg[14])
-		LUTFFPair : (deserializer_inst/shift_reg[17]_i_1__0 => deserializer_inst/shift_reg_reg[17])
-		LUTFFPair : (deserializer_inst/shift_reg[10]_i_1__0 => deserializer_inst/shift_reg_reg[10])
-		LUTFFPair : (deserializer_inst/shift_reg[22]_i_1__0 => deserializer_inst/shift_reg_reg[22])
-		LUTFFPair : (deserializer_inst/shift_reg[2]_i_1__0 => deserializer_inst/shift_reg_reg[2])
-		LUTFFPair : (deserializer_inst/shift_reg[6]_i_1__0 => deserializer_inst/shift_reg_reg[6])
-		LUTFFPair : (deserializer_inst/shift_reg[21]_i_1__0 => deserializer_inst/shift_reg_reg[21])
-		LUTFFPair : (deserializer_inst/shift_reg[15]_i_1__0 => deserializer_inst/shift_reg_reg[15])
-		LUTFFPair : (deserializer_inst/shift_reg[11]_i_1__0 => deserializer_inst/shift_reg_reg[11])
-		LUTFFPair : (deserializer_inst/shift_reg[16]_i_1__0 => deserializer_inst/shift_reg_reg[16])
-		LUTFFPair : (deserializer_inst/shift_reg[3]_i_1__0 => deserializer_inst/shift_reg_reg[3])
-		LUTFFPair : (deserializer_inst/shift_reg[20]_i_1__0 => deserializer_inst/shift_reg_reg[20])
-		LUTFFPair : (deserializer_inst/shift_reg[7]_i_1__0 => deserializer_inst/shift_reg_reg[7])
-		LUTFFPair : (deserializer_inst/shift_reg[23]_i_2__0 => deserializer_inst/shift_reg_reg[23])
-		LUTFFPair : (deserializer_inst/shift_reg[12]_i_1__0 => deserializer_inst/shift_reg_reg[12])
-		LUTFFPair : (deserializer_inst/shift_reg[0]_i_1__0 => deserializer_inst/shift_reg_reg[0])
-		LUTFFPair : (deserializer_inst/shift_reg[19]_i_1__0 => deserializer_inst/shift_reg_reg[19])
-	EDIFHierNet: fir_filter_inst/sample_re_addr[5]_i_1_n_0... # of Pairs: (6)
-		LUTFFPair : (fir_filter_inst/sample_re_addr[2]_i_1 => fir_filter_inst/sample_re_addr_reg[2])
-		LUTFFPair : (fir_filter_inst/sample_re_addr[1]_i_1 => fir_filter_inst/sample_re_addr_reg[1])
-		LUTFFPair : (fir_filter_inst/sample_re_addr[0]_i_1 => fir_filter_inst/sample_re_addr_reg[0])
-		LUTFFPair : (fir_filter_inst/sample_re_addr[3]_i_1 => fir_filter_inst/sample_re_addr_reg[3])
-		LUTFFPair : (fir_filter_inst/sample_re_addr[5]_i_2 => fir_filter_inst/sample_re_addr_reg[5])
-		LUTFFPair : (fir_filter_inst/sample_re_addr[4]_i_1 => fir_filter_inst/sample_re_addr_reg[4])
-	EDIFHierNet: deserializer_inst/i_en_IBUF... # of Pairs: (2)
-		LUTFFPair : (deserializer_inst/FSM_sequential_state[0]_i_1 => deserializer_inst/FSM_sequential_state_reg[0])
-		LUTFFPair : (deserializer_inst/FSM_sequential_state[1]_i_1 => deserializer_inst/FSM_sequential_state_reg[1])
-	EDIFHierNet: serializer_inst/i_en_IBUF... # of Pairs: (4)
-		LUTFFPair : (serializer_inst/FSM_sequential_state[0]_i_1__1 => serializer_inst/FSM_sequential_state_reg[0])
-		LUTFFPair : (serializer_inst/o_ready_i_1__0 => serializer_inst/o_ready_reg)
-		LUTFFPair : (serializer_inst/FSM_sequential_state[1]_i_1__1 => serializer_inst/FSM_sequential_state_reg[1])
-		LUTFFPair : (serializer_inst/o_dout_valid_i_1 => serializer_inst/o_dout_valid_reg)
-	EDIFHierNet: deserializer_inst/<const1>... # of Pairs: (2)
-		LUTFFPair : (deserializer_inst/o_dout_valid_i_1__0 => deserializer_inst/o_dout_valid_reg)
-		LUTFFPair : (deserializer_inst/o_ready_i_1__1 => deserializer_inst/o_ready_reg)
-	EDIFHierNet: fir_filter_inst/o_ready_i_1_n_0... # of Pairs: (3)
-		LUTFFPair : (fir_filter_inst/sample_wr_addr[1]_i_1 => fir_filter_inst/sample_wr_addr_reg[1])
-		LUTFFPair : (fir_filter_inst/sample_wr_addr[3]_i_1 => fir_filter_inst/sample_wr_addr_reg[3])
-		LUTFFPair : (fir_filter_inst/sample_wr_addr[0]_i_1 => fir_filter_inst/sample_wr_addr_reg[0])
-	EDIFHierNet: serializer_inst/counter[4]_i_1_n_0... # of Pairs: (5)
-		LUTFFPair : (serializer_inst/counter[3]_i_1 => serializer_inst/counter_reg[3])
-		LUTFFPair : (serializer_inst/counter[4]_i_2 => serializer_inst/counter_reg[4])
-		LUTFFPair : (serializer_inst/counter[0]_i_1__0 => serializer_inst/counter_reg[0])
-		LUTFFPair : (serializer_inst/counter[1]_i_1__0 => serializer_inst/counter_reg[1])
-		LUTFFPair : (serializer_inst/counter[2]_i_1__0 => serializer_inst/counter_reg[2])
-
-Printing CNet Map... # of Nets: (3)
-	EDIFHierNet: serializer_inst/CLK... # of Pairs: (33)
-		LUTFFPair : (serializer_inst/FSM_sequential_state[0]_i_1__1 => serializer_inst/FSM_sequential_state_reg[0])
-		LUTFFPair : (serializer_inst/counter[3]_i_1 => serializer_inst/counter_reg[3])
-		LUTFFPair : (serializer_inst/shift_reg[1]_i_1 => serializer_inst/shift_reg_reg[1])
-		LUTFFPair : (serializer_inst/o_ready_i_1__0 => serializer_inst/o_ready_reg)
-		LUTFFPair : (serializer_inst/counter[4]_i_2 => serializer_inst/counter_reg[4])
-		LUTFFPair : (serializer_inst/shift_reg[23]_i_2 => serializer_inst/shift_reg_reg[23])
-		LUTFFPair : (serializer_inst/counter[0]_i_1__0 => serializer_inst/counter_reg[0])
-		LUTFFPair : (serializer_inst/shift_reg[8]_i_1 => serializer_inst/shift_reg_reg[8])
-		LUTFFPair : (serializer_inst/shift_reg[15]_i_1 => serializer_inst/shift_reg_reg[15])
-		LUTFFPair : (serializer_inst/shift_reg[2]_i_1 => serializer_inst/shift_reg_reg[2])
-		LUTFFPair : (serializer_inst/shift_reg[3]_i_1 => serializer_inst/shift_reg_reg[3])
-		LUTFFPair : (serializer_inst/shift_reg[9]_i_1 => serializer_inst/shift_reg_reg[9])
-		LUTFFPair : (serializer_inst/shift_reg[0]_i_1 => serializer_inst/shift_reg_reg[0])
-		LUTFFPair : (serializer_inst/counter[1]_i_1__0 => serializer_inst/counter_reg[1])
-		LUTFFPair : (serializer_inst/shift_reg[6]_i_1 => serializer_inst/shift_reg_reg[6])
-		LUTFFPair : (serializer_inst/shift_reg[16]_i_1 => serializer_inst/shift_reg_reg[16])
-		LUTFFPair : (serializer_inst/shift_reg[13]_i_1 => serializer_inst/shift_reg_reg[13])
-		LUTFFPair : (serializer_inst/shift_reg[10]_i_1 => serializer_inst/shift_reg_reg[10])
-		LUTFFPair : (serializer_inst/FSM_sequential_state[1]_i_1__1 => serializer_inst/FSM_sequential_state_reg[1])
-		LUTFFPair : (serializer_inst/shift_reg[18]_i_1 => serializer_inst/shift_reg_reg[18])
-		LUTFFPair : (serializer_inst/shift_reg[21]_i_1 => serializer_inst/shift_reg_reg[21])
-		LUTFFPair : (serializer_inst/shift_reg[19]_i_1 => serializer_inst/shift_reg_reg[19])
-		LUTFFPair : (serializer_inst/shift_reg[12]_i_1 => serializer_inst/shift_reg_reg[12])
-		LUTFFPair : (serializer_inst/o_dout_valid_i_1 => serializer_inst/o_dout_valid_reg)
-		LUTFFPair : (serializer_inst/shift_reg[5]_i_1 => serializer_inst/shift_reg_reg[5])
-		LUTFFPair : (serializer_inst/shift_reg[20]_i_1 => serializer_inst/shift_reg_reg[20])
-		LUTFFPair : (serializer_inst/shift_reg[14]_i_1 => serializer_inst/shift_reg_reg[14])
-		LUTFFPair : (serializer_inst/shift_reg[22]_i_1 => serializer_inst/shift_reg_reg[22])
-		LUTFFPair : (serializer_inst/counter[2]_i_1__0 => serializer_inst/counter_reg[2])
-		LUTFFPair : (serializer_inst/shift_reg[11]_i_1 => serializer_inst/shift_reg_reg[11])
-		LUTFFPair : (serializer_inst/shift_reg[4]_i_1 => serializer_inst/shift_reg_reg[4])
-		LUTFFPair : (serializer_inst/shift_reg[17]_i_1 => serializer_inst/shift_reg_reg[17])
-		LUTFFPair : (serializer_inst/shift_reg[7]_i_1 => serializer_inst/shift_reg_reg[7])
-	EDIFHierNet: fir_filter_inst/CLK... # of Pairs: (19)
-		LUTFFPair : (fir_filter_inst/FSM_sequential_state[0]_i_1__0 => fir_filter_inst/FSM_sequential_state_reg[0])
-		LUTFFPair : (fir_filter_inst/sample_re_addr[2]_i_1 => fir_filter_inst/sample_re_addr_reg[2])
-		LUTFFPair : (fir_filter_inst/weight_re_addr[1]_i_1 => fir_filter_inst/weight_re_addr_reg[1])
-		LUTFFPair : (fir_filter_inst/weight_re_addr[2]_i_1 => fir_filter_inst/weight_re_addr_reg[2])
-		LUTFFPair : (fir_filter_inst/sample_re_addr[1]_i_1 => fir_filter_inst/sample_re_addr_reg[1])
-		LUTFFPair : (fir_filter_inst/sum_rst_i_1 => fir_filter_inst/sum_rst_reg)
-		LUTFFPair : (fir_filter_inst/sample_re_addr[0]_i_1 => fir_filter_inst/sample_re_addr_reg[0])
-		LUTFFPair : (fir_filter_inst/sample_re_addr[3]_i_1 => fir_filter_inst/sample_re_addr_reg[3])
-		LUTFFPair : (fir_filter_inst/weight_re_addr[3]_i_1 => fir_filter_inst/weight_re_addr_reg[3])
-		LUTFFPair : (fir_filter_inst/weight_re_addr[0]_i_1 => fir_filter_inst/weight_re_addr_reg[0])
-		LUTFFPair : (fir_filter_inst/FSM_sequential_state[1]_i_1__0 => fir_filter_inst/FSM_sequential_state_reg[1])
-		LUTFFPair : (fir_filter_inst/weight_re_addr[4]_i_1 => fir_filter_inst/weight_re_addr_reg[4])
-		LUTFFPair : (fir_filter_inst/sample_wr_addr[1]_i_1 => fir_filter_inst/sample_wr_addr_reg[1])
-		LUTFFPair : (fir_filter_inst/sample_re_addr[5]_i_2 => fir_filter_inst/sample_re_addr_reg[5])
-		LUTFFPair : (fir_filter_inst/weight_re_addr[5]_i_1 => fir_filter_inst/weight_re_addr_reg[5])
-		LUTFFPair : (fir_filter_inst/sample_re_addr[4]_i_1 => fir_filter_inst/sample_re_addr_reg[4])
-		LUTFFPair : (fir_filter_inst/o_dout_valid_i_1__1 => fir_filter_inst/o_dout_valid_reg)
-		LUTFFPair : (fir_filter_inst/sample_wr_addr[3]_i_1 => fir_filter_inst/sample_wr_addr_reg[3])
-		LUTFFPair : (fir_filter_inst/sample_wr_addr[0]_i_1 => fir_filter_inst/sample_wr_addr_reg[0])
-	EDIFHierNet: deserializer_inst/CLK... # of Pairs: (33)
-		LUTFFPair : (deserializer_inst/shift_reg[4]_i_1__0 => deserializer_inst/shift_reg_reg[4])
-		LUTFFPair : (deserializer_inst/shift_reg[8]_i_1__0 => deserializer_inst/shift_reg_reg[8])
-		LUTFFPair : (deserializer_inst/shift_reg[13]_i_1__0 => deserializer_inst/shift_reg_reg[13])
-		LUTFFPair : (deserializer_inst/shift_reg[18]_i_1__0 => deserializer_inst/shift_reg_reg[18])
-		LUTFFPair : (deserializer_inst/shift_reg[1]_i_1__0 => deserializer_inst/shift_reg_reg[1])
-		LUTFFPair : (deserializer_inst/FSM_sequential_state[0]_i_1 => deserializer_inst/FSM_sequential_state_reg[0])
-		LUTFFPair : (deserializer_inst/shift_reg[5]_i_1__0 => deserializer_inst/shift_reg_reg[5])
-		LUTFFPair : (deserializer_inst/counter[1]_i_1 => deserializer_inst/counter_reg[1])
-		LUTFFPair : (deserializer_inst/shift_reg[9]_i_1__0 => deserializer_inst/shift_reg_reg[9])
-		LUTFFPair : (deserializer_inst/shift_reg[14]_i_1__0 => deserializer_inst/shift_reg_reg[14])
-		LUTFFPair : (deserializer_inst/o_dout_valid_i_1__0 => deserializer_inst/o_dout_valid_reg)
-		LUTFFPair : (deserializer_inst/shift_reg[17]_i_1__0 => deserializer_inst/shift_reg_reg[17])
-		LUTFFPair : (deserializer_inst/shift_reg[10]_i_1__0 => deserializer_inst/shift_reg_reg[10])
-		LUTFFPair : (deserializer_inst/shift_reg[22]_i_1__0 => deserializer_inst/shift_reg_reg[22])
-		LUTFFPair : (deserializer_inst/shift_reg[2]_i_1__0 => deserializer_inst/shift_reg_reg[2])
-		LUTFFPair : (deserializer_inst/shift_reg[6]_i_1__0 => deserializer_inst/shift_reg_reg[6])
-		LUTFFPair : (deserializer_inst/shift_reg[21]_i_1__0 => deserializer_inst/shift_reg_reg[21])
-		LUTFFPair : (deserializer_inst/o_ready_i_1__1 => deserializer_inst/o_ready_reg)
-		LUTFFPair : (deserializer_inst/shift_reg[15]_i_1__0 => deserializer_inst/shift_reg_reg[15])
-		LUTFFPair : (deserializer_inst/counter[3]_i_1__0 => deserializer_inst/counter_reg[3])
-		LUTFFPair : (deserializer_inst/shift_reg[11]_i_1__0 => deserializer_inst/shift_reg_reg[11])
-		LUTFFPair : (deserializer_inst/shift_reg[16]_i_1__0 => deserializer_inst/shift_reg_reg[16])
-		LUTFFPair : (deserializer_inst/counter[2]_i_1 => deserializer_inst/counter_reg[2])
-		LUTFFPair : (deserializer_inst/shift_reg[3]_i_1__0 => deserializer_inst/shift_reg_reg[3])
-		LUTFFPair : (deserializer_inst/shift_reg[20]_i_1__0 => deserializer_inst/shift_reg_reg[20])
-		LUTFFPair : (deserializer_inst/counter[4]_i_2__0 => deserializer_inst/counter_reg[4])
-		LUTFFPair : (deserializer_inst/counter[0]_i_1 => deserializer_inst/counter_reg[0])
-		LUTFFPair : (deserializer_inst/FSM_sequential_state[1]_i_1 => deserializer_inst/FSM_sequential_state_reg[1])
-		LUTFFPair : (deserializer_inst/shift_reg[7]_i_1__0 => deserializer_inst/shift_reg_reg[7])
-		LUTFFPair : (deserializer_inst/shift_reg[23]_i_2__0 => deserializer_inst/shift_reg_reg[23])
-		LUTFFPair : (deserializer_inst/shift_reg[12]_i_1__0 => deserializer_inst/shift_reg_reg[12])
-		LUTFFPair : (deserializer_inst/shift_reg[0]_i_1__0 => deserializer_inst/shift_reg_reg[0])
-		LUTFFPair : (deserializer_inst/shift_reg[19]_i_1__0 => deserializer_inst/shift_reg_reg[19])
-
 Placing carry chains... (1)
 	chain size: 6
-	selectedSiteType: SLICEM
-	X_MAX: 112, X_MIN: 0, Y_MAX: 149, Y_MIN: 0
+	selectedSiteType: SLICEL
+	X_MAX: 113, X_MIN: 1, Y_MAX: 149, Y_MIN: 0

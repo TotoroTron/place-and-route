@@ -93,191 +93,6 @@ public class PlacerPackingSiteCentric extends Placer {
         }
     }
 
-    private List<Pair<EDIFHierCellInst, List<EDIFHierCellInst>>> findLUTFFEnableResetGroups(
-            Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
-        List<Pair<EDIFHierCellInst, List<EDIFHierCellInst>>> groups = new ArrayList<>();
-        List<EDIFHierCellInst> visitedLUTs = new ArrayList<>();
-        List<EDIFHierCellInst> visitedFFs = new ArrayList<>();
-
-        for (EDIFHierCellInst LUT_EHCI : EDIFCellGroups.get("LUT")) {
-            EDIFHierPortInst LUT_EHPI = LUT_EHCI.getPortInst("O");
-            EDIFHierNet HNET = LUT_EHPI.getHierarchicalNet();
-            // exclude sources, include sinks
-            List<EDIFHierPortInst> sinkPorts = HNET.getLeafHierPortInsts(false, true);
-
-            //
-            //
-            // the search for LUTFF patterns MUST be FF driven, not LUT driven
-            //
-            //
-
-        }
-        return groups;
-    }
-
-    private List<Pair<EDIFHierCellInst, List<EDIFHierCellInst>>> findLUTTrees(
-            Map<String, List<EDIFHierCellInst>> EDIFCellGroups, String SINK_PORT) throws IOException {
-        List<EDIFHierCellInst> visitedLUTs = new ArrayList<>();
-        List<EDIFHierCellInst> visitedFFs = new ArrayList<>();
-        List<Pair<EDIFHierCellInst, List<EDIFHierCellInst>>> trees = new ArrayList<>();
-        for (EDIFHierCellInst LUT_EHCI : EDIFCellGroups.get("LUT")) {
-            EDIFHierPortInst LUT_EHPI = LUT_EHCI.getPortInst("O");
-            EDIFHierNet HNET = LUT_EHPI.getHierarchicalNet();
-            // exclude sources, include sinks
-            List<EDIFHierPortInst> sinkPorts = HNET.getLeafHierPortInsts(false, true);
-
-            List<EDIFHierCellInst> FF_EHCIS = sinkPorts.stream()
-                    .filter(ehpi -> ehpi.getPortInst().getName().equals(SINK_PORT))
-                    .map(ehpi -> ehpi.getHierarchicalInst().getChild(ehpi.getPortInst().getCellInst().getName()))
-                    .filter(ehci -> ehci.getCellType().getName().equals("FDRE"))
-                    .collect(Collectors.toList());
-            if (FF_EHCIS.size() < 1)
-                continue; // not a tree
-            visitedLUTs.add(LUT_EHCI);
-            visitedFFs.addAll(FF_EHCIS);
-            var tree = new Pair<EDIFHierCellInst, List<EDIFHierCellInst>>(LUT_EHCI, FF_EHCIS);
-            trees.add(tree);
-        }
-        EDIFCellGroups.get("LUT").removeAll(visitedLUTs);
-        EDIFCellGroups.get("FDRE").removeAll(visitedFFs);
-        return trees;
-    }
-
-    private Map<EDIFHierNet, List<Pair<EDIFHierCellInst, EDIFHierCellInst>>> groupLUTFFPairsByNet(
-            List<Pair<EDIFHierCellInst, EDIFHierCellInst>> LUTFFPairs,
-            String PORT_NAME) {
-        Map<EDIFHierNet, List<Pair<EDIFHierCellInst, EDIFHierCellInst>>> map = new HashMap<>();
-        for (Pair<EDIFHierCellInst, EDIFHierCellInst> pair : LUTFFPairs) {
-            EDIFHierCellInst FF_EHCI = pair.value();
-            EDIFHierPortInst FF_EHPI = FF_EHCI.getPortInst(PORT_NAME);
-            if (FF_EHPI == null) {
-                System.out.println(FF_EHCI.getFullHierarchicalInstName() + " does not use " + PORT_NAME + "!");
-                continue;
-            }
-            EDIFHierNet hnet = FF_EHPI.getHierarchicalNet();
-            List<Pair<EDIFHierCellInst, EDIFHierCellInst>> list = map.get(hnet);
-            if (list != null) {
-                list.add(pair);
-            } else {
-                map.put(hnet, new ArrayList<Pair<EDIFHierCellInst, EDIFHierCellInst>>());
-                map.get(hnet).add(pair);
-            }
-        }
-        return map;
-    }
-
-    private Map<EDIFHierNet, List<EDIFHierCellInst>> groupFFCellsByNet(
-            List<EDIFHierCellInst> FFCells, String PORT_NAME) {
-        Map<EDIFHierNet, List<EDIFHierCellInst>> map = new HashMap<>();
-        for (EDIFHierCellInst FF_EHCI : FFCells) {
-            EDIFHierPortInst FF_EHPI = FF_EHCI.getPortInst(PORT_NAME);
-            if (FF_EHPI == null) {
-                System.out.println(FF_EHCI.getFullHierarchicalInstName() + " does not use " + PORT_NAME + "!");
-                continue;
-            }
-            EDIFHierNet hnet = FF_EHPI.getHierarchicalNet();
-            List<EDIFHierCellInst> list = map.get(hnet);
-            if (list != null) {
-                list.add(FF_EHCI);
-            } else {
-                map.put(hnet, new ArrayList<EDIFHierCellInst>());
-                map.get(hnet).add(FF_EHCI);
-            }
-        }
-        return map;
-    }
-
-    private List<Pair<EDIFHierCellInst, EDIFHierCellInst>> findLUTFFPairs(
-            Map<String, List<EDIFHierCellInst>> EDIFCellGroups)
-            throws IOException {
-        List<EDIFHierCellInst> visitedLUTs = new ArrayList<>();
-        List<EDIFHierCellInst> visitedFFs = new ArrayList<>();
-        List<Pair<EDIFHierCellInst, EDIFHierCellInst>> pairs = new ArrayList<>();
-        for (EDIFHierCellInst LUT_EHCI : EDIFCellGroups.get("LUT")) {
-            EDIFHierPortInst LUT_EHPI = LUT_EHCI.getPortInst("O");
-            EDIFHierNet HNET = LUT_EHPI.getHierarchicalNet();
-            // exclude sources, include sinks
-            List<EDIFHierPortInst> sinkPorts = HNET.getLeafHierPortInsts(false, true);
-            if (sinkPorts.size() != 1)
-                continue;
-            EDIFHierPortInst FF_EHPI = sinkPorts.get(0);
-            EDIFHierCellInst FF_EHCI = FF_EHPI.getHierarchicalInst()
-                    .getChild(FF_EHPI.getPortInst().getCellInst().getName());
-            if (!FF_EHCI.getCellType().getName().contains("FDRE"))
-                continue;
-            visitedLUTs.add(LUT_EHCI);
-            visitedFFs.add(FF_EHCI);
-            var pair = new Pair<EDIFHierCellInst, EDIFHierCellInst>(LUT_EHCI, FF_EHCI);
-
-            // EDIFHierCellInst[] pair = new EDIFHierCellInst[2];
-            pairs.add(pair);
-        }
-        EDIFCellGroups.get("LUT").removeAll(visitedLUTs);
-        EDIFCellGroups.get("FDRE").removeAll(visitedFFs);
-        return pairs;
-    }
-
-    private List<Pair<EDIFHierCellInst, EDIFHierCellInst>> findDSPPairs(
-            Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
-        List<EDIFHierCellInst> visitedDSPs = new ArrayList<>();
-        List<Pair<EDIFHierCellInst, EDIFHierCellInst>> pairs = new ArrayList<>();
-        for (EDIFHierCellInst DSP_CIN : EDIFCellGroups.get("DSP48E1")) {
-            List<EDIFHierPortInst> pcins = DSP_CIN.getHierPortInsts().stream()
-                    .filter(ehpi -> ehpi.getPortInst().getName().contains("PCIN"))
-                    .collect(Collectors.toList());
-            if (pcins.isEmpty())
-                continue;
-            // there should only be one source
-            List<EDIFHierPortInst> pcouts = pcins.stream()
-                    .map(cin -> cin.getHierarchicalNet().getLeafHierPortInsts(true, false).get(0))
-                    .collect(Collectors.toList());
-            Set<EDIFHierCellInst> DSP_COUT_SET = pcouts.stream()
-                    .map(cout -> cout.getHierarchicalInst().getChild(cout.getPortInst().getCellInst().getName()))
-                    .filter(cell -> cell.getInst().getCellName().equals("DSP48E1"))
-                    .collect(Collectors.toSet());
-            if (DSP_COUT_SET.size() < 1)
-                continue;
-            if (DSP_COUT_SET.size() > 1) {
-                writer.write("WARNING: DSP Cell " + DSP_CIN.getFullHierarchicalInstName()
-                        + " has multiple DSP cells on PCIN bus!");
-            }
-            EDIFHierCellInst DSP_COUT = DSP_COUT_SET.stream().collect(Collectors.toList()).get(0);
-            visitedDSPs.add(DSP_CIN);
-            visitedDSPs.add(DSP_COUT);
-            var pair = new Pair<EDIFHierCellInst, EDIFHierCellInst>(DSP_CIN, DSP_COUT);
-            pairs.add(pair);
-        }
-        EDIFCellGroups.get("DSP48E1").removeAll(visitedDSPs);
-        return pairs;
-    }
-
-    private void placeDSPPairSites(List<Pair<EDIFHierCellInst, EDIFHierCellInst>> EDIFDSPPairs,
-            List<String> occupiedDSPSites,
-            Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
-        Random rand = new Random();
-        List<Site> compatibleSites = new ArrayList<Site>(
-                Arrays.asList(device.getAllCompatibleSites(SiteTypeEnum.DSP48E1)));
-        for (Pair<EDIFHierCellInst, EDIFHierCellInst> pair : EDIFDSPPairs) {
-            Tile selectedTile = compatibleSites.get(rand.nextInt(compatibleSites.size())).getTile();
-            Site[] dspSitePair = selectedTile.getSites();
-
-            SiteInst si0 = new SiteInst(pair.key().getFullHierarchicalInstName(), design, SiteTypeEnum.DSP48E1,
-                    dspSitePair[0]);
-            si0.createCell(pair.key(), si0.getBEL("DSP48E1"));
-            // si0.routeSite();
-
-            SiteInst si1 = new SiteInst(pair.value().getFullHierarchicalInstName(), design, SiteTypeEnum.DSP48E1,
-                    dspSitePair[1]);
-            si1.createCell(pair.value(), si1.getBEL("DSP48E1"));
-            // si1.routeSite();
-
-            compatibleSites.remove(dspSitePair[0]);
-            compatibleSites.remove(dspSitePair[1]);
-            occupiedDSPSites.add(dspSitePair[0].getName());
-            occupiedDSPSites.add(dspSitePair[1].getName());
-        }
-    } // end placeDSPPairSites()
-
     private List<List<EDIFHierCellInst>> findCarryChains(Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
         List<List<EDIFHierCellInst>> chains = new ArrayList<>();
         while (!EDIFCellGroups.get("CARRY4").isEmpty()) {
@@ -468,14 +283,82 @@ public class PlacerPackingSiteCentric extends Placer {
         } // end for (List<EDIFCellInst> chain : EDIFCarryChains)
     } // end placeCarryChainSites()
 
-    private void placeLUTFFTrees(Map<EDIFHierCellInst, List<EDIFHierCellInst>> LUTFFTrees,
-            Map<String, List<String>> occupiedBELs, Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
-
+    private List<Pair<EDIFHierCellInst, EDIFHierCellInst>> findDSPPairs(
+            Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
+        List<EDIFHierCellInst> visitedDSPs = new ArrayList<>();
+        List<Pair<EDIFHierCellInst, EDIFHierCellInst>> pairs = new ArrayList<>();
+        for (EDIFHierCellInst DSP_CIN : EDIFCellGroups.get("DSP48E1")) {
+            List<EDIFHierPortInst> pcins = DSP_CIN.getHierPortInsts().stream()
+                    .filter(ehpi -> ehpi.getPortInst().getName().contains("PCIN"))
+                    .collect(Collectors.toList());
+            if (pcins.isEmpty())
+                continue;
+            // there should only be one source
+            List<EDIFHierPortInst> pcouts = pcins.stream()
+                    .map(cin -> cin.getHierarchicalNet().getLeafHierPortInsts(true, false).get(0))
+                    .collect(Collectors.toList());
+            Set<EDIFHierCellInst> DSP_COUT_SET = pcouts.stream()
+                    .map(cout -> cout.getHierarchicalInst().getChild(cout.getPortInst().getCellInst().getName()))
+                    .filter(cell -> cell.getInst().getCellName().equals("DSP48E1"))
+                    .collect(Collectors.toSet());
+            if (DSP_COUT_SET.size() < 1)
+                continue;
+            if (DSP_COUT_SET.size() > 1) {
+                writer.write("WARNING: DSP Cell " + DSP_CIN.getFullHierarchicalInstName()
+                        + " has multiple DSP cells on PCIN bus!");
+            }
+            EDIFHierCellInst DSP_COUT = DSP_COUT_SET.stream().collect(Collectors.toList()).get(0);
+            visitedDSPs.add(DSP_CIN);
+            visitedDSPs.add(DSP_COUT);
+            var pair = new Pair<EDIFHierCellInst, EDIFHierCellInst>(DSP_CIN, DSP_COUT);
+            pairs.add(pair);
+        }
+        EDIFCellGroups.get("DSP48E1").removeAll(visitedDSPs);
+        return pairs;
     }
 
-    private void placeLUTFFPairs(List<EDIFHierCellInst[]> LUTFFPairs, Map<String, List<String>> occupiedBELs,
-            Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
+    private void placeDSPPairSites(List<Pair<EDIFHierCellInst, EDIFHierCellInst>> EDIFDSPPairs,
+            List<String> occupiedDSPSites,
+            Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
+        Random rand = new Random();
+        List<Site> compatibleSites = new ArrayList<Site>(
+                Arrays.asList(device.getAllCompatibleSites(SiteTypeEnum.DSP48E1)));
+        for (Pair<EDIFHierCellInst, EDIFHierCellInst> pair : EDIFDSPPairs) {
+            Tile selectedTile = compatibleSites.get(rand.nextInt(compatibleSites.size())).getTile();
+            Site[] dspSitePair = selectedTile.getSites();
 
+            SiteInst si0 = new SiteInst(pair.key().getFullHierarchicalInstName(), design, SiteTypeEnum.DSP48E1,
+                    dspSitePair[0]);
+            si0.createCell(pair.key(), si0.getBEL("DSP48E1"));
+            // si0.routeSite();
+
+            SiteInst si1 = new SiteInst(pair.value().getFullHierarchicalInstName(), design, SiteTypeEnum.DSP48E1,
+                    dspSitePair[1]);
+            si1.createCell(pair.value(), si1.getBEL("DSP48E1"));
+            // si1.routeSite();
+
+            compatibleSites.remove(dspSitePair[0]);
+            compatibleSites.remove(dspSitePair[1]);
+            occupiedDSPSites.add(dspSitePair[0].getName());
+            occupiedDSPSites.add(dspSitePair[1].getName());
+        }
+    } // end placeDSPPairSites()
+
+    private Map<Pair<String, String>, List<EDIFHierCellInst>> findLUTFFEnableResetGroups(
+            Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
+        List<EDIFHierCellInst> visitedFFs = new ArrayList<>();
+        Map<Pair<String, String>, List<EDIFHierCellInst>> groups = new HashMap<>();
+        for (EDIFHierCellInst ffCell : EDIFCellGroups.get("FDRE")) {
+            EDIFHierPortInst CEPort = ffCell.getPortInst("CE");
+            String CENet = CEPort.getHierarchicalNet().getHierarchicalNetName();
+            EDIFHierPortInst RPort = ffCell.getPortInst("R");
+            String RNet = RPort.getHierarchicalNet().getHierarchicalNetName();
+            var pair = new Pair<String, String>(CENet, RNet);
+            groups.computeIfAbsent(pair, k -> new ArrayList<>()).add(ffCell);
+            visitedFFs.add(ffCell);
+        }
+        EDIFCellGroups.get("FDRE").removeAll(visitedFFs);
+        return groups;
     }
 
     public @Override void placeDesign() throws IOException {
@@ -526,32 +409,22 @@ public class PlacerPackingSiteCentric extends Placer {
 
         List<Pair<EDIFHierCellInst, EDIFHierCellInst>> DSPPairs = findDSPPairs(EDIFCellGroups);
         List<List<EDIFHierCellInst>> CARRYChains = findCarryChains(EDIFCellGroups);
-        List<Pair<EDIFHierCellInst, List<EDIFHierCellInst>>> LUT_FF_CE_Trees = findLUTTrees(EDIFCellGroups, "CE");
-        List<Pair<EDIFHierCellInst, List<EDIFHierCellInst>>> LUT_FF_SR_Trees = findLUTTrees(EDIFCellGroups, "R");
-        List<Pair<EDIFHierCellInst, EDIFHierCellInst>> LUTFFPairs = findLUTFFPairs(EDIFCellGroups);
+        Map<Pair<String, String>, List<EDIFHierCellInst>> FFEnableResetGroups = findLUTFFEnableResetGroups(
+                EDIFCellGroups);
 
-        writer.write("\n\nPrinting LUTFFPairs... (" + LUTFFPairs.size() + ")");
-        for (Pair<EDIFHierCellInst, EDIFHierCellInst> pair : LUTFFPairs) {
-            writer.write("\n\t(" + pair.key().getCellType().getName() + ": " + pair.key().getFullHierarchicalInstName()
-                    + " => " + pair.value().getCellType().getName() + ": " + pair.value().getFullHierarchicalInstName()
-                    + ")");
+        writer.write("\n\nNumber of stray FF cells ... (" + EDIFCellGroups.get("FDRE").size() + ")");
+
+        writer.write("\n\nPrinting Unique CE-R pairs with associated FF Cells... (" + FFEnableResetGroups.size() + ")");
+        for (Map.Entry<Pair<String, String>, List<EDIFHierCellInst>> entry : FFEnableResetGroups.entrySet()) {
+            Pair<String, String> netPair = entry.getKey();
+            String CENet = netPair.key();
+            String RNet = netPair.value();
+            List<EDIFHierCellInst> cellList = entry.getValue();
+            writer.write("\n\tCENet: " + CENet + ", RNet: " + RNet + " with cells... (" + cellList.size() + ")");
+            for (EDIFHierCellInst cell : cellList)
+                writer.write("\n\t\tcell: " + cell.getFullHierarchicalInstName());
         }
-        writer.write("\n\nPrinting LUT-ClockEnable Trees... (" + LUT_FF_CE_Trees.size() + ")");
-        for (Pair<EDIFHierCellInst, List<EDIFHierCellInst>> pair : LUT_FF_CE_Trees) {
-            EDIFHierCellInst LUT = pair.key();
-            List<EDIFHierCellInst> FFS = pair.value();
-            writer.write("\n\tRoot LUT: " + LUT.getCellType().getName() + ": " + LUT.getFullHierarchicalInstName());
-            for (EDIFHierCellInst FF : FFS)
-                writer.write("\n\t\tLeaf FF: " + FF.getCellType().getName() + ": " + FF.getFullHierarchicalInstName());
-        }
-        writer.write("\n\nPrinting LUT-Reset Trees... (" + LUT_FF_SR_Trees.size() + ")");
-        for (Pair<EDIFHierCellInst, List<EDIFHierCellInst>> pair : LUT_FF_SR_Trees) {
-            EDIFHierCellInst LUT = pair.key();
-            List<EDIFHierCellInst> FFS = pair.value();
-            writer.write("\n\tRoot LUT: " + LUT.getCellType().getName() + ": " + LUT.getFullHierarchicalInstName());
-            for (EDIFHierCellInst FF : FFS)
-                writer.write("\n\t\tLeaf FF: " + FF.getCellType().getName() + ": " + FF.getFullHierarchicalInstName());
-        }
+
         writer.write("\n\nPrinting DSPPairs... (" + DSPPairs.size() + ")");
         for (Pair<EDIFHierCellInst, EDIFHierCellInst> pair : DSPPairs) {
             writer.write("\n\t(" + pair.key().getCellType().getName() + ": " + pair.key().getFullHierarchicalInstName()
@@ -565,35 +438,12 @@ public class PlacerPackingSiteCentric extends Placer {
                 writer.write("\n\t\t" + chain.get(i).getFullHierarchicalInstName());
             }
         }
-        writer.write("\n\nNumber of stray FDRE cells: " + EDIFCellGroups.get("FDRE").size());
-        writer.write("\n\nNumber of stray LUT cells: " + EDIFCellGroups.get("LUT").size());
-        printFFCellNetMap(groupFFCellsByNet(EDIFCellGroups.get("FDRE"), "R"), "R");
-        printFFCellNetMap(groupFFCellsByNet(EDIFCellGroups.get("FDRE"), "D"), "D");
-        printFFCellNetMap(groupFFCellsByNet(EDIFCellGroups.get("FDRE"), "CE"), "CE");
-        printFFCellNetMap(groupFFCellsByNet(EDIFCellGroups.get("FDRE"), "C"), "C");
-
-        printLUTFFPairNetMap(groupLUTFFPairsByNet(LUTFFPairs, "R"), "R"); // set reset
-        printLUTFFPairNetMap(groupLUTFFPairsByNet(LUTFFPairs, "D"), "D"); // data in
-        printLUTFFPairNetMap(groupLUTFFPairsByNet(LUTFFPairs, "CE"), "CE"); // clock enable
-        printLUTFFPairNetMap(groupLUTFFPairsByNet(LUTFFPairs, "C"), "C"); // clock
-
         List<String> occupiedDSPSites = new ArrayList<>();
         List<String> occupiedRAMSites = new ArrayList<>();
         Map<String, List<String>> occupiedBELs = new HashMap<>();
 
         placeCarryChainSites(CARRYChains, occupiedBELs, EDIFCellGroups);
         placeDSPPairSites(DSPPairs, occupiedDSPSites, EDIFCellGroups);
-
-        Map<String, List<Cell>> cellGroups = new HashMap<>();
-        cellGroups.put("IBUF", new ArrayList<>());
-        cellGroups.put("OBUF", new ArrayList<>());
-        cellGroups.put("VCC", new ArrayList<>());
-        cellGroups.put("GND", new ArrayList<>());
-        cellGroups.put("CARRY4", new ArrayList<>());
-        cellGroups.put("LUT", new ArrayList<>());
-        cellGroups.put("FDRE", new ArrayList<>());
-        cellGroups.put("DSP48E1", new ArrayList<>());
-        cellGroups.put("RAMB18E1", new ArrayList<>());
 
     } // end placeDesign()
 

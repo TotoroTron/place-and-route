@@ -1,4 +1,149 @@
 
+
+    private void printFFCellNetMap(Map<EDIFHierNet, List<EDIFHierCellInst>> netMap, String PORT_NAME)
+            throws IOException {
+        writer.write("\n\nPrinting " + PORT_NAME + "Net Map... # of Nets: (" + netMap.entrySet().size() + ")");
+        for (Map.Entry<EDIFHierNet, List<EDIFHierCellInst>> entry : netMap.entrySet()) {
+            writer.write("\n\tEDIFHierNet: " + entry.getKey().getHierarchicalNetName() + "... # of Cells: ("
+                    + entry.getValue().size() + ")");
+            for (EDIFHierCellInst cell : entry.getValue()) {
+                writer.write("\n\t\tFFCell : " + cell.getFullHierarchicalInstName());
+            }
+        }
+    }
+
+    private void printLUTFFPairNetMap(Map<EDIFHierNet, List<Pair<EDIFHierCellInst, EDIFHierCellInst>>> netMap,
+            String PORT_NAME) throws IOException {
+        writer.write("\n\nPrinting " + PORT_NAME + "Net Map... # of Nets: (" + netMap.entrySet().size() + ")");
+        for (Map.Entry<EDIFHierNet, List<Pair<EDIFHierCellInst, EDIFHierCellInst>>> entry : netMap.entrySet()) {
+            writer.write("\n\tEDIFHierNet: " + entry.getKey().getHierarchicalNetName() + "... # of Pairs: ("
+                    + entry.getValue().size() + ")");
+            for (Pair<EDIFHierCellInst, EDIFHierCellInst> pair : entry.getValue()) {
+                writer.write("\n\t\tLUTFFPair : (" + pair.key().getFullHierarchicalInstName() + " => "
+                        + pair.value().getFullHierarchicalInstName() + ")");
+            }
+        }
+    }
+
+
+
+
+
+    private List<Pair<EDIFHierCellInst, List<EDIFHierCellInst>>> findLUTTrees(
+            Map<String, List<EDIFHierCellInst>> EDIFCellGroups, String SINK_PORT) throws IOException {
+        List<EDIFHierCellInst> visitedLUTs = new ArrayList<>();
+        List<EDIFHierCellInst> visitedFFs = new ArrayList<>();
+        List<Pair<EDIFHierCellInst, List<EDIFHierCellInst>>> trees = new ArrayList<>();
+        for (EDIFHierCellInst LUT_EHCI : EDIFCellGroups.get("LUT")) {
+            EDIFHierPortInst LUT_EHPI = LUT_EHCI.getPortInst("O");
+            EDIFHierNet HNET = LUT_EHPI.getHierarchicalNet();
+            // exclude sources, include sinks
+            List<EDIFHierPortInst> sinkPorts = HNET.getLeafHierPortInsts(false, true);
+
+            List<EDIFHierCellInst> FF_EHCIS = sinkPorts.stream()
+                    .filter(ehpi -> ehpi.getPortInst().getName().equals(SINK_PORT))
+                    .map(ehpi -> ehpi.getHierarchicalInst().getChild(ehpi.getPortInst().getCellInst().getName()))
+                    .filter(ehci -> ehci.getCellType().getName().equals("FDRE"))
+                    .collect(Collectors.toList());
+            if (FF_EHCIS.size() < 1)
+                continue; // not a tree
+            visitedLUTs.add(LUT_EHCI);
+            visitedFFs.addAll(FF_EHCIS);
+            var tree = new Pair<EDIFHierCellInst, List<EDIFHierCellInst>>(LUT_EHCI, FF_EHCIS);
+            trees.add(tree);
+        }
+        EDIFCellGroups.get("LUT").removeAll(visitedLUTs);
+        EDIFCellGroups.get("FDRE").removeAll(visitedFFs);
+        return trees;
+    }
+
+    private Map<EDIFHierNet, List<Pair<EDIFHierCellInst, EDIFHierCellInst>>> groupLUTFFPairsByNet(
+            List<Pair<EDIFHierCellInst, EDIFHierCellInst>> LUTFFPairs,
+            String PORT_NAME) {
+        Map<EDIFHierNet, List<Pair<EDIFHierCellInst, EDIFHierCellInst>>> map = new HashMap<>();
+        for (Pair<EDIFHierCellInst, EDIFHierCellInst> pair : LUTFFPairs) {
+            EDIFHierCellInst FF_EHCI = pair.value();
+            EDIFHierPortInst FF_EHPI = FF_EHCI.getPortInst(PORT_NAME);
+            if (FF_EHPI == null) {
+                System.out.println(FF_EHCI.getFullHierarchicalInstName() + " does not use " + PORT_NAME + "!");
+                continue;
+            }
+            EDIFHierNet hnet = FF_EHPI.getHierarchicalNet();
+            List<Pair<EDIFHierCellInst, EDIFHierCellInst>> list = map.get(hnet);
+            if (list != null) {
+                list.add(pair);
+            } else {
+                map.put(hnet, new ArrayList<Pair<EDIFHierCellInst, EDIFHierCellInst>>());
+                map.get(hnet).add(pair);
+            }
+        }
+        return map;
+    }
+
+    private Map<EDIFHierNet, List<EDIFHierCellInst>> groupFFCellsByNet(
+            List<EDIFHierCellInst> FFCells, String PORT_NAME) {
+        Map<EDIFHierNet, List<EDIFHierCellInst>> map = new HashMap<>();
+        for (EDIFHierCellInst FF_EHCI : FFCells) {
+            EDIFHierPortInst FF_EHPI = FF_EHCI.getPortInst(PORT_NAME);
+            if (FF_EHPI == null) {
+                System.out.println(FF_EHCI.getFullHierarchicalInstName() + " does not use " + PORT_NAME + "!");
+                continue;
+            }
+            EDIFHierNet hnet = FF_EHPI.getHierarchicalNet();
+            List<EDIFHierCellInst> list = map.get(hnet);
+            if (list != null) {
+                list.add(FF_EHCI);
+            } else {
+                map.put(hnet, new ArrayList<EDIFHierCellInst>());
+                map.get(hnet).add(FF_EHCI);
+            }
+        }
+        return map;
+    }
+
+    private List<Pair<EDIFHierCellInst, EDIFHierCellInst>> findLUTFFPairs(
+            Map<String, List<EDIFHierCellInst>> EDIFCellGroups)
+            throws IOException {
+        List<EDIFHierCellInst> visitedLUTs = new ArrayList<>();
+        List<EDIFHierCellInst> visitedFFs = new ArrayList<>();
+        List<Pair<EDIFHierCellInst, EDIFHierCellInst>> pairs = new ArrayList<>();
+        for (EDIFHierCellInst LUT_EHCI : EDIFCellGroups.get("LUT")) {
+            EDIFHierPortInst LUT_EHPI = LUT_EHCI.getPortInst("O");
+            EDIFHierNet HNET = LUT_EHPI.getHierarchicalNet();
+            // exclude sources, include sinks
+            List<EDIFHierPortInst> sinkPorts = HNET.getLeafHierPortInsts(false, true);
+            if (sinkPorts.size() != 1)
+                continue;
+            EDIFHierPortInst FF_EHPI = sinkPorts.get(0);
+            EDIFHierCellInst FF_EHCI = FF_EHPI.getHierarchicalInst()
+                    .getChild(FF_EHPI.getPortInst().getCellInst().getName());
+            if (!FF_EHCI.getCellType().getName().contains("FDRE"))
+                continue;
+            visitedLUTs.add(LUT_EHCI);
+            visitedFFs.add(FF_EHCI);
+            var pair = new Pair<EDIFHierCellInst, EDIFHierCellInst>(LUT_EHCI, FF_EHCI);
+
+            // EDIFHierCellInst[] pair = new EDIFHierCellInst[2];
+            pairs.add(pair);
+        }
+        EDIFCellGroups.get("LUT").removeAll(visitedLUTs);
+        EDIFCellGroups.get("FDRE").removeAll(visitedFFs);
+        return pairs;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     private Map<EDIFHierCellInst, List<EDIFHierCellInst>> findLUTFFTrees(
             Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
         List<EDIFHierCellInst> visitedLUTs = new ArrayList<>();
