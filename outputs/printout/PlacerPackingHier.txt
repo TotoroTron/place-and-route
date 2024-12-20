@@ -3118,204 +3118,6 @@ GND Cells (9):
 		GND: GND
 			GND/G
 
-Number of stray FF cells ... (0)
-
-Printing Unique CE-R pairs... 15)
-	CE: serializer_inst/i_en_IBUF                          R: serializer_inst/i_rst_IBUF                        
-	CE: deserializer_inst/<const1>                         R: deserializer_inst/<const0>                        
-	CE: deserializer_inst/counter[4]_i_1__0_n_0            R: deserializer_inst/i_rst_IBUF                      
-	CE: fir_filter_inst/ov_dout[23]_i_1__0_n_0             R: fir_filter_inst/<const0>                          
-	CE: fir_filter_inst/<const1>                           R: fir_filter_inst/<const0>                          
-	CE: fir_filter_inst/weight_re                          R: fir_filter_inst/i_rst_IBUF                        
-	CE: fir_filter_inst/sample_re_addr[5]_i_1_n_0          R: fir_filter_inst/i_rst_IBUF                        
-	CE: deserializer_inst/ov_dout[23]_i_1_n_0              R: deserializer_inst/<const0>                        
-	CE: fir_filter_inst/<const1>                           R: fir_filter_inst/i_rst_IBUF                        
-	CE: fir_filter_inst/tap_inst/i_en_IBUF                 R: fir_filter_inst/tap_inst/ov_sum[0]_i_1_n_0        
-	CE: deserializer_inst/shift_reg[23]_i_1__0_n_0         R: deserializer_inst/i_rst_IBUF                      
-	CE: serializer_inst/shift_reg[23]_i_1_n_0              R: serializer_inst/<const0>                          
-	CE: serializer_inst/counter[4]_i_1_n_0                 R: serializer_inst/<const0>                          
-	CE: deserializer_inst/i_en_IBUF                        R: deserializer_inst/i_rst_IBUF                      
-	CE: fir_filter_inst/o_ready_i_1_n_0                    R: fir_filter_inst/i_rst_IBUF                        
-
-Printing Unique CE-R pairs with associated FF Cells... (15)
-	CENet: serializer_inst/i_en_IBUF, RNet: serializer_inst/i_rst_IBUF with cells... (4)
-		cell: serializer_inst/o_dout_valid_reg
-		cell: serializer_inst/o_ready_reg
-		cell: serializer_inst/FSM_sequential_state_reg[0]
-		cell: serializer_inst/FSM_sequential_state_reg[1]
-	CENet: deserializer_inst/<const1>, RNet: deserializer_inst/<const0> with cells... (2)
-		cell: deserializer_inst/o_dout_valid_reg
-		cell: deserializer_inst/o_ready_reg
-	CENet: deserializer_inst/counter[4]_i_1__0_n_0, RNet: deserializer_inst/i_rst_IBUF with cells... (5)
-		cell: deserializer_inst/counter_reg[0]
-		cell: deserializer_inst/counter_reg[1]
-		cell: deserializer_inst/counter_reg[4]
-		cell: deserializer_inst/counter_reg[2]
-		cell: deserializer_inst/counter_reg[3]
-	CENet: fir_filter_inst/ov_dout[23]_i_1__0_n_0, RNet: fir_filter_inst/<const0> with cells... (24)
-		cell: fir_filter_inst/ov_dout_reg[18]
-		cell: fir_filter_inst/ov_dout_reg[14]
-		cell: fir_filter_inst/ov_dout_reg[10]
-		cell: fir_filter_inst/ov_dout_reg[22]
-		cell: fir_filter_inst/ov_dout_reg[7]
-		cell: fir_filter_inst/ov_dout_reg[3]
-		cell: fir_filter_inst/ov_dout_reg[17]
-		cell: fir_filter_inst/ov_dout_reg[13]
-		cell: fir_filter_inst/ov_dout_reg[21]
-		cell: fir_filter_inst/ov_dout_reg[6]
-		cell: fir_filter_inst/ov_dout_reg[2]
-		cell: fir_filter_inst/ov_dout_reg[1]
-		cell: fir_filter_inst/ov_dout_reg[16]
-		cell: fir_filter_inst/ov_dout_reg[20]
-		cell: fir_filter_inst/ov_dout_reg[9]
-		cell: fir_filter_inst/ov_dout_reg[12]
-		cell: fir_filter_inst/ov_dout_reg[5]
-		cell: fir_filter_inst/ov_dout_reg[0]
-		cell: fir_filter_inst/ov_dout_reg[19]
-		cell: fir_filter_inst/ov_dout_reg[15]
-		cell: fir_filter_inst/ov_dout_reg[8]
-		cell: fir_filter_inst/ov_dout_reg[11]
-		cell: fir_filter_inst/ov_dout_reg[23]
-		cell: fir_filter_inst/ov_dout_reg[4]
-	CENet: fir_filter_inst/<const1>, RNet: fir_filter_inst/<const0> with cells... (1)
-		cell: fir_filter_inst/sum_rst_reg
-	CENet: fir_filter_inst/weight_re, RNet: fir_filter_inst/i_rst_IBUF with cells... (6)
-		cell: fir_filter_inst/weight_re_addr_reg[2]
-		cell: fir_filter_inst/weight_re_addr_reg[3]
-		cell: fir_filter_inst/weight_re_addr_reg[4]
-		cell: fir_filter_inst/weight_re_addr_reg[0]
-		cell: fir_filter_inst/weight_re_addr_reg[5]
-		cell: fir_filter_inst/weight_re_addr_reg[1]
-	CENet: fir_filter_inst/sample_re_addr[5]_i_1_n_0, RNet: fir_filter_inst/i_rst_IBUF with cells... (6)
-		cell: fir_filter_inst/sample_re_addr_reg[0]
-		cell: fir_filter_inst/sample_re_addr_reg[4]
-		cell: fir_filter_inst/sample_re_addr_reg[3]
-		cell: fir_filter_inst/sample_re_addr_reg[2]
-		cell: fir_filter_inst/sample_re_addr_reg[1]
-		cell: fir_filter_inst/sample_re_addr_reg[5]
-	CENet: deserializer_inst/ov_dout[23]_i_1_n_0, RNet: deserializer_inst/<const0> with cells... (24)
-		cell: deserializer_inst/ov_dout_reg[14]
-		cell: deserializer_inst/ov_dout_reg[7]
-		cell: deserializer_inst/ov_dout_reg[13]
-		cell: deserializer_inst/ov_dout_reg[6]
-		cell: deserializer_inst/ov_dout_reg[1]
-		cell: deserializer_inst/ov_dout_reg[9]
-		cell: deserializer_inst/ov_dout_reg[12]
-		cell: deserializer_inst/ov_dout_reg[0]
-		cell: deserializer_inst/ov_dout_reg[19]
-		cell: deserializer_inst/ov_dout_reg[8]
-		cell: deserializer_inst/ov_dout_reg[11]
-		cell: deserializer_inst/ov_dout_reg[23]
-		cell: deserializer_inst/ov_dout_reg[18]
-		cell: deserializer_inst/ov_dout_reg[10]
-		cell: deserializer_inst/ov_dout_reg[22]
-		cell: deserializer_inst/ov_dout_reg[3]
-		cell: deserializer_inst/ov_dout_reg[17]
-		cell: deserializer_inst/ov_dout_reg[21]
-		cell: deserializer_inst/ov_dout_reg[2]
-		cell: deserializer_inst/ov_dout_reg[16]
-		cell: deserializer_inst/ov_dout_reg[20]
-		cell: deserializer_inst/ov_dout_reg[5]
-		cell: deserializer_inst/ov_dout_reg[15]
-		cell: deserializer_inst/ov_dout_reg[4]
-	CENet: fir_filter_inst/<const1>, RNet: fir_filter_inst/i_rst_IBUF with cells... (5)
-		cell: fir_filter_inst/o_dout_valid_reg
-		cell: fir_filter_inst/weight_re_reg
-		cell: fir_filter_inst/o_ready_reg
-		cell: fir_filter_inst/FSM_sequential_state_reg[0]
-		cell: fir_filter_inst/FSM_sequential_state_reg[1]
-	CENet: fir_filter_inst/tap_inst/i_en_IBUF, RNet: fir_filter_inst/tap_inst/ov_sum[0]_i_1_n_0 with cells... (24)
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[4]
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[18]
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[8]
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[14]
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[10]
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[22]
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[3]
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[17]
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[7]
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[13]
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[21]
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[2]
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[16]
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[6]
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[12]
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[20]
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[0]
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[19]
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[1]
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[15]
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[5]
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[23]
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[11]
-		cell: fir_filter_inst/tap_inst/ov_sum_reg[9]
-	CENet: deserializer_inst/shift_reg[23]_i_1__0_n_0, RNet: deserializer_inst/i_rst_IBUF with cells... (24)
-		cell: deserializer_inst/shift_reg_reg[5]
-		cell: deserializer_inst/shift_reg_reg[12]
-		cell: deserializer_inst/shift_reg_reg[4]
-		cell: deserializer_inst/shift_reg_reg[13]
-		cell: deserializer_inst/shift_reg_reg[7]
-		cell: deserializer_inst/shift_reg_reg[22]
-		cell: deserializer_inst/shift_reg_reg[10]
-		cell: deserializer_inst/shift_reg_reg[18]
-		cell: deserializer_inst/shift_reg_reg[6]
-		cell: deserializer_inst/shift_reg_reg[23]
-		cell: deserializer_inst/shift_reg_reg[11]
-		cell: deserializer_inst/shift_reg_reg[19]
-		cell: deserializer_inst/shift_reg_reg[1]
-		cell: deserializer_inst/shift_reg_reg[20]
-		cell: deserializer_inst/shift_reg_reg[9]
-		cell: deserializer_inst/shift_reg_reg[16]
-		cell: deserializer_inst/shift_reg_reg[0]
-		cell: deserializer_inst/shift_reg_reg[8]
-		cell: deserializer_inst/shift_reg_reg[17]
-		cell: deserializer_inst/shift_reg_reg[21]
-		cell: deserializer_inst/shift_reg_reg[3]
-		cell: deserializer_inst/shift_reg_reg[14]
-		cell: deserializer_inst/shift_reg_reg[2]
-		cell: deserializer_inst/shift_reg_reg[15]
-	CENet: serializer_inst/shift_reg[23]_i_1_n_0, RNet: serializer_inst/<const0> with cells... (24)
-		cell: serializer_inst/shift_reg_reg[1]
-		cell: serializer_inst/shift_reg_reg[20]
-		cell: serializer_inst/shift_reg_reg[9]
-		cell: serializer_inst/shift_reg_reg[5]
-		cell: serializer_inst/shift_reg_reg[16]
-		cell: serializer_inst/shift_reg_reg[12]
-		cell: serializer_inst/shift_reg_reg[4]
-		cell: serializer_inst/shift_reg_reg[0]
-		cell: serializer_inst/shift_reg_reg[8]
-		cell: serializer_inst/shift_reg_reg[17]
-		cell: serializer_inst/shift_reg_reg[13]
-		cell: serializer_inst/shift_reg_reg[21]
-		cell: serializer_inst/shift_reg_reg[3]
-		cell: serializer_inst/shift_reg_reg[7]
-		cell: serializer_inst/shift_reg_reg[14]
-		cell: serializer_inst/shift_reg_reg[22]
-		cell: serializer_inst/shift_reg_reg[10]
-		cell: serializer_inst/shift_reg_reg[18]
-		cell: serializer_inst/shift_reg_reg[2]
-		cell: serializer_inst/shift_reg_reg[6]
-		cell: serializer_inst/shift_reg_reg[15]
-		cell: serializer_inst/shift_reg_reg[23]
-		cell: serializer_inst/shift_reg_reg[11]
-		cell: serializer_inst/shift_reg_reg[19]
-	CENet: serializer_inst/counter[4]_i_1_n_0, RNet: serializer_inst/<const0> with cells... (5)
-		cell: serializer_inst/counter_reg[0]
-		cell: serializer_inst/counter_reg[4]
-		cell: serializer_inst/counter_reg[1]
-		cell: serializer_inst/counter_reg[2]
-		cell: serializer_inst/counter_reg[3]
-	CENet: deserializer_inst/i_en_IBUF, RNet: deserializer_inst/i_rst_IBUF with cells... (2)
-		cell: deserializer_inst/FSM_sequential_state_reg[0]
-		cell: deserializer_inst/FSM_sequential_state_reg[1]
-	CENet: fir_filter_inst/o_ready_i_1_n_0, RNet: fir_filter_inst/i_rst_IBUF with cells... (6)
-		cell: fir_filter_inst/sample_wr_addr_reg[3]
-		cell: fir_filter_inst/sample_wr_addr_reg[2]
-		cell: fir_filter_inst/sample_wr_addr_reg[1]
-		cell: fir_filter_inst/sample_wr_addr_reg[5]
-		cell: fir_filter_inst/sample_wr_addr_reg[0]
-		cell: fir_filter_inst/sample_wr_addr_reg[4]
-
 Printing DSPPairs... (1)
 	(DSP48E1: fir_filter_inst/tap_inst/sum_trunc1__0, DSP48E1: fir_filter_inst/tap_inst/sum_trunc1)
 
@@ -3329,5 +3131,195 @@ Printing CARRYChains... (1)
 
 Placing carry chains... (1)
 	chain size: 6
-	selectedSiteType: SLICEL
-	X_MAX: 113, X_MIN: 1, Y_MAX: 149, Y_MIN: 0
+	selectedSiteType: SLICEM
+	X_MAX: 112, X_MIN: 0, Y_MAX: 149, Y_MIN: 0
+
+Number of stray FF cells ... (0)
+
+Number of stray LUT cells ... (113)
+
+Printing Unique CE-R pairs... (14)
+	CE: serializer_inst/i_en_IBUF                          R: serializer_inst/i_rst_IBUF                        
+	CE: deserializer_inst/<const1>                         R: deserializer_inst/<const0>                        
+	CE: deserializer_inst/counter[4]_i_1__0_n_0            R: deserializer_inst/i_rst_IBUF                      
+	CE: fir_filter_inst/ov_dout[23]_i_1__0_n_0             R: fir_filter_inst/<const0>                          
+	CE: fir_filter_inst/<const1>                           R: fir_filter_inst/<const0>                          
+	CE: fir_filter_inst/weight_re                          R: fir_filter_inst/i_rst_IBUF                        
+	CE: fir_filter_inst/sample_re_addr[5]_i_1_n_0          R: fir_filter_inst/i_rst_IBUF                        
+	CE: deserializer_inst/ov_dout[23]_i_1_n_0              R: deserializer_inst/<const0>                        
+	CE: fir_filter_inst/<const1>                           R: fir_filter_inst/i_rst_IBUF                        
+	CE: deserializer_inst/shift_reg[23]_i_1__0_n_0         R: deserializer_inst/i_rst_IBUF                      
+	CE: serializer_inst/shift_reg[23]_i_1_n_0              R: serializer_inst/<const0>                          
+	CE: serializer_inst/counter[4]_i_1_n_0                 R: serializer_inst/<const0>                          
+	CE: deserializer_inst/i_en_IBUF                        R: deserializer_inst/i_rst_IBUF                      
+	CE: fir_filter_inst/o_ready_i_1_n_0                    R: fir_filter_inst/i_rst_IBUF                        
+
+Printing Unique CE-R pairs with associated FF Cells... (14)
+	CENet: serializer_inst/i_en_IBUF, RNet: serializer_inst/i_rst_IBUF with cells... (4)
+		LUT: serializer_inst/o_dout_valid_i_1 => FF: serializer_inst/o_dout_valid_reg
+		LUT: serializer_inst/o_ready_i_1__0 => FF: serializer_inst/o_ready_reg
+		LUT: serializer_inst/FSM_sequential_state[0]_i_1__1 => FF: serializer_inst/FSM_sequential_state_reg[0]
+		LUT: serializer_inst/FSM_sequential_state[1]_i_1__1 => FF: serializer_inst/FSM_sequential_state_reg[1]
+	CENet: deserializer_inst/<const1>, RNet: deserializer_inst/<const0> with cells... (2)
+		LUT: deserializer_inst/o_dout_valid_i_1__0 => FF: deserializer_inst/o_dout_valid_reg
+		LUT: deserializer_inst/o_ready_i_1__1 => FF: deserializer_inst/o_ready_reg
+	CENet: deserializer_inst/counter[4]_i_1__0_n_0, RNet: deserializer_inst/i_rst_IBUF with cells... (5)
+		LUT: deserializer_inst/counter[0]_i_1 => FF: deserializer_inst/counter_reg[0]
+		LUT: deserializer_inst/counter[1]_i_1 => FF: deserializer_inst/counter_reg[1]
+		LUT: deserializer_inst/counter[4]_i_2__0 => FF: deserializer_inst/counter_reg[4]
+		LUT: deserializer_inst/counter[2]_i_1 => FF: deserializer_inst/counter_reg[2]
+		LUT: deserializer_inst/counter[3]_i_1__0 => FF: deserializer_inst/counter_reg[3]
+	CENet: fir_filter_inst/ov_dout[23]_i_1__0_n_0, RNet: fir_filter_inst/<const0> with cells... (24)
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[18]
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[14]
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[10]
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[22]
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[7]
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[3]
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[17]
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[13]
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[21]
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[6]
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[2]
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[1]
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[16]
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[20]
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[9]
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[12]
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[5]
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[0]
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[19]
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[15]
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[8]
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[11]
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[23]
+		LUT: NULL! => FF: fir_filter_inst/ov_dout_reg[4]
+	CENet: fir_filter_inst/<const1>, RNet: fir_filter_inst/<const0> with cells... (1)
+		LUT: fir_filter_inst/sum_rst_i_1 => FF: fir_filter_inst/sum_rst_reg
+	CENet: fir_filter_inst/weight_re, RNet: fir_filter_inst/i_rst_IBUF with cells... (6)
+		LUT: fir_filter_inst/weight_re_addr[2]_i_1 => FF: fir_filter_inst/weight_re_addr_reg[2]
+		LUT: fir_filter_inst/weight_re_addr[3]_i_1 => FF: fir_filter_inst/weight_re_addr_reg[3]
+		LUT: fir_filter_inst/weight_re_addr[4]_i_1 => FF: fir_filter_inst/weight_re_addr_reg[4]
+		LUT: fir_filter_inst/weight_re_addr[0]_i_1 => FF: fir_filter_inst/weight_re_addr_reg[0]
+		LUT: fir_filter_inst/weight_re_addr[5]_i_1 => FF: fir_filter_inst/weight_re_addr_reg[5]
+		LUT: fir_filter_inst/weight_re_addr[1]_i_1 => FF: fir_filter_inst/weight_re_addr_reg[1]
+	CENet: fir_filter_inst/sample_re_addr[5]_i_1_n_0, RNet: fir_filter_inst/i_rst_IBUF with cells... (6)
+		LUT: fir_filter_inst/sample_re_addr[0]_i_1 => FF: fir_filter_inst/sample_re_addr_reg[0]
+		LUT: fir_filter_inst/sample_re_addr[4]_i_1 => FF: fir_filter_inst/sample_re_addr_reg[4]
+		LUT: fir_filter_inst/sample_re_addr[3]_i_1 => FF: fir_filter_inst/sample_re_addr_reg[3]
+		LUT: fir_filter_inst/sample_re_addr[2]_i_1 => FF: fir_filter_inst/sample_re_addr_reg[2]
+		LUT: fir_filter_inst/sample_re_addr[1]_i_1 => FF: fir_filter_inst/sample_re_addr_reg[1]
+		LUT: fir_filter_inst/sample_re_addr[5]_i_2 => FF: fir_filter_inst/sample_re_addr_reg[5]
+	CENet: deserializer_inst/ov_dout[23]_i_1_n_0, RNet: deserializer_inst/<const0> with cells... (24)
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[14]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[7]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[13]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[6]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[1]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[9]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[12]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[0]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[19]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[8]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[11]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[23]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[18]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[10]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[22]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[3]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[17]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[21]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[2]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[16]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[20]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[5]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[15]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[4]
+	CENet: fir_filter_inst/<const1>, RNet: fir_filter_inst/i_rst_IBUF with cells... (5)
+		LUT: fir_filter_inst/o_dout_valid_i_1__1 => FF: fir_filter_inst/o_dout_valid_reg
+		LUT: fir_filter_inst/weight_re_i_1 => FF: fir_filter_inst/weight_re_reg
+		LUT: fir_filter_inst/o_ready_i_1 => FF: fir_filter_inst/o_ready_reg
+		LUT: fir_filter_inst/FSM_sequential_state[0]_i_1__0 => FF: fir_filter_inst/FSM_sequential_state_reg[0]
+		LUT: fir_filter_inst/FSM_sequential_state[1]_i_1__0 => FF: fir_filter_inst/FSM_sequential_state_reg[1]
+	CENet: deserializer_inst/shift_reg[23]_i_1__0_n_0, RNet: deserializer_inst/i_rst_IBUF with cells... (24)
+		LUT: deserializer_inst/shift_reg[5]_i_1__0 => FF: deserializer_inst/shift_reg_reg[5]
+		LUT: deserializer_inst/shift_reg[12]_i_1__0 => FF: deserializer_inst/shift_reg_reg[12]
+		LUT: deserializer_inst/shift_reg[4]_i_1__0 => FF: deserializer_inst/shift_reg_reg[4]
+		LUT: deserializer_inst/shift_reg[13]_i_1__0 => FF: deserializer_inst/shift_reg_reg[13]
+		LUT: deserializer_inst/shift_reg[7]_i_1__0 => FF: deserializer_inst/shift_reg_reg[7]
+		LUT: deserializer_inst/shift_reg[22]_i_1__0 => FF: deserializer_inst/shift_reg_reg[22]
+		LUT: deserializer_inst/shift_reg[10]_i_1__0 => FF: deserializer_inst/shift_reg_reg[10]
+		LUT: deserializer_inst/shift_reg[18]_i_1__0 => FF: deserializer_inst/shift_reg_reg[18]
+		LUT: deserializer_inst/shift_reg[6]_i_1__0 => FF: deserializer_inst/shift_reg_reg[6]
+		LUT: deserializer_inst/shift_reg[23]_i_2__0 => FF: deserializer_inst/shift_reg_reg[23]
+		LUT: deserializer_inst/shift_reg[11]_i_1__0 => FF: deserializer_inst/shift_reg_reg[11]
+		LUT: deserializer_inst/shift_reg[19]_i_1__0 => FF: deserializer_inst/shift_reg_reg[19]
+		LUT: deserializer_inst/shift_reg[1]_i_1__0 => FF: deserializer_inst/shift_reg_reg[1]
+		LUT: deserializer_inst/shift_reg[20]_i_1__0 => FF: deserializer_inst/shift_reg_reg[20]
+		LUT: deserializer_inst/shift_reg[9]_i_1__0 => FF: deserializer_inst/shift_reg_reg[9]
+		LUT: deserializer_inst/shift_reg[16]_i_1__0 => FF: deserializer_inst/shift_reg_reg[16]
+		LUT: deserializer_inst/shift_reg[0]_i_1__0 => FF: deserializer_inst/shift_reg_reg[0]
+		LUT: deserializer_inst/shift_reg[8]_i_1__0 => FF: deserializer_inst/shift_reg_reg[8]
+		LUT: deserializer_inst/shift_reg[17]_i_1__0 => FF: deserializer_inst/shift_reg_reg[17]
+		LUT: deserializer_inst/shift_reg[21]_i_1__0 => FF: deserializer_inst/shift_reg_reg[21]
+		LUT: deserializer_inst/shift_reg[3]_i_1__0 => FF: deserializer_inst/shift_reg_reg[3]
+		LUT: deserializer_inst/shift_reg[14]_i_1__0 => FF: deserializer_inst/shift_reg_reg[14]
+		LUT: deserializer_inst/shift_reg[2]_i_1__0 => FF: deserializer_inst/shift_reg_reg[2]
+		LUT: deserializer_inst/shift_reg[15]_i_1__0 => FF: deserializer_inst/shift_reg_reg[15]
+	CENet: serializer_inst/shift_reg[23]_i_1_n_0, RNet: serializer_inst/<const0> with cells... (24)
+		LUT: serializer_inst/shift_reg[1]_i_1 => FF: serializer_inst/shift_reg_reg[1]
+		LUT: serializer_inst/shift_reg[20]_i_1 => FF: serializer_inst/shift_reg_reg[20]
+		LUT: serializer_inst/shift_reg[9]_i_1 => FF: serializer_inst/shift_reg_reg[9]
+		LUT: serializer_inst/shift_reg[5]_i_1 => FF: serializer_inst/shift_reg_reg[5]
+		LUT: serializer_inst/shift_reg[16]_i_1 => FF: serializer_inst/shift_reg_reg[16]
+		LUT: serializer_inst/shift_reg[12]_i_1 => FF: serializer_inst/shift_reg_reg[12]
+		LUT: serializer_inst/shift_reg[4]_i_1 => FF: serializer_inst/shift_reg_reg[4]
+		LUT: serializer_inst/shift_reg[0]_i_1 => FF: serializer_inst/shift_reg_reg[0]
+		LUT: serializer_inst/shift_reg[8]_i_1 => FF: serializer_inst/shift_reg_reg[8]
+		LUT: serializer_inst/shift_reg[17]_i_1 => FF: serializer_inst/shift_reg_reg[17]
+		LUT: serializer_inst/shift_reg[13]_i_1 => FF: serializer_inst/shift_reg_reg[13]
+		LUT: serializer_inst/shift_reg[21]_i_1 => FF: serializer_inst/shift_reg_reg[21]
+		LUT: serializer_inst/shift_reg[3]_i_1 => FF: serializer_inst/shift_reg_reg[3]
+		LUT: serializer_inst/shift_reg[7]_i_1 => FF: serializer_inst/shift_reg_reg[7]
+		LUT: serializer_inst/shift_reg[14]_i_1 => FF: serializer_inst/shift_reg_reg[14]
+		LUT: serializer_inst/shift_reg[22]_i_1 => FF: serializer_inst/shift_reg_reg[22]
+		LUT: serializer_inst/shift_reg[10]_i_1 => FF: serializer_inst/shift_reg_reg[10]
+		LUT: serializer_inst/shift_reg[18]_i_1 => FF: serializer_inst/shift_reg_reg[18]
+		LUT: serializer_inst/shift_reg[2]_i_1 => FF: serializer_inst/shift_reg_reg[2]
+		LUT: serializer_inst/shift_reg[6]_i_1 => FF: serializer_inst/shift_reg_reg[6]
+		LUT: serializer_inst/shift_reg[15]_i_1 => FF: serializer_inst/shift_reg_reg[15]
+		LUT: serializer_inst/shift_reg[23]_i_2 => FF: serializer_inst/shift_reg_reg[23]
+		LUT: serializer_inst/shift_reg[11]_i_1 => FF: serializer_inst/shift_reg_reg[11]
+		LUT: serializer_inst/shift_reg[19]_i_1 => FF: serializer_inst/shift_reg_reg[19]
+	CENet: serializer_inst/counter[4]_i_1_n_0, RNet: serializer_inst/<const0> with cells... (5)
+		LUT: serializer_inst/counter[0]_i_1__0 => FF: serializer_inst/counter_reg[0]
+		LUT: serializer_inst/counter[4]_i_2 => FF: serializer_inst/counter_reg[4]
+		LUT: serializer_inst/counter[1]_i_1__0 => FF: serializer_inst/counter_reg[1]
+		LUT: serializer_inst/counter[2]_i_1__0 => FF: serializer_inst/counter_reg[2]
+		LUT: serializer_inst/counter[3]_i_1 => FF: serializer_inst/counter_reg[3]
+	CENet: deserializer_inst/i_en_IBUF, RNet: deserializer_inst/i_rst_IBUF with cells... (2)
+		LUT: deserializer_inst/FSM_sequential_state[0]_i_1 => FF: deserializer_inst/FSM_sequential_state_reg[0]
+		LUT: deserializer_inst/FSM_sequential_state[1]_i_1 => FF: deserializer_inst/FSM_sequential_state_reg[1]
+	CENet: fir_filter_inst/o_ready_i_1_n_0, RNet: fir_filter_inst/i_rst_IBUF with cells... (6)
+		LUT: fir_filter_inst/sample_wr_addr[3]_i_1 => FF: fir_filter_inst/sample_wr_addr_reg[3]
+		LUT: fir_filter_inst/sample_wr_addr[2]_i_1 => FF: fir_filter_inst/sample_wr_addr_reg[2]
+		LUT: fir_filter_inst/sample_wr_addr[1]_i_1 => FF: fir_filter_inst/sample_wr_addr_reg[1]
+		LUT: fir_filter_inst/sample_wr_addr[5]_i_1 => FF: fir_filter_inst/sample_wr_addr_reg[5]
+		LUT: fir_filter_inst/sample_wr_addr[0]_i_1 => FF: fir_filter_inst/sample_wr_addr_reg[0]
+		LUT: fir_filter_inst/sample_wr_addr[4]_i_1 => FF: fir_filter_inst/sample_wr_addr_reg[4]
+
+Placing LUT-FF Pair Groups... (14)
+	CENet: serializer_inst/i_en_IBUF                          RNet: serializer_inst/i_rst_IBUF                        
+	CENet: deserializer_inst/<const1>                         RNet: deserializer_inst/<const0>                        
+	CENet: deserializer_inst/counter[4]_i_1__0_n_0            RNet: deserializer_inst/i_rst_IBUF                      
+	CENet: fir_filter_inst/ov_dout[23]_i_1__0_n_0             RNet: fir_filter_inst/<const0>                          
+	CENet: fir_filter_inst/<const1>                           RNet: fir_filter_inst/<const0>                          
+	CENet: fir_filter_inst/weight_re                          RNet: fir_filter_inst/i_rst_IBUF                        
+	CENet: fir_filter_inst/sample_re_addr[5]_i_1_n_0          RNet: fir_filter_inst/i_rst_IBUF                        
+	CENet: deserializer_inst/ov_dout[23]_i_1_n_0              RNet: deserializer_inst/<const0>                        
+	CENet: fir_filter_inst/<const1>                           RNet: fir_filter_inst/i_rst_IBUF                        
+	CENet: deserializer_inst/shift_reg[23]_i_1__0_n_0         RNet: deserializer_inst/i_rst_IBUF                      
+	CENet: serializer_inst/shift_reg[23]_i_1_n_0              RNet: serializer_inst/<const0>                          
+	CENet: serializer_inst/counter[4]_i_1_n_0                 RNet: serializer_inst/<const0>                          
+	CENet: deserializer_inst/i_en_IBUF                        RNet: deserializer_inst/i_rst_IBUF                      
+	CENet: fir_filter_inst/o_ready_i_1_n_0                    RNet: fir_filter_inst/i_rst_IBUF                        

@@ -79,6 +79,19 @@ public abstract class Placer {
     public record Pair<K, V>(K key, V value) {
     }
 
+    public record LUTFFPair<K, V>(K LUT, V FF) {
+    }
+
+    public static <T> List<List<T>> splitIntoGroups(List<T> list, int groupSize) {
+        List<List<T>> result = new ArrayList<>();
+        for (int i = 0; i < list.size(); i += groupSize) {
+            // Create subgroups of size groupSize
+            List<T> group = list.subList(i, Math.min(i + groupSize, list.size()));
+            result.add(new ArrayList<>(group));
+        }
+        return result;
+    }
+
     public void placeDesign() throws IOException {
         writer.write("\nPlacing Cells...");
 

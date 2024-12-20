@@ -141,7 +141,24 @@ public class PlacerPackingSiteCentric extends Placer {
         return chains;
     }
 
-    private String findCarryChainAnchorSite(SiteTypeEnum selectedSiteType, List<EDIFHierCellInst> chain)
+    private Site findLUTFFSite(SiteTypeEnum selectedSiteType, List<Site> occupiedCLBSites) throws IOException {
+        Map<String, Integer> minmax = getCoordinateMinMaxOfType(selectedSiteType);
+        int x_max = minmax.get("X_MAX");
+        int x_min = minmax.get("X_MIN");
+        int y_max = minmax.get("Y_MAX");
+        int y_min = minmax.get("Y_MIN");
+        writer.write("\n\tselectedSiteType: " + selectedSiteType);
+        writer.write(
+                "\n\tX_MAX: " + x_max + ", X_MIN: " + x_min + ", Y_MAX: " + y_max + ", Y_MIN: " + y_min);
+        Random rand = new Random();
+        List<Site> availableSites = new ArrayList<Site>(Arrays.asList(device.getAllCompatibleSites(selectedSiteType)));
+        availableSites.removeAll(occupiedCLBSites);
+        Site selectedSite = availableSites.get(rand.nextInt(availableSites.size()));
+
+        return selectedSite;
+    };
+
+    private Site findCarryChainAnchorSite(SiteTypeEnum selectedSiteType, List<EDIFHierCellInst> chain)
             throws IOException {
         Map<String, Integer> minmax = getCoordinateMinMaxOfType(selectedSiteType);
         int x_max = minmax.get("X_MAX");
@@ -151,7 +168,7 @@ public class PlacerPackingSiteCentric extends Placer {
         writer.write("\n\tselectedSiteType: " + selectedSiteType);
         writer.write(
                 "\n\tX_MAX: " + x_max + ", X_MIN: " + x_min + ", Y_MAX: " + y_max + ", Y_MIN: " + y_min);
-        String anchorSiteName = null;
+        Site anchorSite = null;
         int x = 0;
         int y = 0;
         Random rand = new Random();
@@ -172,23 +189,27 @@ public class PlacerPackingSiteCentric extends Placer {
                     break;
                 } else {
                     validAnchor = true;
-                    anchorSiteName = "SLICE_X" + x + "Y" + y;
+                    anchorSite = selectedSite;
+                    // anchorSiteName = "SLICE_X" + x + "Y" + y;
                 }
             }
             attempts++;
         }
-        return anchorSiteName;
+        return anchorSite;
     }
 
     private void placeCarrySite(EDIFHierCellInst carryCell, SiteInst si,
             Map<String, List<String>> occupiedBELs,
             Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
+        //
+        // ****** POTENTIAL FUTURE BUG IN HIDING ********
+        // what guarantees that all of the FFs connected to the CARRY4 all
+        // share the same CE and Reset?
+        //
 
-        // System.out.println("SiteTypeEnum: " + si.getSiteTypeEnum());
         si.createCell(carryCell, si.getBEL("CARRY4"));
-        // System.out.println("Created CARRY4");
 
-        // if a carry is used, just treat all the site's lanes as used
+        // if a carry is used, just treat all the site's BELs as used
         occupiedBELs.put(si.getName(), new ArrayList<>(
                 List.of("AFF", "A5FF", "BFF", "B5FF", "CFF", "C5FF", "DFF", "D5FF",
                         "A5LUT", "A6LUT", "B5LUT", "B6LUT", "C5LUT", "C6LUT", "D5LUT", "D6LUT")));
@@ -209,10 +230,9 @@ public class PlacerPackingSiteCentric extends Placer {
             EDIFHierCellInst sinkCell = sinkPort.getHierarchicalInst()
                     .getChild(sinkPort.getPortInst().getCellInst().getName());
             // for now, just always use FF not 5FF
-            // System.out.println("sinkCell: " + sinkCell.getCellType().getName());
             if (sinkCell.getCellType().getName().contains("FDRE")) {
                 si.createCell(sinkCell, si.getBEL(entry.getValue()[0])); // XFF
-                // System.out.println("Created FDRE");
+                EDIFCellGroups.get("FDRE").remove(sinkCell);
             }
         }
 
@@ -231,17 +251,14 @@ public class PlacerPackingSiteCentric extends Placer {
             EDIFHierCellInst sourceCell = sourcePort.getHierarchicalInst()
                     .getChild(sourcePort.getPortInst().getCellInst().getName());
             String sourceCellType = sourceCell.getCellType().getName();
-            // if (sourceCellType == "LUT6") {
-            // si.createCell(sourceCell, si.getBEL(entry.getValue()[1])); // X6LUT
-            // System.out.println("Created LUT6");
-            // } else if (sourceCellType.contains("LUT")) {
-            // si.createCell(sourceCell, si.getBEL(entry.getValue()[0])); // X5LUT
-            // System.out.println("Created LUT5");
-            // }
+            // for now, just always assume X6LUT
             if (sourceCellType.contains("LUT")) {
                 si.createCell(sourceCell, si.getBEL(entry.getValue()[1])); // X6LUT
+                EDIFCellGroups.get("LUT").remove(sourceCell);
             }
         }
+
+        EDIFCellGroups.get("CARRY4").remove(carryCell);
     }
 
     private void placeCarryChainSites(List<List<EDIFHierCellInst>> EDIFCarryChains,
@@ -259,11 +276,10 @@ public class PlacerPackingSiteCentric extends Placer {
 
             int randIndex = rand.nextInt(compatibleSiteTypes.size());
             SiteTypeEnum selectedSiteType = compatibleSiteTypes.get(randIndex);
-            String anchorSiteName = findCarryChainAnchorSite(selectedSiteType, chain);
-            Site anchorSite = device.getSite(anchorSiteName);
+            Site anchorSite = findCarryChainAnchorSite(selectedSiteType, chain);
 
             // find and place the anchor cell
-            if (anchorSiteName == null) {
+            if (anchorSite == null) {
                 writer.write("\nWARNING: COULD NOT PLACE CARRY CHAIN ANCHOR!");
                 break;
             } else {
@@ -318,7 +334,7 @@ public class PlacerPackingSiteCentric extends Placer {
     }
 
     private void placeDSPPairSites(List<Pair<EDIFHierCellInst, EDIFHierCellInst>> EDIFDSPPairs,
-            List<String> occupiedDSPSites,
+            List<Site> occupiedDSPSites,
             Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
         Random rand = new Random();
         List<Site> compatibleSites = new ArrayList<Site>(
@@ -339,26 +355,90 @@ public class PlacerPackingSiteCentric extends Placer {
 
             compatibleSites.remove(dspSitePair[0]);
             compatibleSites.remove(dspSitePair[1]);
-            occupiedDSPSites.add(dspSitePair[0].getName());
-            occupiedDSPSites.add(dspSitePair[1].getName());
+            occupiedDSPSites.add(dspSitePair[0]);
+            occupiedDSPSites.add(dspSitePair[1]);
         }
     } // end placeDSPPairSites()
 
-    private Map<Pair<String, String>, List<EDIFHierCellInst>> findLUTFFEnableResetGroups(
+    private Map<Pair<String, String>, List<Pair<EDIFHierCellInst, EDIFHierCellInst>>> findLUTFFEnableResetGroups(
             Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
         List<EDIFHierCellInst> visitedFFs = new ArrayList<>();
-        Map<Pair<String, String>, List<EDIFHierCellInst>> groups = new HashMap<>();
+        Map<Pair<String, String>, List<Pair<EDIFHierCellInst, EDIFHierCellInst>>> groups = new HashMap<>();
+
         for (EDIFHierCellInst ffCell : EDIFCellGroups.get("FDRE")) {
+            // examine the CE net to determine which group
             EDIFHierPortInst CEPort = ffCell.getPortInst("CE");
             String CENet = CEPort.getHierarchicalNet().getHierarchicalNetName();
             EDIFHierPortInst RPort = ffCell.getPortInst("R");
             String RNet = RPort.getHierarchicalNet().getHierarchicalNetName();
-            var pair = new Pair<String, String>(CENet, RNet);
-            groups.computeIfAbsent(pair, k -> new ArrayList<>()).add(ffCell);
+            var enableResetPair = new Pair<String, String>(CENet, RNet);
+
+            // examine the D net to find the LUT pair
+            EDIFHierPortInst DPort = ffCell.getPortInst("D");
+            EDIFHierPortInst sourcePort = DPort.getHierarchicalNet().getLeafHierPortInsts(true, false).get(0);
+
+            EDIFHierCellInst sourceCell = sourcePort.getHierarchicalInst()
+                    .getChild(sourcePort.getPortInst().getCellInst().getName());
+
+            var LUTFFPair = sourceCell.getCellType().getName().contains("LUT")
+                    ? new Pair<EDIFHierCellInst, EDIFHierCellInst>(sourceCell, ffCell)
+                    : new Pair<EDIFHierCellInst, EDIFHierCellInst>(null, ffCell);
+
+            groups.computeIfAbsent(enableResetPair, k -> new ArrayList<>()).add(LUTFFPair);
             visitedFFs.add(ffCell);
         }
         EDIFCellGroups.get("FDRE").removeAll(visitedFFs);
         return groups;
+    }
+
+    private void placeLUTFFPairGroups(
+            Map<Pair<String, String>, List<Pair<EDIFHierCellInst, EDIFHierCellInst>>> LUTFFEnableResetGroups,
+            List<Site> occupiedCLBSites,
+            Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
+        writer.write("\n\nPlacing LUT-FF Pair Groups... (" + LUTFFEnableResetGroups.size() + ")");
+        for (Map.Entry<Pair<String, String>, List<Pair<EDIFHierCellInst, EDIFHierCellInst>>> group : LUTFFEnableResetGroups
+                .entrySet()) {
+            Pair<String, String> netPair = group.getKey();
+
+            String s1 = String.format("\n\tCENet: %-50s RNet: %-50s", netPair.key(), netPair.value());
+            writer.write(s1);
+            List<Pair<EDIFHierCellInst, EDIFHierCellInst>> LUTFFList = group.getValue();
+
+            List<Pair<String, String>> FF_BELS = new ArrayList<>();
+            FF_BELS.add(new Pair<String, String>("A5FF", "AFF"));
+            FF_BELS.add(new Pair<String, String>("B5FF", "BFF"));
+            FF_BELS.add(new Pair<String, String>("C5FF", "CFF"));
+            FF_BELS.add(new Pair<String, String>("D5FF", "DFF"));
+
+            List<Pair<String, String>> LUT_BELS = new ArrayList<>();
+            LUT_BELS.add(new Pair<String, String>("A5LUT", "A6LUT"));
+            LUT_BELS.add(new Pair<String, String>("B5LUT", "B6LUT"));
+            LUT_BELS.add(new Pair<String, String>("C5LUT", "C6LUT"));
+            LUT_BELS.add(new Pair<String, String>("D5LUT", "D6LUT"));
+
+            for (List<Pair<EDIFHierCellInst, EDIFHierCellInst>> LUTFFPairs : splitIntoGroups(LUTFFList, 4)) {
+                // FIND COMPATIBLE SITE
+                Random rand = new Random();
+                List<SiteTypeEnum> compatibleSiteTypes = new ArrayList<SiteTypeEnum>();
+                compatibleSiteTypes.add(SiteTypeEnum.SLICEL);
+                compatibleSiteTypes.add(SiteTypeEnum.SLICEM);
+                int randIndex = rand.nextInt(compatibleSiteTypes.size());
+                SiteTypeEnum selectedSiteType = compatibleSiteTypes.get(randIndex);
+
+                List<Site> availableSites = new ArrayList<Site>(
+                        Arrays.asList(device.getAllCompatibleSites(selectedSiteType)));
+                availableSites.removeAll(occupiedCLBSites);
+                Site selectedSite = availableSites.get(rand.nextInt(availableSites.size()));
+
+                SiteInst si = design.createSiteInst(selectedSite);
+                for (int i = 0; i < LUTFFPairs.size(); i++) {
+                    EDIFHierCellInst LUTCell = LUTFFPairs.get(i).key();
+                    if (LUTCell != null)
+                        si.createCell(LUTCell, si.getBEL(LUT_BELS.get(i).value()));
+                    si.createCell(LUTFFPairs.get(i).value(), si.getBEL(FF_BELS.get(i).value()));
+                }
+            }
+        }
     }
 
     public @Override void placeDesign() throws IOException {
@@ -409,27 +489,6 @@ public class PlacerPackingSiteCentric extends Placer {
 
         List<Pair<EDIFHierCellInst, EDIFHierCellInst>> DSPPairs = findDSPPairs(EDIFCellGroups);
         List<List<EDIFHierCellInst>> CARRYChains = findCarryChains(EDIFCellGroups);
-        Map<Pair<String, String>, List<EDIFHierCellInst>> FFEnableResetGroups = findLUTFFEnableResetGroups(
-                EDIFCellGroups);
-
-        writer.write("\n\nNumber of stray FF cells ... (" + EDIFCellGroups.get("FDRE").size() + ")");
-
-        writer.write("\n\nPrinting Unique CE-R pairs... " + FFEnableResetGroups.size() + ")");
-        for (Pair<String, String> pair : FFEnableResetGroups.keySet()) {
-            String s1 = String.format("\n\tCE: %-50s R: %-50s", pair.key(), pair.value());
-            writer.write(s1);
-        }
-
-        writer.write("\n\nPrinting Unique CE-R pairs with associated FF Cells... (" + FFEnableResetGroups.size() + ")");
-        for (Map.Entry<Pair<String, String>, List<EDIFHierCellInst>> entry : FFEnableResetGroups.entrySet()) {
-            Pair<String, String> netPair = entry.getKey();
-            String CENet = netPair.key();
-            String RNet = netPair.value();
-            List<EDIFHierCellInst> cellList = entry.getValue();
-            writer.write("\n\tCENet: " + CENet + ", RNet: " + RNet + " with cells... (" + cellList.size() + ")");
-            for (EDIFHierCellInst cell : cellList)
-                writer.write("\n\t\tcell: " + cell.getFullHierarchicalInstName());
-        }
 
         writer.write("\n\nPrinting DSPPairs... (" + DSPPairs.size() + ")");
         for (Pair<EDIFHierCellInst, EDIFHierCellInst> pair : DSPPairs) {
@@ -444,12 +503,46 @@ public class PlacerPackingSiteCentric extends Placer {
                 writer.write("\n\t\t" + chain.get(i).getFullHierarchicalInstName());
             }
         }
-        List<String> occupiedDSPSites = new ArrayList<>();
-        List<String> occupiedRAMSites = new ArrayList<>();
+        List<Site> occupiedDSPSites = new ArrayList<>();
+        List<Site> occupiedRAMSites = new ArrayList<>();
+        List<Site> occupiedCLBSites = new ArrayList<>();
         Map<String, List<String>> occupiedBELs = new HashMap<>();
 
         placeCarryChainSites(CARRYChains, occupiedBELs, EDIFCellGroups);
         placeDSPPairSites(DSPPairs, occupiedDSPSites, EDIFCellGroups);
+        // placeRAMSites();
+
+        Map<Pair<String, String>, List<Pair<EDIFHierCellInst, EDIFHierCellInst>>> LUTFFEnableResetGroups = findLUTFFEnableResetGroups(
+                EDIFCellGroups);
+
+        writer.write("\n\nNumber of stray FF cells ... (" + EDIFCellGroups.get("FDRE").size() + ")");
+        writer.write("\n\nNumber of stray LUT cells ... (" + EDIFCellGroups.get("LUT").size() + ")");
+        writer.write("\n\nPrinting Unique CE-R pairs... (" + LUTFFEnableResetGroups.size() + ")");
+        for (Pair<String, String> pair : LUTFFEnableResetGroups.keySet()) {
+            String s1 = String.format("\n\tCE: %-50s R: %-50s", pair.key(), pair.value());
+            writer.write(s1);
+        }
+        writer.write(
+                "\n\nPrinting Unique CE-R pairs with associated FF Cells... (" + LUTFFEnableResetGroups.size() + ")");
+        for (Map.Entry<Pair<String, String>, List<Pair<EDIFHierCellInst, EDIFHierCellInst>>> entry : LUTFFEnableResetGroups
+                .entrySet()) {
+            Pair<String, String> netPair = entry.getKey();
+            String CENet = netPair.key();
+            String RNet = netPair.value();
+            List<Pair<EDIFHierCellInst, EDIFHierCellInst>> cellList = entry.getValue();
+            writer.write("\n\tCENet: " + CENet + ", RNet: " + RNet + " with cells... (" + cellList.size() + ")");
+            for (Pair<EDIFHierCellInst, EDIFHierCellInst> pair : cellList) {
+                if (pair.key() == null) {
+                    writer.write("\n\t\tLUT: NULL!" + " => FF: "
+                            + pair.value().getFullHierarchicalInstName());
+                } else {
+                    writer.write("\n\t\tLUT: " + pair.key().getFullHierarchicalInstName() + " => FF: "
+                            + pair.value().getFullHierarchicalInstName());
+                }
+            }
+        }
+
+        placeLUTFFPairGroups(LUTFFEnableResetGroups, occupiedCLBSites, EDIFCellGroups);
 
     } // end placeDesign()
 } // end class
