@@ -93,11 +93,16 @@ public class PlacerPackingSiteCentric extends Placer {
         }
     }
 
-    private List<List<EDIFHierCellInst>> findCarryChains(Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
-        List<List<EDIFHierCellInst>> chains = new ArrayList<>();
-        while (!EDIFCellGroups.get("CARRY4").isEmpty()) {
+    private List<List<CarryCellGroup<EDIFHierCellInst, List<EDIFHierCellInst>, List<EDIFHierCellInst>>>> findCarryChains(
+            Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
+        List<String> OPorts = new ArrayList<>(List.of("O[0]", "O[1]", "O[2]", "O[3]"));
+        List<String> SPorts = new ArrayList<>(List.of("S[0]", "S[1]", "S[2]", "S[3]"));
+        List<List<CarryCellGroup<EDIFHierCellInst, List<EDIFHierCellInst>, List<EDIFHierCellInst>>>> carryCellGroupChains = new ArrayList<>();
+        // find the carry chain anchor
+        while (!EDIFCellGroups.get("CARRY4").isEmpty()) { // iterating over chains
             List<EDIFHierCellInst> chain = new ArrayList<>();
             EDIFHierCellInst currCell = EDIFCellGroups.get("CARRY4").get(0);
+
             // every iteration, EDIFCarryCells gets updated so .get(0) is different.
             while (true) {
                 EDIFHierPortInst currCellPort = currCell.getPortInst("CI");
@@ -118,9 +123,39 @@ public class PlacerPackingSiteCentric extends Placer {
             // we now have the starting carry cell as currCell
             // now traverse in the cout direction
             // the end of the chain occurs when portinst CO[3] is null
+            List<CarryCellGroup<EDIFHierCellInst, List<EDIFHierCellInst>, List<EDIFHierCellInst>>> carryCellGroups = new ArrayList<>();
 
-            while (true) {
-                chain.add(currCell);
+            while (true) { // iterating through the chain itself
+                chain.add(currCell); // currCell = carry cell
+                CarryCellGroup<EDIFHierCellInst, List<EDIFHierCellInst>, List<EDIFHierCellInst>> carryCellGroup = new CarryCellGroup<>(
+                        currCell, new ArrayList<>(), new ArrayList<>());
+
+                // assemble the carry site cells
+                for (int i = 0; i < 4; i++) {
+                    EDIFHierNet ONet = currCell.getPortInst(OPorts.get(i)).getHierarchicalNet();
+                    EDIFHierPortInst ONetSink = ONet.getLeafHierPortInsts(false, true).get(0);
+                    EDIFHierCellInst ONetSinkCell = ONetSink.getHierarchicalInst()
+                            .getChild(ONetSink.getPortInst().getCellInst().getName());
+                    if (ONetSinkCell.getCellType().getName().contains("FDRE"))
+                        carryCellGroup.ffs().add(ONetSinkCell);
+                    else
+                        carryCellGroup.ffs().add(null);
+
+                    EDIFHierNet SNet = currCell.getPortInst(SPorts.get(i)).getHierarchicalNet();
+                    EDIFHierPortInst SNetSource = SNet.getLeafHierPortInsts(false, true).get(0);
+                    EDIFHierCellInst SNetSourceCell = SNetSource.getHierarchicalInst()
+                            .getChild(SNetSource.getPortInst().getCellInst().getName());
+                    if (SNetSourceCell.getCellType().getName().contains("LUT"))
+                        carryCellGroup.luts().add(SNetSourceCell);
+                    else
+                        carryCellGroup.luts().add(null);
+                }
+                carryCellGroups.add(carryCellGroup);
+                EDIFCellGroups.get("CARRY4").remove(carryCellGroup.carry());
+                EDIFCellGroups.get("FDRE").removeAll(carryCellGroup.ffs());
+                EDIFCellGroups.get("LUT").removeAll(carryCellGroup.luts());
+
+                // find the next carry cell
                 EDIFHierPortInst currCellPort = currCell.getPortInst("CO[3]");
                 if (currCellPort == null)
                     break;
@@ -135,11 +170,60 @@ public class PlacerPackingSiteCentric extends Placer {
                         .getChild(sinkCellPort.getPortInst().getCellInst().getName());
                 currCell = sinkCell;
             }
-            EDIFCellGroups.get("CARRY4").removeAll(chain);
-            chains.add(chain);
+
+            carryCellGroupChains.add(carryCellGroups);
         }
-        return chains;
+        return carryCellGroupChains;
     }
+
+    // private List<List<EDIFHierCellInst>> findCarryChains(Map<String,
+    // List<EDIFHierCellInst>> EDIFCellGroups) {
+    // List<List<EDIFHierCellInst>> chains = new ArrayList<>();
+    // while (!EDIFCellGroups.get("CARRY4").isEmpty()) {
+    // List<EDIFHierCellInst> chain = new ArrayList<>();
+    // EDIFHierCellInst currCell = EDIFCellGroups.get("CARRY4").get(0);
+    // // every iteration, EDIFCarryCells gets updated so .get(0) is different.
+    // while (true) {
+    // EDIFHierPortInst currCellPort = currCell.getPortInst("CI");
+    // EDIFHierNet hnet = currCellPort.getHierarchicalNet();
+    // if (hnet.getNet().isGND())
+    // break;
+    // Collection<EDIFHierPortInst> netPorts = hnet.getPortInsts();
+    // Map<String, EDIFHierPortInst> netPortsMap = netPorts.stream()
+    // .collect(Collectors.toMap(
+    // p -> p.getPortInst().getName(),
+    // p -> p));
+    // EDIFHierPortInst sourceCellPort = netPortsMap.get("CO[3]");
+    // EDIFHierCellInst sourceCell = sourceCellPort.getHierarchicalInst()
+    // .getChild(sourceCellPort.getPortInst().getCellInst().getName());
+    // currCell = sourceCell;
+    // }
+
+    // // we now have the starting carry cell as currCell
+    // // now traverse in the cout direction
+    // // the end of the chain occurs when portinst CO[3] is null
+
+    // while (true) {
+    // chain.add(currCell);
+    // EDIFHierPortInst currCellPort = currCell.getPortInst("CO[3]");
+    // if (currCellPort == null)
+    // break;
+    // EDIFHierNet hnet = currCellPort.getHierarchicalNet();
+    // Collection<EDIFHierPortInst> netPorts = hnet.getPortInsts();
+    // Map<String, EDIFHierPortInst> netPortsMap = netPorts.stream()
+    // .collect(Collectors.toMap(
+    // p -> p.getPortInst().getName(),
+    // p -> p));
+    // EDIFHierPortInst sinkCellPort = netPortsMap.get("CI");
+    // EDIFHierCellInst sinkCell = sinkCellPort.getHierarchicalInst()
+    // .getChild(sinkCellPort.getPortInst().getCellInst().getName());
+    // currCell = sinkCell;
+    // }
+    // EDIFCellGroups.get("CARRY4").removeAll(chain);
+    // chains.add(chain);
+    // }
+    // return chains;
+    // }
 
     private Site findLUTFFSite(SiteTypeEnum selectedSiteType, List<Site> occupiedCLBSites) throws IOException {
         Map<String, Integer> minmax = getCoordinateMinMaxOfType(selectedSiteType);
@@ -343,13 +427,13 @@ public class PlacerPackingSiteCentric extends Placer {
             Tile selectedTile = compatibleSites.get(rand.nextInt(compatibleSites.size())).getTile();
             Site[] dspSitePair = selectedTile.getSites();
 
-            SiteInst si0 = new SiteInst(pair.key().getFullHierarchicalInstName(), design, SiteTypeEnum.DSP48E1,
-                    dspSitePair[0]);
+            SiteInst si0 = new SiteInst(
+                    pair.key().getFullHierarchicalInstName(), design, SiteTypeEnum.DSP48E1, dspSitePair[0]);
             si0.createCell(pair.key(), si0.getBEL("DSP48E1"));
             // si0.routeSite();
 
-            SiteInst si1 = new SiteInst(pair.value().getFullHierarchicalInstName(), design, SiteTypeEnum.DSP48E1,
-                    dspSitePair[1]);
+            SiteInst si1 = new SiteInst(
+                    pair.value().getFullHierarchicalInstName(), design, SiteTypeEnum.DSP48E1, dspSitePair[1]);
             si1.createCell(pair.value(), si1.getBEL("DSP48E1"));
             // si1.routeSite();
 
@@ -439,7 +523,7 @@ public class PlacerPackingSiteCentric extends Placer {
                 }
             }
         }
-    }
+    } // end placeLUTFFPairGroups()
 
     public @Override void placeDesign() throws IOException {
         EDIFNetlist netlist = design.getNetlist();
@@ -488,7 +572,11 @@ public class PlacerPackingSiteCentric extends Placer {
         }
 
         List<Pair<EDIFHierCellInst, EDIFHierCellInst>> DSPPairs = findDSPPairs(EDIFCellGroups);
-        List<List<EDIFHierCellInst>> CARRYChains = findCarryChains(EDIFCellGroups);
+        // List<List<EDIFHierCellInst>> CARRYChains = findCarryChains(EDIFCellGroups);
+        List<List<CarryCellGroup<EDIFHierCellInst, List<EDIFHierCellInst>, List<EDIFHierCellInst>>>> CARRYChains = findCarryChains(
+                EDIFCellGroups);
+        Map<Pair<String, String>, List<Pair<EDIFHierCellInst, EDIFHierCellInst>>> LUTFFEnableResetGroups = findLUTFFEnableResetGroups(
+                EDIFCellGroups);
 
         writer.write("\n\nPrinting DSPPairs... (" + DSPPairs.size() + ")");
         for (Pair<EDIFHierCellInst, EDIFHierCellInst> pair : DSPPairs) {
@@ -511,9 +599,6 @@ public class PlacerPackingSiteCentric extends Placer {
         placeCarryChainSites(CARRYChains, occupiedBELs, EDIFCellGroups);
         placeDSPPairSites(DSPPairs, occupiedDSPSites, EDIFCellGroups);
         // placeRAMSites();
-
-        Map<Pair<String, String>, List<Pair<EDIFHierCellInst, EDIFHierCellInst>>> LUTFFEnableResetGroups = findLUTFFEnableResetGroups(
-                EDIFCellGroups);
 
         writer.write("\n\nNumber of stray FF cells ... (" + EDIFCellGroups.get("FDRE").size() + ")");
         writer.write("\n\nNumber of stray LUT cells ... (" + EDIFCellGroups.get("LUT").size() + ")");

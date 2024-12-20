@@ -79,7 +79,10 @@ public abstract class Placer {
     public record Pair<K, V>(K key, V value) {
     }
 
-    public record LUTFFPair<K, V>(K LUT, V FF) {
+    public record CarryCellGroup(EDIFHierCellInst carry, List<EDIFHierCellInst> luts, List<EDIFHierCellInst> ffs) {
+    }
+
+    public record LUTFFPair(EDIFHierCellInst lut, EDIFHierCellInst ff) {
     }
 
     public static <T> List<List<T>> splitIntoGroups(List<T> list, int groupSize) {
