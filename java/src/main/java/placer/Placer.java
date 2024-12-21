@@ -95,6 +95,16 @@ public abstract class Placer {
         return result;
     }
 
+    public static <T> List<List<T>> splitIntoPairs(List<T> list) {
+        List<List<T>> pairs = new ArrayList<>();
+        for (int i = 0; i < list.size(); i += 2) {
+            T first = list.get(i);
+            T second = (i + 1 < list.size()) ? list.get(i + 1) : null;
+            pairs.add(List.of(first, second));
+        }
+        return pairs;
+    }
+
     public void placeDesign() throws IOException {
         writer.write("\nPlacing Cells...");
 

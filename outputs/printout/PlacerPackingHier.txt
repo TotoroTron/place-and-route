@@ -1,352 +1,14 @@
 PlacerPackingHier.txt
-	Found IBUF cell: i_din_IBUF_inst
-	Found IBUF cell: i_ready_IBUF_inst
-	Found OBUF cell: o_dout_OBUF_inst
-	Found OBUF cell: o_dout_valid_OBUF_inst
-	Found IBUF cell: i_din_valid_IBUF_inst
-	Found IBUF cell: i_clk_IBUF_inst
-	Found OBUF cell: o_ready_OBUF_inst
-	Found IBUF cell: i_en_IBUF_inst
-	Found IBUF cell: i_rst_IBUF_inst
-	Found LUT cell: FSM_sequential_state[0]_i_1__0
-	Found LUT cell: sample_re_addr[2]_i_1
-	Found LUT cell: weight_re_addr[1]_i_1
-	Found FDRE cell: o_dout_valid_reg
-	Found FDRE cell: sample_wr_addr_reg[3]
-	Found FDRE cell: ov_dout_reg[18]
-	Found LUT cell: weight_re_addr[2]_i_1
-	Found LUT cell: weight_re_i_1
-	Found FDRE cell: ov_dout_reg[14]
-	Found FDRE cell: sample_re_addr_reg[0]
-	Found FDRE cell: ov_dout_reg[10]
-	Found FDRE cell: ov_dout_reg[22]
-	Found FDRE cell: ov_dout_reg[7]
-	Found FDRE cell: weight_re_addr_reg[2]
-	Found FDRE cell: sample_re_addr_reg[4]
-	Found LUT cell: o_ready_i_1
-	Found FDRE cell: ov_dout_reg[3]
-	Found LUT cell: sample_re_addr[1]_i_1
-	Found LUT cell: FSM_sequential_state[0]_i_2__0
-	Found LUT cell: sum_rst_i_1
-	Found FDRE cell: sample_wr_addr_reg[2]
-	Found FDRE cell: ov_dout_reg[17]
-	Found LUT cell: sample_re_addr[3]_i_4
-	Found LUT cell: sample_re_addr[0]_i_1
-	Found FDRE cell: ov_dout_reg[13]
-	Found LUT cell: sample_re_addr[3]_i_2
-	Found FDRE cell: sample_re_addr_reg[3]
-	Found LUT cell: sample_re_addr[3]_i_3
-	Found VCC cell: VCC
-	Found LUT cell: sample_re_addr[3]_i_1
-	Found LUT cell: weight_re_addr[3]_i_1
-	Found LUT cell: FSM_sequential_state[0]_i_3
-	Found FDRE cell: ov_dout_reg[21]
-	Found LUT cell: weight_re_addr[0]_i_1
-	Found FDRE cell: ov_dout_reg[6]
-	Found FDRE cell: weight_re_addr_reg[3]
-	Found LUT cell: FSM_sequential_state[1]_i_1__0
-	Found GND cell: GND
-	Found FDRE cell: ov_dout_reg[2]
-	Found LUT cell: sample_wr_addr[4]_i_1
-	Found FDRE cell: ov_dout_reg[1]
-	Found LUT cell: sample_re_addr[5]_i_1
-	Found LUT cell: weight_re_addr[4]_i_1
-	Found LUT cell: sample_wr_addr[1]_i_1
-	Found FDRE cell: sample_wr_addr_reg[1]
-	Found FDRE cell: weight_re_reg
-	Found LUT cell: sample_re_addr[5]_i_3
-	Found LUT cell: sample_re_addr[5]_i_2
-	Found LUT cell: weight_re_addr[5]_i_1
-	Found FDRE cell: sample_re_addr_reg[2]
-	Found FDRE cell: sample_wr_addr_reg[5]
-	Found FDRE cell: ov_dout_reg[16]
-	Found LUT cell: sample_wr_addr[2]_i_1
-	Found FDRE cell: ov_dout_reg[20]
-	Found FDRE cell: ov_dout_reg[9]
-	Found FDRE cell: weight_re_addr_reg[4]
-	Found FDRE cell: o_ready_reg
-	Found FDRE cell: ov_dout_reg[12]
-	Found LUT cell: sample_re_addr[4]_i_1
-	Found FDRE cell: ov_dout_reg[5]
-	Found FDRE cell: weight_re_addr_reg[0]
-	Found FDRE cell: FSM_sequential_state_reg[0]
-	Found LUT cell: ov_dout[23]_i_1__0
-	Found LUT cell: o_dout_valid_i_1__1
-	Found FDRE cell: ov_dout_reg[0]
-	Found FDRE cell: sum_rst_reg
-	Found LUT cell: sample_wr_addr[3]_i_1
-	Found LUT cell: sample_wr_addr[5]_i_1
-	Found FDRE cell: sample_wr_addr_reg[0]
-	Found LUT cell: sample_wr_addr[0]_i_1
-	Found FDRE cell: ov_dout_reg[19]
-	Found FDRE cell: ov_dout_reg[15]
-	Found FDRE cell: sample_re_addr_reg[1]
-	Found FDRE cell: sample_wr_addr_reg[4]
-	Found FDRE cell: ov_dout_reg[8]
-	Found FDRE cell: weight_re_addr_reg[5]
-	Found FDRE cell: ov_dout_reg[11]
-	Found FDRE cell: sample_re_addr_reg[5]
-	Found FDRE cell: ov_dout_reg[23]
-	Found FDRE cell: ov_dout_reg[4]
-	Found FDRE cell: weight_re_addr_reg[1]
-	Found FDRE cell: FSM_sequential_state_reg[1]
-	Found LUT cell: FSM_sequential_state[0]_i_1__1
-	Found FDRE cell: shift_reg_reg[1]
-	Found LUT cell: counter[3]_i_1
-	Found FDRE cell: o_dout_valid_reg
-	Found FDRE cell: shift_reg_reg[20]
-	Found FDRE cell: shift_reg_reg[9]
-	Found LUT cell: shift_reg[1]_i_1
-	Found LUT cell: o_ready_i_1__0
-	Found FDRE cell: shift_reg_reg[5]
-	Found LUT cell: counter[4]_i_2
-	Found LUT cell: counter[4]_i_1
-	Found LUT cell: shift_reg[23]_i_3
-	Found FDRE cell: shift_reg_reg[16]
-	Found LUT cell: shift_reg[23]_i_2
-	Found LUT cell: shift_reg[23]_i_1
-	Found LUT cell: counter[0]_i_1__0
-	Found FDRE cell: shift_reg_reg[12]
-	Found LUT cell: shift_reg[8]_i_1
-	Found FDRE cell: counter_reg[0]
-	Found LUT cell: shift_reg[15]_i_1
-	Found FDRE cell: counter_reg[4]
-	Found LUT cell: shift_reg[2]_i_1
-	Found LUT cell: shift_reg[3]_i_1
-	Found FDRE cell: shift_reg_reg[4]
-	Found LUT cell: shift_reg[9]_i_1
-	Found FDRE cell: shift_reg_reg[0]
-	Found LUT cell: shift_reg[0]_i_1
-	Found LUT cell: counter[1]_i_1__0
-	Found FDRE cell: shift_reg_reg[8]
-	Found LUT cell: shift_reg[6]_i_1
-	Found LUT cell: shift_reg[16]_i_1
-	Found FDRE cell: shift_reg_reg[17]
-	Found LUT cell: shift_reg[13]_i_1
-	Found FDRE cell: shift_reg_reg[13]
-	Found LUT cell: shift_reg[10]_i_1
-	Found FDRE cell: shift_reg_reg[21]
-	Found FDRE cell: counter_reg[1]
-	Found GND cell: GND
-	Found LUT cell: FSM_sequential_state[1]_i_1__1
-	Found FDRE cell: shift_reg_reg[3]
-	Found LUT cell: shift_reg[18]_i_1
-	Found LUT cell: shift_reg[21]_i_1
-	Found FDRE cell: shift_reg_reg[7]
-	Found LUT cell: FSM_sequential_state[1]_i_2
-	Found LUT cell: shift_reg[19]_i_1
-	Found FDRE cell: shift_reg_reg[14]
-	Found FDRE cell: shift_reg_reg[22]
-	Found FDRE cell: shift_reg_reg[10]
-	Found LUT cell: shift_reg[12]_i_1
-	Found FDRE cell: o_ready_reg
-	Found FDRE cell: counter_reg[2]
-	Found LUT cell: o_dout_valid_i_1
-	Found LUT cell: shift_reg[5]_i_1
-	Found LUT cell: shift_reg[20]_i_1
-	Found FDRE cell: FSM_sequential_state_reg[0]
-	Found FDRE cell: shift_reg_reg[18]
-	Found FDRE cell: shift_reg_reg[2]
-	Found LUT cell: shift_reg[14]_i_1
-	Found LUT cell: shift_reg[22]_i_1
-	Found LUT cell: counter[2]_i_1__0
-	Found LUT cell: shift_reg[11]_i_1
-	Found FDRE cell: shift_reg_reg[6]
-	Found FDRE cell: shift_reg_reg[15]
-	Found FDRE cell: shift_reg_reg[23]
-	Found FDRE cell: shift_reg_reg[11]
-	Found LUT cell: shift_reg[4]_i_1
-	Found LUT cell: shift_reg[17]_i_1
-	Found FDRE cell: counter_reg[3]
-	Found LUT cell: shift_reg[7]_i_1
-	Found FDRE cell: FSM_sequential_state_reg[1]
-	Found FDRE cell: shift_reg_reg[19]
-	Found LUT cell: shift_reg[4]_i_1__0
-	Found FDRE cell: o_dout_valid_reg
-	Found FDRE cell: shift_reg_reg[5]
-	Found LUT cell: ov_dout[23]_i_2
-	Found FDRE cell: ov_dout_reg[14]
-	Found FDRE cell: shift_reg_reg[12]
-	Found FDRE cell: counter_reg[0]
-	Found FDRE cell: ov_dout_reg[7]
-	Found LUT cell: shift_reg[8]_i_1__0
-	Found FDRE cell: shift_reg_reg[4]
-	Found LUT cell: shift_reg[13]_i_1__0
-	Found LUT cell: ov_dout[23]_i_1
-	Found LUT cell: shift_reg[18]_i_1__0
-	Found LUT cell: shift_reg[1]_i_1__0
-	Found FDRE cell: ov_dout_reg[13]
-	Found FDRE cell: shift_reg_reg[13]
-	Found VCC cell: VCC
-	Found FDRE cell: counter_reg[1]
-	Found LUT cell: shift_reg[23]_i_1__0
-	Found LUT cell: FSM_sequential_state[0]_i_2
-	Found LUT cell: FSM_sequential_state[0]_i_1
-	Found FDRE cell: ov_dout_reg[6]
-	Found GND cell: GND
-	Found FDRE cell: ov_dout_reg[1]
-	Found LUT cell: shift_reg[5]_i_1__0
-	Found FDRE cell: shift_reg_reg[7]
-	Found LUT cell: counter[1]_i_1
-	Found LUT cell: shift_reg[9]_i_1__0
-	Found FDRE cell: shift_reg_reg[22]
-	Found FDRE cell: shift_reg_reg[10]
-	Found FDRE cell: ov_dout_reg[9]
-	Found FDRE cell: o_ready_reg
-	Found FDRE cell: ov_dout_reg[12]
-	Found LUT cell: shift_reg[14]_i_1__0
-	Found FDRE cell: FSM_sequential_state_reg[0]
-	Found FDRE cell: shift_reg_reg[18]
-	Found FDRE cell: ov_dout_reg[0]
-	Found LUT cell: o_dout_valid_i_1__0
-	Found LUT cell: counter[4]_i_1__0
-	Found LUT cell: shift_reg[17]_i_1__0
-	Found FDRE cell: shift_reg_reg[6]
-	Found FDRE cell: ov_dout_reg[19]
-	Found LUT cell: shift_reg[10]_i_1__0
-	Found FDRE cell: shift_reg_reg[23]
-	Found FDRE cell: shift_reg_reg[11]
-	Found FDRE cell: ov_dout_reg[8]
-	Found FDRE cell: ov_dout_reg[11]
-	Found FDRE cell: ov_dout_reg[23]
-	Found LUT cell: shift_reg[22]_i_1__0
-	Found FDRE cell: FSM_sequential_state_reg[1]
-	Found FDRE cell: shift_reg_reg[19]
-	Found LUT cell: shift_reg[2]_i_1__0
-	Found FDRE cell: shift_reg_reg[1]
-	Found LUT cell: shift_reg[6]_i_1__0
-	Found LUT cell: shift_reg[21]_i_1__0
-	Found FDRE cell: shift_reg_reg[20]
-	Found FDRE cell: shift_reg_reg[9]
-	Found LUT cell: o_ready_i_1__1
-	Found FDRE cell: ov_dout_reg[18]
-	Found FDRE cell: shift_reg_reg[16]
-	Found LUT cell: counter[4]_i_3
-	Found FDRE cell: ov_dout_reg[10]
-	Found FDRE cell: ov_dout_reg[22]
-	Found LUT cell: shift_reg[15]_i_1__0
-	Found FDRE cell: counter_reg[4]
-	Found FDRE cell: ov_dout_reg[3]
-	Found LUT cell: counter[3]_i_1__0
-	Found FDRE cell: shift_reg_reg[0]
-	Found LUT cell: shift_reg[11]_i_1__0
-	Found LUT cell: shift_reg[16]_i_1__0
-	Found LUT cell: counter[2]_i_2
-	Found FDRE cell: shift_reg_reg[8]
-	Found LUT cell: counter[2]_i_1
-	Found FDRE cell: ov_dout_reg[17]
-	Found FDRE cell: shift_reg_reg[17]
-	Found FDRE cell: shift_reg_reg[21]
-	Found FDRE cell: ov_dout_reg[21]
-	Found LUT cell: shift_reg[3]_i_1__0
-	Found FDRE cell: ov_dout_reg[2]
-	Found LUT cell: shift_reg[20]_i_1__0
-	Found FDRE cell: shift_reg_reg[3]
-	Found LUT cell: counter[4]_i_2__0
-	Found LUT cell: counter[0]_i_1
-	Found FDRE cell: shift_reg_reg[14]
-	Found LUT cell: FSM_sequential_state[1]_i_1
-	Found FDRE cell: ov_dout_reg[16]
-	Found FDRE cell: ov_dout_reg[20]
-	Found FDRE cell: counter_reg[2]
-	Found LUT cell: shift_reg[7]_i_1__0
-	Found FDRE cell: ov_dout_reg[5]
-	Found LUT cell: shift_reg[23]_i_2__0
-	Found FDRE cell: shift_reg_reg[2]
-	Found LUT cell: shift_reg[12]_i_1__0
-	Found LUT cell: shift_reg[0]_i_1__0
-	Found FDRE cell: shift_reg_reg[15]
-	Found LUT cell: shift_reg[19]_i_1__0
-	Found FDRE cell: ov_dout_reg[15]
-	Found FDRE cell: counter_reg[3]
-	Found FDRE cell: ov_dout_reg[4]
-	Found LUT cell: ov_sum[4]_i_5
-	Found LUT cell: ov_sum[4]_i_4
-	Found FDRE cell: ov_sum_reg[4]
-	Found LUT cell: ov_sum[12]_i_5
-	Found FDRE cell: ov_sum_reg[18]
-	Found LUT cell: ov_sum[12]_i_2
-	Found LUT cell: ov_sum[20]_i_4
-	Found FDRE cell: ov_sum_reg[8]
-	Found LUT cell: ov_sum[20]_i_5
-	Found LUT cell: ov_sum[12]_i_4
-	Found LUT cell: ov_sum[20]_i_2
-	Found FDRE cell: ov_sum_reg[14]
-	Found LUT cell: ov_sum[12]_i_3
-	Found LUT cell: ov_sum[20]_i_3
-	Found CARRY4 cell: ov_sum_reg[4]_i_1
-	Found FDRE cell: ov_sum_reg[10]
-	Found FDRE cell: ov_sum_reg[22]
-	Found LUT cell: ov_sum[4]_i_3
-	Found LUT cell: ov_sum[4]_i_2
-	Found GND cell: GND_1
-	Found CARRY4 cell: ov_sum_reg[0]_i_2
-	Found FDRE cell: ov_sum_reg[3]
-	Found VCC cell: VCC_1
-	Found FDRE cell: ov_sum_reg[17]
-	Found FDRE cell: ov_sum_reg[7]
-	Found VCC cell: VCC
-	Found CARRY4 cell: ov_sum_reg[16]_i_1
-	Found FDRE cell: ov_sum_reg[13]
-	Found FDRE cell: ov_sum_reg[21]
-	Found GND cell: GND
-	Found CARRY4 cell: ov_sum_reg[8]_i_1
-	Found LUT cell: ov_sum[16]_i_5
-	Found LUT cell: ov_sum[0]_i_1
-	Found FDRE cell: ov_sum_reg[2]
-	Found LUT cell: ov_sum[0]_i_3
-	Found LUT cell: ov_sum[0]_i_4
-	Found LUT cell: ov_sum[16]_i_2
-	Found FDRE cell: ov_sum_reg[16]
-	Found LUT cell: ov_sum[0]_i_5
-	Found LUT cell: ov_sum[0]_i_6
-	Found LUT cell: ov_sum[16]_i_4
-	Found FDRE cell: ov_sum_reg[6]
-	Found LUT cell: ov_sum[16]_i_3
-	Found FDRE cell: ov_sum_reg[12]
-	Found DSP48E1 cell: sum_trunc1__0
-	Found FDRE cell: ov_sum_reg[20]
-	Found CARRY4 cell: ov_sum_reg[12]_i_1
-	Found LUT cell: ov_sum[8]_i_4
-	Found LUT cell: ov_sum[8]_i_5
-	Found CARRY4 cell: ov_sum_reg[20]_i_1
-	Found LUT cell: ov_sum[8]_i_2
-	Found FDRE cell: ov_sum_reg[0]
-	Found LUT cell: ov_sum[8]_i_3
-	Found FDRE cell: ov_sum_reg[19]
-	Found FDRE cell: ov_sum_reg[1]
-	Found FDRE cell: ov_sum_reg[15]
-	Found FDRE cell: ov_sum_reg[5]
-	Found FDRE cell: ov_sum_reg[23]
-	Found FDRE cell: ov_sum_reg[11]
-	Found FDRE cell: ov_sum_reg[9]
-	Found DSP48E1 cell: sum_trunc1
-	Found GND cell: GND
-	Found GND cell: GND
-	Found LUT cell: gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
-	Found GND cell: GND
-	Found RAMB18E1 cell: gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg
-	Found VCC cell: VCC
-	Found LUT cell: gen_wr_a.gen_word_narrow.mem_reg_i_2
-	Found GND cell: GND
-	Found RAMB18E1 cell: gen_wr_a.gen_word_narrow.mem_reg
-	Found LUT cell: gen_wr_a.gen_word_narrow.mem_reg_i_1
-	Found VCC cell: VCC
 
-Set of all Unique EDIF Cell Types... (14)
+Set of all Unique EDIF Cell Types... (9)
 	OBUF
-	LUT2
-	RAMB18E1
-	LUT1
-	IBUF
-	LUT6
-	LUT5
-	LUT4
-	LUT3
 	FDRE
+	RAMB18E1
 	CARRY4
 	VCC
+	IBUF
 	DSP48E1
+	LUT
 	GND
 Printing EDIFCells By Type...
 
@@ -3179,8 +2841,8 @@ Printing CARRYChains... (1)
 
 Placing carry chains... (1)
 	chain size: 6
-	selectedSiteType: SLICEL
-	X_MAX: 113, X_MIN: 1, Y_MAX: 149, Y_MIN: 0
+	selectedSiteType: SLICEM
+	X_MAX: 112, X_MIN: 0, Y_MAX: 149, Y_MIN: 0
 
 Number of stray FF cells ... (0)
 
@@ -3371,3 +3033,56 @@ Placing LUT-FF Pair Groups... (14)
 	CENet: serializer_inst/counter[4]_i_1_n_0                 RNet: serializer_inst/<const0>                          
 	CENet: deserializer_inst/i_en_IBUF                        RNet: deserializer_inst/i_rst_IBUF                      
 	CENet: fir_filter_inst/o_ready_i_1_n_0                    RNet: fir_filter_inst/i_rst_IBUF                        
+
+ALL CELL PATTERNS HAVE BEEN PLACED...
+
+Printing occupiedCLBSites... 46
+	Site: SLICE_X26Y54
+	Site: SLICE_X26Y55
+	Site: SLICE_X26Y56
+	Site: SLICE_X26Y57
+	Site: SLICE_X26Y58
+	Site: SLICE_X26Y59
+	Site: SLICE_X13Y9
+	Site: SLICE_X8Y10
+	Site: SLICE_X55Y1
+	Site: SLICE_X16Y45
+	Site: SLICE_X33Y122
+	Site: SLICE_X62Y43
+	Site: SLICE_X40Y148
+	Site: SLICE_X94Y33
+	Site: SLICE_X82Y55
+	Site: SLICE_X90Y70
+	Site: SLICE_X51Y71
+	Site: SLICE_X38Y81
+	Site: SLICE_X80Y61
+	Site: SLICE_X87Y73
+	Site: SLICE_X34Y49
+	Site: SLICE_X100Y51
+	Site: SLICE_X53Y13
+	Site: SLICE_X59Y95
+	Site: SLICE_X54Y29
+	Site: SLICE_X45Y55
+	Site: SLICE_X67Y55
+	Site: SLICE_X91Y47
+	Site: SLICE_X38Y134
+	Site: SLICE_X31Y61
+	Site: SLICE_X25Y17
+	Site: SLICE_X50Y102
+	Site: SLICE_X86Y6
+	Site: SLICE_X50Y31
+	Site: SLICE_X72Y31
+	Site: SLICE_X30Y37
+	Site: SLICE_X86Y82
+	Site: SLICE_X10Y48
+	Site: SLICE_X109Y121
+	Site: SLICE_X92Y35
+	Site: SLICE_X66Y66
+	Site: SLICE_X80Y35
+	Site: SLICE_X86Y61
+	Site: SLICE_X69Y30
+	Site: SLICE_X13Y20
+	Site: SLICE_X98Y0
+Printing occupiedDSPSites... 2
+	Site: DSP48_X2Y40
+	Site: DSP48_X2Y41
