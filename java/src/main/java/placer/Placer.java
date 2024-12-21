@@ -248,6 +248,33 @@ public abstract class Placer {
         }
     }
 
+    private void writeChainDetails(List<CarryCellGroup> chain) throws IOException {
+        writer.write("\n\tAnchor Carry: " + safeGetName(chain.get(0).carry()));
+        writeLutsAndFFs(chain.get(0));
+        for (int i = 1; i < chain.size(); i++) {
+            writer.write("\n\t\tCarry: " + safeGetName(chain.get(i).carry()));
+            writeLutsAndFFs(chain.get(i));
+        }
+    }
+
+    private void writeLutsAndFFs(CarryCellGroup group) throws IOException {
+        for (int j = 0; j < 4; j++) {
+            writer.write("\n\t\tLUT: " + safeGetName(group.luts().get(j)));
+            writer.write("\n\t\t FF: " + safeGetName(group.ffs().get(j)));
+        }
+    }
+
+    private String safeGetName(EDIFHierCellInst instance) {
+        return instance != null ? instance.getFullHierarchicalInstName() : "Null!";
+    }
+
+    public void writeCARRYChains(List<List<CarryCellGroup>> CARRYChains) throws IOException {
+        writer.write("\n\nPrinting CARRYChains... (" + CARRYChains.size() + ")");
+        for (List<CarryCellGroup> chain : CARRYChains) {
+            writeChainDetails(chain);
+        }
+    }
+
     protected boolean isBufferCell(Design design, EDIFHierCellInst ehci) {
         // Filter out IBUF/OBUF cells. They are already placed by constraints.
         Set<String> buffCells = new HashSet<>(Arrays.asList("IBUF", "OBUF"));

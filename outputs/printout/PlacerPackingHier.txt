@@ -3122,12 +3122,60 @@ Printing DSPPairs... (1)
 	(DSP48E1: fir_filter_inst/tap_inst/sum_trunc1__0, DSP48E1: fir_filter_inst/tap_inst/sum_trunc1)
 
 Printing CARRYChains... (1)
-	Anchor: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2
-		fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1
-		fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1
-		fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1
-		fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1
-		fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1
+	Anchor Carry: fir_filter_inst/tap_inst/ov_sum_reg[0]_i_2
+		LUT: fir_filter_inst/tap_inst/ov_sum[0]_i_6
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[0]
+		LUT: fir_filter_inst/tap_inst/ov_sum[0]_i_5
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[1]
+		LUT: fir_filter_inst/tap_inst/ov_sum[0]_i_4
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[2]
+		LUT: fir_filter_inst/tap_inst/ov_sum[0]_i_3
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[3]
+		Carry: fir_filter_inst/tap_inst/ov_sum_reg[4]_i_1
+		LUT: fir_filter_inst/tap_inst/ov_sum[4]_i_5
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[4]
+		LUT: fir_filter_inst/tap_inst/ov_sum[4]_i_4
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[5]
+		LUT: fir_filter_inst/tap_inst/ov_sum[4]_i_3
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[6]
+		LUT: fir_filter_inst/tap_inst/ov_sum[4]_i_2
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[7]
+		Carry: fir_filter_inst/tap_inst/ov_sum_reg[8]_i_1
+		LUT: fir_filter_inst/tap_inst/ov_sum[8]_i_5
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[8]
+		LUT: fir_filter_inst/tap_inst/ov_sum[8]_i_4
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[9]
+		LUT: fir_filter_inst/tap_inst/ov_sum[8]_i_3
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[10]
+		LUT: fir_filter_inst/tap_inst/ov_sum[8]_i_2
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[11]
+		Carry: fir_filter_inst/tap_inst/ov_sum_reg[12]_i_1
+		LUT: fir_filter_inst/tap_inst/ov_sum[12]_i_5
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[12]
+		LUT: fir_filter_inst/tap_inst/ov_sum[12]_i_4
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[13]
+		LUT: fir_filter_inst/tap_inst/ov_sum[12]_i_3
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[14]
+		LUT: fir_filter_inst/tap_inst/ov_sum[12]_i_2
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[15]
+		Carry: fir_filter_inst/tap_inst/ov_sum_reg[16]_i_1
+		LUT: fir_filter_inst/tap_inst/ov_sum[16]_i_5
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[16]
+		LUT: fir_filter_inst/tap_inst/ov_sum[16]_i_4
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[17]
+		LUT: fir_filter_inst/tap_inst/ov_sum[16]_i_3
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[18]
+		LUT: fir_filter_inst/tap_inst/ov_sum[16]_i_2
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[19]
+		Carry: fir_filter_inst/tap_inst/ov_sum_reg[20]_i_1
+		LUT: fir_filter_inst/tap_inst/ov_sum[20]_i_5
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[20]
+		LUT: fir_filter_inst/tap_inst/ov_sum[20]_i_4
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[21]
+		LUT: fir_filter_inst/tap_inst/ov_sum[20]_i_3
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[22]
+		LUT: fir_filter_inst/tap_inst/ov_sum[20]_i_2
+		 FF: fir_filter_inst/tap_inst/ov_sum_reg[23]
 
 Placing carry chains... (1)
 	chain size: 6
@@ -3138,7 +3186,7 @@ Number of stray FF cells ... (0)
 
 Number of stray LUT cells ... (113)
 
-Printing Unique CE-R pairs... (15)
+Printing Unique CE-R pairs... (14)
 	CE: serializer_inst/i_en_IBUF                          R: serializer_inst/i_rst_IBUF                        
 	CE: deserializer_inst/<const1>                         R: deserializer_inst/<const0>                        
 	CE: deserializer_inst/counter[4]_i_1__0_n_0            R: deserializer_inst/i_rst_IBUF                      
@@ -3148,14 +3196,13 @@ Printing Unique CE-R pairs... (15)
 	CE: fir_filter_inst/sample_re_addr[5]_i_1_n_0          R: fir_filter_inst/i_rst_IBUF                        
 	CE: deserializer_inst/ov_dout[23]_i_1_n_0              R: deserializer_inst/<const0>                        
 	CE: fir_filter_inst/<const1>                           R: fir_filter_inst/i_rst_IBUF                        
-	CE: fir_filter_inst/tap_inst/i_en_IBUF                 R: fir_filter_inst/tap_inst/ov_sum[0]_i_1_n_0        
 	CE: deserializer_inst/shift_reg[23]_i_1__0_n_0         R: deserializer_inst/i_rst_IBUF                      
 	CE: serializer_inst/shift_reg[23]_i_1_n_0              R: serializer_inst/<const0>                          
 	CE: serializer_inst/counter[4]_i_1_n_0                 R: serializer_inst/<const0>                          
 	CE: deserializer_inst/i_en_IBUF                        R: deserializer_inst/i_rst_IBUF                      
 	CE: fir_filter_inst/o_ready_i_1_n_0                    R: fir_filter_inst/i_rst_IBUF                        
 
-Printing Unique CE-R pairs with associated FF Cells... (15)
+Printing Unique CE-R pairs with associated FF Cells... (14)
 	CENet: serializer_inst/i_en_IBUF, RNet: serializer_inst/i_rst_IBUF with cells... (4)
 		LUT: serializer_inst/o_dout_valid_i_1 => FF: serializer_inst/o_dout_valid_reg
 		LUT: serializer_inst/o_ready_i_1__0 => FF: serializer_inst/o_ready_reg
@@ -3242,31 +3289,6 @@ Printing Unique CE-R pairs with associated FF Cells... (15)
 		LUT: fir_filter_inst/o_ready_i_1 => FF: fir_filter_inst/o_ready_reg
 		LUT: fir_filter_inst/FSM_sequential_state[0]_i_1__0 => FF: fir_filter_inst/FSM_sequential_state_reg[0]
 		LUT: fir_filter_inst/FSM_sequential_state[1]_i_1__0 => FF: fir_filter_inst/FSM_sequential_state_reg[1]
-	CENet: fir_filter_inst/tap_inst/i_en_IBUF, RNet: fir_filter_inst/tap_inst/ov_sum[0]_i_1_n_0 with cells... (24)
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[4]
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[18]
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[8]
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[14]
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[10]
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[22]
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[3]
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[17]
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[7]
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[13]
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[21]
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[2]
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[16]
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[6]
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[12]
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[20]
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[0]
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[19]
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[1]
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[15]
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[5]
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[23]
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[11]
-		LUT: NULL! => FF: fir_filter_inst/tap_inst/ov_sum_reg[9]
 	CENet: deserializer_inst/shift_reg[23]_i_1__0_n_0, RNet: deserializer_inst/i_rst_IBUF with cells... (24)
 		LUT: deserializer_inst/shift_reg[5]_i_1__0 => FF: deserializer_inst/shift_reg_reg[5]
 		LUT: deserializer_inst/shift_reg[12]_i_1__0 => FF: deserializer_inst/shift_reg_reg[12]
@@ -3334,7 +3356,7 @@ Printing Unique CE-R pairs with associated FF Cells... (15)
 		LUT: fir_filter_inst/sample_wr_addr[0]_i_1 => FF: fir_filter_inst/sample_wr_addr_reg[0]
 		LUT: fir_filter_inst/sample_wr_addr[4]_i_1 => FF: fir_filter_inst/sample_wr_addr_reg[4]
 
-Placing LUT-FF Pair Groups... (15)
+Placing LUT-FF Pair Groups... (14)
 	CENet: serializer_inst/i_en_IBUF                          RNet: serializer_inst/i_rst_IBUF                        
 	CENet: deserializer_inst/<const1>                         RNet: deserializer_inst/<const0>                        
 	CENet: deserializer_inst/counter[4]_i_1__0_n_0            RNet: deserializer_inst/i_rst_IBUF                      
@@ -3344,7 +3366,6 @@ Placing LUT-FF Pair Groups... (15)
 	CENet: fir_filter_inst/sample_re_addr[5]_i_1_n_0          RNet: fir_filter_inst/i_rst_IBUF                        
 	CENet: deserializer_inst/ov_dout[23]_i_1_n_0              RNet: deserializer_inst/<const0>                        
 	CENet: fir_filter_inst/<const1>                           RNet: fir_filter_inst/i_rst_IBUF                        
-	CENet: fir_filter_inst/tap_inst/i_en_IBUF                 RNet: fir_filter_inst/tap_inst/ov_sum[0]_i_1_n_0        
 	CENet: deserializer_inst/shift_reg[23]_i_1__0_n_0         RNet: deserializer_inst/i_rst_IBUF                      
 	CENet: serializer_inst/shift_reg[23]_i_1_n_0              RNet: serializer_inst/<const0>                          
 	CENet: serializer_inst/counter[4]_i_1_n_0                 RNet: serializer_inst/<const0>                          
