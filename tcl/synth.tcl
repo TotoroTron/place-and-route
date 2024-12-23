@@ -13,10 +13,15 @@ set verif_dir "$root_dir/hdl/verilog/$design/verif"
 set xdc_dir "$root_dir/hdl/verilog/$design/constrs"
 
 # Read in source files
-set src_files [glob -nocomplain -directory $src_dir *.v]
+set src_files [glob -nocomplain -directory $src_dir {*.[v, sv]}]
 foreach file $src_files {
     puts "reading: $file"
-    read_verilog $file
+    # read_verilog $file
+    if {[string match *.sv $file]} {
+        read_verilog -sv $file
+    } else {
+        read_verilog $file
+    }
 }
 
 # Read in constraints file

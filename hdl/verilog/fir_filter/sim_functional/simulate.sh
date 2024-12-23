@@ -38,10 +38,14 @@ python3 weights.py
 cd $sim_dir
 
 # Read source files and log
-src_files=("$src_dir"/*.v)
+src_files=("$src_dir"/*.{v,sv})
 for file in "${src_files[@]}"; do
     if [ -f "$file" ]; then
-        xvlog "$file"
+        if [[ "$file" == *.sv ]]; then
+            xvlog -sv "$file"
+        else
+            xvlog "$file"
+        fi
         check_status "xvlog for $file"
     fi
 done

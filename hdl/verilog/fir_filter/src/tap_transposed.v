@@ -25,21 +25,28 @@ module tap_transposed
     localparam MAX_VALUE = 2**(DATA_WIDTH-1)-1;
     // example: DATA_WIDTH=8: if (prod < -128 or prod > 127) then overflow!
 
-    // always @(iv_din or iv_weight or iv_sum) begin
-    always @(*) begin
-        product_full = iv_din * iv_weight;
-        product_trunc = product_full[2*DATA_WIDTH-2:DATA_WIDTH-1];
-        // Q1.23 x Q1.23 = Q2.46
-        // trunc down to Q1.23
+    // // always @(iv_din or iv_weight or iv_sum) begin
+    // always @(*) begin
+    //     product_full = iv_din * iv_weight;
+    //     product_trunc = product_full[2*DATA_WIDTH-2:DATA_WIDTH-1];
+    //     // Q1.23 x Q1.23 = Q2.46
+    //     // trunc down to Q1.23
 
-        sum_full = product_trunc + iv_sum;
-        sum_trunc = sum_full[DATA_WIDTH-1:0];
-    end
+    //     sum_full = product_trunc + iv_sum;
+    //     sum_trunc = sum_full[DATA_WIDTH-1:0];
+    // end
 
     always @(posedge i_clk) begin
         if (i_rst) begin
             ov_sum = 0;
         end else if (i_en) begin
+            product_full = iv_din * iv_weight;
+            product_trunc = product_full[2*DATA_WIDTH-2:DATA_WIDTH-1];
+            // Q1.23 x Q1.23 = Q2.46
+            // trunc down to Q1.23
+
+            sum_full = product_trunc + iv_sum;
+            sum_trunc = sum_full[DATA_WIDTH-1:0];
             ov_sum = sum_trunc;
         end
     end

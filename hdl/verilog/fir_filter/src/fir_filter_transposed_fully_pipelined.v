@@ -1,6 +1,6 @@
 
 
-module fir_filter_transposed_pipelined
+module fir_filter_transposed_fully_pipelined
 #(
     parameter DATA_WIDTH = 24,
     parameter FIR_DEPTH = 16
@@ -174,7 +174,7 @@ module fir_filter_transposed_pipelined
         .ECC_MODE("no_ecc"),           // String
         .ECC_TYPE("none"),             // String
         .IGNORE_INIT_SYNTH(0),         // DECIMAL
-        .MEMORY_INIT_FILE("/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/weights.mem"),     // String
+        .MEMORY_INIT_FILE("/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/weights0.mem"),     // String
         .MEMORY_INIT_PARAM("0"),       // String
         .MEMORY_OPTIMIZATION("false"),  // String
         .MEMORY_PRIMITIVE("ultra"),     // String

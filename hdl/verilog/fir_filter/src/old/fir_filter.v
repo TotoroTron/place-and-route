@@ -15,7 +15,7 @@ module fir_filter
     wire signed [DATA_WIDTH-1:0] buffers [FIR_DEPTH-1:0];
     wire signed [DATA_WIDTH-1:0] sums [FIR_DEPTH-1:0];
     wire signed [DATA_WIDTH-1:0] weights [FIR_DEPTH-1:0];
-    `include "weights.vh" 
+    `include "weights0.vh" 
 
     assign ov_dout = sums[FIR_DEPTH-1];
 
