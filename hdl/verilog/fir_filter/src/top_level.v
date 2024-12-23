@@ -2,7 +2,8 @@
 module top_level
 #(
     parameter DATA_WIDTH = 24,
-    parameter FIR_DEPTH = 48
+    parameter FIR_DEPTH = 48,
+    parameter PIPELINES = 1
 )(
     input wire i_clk,
     input wire i_rst,
@@ -41,10 +42,11 @@ module top_level
         .o_dout_valid(des_out_valid)
     );
 
-    fir_filter_transposed_fully_pipelined
+    fir_filter_transposed_partially_pipelined
     #(
         .DATA_WIDTH(DATA_WIDTH),
-        .FIR_DEPTH(FIR_DEPTH)
+        .FIR_DEPTH(FIR_DEPTH),
+        .PIPELINES(PIPELINES)
     ) fir_filter_inst (
         .i_clk(i_clk),
         .i_rst(i_rst),

@@ -21,7 +21,7 @@ module fir_filter_transposed_partially_pipelined
     localparam RE_ADDR_WIDTH = $clog2(PIPE_DEPTH);
     localparam WR_SEL_WIDTH = WR_ADDR_WIDTH - RE_ADDR_WIDTH;
 
-    reg [WR_SEL_WIDTH-1:0] wr_sel;
+    // reg [WR_SEL_WIDTH-1:0] wr_sel;
 
     reg sample_we = 1'b0;
     reg sample_re = 1'b0;
@@ -34,53 +34,58 @@ module fir_filter_transposed_partially_pipelined
     reg [RE_ADDR_WIDTH-1:0] weight_re_addr = 0;
     wire [DATA_WIDTH-1:0] weight_data [PIPELINES-1:0];
 
+    reg tap_en;
     wire [DATA_WIDTH-1:0] tap_dout;
     wire [DATA_WIDTH-1:0] part_sum [PIPELINES-1:0];
     wire [DATA_WIDTH-1:0] acc;
     reg sum_rst;
 
-    parameter S0 = 4'b0000,
-        S1 = 4'b0001,
-        S2 = 4'b0010,
-        S3 = 4'b0011;
-    reg [3:0] state = S0;
+    parameter WAIT_DIN_VALID = 4'b0000,
+        WRITE_DIN_SAMPLE = 4'b0001,
+        SHIFT_SAMPLES = 4'b0010,
+        PROCESS_SAMPLE = 4'b0011,
+        WAIT_DOUT_READY = 4'b0100;
+    reg [3:0] state = WAIT_DIN_VALID;
     reg [3:0] next_state;
 
 
     // STATE REGISTER
     always @(posedge i_clk) begin
-        if (i_rst)  state <= S0;
+        if (i_rst)  state <= WAIT_DIN_VALID;
         else        state <= next_state;
     end
 
     // STATE MACHINE
     always @(*) begin
         case (state)
-            S0: begin
-                next_state <= S0;
+            WAIT_DIN_VALID: begin
+                next_state <= WAIT_DIN_VALID;
                 // WAIT FOR DIN VALID
                 if (i_din_valid)
-                    next_state <= S1;
+                    next_state <= WRITE_DIN_SAMPLE;
             end
-            S1: begin
+            WRITE_DIN_SAMPLE: begin
                 // SIGNAL DATA CONSUMED
                 // WRITE SAMPLE INTO RAM
-                next_state <= S2;
+                next_state <= SHIFT_SAMPLES;
             end
-            S2: begin
-                next_state <= S2;
+            SHIFT_SAMPLES: begin
+                next_state <= PROCESS_SAMPLE;
+            end
+            PROCESS_SAMPLE: begin
+                next_state <= PROCESS_SAMPLE;
                 // PIPELINED MAC
                 // ASSERT OUTPUT DATA VALID WHEN FINISHED
                 if (weight_re_addr == PIPE_DEPTH-1)
-                    next_state <= S3;
+                    next_state <= WAIT_DOUT_READY;
             end
-            S3: begin
-                next_state <= S3;
+            WAIT_DOUT_READY: begin
+                next_state <= WAIT_DOUT_READY;
                 // WAIT FOR RECEIVER TO CONSUME OUTPUT DATA
                 if (i_ready)
-                    next_state <= S0;
+                    next_state <= WAIT_DIN_VALID;
             end
-            default: next_state <= S0;
+            default: next_state <= WAIT_DIN_VALID;
         endcase
     end
 
@@ -103,14 +108,21 @@ module fir_filter_transposed_partially_pipelined
             sample_we = 1'b0;
             sample_re = 1'b0;
             weight_re = 1'b0;
+            tap_en = 1'b0;
             sum_rst = 1'b0;
             case (state)
-                S0: begin
+                WAIT_DIN_VALID: begin
                     // WAIT FOR INPUT DATA VALID
                     sum_rst = 1'b1;
                 end
 
-                S1: begin
+                SHIFT_SAMPLES: begin
+                    tap_en = 1'b0;
+                    sample_re = 1'b1;
+                    sample_re_addr = sample_wr_addr;
+                end
+
+                WRITE_DIN_SAMPLE: begin
                     // SIGNAL DATA CONSUMED
                     // WRITE SAMPLE INTO RAM
                     o_ready = 1'b1;
@@ -123,10 +135,11 @@ module fir_filter_transposed_partially_pipelined
                     sample_addr = sample_wr_addr;
                 end
 
-                S2: begin
+                PROCESS_SAMPLE: begin
                     // PIPELINED MAC
                     weight_re = 1'b1;
                     sample_re = 1'b1;
+                    tap_en = 1'b1;
                     if (sample_re_addr < PIPE_DEPTH - 1)
                         sample_re_addr = sample_re_addr + 1;
                     else
@@ -141,7 +154,7 @@ module fir_filter_transposed_partially_pipelined
                     sample_addr = sample_re_addr;
                 end
 
-                S3: begin
+                WAIT_DOUT_READY: begin
                     // WAIT FOR RECEIVER TO CONSUME OUTPUT DATA
                 end
 
@@ -163,7 +176,7 @@ module fir_filter_transposed_partially_pipelined
             ) tap_inst (
                 .i_clk(i_clk),
                 .i_rst(i_rst || sum_rst),
-                .i_en(i_en),
+                .i_en(tap_en),
                 .iv_din(sample_data[i]),
                 .iv_weight(weight_data[i]),
                 .iv_sum(part_sum[i]),
@@ -173,13 +186,16 @@ module fir_filter_transposed_partially_pipelined
         end
     endgenerate
 
-    wire dbiterra, sbiterra;
+    wire sbiterra, dbiterra;
 
-    
     generate
         for (i = 0; i < PIPELINES; i = i + 1) begin
             // xpm_memory_sprom: Single Port ROM
             // Xilinx Parameterized Macro, version 2024.1
+
+            string memfile;
+            $sformatf(memfile, "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/weights%d.mem", 0);
+
             
             xpm_memory_sprom #(
                 .ADDR_WIDTH_A(RE_ADDR_WIDTH),              // DECIMAL
@@ -190,6 +206,9 @@ module fir_filter_transposed_partially_pipelined
                 .ECC_TYPE("none"),             // String
                 .IGNORE_INIT_SYNTH(0),         // DECIMAL
                 .MEMORY_INIT_FILE($sformatf("/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/weights%d.mem", i)),     // String
+                // 
+                // *** CANNOT USE GENVARS LIKE THIS, WILL NOT READ MEM FILES
+                //
                 .MEMORY_INIT_PARAM("0"),       // String
                 .MEMORY_OPTIMIZATION("false"),  // String
                 .MEMORY_PRIMITIVE("ultra"),     // String
@@ -228,8 +247,10 @@ module fir_filter_transposed_partially_pipelined
         end
     endgenerate
 
+    wire [DATA_WIDTH-1:0] spram_din [PIPELINES-1:0];
     generate
         for (i = 0; i < PIPELINES; i = i + 1) begin
+            assign spram_din[i] = (i == 0) ? iv_din : sample_data[i];
             // xpm_memory_spram: Single Port RAM
             // Xilinx Parameterized Macro, version 2024.1
 
@@ -272,7 +293,7 @@ module fir_filter_transposed_partially_pipelined
 
                 .addra(sample_addr),                   // ADDR_WIDTH_A-bit input: Address for port A write and read operations.
                 .clka(i_clk),                     // 1-bit input: Clock signal for port A.
-                .dina(iv_din),                     // WRITE_DATA_WIDTH_A-bit input: Data input for port A write operations.
+                .dina(spram_din[i]),                     // WRITE_DATA_WIDTH_A-bit input: Data input for port A write operations.
                 .ena(i_en),                       // 1-bit input: Memory enable signal for port A. Must be high on clock
                                                     // cycles when read or write operations are initiated. Pipelined
                                                     // internally.
