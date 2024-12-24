@@ -3,6 +3,9 @@
 DESIGN="fir_filter"
 TOP_LEVEL="top_level"
 
+NUM_PIPELINES=1
+FILTER_DEPTH=48
+
 export XILINX_VIVADO=/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2
 export PATH="$PATH:$XILINX_VIVADO/bin"
 
@@ -38,12 +41,71 @@ if [ "$start_stage" == "synth" ] || [ "$start_stage" == "all" ]; then
     echo "Vivado synthesis completed. Check 'synthesized.dcp'."
 fi
 
-# Vivado Synthesis Stage
+# Vivado RTL Synthesis Stage
 if [ "$start_stage" == "rtl" ]; then
     echo "Running Vivado RTL synthesis..."
     vivado -mode batch -source $RTL_TCL -nolog -nojournal
     check_exit_status "Vivado RTL"
     echo "Vivado synthesis completed. Starting GUI."
+fi
+
+if [ "$start_stage" == "sim_functional" ]; then
+    DESIGN_DIR="$PROJ_DIR/hdl/verilog/${DESIGN}"
+
+    echo "Running Functional Simulation..."
+
+    # generate sine.mem and weights.mem
+    cd "$DESIGN_DIR/python"
+    python3 sine.py
+    python3 weights.py "$NUM_PIPELINES" "$FILTER_DEPTH"
+    python3 generate_xpm_spram.py "$NUM_PIPELINES"
+
+    cd "$DESIGN_DIR/sim_functional"
+    cat <<EOL >xsim_cfg.tcl
+    log_wave -recursive *
+    run all
+    exit
+EOL
+    cat <<EOL >waveform.tcl
+    create_wave_config; add_wave /; set_property needs_save false [current_wave_config]
+EOL
+
+    cd "$DESIGN_DIR/sim_functional"
+    # Read source files and log
+    src_files=("$DESIGN_DIR"/src/*.{v,sv})
+    for file in "${src_files[@]}"; do
+        if [ -f "$file" ]; then
+            if [[ "$file" == *.sv ]]; then
+                xvlog -sv "$file"
+            else
+                xvlog "$file"
+            fi
+            check_exit_status "xvlog for $file"
+        fi
+    done
+
+    # Read verification files and log
+    verif_files=("$DESIGN_DIR"/verif/*.sv)
+    for file in "${verif_files[@]}"; do
+        if [ -f "$file" ]; then
+            xvlog -sv "$file"
+            check_exit_status "xvlog for $file"
+        fi
+    done
+
+    # Elaboration
+    xelab -debug typical -top "tb_$TOP_LEVEL" -snapshot my_tb_snap \
+        -timescale 1ps/1ps \
+        -L xpm # -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver
+
+    check_exit_status "xelab"
+
+    # Simulation
+    xsim my_tb_snap --tclbatch xsim_cfg.tcl
+    check_exit_status "xsim"
+
+    # Open the wavefile in Vivado
+    xsim my_tb_snap.wdb -gui -tclbatch waveform.tcl
 fi
 
 # Gradle Build Stage (replaces Java Compilation)
@@ -78,7 +140,7 @@ if [ "$start_stage" == "route" ] || [ "$start_stage" == "all" ]; then
 fi
 
 # Post-Implementation Timing Simulation
-if [ "$start_stage" == "sim" ] || [ "$start_stage" == "all" ]; then
+if [ "$start_stage" == "sim_postroute" ] || [ "$start_stage" == "all" ]; then
     DESIGN_DIR="$PROJ_DIR/hdl/verilog/${DESIGN}"
     # cd "$DESIGN_DIR/sim_postroute"
     # rm -r *
