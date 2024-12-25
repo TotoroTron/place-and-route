@@ -69,6 +69,7 @@ def main():
     DATA_WIDTH = 24          # Number of bits for each coefficient
 
     PIPE_DEPTH = int(FILTER_DEPTH / NUM_PIPELINES)
+    print("weights.py: PIPE_DEPTH = " + str(PIPE_DEPTH))
     SAMPLE_RATE = 44000
     CUTOFF_FREQ = 1000
 
@@ -80,12 +81,12 @@ def main():
     src_dir = design_dir + "src/" # verilog sources
 
     for i in range(NUM_PIPELINES):
-        weights_subvector = weights[i*PIPE_DEPTH:(i+1)*PIPE_DEPTH-1]
+        weights_subvector = weights[i*PIPE_DEPTH:(i+1)*PIPE_DEPTH]
 
-        mem_fn = src_dir + f"weights_{i}.mem"
+        mem_fn = src_dir + f"weights_{i:02}.mem"
         write_mem(mem_fn, weights_subvector, DATA_WIDTH)
 
-        verilog_fn = src_dir + f"weights_{i}.vh"
+        verilog_fn = src_dir + f"weights_{i:02}.vh"
         write_verilog(verilog_fn, weights_subvector, DATA_WIDTH)
 
 if __name__ == '__main__':
