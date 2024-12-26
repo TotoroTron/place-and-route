@@ -204,11 +204,21 @@ module fir_filter_transposed_partially_pipelined
         // https://stackoverflow.com/questions/58833613/how-to-generate-a-string-from-a-genvar-value-in-a-for-loop
         // https://stackoverflow.com/questions/70439991/how-to-display-string-on-verilog
 
-        localparam [8*70-1:0] src_dir = "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/";
+        // localparam [8*70-1:0] src_dir = "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/";
         // weig hts_ 00.m em
         // 1234 5678 9ABC DE => 14 ASCII characters
-        localparam [8*14-1:0] file_name = {"weights_", (i/10) + 8'h30, (i%10) + 8'h30, ".mem"};
+        // localparam [8*14-1:0] file_name = {"weights_", (i/10) + 8'h30, (i%10) + 8'h30, ".mem"};
         // localparam [8*88-1:0] full_name = {src_dir, file_name};
+
+        // i dont know how the xilinx verilog preprocessor works, but
+        // [0:8*90-1] is more bits required to store full_name ASCII
+        // there must be some spooky padding handling going on with the tool.
+        // in fact, [0:8*200-1] also yields the correct full_name for xpm
+        // component instantiation.
+        // so when in doubt, just overshoot the amount of bits required to
+        // store the string.
+        // [0:8*90-1] is precisely the lowest number of bits to store the
+        // string correctly after guess-and-check experimenation.
 
         localparam [0:8*90-1] full_name = {
             "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/src/",
