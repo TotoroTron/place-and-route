@@ -3,8 +3,8 @@
 DESIGN="fir_filter"
 TOP_LEVEL="top_level"
 
-NUM_PIPELINES=1
-FILTER_DEPTH=48
+FILTER_DEPTH=256
+NUM_PIPELINES=8
 
 export XILINX_VIVADO=/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2
 export PATH="$PATH:$XILINX_VIVADO/bin"
@@ -57,7 +57,7 @@ if [ "$start_stage" == "sim_functional" ]; then
     # generate sine.mem and weights.mem
     cd "$DESIGN_DIR/python"
     python3 sine.py
-    python3 weights.py "$NUM_PIPELINES" "$FILTER_DEPTH"
+    python3 weights.py "$FILTER_DEPTH" "$NUM_PIPELINES"
     python3 generate_xpm_spram.py "$NUM_PIPELINES"
 
     cd "$DESIGN_DIR/sim_functional"

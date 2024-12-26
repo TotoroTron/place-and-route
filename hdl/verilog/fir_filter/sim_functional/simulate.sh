@@ -3,8 +3,8 @@
 DESIGN=fir_filter
 TOP_LEVEL=top_level
 
-NUM_PIPELINES=1
-FILTER_DEPTH=48
+FILTER_DEPTH=256
+NUM_PIPELINES=8
 
 check_exit_status() {
     if [ $? -ne 0 ]; then
@@ -21,7 +21,7 @@ echo "Running Functional Simulation..."
 # generate sine.mem and weights.mem
 cd "$DESIGN_DIR/python"
 python3 sine.py
-python3 weights.py "$NUM_PIPELINES" "$FILTER_DEPTH"
+python3 weights.py "$FILTER_DEPTH" "$NUM_PIPELINES"
 python3 generate_xpm_spram.py "$NUM_PIPELINES"
 
 cd "$DESIGN_DIR/sim_functional"

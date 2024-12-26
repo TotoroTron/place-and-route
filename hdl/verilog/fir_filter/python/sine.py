@@ -16,7 +16,7 @@ def generate(sine_freq_high, sine_freq_low, sample_freq, ampl, offset, bit_depth
     num_samples = int(sample_freq / sine_freq_low)  # number of samples per period
     t = np.arange(num_samples) / sample_freq
     scale_factor = (1 << (bit_depth - 1))  # scale factor for signed fixed-point range [-2^23, 2^23 - 1]
-    sine_wave = ampl * np.sin(2 * np.pi * sine_freq_low * t) + ampl * np.sin(2 * np.pi * sine_freq_high * t) + offset
+    sine_wave = ampl * np.sin(2 * np.pi * sine_freq_low * t) + 0.5 * ampl * np.sin(2 * np.pi * sine_freq_high * t) + offset
     sine_wave_int = np.round(sine_wave * scale_factor).astype(int)
 
     plot(sine_wave, t, "sine")
@@ -45,7 +45,7 @@ def write_verilog(filename, sine_signal, data_width):
 
 def main():
     # Parameters
-    sine_freq_high = 2000  # (Hz)
+    sine_freq_high = 5000  # (Hz)
     sine_freq_low = 200 # (Hz)
     sample_freq = 44000  # (Hz)
     amplitude = 0.2  # (range between -1 and 1)

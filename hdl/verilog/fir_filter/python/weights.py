@@ -64,12 +64,14 @@ def write_verilog(filename, weights, data_width):
 def main():
 
     # Parameters
-    NUM_PIPELINES = int(sys.argv[1])
-    FILTER_DEPTH = int(sys.argv[2])
+    FILTER_DEPTH = int(sys.argv[1])
+    NUM_PIPELINES = int(sys.argv[2])
     DATA_WIDTH = 24          # Number of bits for each coefficient
 
     PIPE_DEPTH = int(FILTER_DEPTH / NUM_PIPELINES)
-    print("weights.py: PIPE_DEPTH = " + str(PIPE_DEPTH))
+    print(f"weights.py: NUM_PIPELINES = {NUM_PIPELINES}")
+    print(f"weights.py: FILTER_DEPTH = {NUM_PIPELINES}")
+    print(f"weights.py: PIPE_DEPTH = {PIPE_DEPTH}")
     SAMPLE_RATE = 44000
     CUTOFF_FREQ = 1000
 

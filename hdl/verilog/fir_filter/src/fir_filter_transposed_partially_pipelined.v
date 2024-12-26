@@ -188,8 +188,8 @@ module fir_filter_transposed_partially_pipelined
 
     integer k;
     always @(*) begin
+        acc = 0;
         for (k = 0; k < PIPELINES; k = k + 1) begin
-            acc = 0;
             acc = acc + part_sum[k];
         end
     end
@@ -210,8 +210,8 @@ module fir_filter_transposed_partially_pipelined
         // localparam [8*14-1:0] file_name = {"weights_", (i/10) + 8'h30, (i%10) + 8'h30, ".mem"};
         // localparam [8*88-1:0] full_name = {src_dir, file_name};
 
-        // i dont know how the xilinx verilog preprocessor works, but
-        // [0:8*90-1] is more bits required to store full_name ASCII
+        // i dont know how xelab works, but
+        // [0:8*90-1] is more bits than required to store full_name ASCII
         // there must be some spooky padding handling going on with the tool.
         // in fact, [0:8*200-1] also yields the correct full_name for xpm
         // component instantiation.
@@ -283,7 +283,7 @@ module fir_filter_transposed_partially_pipelined
     wire [DATA_WIDTH-1:0] spram_din [PIPELINES-1:0];
     generate
     for (i = 0; i < PIPELINES; i = i + 1) begin
-        assign spram_din[i] = (i == 0) ? iv_din : sample_data[i];
+        assign spram_din[i] = (i == 0) ? iv_din : sample_data[i-1];
         // xpm_memory_spram: Single Port RAM
         // Xilinx Parameterized Macro, version 2024.1
 
