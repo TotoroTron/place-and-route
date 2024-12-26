@@ -192,9 +192,10 @@ public class PlacerPackingSiteCentric extends Placer {
         int x_min = minmax.get("X_MIN");
         int y_max = minmax.get("Y_MAX");
         int y_min = minmax.get("Y_MIN");
-        writer.write("\n\tselectedSiteType: " + selectedSiteType);
-        writer.write(
-                "\n\tX_MAX: " + x_max + ", X_MIN: " + x_min + ", Y_MAX: " + y_max + ", Y_MIN: " + y_min);
+        // writer.write("\n\tselectedSiteType: " + selectedSiteType);
+        // writer.write(
+        // "\n\tX_MAX: " + x_max + ", X_MIN: " + x_min + ", Y_MAX: " + y_max + ", Y_MIN:
+        // " + y_min);
         Site anchorSite = null;
         int x = 0;
         int y = 0;
@@ -266,7 +267,7 @@ public class PlacerPackingSiteCentric extends Placer {
         writer.write("\n\nPlacing carry chains... (" + EDIFCarryChains.size() + ")");
         // PLACE CARRY CHAINS
         for (List<CarryCellGroup> chain : EDIFCarryChains) {
-            writer.write("\n\tchain size: " + chain.size());
+            writer.write("\n\t\tchain size: " + chain.size());
             Random rand = new Random();
             CarryCellGroup anchorGroup = chain.get(0);
             List<SiteTypeEnum> compatibleSiteTypes = new ArrayList<SiteTypeEnum>();
@@ -369,7 +370,7 @@ public class PlacerPackingSiteCentric extends Placer {
         List<Site> compatibleSites = new ArrayList<Site>(
                 Arrays.asList(device.getAllCompatibleSites(SiteTypeEnum.RAMB18E1)));
         compatibleSites.removeAll(occupiedRAMSites);
-        System.out.println(EDIFCellGroups.get("RAMB18E1").size());
+        // System.out.println(EDIFCellGroups.get("RAMB18E1").size());
 
         while (true) {
             Tile selectedTile = compatibleSites.get(rand.nextInt(compatibleSites.size())).getTile();
@@ -398,9 +399,10 @@ public class PlacerPackingSiteCentric extends Placer {
             occupiedRAMSites.add(ramSites.get(1));
             EDIFCellGroups.get("RAMB18E1").remove(cell1);
 
-            for (Site site : ramSites)
-                System.out.println("siteName: " + site.getName() + ", siteType: " + site.getSiteTypeEnum());
-            System.out.println();
+            // for (Site site : ramSites)
+            // System.out.println("siteName: " + site.getName() + ", siteType: " +
+            // site.getSiteTypeEnum());
+            // System.out.println();
         }
     } // end placeRAMSites()
 
@@ -486,6 +488,30 @@ public class PlacerPackingSiteCentric extends Placer {
         }
     } // end placeLUTFFPairGroups()
 
+    private List<List<EDIFHierCellInst>> buildStrayLUTGroups(Map<String, List<EDIFHierCellInst>> EDIFCellGroups)
+            throws IOException {
+
+        EDIFCellGroups.put("LUT6", new ArrayList<>());
+        List<EDIFHierCellInst> LUT6Cells = EDIFCellGroups.get("LUT").stream()
+                .filter(c -> c.getCellType().getName().contains("LUT6"))
+                .collect(Collectors.toList());
+        EDIFCellGroups.get("LUT6").addAll(LUT6Cells);
+        EDIFCellGroups.get("LUT").removeAll(LUT6Cells);
+        List<EDIFHierCellInst> LUTCells = EDIFCellGroups.get("LUT");
+
+        //
+        //
+        //
+        // ************ WIP ************
+        // use splitIntoGroups() function
+        //
+        //
+
+        List<List<EDIFHierCellInst>> LUTGroups = new ArrayList<>();
+
+        return LUTGroups;
+    }
+
     public @Override void placeDesign() throws IOException {
 
         // Create a map to group cells by type
@@ -549,6 +575,7 @@ public class PlacerPackingSiteCentric extends Placer {
         placeCarryChainSites(CARRYChains, occupiedCLBSites, EDIFCellGroups);
         placeDSPPairSites(DSPPairs, occupiedDSPSites, EDIFCellGroups);
         placeRAMSites(occupiedRAMSites, EDIFCellGroups);
+        // placeStrayLUTSites(EDIFCellGroups);
 
         writer.write("\n\nNumber of stray FF cells ... (" + EDIFCellGroups.get("FDRE").size() + ")");
         writer.write("\n\nNumber of stray LUT cells ... (" + EDIFCellGroups.get("LUT").size() + ")");
@@ -589,6 +616,22 @@ public class PlacerPackingSiteCentric extends Placer {
             writer.write("\n\tSite: " + site.getName());
         }
 
+        // separate LUT6s from other LUTs
+        separateAllLUT6FromLUT(EDIFCellGroups);
+        writer.write("\n\nNumber of LUT6s: (" + EDIFCellGroups.get("LUT6").size() + ")");
+        writer.write("\n\nNumber of LUTs: (" + EDIFCellGroups.get("LUT").size() + ")");
+
+        // placeStrayLUTs();
+
     } // end placeDesign()
+
+    private void separateAllLUT6FromLUT(Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
+        EDIFCellGroups.put("LUT6", new ArrayList<>());
+        List<EDIFHierCellInst> LUT6Cells = EDIFCellGroups.get("LUT").stream()
+                .filter(c -> c.getCellType().getName().contains("LUT6"))
+                .collect(Collectors.toList());
+        EDIFCellGroups.get("LUT6").addAll(LUT6Cells);
+        EDIFCellGroups.get("LUT").removeAll(LUT6Cells);
+    }
 }
 // end class
