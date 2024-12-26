@@ -46,8 +46,8 @@ module tap_transposed
             // trunc down to Q1.23
 
             sum_full = product_trunc + iv_sum;
-            sum_trunc = sum_full[DATA_WIDTH-1:0];
-            ov_sum = sum_trunc;
+            ov_sum = sum_full[DATA_WIDTH-1:0];
+            // ov_sum = sum_trunc;
         end
     end
 

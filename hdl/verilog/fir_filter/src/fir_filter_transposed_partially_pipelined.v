@@ -190,7 +190,7 @@ module fir_filter_transposed_partially_pipelined
     always @(*) begin
         for (k = 0; k < PIPELINES; k = k + 1) begin
             acc = 0;
-            acc = acc + tap_dout[k];
+            acc = acc + part_sum[k];
         end
     end
 
