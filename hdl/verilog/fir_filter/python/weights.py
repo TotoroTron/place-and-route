@@ -73,7 +73,7 @@ def main():
     print(f"weights.py: FILTER_DEPTH = {NUM_PIPELINES}")
     print(f"weights.py: PIPE_DEPTH = {PIPE_DEPTH}")
     SAMPLE_RATE = 44000
-    CUTOFF_FREQ = 1000
+    CUTOFF_FREQ = 2000
 
     # Generate FIR filter weights
     weights = generate(FILTER_DEPTH, DATA_WIDTH, CUTOFF_FREQ, SAMPLE_RATE)

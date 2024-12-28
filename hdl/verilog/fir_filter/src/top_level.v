@@ -42,7 +42,7 @@ module top_level
         .o_dout_valid(des_out_valid)
     );
 
-    fir_filter_transposed_partially_pipelined
+    fir_filter_direct_form_partially_pipelined
     #(
         .DATA_WIDTH(DATA_WIDTH),
         .FIR_DEPTH(FIR_DEPTH),

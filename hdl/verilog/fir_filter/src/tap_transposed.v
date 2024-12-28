@@ -1,5 +1,4 @@
 
-
 module tap_transposed
 #(
     parameter DATA_WIDTH = 24
@@ -21,11 +20,10 @@ module tap_transposed
     reg signed [DATA_WIDTH*2-1:0] product_full = 0;
     reg signed [DATA_WIDTH-1:0] product_trunc = 0;
 
-    localparam MIN_VALUE = -2**(DATA_WIDTH-1);
-    localparam MAX_VALUE = 2**(DATA_WIDTH-1)-1;
+    // localparam MIN_VALUE = -2**(DATA_WIDTH-1);
+    // localparam MAX_VALUE = 2**(DATA_WIDTH-1)-1;
     // example: DATA_WIDTH=8: if (prod < -128 or prod > 127) then overflow!
 
-    // // always @(iv_din or iv_weight or iv_sum) begin
     // always @(*) begin
     //     product_full = iv_din * iv_weight;
     //     product_trunc = product_full[2*DATA_WIDTH-2:DATA_WIDTH-1];
