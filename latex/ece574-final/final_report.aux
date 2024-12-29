@@ -18,11 +18,44 @@
 \providecommand\HyField@AuxAddToCoFields[2]{}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Abstract}{1}{section.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2}Introduction}{1}{section.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}Related Work}{2}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Data Description}{2}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Method Description}{2}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Model Description}{3}{section.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}Experimental Procedure and Results}{3}{section.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{3}{section.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9}References}{3}{section.9}\protected@file@percent }
-\gdef \@abspage@last{3}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Data Description}{2}{section.3}\protected@file@percent }
+\newlabel{eq:sine}{{1}{2}{Data Description}{equation.3.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Noisy input signal over 220 samples}}{3}{figure.1}\protected@file@percent }
+\newlabel{fig:sine}{{1}{3}{Noisy input signal over 220 samples}{figure.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces 256 filter weights for 44KHz sampling frequency and 2KHz cutoff frequency}}{3}{figure.2}\protected@file@percent }
+\newlabel{fig:weights}{{2}{3}{256 filter weights for 44KHz sampling frequency and 2KHz cutoff frequency}{figure.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Method Description}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Why Choose a RAM-Based Shift Register Over a Flip-Flop-Based Shift Register?}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Xilinx FPGA Architecture Hierarchy}}{4}{figure.3}\protected@file@percent }
+\newlabel{fig:hierarchy}{{3}{4}{Xilinx FPGA Architecture Hierarchy}{figure.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Model Description}{5}{section.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces CLB vs BRAM area profile comparison on the xc7z020. 1 BRAM tile highlighted on the right, 10 CLB tiles highlighted on the left.}}{6}{figure.4}\protected@file@percent }
+\newlabel{fig:CLB_BRAM}{{4}{6}{CLB vs BRAM area profile comparison on the xc7z020. 1 BRAM tile highlighted on the right, 10 CLB tiles highlighted on the left}{figure.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces top\_level RTL block diagram (auto-generated in Vivado: \texttt  {synth -rtl})}}{7}{figure.5}\protected@file@percent }
+\newlabel{fig:rtl_top_level}{{5}{7}{top\_level RTL block diagram (auto-generated in Vivado: \texttt {synth -rtl})}{figure.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces  Block diagram describing the expandable ROM-RAM-MAC pipeline structure (manually drawn via Draw.io). }}{8}{figure.6}\protected@file@percent }
+\newlabel{fig:RAM_ROM_MAC}{{6}{8}{Block diagram describing the expandable ROM-RAM-MAC pipeline structure (manually drawn via Draw.io)}{figure.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces  Closeup of RTL elaboration schematic highlighting one ROM-RAM-MAC pipeline in dark-blue border (auto-generated in Vivado: \texttt  {synth -rtl}). }}{9}{figure.7}\protected@file@percent }
+\newlabel{fig:rtl_fir_closeup}{{7}{9}{Closeup of RTL elaboration schematic highlighting one ROM-RAM-MAC pipeline in dark-blue border (auto-generated in Vivado: \texttt {synth -rtl})}{figure.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces  Timing diagram describing the write operation with each incoming input sample for an 8-tap 2-MAC-pipelines FIR Filter (manually drawn via Draw.io). }}{10}{figure.8}\protected@file@percent }
+\newlabel{fig:read_write_operations}{{8}{10}{Timing diagram describing the write operation with each incoming input sample for an 8-tap 2-MAC-pipelines FIR Filter (manually drawn via Draw.io)}{figure.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces  Testbench waveform simulation showing the noisy input signal iv\_din and clean output signal ov\_dout. }}{11}{figure.9}\protected@file@percent }
+\newlabel{fig:waveform}{{9}{11}{Testbench waveform simulation showing the noisy input signal iv\_din and clean output signal ov\_dout}{figure.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Experimental Procedure and Results}{11}{section.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces  Synthesis resource utilization report. }}{12}{figure.10}\protected@file@percent }
+\newlabel{fig:utilization}{{10}{12}{Synthesis resource utilization report}{figure.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{12}{section.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces  The final design placed and routed onto the xc7z020 via Vivado default implementation strategy. }}{13}{figure.11}\protected@file@percent }
+\newlabel{fig:device}{{11}{13}{The final design placed and routed onto the xc7z020 via Vivado default implementation strategy}{figure.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces  Timing report shoing critical path delay (Worst Negative Slack) }}{13}{figure.12}\protected@file@percent }
+\newlabel{fig:timing}{{12}{13}{Timing report shoing critical path delay (Worst Negative Slack)}{figure.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces  }}{14}{figure.13}\protected@file@percent }
+\newlabel{fig:power_breakdown}{{13}{14}{}{figure.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces  }}{14}{figure.14}\protected@file@percent }
+\newlabel{fig:power_environment}{{14}{14}{}{figure.14}{}}
+\bibstyle{ieeetr}
+\citation{*}
+\bibdata{references/references}
+\bibcite{pipelined_fir_transposed}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {8}References}{16}{section.8}\protected@file@percent }
+\gdef \@abspage@last{16}

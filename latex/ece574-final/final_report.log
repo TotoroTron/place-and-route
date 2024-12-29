@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.9.6)  27 DEC 2024 20:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.9.6)  28 DEC 2024 21:28
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -299,27 +299,147 @@ Overfull \hbox (48.87108pt too wide) in paragraph at lines 15--15
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (11.60556pt too wide) in paragraph at lines 43--52
-\OT1/ppl/m/n/10 PIPELINES=8. With 8 par-al-lel MAC pipelines, each MAC unit per-forms 256/8=32
+<figures/sine.png, id=49, 722.7pt x 289.08pt>
+File: figures/sine.png Graphic file (type png)
+<use figures/sine.png>
+Package pdftex.def Info: figures/sine.png  used on input line 62.
+(pdftex.def)             Requested size: 345.0pt x 137.99812pt.
+ [2]
+<figures/fir_coeff.png, id=64, 722.7pt x 289.08pt>
+File: figures/fir_coeff.png Graphic file (type png)
+<use figures/fir_coeff.png>
+Package pdftex.def Info: figures/fir_coeff.png  used on input line 82.
+(pdftex.def)             Requested size: 345.0pt x 137.99812pt.
+<figures/hierarchy.png, id=65, 694.7556pt x 502.9992pt>
+File: figures/hierarchy.png Graphic file (type png)
+<use figures/hierarchy.png>
+Package pdftex.def Info: figures/hierarchy.png  used on input line 89.
+(pdftex.def)             Requested size: 345.0pt x 249.77206pt.
+
+Overfull \hbox (0.21408pt too wide) in paragraph at lines 92--92
+[]\OT1/ppl/b/n/12 Why Choose a RAM-Based Shift Reg-is-ter Over a Flip-Flop-
  []
 
-[2] [3] (./final_report.aux)
+[3 <./figures/sine.png> <./figures/fir_coeff.png>] [4 <./figures/hierarchy.png>]
+<figures/CLB_BRAM.png, id=79, 1105.12875pt x 878.28125pt>
+File: figures/CLB_BRAM.png Graphic file (type png)
+<use figures/CLB_BRAM.png>
+Package pdftex.def Info: figures/CLB_BRAM.png  used on input line 133.
+(pdftex.def)             Requested size: 431.25pt x 342.71593pt.
+
+Overfull \hbox (86.25pt too wide) in paragraph at lines 133--134
+ [][] 
+ []
+
+<figures/rtl_top_level.png, id=81, 1866.975pt x 605.26125pt>
+File: figures/rtl_top_level.png Graphic file (type png)
+<use figures/rtl_top_level.png>
+Package pdftex.def Info: figures/rtl_top_level.png  used on input line 146.
+(pdftex.def)             Requested size: 482.9979pt x 156.57918pt.
+
+Overfull \hbox (137.9979pt too wide) in paragraph at lines 146--147
+ [][] 
+ []
+
+<figures/RAM_ROM_MAC.png, id=83, 819.06pt x 813.0375pt>
+File: figures/RAM_ROM_MAC.png Graphic file (type png)
+<use figures/RAM_ROM_MAC.png>
+Package pdftex.def Info: figures/RAM_ROM_MAC.png  used on input line 157.
+(pdftex.def)             Requested size: 431.25pt x 428.09167pt.
+
+Overfull \hbox (86.25pt too wide) in paragraph at lines 157--160
+ [][] 
+ []
+
+
+Overfull \hbox (2.27466pt too wide) in paragraph at lines 151--163
+\OT1/ppl/m/n/10 MAC struc-ture for the MAC pipelines. In the fig-ure are only the first 3 pipelines,
+ []
+
+<figures/rtl_fir_closeup.png, id=85, 942.52126pt x 760.8425pt>
+File: figures/rtl_fir_closeup.png Graphic file (type png)
+<use figures/rtl_fir_closeup.png>
+Package pdftex.def Info: figures/rtl_fir_closeup.png  used on input line 168.
+(pdftex.def)             Requested size: 431.25pt x 348.12267pt.
+
+Overfull \hbox (86.25pt too wide) in paragraph at lines 168--171
+ [][] 
+ []
+
+[5] [6 <./figures/CLB_BRAM.png>]
+<figures/read_write_operations.png, id=101, 805.0075pt x 757.83125pt>
+File: figures/read_write_operations.png Graphic file (type png)
+<use figures/read_write_operations.png>
+Package pdftex.def Info: figures/read_write_operations.png  used on input line 202.
+(pdftex.def)             Requested size: 431.25pt x 405.97342pt.
+
+Overfull \hbox (86.25pt too wide) in paragraph at lines 202--205
+ [][] 
+ []
+
+[7 <./figures/rtl_top_level.png>] [8 <./figures/RAM_ROM_MAC.png>] [9 <./figures/rtl_fir_closeup.png>] [10 <./figures/read_write_operations.png>]
+<figures/waveform.png, id=125, 1301.86375pt x 690.58pt>
+File: figures/waveform.png Graphic file (type png)
+<use figures/waveform.png>
+Package pdftex.def Info: figures/waveform.png  used on input line 222.
+(pdftex.def)             Requested size: 431.25pt x 228.75616pt.
+
+Overfull \hbox (86.25pt too wide) in paragraph at lines 222--225
+ [][] 
+ []
+
+<figures/utilization.png, id=127, 619.31375pt x 563.10374pt>
+File: figures/utilization.png Graphic file (type png)
+<use figures/utilization.png>
+Package pdftex.def Info: figures/utilization.png  used on input line 234.
+(pdftex.def)             Requested size: 258.75pt x 235.27327pt.
+<figures/device.png, id=129, 937.5025pt x 783.92876pt>
+File: figures/device.png Graphic file (type png)
+<use figures/device.png>
+Package pdftex.def Info: figures/device.png  used on input line 244.
+(pdftex.def)             Requested size: 431.25pt x 360.59964pt.
+
+Overfull \hbox (86.25pt too wide) in paragraph at lines 244--247
+ [][] 
+ []
+
+<figures/timing.png, id=131, 980.66376pt x 203.76125pt>
+File: figures/timing.png Graphic file (type png)
+<use figures/timing.png>
+Package pdftex.def Info: figures/timing.png  used on input line 255.
+(pdftex.def)             Requested size: 431.25pt x 89.60236pt.
+
+Overfull \hbox (86.25pt too wide) in paragraph at lines 255--258
+ [][] 
+ []
+
+<figures/power_breakdown.png, id=134, 753.81625pt x 392.46625pt>
+File: figures/power_breakdown.png Graphic file (type png)
+<use figures/power_breakdown.png>
+Package pdftex.def Info: figures/power_breakdown.png  used on input line 276.
+(pdftex.def)             Requested size: 345.0pt x 179.6204pt.
+<figures/power_environment.png, id=135, 586.19pt x 600.2425pt>
+File: figures/power_environment.png Graphic file (type png)
+<use figures/power_environment.png>
+Package pdftex.def Info: figures/power_environment.png  used on input line 283.
+(pdftex.def)             Requested size: 207.0021pt x 211.95644pt.
+[11 <./figures/waveform.png>] [12 <./figures/utilization.png>] [13 <./figures/device.png> <./figures/timing.png>] [14 <./figures/power_breakdown.png> <./figures/power_environment.png>] [15] (./final_report.bbl) [16] (./final_report.aux)
 Package rerunfilecheck Info: File `final_report.out' has not changed.
-(rerunfilecheck)             Checksum: BF290FCCDAE3A75819F22F9BE964FD35;1093.
+(rerunfilecheck)             Checksum: D5895BA1B76CC6C86F381B4301AC06C2;1454.
  ) 
 Here is how much of TeX's memory you used:
- 9310 strings out of 478287
- 145896 string characters out of 5849290
- 441063 words of memory out of 5000000
- 27384 multiletter control sequences out of 15000+600000
- 479224 words of font info for 51 fonts, out of 8000000 for 9000
+ 9492 strings out of 478287
+ 149436 string characters out of 5849290
+ 442492 words of memory out of 5000000
+ 27505 multiletter control sequences out of 15000+600000
+ 489869 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,6n,63p,269b,329s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb>
-Output written on final_report.pdf (3 pages, 49177 bytes).
+ 60i,10n,63p,519b,473s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on final_report.pdf (16 pages, 1098331 bytes).
 PDF statistics:
- 72 PDF objects out of 1000 (max. 8388607)
- 62 compressed objects within 1 object stream
- 13 named destinations out of 1000 (max. 500000)
- 73 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 221 PDF objects out of 1000 (max. 8388607)
+ 159 compressed objects within 2 object streams
+ 43 named destinations out of 1000 (max. 500000)
+ 143 words of extra memory for PDF output out of 10000 (max. 10000000)
 

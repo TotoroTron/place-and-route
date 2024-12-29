@@ -1,5 +1,5 @@
 
-module fir_filter_transposed_partially_pipelined
+module fir_filter_direct_form_partially_pipelined
 #(
     parameter DATA_WIDTH = 24,
     parameter FIR_DEPTH = 16,

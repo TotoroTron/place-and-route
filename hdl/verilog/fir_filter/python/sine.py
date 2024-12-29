@@ -15,6 +15,7 @@ def plot(sine_wave, t, fname):
 def generate(sine_freq_high, sine_freq_low, sample_freq, ampl, offset, bit_depth):
     num_samples = int(sample_freq / sine_freq_low)  # number of samples per period
     t = np.arange(num_samples) / sample_freq
+    print(t.size)
     scale_factor = (1 << (bit_depth - 1))  # scale factor for signed fixed-point range [-2^23, 2^23 - 1]
     sine_wave = ampl * np.sin(2 * np.pi * sine_freq_low * t) + 0.5 * ampl * np.sin(2 * np.pi * sine_freq_high * t) + offset
     sine_wave_int = np.round(sine_wave * scale_factor).astype(int)
