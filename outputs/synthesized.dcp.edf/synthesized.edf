@@ -4,7 +4,7 @@
   (keywordmap (keywordlevel 0))
 (status
  (written
-  (timeStamp 2024 12 26 15 26 50)
+  (timeStamp 2024 12 30 14 22 36)
   (program "Vivado" (version "2023.2.2"))
   (comment "Built on 'Thu Feb  8 23:52:05 MST 2024'")
   (comment "Built by 'xbuild'")
@@ -34907,8 +34907,8 @@
            (property ORIG_REF_NAME (string "xpm_memory_spram"))
      )
    )
-   (cell fir_filter_transposed_partially_pipelined (celltype GENERIC)
-     (view fir_filter_transposed_partially_pipelined (viewtype NETLIST)
+   (cell fir_filter_direct_form_partially_pipelined (celltype GENERIC)
+     (view fir_filter_direct_form_partially_pipelined (viewtype NETLIST)
        (interface 
         (port CLK (direction INPUT))
         (port (rename FSM_sequential_state_reg_0__0 "FSM_sequential_state_reg[0]_0") (direction INPUT))
@@ -41949,7 +41949,7 @@
        )
        (contents
          (instance deserializer_inst (viewref deserializer_fsm (cellref deserializer_fsm (libraryref work))))
-         (instance fir_filter_inst (viewref fir_filter_transposed_partially_pipelined (cellref fir_filter_transposed_partially_pipelined (libraryref work))))
+         (instance fir_filter_inst (viewref fir_filter_direct_form_partially_pipelined (cellref fir_filter_direct_form_partially_pipelined (libraryref work))))
          (instance i_clk_IBUF_inst (viewref netlist (cellref IBUF (libraryref hdi_primitives)))
            (property io_buffer_type (string "ibuf"))
          )
