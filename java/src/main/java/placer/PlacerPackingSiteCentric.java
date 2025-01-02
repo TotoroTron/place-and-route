@@ -17,14 +17,18 @@ import java.util.Random;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import com.xilinx.rapidwright.design.Net;
 import com.xilinx.rapidwright.design.Cell;
 import com.xilinx.rapidwright.design.SiteInst;
+import com.xilinx.rapidwright.design.SitePinInst;
 
 import com.xilinx.rapidwright.edif.EDIFHierNet;
 import com.xilinx.rapidwright.edif.EDIFHierCellInst;
 import com.xilinx.rapidwright.edif.EDIFHierPortInst;
 import com.xilinx.rapidwright.edif.EDIFCellInst;
 
+import com.xilinx.rapidwright.device.BEL;
+import com.xilinx.rapidwright.device.BELPin;
 import com.xilinx.rapidwright.device.Site;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 import com.xilinx.rapidwright.device.Tile;
@@ -276,6 +280,35 @@ public class PlacerPackingSiteCentric extends Placer {
                         anchorSite);
                 placeCarrySite(chain.get(0), si);
                 occupiedCLBSites.add(anchorSite);
+
+                si.routeSite();
+
+                Net CINNet = si.getNetFromSiteWire("CIN");
+                CINNet.removePin(si.getSitePinInst("CIN"));
+
+                BELPin CINPin = si.getBELPin("CARRY4", "CIN");
+                si.unrouteIntraSiteNet(CINPin.getSourcePin(), CINPin);
+
+                System.out.println("SiteInst: " + si.getName() + " SitePinInstMap:");
+                for (Map.Entry<String, SitePinInst> entry : si.getSitePinInstMap().entrySet()) {
+                    System.out.println("\t" + entry.getKey() + ", SitePinInst: " + entry.getValue().getName());
+
+                }
+
+                //
+                // need to instantiate COUT SitePin manually?
+                //
+                // need to manually route CO[3] BELPin to COUT SitePin
+                // si.routeSite() doesn't do it automatically for some reason?
+                // need to figure out how to route intra site nets
+                // how do BELPins and SitePins interact?
+                // relationship between SiteInst, SitePinInst, BELPin, Net
+                //
+
+                // Net CYINITNet = si.getNetFromSiteWire("PRECYINIT_OUT");
+                // BELPin PRECYINITPin = si.getBELPin("PRECYINIT", "IN");
+                // BELPin CYINITPin = si.getBEL("CARRY4").getPin("CYINIT");
+                // si.routeIntraSiteNet(CYINITNet, PRECYINITPin, CYINITPin);
             }
 
             // place the rest of the chain vertically
@@ -286,6 +319,7 @@ public class PlacerPackingSiteCentric extends Placer {
                         site);
                 placeCarrySite(chain.get(i), si);
                 occupiedCLBSites.add(site);
+                si.routeSite();
             }
 
         } // end for (List<EDIFCellInst> chain : EDIFCarryChains)
@@ -318,7 +352,7 @@ public class PlacerPackingSiteCentric extends Placer {
             EDIFHierCellInst DSP_COUT = DSP_COUT_SET.stream().collect(Collectors.toList()).get(0);
             visitedDSPs.add(DSP_CIN);
             visitedDSPs.add(DSP_COUT);
-            var pair = new Pair<EDIFHierCellInst, EDIFHierCellInst>(DSP_CIN, DSP_COUT);
+            var pair = new Pair<EDIFHierCellInst, EDIFHierCellInst>(DSP_COUT, DSP_CIN);
             pairs.add(pair);
         }
         EDIFCellGroups.get("DSP48E1").removeAll(visitedDSPs);
@@ -337,13 +371,16 @@ public class PlacerPackingSiteCentric extends Placer {
                     .filter(s -> s.getSiteTypeEnum().equals(SiteTypeEnum.DSP48E1))
                     .collect(Collectors.toList());
 
+            // DSP supplying COUT MUST be placed first!
             SiteInst si0 = new SiteInst(
                     pair.key().getFullHierarchicalInstName(), design, SiteTypeEnum.DSP48E1, dspSitePair.get(0));
             si0.createCell(pair.key(), si0.getBEL("DSP48E1"));
+            si0.routeSite();
 
             SiteInst si1 = new SiteInst(
                     pair.value().getFullHierarchicalInstName(), design, SiteTypeEnum.DSP48E1, dspSitePair.get(1));
             si1.createCell(pair.value(), si1.getBEL("DSP48E1"));
+            si1.routeSite();
 
             compatibleSites.remove(dspSitePair.get(0));
             compatibleSites.remove(dspSitePair.get(1));
@@ -362,17 +399,28 @@ public class PlacerPackingSiteCentric extends Placer {
 
         while (true) {
             Tile selectedTile = compatibleSites.get(rand.nextInt(compatibleSites.size())).getTile();
+
+            // List<Site> ramSites = Arrays.asList(selectedTile.getSites()).stream()
+            // .filter(s -> s.getSiteTypeEnum().equals(SiteTypeEnum.RAMB18E1))
+            // // || s.getSiteTypeEnum().equals(SiteTypeEnum.FIFO18E1))
+            // .collect(Collectors.toList());
+
             List<Site> ramSites = Arrays.asList(selectedTile.getSites()).stream()
                     .filter(s -> s.getSiteTypeEnum().equals(SiteTypeEnum.RAMB18E1)
-                            || s.getSiteTypeEnum().equals(SiteTypeEnum.FIFO18E1))
+                            || Arrays.asList(s.getAlternateSiteTypeEnums()).contains(SiteTypeEnum.RAMB18E1))
                     .collect(Collectors.toList());
+
+            for (Site site : ramSites) {
+                System.out.println("RAM SITE: " + site.getName() + ", TYPE: " + site.getSiteTypeEnum());
+            }
 
             if (EDIFCellGroups.get("RAMB18E1").isEmpty())
                 break;
             EDIFHierCellInst cell0 = EDIFCellGroups.get("RAMB18E1").get(0);
-            SiteInst si0 = new SiteInst(cell0.getFullHierarchicalInstName(), design, SiteTypeEnum.FIFO18E1,
+            SiteInst si0 = new SiteInst(cell0.getFullHierarchicalInstName(), design, SiteTypeEnum.RAMB18E1,
                     ramSites.get(0));
             si0.createCell(cell0, si0.getBEL("RAMB18E1"));
+            si0.routeSite();
             compatibleSites.remove(ramSites.get(0));
             occupiedRAMSites.add(ramSites.get(0));
             EDIFCellGroups.get("RAMB18E1").remove(cell0);
@@ -383,6 +431,7 @@ public class PlacerPackingSiteCentric extends Placer {
             SiteInst si1 = new SiteInst(cell1.getFullHierarchicalInstName(), design, SiteTypeEnum.RAMB18E1,
                     ramSites.get(1));
             si1.createCell(cell1, si1.getBEL("RAMB18E1"));
+            si1.routeSite();
             compatibleSites.remove(ramSites.get(1));
             occupiedRAMSites.add(ramSites.get(1));
             EDIFCellGroups.get("RAMB18E1").remove(cell1);
@@ -462,6 +511,7 @@ public class PlacerPackingSiteCentric extends Placer {
                         si.createCell(LUTCell, si.getBEL(LUT_BELS.get(i).value()));
                     si.createCell(LUTFFPairs.get(i).value(), si.getBEL(FF_BELS.get(i).value()));
                 }
+                si.routeSite();
             }
         }
     } // end placeLUTFFPairGroups()
@@ -511,6 +561,7 @@ public class PlacerPackingSiteCentric extends Placer {
             for (int i = 0; i < group.size(); i++) {
                 si.createCell(group.get(i), si.getBEL(LUT_BELS.get(i)));
             }
+            si.routeSite();
         }
         for (List<EDIFHierCellInst> group : stackedLUTGroups.value()) {
             Site selectedSite = selectCLBSite(occupiedCLBSites);
@@ -518,6 +569,7 @@ public class PlacerPackingSiteCentric extends Placer {
             for (int i = 0; i < group.size(); i++) {
                 si.createCell(group.get(i), si.getBEL(LUT_BELS.get(i)));
             }
+            si.routeSite();
         }
     }
 
@@ -539,6 +591,7 @@ public class PlacerPackingSiteCentric extends Placer {
             for (int i = 0; i < group.size(); i++) {
                 si.createCell(group.get(i), si.getBEL(LUT_BELS.get(i)));
             }
+            si.routeSite();
         }
     }
 
@@ -685,25 +738,32 @@ public class PlacerPackingSiteCentric extends Placer {
         unroutableSites.add(SiteTypeEnum.IOB18);
         unroutableSites.add(SiteTypeEnum.IPAD);
         unroutableSites.add(SiteTypeEnum.OPAD);
-        for (SiteInst si : designSiteInsts) {
-            if (unroutableSites.contains(si.getSiteTypeEnum())) {
-                // writer.write("\n\tWARNING! SKIPPED SITE: " + si.getSiteTypeEnum() + ": " +
-                // si.getSiteName());
-                System.out.println("\tWARNING! SKIPPED SITE: " + si.getSiteTypeEnum() + ": " + si.getSiteName());
-                for (Map.Entry<String, Cell> entry : si.getCellMap().entrySet()) {
-                    System.out.println("\t\tBEL: " + entry.getKey() + " <=> Cell: " + entry.getValue().getName());
-                }
-            } else {
-                // writer.write("\n\tRouting Site: " + si.getSiteTypeEnum() + ": " +
-                // si.getSiteName());
-                System.out.println("\tRouting Site: " + si.getSiteTypeEnum() + ": " + si.getSiteName());
-                for (Map.Entry<String, Cell> entry : si.getCellMap().entrySet()) {
-                    System.out.println("\t\tBEL: " + entry.getKey() + " <=> Cell: " + entry.getValue().getName());
-                }
-                si.routeSite();
-                System.out.println("\tROUTED!");
-            }
-        }
+
+        /*
+         * for (SiteInst si : designSiteInsts) {
+         * if (unroutableSites.contains(si.getSiteTypeEnum())) {
+         * writer.write("\n\tWARNING! SKIPPED SITE: " + si.getSiteTypeEnum() + ": " +
+         * si.getSiteName());
+         * System.out.println("\tWARNING! SKIPPED SITE: " + si.getSiteTypeEnum() + ": "
+         * + si.getSiteName());
+         * for (Map.Entry<String, Cell> entry : si.getCellMap().entrySet()) {
+         * System.out.println("\t\tBEL: " + entry.getKey() + " <=> Cell: " +
+         * entry.getValue().getName());
+         * }
+         * } else {
+         * writer.write("\n\tRouting Site: " + si.getSiteTypeEnum() + ": " +
+         * si.getSiteName());
+         * System.out.println("\tRouting Site: " + si.getSiteTypeEnum() + ": " +
+         * si.getSiteName());
+         * for (Map.Entry<String, Cell> entry : si.getCellMap().entrySet()) {
+         * System.out.println("\t\tBEL: " + entry.getKey() + " <=> Cell: " +
+         * entry.getValue().getName());
+         * }
+         * si.routeSite();
+         * System.out.println("\tROUTED!");
+         * }
+         * }
+         */
 
         writer.write("\n\nPrinting occupiedCLBSites... " + occupiedCLBSites.size());
         for (Site site : occupiedCLBSites) {
