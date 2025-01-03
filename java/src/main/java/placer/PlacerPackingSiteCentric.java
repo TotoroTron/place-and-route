@@ -21,6 +21,7 @@ import com.xilinx.rapidwright.design.Net;
 import com.xilinx.rapidwright.design.Cell;
 import com.xilinx.rapidwright.design.SiteInst;
 import com.xilinx.rapidwright.design.SitePinInst;
+import com.xilinx.rapidwright.design.PinType;
 
 import com.xilinx.rapidwright.edif.EDIFHierNet;
 import com.xilinx.rapidwright.edif.EDIFHierCellInst;
@@ -30,6 +31,7 @@ import com.xilinx.rapidwright.edif.EDIFCellInst;
 import com.xilinx.rapidwright.device.BEL;
 import com.xilinx.rapidwright.device.BELPin;
 import com.xilinx.rapidwright.device.Site;
+import com.xilinx.rapidwright.device.SitePIP;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 import com.xilinx.rapidwright.device.Tile;
 
@@ -286,29 +288,39 @@ public class PlacerPackingSiteCentric extends Placer {
                 Net CINNet = si.getNetFromSiteWire("CIN");
                 CINNet.removePin(si.getSitePinInst("CIN"));
 
-                BELPin CINPin = si.getBELPin("CARRY4", "CIN");
-                si.unrouteIntraSiteNet(CINPin.getSourcePin(), CINPin);
+                si.addSitePIP(si.getSitePIP("COUTUSED", "0"));
+                design.removeNet(si.getNetFromSiteWire("CARRY4_CO2"));
+                design.removeNet(si.getNetFromSiteWire("CARRY4_CO1"));
+                design.removeNet(si.getNetFromSiteWire("CARRY4_CO0"));
+                if (si.getCell("DFF") == null)
+                    si.addSitePIP(si.getSitePIP("DOUTMUX", "XOR"));
+                if (si.getCell("CFF") == null)
+                    si.addSitePIP(si.getSitePIP("COUTMUX", "XOR"));
+                if (si.getCell("BFF") == null)
+                    si.addSitePIP(si.getSitePIP("BOUTMUX", "XOR"));
+                if (si.getCell("AFF") == null)
+                    si.addSitePIP(si.getSitePIP("AOUTMUX", "XOR"));
 
-                System.out.println("SiteInst: " + si.getName() + " SitePinInstMap:");
-                for (Map.Entry<String, SitePinInst> entry : si.getSitePinInstMap().entrySet()) {
-                    System.out.println("\t" + entry.getKey() + ", SitePinInst: " + entry.getValue().getName());
-
+                for (Map.Entry<Net, List<String>> entry : si.getNetToSiteWiresMap().entrySet()) {
+                    Net net = entry.getKey();
+                    List<String> wires = entry.getValue();
+                    System.out.println("Net: " + net.getName());
+                    for (String wire : wires) {
+                        System.out.println("\tWire: " + wire);
+                    }
                 }
 
-                //
-                // need to instantiate COUT SitePin manually?
-                //
-                // need to manually route CO[3] BELPin to COUT SitePin
-                // si.routeSite() doesn't do it automatically for some reason?
-                // need to figure out how to route intra site nets
-                // how do BELPins and SitePins interact?
-                // relationship between SiteInst, SitePinInst, BELPin, Net
-                //
-
-                // Net CYINITNet = si.getNetFromSiteWire("PRECYINIT_OUT");
-                // BELPin PRECYINITPin = si.getBELPin("PRECYINIT", "IN");
-                // BELPin CYINITPin = si.getBEL("CARRY4").getPin("CYINIT");
-                // si.routeIntraSiteNet(CYINITNet, PRECYINITPin, CYINITPin);
+                // Net SRNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
+                // if (!SRNet.isGNDNet()) {
+                // si.unrouteIntraSiteNet(si.getBEL("SRUSED_MUX").getPin("OUT"),
+                // si.getBEL("AFF").getPin("SR"));
+                // si.unrouteIntraSiteNet(si.getBEL("SRUSED_MUX").getPin("OUT"),
+                // si.getBEL("BFF").getPin("SR"));
+                // si.unrouteIntraSiteNet(si.getBEL("SRUSED_MUX").getPin("OUT"),
+                // si.getBEL("CFF").getPin("SR"));
+                // si.unrouteIntraSiteNet(si.getBEL("SRUSED_MUX").getPin("OUT"),
+                // si.getBEL("DFF").getPin("SR"));
+                // }
             }
 
             // place the rest of the chain vertically
@@ -320,7 +332,49 @@ public class PlacerPackingSiteCentric extends Placer {
                 placeCarrySite(chain.get(i), si);
                 occupiedCLBSites.add(site);
                 si.routeSite();
+                si.addSitePIP(si.getSitePIP("COUTUSED", "0"));
+                design.removeNet(si.getNetFromSiteWire("CARRY4_CO2"));
+                design.removeNet(si.getNetFromSiteWire("CARRY4_CO1"));
+                design.removeNet(si.getNetFromSiteWire("CARRY4_CO0"));
+                if (si.getCell("DFF") == null)
+                    si.addSitePIP(si.getSitePIP("DOUTMUX", "XOR"));
+                if (si.getCell("CFF") == null)
+                    si.addSitePIP(si.getSitePIP("COUTMUX", "XOR"));
+                if (si.getCell("BFF") == null)
+                    si.addSitePIP(si.getSitePIP("BOUTMUX", "XOR"));
+                if (si.getCell("AFF") == null)
+                    si.addSitePIP(si.getSitePIP("AOUTMUX", "XOR"));
+                // Net SRNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
+                // if (!SRNet.isGNDNet()) {
+                // si.unrouteIntraSiteNet(si.getBEL("SRUSED_MUX").getPin("OUT"),
+                // si.getBEL("AFF").getPin("SR"));
+                // si.unrouteIntraSiteNet(si.getBEL("SRUSED_MUX").getPin("OUT"),
+                // si.getBEL("BFF").getPin("SR"));
+                // si.unrouteIntraSiteNet(si.getBEL("SRUSED_MUX").getPin("OUT"),
+                // si.getBEL("CFF").getPin("SR"));
+                // si.unrouteIntraSiteNet(si.getBEL("SRUSED_MUX").getPin("OUT"),
+                // si.getBEL("DFF").getPin("SR"));
+                // }
             }
+
+            /*
+             * writer.write("\nSiteInst: " + si.getName() + " SitePinInstMap:");
+             * writer.write("\n\tSitePinInst Map: ");
+             * for (Map.Entry<String, SitePinInst> entry :
+             * si.getSitePinInstMap().entrySet()) {
+             * writer.write("\n\t\t" + entry.getKey() + ", SitePinInst: " +
+             * entry.getValue().getName());
+             * }
+             * writer.write("\n\tSiteWire-Net Map: ");
+             * for (Map.Entry<String, Net> entry : si.getSiteWireToNetMap().entrySet()) {
+             * writer.write("\n\t\t" + entry.getKey() + ", Net: " +
+             * entry.getValue().getName());
+             * }
+             * writer.write("\n\tSitePIPs: ");
+             * for (SitePIP sitePIP : Arrays.asList(si.getSitePIPs())) {
+             * writer.write("\n\t\t" + sitePIP.getName(si.getSite()));
+             * }
+             */
 
         } // end for (List<EDIFCellInst> chain : EDIFCarryChains)
     } // end placeCarryChainSites()
