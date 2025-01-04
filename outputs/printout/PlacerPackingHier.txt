@@ -13448,4 +13448,723 @@ Printing CARRYChains... (11)
 		LUT: fir_filter_inst/genblk1[6].tap_inst/ov_sum[0]_i_2__3
 		 FF: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[3]
 		Carry: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[4]_i_1__4
-		LUT: fir_filter_inst/genbl
+		LUT: fir_filter_inst/genblk1[6].tap_inst/ov_sum[4]_i_5__4
+		 FF: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[4]
+		LUT: fir_filter_inst/genblk1[6].tap_inst/ov_sum[4]_i_4__4
+		 FF: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[5]
+		LUT: fir_filter_inst/genblk1[6].tap_inst/ov_sum[4]_i_3__4
+		 FF: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[6]
+		LUT: fir_filter_inst/genblk1[6].tap_inst/ov_sum[4]_i_2__4
+		 FF: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[7]
+		Carry: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[8]_i_1__4
+		LUT: fir_filter_inst/genblk1[6].tap_inst/ov_sum[8]_i_5__4
+		 FF: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[8]
+		LUT: fir_filter_inst/genblk1[6].tap_inst/ov_sum[8]_i_4__4
+		 FF: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[9]
+		LUT: fir_filter_inst/genblk1[6].tap_inst/ov_sum[8]_i_3__4
+		 FF: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[10]
+		LUT: fir_filter_inst/genblk1[6].tap_inst/ov_sum[8]_i_2__4
+		 FF: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[11]
+		Carry: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[12]_i_1__4
+		LUT: fir_filter_inst/genblk1[6].tap_inst/ov_sum[12]_i_5__4
+		 FF: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[12]
+		LUT: fir_filter_inst/genblk1[6].tap_inst/ov_sum[12]_i_4__4
+		 FF: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[13]
+		LUT: fir_filter_inst/genblk1[6].tap_inst/ov_sum[12]_i_3__4
+		 FF: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[14]
+		LUT: fir_filter_inst/genblk1[6].tap_inst/ov_sum[12]_i_2__4
+		 FF: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[15]
+		Carry: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[16]_i_1__4
+		LUT: fir_filter_inst/genblk1[6].tap_inst/ov_sum[16]_i_5__4
+		 FF: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[16]
+		LUT: fir_filter_inst/genblk1[6].tap_inst/ov_sum[16]_i_4__4
+		 FF: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[17]
+		LUT: fir_filter_inst/genblk1[6].tap_inst/ov_sum[16]_i_3__4
+		 FF: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[18]
+		LUT: fir_filter_inst/genblk1[6].tap_inst/ov_sum[16]_i_2__4
+		 FF: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[19]
+		Carry: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[20]_i_1__4
+		LUT: fir_filter_inst/genblk1[6].tap_inst/ov_sum[20]_i_5__4
+		 FF: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[20]
+		LUT: fir_filter_inst/genblk1[6].tap_inst/ov_sum[20]_i_4__4
+		 FF: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[21]
+		LUT: fir_filter_inst/genblk1[6].tap_inst/ov_sum[20]_i_3__4
+		 FF: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[22]
+		LUT: fir_filter_inst/genblk1[6].tap_inst/ov_sum[20]_i_2__4
+		 FF: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[23]
+
+Placing carry chains... (11)
+		chain size: 6
+		chain size: 6
+		chain size: 6
+		chain size: 6
+		chain size: 6
+		chain size: 6
+		chain size: 6
+		chain size: 6
+		chain size: 6
+		chain size: 6
+		chain size: 6
+
+Number of stray FF cells ... (0)
+
+Number of stray LUT cells ... (135)
+
+Printing Unique CE-R pairs... (14)
+	CE: serializer_inst/i_en_IBUF                          R: serializer_inst/i_rst_IBUF                        
+	CE: deserializer_inst/<const1>                         R: deserializer_inst/<const0>                        
+	CE: fir_filter_inst/sel                                R: fir_filter_inst/i_rst_IBUF                        
+	CE: deserializer_inst/counter[4]_i_1__0_n_0            R: deserializer_inst/i_rst_IBUF                      
+	CE: fir_filter_inst/<const1>                           R: fir_filter_inst/<const0>                          
+	CE: deserializer_inst/ov_dout[23]_i_1_n_0              R: deserializer_inst/<const0>                        
+	CE: fir_filter_inst/<const1>                           R: fir_filter_inst/i_rst_IBUF                        
+	CE: fir_filter_inst/sample_addr                        R: fir_filter_inst/i_rst_IBUF                        
+	CE: deserializer_inst/shift_reg[23]_i_1__0_n_0         R: deserializer_inst/i_rst_IBUF                      
+	CE: serializer_inst/shift_reg[23]_i_1_n_0              R: serializer_inst/<const0>                          
+	CE: fir_filter_inst/sample_re_addr[4]_i_1_n_0          R: fir_filter_inst/i_rst_IBUF                        
+	CE: serializer_inst/counter[4]_i_1_n_0                 R: serializer_inst/<const0>                          
+	CE: deserializer_inst/i_en_IBUF                        R: deserializer_inst/i_rst_IBUF                      
+	CE: fir_filter_inst/o_ready_i_1_n_0                    R: fir_filter_inst/i_rst_IBUF                        
+
+Printing Unique CE-R pairs with associated FF Cells... (14)
+	CENet: serializer_inst/i_en_IBUF, RNet: serializer_inst/i_rst_IBUF with cells... (4)
+		LUT: serializer_inst/o_dout_valid_i_1 => FF: serializer_inst/o_dout_valid_reg
+		LUT: serializer_inst/o_ready_i_1__0 => FF: serializer_inst/o_ready_reg
+		LUT: serializer_inst/FSM_sequential_state[0]_i_1__0 => FF: serializer_inst/FSM_sequential_state_reg[0]
+		LUT: serializer_inst/FSM_sequential_state[1]_i_1__1 => FF: serializer_inst/FSM_sequential_state_reg[1]
+	CENet: deserializer_inst/<const1>, RNet: deserializer_inst/<const0> with cells... (2)
+		LUT: deserializer_inst/o_dout_valid_i_1__1 => FF: deserializer_inst/o_dout_valid_reg
+		LUT: deserializer_inst/o_ready_i_1__1 => FF: deserializer_inst/o_ready_reg
+	CENet: fir_filter_inst/sel, RNet: fir_filter_inst/i_rst_IBUF with cells... (5)
+		LUT: fir_filter_inst/weight_re_addr[2]_i_1 => FF: fir_filter_inst/weight_re_addr_reg[2]
+		LUT: fir_filter_inst/weight_re_addr[3]_i_1 => FF: fir_filter_inst/weight_re_addr_reg[3]
+		LUT: fir_filter_inst/weight_re_addr[4]_i_1 => FF: fir_filter_inst/weight_re_addr_reg[4]
+		LUT: fir_filter_inst/weight_re_addr[0]_i_1 => FF: fir_filter_inst/weight_re_addr_reg[0]
+		LUT: fir_filter_inst/weight_re_addr[1]_i_1 => FF: fir_filter_inst/weight_re_addr_reg[1]
+	CENet: deserializer_inst/counter[4]_i_1__0_n_0, RNet: deserializer_inst/i_rst_IBUF with cells... (5)
+		LUT: deserializer_inst/counter[0]_i_1 => FF: deserializer_inst/counter_reg[0]
+		LUT: deserializer_inst/counter[1]_i_1 => FF: deserializer_inst/counter_reg[1]
+		LUT: deserializer_inst/counter[4]_i_2 => FF: deserializer_inst/counter_reg[4]
+		LUT: deserializer_inst/counter[2]_i_1 => FF: deserializer_inst/counter_reg[2]
+		LUT: deserializer_inst/counter[3]_i_1 => FF: deserializer_inst/counter_reg[3]
+	CENet: fir_filter_inst/<const1>, RNet: fir_filter_inst/<const0> with cells... (2)
+		LUT: fir_filter_inst/tap_en_i_1 => FF: fir_filter_inst/tap_en_reg
+		LUT: fir_filter_inst/sum_rst_i_1 => FF: fir_filter_inst/sum_rst_reg
+	CENet: deserializer_inst/ov_dout[23]_i_1_n_0, RNet: deserializer_inst/<const0> with cells... (24)
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[14]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[7]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[13]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[6]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[1]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[9]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[12]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[0]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[19]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[8]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[11]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[23]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[18]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[10]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[22]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[3]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[17]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[21]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[2]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[16]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[20]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[5]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[15]
+		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[4]
+	CENet: fir_filter_inst/<const1>, RNet: fir_filter_inst/i_rst_IBUF with cells... (6)
+		LUT: fir_filter_inst/weight_re_i_1 => FF: fir_filter_inst/weight_re_reg
+		LUT: fir_filter_inst/o_dout_valid_i_1__0 => FF: fir_filter_inst/o_dout_valid_reg
+		LUT: fir_filter_inst/o_ready_i_1 => FF: fir_filter_inst/o_ready_reg
+		LUT: fir_filter_inst/FSM_sequential_state[0]_i_1 => FF: fir_filter_inst/FSM_sequential_state_reg[0]
+		LUT: fir_filter_inst/FSM_sequential_state[1]_i_1__0 => FF: fir_filter_inst/FSM_sequential_state_reg[1]
+		LUT: fir_filter_inst/FSM_sequential_state[2]_i_1 => FF: fir_filter_inst/FSM_sequential_state_reg[2]
+	CENet: fir_filter_inst/sample_addr, RNet: fir_filter_inst/i_rst_IBUF with cells... (5)
+		LUT: fir_filter_inst/sample_addr[0]_i_1 => FF: fir_filter_inst/sample_addr_reg[0]
+		LUT: fir_filter_inst/sample_addr[2]_i_1 => FF: fir_filter_inst/sample_addr_reg[2]
+		LUT: fir_filter_inst/sample_addr[1]_i_1 => FF: fir_filter_inst/sample_addr_reg[1]
+		LUT: fir_filter_inst/sample_addr[4]_i_2 => FF: fir_filter_inst/sample_addr_reg[4]
+		LUT: fir_filter_inst/sample_addr[3]_i_1 => FF: fir_filter_inst/sample_addr_reg[3]
+	CENet: deserializer_inst/shift_reg[23]_i_1__0_n_0, RNet: deserializer_inst/i_rst_IBUF with cells... (24)
+		LUT: deserializer_inst/shift_reg[5]_i_1__0 => FF: deserializer_inst/shift_reg_reg[5]
+		LUT: deserializer_inst/shift_reg[12]_i_1__0 => FF: deserializer_inst/shift_reg_reg[12]
+		LUT: deserializer_inst/shift_reg[4]_i_1__0 => FF: deserializer_inst/shift_reg_reg[4]
+		LUT: deserializer_inst/shift_reg[13]_i_1__0 => FF: deserializer_inst/shift_reg_reg[13]
+		LUT: deserializer_inst/shift_reg[7]_i_1__0 => FF: deserializer_inst/shift_reg_reg[7]
+		LUT: deserializer_inst/shift_reg[22]_i_1__0 => FF: deserializer_inst/shift_reg_reg[22]
+		LUT: deserializer_inst/shift_reg[10]_i_1__0 => FF: deserializer_inst/shift_reg_reg[10]
+		LUT: deserializer_inst/shift_reg[18]_i_1__0 => FF: deserializer_inst/shift_reg_reg[18]
+		LUT: deserializer_inst/shift_reg[6]_i_1__0 => FF: deserializer_inst/shift_reg_reg[6]
+		LUT: deserializer_inst/shift_reg[23]_i_2__0 => FF: deserializer_inst/shift_reg_reg[23]
+		LUT: deserializer_inst/shift_reg[11]_i_1__0 => FF: deserializer_inst/shift_reg_reg[11]
+		LUT: deserializer_inst/shift_reg[19]_i_1__0 => FF: deserializer_inst/shift_reg_reg[19]
+		LUT: deserializer_inst/shift_reg[1]_i_1__0 => FF: deserializer_inst/shift_reg_reg[1]
+		LUT: deserializer_inst/shift_reg[20]_i_1__0 => FF: deserializer_inst/shift_reg_reg[20]
+		LUT: deserializer_inst/shift_reg[9]_i_1__0 => FF: deserializer_inst/shift_reg_reg[9]
+		LUT: deserializer_inst/shift_reg[16]_i_1__0 => FF: deserializer_inst/shift_reg_reg[16]
+		LUT: deserializer_inst/shift_reg[0]_i_1__0 => FF: deserializer_inst/shift_reg_reg[0]
+		LUT: deserializer_inst/shift_reg[8]_i_1__0 => FF: deserializer_inst/shift_reg_reg[8]
+		LUT: deserializer_inst/shift_reg[17]_i_1__0 => FF: deserializer_inst/shift_reg_reg[17]
+		LUT: deserializer_inst/shift_reg[21]_i_1__0 => FF: deserializer_inst/shift_reg_reg[21]
+		LUT: deserializer_inst/shift_reg[3]_i_1__0 => FF: deserializer_inst/shift_reg_reg[3]
+		LUT: deserializer_inst/shift_reg[14]_i_1__0 => FF: deserializer_inst/shift_reg_reg[14]
+		LUT: deserializer_inst/shift_reg[2]_i_1__0 => FF: deserializer_inst/shift_reg_reg[2]
+		LUT: deserializer_inst/shift_reg[15]_i_1__0 => FF: deserializer_inst/shift_reg_reg[15]
+	CENet: serializer_inst/shift_reg[23]_i_1_n_0, RNet: serializer_inst/<const0> with cells... (24)
+		LUT: serializer_inst/shift_reg[1]_i_1 => FF: serializer_inst/shift_reg_reg[1]
+		LUT: serializer_inst/shift_reg[20]_i_1 => FF: serializer_inst/shift_reg_reg[20]
+		LUT: serializer_inst/shift_reg[9]_i_1 => FF: serializer_inst/shift_reg_reg[9]
+		LUT: serializer_inst/shift_reg[5]_i_1 => FF: serializer_inst/shift_reg_reg[5]
+		LUT: serializer_inst/shift_reg[16]_i_1 => FF: serializer_inst/shift_reg_reg[16]
+		LUT: serializer_inst/shift_reg[12]_i_1 => FF: serializer_inst/shift_reg_reg[12]
+		LUT: serializer_inst/shift_reg[4]_i_1 => FF: serializer_inst/shift_reg_reg[4]
+		LUT: serializer_inst/shift_reg[0]_i_1 => FF: serializer_inst/shift_reg_reg[0]
+		LUT: serializer_inst/shift_reg[8]_i_1 => FF: serializer_inst/shift_reg_reg[8]
+		LUT: serializer_inst/shift_reg[17]_i_1 => FF: serializer_inst/shift_reg_reg[17]
+		LUT: serializer_inst/shift_reg[13]_i_1 => FF: serializer_inst/shift_reg_reg[13]
+		LUT: serializer_inst/shift_reg[21]_i_1 => FF: serializer_inst/shift_reg_reg[21]
+		LUT: serializer_inst/shift_reg[3]_i_1 => FF: serializer_inst/shift_reg_reg[3]
+		LUT: serializer_inst/shift_reg[7]_i_1 => FF: serializer_inst/shift_reg_reg[7]
+		LUT: serializer_inst/shift_reg[14]_i_1 => FF: serializer_inst/shift_reg_reg[14]
+		LUT: serializer_inst/shift_reg[22]_i_1 => FF: serializer_inst/shift_reg_reg[22]
+		LUT: serializer_inst/shift_reg[10]_i_1 => FF: serializer_inst/shift_reg_reg[10]
+		LUT: serializer_inst/shift_reg[18]_i_1 => FF: serializer_inst/shift_reg_reg[18]
+		LUT: serializer_inst/shift_reg[2]_i_1 => FF: serializer_inst/shift_reg_reg[2]
+		LUT: serializer_inst/shift_reg[6]_i_1 => FF: serializer_inst/shift_reg_reg[6]
+		LUT: serializer_inst/shift_reg[15]_i_1 => FF: serializer_inst/shift_reg_reg[15]
+		LUT: serializer_inst/shift_reg[23]_i_2 => FF: serializer_inst/shift_reg_reg[23]
+		LUT: serializer_inst/shift_reg[11]_i_1 => FF: serializer_inst/shift_reg_reg[11]
+		LUT: serializer_inst/shift_reg[19]_i_1 => FF: serializer_inst/shift_reg_reg[19]
+	CENet: fir_filter_inst/sample_re_addr[4]_i_1_n_0, RNet: fir_filter_inst/i_rst_IBUF with cells... (5)
+		LUT: fir_filter_inst/sample_re_addr[4]_i_2 => FF: fir_filter_inst/sample_re_addr_reg[4]
+		LUT: fir_filter_inst/sample_re_addr[3]_i_1 => FF: fir_filter_inst/sample_re_addr_reg[3]
+		LUT: fir_filter_inst/sample_re_addr[2]_i_1 => FF: fir_filter_inst/sample_re_addr_reg[2]
+		LUT: fir_filter_inst/sample_re_addr[1]_i_1 => FF: fir_filter_inst/sample_re_addr_reg[1]
+		LUT: fir_filter_inst/sample_re_addr[0]_i_1 => FF: fir_filter_inst/sample_re_addr_reg[0]
+	CENet: serializer_inst/counter[4]_i_1_n_0, RNet: serializer_inst/<const0> with cells... (5)
+		LUT: serializer_inst/counter[0]_i_1__0 => FF: serializer_inst/counter_reg[0]
+		LUT: serializer_inst/counter[4]_i_2__0 => FF: serializer_inst/counter_reg[4]
+		LUT: serializer_inst/counter[1]_i_1__0 => FF: serializer_inst/counter_reg[1]
+		LUT: serializer_inst/counter[2]_i_1__0 => FF: serializer_inst/counter_reg[2]
+		LUT: serializer_inst/counter[3]_i_1__0 => FF: serializer_inst/counter_reg[3]
+	CENet: deserializer_inst/i_en_IBUF, RNet: deserializer_inst/i_rst_IBUF with cells... (2)
+		LUT: deserializer_inst/FSM_sequential_state[0]_i_1__1 => FF: deserializer_inst/FSM_sequential_state_reg[0]
+		LUT: deserializer_inst/FSM_sequential_state[1]_i_1 => FF: deserializer_inst/FSM_sequential_state_reg[1]
+	CENet: fir_filter_inst/o_ready_i_1_n_0, RNet: fir_filter_inst/i_rst_IBUF with cells... (5)
+		LUT: fir_filter_inst/sample_wr_addr[3]_i_1 => FF: fir_filter_inst/sample_wr_addr_reg[3]
+		LUT: fir_filter_inst/sample_wr_addr[2]_i_1 => FF: fir_filter_inst/sample_wr_addr_reg[2]
+		LUT: fir_filter_inst/sample_wr_addr[1]_i_1 => FF: fir_filter_inst/sample_wr_addr_reg[1]
+		LUT: fir_filter_inst/sample_wr_addr[0]_i_1 => FF: fir_filter_inst/sample_wr_addr_reg[0]
+		LUT: fir_filter_inst/sample_wr_addr[4]_i_1 => FF: fir_filter_inst/sample_wr_addr_reg[4]
+
+Placing LUT-FF Pair Groups... (14)
+	CENet: serializer_inst/i_en_IBUF                          RNet: serializer_inst/i_rst_IBUF                        
+	CENet: deserializer_inst/<const1>                         RNet: deserializer_inst/<const0>                        
+	CENet: fir_filter_inst/sel                                RNet: fir_filter_inst/i_rst_IBUF                        
+	CENet: deserializer_inst/counter[4]_i_1__0_n_0            RNet: deserializer_inst/i_rst_IBUF                      
+	CENet: fir_filter_inst/<const1>                           RNet: fir_filter_inst/<const0>                          
+	CENet: deserializer_inst/ov_dout[23]_i_1_n_0              RNet: deserializer_inst/<const0>                        
+	CENet: fir_filter_inst/<const1>                           RNet: fir_filter_inst/i_rst_IBUF                        
+	CENet: fir_filter_inst/sample_addr                        RNet: fir_filter_inst/i_rst_IBUF                        
+	CENet: deserializer_inst/shift_reg[23]_i_1__0_n_0         RNet: deserializer_inst/i_rst_IBUF                      
+	CENet: serializer_inst/shift_reg[23]_i_1_n_0              RNet: serializer_inst/<const0>                          
+	CENet: fir_filter_inst/sample_re_addr[4]_i_1_n_0          RNet: fir_filter_inst/i_rst_IBUF                        
+	CENet: serializer_inst/counter[4]_i_1_n_0                 RNet: serializer_inst/<const0>                          
+	CENet: deserializer_inst/i_en_IBUF                        RNet: deserializer_inst/i_rst_IBUF                      
+	CENet: fir_filter_inst/o_ready_i_1_n_0                    RNet: fir_filter_inst/i_rst_IBUF                        
+
+Printing LUT Groups... (34)
+	Group:
+		LUT3: fir_filter_inst/i___142_carry__2_i_10
+		LUT5: fir_filter_inst/i___142_carry__3_i_2
+		LUT5: fir_filter_inst/i___142_carry__3_i_1
+		LUT3: fir_filter_inst/i___142_carry__2_i_12
+	Group:
+		LUT3: fir_filter_inst/i___142_carry__2_i_11
+		LUT5: fir_filter_inst/i___142_carry__3_i_4
+		LUT5: fir_filter_inst/i___142_carry__3_i_3
+		LUT4: fir_filter_inst/sample_re_addr[3]_i_2
+	Group:
+		LUT4: fir_filter_inst/sample_re_addr[3]_i_3
+		LUT2: fir_filter_inst/sample_addr[4]_i_1
+		LUT6: fir_filter_inst/ov_dout[23]_i_1__0
+		LUT3: fir_filter_inst/i___142_carry__0_i_10
+	Group:
+		LUT3: fir_filter_inst/i___142_carry__3_i_9
+		LUT3: fir_filter_inst/i___142_carry__0_i_12
+		LUT3: fir_filter_inst/i___142_carry__0_i_11
+		LUT5: fir_filter_inst/i___142_carry__0_i_3
+	Group:
+		LUT5: fir_filter_inst/i___142_carry__0_i_2
+		LUT5: fir_filter_inst/i___142_carry__0_i_4
+		LUT3: fir_filter_inst/i___142_carry__0_i_9
+		LUT5: fir_filter_inst/i___142_carry__0_i_1
+	Group:
+		LUT5: fir_filter_inst/i___142_carry__4_i_3
+		LUT5: fir_filter_inst/i___142_carry__4_i_2
+		LUT3: fir_filter_inst/sample_re_addr[2]_i_2
+		LUT3: fir_filter_inst/sample_re_addr[2]_i_3
+	Group:
+		LUT3: fir_filter_inst/i___142_carry__1_i_12
+		LUT3: fir_filter_inst/i___142_carry__1_i_10
+		LUT3: fir_filter_inst/i___142_carry__1_i_11
+		LUT5: fir_filter_inst/i___142_carry__1_i_4
+	Group:
+		LUT5: fir_filter_inst/i___142_carry__1_i_3
+		LUT5: fir_filter_inst/i___142_carry__1_i_2
+		LUT5: fir_filter_inst/i___142_carry__1_i_1
+		LUT4: fir_filter_inst/FSM_sequential_state[2]_i_2
+	Group:
+		LUT3: fir_filter_inst/i___142_carry__1_i_9
+		LUT3: fir_filter_inst/i___142_carry__3_i_11
+		LUT3: fir_filter_inst/i___142_carry__3_i_10
+		LUT3: fir_filter_inst/i___142_carry_i_9
+	Group:
+		LUT3: fir_filter_inst/i___142_carry_i_8
+		LUT4: fir_filter_inst/i___142_carry_i_3
+		LUT5: fir_filter_inst/i___142_carry_i_2
+		LUT5: fir_filter_inst/i___142_carry_i_1
+	Group:
+		LUT3: fir_filter_inst/i___142_carry__3_i_12
+		LUT5: fir_filter_inst/i___142_carry__2_i_4
+		LUT5: fir_filter_inst/i___142_carry__2_i_1
+		LUT5: fir_filter_inst/i___142_carry__2_i_3
+	Group:
+		LUT5: fir_filter_inst/i___142_carry__2_i_2
+		LUT5: fir_filter_inst/sample_re_addr[4]_i_4
+		LUT5: fir_filter_inst/sample_re_addr[4]_i_3
+		LUT3: fir_filter_inst/sample_re_addr[4]_i_1
+	Group:
+		LUT3: fir_filter_inst/i___142_carry__2_i_9
+		LUT4: serializer_inst/counter[4]_i_1
+		LUT3: serializer_inst/shift_reg[23]_i_3
+		LUT5: serializer_inst/shift_reg[23]_i_1
+	Group:
+		LUT6: serializer_inst/FSM_sequential_state[0]_i_2
+		LUT2: serializer_inst/FSM_sequential_state[1]_i_2
+		LUT4: deserializer_inst/FSM_sequential_state[0]_i_2__0
+		LUT6: deserializer_inst/ov_dout[23]_i_1
+	Group:
+		LUT6: deserializer_inst/shift_reg[23]_i_1__0
+		LUT2: deserializer_inst/counter[4]_i_1__0
+		LUT3: deserializer_inst/counter[3]_i_2
+		LUT4: deserializer_inst/counter[4]_i_3
+	Group:
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__1_i_1
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__1_i_2
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__1_i_3
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__1_i_4
+	Group:
+		LUT4: fir_filter_inst/genblk1[0].tap_inst/i___142_carry__4_i_11
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___142_carry__4_i_12
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__3_i_1
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__3_i_2
+	Group:
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__3_i_3
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__3_i_4
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__0_i_1
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__0_i_2
+	Group:
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__0_i_3
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__0_i_4
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___142_carry__4_i_9
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___142_carry__4_i_8
+	Group:
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__2_i_3
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__2_i_4
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__2_i_1
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__2_i_2
+	Group:
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry_i_1
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry_i_2
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry_i_3
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__4_i_3
+	Group:
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__4_i_1
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__4_i_2
+		LUT5: fir_filter_inst/genblk1[0].tap_inst/i___142_carry__4_i_1
+		LUT3: fir_filter_inst/genblk1[1].tap_inst/i___142_carry__4_i_10
+	Group:
+		LUT2: fir_filter_inst/genblk1[7].tap_inst/ov_sum[0]_i_1
+		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__1_i_2
+		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__1_i_1
+		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__1_i_4
+	Group:
+		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__1_i_3
+		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry_i_2
+		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry_i_3
+		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry_i_1
+	Group:
+		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__4_i_1
+		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__4_i_3
+		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__4_i_2
+		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__2_i_1
+	Group:
+		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__2_i_3
+		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__2_i_2
+		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__2_i_4
+		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__0_i_4
+	Group:
+		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__0_i_1
+		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__0_i_3
+		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__0_i_2
+		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__3_i_4
+	Group:
+		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__3_i_3
+		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__3_i_2
+		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__3_i_1
+		LUT2: fir_filter_inst/genblk2[2].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
+	Group:
+		LUT2: fir_filter_inst/genblk3[4].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
+		LUT2: fir_filter_inst/genblk3[4].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
+		LUT2: fir_filter_inst/genblk2[4].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
+		LUT2: fir_filter_inst/genblk3[2].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
+	Group:
+		LUT2: fir_filter_inst/genblk3[2].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
+		LUT2: fir_filter_inst/genblk3[1].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
+		LUT2: fir_filter_inst/genblk3[1].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
+		LUT2: fir_filter_inst/genblk2[5].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
+	Group:
+		LUT2: fir_filter_inst/genblk2[0].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
+		LUT2: fir_filter_inst/genblk3[6].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
+		LUT2: fir_filter_inst/genblk3[6].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
+		LUT2: fir_filter_inst/genblk2[7].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
+	Group:
+		LUT2: fir_filter_inst/genblk2[1].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
+		LUT2: fir_filter_inst/genblk3[5].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
+		LUT2: fir_filter_inst/genblk3[5].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
+		LUT2: fir_filter_inst/genblk3[3].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
+	Group:
+		LUT2: fir_filter_inst/genblk3[3].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
+		LUT2: fir_filter_inst/genblk2[3].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
+		LUT2: fir_filter_inst/genblk2[6].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
+		LUT2: fir_filter_inst/genblk3[0].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
+	Group:
+		LUT2: fir_filter_inst/genblk3[0].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
+		LUT2: fir_filter_inst/genblk3[7].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
+		LUT2: fir_filter_inst/genblk3[7].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
+
+ALL CELL PATTERNS HAVE BEEN PLACED...
+
+ROUTING SITES...
+
+Printing occupiedCLBSites... 172
+	Site: SLICE_X91Y104
+	Site: SLICE_X91Y105
+	Site: SLICE_X91Y106
+	Site: SLICE_X91Y107
+	Site: SLICE_X91Y108
+	Site: SLICE_X91Y109
+	Site: SLICE_X84Y116
+	Site: SLICE_X84Y117
+	Site: SLICE_X84Y118
+	Site: SLICE_X84Y119
+	Site: SLICE_X84Y120
+	Site: SLICE_X84Y121
+	Site: SLICE_X53Y40
+	Site: SLICE_X53Y41
+	Site: SLICE_X53Y42
+	Site: SLICE_X53Y43
+	Site: SLICE_X53Y44
+	Site: SLICE_X53Y45
+	Site: SLICE_X10Y31
+	Site: SLICE_X10Y32
+	Site: SLICE_X10Y33
+	Site: SLICE_X10Y34
+	Site: SLICE_X10Y35
+	Site: SLICE_X10Y36
+	Site: SLICE_X106Y24
+	Site: SLICE_X106Y25
+	Site: SLICE_X106Y26
+	Site: SLICE_X106Y27
+	Site: SLICE_X106Y28
+	Site: SLICE_X106Y29
+	Site: SLICE_X50Y80
+	Site: SLICE_X50Y81
+	Site: SLICE_X50Y82
+	Site: SLICE_X50Y83
+	Site: SLICE_X50Y84
+	Site: SLICE_X50Y85
+	Site: SLICE_X31Y112
+	Site: SLICE_X31Y113
+	Site: SLICE_X31Y114
+	Site: SLICE_X31Y115
+	Site: SLICE_X31Y116
+	Site: SLICE_X31Y117
+	Site: SLICE_X73Y43
+	Site: SLICE_X73Y44
+	Site: SLICE_X73Y45
+	Site: SLICE_X73Y46
+	Site: SLICE_X73Y47
+	Site: SLICE_X73Y48
+	Site: SLICE_X54Y63
+	Site: SLICE_X54Y64
+	Site: SLICE_X54Y65
+	Site: SLICE_X54Y66
+	Site: SLICE_X54Y67
+	Site: SLICE_X54Y68
+	Site: SLICE_X82Y2
+	Site: SLICE_X82Y3
+	Site: SLICE_X82Y4
+	Site: SLICE_X82Y5
+	Site: SLICE_X82Y6
+	Site: SLICE_X82Y7
+	Site: SLICE_X26Y103
+	Site: SLICE_X26Y104
+	Site: SLICE_X26Y105
+	Site: SLICE_X26Y106
+	Site: SLICE_X26Y107
+	Site: SLICE_X26Y108
+	Site: SLICE_X52Y78
+	Site: SLICE_X52Y78
+	Site: SLICE_X34Y94
+	Site: SLICE_X34Y94
+	Site: SLICE_X101Y129
+	Site: SLICE_X101Y129
+	Site: SLICE_X90Y84
+	Site: SLICE_X90Y84
+	Site: SLICE_X103Y13
+	Site: SLICE_X103Y13
+	Site: SLICE_X34Y104
+	Site: SLICE_X34Y104
+	Site: SLICE_X102Y79
+	Site: SLICE_X102Y79
+	Site: SLICE_X100Y49
+	Site: SLICE_X100Y49
+	Site: SLICE_X86Y59
+	Site: SLICE_X86Y59
+	Site: SLICE_X93Y10
+	Site: SLICE_X93Y10
+	Site: SLICE_X107Y145
+	Site: SLICE_X107Y145
+	Site: SLICE_X10Y43
+	Site: SLICE_X10Y43
+	Site: SLICE_X62Y77
+	Site: SLICE_X62Y77
+	Site: SLICE_X71Y22
+	Site: SLICE_X71Y22
+	Site: SLICE_X35Y17
+	Site: SLICE_X35Y17
+	Site: SLICE_X65Y141
+	Site: SLICE_X65Y141
+	Site: SLICE_X103Y33
+	Site: SLICE_X103Y33
+	Site: SLICE_X12Y41
+	Site: SLICE_X12Y41
+	Site: SLICE_X43Y60
+	Site: SLICE_X43Y60
+	Site: SLICE_X94Y124
+	Site: SLICE_X94Y124
+	Site: SLICE_X47Y8
+	Site: SLICE_X47Y8
+	Site: SLICE_X48Y45
+	Site: SLICE_X48Y45
+	Site: SLICE_X99Y6
+	Site: SLICE_X99Y6
+	Site: SLICE_X83Y115
+	Site: SLICE_X83Y115
+	Site: SLICE_X55Y129
+	Site: SLICE_X55Y129
+	Site: SLICE_X48Y56
+	Site: SLICE_X48Y56
+	Site: SLICE_X85Y21
+	Site: SLICE_X85Y21
+	Site: SLICE_X93Y19
+	Site: SLICE_X93Y19
+	Site: SLICE_X28Y45
+	Site: SLICE_X28Y45
+	Site: SLICE_X104Y65
+	Site: SLICE_X104Y65
+	Site: SLICE_X56Y32
+	Site: SLICE_X56Y32
+	Site: SLICE_X82Y31
+	Site: SLICE_X82Y31
+	Site: SLICE_X6Y7
+	Site: SLICE_X6Y7
+	Site: SLICE_X55Y111
+	Site: SLICE_X55Y111
+	Site: SLICE_X112Y26
+	Site: SLICE_X112Y26
+	Site: SLICE_X82Y148
+	Site: SLICE_X82Y148
+	Site: SLICE_X111Y149
+	Site: SLICE_X100Y6
+	Site: SLICE_X32Y41
+	Site: SLICE_X113Y46
+	Site: SLICE_X78Y21
+	Site: SLICE_X50Y27
+	Site: SLICE_X36Y55
+	Site: SLICE_X30Y28
+	Site: SLICE_X38Y146
+	Site: SLICE_X32Y101
+	Site: SLICE_X48Y67
+	Site: SLICE_X95Y131
+	Site: SLICE_X42Y55
+	Site: SLICE_X108Y7
+	Site: SLICE_X100Y100
+	Site: SLICE_X18Y12
+	Site: SLICE_X104Y23
+	Site: SLICE_X108Y136
+	Site: SLICE_X46Y106
+	Site: SLICE_X30Y94
+	Site: SLICE_X63Y137
+	Site: SLICE_X43Y12
+	Site: SLICE_X96Y81
+	Site: SLICE_X79Y41
+	Site: SLICE_X58Y38
+	Site: SLICE_X58Y62
+	Site: SLICE_X90Y117
+	Site: SLICE_X47Y119
+	Site: SLICE_X109Y110
+	Site: SLICE_X54Y12
+	Site: SLICE_X54Y92
+	Site: SLICE_X58Y50
+	Site: SLICE_X35Y59
+	Site: SLICE_X104Y109
+Printing occupiedDSPSites... 16
+	Site: DSP48_X0Y14
+	Site: DSP48_X0Y15
+	Site: DSP48_X3Y12
+	Site: DSP48_X3Y13
+	Site: DSP48_X2Y50
+	Site: DSP48_X2Y51
+	Site: DSP48_X4Y54
+	Site: DSP48_X4Y55
+	Site: DSP48_X2Y44
+	Site: DSP48_X2Y45
+	Site: DSP48_X3Y52
+	Site: DSP48_X3Y53
+	Site: DSP48_X4Y52
+	Site: DSP48_X4Y53
+	Site: DSP48_X3Y6
+	Site: DSP48_X3Y7
+Printing occupiedRAMSites... 16
+	Site: DSP48_X0Y14
+	Site: DSP48_X0Y15
+	Site: DSP48_X3Y12
+	Site: DSP48_X3Y13
+	Site: DSP48_X2Y50
+	Site: DSP48_X2Y51
+	Site: DSP48_X4Y54
+	Site: DSP48_X4Y55
+	Site: DSP48_X2Y44
+	Site: DSP48_X2Y45
+	Site: DSP48_X3Y52
+	Site: DSP48_X3Y53
+	Site: DSP48_X4Y52
+	Site: DSP48_X4Y53
+	Site: DSP48_X3Y6
+	Site: DSP48_X3Y7
+
+Printing remaining cells in EDIFCellGroups...
+	Group: OBUF
+		Unplaced Cell: OBUF: o_dout_OBUF_inst
+		Unplaced Cell: OBUF: o_dout_valid_OBUF_inst
+		Unplaced Cell: OBUF: o_ready_OBUF_inst
+	Group: FDRE
+		Empty!
+	Group: RAMB18E1
+		Empty!
+	Group: CARRY4
+		Empty!
+	Group: VCC
+		Unplaced Cell: VCC: fir_filter_inst/VCC
+		Unplaced Cell: VCC: deserializer_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk1[0].tap_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk1[0].tap_inst/VCC_1
+		Unplaced Cell: VCC: fir_filter_inst/genblk1[1].tap_inst/VCC_1
+		Unplaced Cell: VCC: fir_filter_inst/genblk1[1].tap_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk1[2].tap_inst/VCC_1
+		Unplaced Cell: VCC: fir_filter_inst/genblk1[2].tap_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk1[3].tap_inst/VCC_1
+		Unplaced Cell: VCC: fir_filter_inst/genblk1[3].tap_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk1[4].tap_inst/VCC_1
+		Unplaced Cell: VCC: fir_filter_inst/genblk1[4].tap_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk1[7].tap_inst/VCC_1
+		Unplaced Cell: VCC: fir_filter_inst/genblk1[7].tap_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk1[5].tap_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk1[5].tap_inst/VCC_1
+		Unplaced Cell: VCC: fir_filter_inst/genblk1[6].tap_inst/VCC_1
+		Unplaced Cell: VCC: fir_filter_inst/genblk1[6].tap_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk2[2].xpm_memory_sprom_inst/xpm_memory_base_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk3[4].xpm_memory_spram_inst/xpm_memory_base_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk2[4].xpm_memory_sprom_inst/xpm_memory_base_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk3[2].xpm_memory_spram_inst/xpm_memory_base_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk3[1].xpm_memory_spram_inst/xpm_memory_base_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk2[5].xpm_memory_sprom_inst/xpm_memory_base_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk2[0].xpm_memory_sprom_inst/xpm_memory_base_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk3[6].xpm_memory_spram_inst/xpm_memory_base_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk2[7].xpm_memory_sprom_inst/xpm_memory_base_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk2[1].xpm_memory_sprom_inst/xpm_memory_base_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk3[5].xpm_memory_spram_inst/xpm_memory_base_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk3[3].xpm_memory_spram_inst/xpm_memory_base_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk2[3].xpm_memory_sprom_inst/xpm_memory_base_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk2[6].xpm_memory_sprom_inst/xpm_memory_base_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk3[0].xpm_memory_spram_inst/xpm_memory_base_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk3[7].xpm_memory_spram_inst/xpm_memory_base_inst/VCC
+	Group: IBUF
+		Unplaced Cell: IBUF: i_din_IBUF_inst
+		Unplaced Cell: IBUF: i_ready_IBUF_inst
+		Unplaced Cell: IBUF: i_din_valid_IBUF_inst
+		Unplaced Cell: IBUF: i_clk_IBUF_inst
+		Unplaced Cell: IBUF: i_en_IBUF_inst
+		Unplaced Cell: IBUF: i_rst_IBUF_inst
+	Group: DSP48E1
+		Empty!
+	Group: LUT
+		Empty!
+	Group: GND
+		Unplaced Cell: GND: fir_filter_inst/GND
+		Unplaced Cell: GND: serializer_inst/GND
+		Unplaced Cell: GND: deserializer_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk2[2].xpm_memory_sprom_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk1[0].tap_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk1[0].tap_inst/GND_1
+		Unplaced Cell: GND: fir_filter_inst/genblk3[4].xpm_memory_spram_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk1[1].tap_inst/GND_1
+		Unplaced Cell: GND: fir_filter_inst/genblk1[1].tap_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk2[4].xpm_memory_sprom_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk1[2].tap_inst/GND_1
+		Unplaced Cell: GND: fir_filter_inst/genblk1[2].tap_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk3[2].xpm_memory_spram_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk1[3].tap_inst/GND_1
+		Unplaced Cell: GND: fir_filter_inst/genblk1[3].tap_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk3[1].xpm_memory_spram_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk1[4].tap_inst/GND_1
+		Unplaced Cell: GND: fir_filter_inst/genblk1[4].tap_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk2[5].xpm_memory_sprom_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk2[0].xpm_memory_sprom_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk3[6].xpm_memory_spram_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk2[7].xpm_memory_sprom_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk1[7].tap_inst/GND_1
+		Unplaced Cell: GND: fir_filter_inst/genblk1[7].tap_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk2[1].xpm_memory_sprom_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk3[5].xpm_memory_spram_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk3[3].xpm_memory_spram_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk1[5].tap_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk1[5].tap_inst/GND_1
+		Unplaced Cell: GND: fir_filter_inst/genblk2[3].xpm_memory_sprom_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk2[6].xpm_memory_sprom_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk3[0].xpm_memory_spram_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk3[7].xpm_memory_spram_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk1[6].tap_inst/GND_1
+		Unplaced Cell: GND: fir_filter_inst/genblk1[6].tap_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk2[2].xpm_memory_sprom_inst/xpm_memory_base_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk3[4].xpm_memory_spram_inst/xpm_memory_base_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk2[4].xpm_memory_sprom_inst/xpm_memory_base_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk3[2].xpm_memory_spram_inst/xpm_memory_base_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk3[1].xpm_memory_spram_inst/xpm_memory_base_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk2[5].xpm_memory_sprom_inst/xpm_memory_base_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk2[0].xpm_memory_sprom_inst/xpm_memory_base_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk3[6].xpm_memory_spram_inst/xpm_memory_base_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk2[7].xpm_memory_sprom_inst/xpm_memory_base_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk2[1].xpm_memory_sprom_inst/xpm_memory_base_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk3[5].xpm_memory_spram_inst/xpm_memory_base_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk3[3].xpm_memory_spram_inst/xpm_memory_base_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk2[3].xpm_memory_sprom_inst/xpm_memory_base_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk2[6].xpm_memory_sprom_inst/xpm_memory_base_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk3[0].xpm_memory_spram_inst/xpm_memory_base_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk3[7].xpm_memory_spram_inst/xpm_memory_base_inst/GND
