@@ -3,6 +3,8 @@ package placer;
 
 import java.util.stream.Collectors;
 
+import org.python.antlr.PythonParser.else_clause_return;
+
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -259,6 +261,16 @@ public class PlacerPackingSiteCentric extends Placer {
     private void placeCarryChainSites(List<List<CarryCellGroup>> EDIFCarryChains,
             List<Site> occupiedCLBSites)
             throws IOException {
+        List<String> FF_BELS = new ArrayList<>();
+        FF_BELS.add("AFF");
+        FF_BELS.add("A5FF");
+        FF_BELS.add("BFF");
+        FF_BELS.add("B5FF");
+        FF_BELS.add("CFF");
+        FF_BELS.add("C5FF");
+        FF_BELS.add("DFF");
+        FF_BELS.add("D5FF");
+
         writer.write("\n\nPlacing carry chains... (" + EDIFCarryChains.size() + ")");
         // PLACE CARRY CHAINS
         for (List<CarryCellGroup> chain : EDIFCarryChains) {
@@ -287,6 +299,7 @@ public class PlacerPackingSiteCentric extends Placer {
 
                 Net CINNet = si.getNetFromSiteWire("CIN");
                 CINNet.removePin(si.getSitePinInst("CIN"));
+                si.addSitePIP(si.getSitePIP("PRECYINIT", "0"));
 
                 si.addSitePIP(si.getSitePIP("COUTUSED", "0"));
                 design.removeNet(si.getNetFromSiteWire("CARRY4_CO2"));
@@ -301,26 +314,21 @@ public class PlacerPackingSiteCentric extends Placer {
                 if (si.getCell("AFF") == null)
                     si.addSitePIP(si.getSitePIP("AOUTMUX", "XOR"));
 
-                for (Map.Entry<Net, List<String>> entry : si.getNetToSiteWiresMap().entrySet()) {
-                    Net net = entry.getKey();
-                    List<String> wires = entry.getValue();
-                    System.out.println("Net: " + net.getName());
-                    for (String wire : wires) {
-                        System.out.println("\tWire: " + wire);
-                    }
+                Net SRNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
+                if (SRNet != null) {
+                    if (SRNet.isGNDNet())
+                        si.addSitePIP(si.getSitePIP("SRUSEDMUX", "0"));
+                    else
+                        si.addSitePIP(si.getSitePIP("SRUSEDMUX", "IN"));
                 }
 
-                // Net SRNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
-                // if (!SRNet.isGNDNet()) {
-                // si.unrouteIntraSiteNet(si.getBEL("SRUSED_MUX").getPin("OUT"),
-                // si.getBEL("AFF").getPin("SR"));
-                // si.unrouteIntraSiteNet(si.getBEL("SRUSED_MUX").getPin("OUT"),
-                // si.getBEL("BFF").getPin("SR"));
-                // si.unrouteIntraSiteNet(si.getBEL("SRUSED_MUX").getPin("OUT"),
-                // si.getBEL("CFF").getPin("SR"));
-                // si.unrouteIntraSiteNet(si.getBEL("SRUSED_MUX").getPin("OUT"),
-                // si.getBEL("DFF").getPin("SR"));
-                // }
+                Net CENet = si.getNetFromSiteWire("CEUSEDMUX_OUT");
+                if (CENet != null) {
+                    if (CENet.isGNDNet())
+                        si.addSitePIP(si.getSitePIP("CEUSEDMUX", "0"));
+                    else
+                        si.addSitePIP(si.getSitePIP("CEUSEDMUX", "IN"));
+                }
             }
 
             // place the rest of the chain vertically
@@ -344,37 +352,27 @@ public class PlacerPackingSiteCentric extends Placer {
                     si.addSitePIP(si.getSitePIP("BOUTMUX", "XOR"));
                 if (si.getCell("AFF") == null)
                     si.addSitePIP(si.getSitePIP("AOUTMUX", "XOR"));
-                // Net SRNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
-                // if (!SRNet.isGNDNet()) {
-                // si.unrouteIntraSiteNet(si.getBEL("SRUSED_MUX").getPin("OUT"),
-                // si.getBEL("AFF").getPin("SR"));
-                // si.unrouteIntraSiteNet(si.getBEL("SRUSED_MUX").getPin("OUT"),
-                // si.getBEL("BFF").getPin("SR"));
-                // si.unrouteIntraSiteNet(si.getBEL("SRUSED_MUX").getPin("OUT"),
-                // si.getBEL("CFF").getPin("SR"));
-                // si.unrouteIntraSiteNet(si.getBEL("SRUSED_MUX").getPin("OUT"),
-                // si.getBEL("DFF").getPin("SR"));
-                // }
-            }
 
-            /*
-             * writer.write("\nSiteInst: " + si.getName() + " SitePinInstMap:");
-             * writer.write("\n\tSitePinInst Map: ");
-             * for (Map.Entry<String, SitePinInst> entry :
-             * si.getSitePinInstMap().entrySet()) {
-             * writer.write("\n\t\t" + entry.getKey() + ", SitePinInst: " +
-             * entry.getValue().getName());
-             * }
-             * writer.write("\n\tSiteWire-Net Map: ");
-             * for (Map.Entry<String, Net> entry : si.getSiteWireToNetMap().entrySet()) {
-             * writer.write("\n\t\t" + entry.getKey() + ", Net: " +
-             * entry.getValue().getName());
-             * }
-             * writer.write("\n\tSitePIPs: ");
-             * for (SitePIP sitePIP : Arrays.asList(si.getSitePIPs())) {
-             * writer.write("\n\t\t" + sitePIP.getName(si.getSite()));
-             * }
-             */
+                for (String FF_BEL : FF_BELS)
+                    si.unrouteIntraSiteNet(si.getBELPin("SRUSEDMUX", "OUT"), si.getBELPin(FF_BEL, "SR"));
+                Net SRNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
+                if (SRNet != null) {
+                    if (SRNet.isGNDNet())
+                        si.addSitePIP(si.getSitePIP("SRUSEDMUX", "0"));
+                    else
+                        si.addSitePIP(si.getSitePIP("SRUSEDMUX", "IN"));
+                }
+
+                for (String FF_BEL : FF_BELS)
+                    si.unrouteIntraSiteNet(si.getBELPin("CEUSEDMUX_OUT", "OUT"), si.getBELPin(FF_BEL, "CE"));
+                Net CENet = si.getNetFromSiteWire("CEUSEDMUX_OUT");
+                if (CENet != null) {
+                    if (CENet.isGNDNet())
+                        si.addSitePIP(si.getSitePIP("CEUSEDMUX", "0"));
+                    else
+                        si.addSitePIP(si.getSitePIP("CEUSEDMUX", "IN"));
+                }
+            }
 
         } // end for (List<EDIFCellInst> chain : EDIFCarryChains)
     } // end placeCarryChainSites()

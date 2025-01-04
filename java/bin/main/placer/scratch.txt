@@ -1,4 +1,142 @@
 
+        writer.write("\n\nPrinting CARRYChains... (" + CARRYChains.size() + ")");
+        for (List<CarryCellGroup> chain : CARRYChains) {
+            writer.write("\n\tAnchor Carry: " + chain.get(0).carry().getFullHierarchicalInstName());
+            for (int j = 0; j < 4; j++) {
+                EDIFHierCellInst lut = chain.get(0).luts().get(j);
+                if (lut != null)
+                    writer.write("\n\t\tLUT: " + chain.get(0).luts().get(j).getFullHierarchicalInstName());
+                else
+                    writer.write("\n\t\tLUT: Null!");
+
+                EDIFHierCellInst ff = chain.get(0).luts().get(j);
+                if (ff != null)
+                    writer.write("\n\t\t FF: " + chain.get(0).ffs().get(j).getFullHierarchicalInstName());
+                else
+                    writer.write("\n\t\t FF: Null!");
+            }
+
+            for (int i = 1; i < chain.size(); i++) {
+                writer.write("\n\t\tCarry: " + chain.get(i).carry().getFullHierarchicalInstName());
+                for (int j = 0; j < 4; j++) {
+                    EDIFHierCellInst lut = chain.get(0).luts().get(j);
+                    if (lut != null)
+                        writer.write("\n\t\tLUT: " + chain.get(0).luts().get(j).getFullHierarchicalInstName());
+                    else
+                        writer.write("\n\t\tLUT: Null!");
+
+                    EDIFHierCellInst ff = chain.get(0).luts().get(j);
+                    if (ff != null)
+                        writer.write("\n\t\t FF: " + chain.get(0).ffs().get(j).getFullHierarchicalInstName());
+                    else
+                        writer.write("\n\t\t FF: Null!");
+                }
+            }
+        }
+
+
+
+
+
+    private List<List<EDIFHierCellInst>> findCarryChains(Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
+        List<List<EDIFHierCellInst>> chains = new ArrayList<>();
+        while (!EDIFCellGroups.get("CARRY4").isEmpty()) {
+            List<EDIFHierCellInst> chain = new ArrayList<>();
+            EDIFHierCellInst currCell = EDIFCellGroups.get("CARRY4").get(0);
+            // every iteration, EDIFCarryCells gets updated so .get(0) is different.
+            while (true) {
+                EDIFHierPortInst currCellPort = currCell.getPortInst("CI");
+                EDIFHierNet hnet = currCellPort.getHierarchicalNet();
+                if (hnet.getNet().isGND())
+                    break;
+                Collection<EDIFHierPortInst> netPorts = hnet.getPortInsts();
+                Map<String, EDIFHierPortInst> netPortsMap = netPorts.stream()
+                        .collect(Collectors.toMap(
+                                p -> p.getPortInst().getName(),
+                                p -> p));
+                EDIFHierPortInst sourceCellPort = netPortsMap.get("CO[3]");
+                EDIFHierCellInst sourceCell = sourceCellPort.getHierarchicalInst()
+                        .getChild(sourceCellPort.getPortInst().getCellInst().getName());
+                currCell = sourceCell;
+            }
+
+            // we now have the starting carry cell as currCell
+            // now traverse in the cout direction
+            // the end of the chain occurs when portinst CO[3] is null
+
+            while (true) {
+                chain.add(currCell);
+                EDIFHierPortInst currCellPort = currCell.getPortInst("CO[3]");
+                if (currCellPort == null)
+                    break;
+                EDIFHierNet hnet = currCellPort.getHierarchicalNet();
+                Collection<EDIFHierPortInst> netPorts = hnet.getPortInsts();
+                Map<String, EDIFHierPortInst> netPortsMap = netPorts.stream()
+                        .collect(Collectors.toMap(
+                                p -> p.getPortInst().getName(),
+                                p -> p));
+                EDIFHierPortInst sinkCellPort = netPortsMap.get("CI");
+                EDIFHierCellInst sinkCell = sinkCellPort.getHierarchicalInst()
+                        .getChild(sinkCellPort.getPortInst().getCellInst().getName());
+                currCell = sinkCell;
+            }
+            EDIFCellGroups.get("CARRY4").removeAll(chain);
+            chains.add(chain);
+        }
+        return chains;
+    }
+
+
+
+
+
+
+    private void placeCarryChainSites(List<List<EDIFHierCellInst>> EDIFCarryChains,
+            Map<String, List<String>> occupiedBELs, Map<String, List<EDIFHierCellInst>> EDIFCellGroups)
+            throws IOException {
+        writer.write("\n\nPlacing carry chains... (" + EDIFCarryChains.size() + ")");
+        // PLACE CARRY CHAINS
+        for (List<EDIFHierCellInst> chain : EDIFCarryChains) {
+            writer.write("\n\tchain size: " + chain.size());
+            Random rand = new Random();
+            EDIFHierCellInst anchorCell = chain.get(0);
+            List<SiteTypeEnum> compatibleSiteTypes = new ArrayList<SiteTypeEnum>();
+            compatibleSiteTypes.add(SiteTypeEnum.SLICEL);
+            compatibleSiteTypes.add(SiteTypeEnum.SLICEM);
+
+            int randIndex = rand.nextInt(compatibleSiteTypes.size());
+            SiteTypeEnum selectedSiteType = compatibleSiteTypes.get(randIndex);
+            Site anchorSite = findCarryChainAnchorSite(selectedSiteType, chain);
+
+            // find and place the anchor cell
+            if (anchorSite == null) {
+                writer.write("\nWARNING: COULD NOT PLACE CARRY CHAIN ANCHOR!");
+                break;
+            } else {
+                SiteInst si = new SiteInst(anchorCell.getFullHierarchicalInstName(), design,
+                        selectedSiteType,
+                        anchorSite);
+                placeCarrySite(chain.get(0), si, occupiedBELs, EDIFCellGroups);
+            }
+
+            // place the rest of the chain vertically
+            for (int i = 1; i < chain.size(); i++) {
+                String siteName = "SLICE_X" + anchorSite.getInstanceX() + "Y" +
+                        (anchorSite.getInstanceY() + i);
+                Site site = device.getSite(siteName);
+                SiteInst si = new SiteInst(chain.get(i).getFullHierarchicalInstName(),
+                        design, selectedSiteType, site);
+                placeCarrySite(chain.get(i), si, occupiedBELs, EDIFCellGroups);
+            }
+
+        } // end for (List<EDIFCellInst> chain : EDIFCarryChains)
+    } // end placeCarryChainSites()
+
+
+
+
+
+
 
     private void printFFCellNetMap(Map<EDIFHierNet, List<EDIFHierCellInst>> netMap, String PORT_NAME)
             throws IOException {
