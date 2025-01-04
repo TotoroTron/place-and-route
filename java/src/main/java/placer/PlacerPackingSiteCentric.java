@@ -261,16 +261,6 @@ public class PlacerPackingSiteCentric extends Placer {
     private void placeCarryChainSites(List<List<CarryCellGroup>> EDIFCarryChains,
             List<Site> occupiedCLBSites)
             throws IOException {
-        List<String> FF_BELS = new ArrayList<>();
-        FF_BELS.add("AFF");
-        FF_BELS.add("A5FF");
-        FF_BELS.add("BFF");
-        FF_BELS.add("B5FF");
-        FF_BELS.add("CFF");
-        FF_BELS.add("C5FF");
-        FF_BELS.add("DFF");
-        FF_BELS.add("D5FF");
-
         writer.write("\n\nPlacing carry chains... (" + EDIFCarryChains.size() + ")");
         // PLACE CARRY CHAINS
         for (List<CarryCellGroup> chain : EDIFCarryChains) {
@@ -297,15 +287,12 @@ public class PlacerPackingSiteCentric extends Placer {
                         site);
                 placeCarrySite(chain.get(i), si);
                 occupiedCLBSites.add(site);
-
                 si.routeSite();
-
                 if (i == 0) { // specific logic for anchor site
                     Net CINNet = si.getNetFromSiteWire("CIN");
                     CINNet.removePin(si.getSitePinInst("CIN"));
                     si.addSitePIP(si.getSitePIP("PRECYINIT", "0"));
                 }
-
                 // activate PIPs for COUT
                 si.addSitePIP(si.getSitePIP("COUTUSED", "0"));
                 // activate PIPs for DI pins
@@ -317,14 +304,12 @@ public class PlacerPackingSiteCentric extends Placer {
                 design.removeNet(si.getNetFromSiteWire("CARRY4_CO2"));
                 design.removeNet(si.getNetFromSiteWire("CARRY4_CO1"));
                 design.removeNet(si.getNetFromSiteWire("CARRY4_CO0"));
-
                 // add default XOR PIPs for unused FFs
                 for (String FF : new String[] { "DFF", "CFF", "BFF", "AFF" }) {
                     if (si.getCell(FF) == null) {
                         si.addSitePIP(si.getSitePIP(FF.charAt(0) + "OUTMUX", "XOR"));
                     }
                 }
-
                 // activate PIPs for SR and CE pins
                 Net SRNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
                 if (SRNet != null)
@@ -333,7 +318,6 @@ public class PlacerPackingSiteCentric extends Placer {
                 if (CENet != null)
                     si.addSitePIP(si.getSitePIP("CEUSEDMUX", CENet.isVCCNet() ? "1" : "IN"));
             }
-
         } // end for (List<EDIFCellInst> chain : EDIFCarryChains)
     } // end placeCarryChainSites()
 
