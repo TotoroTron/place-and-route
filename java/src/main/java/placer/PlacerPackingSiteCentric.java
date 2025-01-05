@@ -261,6 +261,15 @@ public class PlacerPackingSiteCentric extends Placer {
     private void placeCarryChainSites(List<List<CarryCellGroup>> EDIFCarryChains,
             List<Site> occupiedCLBSites)
             throws IOException {
+        List<String> FF_BELS = new ArrayList<>();
+        FF_BELS.add("AFF");
+        FF_BELS.add("A5FF");
+        FF_BELS.add("BFF");
+        FF_BELS.add("B5FF");
+        FF_BELS.add("CFF");
+        FF_BELS.add("C5FF");
+        FF_BELS.add("DFF");
+        FF_BELS.add("D5FF");
         writer.write("\n\nPlacing carry chains... (" + EDIFCarryChains.size() + ")");
         // PLACE CARRY CHAINS
         for (List<CarryCellGroup> chain : EDIFCarryChains) {
@@ -312,9 +321,15 @@ public class PlacerPackingSiteCentric extends Placer {
                 }
                 // activate PIPs for SR and CE pins
                 Net SRNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
+                Net CENet = si.getNetFromSiteWire("CEUSEDMUX_OUT");
+
+                for (String FF_BEL : FF_BELS) {
+                    si.unrouteIntraSiteNet(si.getBELPin("SRUSEDGND", "0"), si.getBELPin(FF_BEL, "SR"));
+                    si.unrouteIntraSiteNet(si.getBELPin("CEUSEDVCC", "1"), si.getBELPin(FF_BEL, "CE"));
+                }
+
                 if (SRNet != null)
                     si.addSitePIP(si.getSitePIP("SRUSEDMUX", SRNet.isGNDNet() ? "0" : "IN"));
-                Net CENet = si.getNetFromSiteWire("CEUSEDMUX_OUT");
                 if (CENet != null)
                     si.addSitePIP(si.getSitePIP("CEUSEDMUX", CENet.isVCCNet() ? "1" : "IN"));
             }
