@@ -82,6 +82,9 @@ public abstract class Placer {
     public record CarryCellGroup(EDIFHierCellInst carry, List<EDIFHierCellInst> luts, List<EDIFHierCellInst> ffs) {
     }
 
+    public record LUTFFGroup(List<Pair<EDIFHierCellInst, EDIFHierCellInst>> group) {
+    }
+
     public record LUTFFPair(EDIFHierCellInst lut, EDIFHierCellInst ff) {
     }
 
@@ -278,10 +281,58 @@ public abstract class Placer {
         return instance != null ? instance.getFullHierarchicalInstName() : "Null!";
     }
 
-    public void writeCARRYChains(List<List<CarryCellGroup>> CARRYChains) throws IOException {
+    public void printCARRYChains(List<List<CarryCellGroup>> CARRYChains) throws IOException {
         writer.write("\n\nPrinting CARRYChains... (" + CARRYChains.size() + ")");
         for (List<CarryCellGroup> chain : CARRYChains) {
             writeChainDetails(chain);
+        }
+    }
+
+    public void printDSPPairs(List<Pair<EDIFHierCellInst, EDIFHierCellInst>> DSPPairs) throws IOException {
+        writer.write("\n\nPrinting DSPPairs... (" + DSPPairs.size() + ")");
+        for (Pair<EDIFHierCellInst, EDIFHierCellInst> pair : DSPPairs) {
+            writer.write("\n\t(" + pair.key().getCellType().getName() + ": " + pair.key().getFullHierarchicalInstName()
+                    + ", " + pair.value().getCellType().getName() + ": " + pair.value().getFullHierarchicalInstName()
+                    + ")");
+        }
+    }
+
+    public void printLUTFFGroups(
+            Map<Pair<String, String>, LUTFFGroup> LUTFFGroups)
+            throws IOException {
+        for (Pair<String, String> pair : LUTFFGroups.keySet()) {
+            String s1 = String.format("\n\tCE: %-50s R: %-50s", pair.key(), pair.value());
+            writer.write(s1);
+        }
+        writer.write("\n\nPrinting Unique CE-R pairs... (" + LUTFFGroups.size() + ")");
+        writer.write(
+                "\n\nPrinting Unique CE-R pairs with associated FF Cells... (" + LUTFFGroups.size() + ")");
+        for (Map.Entry<Pair<String, String>, LUTFFGroup> entry : LUTFFGroups.entrySet()) {
+            Pair<String, String> netPair = entry.getKey();
+            String CENet = netPair.key();
+            String RNet = netPair.value();
+            LUTFFGroup lutffgroup = entry.getValue();
+            writer.write(
+                    "\n\tCENet: " + CENet + ", RNet: " + RNet + " with cells... (" + lutffgroup.group().size() + ")");
+            for (Pair<EDIFHierCellInst, EDIFHierCellInst> pair : lutffgroup.group()) {
+                if (pair.key() == null) {
+                    writer.write("\n\t\tLUT: NULL!" + " => FF: "
+                            + pair.value().getFullHierarchicalInstName());
+                } else {
+                    writer.write("\n\t\tLUT: " + pair.key().getFullHierarchicalInstName() + " => FF: "
+                            + pair.value().getFullHierarchicalInstName());
+                }
+            }
+        }
+    }
+
+    public void printLUTGroups(List<List<EDIFHierCellInst>> LUTGroups) throws IOException {
+        writer.write("\n\nPrinting LUT Groups... (" + LUTGroups.size() + ")");
+        for (List<EDIFHierCellInst> list : LUTGroups) {
+            writer.write("\n\tGroup:");
+            for (EDIFHierCellInst ehci : list) {
+                writer.write("\n\t\t" + ehci.getCellType() + ": " + ehci.getFullHierarchicalInstName());
+            }
         }
     }
 
