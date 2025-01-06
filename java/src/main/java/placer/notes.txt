@@ -61,6 +61,6 @@ switchboxes are to congested to connect them (very unlikely for a design using l
 
 READ:
 https://adaptivesupport.amd.com/s/article/66823?language=en_US
-
+https://adaptivesupport.amd.com/s/question/0D52E00006hpJhaSAE/vivado-not-using-local-ilogic-inversion-leading-to-unroutable-design?language=en_US
 
 
