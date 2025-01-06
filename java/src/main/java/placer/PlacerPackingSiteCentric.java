@@ -241,7 +241,15 @@ public class PlacerPackingSiteCentric extends Placer {
         }
         si.createCell(carryCellGroup.carry(), si.getBEL("CARRY4"));
 
-        si.routeSite();
+        si.routeSite(); // default routing
+
+        // undo default CARRY4/DI nets
+        SitePinInst AX = si.getSitePinInst("AX");
+        if (AX != null)
+            si.unrouteIntraSiteNet(AX.getBELPin(), si.getBELPin("ACY0", "AX"));
+        SitePinInst DX = si.getSitePinInst("DX");
+        if (DX != null)
+            si.unrouteIntraSiteNet(DX.getBELPin(), si.getBELPin("DCY0", "DX"));
         // activate PIPs for CARRY4/COUT
         si.addSitePIP(si.getSitePIP("COUTUSED", "0"));
         // activate PIPs for CARRY4/DI pins
