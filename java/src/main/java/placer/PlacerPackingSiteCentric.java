@@ -143,7 +143,6 @@ public class PlacerPackingSiteCentric extends Placer {
             // now traverse in the cout direction
             // the end of the chain occurs when portinst CO[3] is null
             List<CarryCellGroup> carryCellGroups = new ArrayList<>();
-
             while (true) { // iterating through the chain itself
                 chain.add(currCell); // currCell = carry cell
                 CarryCellGroup carryCellGroup = new CarryCellGroup(currCell, new ArrayList<>(), new ArrayList<>());
@@ -187,10 +186,9 @@ public class PlacerPackingSiteCentric extends Placer {
                 EDIFHierCellInst sinkCell = sinkCellPort.getHierarchicalInst()
                         .getChild(sinkCellPort.getPortInst().getCellInst().getName());
                 currCell = sinkCell;
-            }
-
+            } // end while(true) iterating through the chain itself
             carryCellGroupChains.add(carryCellGroups);
-        }
+        } // end while() iterating over chains
         return carryCellGroupChains;
     }
 
@@ -224,42 +222,62 @@ public class PlacerPackingSiteCentric extends Placer {
     }
 
     private void placeCarrySite(CarryCellGroup carryCellGroup, SiteInst si) {
-        //
         // ****** POTENTIAL FUTURE BUG IN HIDING ********
         // what guarantees that all of the FFs connected to the CARRY4 all
         // share the same CE and Reset?
-        //
         String[] FF5_BELS = new String[] { "A5FF", "B5FF", "C5FF", "D5FF" };
         String[] FF_BELS = new String[] { "AFF", "BFF", "CFF", "DFF" };
         String[] LUT5_BELS = new String[] { "A5LUT", "B5LUT", "C5LUT", "D5LUT" };
         String[] LUT6_BELS = new String[] { "A6LUT", "B6LUT", "C6LUT", "D6LUT" };
-
         for (int i = 0; i < 4; i++) {
-            System.out.println(i);
             EDIFHierCellInst ff = carryCellGroup.ffs().get(i);
-            if (ff != null) {
-                System.out.println("\t" + ff.getCellName());
+            if (ff != null)
                 si.createCell(ff, si.getBEL(FF_BELS[i]));
-            }
             EDIFHierCellInst lut = carryCellGroup.luts().get(i);
-            if (lut != null) {
-                System.out.println("\t" + lut.getCellName());
+            if (lut != null)
                 si.createCell(lut, si.getBEL(LUT6_BELS[i]));
-            }
             // carry site LUTs MUST be placed on LUT6 BELs.
             // only LUT6/O6 can connect to CARRY4/S0
         }
-        System.out.println("=======================");
-
         si.createCell(carryCellGroup.carry(), si.getBEL("CARRY4"));
 
+        si.routeSite();
+        // activate PIPs for CARRY4/COUT
+        si.addSitePIP(si.getSitePIP("COUTUSED", "0"));
+        // activate PIPs for CARRY4/DI pins
+        si.addSitePIP(si.getSitePIP("DCY0", "DX"));
+        si.addSitePIP(si.getSitePIP("CCY0", "CX"));
+        si.addSitePIP(si.getSitePIP("BCY0", "BX"));
+        si.addSitePIP(si.getSitePIP("ACY0", "AX"));
+        // remove stray CARRY4/CO nets
+        design.removeNet(si.getNetFromSiteWire("CARRY4_CO2"));
+        design.removeNet(si.getNetFromSiteWire("CARRY4_CO1"));
+        design.removeNet(si.getNetFromSiteWire("CARRY4_CO0"));
+        // add default XOR PIPs for unused FFs
+        for (String FF : new String[] { "DFF", "CFF", "BFF", "AFF" }) {
+            if (si.getCell(FF) == null) {
+                si.addSitePIP(si.getSitePIP(FF.charAt(0) + "OUTMUX", "XOR"));
+            }
+        }
+        // activate PIPs for SR and CE pins
+        Net SRNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
+        Net CENet = si.getNetFromSiteWire("CEUSEDMUX_OUT");
+        // deactivate the default PIP from routeSite()
+        for (String FF : new String[] { "DFF", "CFF", "BFF", "AFF" }) {
+            si.unrouteIntraSiteNet(si.getBELPin("SRUSEDGND", "0"), si.getBELPin(FF, "SR"));
+            si.unrouteIntraSiteNet(si.getBELPin("CEUSEDVCC", "1"), si.getBELPin(FF, "CE"));
+        }
+        // activate the correct SR CE PIP
+        if (SRNet != null)
+            si.addSitePIP(si.getSitePIP("SRUSEDMUX", SRNet.isGNDNet() ? "0" : "IN"));
+        if (CENet != null)
+            si.addSitePIP(si.getSitePIP("CEUSEDMUX", CENet.isVCCNet() ? "1" : "IN"));
     } // end placeCarrySite()
 
     private void placeCarryChainSites(List<List<CarryCellGroup>> EDIFCarryChains,
             List<Site> occupiedCLBSites)
             throws IOException {
         writer.write("\n\nPlacing carry chains... (" + EDIFCarryChains.size() + ")");
-        // PLACE CARRY CHAINS
         for (List<CarryCellGroup> chain : EDIFCarryChains) {
             writer.write("\n\t\tchain size: " + chain.size());
             Random rand = new Random();
@@ -271,55 +289,22 @@ public class PlacerPackingSiteCentric extends Placer {
             int randIndex = rand.nextInt(compatibleSiteTypes.size());
             SiteTypeEnum selectedSiteType = compatibleSiteTypes.get(randIndex);
             Site anchorSite = findCarryChainAnchorSite(selectedSiteType, chain);
-
             if (anchorSite == null) {
                 writer.write("\nWARNING: COULD NOT PLACE CARRY CHAIN ANCHOR!");
                 break;
             }
-
             for (int i = 0; i < chain.size(); i++) {
                 Site site = (i == 0) ? anchorSite
                         : device.getSite("SLICE_X" + anchorSite.getInstanceX() + "Y" + (anchorSite.getInstanceY() + i));
                 SiteInst si = new SiteInst(chain.get(i).carry().getFullHierarchicalInstName(), design, selectedSiteType,
                         site);
                 placeCarrySite(chain.get(i), si);
-                occupiedCLBSites.add(site);
-                si.routeSite();
-                if (i == 0) { // specific logic for anchor site
+                if (i == 0) { // additional routing logic for anchor site
                     Net CINNet = si.getNetFromSiteWire("CIN");
                     CINNet.removePin(si.getSitePinInst("CIN"));
                     si.addSitePIP(si.getSitePIP("PRECYINIT", "0"));
                 }
-                // activate PIPs for COUT
-                si.addSitePIP(si.getSitePIP("COUTUSED", "0"));
-                // activate PIPs for DI pins
-                si.addSitePIP(si.getSitePIP("DCY0", "DX"));
-                si.addSitePIP(si.getSitePIP("CCY0", "CX"));
-                si.addSitePIP(si.getSitePIP("BCY0", "BX"));
-                si.addSitePIP(si.getSitePIP("ACY0", "AX"));
-                // remove stray CARR4_CO nets
-                design.removeNet(si.getNetFromSiteWire("CARRY4_CO2"));
-                design.removeNet(si.getNetFromSiteWire("CARRY4_CO1"));
-                design.removeNet(si.getNetFromSiteWire("CARRY4_CO0"));
-                // add default XOR PIPs for unused FFs
-                for (String FF : new String[] { "DFF", "CFF", "BFF", "AFF" }) {
-                    if (si.getCell(FF) == null) {
-                        si.addSitePIP(si.getSitePIP(FF.charAt(0) + "OUTMUX", "XOR"));
-                    }
-                }
-                // activate PIPs for SR and CE pins
-                Net SRNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
-                Net CENet = si.getNetFromSiteWire("CEUSEDMUX_OUT");
-                // deactivate the default PIP from routeSite()
-                for (String FF : new String[] { "DFF", "CFF", "BFF", "AFF" }) {
-                    si.unrouteIntraSiteNet(si.getBELPin("SRUSEDGND", "0"), si.getBELPin(FF, "SR"));
-                    si.unrouteIntraSiteNet(si.getBELPin("CEUSEDVCC", "1"), si.getBELPin(FF, "CE"));
-                }
-                // activate the correct SR CE PIP
-                if (SRNet != null)
-                    si.addSitePIP(si.getSitePIP("SRUSEDMUX", SRNet.isGNDNet() ? "0" : "IN"));
-                if (CENet != null)
-                    si.addSitePIP(si.getSitePIP("CEUSEDMUX", CENet.isVCCNet() ? "1" : "IN"));
+                occupiedCLBSites.add(site);
             }
         } // end for (List<EDIFCellInst> chain : EDIFCarryChains)
     } // end placeCarryChainSites()
@@ -398,24 +383,14 @@ public class PlacerPackingSiteCentric extends Placer {
 
         while (true) {
             Tile selectedTile = compatibleSites.get(rand.nextInt(compatibleSites.size())).getTile();
-
-            // List<Site> ramSites = Arrays.asList(selectedTile.getSites()).stream()
-            // .filter(s -> s.getSiteTypeEnum().equals(SiteTypeEnum.RAMB18E1))
-            // // || s.getSiteTypeEnum().equals(SiteTypeEnum.FIFO18E1))
-            // .collect(Collectors.toList());
-
             List<Site> ramSites = Arrays.asList(selectedTile.getSites()).stream()
                     .filter(s -> s.getSiteTypeEnum().equals(SiteTypeEnum.RAMB18E1)
                             || Arrays.asList(s.getAlternateSiteTypeEnums()).contains(SiteTypeEnum.RAMB18E1))
                     .collect(Collectors.toList());
 
-            // for (Site site : ramSites) {
-            // System.out.println("RAM SITE: " + site.getName() + ", TYPE: " +
-            // site.getSiteTypeEnum());
-            // }
-
             if (EDIFCellGroups.get("RAMB18E1").isEmpty())
                 break;
+
             EDIFHierCellInst cell0 = EDIFCellGroups.get("RAMB18E1").get(0);
             SiteInst si0 = new SiteInst(cell0.getFullHierarchicalInstName(), design, SiteTypeEnum.RAMB18E1,
                     ramSites.get(0));
@@ -427,6 +402,7 @@ public class PlacerPackingSiteCentric extends Placer {
 
             if (EDIFCellGroups.get("RAMB18E1").isEmpty())
                 break;
+
             EDIFHierCellInst cell1 = EDIFCellGroups.get("RAMB18E1").get(0);
             SiteInst si1 = new SiteInst(cell1.getFullHierarchicalInstName(), design, SiteTypeEnum.RAMB18E1,
                     ramSites.get(1));
@@ -435,11 +411,6 @@ public class PlacerPackingSiteCentric extends Placer {
             compatibleSites.remove(ramSites.get(1));
             occupiedRAMSites.add(ramSites.get(1));
             EDIFCellGroups.get("RAMB18E1").remove(cell1);
-
-            // for (Site site : ramSites)
-            // System.out.println("siteName: " + site.getName() + ", siteType: " +
-            // site.getSiteTypeEnum());
-            // System.out.println();
         }
     } // end placeRAMSites()
 
@@ -521,6 +492,7 @@ public class PlacerPackingSiteCentric extends Placer {
                 if (CENet != null)
                     si.addSitePIP(si.getSitePIP("CEUSEDMUX", CENet.isVCCNet() ? "1" : "IN"));
 
+                // accomodate LUT outputs that have sinks outside the lutff pair
                 si.addSitePIP(si.getSitePIP("DOUTMUX", "O6"));
                 si.addSitePIP(si.getSitePIP("COUTMUX", "O6"));
                 si.addSitePIP(si.getSitePIP("BOUTMUX", "O6"));
@@ -531,6 +503,7 @@ public class PlacerPackingSiteCentric extends Placer {
 
     private Pair<List<List<EDIFHierCellInst>>, List<List<EDIFHierCellInst>>> buildStackedLUTGroups(
             Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
+        List<EDIFHierCellInst> LUTCells = new ArrayList<>(EDIFCellGroups.get("LUT"));
         List<EDIFHierCellInst> LUT6Cells = new ArrayList<>();
         EDIFCellGroups.get("LUT").removeIf(c -> {
             if (c.getCellType().getName().contains("LUT6")) {
@@ -539,8 +512,8 @@ public class PlacerPackingSiteCentric extends Placer {
             }
             return false;
         });
-        List<EDIFHierCellInst> LUTCells = new ArrayList<>(EDIFCellGroups.get("LUT"));
-        EDIFCellGroups.get("LUT").clear();
+        EDIFCellGroups.get("LUT").removeAll(LUTCells);
+        EDIFCellGroups.get("LUT").removeAll(LUT6Cells);
         List<List<EDIFHierCellInst>> LUT6Groups = splitIntoGroups(LUT6Cells, 4);
         List<List<EDIFHierCellInst>> LUTGroups = splitIntoGroups(LUTCells, 8);
         var pairLists = new Pair<List<List<EDIFHierCellInst>>, List<List<EDIFHierCellInst>>>(LUT6Groups, LUTGroups);
@@ -550,7 +523,8 @@ public class PlacerPackingSiteCentric extends Placer {
     private List<List<EDIFHierCellInst>> buildLUTGroups(Map<String, List<EDIFHierCellInst>> EDIFCellGroups)
             throws IOException {
         List<List<EDIFHierCellInst>> LUTGroups = splitIntoGroups(EDIFCellGroups.get("LUT"), 4);
-        EDIFCellGroups.get("LUT").clear();
+        for (List<EDIFHierCellInst> group : LUTGroups)
+            EDIFCellGroups.get("LUT").removeAll(group);
         return LUTGroups;
     }
 
@@ -597,7 +571,6 @@ public class PlacerPackingSiteCentric extends Placer {
         LUT_BELS.add("B5LUT");
         LUT_BELS.add("C5LUT");
         LUT_BELS.add("D5LUT");
-
         for (List<EDIFHierCellInst> group : LUTGroups) {
             Site selectedSite = selectCLBSite(occupiedCLBSites);
             SiteInst si = design.createSiteInst(selectedSite);
@@ -610,11 +583,9 @@ public class PlacerPackingSiteCentric extends Placer {
 
     private void placeVCCGND(Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
         List<EDIFHierCellInst> VCCCells = EDIFCellGroups.get("VCC");
-
         writer.write("\n\nPrinting VCC Cells...");
         for (EDIFHierCellInst ehci : VCCCells) {
             Cell cell = design.createCell(ehci.getFullHierarchicalInstName(), ehci.getInst());
-
             Map<SiteTypeEnum, Set<String>> compatiblePlacements = cell.getCompatiblePlacements(device);
             if (compatiblePlacements.isEmpty()) {
                 writer.write("\n\tVCC Cell: " + cell.getName() + " has no compatible placements!");
@@ -623,11 +594,8 @@ public class PlacerPackingSiteCentric extends Placer {
                 for (Map.Entry<SiteTypeEnum, Set<String>> entry : compatiblePlacements.entrySet()) {
                     writer.write("\n\t\tSiteType: " + entry.getKey());
                 }
-
             }
-
         }
-
     }
 
     public @Override void placeDesign() throws IOException {
