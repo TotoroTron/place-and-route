@@ -87,7 +87,10 @@ public class PlacerPackingSiteCentric extends Placer {
         List<Site> availableSites = new ArrayList<Site>(
                 Arrays.asList(device.getAllCompatibleSites(selectedSiteType)));
         availableSites.removeAll(occupiedCLBSites);
+
         Site selectedSite = availableSites.get(rand.nextInt(availableSites.size()));
+        // Site selectedSite = availableSites.get(0);
+
         occupiedCLBSites.add(selectedSite);
 
         return selectedSite;
@@ -243,6 +246,8 @@ public class PlacerPackingSiteCentric extends Placer {
 
         si.routeSite(); // default routing
 
+        // activate PIPs for CARRY4/COUT
+        si.addSitePIP(si.getSitePIP("COUTUSED", "0"));
         // undo default CARRY4/DI nets
         SitePinInst AX = si.getSitePinInst("AX");
         if (AX != null)
@@ -250,8 +255,6 @@ public class PlacerPackingSiteCentric extends Placer {
         SitePinInst DX = si.getSitePinInst("DX");
         if (DX != null)
             si.unrouteIntraSiteNet(DX.getBELPin(), si.getBELPin("DCY0", "DX"));
-        // activate PIPs for CARRY4/COUT
-        si.addSitePIP(si.getSitePIP("COUTUSED", "0"));
         // activate PIPs for CARRY4/DI pins
         si.addSitePIP(si.getSitePIP("DCY0", "DX"));
         si.addSitePIP(si.getSitePIP("CCY0", "CX"));
@@ -270,10 +273,16 @@ public class PlacerPackingSiteCentric extends Placer {
         // activate PIPs for SR and CE pins
         Net SRNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
         Net CENet = si.getNetFromSiteWire("CEUSEDMUX_OUT");
-        // deactivate the default PIP from routeSite()
+        // deactivate the default SR and CE PIPs from routeSite()
         for (String FF : new String[] { "DFF", "CFF", "BFF", "AFF" }) {
             si.unrouteIntraSiteNet(si.getBELPin("SRUSEDGND", "0"), si.getBELPin(FF, "SR"));
+            SitePinInst SR = si.getSitePinInst("SR");
+            if (SR != null)
+                si.unrouteIntraSiteNet(SR.getBELPin(), si.getBELPin(FF, "SR"));
             si.unrouteIntraSiteNet(si.getBELPin("CEUSEDVCC", "1"), si.getBELPin(FF, "CE"));
+            SitePinInst CE = si.getSitePinInst("CE");
+            if (CE != null)
+                si.unrouteIntraSiteNet(CE.getBELPin(), si.getBELPin(FF, "CE"));
         }
         // activate the correct SR CE PIP
         if (SRNet != null)
