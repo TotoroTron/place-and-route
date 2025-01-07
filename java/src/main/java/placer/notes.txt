@@ -64,3 +64,12 @@ https://adaptivesupport.amd.com/s/article/66823?language=en_US
 https://adaptivesupport.amd.com/s/question/0D52E00006hpJhaSAE/vivado-not-using-local-ilogic-inversion-leading-to-unroutable-design?language=en_US
 
 
+TURNS OUT:
+    Using only default route_design tcl command allows the CE sitepin's port on the switchbox to get "stolen" by LUT sitepins.
+    Using the interactive router, unrouting the LUT sitepin thief, routing the CE net, the rerouting the LUT sitepin at another switchbox port solves the routing error completely.
+    Each LUT input pin has many ports on the switchbox.
+    CE pin only has one port on the switchbox, so it should be given higher priority.
+    Need to use route_design -nets <args> to force it to route Flip Flop nets before routing LUT nets.
+
+
+

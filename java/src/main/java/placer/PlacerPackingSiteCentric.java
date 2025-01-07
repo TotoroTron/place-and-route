@@ -265,16 +265,15 @@ public class PlacerPackingSiteCentric extends Placer {
         design.removeNet(si.getNetFromSiteWire("CARRY4_CO1"));
         design.removeNet(si.getNetFromSiteWire("CARRY4_CO0"));
         // add default XOR PIPs for unused FFs
-        for (String FF : new String[] { "DFF", "CFF", "BFF", "AFF" }) {
-            if (si.getCell(FF) == null) {
+        for (String FF : FF_BELS)
+            if (si.getCell(FF) == null)
                 si.addSitePIP(si.getSitePIP(FF.charAt(0) + "OUTMUX", "XOR"));
-            }
-        }
+
         // activate PIPs for SR and CE pins
         Net SRNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
         Net CENet = si.getNetFromSiteWire("CEUSEDMUX_OUT");
         // deactivate the default SR and CE PIPs from routeSite()
-        for (String FF : new String[] { "DFF", "CFF", "BFF", "AFF" }) {
+        for (String FF : FF_BELS) {
             si.unrouteIntraSiteNet(si.getBELPin("SRUSEDGND", "0"), si.getBELPin(FF, "SR"));
             SitePinInst SR = si.getSitePinInst("SR");
             if (SR != null)
@@ -498,6 +497,18 @@ public class PlacerPackingSiteCentric extends Placer {
                 // activate PIPs for SR and CE pins
                 Net SRNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
                 Net CENet = si.getNetFromSiteWire("CEUSEDMUX_OUT");
+
+                // deactivate the default SR and CE PIPs from routeSite()
+                for (String FF : FF_BELS) {
+                    si.unrouteIntraSiteNet(si.getBELPin("SRUSEDGND", "0"), si.getBELPin(FF, "SR"));
+                    SitePinInst SR = si.getSitePinInst("SR");
+                    if (SR != null)
+                        si.unrouteIntraSiteNet(SR.getBELPin(), si.getBELPin(FF, "SR"));
+                    si.unrouteIntraSiteNet(si.getBELPin("CEUSEDVCC", "1"), si.getBELPin(FF, "CE"));
+                    SitePinInst CE = si.getSitePinInst("CE");
+                    if (CE != null)
+                        si.unrouteIntraSiteNet(CE.getBELPin(), si.getBELPin(FF, "CE"));
+                }
 
                 for (String FF_BEL : FF_BELS) {
                     si.unrouteIntraSiteNet(si.getBELPin("SRUSEDGND", "0"), si.getBELPin(FF_BEL, "SR"));

@@ -7,7 +7,33 @@ set bitstream_file "$root_dir/outputs/output.bit"
 
 open_checkpoint $placed_dcp
 report_utilization
+
+
+set ff_cells [get_cells -hierarchical -filter {PRIMITIVE_TYPE =~ FLOP_LATCH.*.*}]
+
+set ff_nets {}
+
+foreach ff $ff_cells {
+    # collect the nets connected to this ff
+    set connected_nets [get_nets -of_objects [get_pins -of $ff]]
+    # append these nets to ff_nets
+    lappend ff_nets $connected_nets
+}
+
+# some of the nets will be duplicate, so reduce to only unique nets
+set unique_ff_nets [lsort -unique $ff_nets]
+
+# first route the unique ff nets
+route_design -verbose -nets $unique_ff_nets
+
+# then route everything else
 route_design -verbose
+
+# # route exclusively non-ff nets
+# set all_nets [get_nets]
+# set non_ff_nets [lsort -unique [lsearch -inline -not -all $all_nets $unique_ff_nets]]
+# route_design -verbose -nets $non_ff_nets
+
 report_route_status -show_all
 write_checkpoint -force $routed_dcp
 
