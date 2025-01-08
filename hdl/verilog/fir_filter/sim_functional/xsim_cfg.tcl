@@ -1,3 +1,3 @@
-log_wave -recursive *
-run all
-exit
+    log_wave -recursive *
+    run all
+    exit

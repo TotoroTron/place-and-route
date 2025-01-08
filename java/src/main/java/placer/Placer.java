@@ -50,6 +50,11 @@ public abstract class Placer {
     protected String synthesizedDcp = rootDir + "/outputs/synthesized.dcp";
     protected String placedDcp = rootDir + "/outputs/placed.dcp";
 
+    protected String[] FF5_BELS = new String[] { "A5FF", "B5FF", "C5FF", "D5FF" };
+    protected String[] FF_BELS = new String[] { "AFF", "BFF", "CFF", "DFF" };
+    protected String[] LUT5_BELS = new String[] { "A5LUT", "B5LUT", "C5LUT", "D5LUT" };
+    protected String[] LUT6_BELS = new String[] { "A6LUT", "B6LUT", "C6LUT", "D6LUT" };
+
     public Placer() throws IOException {
         design = Design.readCheckpoint(synthesizedDcp);
         device = Device.getDevice("xc7z020clg400-1");
