@@ -34,6 +34,7 @@ import com.xilinx.rapidwright.device.BEL;
 import com.xilinx.rapidwright.device.BELPin;
 import com.xilinx.rapidwright.device.Site;
 import com.xilinx.rapidwright.device.SitePIP;
+import com.xilinx.rapidwright.device.SitePIPStatus;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 import com.xilinx.rapidwright.device.Tile;
 
@@ -275,19 +276,23 @@ public class PlacerPackingSiteCentric extends Placer {
         // deactivate the default SR and CE PIPs from routeSite()
         for (String FF : FF_BELS) {
             si.unrouteIntraSiteNet(si.getBELPin("SRUSEDGND", "0"), si.getBELPin(FF, "SR"));
+            si.unrouteIntraSiteNet(si.getBELPin("CEUSEDVCC", "1"), si.getBELPin(FF, "CE"));
             SitePinInst SR = si.getSitePinInst("SR");
+            SitePinInst CE = si.getSitePinInst("CE");
             if (SR != null)
                 si.unrouteIntraSiteNet(SR.getBELPin(), si.getBELPin(FF, "SR"));
-            si.unrouteIntraSiteNet(si.getBELPin("CEUSEDVCC", "1"), si.getBELPin(FF, "CE"));
-            SitePinInst CE = si.getSitePinInst("CE");
             if (CE != null)
                 si.unrouteIntraSiteNet(CE.getBELPin(), si.getBELPin(FF, "CE"));
         }
         // activate the correct SR CE PIP
         if (SRNet != null)
             si.addSitePIP(si.getSitePIP("SRUSEDMUX", SRNet.isGNDNet() ? "0" : "IN"));
+        else
+            System.out.println("SRNet Null at SiteInst: " + si.getName());
         if (CENet != null)
             si.addSitePIP(si.getSitePIP("CEUSEDMUX", CENet.isVCCNet() ? "1" : "IN"));
+        else
+            System.out.println("CENet Null at SiteInst: " + si.getName());
     } // end placeCarrySite()
 
     private void placeCarryChainSites(List<List<CarryCellGroup>> EDIFCarryChains,
@@ -493,38 +498,79 @@ public class PlacerPackingSiteCentric extends Placer {
                     }
                     si.createCell(ff, si.getBEL(FF_BELS[i]));
                 }
+
                 si.routeSite();
+
+                // accomodate LUT outputs that have sinks outside the lutff pair
+                si.addSitePIP(si.getSitePIP("DUSED", "0"));
+                si.addSitePIP(si.getSitePIP("CUSED", "0"));
+                si.addSitePIP(si.getSitePIP("BUSED", "0"));
+                si.addSitePIP(si.getSitePIP("AUSED", "0"));
+                // si.addSitePIP(si.getSitePIP("DOUTMUX", "O6"));
+
                 // activate PIPs for SR and CE pins
                 Net SRNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
                 Net CENet = si.getNetFromSiteWire("CEUSEDMUX_OUT");
 
+                if (SRNet.isGNDNet()) {
+                    if (si.getSitePIPStatus(si.getSitePIP("SRUSEDMUX", "IN")) == SitePIPStatus.ON) {
+                        for (String FF : FF_BELS) {
+                            si.unrouteIntraSiteNet(si.getSitePinInst("SR").getBELPin(), si.getBELPin(FF, "SR"));
+                        }
+                    }
+                    si.addSitePIP(si.getSitePIP("SRUSEDMUX", "0"));
+                } else {
+                    if (si.getSitePIPStatus(si.getSitePIP("SRUSEDMUX", "0")) == SitePIPStatus.ON) {
+                        for (String FF : FF_BELS) {
+                            si.unrouteIntraSiteNet(si.getBELPin("SRUSEDGND", "0"), si.getBELPin(FF, "SR"));
+                        }
+                    }
+                    si.addSitePIP(si.getSitePIP("SRUSEDMUX", "IN"));
+                }
+
+                if (CENet.isVCCNet()) {
+                    if (si.getSitePIPStatus(si.getSitePIP("CEUSEDMUX", "IN")) == SitePIPStatus.ON) {
+                        for (String FF : FF_BELS) {
+                            si.unrouteIntraSiteNet(si.getSitePinInst("CE").getBELPin(), si.getBELPin(FF, "CE"));
+                        }
+                    }
+                    si.addSitePIP(si.getSitePIP("CEUSEDMUX", "1"));
+                } else {
+                    if (si.getSitePIPStatus(si.getSitePIP("CEUSEDMUX", "1")) == SitePIPStatus.ON) {
+                        for (String FF : FF_BELS) {
+                            si.unrouteIntraSiteNet(si.getBELPin("CEUSEDGND", "1"), si.getBELPin(FF, "CE"));
+                        }
+                    }
+                    si.addSitePIP(si.getSitePIP("CEUSEDMUX", "IN"));
+                }
+
                 // deactivate the default SR and CE PIPs from routeSite()
-                for (String FF : FF_BELS) {
-                    si.unrouteIntraSiteNet(si.getBELPin("SRUSEDGND", "0"), si.getBELPin(FF, "SR"));
-                    SitePinInst SR = si.getSitePinInst("SR");
-                    if (SR != null)
-                        si.unrouteIntraSiteNet(SR.getBELPin(), si.getBELPin(FF, "SR"));
-                    si.unrouteIntraSiteNet(si.getBELPin("CEUSEDVCC", "1"), si.getBELPin(FF, "CE"));
-                    SitePinInst CE = si.getSitePinInst("CE");
-                    if (CE != null)
-                        si.unrouteIntraSiteNet(CE.getBELPin(), si.getBELPin(FF, "CE"));
-                }
+                // for (String FF : FF_BELS) {
+                // si.unrouteIntraSiteNet(si.getBELPin("SRUSEDGND", "0"), si.getBELPin(FF,
+                // "SR"));
+                // si.unrouteIntraSiteNet(si.getBELPin("CEUSEDVCC", "1"), si.getBELPin(FF,
+                // "CE"));
+                // SitePinInst SR = si.getSitePinInst("SR");
+                // SitePinInst CE = si.getSitePinInst("CE");
+                // if (SR != null)
+                // si.unrouteIntraSiteNet(SR.getBELPin(), si.getBELPin(FF, "SR"));
+                // if (CE != null)
+                // si.unrouteIntraSiteNet(CE.getBELPin(), si.getBELPin(FF, "CE"));
+                // }
 
-                for (String FF_BEL : FF_BELS) {
-                    si.unrouteIntraSiteNet(si.getBELPin("SRUSEDGND", "0"), si.getBELPin(FF_BEL, "SR"));
-                    si.unrouteIntraSiteNet(si.getBELPin("CEUSEDVCC", "1"), si.getBELPin(FF_BEL, "CE"));
-                }
+                // activate the correct SR CE PIP
+                // si.addSitePIP(si.getSitePIP("SRUSEDMUX", SRNet.isGNDNet() ? "0" : "IN"));
+                // si.addSitePIP(si.getSitePIP("CEUSEDMUX", CENet.isVCCNet() ? "1" : "IN"));
 
-                if (SRNet != null)
-                    si.addSitePIP(si.getSitePIP("SRUSEDMUX", SRNet.isGNDNet() ? "0" : "IN"));
-                if (CENet != null)
-                    si.addSitePIP(si.getSitePIP("CEUSEDMUX", CENet.isVCCNet() ? "1" : "IN"));
+                // if (SRNet != null)
+                // si.addSitePIP(si.getSitePIP("SRUSEDMUX", SRNet.isGNDNet() ? "0" : "IN"));
+                // else
+                // System.out.println("SRNet Null at SiteInst: " + si.getName());
+                // if (CENet != null)
+                // si.addSitePIP(si.getSitePIP("CEUSEDMUX", CENet.isVCCNet() ? "1" : "IN"));
+                // else
+                // System.out.println("CENet Null at SiteInst:" + si.getName());
 
-                // accomodate LUT outputs that have sinks outside the lutff pair
-                si.addSitePIP(si.getSitePIP("DOUTMUX", "O6"));
-                si.addSitePIP(si.getSitePIP("COUTMUX", "O6"));
-                si.addSitePIP(si.getSitePIP("BOUTMUX", "O6"));
-                si.addSitePIP(si.getSitePIP("AOUTMUX", "O6"));
             }
         }
     } // end placeLUTFFPairGroups()
