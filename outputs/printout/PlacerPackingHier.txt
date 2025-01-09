@@ -26,18 +26,36 @@ OBUF Cells (3):
 
 FDRE Cells (334):
 	Printing all EDIFCellInsts of type FDRE... (334)
+		FDRE: o_dout_valid_reg
+			o_dout_valid_reg/C
+			o_dout_valid_reg/CE
+			o_dout_valid_reg/D
+			o_dout_valid_reg/Q
+			o_dout_valid_reg/R
 		FDRE: ov_dout_reg[14]
 			ov_dout_reg[14]/C
 			ov_dout_reg[14]/CE
 			ov_dout_reg[14]/D
 			ov_dout_reg[14]/Q
 			ov_dout_reg[14]/R
+		FDRE: sample_addr_reg[4]
+			sample_addr_reg[4]/C
+			sample_addr_reg[4]/CE
+			sample_addr_reg[4]/D
+			sample_addr_reg[4]/Q
+			sample_addr_reg[4]/R
 		FDRE: ov_dout_reg[7]
 			ov_dout_reg[7]/C
 			ov_dout_reg[7]/CE
 			ov_dout_reg[7]/D
 			ov_dout_reg[7]/Q
 			ov_dout_reg[7]/R
+		FDRE: weight_re_addr_reg[2]
+			weight_re_addr_reg[2]/C
+			weight_re_addr_reg[2]/CE
+			weight_re_addr_reg[2]/D
+			weight_re_addr_reg[2]/Q
+			weight_re_addr_reg[2]/R
 		FDRE: sample_re_addr_reg[4]
 			sample_re_addr_reg[4]/C
 			sample_re_addr_reg[4]/CE
@@ -56,12 +74,30 @@ FDRE Cells (334):
 			sample_re_addr_reg[3]/D
 			sample_re_addr_reg[3]/Q
 			sample_re_addr_reg[3]/R
+		FDRE: sample_addr_reg[3]
+			sample_addr_reg[3]/C
+			sample_addr_reg[3]/CE
+			sample_addr_reg[3]/D
+			sample_addr_reg[3]/Q
+			sample_addr_reg[3]/R
 		FDRE: ov_dout_reg[6]
 			ov_dout_reg[6]/C
 			ov_dout_reg[6]/CE
 			ov_dout_reg[6]/D
 			ov_dout_reg[6]/Q
 			ov_dout_reg[6]/R
+		FDRE: weight_re_addr_reg[3]
+			weight_re_addr_reg[3]/C
+			weight_re_addr_reg[3]/CE
+			weight_re_addr_reg[3]/D
+			weight_re_addr_reg[3]/Q
+			weight_re_addr_reg[3]/R
+		FDRE: ov_dout_reg[1]
+			ov_dout_reg[1]/C
+			ov_dout_reg[1]/CE
+			ov_dout_reg[1]/D
+			ov_dout_reg[1]/Q
+			ov_dout_reg[1]/R
 		FDRE: sample_re_addr_reg[2]
 			sample_re_addr_reg[2]/C
 			sample_re_addr_reg[2]/CE
@@ -74,18 +110,54 @@ FDRE Cells (334):
 			ov_dout_reg[9]/D
 			ov_dout_reg[9]/Q
 			ov_dout_reg[9]/R
+		FDRE: weight_re_addr_reg[4]
+			weight_re_addr_reg[4]/C
+			weight_re_addr_reg[4]/CE
+			weight_re_addr_reg[4]/D
+			weight_re_addr_reg[4]/Q
+			weight_re_addr_reg[4]/R
+		FDRE: o_ready_reg
+			o_ready_reg/C
+			o_ready_reg/CE
+			o_ready_reg/D
+			o_ready_reg/Q
+			o_ready_reg/R
 		FDRE: ov_dout_reg[12]
 			ov_dout_reg[12]/C
 			ov_dout_reg[12]/CE
 			ov_dout_reg[12]/D
 			ov_dout_reg[12]/Q
 			ov_dout_reg[12]/R
+		FDRE: FSM_sequential_state_reg[0]
+			FSM_sequential_state_reg[0]/C
+			FSM_sequential_state_reg[0]/CE
+			FSM_sequential_state_reg[0]/D
+			FSM_sequential_state_reg[0]/Q
+			FSM_sequential_state_reg[0]/R
+		FDRE: ov_dout_reg[0]
+			ov_dout_reg[0]/C
+			ov_dout_reg[0]/CE
+			ov_dout_reg[0]/D
+			ov_dout_reg[0]/Q
+			ov_dout_reg[0]/R
+		FDRE: ov_dout_reg[19]
+			ov_dout_reg[19]/C
+			ov_dout_reg[19]/CE
+			ov_dout_reg[19]/D
+			ov_dout_reg[19]/Q
+			ov_dout_reg[19]/R
 		FDRE: sample_re_addr_reg[1]
 			sample_re_addr_reg[1]/C
 			sample_re_addr_reg[1]/CE
 			sample_re_addr_reg[1]/D
 			sample_re_addr_reg[1]/Q
 			sample_re_addr_reg[1]/R
+		FDRE: sample_wr_addr_reg[4]
+			sample_wr_addr_reg[4]/C
+			sample_wr_addr_reg[4]/CE
+			sample_wr_addr_reg[4]/D
+			sample_wr_addr_reg[4]/Q
+			sample_wr_addr_reg[4]/R
 		FDRE: ov_dout_reg[8]
 			ov_dout_reg[8]/C
 			ov_dout_reg[8]/CE
@@ -104,6 +176,12 @@ FDRE Cells (334):
 			ov_dout_reg[23]/D
 			ov_dout_reg[23]/Q
 			ov_dout_reg[23]/R
+		FDRE: FSM_sequential_state_reg[1]
+			FSM_sequential_state_reg[1]/C
+			FSM_sequential_state_reg[1]/CE
+			FSM_sequential_state_reg[1]/D
+			FSM_sequential_state_reg[1]/Q
+			FSM_sequential_state_reg[1]/R
 		FDRE: sample_wr_addr_reg[3]
 			sample_wr_addr_reg[3]/C
 			sample_wr_addr_reg[3]/CE
@@ -122,12 +200,42 @@ FDRE Cells (334):
 			sample_addr_reg[0]/D
 			sample_addr_reg[0]/Q
 			sample_addr_reg[0]/R
+		FDRE: sample_re_addr_reg[0]
+			sample_re_addr_reg[0]/C
+			sample_re_addr_reg[0]/CE
+			sample_re_addr_reg[0]/D
+			sample_re_addr_reg[0]/Q
+			sample_re_addr_reg[0]/R
+		FDRE: ov_dout_reg[10]
+			ov_dout_reg[10]/C
+			ov_dout_reg[10]/CE
+			ov_dout_reg[10]/D
+			ov_dout_reg[10]/Q
+			ov_dout_reg[10]/R
+		FDRE: ov_dout_reg[22]
+			ov_dout_reg[22]/C
+			ov_dout_reg[22]/CE
+			ov_dout_reg[22]/D
+			ov_dout_reg[22]/Q
+			ov_dout_reg[22]/R
+		FDRE: FSM_sequential_state_reg[2]
+			FSM_sequential_state_reg[2]/C
+			FSM_sequential_state_reg[2]/CE
+			FSM_sequential_state_reg[2]/D
+			FSM_sequential_state_reg[2]/Q
+			FSM_sequential_state_reg[2]/R
 		FDRE: ov_dout_reg[3]
 			ov_dout_reg[3]/C
 			ov_dout_reg[3]/CE
 			ov_dout_reg[3]/D
 			ov_dout_reg[3]/Q
 			ov_dout_reg[3]/R
+		FDRE: tap_en_reg
+			tap_en_reg/C
+			tap_en_reg/CE
+			tap_en_reg/D
+			tap_en_reg/Q
+			tap_en_reg/R
 		FDRE: sample_wr_addr_reg[2]
 			sample_wr_addr_reg[2]/C
 			sample_wr_addr_reg[2]/CE
@@ -140,6 +248,12 @@ FDRE Cells (334):
 			ov_dout_reg[17]/D
 			ov_dout_reg[17]/Q
 			ov_dout_reg[17]/R
+		FDRE: ov_dout_reg[21]
+			ov_dout_reg[21]/C
+			ov_dout_reg[21]/CE
+			ov_dout_reg[21]/D
+			ov_dout_reg[21]/Q
+			ov_dout_reg[21]/R
 		FDRE: ov_dout_reg[2]
 			ov_dout_reg[2]/C
 			ov_dout_reg[2]/CE
@@ -170,12 +284,30 @@ FDRE Cells (334):
 			ov_dout_reg[16]/D
 			ov_dout_reg[16]/Q
 			ov_dout_reg[16]/R
+		FDRE: ov_dout_reg[20]
+			ov_dout_reg[20]/C
+			ov_dout_reg[20]/CE
+			ov_dout_reg[20]/D
+			ov_dout_reg[20]/Q
+			ov_dout_reg[20]/R
 		FDRE: ov_dout_reg[5]
 			ov_dout_reg[5]/C
 			ov_dout_reg[5]/CE
 			ov_dout_reg[5]/D
 			ov_dout_reg[5]/Q
 			ov_dout_reg[5]/R
+		FDRE: weight_re_addr_reg[0]
+			weight_re_addr_reg[0]/C
+			weight_re_addr_reg[0]/CE
+			weight_re_addr_reg[0]/D
+			weight_re_addr_reg[0]/Q
+			weight_re_addr_reg[0]/R
+		FDRE: sum_rst_reg
+			sum_rst_reg/C
+			sum_rst_reg/CE
+			sum_rst_reg/D
+			sum_rst_reg/Q
+			sum_rst_reg/R
 		FDRE: sample_wr_addr_reg[0]
 			sample_wr_addr_reg[0]/C
 			sample_wr_addr_reg[0]/CE
@@ -200,138 +332,6 @@ FDRE Cells (334):
 			ov_dout_reg[4]/D
 			ov_dout_reg[4]/Q
 			ov_dout_reg[4]/R
-		FDRE: o_dout_valid_reg
-			o_dout_valid_reg/C
-			o_dout_valid_reg/CE
-			o_dout_valid_reg/D
-			o_dout_valid_reg/Q
-			o_dout_valid_reg/R
-		FDRE: sample_addr_reg[4]
-			sample_addr_reg[4]/C
-			sample_addr_reg[4]/CE
-			sample_addr_reg[4]/D
-			sample_addr_reg[4]/Q
-			sample_addr_reg[4]/R
-		FDRE: weight_re_addr_reg[2]
-			weight_re_addr_reg[2]/C
-			weight_re_addr_reg[2]/CE
-			weight_re_addr_reg[2]/D
-			weight_re_addr_reg[2]/Q
-			weight_re_addr_reg[2]/R
-		FDRE: sample_addr_reg[3]
-			sample_addr_reg[3]/C
-			sample_addr_reg[3]/CE
-			sample_addr_reg[3]/D
-			sample_addr_reg[3]/Q
-			sample_addr_reg[3]/R
-		FDRE: weight_re_addr_reg[3]
-			weight_re_addr_reg[3]/C
-			weight_re_addr_reg[3]/CE
-			weight_re_addr_reg[3]/D
-			weight_re_addr_reg[3]/Q
-			weight_re_addr_reg[3]/R
-		FDRE: ov_dout_reg[1]
-			ov_dout_reg[1]/C
-			ov_dout_reg[1]/CE
-			ov_dout_reg[1]/D
-			ov_dout_reg[1]/Q
-			ov_dout_reg[1]/R
-		FDRE: weight_re_addr_reg[4]
-			weight_re_addr_reg[4]/C
-			weight_re_addr_reg[4]/CE
-			weight_re_addr_reg[4]/D
-			weight_re_addr_reg[4]/Q
-			weight_re_addr_reg[4]/R
-		FDRE: o_ready_reg
-			o_ready_reg/C
-			o_ready_reg/CE
-			o_ready_reg/D
-			o_ready_reg/Q
-			o_ready_reg/R
-		FDRE: FSM_sequential_state_reg[0]
-			FSM_sequential_state_reg[0]/C
-			FSM_sequential_state_reg[0]/CE
-			FSM_sequential_state_reg[0]/D
-			FSM_sequential_state_reg[0]/Q
-			FSM_sequential_state_reg[0]/R
-		FDRE: ov_dout_reg[0]
-			ov_dout_reg[0]/C
-			ov_dout_reg[0]/CE
-			ov_dout_reg[0]/D
-			ov_dout_reg[0]/Q
-			ov_dout_reg[0]/R
-		FDRE: ov_dout_reg[19]
-			ov_dout_reg[19]/C
-			ov_dout_reg[19]/CE
-			ov_dout_reg[19]/D
-			ov_dout_reg[19]/Q
-			ov_dout_reg[19]/R
-		FDRE: sample_wr_addr_reg[4]
-			sample_wr_addr_reg[4]/C
-			sample_wr_addr_reg[4]/CE
-			sample_wr_addr_reg[4]/D
-			sample_wr_addr_reg[4]/Q
-			sample_wr_addr_reg[4]/R
-		FDRE: FSM_sequential_state_reg[1]
-			FSM_sequential_state_reg[1]/C
-			FSM_sequential_state_reg[1]/CE
-			FSM_sequential_state_reg[1]/D
-			FSM_sequential_state_reg[1]/Q
-			FSM_sequential_state_reg[1]/R
-		FDRE: sample_re_addr_reg[0]
-			sample_re_addr_reg[0]/C
-			sample_re_addr_reg[0]/CE
-			sample_re_addr_reg[0]/D
-			sample_re_addr_reg[0]/Q
-			sample_re_addr_reg[0]/R
-		FDRE: ov_dout_reg[10]
-			ov_dout_reg[10]/C
-			ov_dout_reg[10]/CE
-			ov_dout_reg[10]/D
-			ov_dout_reg[10]/Q
-			ov_dout_reg[10]/R
-		FDRE: ov_dout_reg[22]
-			ov_dout_reg[22]/C
-			ov_dout_reg[22]/CE
-			ov_dout_reg[22]/D
-			ov_dout_reg[22]/Q
-			ov_dout_reg[22]/R
-		FDRE: FSM_sequential_state_reg[2]
-			FSM_sequential_state_reg[2]/C
-			FSM_sequential_state_reg[2]/CE
-			FSM_sequential_state_reg[2]/D
-			FSM_sequential_state_reg[2]/Q
-			FSM_sequential_state_reg[2]/R
-		FDRE: tap_en_reg
-			tap_en_reg/C
-			tap_en_reg/CE
-			tap_en_reg/D
-			tap_en_reg/Q
-			tap_en_reg/R
-		FDRE: ov_dout_reg[21]
-			ov_dout_reg[21]/C
-			ov_dout_reg[21]/CE
-			ov_dout_reg[21]/D
-			ov_dout_reg[21]/Q
-			ov_dout_reg[21]/R
-		FDRE: ov_dout_reg[20]
-			ov_dout_reg[20]/C
-			ov_dout_reg[20]/CE
-			ov_dout_reg[20]/D
-			ov_dout_reg[20]/Q
-			ov_dout_reg[20]/R
-		FDRE: weight_re_addr_reg[0]
-			weight_re_addr_reg[0]/C
-			weight_re_addr_reg[0]/CE
-			weight_re_addr_reg[0]/D
-			weight_re_addr_reg[0]/Q
-			weight_re_addr_reg[0]/R
-		FDRE: sum_rst_reg
-			sum_rst_reg/C
-			sum_rst_reg/CE
-			sum_rst_reg/D
-			sum_rst_reg/Q
-			sum_rst_reg/R
 		FDRE: weight_re_addr_reg[1]
 			weight_re_addr_reg[1]/C
 			weight_re_addr_reg[1]/CE
@@ -1310,12 +1310,6 @@ FDRE Cells (334):
 			ov_sum_reg[9]/D
 			ov_sum_reg[9]/Q
 			ov_sum_reg[9]/R
-		FDRE: ov_sum_reg[4]
-			ov_sum_reg[4]/C
-			ov_sum_reg[4]/CE
-			ov_sum_reg[4]/D
-			ov_sum_reg[4]/Q
-			ov_sum_reg[4]/R
 		FDRE: ov_sum_reg[18]
 			ov_sum_reg[18]/C
 			ov_sum_reg[18]/CE
@@ -1328,12 +1322,6 @@ FDRE Cells (334):
 			ov_sum_reg[8]/D
 			ov_sum_reg[8]/Q
 			ov_sum_reg[8]/R
-		FDRE: ov_sum_reg[14]
-			ov_sum_reg[14]/C
-			ov_sum_reg[14]/CE
-			ov_sum_reg[14]/D
-			ov_sum_reg[14]/Q
-			ov_sum_reg[14]/R
 		FDRE: ov_sum_reg[10]
 			ov_sum_reg[10]/C
 			ov_sum_reg[10]/CE
@@ -1346,12 +1334,6 @@ FDRE Cells (334):
 			ov_sum_reg[22]/D
 			ov_sum_reg[22]/Q
 			ov_sum_reg[22]/R
-		FDRE: ov_sum_reg[3]
-			ov_sum_reg[3]/C
-			ov_sum_reg[3]/CE
-			ov_sum_reg[3]/D
-			ov_sum_reg[3]/Q
-			ov_sum_reg[3]/R
 		FDRE: ov_sum_reg[17]
 			ov_sum_reg[17]/C
 			ov_sum_reg[17]/CE
@@ -1364,30 +1346,12 @@ FDRE Cells (334):
 			ov_sum_reg[7]/D
 			ov_sum_reg[7]/Q
 			ov_sum_reg[7]/R
-		FDRE: ov_sum_reg[13]
-			ov_sum_reg[13]/C
-			ov_sum_reg[13]/CE
-			ov_sum_reg[13]/D
-			ov_sum_reg[13]/Q
-			ov_sum_reg[13]/R
 		FDRE: ov_sum_reg[21]
 			ov_sum_reg[21]/C
 			ov_sum_reg[21]/CE
 			ov_sum_reg[21]/D
 			ov_sum_reg[21]/Q
 			ov_sum_reg[21]/R
-		FDRE: ov_sum_reg[2]
-			ov_sum_reg[2]/C
-			ov_sum_reg[2]/CE
-			ov_sum_reg[2]/D
-			ov_sum_reg[2]/Q
-			ov_sum_reg[2]/R
-		FDRE: ov_sum_reg[16]
-			ov_sum_reg[16]/C
-			ov_sum_reg[16]/CE
-			ov_sum_reg[16]/D
-			ov_sum_reg[16]/Q
-			ov_sum_reg[16]/R
 		FDRE: ov_sum_reg[6]
 			ov_sum_reg[6]/C
 			ov_sum_reg[6]/CE
@@ -1400,36 +1364,12 @@ FDRE Cells (334):
 			ov_sum_reg[12]/D
 			ov_sum_reg[12]/Q
 			ov_sum_reg[12]/R
-		FDRE: ov_sum_reg[20]
-			ov_sum_reg[20]/C
-			ov_sum_reg[20]/CE
-			ov_sum_reg[20]/D
-			ov_sum_reg[20]/Q
-			ov_sum_reg[20]/R
-		FDRE: ov_sum_reg[0]
-			ov_sum_reg[0]/C
-			ov_sum_reg[0]/CE
-			ov_sum_reg[0]/D
-			ov_sum_reg[0]/Q
-			ov_sum_reg[0]/R
 		FDRE: ov_sum_reg[19]
 			ov_sum_reg[19]/C
 			ov_sum_reg[19]/CE
 			ov_sum_reg[19]/D
 			ov_sum_reg[19]/Q
 			ov_sum_reg[19]/R
-		FDRE: ov_sum_reg[1]
-			ov_sum_reg[1]/C
-			ov_sum_reg[1]/CE
-			ov_sum_reg[1]/D
-			ov_sum_reg[1]/Q
-			ov_sum_reg[1]/R
-		FDRE: ov_sum_reg[15]
-			ov_sum_reg[15]/C
-			ov_sum_reg[15]/CE
-			ov_sum_reg[15]/D
-			ov_sum_reg[15]/Q
-			ov_sum_reg[15]/R
 		FDRE: ov_sum_reg[5]
 			ov_sum_reg[5]/C
 			ov_sum_reg[5]/CE
@@ -1448,6 +1388,66 @@ FDRE Cells (334):
 			ov_sum_reg[11]/D
 			ov_sum_reg[11]/Q
 			ov_sum_reg[11]/R
+		FDRE: ov_sum_reg[4]
+			ov_sum_reg[4]/C
+			ov_sum_reg[4]/CE
+			ov_sum_reg[4]/D
+			ov_sum_reg[4]/Q
+			ov_sum_reg[4]/R
+		FDRE: ov_sum_reg[14]
+			ov_sum_reg[14]/C
+			ov_sum_reg[14]/CE
+			ov_sum_reg[14]/D
+			ov_sum_reg[14]/Q
+			ov_sum_reg[14]/R
+		FDRE: ov_sum_reg[3]
+			ov_sum_reg[3]/C
+			ov_sum_reg[3]/CE
+			ov_sum_reg[3]/D
+			ov_sum_reg[3]/Q
+			ov_sum_reg[3]/R
+		FDRE: ov_sum_reg[13]
+			ov_sum_reg[13]/C
+			ov_sum_reg[13]/CE
+			ov_sum_reg[13]/D
+			ov_sum_reg[13]/Q
+			ov_sum_reg[13]/R
+		FDRE: ov_sum_reg[2]
+			ov_sum_reg[2]/C
+			ov_sum_reg[2]/CE
+			ov_sum_reg[2]/D
+			ov_sum_reg[2]/Q
+			ov_sum_reg[2]/R
+		FDRE: ov_sum_reg[16]
+			ov_sum_reg[16]/C
+			ov_sum_reg[16]/CE
+			ov_sum_reg[16]/D
+			ov_sum_reg[16]/Q
+			ov_sum_reg[16]/R
+		FDRE: ov_sum_reg[20]
+			ov_sum_reg[20]/C
+			ov_sum_reg[20]/CE
+			ov_sum_reg[20]/D
+			ov_sum_reg[20]/Q
+			ov_sum_reg[20]/R
+		FDRE: ov_sum_reg[0]
+			ov_sum_reg[0]/C
+			ov_sum_reg[0]/CE
+			ov_sum_reg[0]/D
+			ov_sum_reg[0]/Q
+			ov_sum_reg[0]/R
+		FDRE: ov_sum_reg[1]
+			ov_sum_reg[1]/C
+			ov_sum_reg[1]/CE
+			ov_sum_reg[1]/D
+			ov_sum_reg[1]/Q
+			ov_sum_reg[1]/R
+		FDRE: ov_sum_reg[15]
+			ov_sum_reg[15]/C
+			ov_sum_reg[15]/CE
+			ov_sum_reg[15]/D
+			ov_sum_reg[15]/Q
+			ov_sum_reg[15]/R
 		FDRE: ov_sum_reg[9]
 			ov_sum_reg[9]/C
 			ov_sum_reg[9]/CE
@@ -1742,6 +1742,12 @@ FDRE Cells (334):
 			ov_sum_reg[9]/D
 			ov_sum_reg[9]/Q
 			ov_sum_reg[9]/R
+		FDRE: ov_sum_reg[4]
+			ov_sum_reg[4]/C
+			ov_sum_reg[4]/CE
+			ov_sum_reg[4]/D
+			ov_sum_reg[4]/Q
+			ov_sum_reg[4]/R
 		FDRE: ov_sum_reg[18]
 			ov_sum_reg[18]/C
 			ov_sum_reg[18]/CE
@@ -1754,6 +1760,12 @@ FDRE Cells (334):
 			ov_sum_reg[8]/D
 			ov_sum_reg[8]/Q
 			ov_sum_reg[8]/R
+		FDRE: ov_sum_reg[14]
+			ov_sum_reg[14]/C
+			ov_sum_reg[14]/CE
+			ov_sum_reg[14]/D
+			ov_sum_reg[14]/Q
+			ov_sum_reg[14]/R
 		FDRE: ov_sum_reg[10]
 			ov_sum_reg[10]/C
 			ov_sum_reg[10]/CE
@@ -1766,6 +1778,12 @@ FDRE Cells (334):
 			ov_sum_reg[22]/D
 			ov_sum_reg[22]/Q
 			ov_sum_reg[22]/R
+		FDRE: ov_sum_reg[3]
+			ov_sum_reg[3]/C
+			ov_sum_reg[3]/CE
+			ov_sum_reg[3]/D
+			ov_sum_reg[3]/Q
+			ov_sum_reg[3]/R
 		FDRE: ov_sum_reg[17]
 			ov_sum_reg[17]/C
 			ov_sum_reg[17]/CE
@@ -1778,12 +1796,30 @@ FDRE Cells (334):
 			ov_sum_reg[7]/D
 			ov_sum_reg[7]/Q
 			ov_sum_reg[7]/R
+		FDRE: ov_sum_reg[13]
+			ov_sum_reg[13]/C
+			ov_sum_reg[13]/CE
+			ov_sum_reg[13]/D
+			ov_sum_reg[13]/Q
+			ov_sum_reg[13]/R
 		FDRE: ov_sum_reg[21]
 			ov_sum_reg[21]/C
 			ov_sum_reg[21]/CE
 			ov_sum_reg[21]/D
 			ov_sum_reg[21]/Q
 			ov_sum_reg[21]/R
+		FDRE: ov_sum_reg[2]
+			ov_sum_reg[2]/C
+			ov_sum_reg[2]/CE
+			ov_sum_reg[2]/D
+			ov_sum_reg[2]/Q
+			ov_sum_reg[2]/R
+		FDRE: ov_sum_reg[16]
+			ov_sum_reg[16]/C
+			ov_sum_reg[16]/CE
+			ov_sum_reg[16]/D
+			ov_sum_reg[16]/Q
+			ov_sum_reg[16]/R
 		FDRE: ov_sum_reg[6]
 			ov_sum_reg[6]/C
 			ov_sum_reg[6]/CE
@@ -1796,12 +1832,36 @@ FDRE Cells (334):
 			ov_sum_reg[12]/D
 			ov_sum_reg[12]/Q
 			ov_sum_reg[12]/R
+		FDRE: ov_sum_reg[20]
+			ov_sum_reg[20]/C
+			ov_sum_reg[20]/CE
+			ov_sum_reg[20]/D
+			ov_sum_reg[20]/Q
+			ov_sum_reg[20]/R
+		FDRE: ov_sum_reg[0]
+			ov_sum_reg[0]/C
+			ov_sum_reg[0]/CE
+			ov_sum_reg[0]/D
+			ov_sum_reg[0]/Q
+			ov_sum_reg[0]/R
 		FDRE: ov_sum_reg[19]
 			ov_sum_reg[19]/C
 			ov_sum_reg[19]/CE
 			ov_sum_reg[19]/D
 			ov_sum_reg[19]/Q
 			ov_sum_reg[19]/R
+		FDRE: ov_sum_reg[1]
+			ov_sum_reg[1]/C
+			ov_sum_reg[1]/CE
+			ov_sum_reg[1]/D
+			ov_sum_reg[1]/Q
+			ov_sum_reg[1]/R
+		FDRE: ov_sum_reg[15]
+			ov_sum_reg[15]/C
+			ov_sum_reg[15]/CE
+			ov_sum_reg[15]/D
+			ov_sum_reg[15]/Q
+			ov_sum_reg[15]/R
 		FDRE: ov_sum_reg[5]
 			ov_sum_reg[5]/C
 			ov_sum_reg[5]/CE
@@ -1820,66 +1880,6 @@ FDRE Cells (334):
 			ov_sum_reg[11]/D
 			ov_sum_reg[11]/Q
 			ov_sum_reg[11]/R
-		FDRE: ov_sum_reg[4]
-			ov_sum_reg[4]/C
-			ov_sum_reg[4]/CE
-			ov_sum_reg[4]/D
-			ov_sum_reg[4]/Q
-			ov_sum_reg[4]/R
-		FDRE: ov_sum_reg[14]
-			ov_sum_reg[14]/C
-			ov_sum_reg[14]/CE
-			ov_sum_reg[14]/D
-			ov_sum_reg[14]/Q
-			ov_sum_reg[14]/R
-		FDRE: ov_sum_reg[3]
-			ov_sum_reg[3]/C
-			ov_sum_reg[3]/CE
-			ov_sum_reg[3]/D
-			ov_sum_reg[3]/Q
-			ov_sum_reg[3]/R
-		FDRE: ov_sum_reg[13]
-			ov_sum_reg[13]/C
-			ov_sum_reg[13]/CE
-			ov_sum_reg[13]/D
-			ov_sum_reg[13]/Q
-			ov_sum_reg[13]/R
-		FDRE: ov_sum_reg[2]
-			ov_sum_reg[2]/C
-			ov_sum_reg[2]/CE
-			ov_sum_reg[2]/D
-			ov_sum_reg[2]/Q
-			ov_sum_reg[2]/R
-		FDRE: ov_sum_reg[16]
-			ov_sum_reg[16]/C
-			ov_sum_reg[16]/CE
-			ov_sum_reg[16]/D
-			ov_sum_reg[16]/Q
-			ov_sum_reg[16]/R
-		FDRE: ov_sum_reg[20]
-			ov_sum_reg[20]/C
-			ov_sum_reg[20]/CE
-			ov_sum_reg[20]/D
-			ov_sum_reg[20]/Q
-			ov_sum_reg[20]/R
-		FDRE: ov_sum_reg[0]
-			ov_sum_reg[0]/C
-			ov_sum_reg[0]/CE
-			ov_sum_reg[0]/D
-			ov_sum_reg[0]/Q
-			ov_sum_reg[0]/R
-		FDRE: ov_sum_reg[1]
-			ov_sum_reg[1]/C
-			ov_sum_reg[1]/CE
-			ov_sum_reg[1]/D
-			ov_sum_reg[1]/Q
-			ov_sum_reg[1]/R
-		FDRE: ov_sum_reg[15]
-			ov_sum_reg[15]/C
-			ov_sum_reg[15]/CE
-			ov_sum_reg[15]/D
-			ov_sum_reg[15]/Q
-			ov_sum_reg[15]/R
 		FDRE: ov_sum_reg[9]
 			ov_sum_reg[9]/C
 			ov_sum_reg[9]/CE
@@ -2138,111 +2138,6 @@ RAMB18E1 Cells (16):
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[1]
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[2]
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[3]
-		RAMB18E1: gen_wr_a.gen_word_narrow.mem_reg
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[0]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[10]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[11]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[12]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[13]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[1]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[2]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[3]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[4]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[5]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[6]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[7]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[8]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[9]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[0]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[10]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[11]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[12]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[13]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[1]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[2]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[3]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[4]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[5]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[6]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[7]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[8]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[9]
-			gen_wr_a.gen_word_narrow.mem_reg/CLKARDCLK
-			gen_wr_a.gen_word_narrow.mem_reg/CLKBWRCLK
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[10]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[11]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[12]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[13]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[14]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[15]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[2]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[3]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[4]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[5]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[6]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[7]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[8]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[9]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[10]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[11]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[12]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[13]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[14]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[15]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[2]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[3]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[4]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[5]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[6]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[7]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[8]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[9]
-			gen_wr_a.gen_word_narrow.mem_reg/DIPADIP[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DIPADIP[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DIPBDIP[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DIPBDIP[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[10]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[11]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[12]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[13]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[14]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[15]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[2]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[3]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[4]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[5]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[6]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[7]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[8]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[9]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[2]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[3]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[4]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[5]
-			gen_wr_a.gen_word_narrow.mem_reg/DOPADOP[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DOPADOP[1]
-			gen_wr_a.gen_word_narrow.mem_reg/ENARDEN
-			gen_wr_a.gen_word_narrow.mem_reg/ENBWREN
-			gen_wr_a.gen_word_narrow.mem_reg/REGCEAREGCE
-			gen_wr_a.gen_word_narrow.mem_reg/REGCEB
-			gen_wr_a.gen_word_narrow.mem_reg/RSTRAMARSTRAM
-			gen_wr_a.gen_word_narrow.mem_reg/RSTRAMB
-			gen_wr_a.gen_word_narrow.mem_reg/RSTREGARSTREG
-			gen_wr_a.gen_word_narrow.mem_reg/RSTREGB
-			gen_wr_a.gen_word_narrow.mem_reg/WEA[0]
-			gen_wr_a.gen_word_narrow.mem_reg/WEA[1]
-			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[0]
-			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[1]
-			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[2]
-			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[3]
 		RAMB18E1: gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[0]
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[10]
@@ -2663,6 +2558,111 @@ RAMB18E1 Cells (16):
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[1]
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[2]
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[3]
+		RAMB18E1: gen_wr_a.gen_word_narrow.mem_reg
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[0]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[10]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[11]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[12]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[13]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[1]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[2]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[3]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[4]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[5]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[6]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[7]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[8]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[9]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[0]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[10]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[11]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[12]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[13]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[1]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[2]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[3]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[4]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[5]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[6]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[7]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[8]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[9]
+			gen_wr_a.gen_word_narrow.mem_reg/CLKARDCLK
+			gen_wr_a.gen_word_narrow.mem_reg/CLKBWRCLK
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[0]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[10]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[11]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[12]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[13]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[14]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[15]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[1]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[2]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[3]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[4]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[5]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[6]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[7]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[8]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[9]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[0]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[10]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[11]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[12]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[13]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[14]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[15]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[1]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[2]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[3]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[4]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[5]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[6]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[7]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[8]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[9]
+			gen_wr_a.gen_word_narrow.mem_reg/DIPADIP[0]
+			gen_wr_a.gen_word_narrow.mem_reg/DIPADIP[1]
+			gen_wr_a.gen_word_narrow.mem_reg/DIPBDIP[0]
+			gen_wr_a.gen_word_narrow.mem_reg/DIPBDIP[1]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[0]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[10]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[11]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[12]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[13]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[14]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[15]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[1]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[2]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[3]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[4]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[5]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[6]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[7]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[8]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[9]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[0]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[1]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[2]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[3]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[4]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[5]
+			gen_wr_a.gen_word_narrow.mem_reg/DOPADOP[0]
+			gen_wr_a.gen_word_narrow.mem_reg/DOPADOP[1]
+			gen_wr_a.gen_word_narrow.mem_reg/ENARDEN
+			gen_wr_a.gen_word_narrow.mem_reg/ENBWREN
+			gen_wr_a.gen_word_narrow.mem_reg/REGCEAREGCE
+			gen_wr_a.gen_word_narrow.mem_reg/REGCEB
+			gen_wr_a.gen_word_narrow.mem_reg/RSTRAMARSTRAM
+			gen_wr_a.gen_word_narrow.mem_reg/RSTRAMB
+			gen_wr_a.gen_word_narrow.mem_reg/RSTREGARSTREG
+			gen_wr_a.gen_word_narrow.mem_reg/RSTREGB
+			gen_wr_a.gen_word_narrow.mem_reg/WEA[0]
+			gen_wr_a.gen_word_narrow.mem_reg/WEA[1]
+			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[0]
+			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[1]
+			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[2]
+			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[3]
 		RAMB18E1: gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[0]
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[10]
@@ -2978,216 +2978,6 @@ RAMB18E1 Cells (16):
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[1]
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[2]
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[3]
-		RAMB18E1: gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[10]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[11]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[12]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[13]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[2]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[3]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[4]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[5]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[6]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[7]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[8]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[9]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[10]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[11]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[12]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[13]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[2]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[3]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[4]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[5]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[6]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[7]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[8]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[9]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/CLKARDCLK
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/CLKBWRCLK
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[10]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[11]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[12]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[13]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[14]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[15]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[2]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[3]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[4]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[5]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[6]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[7]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[8]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[9]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[10]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[11]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[12]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[13]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[14]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[15]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[2]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[3]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[4]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[5]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[6]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[7]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[8]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[9]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIPADIP[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIPADIP[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIPBDIP[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIPBDIP[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[10]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[11]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[12]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[13]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[14]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[15]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[2]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[3]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[4]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[5]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[6]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[7]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[8]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[9]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[2]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[3]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[4]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[5]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOPADOP[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOPADOP[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ENARDEN
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ENBWREN
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/REGCEAREGCE
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/REGCEB
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/RSTRAMARSTRAM
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/RSTRAMB
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/RSTREGARSTREG
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/RSTREGB
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEA[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEA[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[0]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[1]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[2]
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[3]
-		RAMB18E1: gen_wr_a.gen_word_narrow.mem_reg
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[0]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[10]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[11]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[12]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[13]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[1]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[2]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[3]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[4]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[5]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[6]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[7]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[8]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[9]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[0]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[10]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[11]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[12]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[13]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[1]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[2]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[3]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[4]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[5]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[6]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[7]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[8]
-			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[9]
-			gen_wr_a.gen_word_narrow.mem_reg/CLKARDCLK
-			gen_wr_a.gen_word_narrow.mem_reg/CLKBWRCLK
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[10]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[11]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[12]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[13]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[14]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[15]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[2]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[3]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[4]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[5]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[6]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[7]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[8]
-			gen_wr_a.gen_word_narrow.mem_reg/DIADI[9]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[10]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[11]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[12]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[13]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[14]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[15]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[2]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[3]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[4]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[5]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[6]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[7]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[8]
-			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[9]
-			gen_wr_a.gen_word_narrow.mem_reg/DIPADIP[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DIPADIP[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DIPBDIP[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DIPBDIP[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[10]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[11]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[12]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[13]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[14]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[15]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[2]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[3]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[4]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[5]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[6]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[7]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[8]
-			gen_wr_a.gen_word_narrow.mem_reg/DOADO[9]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[1]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[2]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[3]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[4]
-			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[5]
-			gen_wr_a.gen_word_narrow.mem_reg/DOPADOP[0]
-			gen_wr_a.gen_word_narrow.mem_reg/DOPADOP[1]
-			gen_wr_a.gen_word_narrow.mem_reg/ENARDEN
-			gen_wr_a.gen_word_narrow.mem_reg/ENBWREN
-			gen_wr_a.gen_word_narrow.mem_reg/REGCEAREGCE
-			gen_wr_a.gen_word_narrow.mem_reg/REGCEB
-			gen_wr_a.gen_word_narrow.mem_reg/RSTRAMARSTRAM
-			gen_wr_a.gen_word_narrow.mem_reg/RSTRAMB
-			gen_wr_a.gen_word_narrow.mem_reg/RSTREGARSTREG
-			gen_wr_a.gen_word_narrow.mem_reg/RSTREGB
-			gen_wr_a.gen_word_narrow.mem_reg/WEA[0]
-			gen_wr_a.gen_word_narrow.mem_reg/WEA[1]
-			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[0]
-			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[1]
-			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[2]
-			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[3]
 		RAMB18E1: gen_wr_a.gen_word_narrow.mem_reg
 			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[0]
 			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[10]
@@ -3398,6 +3188,111 @@ RAMB18E1 Cells (16):
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[1]
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[2]
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[3]
+		RAMB18E1: gen_wr_a.gen_word_narrow.mem_reg
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[0]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[10]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[11]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[12]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[13]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[1]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[2]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[3]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[4]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[5]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[6]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[7]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[8]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[9]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[0]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[10]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[11]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[12]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[13]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[1]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[2]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[3]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[4]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[5]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[6]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[7]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[8]
+			gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[9]
+			gen_wr_a.gen_word_narrow.mem_reg/CLKARDCLK
+			gen_wr_a.gen_word_narrow.mem_reg/CLKBWRCLK
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[0]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[10]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[11]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[12]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[13]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[14]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[15]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[1]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[2]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[3]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[4]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[5]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[6]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[7]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[8]
+			gen_wr_a.gen_word_narrow.mem_reg/DIADI[9]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[0]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[10]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[11]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[12]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[13]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[14]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[15]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[1]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[2]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[3]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[4]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[5]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[6]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[7]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[8]
+			gen_wr_a.gen_word_narrow.mem_reg/DIBDI[9]
+			gen_wr_a.gen_word_narrow.mem_reg/DIPADIP[0]
+			gen_wr_a.gen_word_narrow.mem_reg/DIPADIP[1]
+			gen_wr_a.gen_word_narrow.mem_reg/DIPBDIP[0]
+			gen_wr_a.gen_word_narrow.mem_reg/DIPBDIP[1]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[0]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[10]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[11]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[12]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[13]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[14]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[15]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[1]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[2]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[3]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[4]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[5]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[6]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[7]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[8]
+			gen_wr_a.gen_word_narrow.mem_reg/DOADO[9]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[0]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[1]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[2]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[3]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[4]
+			gen_wr_a.gen_word_narrow.mem_reg/DOBDO[5]
+			gen_wr_a.gen_word_narrow.mem_reg/DOPADOP[0]
+			gen_wr_a.gen_word_narrow.mem_reg/DOPADOP[1]
+			gen_wr_a.gen_word_narrow.mem_reg/ENARDEN
+			gen_wr_a.gen_word_narrow.mem_reg/ENBWREN
+			gen_wr_a.gen_word_narrow.mem_reg/REGCEAREGCE
+			gen_wr_a.gen_word_narrow.mem_reg/REGCEB
+			gen_wr_a.gen_word_narrow.mem_reg/RSTRAMARSTRAM
+			gen_wr_a.gen_word_narrow.mem_reg/RSTRAMB
+			gen_wr_a.gen_word_narrow.mem_reg/RSTREGARSTREG
+			gen_wr_a.gen_word_narrow.mem_reg/RSTREGB
+			gen_wr_a.gen_word_narrow.mem_reg/WEA[0]
+			gen_wr_a.gen_word_narrow.mem_reg/WEA[1]
+			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[0]
+			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[1]
+			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[2]
+			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[3]
 		RAMB18E1: gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[0]
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[10]
@@ -3608,6 +3503,111 @@ RAMB18E1 Cells (16):
 			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[1]
 			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[2]
 			gen_wr_a.gen_word_narrow.mem_reg/WEBWE[3]
+		RAMB18E1: gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[0]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[10]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[11]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[12]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[13]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[1]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[2]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[3]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[4]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[5]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[6]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[7]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[8]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRARDADDR[9]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[0]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[10]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[11]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[12]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[13]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[1]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[2]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[3]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[4]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[5]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[6]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[7]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[8]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ADDRBWRADDR[9]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/CLKARDCLK
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/CLKBWRCLK
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[0]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[10]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[11]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[12]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[13]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[14]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[15]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[1]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[2]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[3]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[4]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[5]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[6]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[7]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[8]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIADI[9]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[0]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[10]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[11]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[12]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[13]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[14]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[15]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[1]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[2]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[3]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[4]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[5]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[6]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[7]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[8]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIBDI[9]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIPADIP[0]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIPADIP[1]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIPBDIP[0]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DIPBDIP[1]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[0]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[10]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[11]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[12]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[13]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[14]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[15]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[1]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[2]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[3]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[4]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[5]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[6]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[7]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[8]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOADO[9]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[0]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[1]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[2]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[3]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[4]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOBDO[5]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOPADOP[0]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/DOPADOP[1]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ENARDEN
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/ENBWREN
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/REGCEAREGCE
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/REGCEB
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/RSTRAMARSTRAM
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/RSTRAMB
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/RSTREGARSTREG
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/RSTREGB
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEA[0]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEA[1]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[0]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[1]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[2]
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg/WEBWE[3]
 		RAMB18E1: gen_wr_a.gen_word_narrow.mem_reg
 			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[0]
 			gen_wr_a.gen_word_narrow.mem_reg/ADDRARDADDR[10]
@@ -3716,25 +3716,6 @@ RAMB18E1 Cells (16):
 
 CARRY4 Cells (66):
 	Printing all EDIFCellInsts of type CARRY4... (66)
-		CARRY4: ov_dout0_inferred__0/i___0_carry
-			ov_dout0_inferred__0/i___0_carry/CI
-			ov_dout0_inferred__0/i___0_carry/CO[0]
-			ov_dout0_inferred__0/i___0_carry/CO[1]
-			ov_dout0_inferred__0/i___0_carry/CO[2]
-			ov_dout0_inferred__0/i___0_carry/CO[3]
-			ov_dout0_inferred__0/i___0_carry/CYINIT
-			ov_dout0_inferred__0/i___0_carry/DI[0]
-			ov_dout0_inferred__0/i___0_carry/DI[1]
-			ov_dout0_inferred__0/i___0_carry/DI[2]
-			ov_dout0_inferred__0/i___0_carry/DI[3]
-			ov_dout0_inferred__0/i___0_carry/O[0]
-			ov_dout0_inferred__0/i___0_carry/O[1]
-			ov_dout0_inferred__0/i___0_carry/O[2]
-			ov_dout0_inferred__0/i___0_carry/O[3]
-			ov_dout0_inferred__0/i___0_carry/S[0]
-			ov_dout0_inferred__0/i___0_carry/S[1]
-			ov_dout0_inferred__0/i___0_carry/S[2]
-			ov_dout0_inferred__0/i___0_carry/S[3]
 		CARRY4: ov_dout0_inferred__0/i___142_carry
 			ov_dout0_inferred__0/i___142_carry/CI
 			ov_dout0_inferred__0/i___142_carry/CO[0]
@@ -4055,6 +4036,25 @@ CARRY4 Cells (66):
 			ov_dout0_inferred__0/i___0_carry__2/S[1]
 			ov_dout0_inferred__0/i___0_carry__2/S[2]
 			ov_dout0_inferred__0/i___0_carry__2/S[3]
+		CARRY4: ov_dout0_inferred__0/i___0_carry
+			ov_dout0_inferred__0/i___0_carry/CI
+			ov_dout0_inferred__0/i___0_carry/CO[0]
+			ov_dout0_inferred__0/i___0_carry/CO[1]
+			ov_dout0_inferred__0/i___0_carry/CO[2]
+			ov_dout0_inferred__0/i___0_carry/CO[3]
+			ov_dout0_inferred__0/i___0_carry/CYINIT
+			ov_dout0_inferred__0/i___0_carry/DI[0]
+			ov_dout0_inferred__0/i___0_carry/DI[1]
+			ov_dout0_inferred__0/i___0_carry/DI[2]
+			ov_dout0_inferred__0/i___0_carry/DI[3]
+			ov_dout0_inferred__0/i___0_carry/O[0]
+			ov_dout0_inferred__0/i___0_carry/O[1]
+			ov_dout0_inferred__0/i___0_carry/O[2]
+			ov_dout0_inferred__0/i___0_carry/O[3]
+			ov_dout0_inferred__0/i___0_carry/S[0]
+			ov_dout0_inferred__0/i___0_carry/S[1]
+			ov_dout0_inferred__0/i___0_carry/S[2]
+			ov_dout0_inferred__0/i___0_carry/S[3]
 		CARRY4: ov_sum_reg[12]_i_1__6
 			ov_sum_reg[12]_i_1__6/CI
 			ov_sum_reg[12]_i_1__6/CO[0]
@@ -4168,6 +4168,119 @@ CARRY4 Cells (66):
 			ov_sum_reg[20]_i_1__6/S[1]
 			ov_sum_reg[20]_i_1__6/S[2]
 			ov_sum_reg[20]_i_1__6/S[3]
+		CARRY4: ov_sum_reg[4]_i_1__5
+			ov_sum_reg[4]_i_1__5/CI
+			ov_sum_reg[4]_i_1__5/CO[0]
+			ov_sum_reg[4]_i_1__5/CO[1]
+			ov_sum_reg[4]_i_1__5/CO[2]
+			ov_sum_reg[4]_i_1__5/CO[3]
+			ov_sum_reg[4]_i_1__5/CYINIT
+			ov_sum_reg[4]_i_1__5/DI[0]
+			ov_sum_reg[4]_i_1__5/DI[1]
+			ov_sum_reg[4]_i_1__5/DI[2]
+			ov_sum_reg[4]_i_1__5/DI[3]
+			ov_sum_reg[4]_i_1__5/O[0]
+			ov_sum_reg[4]_i_1__5/O[1]
+			ov_sum_reg[4]_i_1__5/O[2]
+			ov_sum_reg[4]_i_1__5/O[3]
+			ov_sum_reg[4]_i_1__5/S[0]
+			ov_sum_reg[4]_i_1__5/S[1]
+			ov_sum_reg[4]_i_1__5/S[2]
+			ov_sum_reg[4]_i_1__5/S[3]
+		CARRY4: ov_sum_reg[12]_i_1__5
+			ov_sum_reg[12]_i_1__5/CI
+			ov_sum_reg[12]_i_1__5/CO[0]
+			ov_sum_reg[12]_i_1__5/CO[1]
+			ov_sum_reg[12]_i_1__5/CO[2]
+			ov_sum_reg[12]_i_1__5/CO[3]
+			ov_sum_reg[12]_i_1__5/CYINIT
+			ov_sum_reg[12]_i_1__5/DI[0]
+			ov_sum_reg[12]_i_1__5/DI[1]
+			ov_sum_reg[12]_i_1__5/DI[2]
+			ov_sum_reg[12]_i_1__5/DI[3]
+			ov_sum_reg[12]_i_1__5/O[0]
+			ov_sum_reg[12]_i_1__5/O[1]
+			ov_sum_reg[12]_i_1__5/O[2]
+			ov_sum_reg[12]_i_1__5/O[3]
+			ov_sum_reg[12]_i_1__5/S[0]
+			ov_sum_reg[12]_i_1__5/S[1]
+			ov_sum_reg[12]_i_1__5/S[2]
+			ov_sum_reg[12]_i_1__5/S[3]
+		CARRY4: ov_sum_reg[8]_i_1__5
+			ov_sum_reg[8]_i_1__5/CI
+			ov_sum_reg[8]_i_1__5/CO[0]
+			ov_sum_reg[8]_i_1__5/CO[1]
+			ov_sum_reg[8]_i_1__5/CO[2]
+			ov_sum_reg[8]_i_1__5/CO[3]
+			ov_sum_reg[8]_i_1__5/CYINIT
+			ov_sum_reg[8]_i_1__5/DI[0]
+			ov_sum_reg[8]_i_1__5/DI[1]
+			ov_sum_reg[8]_i_1__5/DI[2]
+			ov_sum_reg[8]_i_1__5/DI[3]
+			ov_sum_reg[8]_i_1__5/O[0]
+			ov_sum_reg[8]_i_1__5/O[1]
+			ov_sum_reg[8]_i_1__5/O[2]
+			ov_sum_reg[8]_i_1__5/O[3]
+			ov_sum_reg[8]_i_1__5/S[0]
+			ov_sum_reg[8]_i_1__5/S[1]
+			ov_sum_reg[8]_i_1__5/S[2]
+			ov_sum_reg[8]_i_1__5/S[3]
+		CARRY4: ov_sum_reg[0]_i_1__4
+			ov_sum_reg[0]_i_1__4/CI
+			ov_sum_reg[0]_i_1__4/CO[0]
+			ov_sum_reg[0]_i_1__4/CO[1]
+			ov_sum_reg[0]_i_1__4/CO[2]
+			ov_sum_reg[0]_i_1__4/CO[3]
+			ov_sum_reg[0]_i_1__4/CYINIT
+			ov_sum_reg[0]_i_1__4/DI[0]
+			ov_sum_reg[0]_i_1__4/DI[1]
+			ov_sum_reg[0]_i_1__4/DI[2]
+			ov_sum_reg[0]_i_1__4/DI[3]
+			ov_sum_reg[0]_i_1__4/O[0]
+			ov_sum_reg[0]_i_1__4/O[1]
+			ov_sum_reg[0]_i_1__4/O[2]
+			ov_sum_reg[0]_i_1__4/O[3]
+			ov_sum_reg[0]_i_1__4/S[0]
+			ov_sum_reg[0]_i_1__4/S[1]
+			ov_sum_reg[0]_i_1__4/S[2]
+			ov_sum_reg[0]_i_1__4/S[3]
+		CARRY4: ov_sum_reg[20]_i_1__5
+			ov_sum_reg[20]_i_1__5/CI
+			ov_sum_reg[20]_i_1__5/CO[0]
+			ov_sum_reg[20]_i_1__5/CO[1]
+			ov_sum_reg[20]_i_1__5/CO[2]
+			ov_sum_reg[20]_i_1__5/CYINIT
+			ov_sum_reg[20]_i_1__5/DI[0]
+			ov_sum_reg[20]_i_1__5/DI[1]
+			ov_sum_reg[20]_i_1__5/DI[2]
+			ov_sum_reg[20]_i_1__5/DI[3]
+			ov_sum_reg[20]_i_1__5/O[0]
+			ov_sum_reg[20]_i_1__5/O[1]
+			ov_sum_reg[20]_i_1__5/O[2]
+			ov_sum_reg[20]_i_1__5/O[3]
+			ov_sum_reg[20]_i_1__5/S[0]
+			ov_sum_reg[20]_i_1__5/S[1]
+			ov_sum_reg[20]_i_1__5/S[2]
+			ov_sum_reg[20]_i_1__5/S[3]
+		CARRY4: ov_sum_reg[16]_i_1__5
+			ov_sum_reg[16]_i_1__5/CI
+			ov_sum_reg[16]_i_1__5/CO[0]
+			ov_sum_reg[16]_i_1__5/CO[1]
+			ov_sum_reg[16]_i_1__5/CO[2]
+			ov_sum_reg[16]_i_1__5/CO[3]
+			ov_sum_reg[16]_i_1__5/CYINIT
+			ov_sum_reg[16]_i_1__5/DI[0]
+			ov_sum_reg[16]_i_1__5/DI[1]
+			ov_sum_reg[16]_i_1__5/DI[2]
+			ov_sum_reg[16]_i_1__5/DI[3]
+			ov_sum_reg[16]_i_1__5/O[0]
+			ov_sum_reg[16]_i_1__5/O[1]
+			ov_sum_reg[16]_i_1__5/O[2]
+			ov_sum_reg[16]_i_1__5/O[3]
+			ov_sum_reg[16]_i_1__5/S[0]
+			ov_sum_reg[16]_i_1__5/S[1]
+			ov_sum_reg[16]_i_1__5/S[2]
+			ov_sum_reg[16]_i_1__5/S[3]
 		CARRY4: ov_sum_reg[4]_i_1
 			ov_sum_reg[4]_i_1/CI
 			ov_sum_reg[4]_i_1/CO[0]
@@ -4281,6 +4394,119 @@ CARRY4 Cells (66):
 			ov_sum_reg[20]_i_1/S[1]
 			ov_sum_reg[20]_i_1/S[2]
 			ov_sum_reg[20]_i_1/S[3]
+		CARRY4: ov_sum_reg[12]_i_1__3
+			ov_sum_reg[12]_i_1__3/CI
+			ov_sum_reg[12]_i_1__3/CO[0]
+			ov_sum_reg[12]_i_1__3/CO[1]
+			ov_sum_reg[12]_i_1__3/CO[2]
+			ov_sum_reg[12]_i_1__3/CO[3]
+			ov_sum_reg[12]_i_1__3/CYINIT
+			ov_sum_reg[12]_i_1__3/DI[0]
+			ov_sum_reg[12]_i_1__3/DI[1]
+			ov_sum_reg[12]_i_1__3/DI[2]
+			ov_sum_reg[12]_i_1__3/DI[3]
+			ov_sum_reg[12]_i_1__3/O[0]
+			ov_sum_reg[12]_i_1__3/O[1]
+			ov_sum_reg[12]_i_1__3/O[2]
+			ov_sum_reg[12]_i_1__3/O[3]
+			ov_sum_reg[12]_i_1__3/S[0]
+			ov_sum_reg[12]_i_1__3/S[1]
+			ov_sum_reg[12]_i_1__3/S[2]
+			ov_sum_reg[12]_i_1__3/S[3]
+		CARRY4: ov_sum_reg[16]_i_1__3
+			ov_sum_reg[16]_i_1__3/CI
+			ov_sum_reg[16]_i_1__3/CO[0]
+			ov_sum_reg[16]_i_1__3/CO[1]
+			ov_sum_reg[16]_i_1__3/CO[2]
+			ov_sum_reg[16]_i_1__3/CO[3]
+			ov_sum_reg[16]_i_1__3/CYINIT
+			ov_sum_reg[16]_i_1__3/DI[0]
+			ov_sum_reg[16]_i_1__3/DI[1]
+			ov_sum_reg[16]_i_1__3/DI[2]
+			ov_sum_reg[16]_i_1__3/DI[3]
+			ov_sum_reg[16]_i_1__3/O[0]
+			ov_sum_reg[16]_i_1__3/O[1]
+			ov_sum_reg[16]_i_1__3/O[2]
+			ov_sum_reg[16]_i_1__3/O[3]
+			ov_sum_reg[16]_i_1__3/S[0]
+			ov_sum_reg[16]_i_1__3/S[1]
+			ov_sum_reg[16]_i_1__3/S[2]
+			ov_sum_reg[16]_i_1__3/S[3]
+		CARRY4: ov_sum_reg[4]_i_1__3
+			ov_sum_reg[4]_i_1__3/CI
+			ov_sum_reg[4]_i_1__3/CO[0]
+			ov_sum_reg[4]_i_1__3/CO[1]
+			ov_sum_reg[4]_i_1__3/CO[2]
+			ov_sum_reg[4]_i_1__3/CO[3]
+			ov_sum_reg[4]_i_1__3/CYINIT
+			ov_sum_reg[4]_i_1__3/DI[0]
+			ov_sum_reg[4]_i_1__3/DI[1]
+			ov_sum_reg[4]_i_1__3/DI[2]
+			ov_sum_reg[4]_i_1__3/DI[3]
+			ov_sum_reg[4]_i_1__3/O[0]
+			ov_sum_reg[4]_i_1__3/O[1]
+			ov_sum_reg[4]_i_1__3/O[2]
+			ov_sum_reg[4]_i_1__3/O[3]
+			ov_sum_reg[4]_i_1__3/S[0]
+			ov_sum_reg[4]_i_1__3/S[1]
+			ov_sum_reg[4]_i_1__3/S[2]
+			ov_sum_reg[4]_i_1__3/S[3]
+		CARRY4: ov_sum_reg[0]_i_1__2
+			ov_sum_reg[0]_i_1__2/CI
+			ov_sum_reg[0]_i_1__2/CO[0]
+			ov_sum_reg[0]_i_1__2/CO[1]
+			ov_sum_reg[0]_i_1__2/CO[2]
+			ov_sum_reg[0]_i_1__2/CO[3]
+			ov_sum_reg[0]_i_1__2/CYINIT
+			ov_sum_reg[0]_i_1__2/DI[0]
+			ov_sum_reg[0]_i_1__2/DI[1]
+			ov_sum_reg[0]_i_1__2/DI[2]
+			ov_sum_reg[0]_i_1__2/DI[3]
+			ov_sum_reg[0]_i_1__2/O[0]
+			ov_sum_reg[0]_i_1__2/O[1]
+			ov_sum_reg[0]_i_1__2/O[2]
+			ov_sum_reg[0]_i_1__2/O[3]
+			ov_sum_reg[0]_i_1__2/S[0]
+			ov_sum_reg[0]_i_1__2/S[1]
+			ov_sum_reg[0]_i_1__2/S[2]
+			ov_sum_reg[0]_i_1__2/S[3]
+		CARRY4: ov_sum_reg[20]_i_1__3
+			ov_sum_reg[20]_i_1__3/CI
+			ov_sum_reg[20]_i_1__3/CO[0]
+			ov_sum_reg[20]_i_1__3/CO[1]
+			ov_sum_reg[20]_i_1__3/CO[2]
+			ov_sum_reg[20]_i_1__3/CYINIT
+			ov_sum_reg[20]_i_1__3/DI[0]
+			ov_sum_reg[20]_i_1__3/DI[1]
+			ov_sum_reg[20]_i_1__3/DI[2]
+			ov_sum_reg[20]_i_1__3/DI[3]
+			ov_sum_reg[20]_i_1__3/O[0]
+			ov_sum_reg[20]_i_1__3/O[1]
+			ov_sum_reg[20]_i_1__3/O[2]
+			ov_sum_reg[20]_i_1__3/O[3]
+			ov_sum_reg[20]_i_1__3/S[0]
+			ov_sum_reg[20]_i_1__3/S[1]
+			ov_sum_reg[20]_i_1__3/S[2]
+			ov_sum_reg[20]_i_1__3/S[3]
+		CARRY4: ov_sum_reg[8]_i_1__3
+			ov_sum_reg[8]_i_1__3/CI
+			ov_sum_reg[8]_i_1__3/CO[0]
+			ov_sum_reg[8]_i_1__3/CO[1]
+			ov_sum_reg[8]_i_1__3/CO[2]
+			ov_sum_reg[8]_i_1__3/CO[3]
+			ov_sum_reg[8]_i_1__3/CYINIT
+			ov_sum_reg[8]_i_1__3/DI[0]
+			ov_sum_reg[8]_i_1__3/DI[1]
+			ov_sum_reg[8]_i_1__3/DI[2]
+			ov_sum_reg[8]_i_1__3/DI[3]
+			ov_sum_reg[8]_i_1__3/O[0]
+			ov_sum_reg[8]_i_1__3/O[1]
+			ov_sum_reg[8]_i_1__3/O[2]
+			ov_sum_reg[8]_i_1__3/O[3]
+			ov_sum_reg[8]_i_1__3/S[0]
+			ov_sum_reg[8]_i_1__3/S[1]
+			ov_sum_reg[8]_i_1__3/S[2]
+			ov_sum_reg[8]_i_1__3/S[3]
 		CARRY4: ov_sum_reg[4]_i_1__0
 			ov_sum_reg[4]_i_1__0/CI
 			ov_sum_reg[4]_i_1__0/CO[0]
@@ -4620,232 +4846,6 @@ CARRY4 Cells (66):
 			ov_sum_reg[16]_i_1__2/S[1]
 			ov_sum_reg[16]_i_1__2/S[2]
 			ov_sum_reg[16]_i_1__2/S[3]
-		CARRY4: ov_sum_reg[4]_i_1__5
-			ov_sum_reg[4]_i_1__5/CI
-			ov_sum_reg[4]_i_1__5/CO[0]
-			ov_sum_reg[4]_i_1__5/CO[1]
-			ov_sum_reg[4]_i_1__5/CO[2]
-			ov_sum_reg[4]_i_1__5/CO[3]
-			ov_sum_reg[4]_i_1__5/CYINIT
-			ov_sum_reg[4]_i_1__5/DI[0]
-			ov_sum_reg[4]_i_1__5/DI[1]
-			ov_sum_reg[4]_i_1__5/DI[2]
-			ov_sum_reg[4]_i_1__5/DI[3]
-			ov_sum_reg[4]_i_1__5/O[0]
-			ov_sum_reg[4]_i_1__5/O[1]
-			ov_sum_reg[4]_i_1__5/O[2]
-			ov_sum_reg[4]_i_1__5/O[3]
-			ov_sum_reg[4]_i_1__5/S[0]
-			ov_sum_reg[4]_i_1__5/S[1]
-			ov_sum_reg[4]_i_1__5/S[2]
-			ov_sum_reg[4]_i_1__5/S[3]
-		CARRY4: ov_sum_reg[12]_i_1__5
-			ov_sum_reg[12]_i_1__5/CI
-			ov_sum_reg[12]_i_1__5/CO[0]
-			ov_sum_reg[12]_i_1__5/CO[1]
-			ov_sum_reg[12]_i_1__5/CO[2]
-			ov_sum_reg[12]_i_1__5/CO[3]
-			ov_sum_reg[12]_i_1__5/CYINIT
-			ov_sum_reg[12]_i_1__5/DI[0]
-			ov_sum_reg[12]_i_1__5/DI[1]
-			ov_sum_reg[12]_i_1__5/DI[2]
-			ov_sum_reg[12]_i_1__5/DI[3]
-			ov_sum_reg[12]_i_1__5/O[0]
-			ov_sum_reg[12]_i_1__5/O[1]
-			ov_sum_reg[12]_i_1__5/O[2]
-			ov_sum_reg[12]_i_1__5/O[3]
-			ov_sum_reg[12]_i_1__5/S[0]
-			ov_sum_reg[12]_i_1__5/S[1]
-			ov_sum_reg[12]_i_1__5/S[2]
-			ov_sum_reg[12]_i_1__5/S[3]
-		CARRY4: ov_sum_reg[8]_i_1__5
-			ov_sum_reg[8]_i_1__5/CI
-			ov_sum_reg[8]_i_1__5/CO[0]
-			ov_sum_reg[8]_i_1__5/CO[1]
-			ov_sum_reg[8]_i_1__5/CO[2]
-			ov_sum_reg[8]_i_1__5/CO[3]
-			ov_sum_reg[8]_i_1__5/CYINIT
-			ov_sum_reg[8]_i_1__5/DI[0]
-			ov_sum_reg[8]_i_1__5/DI[1]
-			ov_sum_reg[8]_i_1__5/DI[2]
-			ov_sum_reg[8]_i_1__5/DI[3]
-			ov_sum_reg[8]_i_1__5/O[0]
-			ov_sum_reg[8]_i_1__5/O[1]
-			ov_sum_reg[8]_i_1__5/O[2]
-			ov_sum_reg[8]_i_1__5/O[3]
-			ov_sum_reg[8]_i_1__5/S[0]
-			ov_sum_reg[8]_i_1__5/S[1]
-			ov_sum_reg[8]_i_1__5/S[2]
-			ov_sum_reg[8]_i_1__5/S[3]
-		CARRY4: ov_sum_reg[0]_i_1__4
-			ov_sum_reg[0]_i_1__4/CI
-			ov_sum_reg[0]_i_1__4/CO[0]
-			ov_sum_reg[0]_i_1__4/CO[1]
-			ov_sum_reg[0]_i_1__4/CO[2]
-			ov_sum_reg[0]_i_1__4/CO[3]
-			ov_sum_reg[0]_i_1__4/CYINIT
-			ov_sum_reg[0]_i_1__4/DI[0]
-			ov_sum_reg[0]_i_1__4/DI[1]
-			ov_sum_reg[0]_i_1__4/DI[2]
-			ov_sum_reg[0]_i_1__4/DI[3]
-			ov_sum_reg[0]_i_1__4/O[0]
-			ov_sum_reg[0]_i_1__4/O[1]
-			ov_sum_reg[0]_i_1__4/O[2]
-			ov_sum_reg[0]_i_1__4/O[3]
-			ov_sum_reg[0]_i_1__4/S[0]
-			ov_sum_reg[0]_i_1__4/S[1]
-			ov_sum_reg[0]_i_1__4/S[2]
-			ov_sum_reg[0]_i_1__4/S[3]
-		CARRY4: ov_sum_reg[20]_i_1__5
-			ov_sum_reg[20]_i_1__5/CI
-			ov_sum_reg[20]_i_1__5/CO[0]
-			ov_sum_reg[20]_i_1__5/CO[1]
-			ov_sum_reg[20]_i_1__5/CO[2]
-			ov_sum_reg[20]_i_1__5/CYINIT
-			ov_sum_reg[20]_i_1__5/DI[0]
-			ov_sum_reg[20]_i_1__5/DI[1]
-			ov_sum_reg[20]_i_1__5/DI[2]
-			ov_sum_reg[20]_i_1__5/DI[3]
-			ov_sum_reg[20]_i_1__5/O[0]
-			ov_sum_reg[20]_i_1__5/O[1]
-			ov_sum_reg[20]_i_1__5/O[2]
-			ov_sum_reg[20]_i_1__5/O[3]
-			ov_sum_reg[20]_i_1__5/S[0]
-			ov_sum_reg[20]_i_1__5/S[1]
-			ov_sum_reg[20]_i_1__5/S[2]
-			ov_sum_reg[20]_i_1__5/S[3]
-		CARRY4: ov_sum_reg[16]_i_1__5
-			ov_sum_reg[16]_i_1__5/CI
-			ov_sum_reg[16]_i_1__5/CO[0]
-			ov_sum_reg[16]_i_1__5/CO[1]
-			ov_sum_reg[16]_i_1__5/CO[2]
-			ov_sum_reg[16]_i_1__5/CO[3]
-			ov_sum_reg[16]_i_1__5/CYINIT
-			ov_sum_reg[16]_i_1__5/DI[0]
-			ov_sum_reg[16]_i_1__5/DI[1]
-			ov_sum_reg[16]_i_1__5/DI[2]
-			ov_sum_reg[16]_i_1__5/DI[3]
-			ov_sum_reg[16]_i_1__5/O[0]
-			ov_sum_reg[16]_i_1__5/O[1]
-			ov_sum_reg[16]_i_1__5/O[2]
-			ov_sum_reg[16]_i_1__5/O[3]
-			ov_sum_reg[16]_i_1__5/S[0]
-			ov_sum_reg[16]_i_1__5/S[1]
-			ov_sum_reg[16]_i_1__5/S[2]
-			ov_sum_reg[16]_i_1__5/S[3]
-		CARRY4: ov_sum_reg[12]_i_1__3
-			ov_sum_reg[12]_i_1__3/CI
-			ov_sum_reg[12]_i_1__3/CO[0]
-			ov_sum_reg[12]_i_1__3/CO[1]
-			ov_sum_reg[12]_i_1__3/CO[2]
-			ov_sum_reg[12]_i_1__3/CO[3]
-			ov_sum_reg[12]_i_1__3/CYINIT
-			ov_sum_reg[12]_i_1__3/DI[0]
-			ov_sum_reg[12]_i_1__3/DI[1]
-			ov_sum_reg[12]_i_1__3/DI[2]
-			ov_sum_reg[12]_i_1__3/DI[3]
-			ov_sum_reg[12]_i_1__3/O[0]
-			ov_sum_reg[12]_i_1__3/O[1]
-			ov_sum_reg[12]_i_1__3/O[2]
-			ov_sum_reg[12]_i_1__3/O[3]
-			ov_sum_reg[12]_i_1__3/S[0]
-			ov_sum_reg[12]_i_1__3/S[1]
-			ov_sum_reg[12]_i_1__3/S[2]
-			ov_sum_reg[12]_i_1__3/S[3]
-		CARRY4: ov_sum_reg[16]_i_1__3
-			ov_sum_reg[16]_i_1__3/CI
-			ov_sum_reg[16]_i_1__3/CO[0]
-			ov_sum_reg[16]_i_1__3/CO[1]
-			ov_sum_reg[16]_i_1__3/CO[2]
-			ov_sum_reg[16]_i_1__3/CO[3]
-			ov_sum_reg[16]_i_1__3/CYINIT
-			ov_sum_reg[16]_i_1__3/DI[0]
-			ov_sum_reg[16]_i_1__3/DI[1]
-			ov_sum_reg[16]_i_1__3/DI[2]
-			ov_sum_reg[16]_i_1__3/DI[3]
-			ov_sum_reg[16]_i_1__3/O[0]
-			ov_sum_reg[16]_i_1__3/O[1]
-			ov_sum_reg[16]_i_1__3/O[2]
-			ov_sum_reg[16]_i_1__3/O[3]
-			ov_sum_reg[16]_i_1__3/S[0]
-			ov_sum_reg[16]_i_1__3/S[1]
-			ov_sum_reg[16]_i_1__3/S[2]
-			ov_sum_reg[16]_i_1__3/S[3]
-		CARRY4: ov_sum_reg[4]_i_1__3
-			ov_sum_reg[4]_i_1__3/CI
-			ov_sum_reg[4]_i_1__3/CO[0]
-			ov_sum_reg[4]_i_1__3/CO[1]
-			ov_sum_reg[4]_i_1__3/CO[2]
-			ov_sum_reg[4]_i_1__3/CO[3]
-			ov_sum_reg[4]_i_1__3/CYINIT
-			ov_sum_reg[4]_i_1__3/DI[0]
-			ov_sum_reg[4]_i_1__3/DI[1]
-			ov_sum_reg[4]_i_1__3/DI[2]
-			ov_sum_reg[4]_i_1__3/DI[3]
-			ov_sum_reg[4]_i_1__3/O[0]
-			ov_sum_reg[4]_i_1__3/O[1]
-			ov_sum_reg[4]_i_1__3/O[2]
-			ov_sum_reg[4]_i_1__3/O[3]
-			ov_sum_reg[4]_i_1__3/S[0]
-			ov_sum_reg[4]_i_1__3/S[1]
-			ov_sum_reg[4]_i_1__3/S[2]
-			ov_sum_reg[4]_i_1__3/S[3]
-		CARRY4: ov_sum_reg[0]_i_1__2
-			ov_sum_reg[0]_i_1__2/CI
-			ov_sum_reg[0]_i_1__2/CO[0]
-			ov_sum_reg[0]_i_1__2/CO[1]
-			ov_sum_reg[0]_i_1__2/CO[2]
-			ov_sum_reg[0]_i_1__2/CO[3]
-			ov_sum_reg[0]_i_1__2/CYINIT
-			ov_sum_reg[0]_i_1__2/DI[0]
-			ov_sum_reg[0]_i_1__2/DI[1]
-			ov_sum_reg[0]_i_1__2/DI[2]
-			ov_sum_reg[0]_i_1__2/DI[3]
-			ov_sum_reg[0]_i_1__2/O[0]
-			ov_sum_reg[0]_i_1__2/O[1]
-			ov_sum_reg[0]_i_1__2/O[2]
-			ov_sum_reg[0]_i_1__2/O[3]
-			ov_sum_reg[0]_i_1__2/S[0]
-			ov_sum_reg[0]_i_1__2/S[1]
-			ov_sum_reg[0]_i_1__2/S[2]
-			ov_sum_reg[0]_i_1__2/S[3]
-		CARRY4: ov_sum_reg[20]_i_1__3
-			ov_sum_reg[20]_i_1__3/CI
-			ov_sum_reg[20]_i_1__3/CO[0]
-			ov_sum_reg[20]_i_1__3/CO[1]
-			ov_sum_reg[20]_i_1__3/CO[2]
-			ov_sum_reg[20]_i_1__3/CYINIT
-			ov_sum_reg[20]_i_1__3/DI[0]
-			ov_sum_reg[20]_i_1__3/DI[1]
-			ov_sum_reg[20]_i_1__3/DI[2]
-			ov_sum_reg[20]_i_1__3/DI[3]
-			ov_sum_reg[20]_i_1__3/O[0]
-			ov_sum_reg[20]_i_1__3/O[1]
-			ov_sum_reg[20]_i_1__3/O[2]
-			ov_sum_reg[20]_i_1__3/O[3]
-			ov_sum_reg[20]_i_1__3/S[0]
-			ov_sum_reg[20]_i_1__3/S[1]
-			ov_sum_reg[20]_i_1__3/S[2]
-			ov_sum_reg[20]_i_1__3/S[3]
-		CARRY4: ov_sum_reg[8]_i_1__3
-			ov_sum_reg[8]_i_1__3/CI
-			ov_sum_reg[8]_i_1__3/CO[0]
-			ov_sum_reg[8]_i_1__3/CO[1]
-			ov_sum_reg[8]_i_1__3/CO[2]
-			ov_sum_reg[8]_i_1__3/CO[3]
-			ov_sum_reg[8]_i_1__3/CYINIT
-			ov_sum_reg[8]_i_1__3/DI[0]
-			ov_sum_reg[8]_i_1__3/DI[1]
-			ov_sum_reg[8]_i_1__3/DI[2]
-			ov_sum_reg[8]_i_1__3/DI[3]
-			ov_sum_reg[8]_i_1__3/O[0]
-			ov_sum_reg[8]_i_1__3/O[1]
-			ov_sum_reg[8]_i_1__3/O[2]
-			ov_sum_reg[8]_i_1__3/O[3]
-			ov_sum_reg[8]_i_1__3/S[0]
-			ov_sum_reg[8]_i_1__3/S[1]
-			ov_sum_reg[8]_i_1__3/S[2]
-			ov_sum_reg[8]_i_1__3/S[3]
 		CARRY4: ov_sum_reg[4]_i_1__4
 			ov_sum_reg[4]_i_1__4/CI
 			ov_sum_reg[4]_i_1__4/CO[0]
@@ -4978,6 +4978,10 @@ VCC Cells (34):
 			VCC_1/P
 		VCC: VCC
 			VCC/P
+		VCC: VCC
+			VCC/P
+		VCC: VCC_1
+			VCC_1/P
 		VCC: VCC_1
 			VCC_1/P
 		VCC: VCC
@@ -4990,10 +4994,6 @@ VCC Cells (34):
 			VCC_1/P
 		VCC: VCC
 			VCC/P
-		VCC: VCC
-			VCC/P
-		VCC: VCC_1
-			VCC_1/P
 		VCC: VCC_1
 			VCC_1/P
 		VCC: VCC
@@ -10287,15 +10287,28 @@ DSP48E1 Cells (16):
 			ov_sum1__0/RSTM
 			ov_sum1__0/RSTP
 
-LUT Cells (493):
-	Printing all EDIFCellInsts of type LUT5... (493)
-		LUT5: sample_addr[2]_i_1
+LUT Cells (490):
+	Printing all EDIFCellInsts of type LUT6... (490)
+		LUT6: sample_addr[2]_i_1
 			sample_addr[2]_i_1/I0
 			sample_addr[2]_i_1/I1
 			sample_addr[2]_i_1/I2
 			sample_addr[2]_i_1/I3
 			sample_addr[2]_i_1/I4
+			sample_addr[2]_i_1/I5
 			sample_addr[2]_i_1/O
+		LUT3: sample_addr[2]_i_2
+			sample_addr[2]_i_2/I0
+			sample_addr[2]_i_2/I1
+			sample_addr[2]_i_2/I2
+			sample_addr[2]_i_2/O
+		LUT5: sample_re_addr[2]_i_1
+			sample_re_addr[2]_i_1/I0
+			sample_re_addr[2]_i_1/I1
+			sample_re_addr[2]_i_1/I2
+			sample_re_addr[2]_i_1/I3
+			sample_re_addr[2]_i_1/I4
+			sample_re_addr[2]_i_1/O
 		LUT3: i___142_carry__2_i_10
 			i___142_carry__2_i_10/I0
 			i___142_carry__2_i_10/I1
@@ -10355,74 +10368,204 @@ LUT Cells (493):
 			i___142_carry__3_i_3/I3
 			i___142_carry__3_i_3/I4
 			i___142_carry__3_i_3/O
+		LUT6: sample_addr[1]_i_1
+			sample_addr[1]_i_1/I0
+			sample_addr[1]_i_1/I1
+			sample_addr[1]_i_1/I2
+			sample_addr[1]_i_1/I3
+			sample_addr[1]_i_1/I4
+			sample_addr[1]_i_1/I5
+			sample_addr[1]_i_1/O
 		LUT3: o_ready_i_1
 			o_ready_i_1/I0
 			o_ready_i_1/I1
 			o_ready_i_1/I2
 			o_ready_i_1/O
-		LUT6: sample_re_addr[1]_i_1
+		LUT4: sample_re_addr[1]_i_1
 			sample_re_addr[1]_i_1/I0
 			sample_re_addr[1]_i_1/I1
 			sample_re_addr[1]_i_1/I2
 			sample_re_addr[1]_i_1/I3
-			sample_re_addr[1]_i_1/I4
-			sample_re_addr[1]_i_1/I5
 			sample_re_addr[1]_i_1/O
-		LUT3: sample_addr[0]_i_1
+		LUT3: i___142_carry__1_i_12
+			i___142_carry__1_i_12/I0
+			i___142_carry__1_i_12/I1
+			i___142_carry__1_i_12/I2
+			i___142_carry__1_i_12/O
+		LUT3: i___142_carry__1_i_10
+			i___142_carry__1_i_10/I0
+			i___142_carry__1_i_10/I1
+			i___142_carry__1_i_10/I2
+			i___142_carry__1_i_10/O
+		LUT3: i___142_carry__1_i_11
+			i___142_carry__1_i_11/I0
+			i___142_carry__1_i_11/I1
+			i___142_carry__1_i_11/I2
+			i___142_carry__1_i_11/O
+		LUT6: i___142_carry__1_i_8
+			i___142_carry__1_i_8/I0
+			i___142_carry__1_i_8/I1
+			i___142_carry__1_i_8/I2
+			i___142_carry__1_i_8/I3
+			i___142_carry__1_i_8/I4
+			i___142_carry__1_i_8/I5
+			i___142_carry__1_i_8/O
+		LUT6: i___142_carry__1_i_7
+			i___142_carry__1_i_7/I0
+			i___142_carry__1_i_7/I1
+			i___142_carry__1_i_7/I2
+			i___142_carry__1_i_7/I3
+			i___142_carry__1_i_7/I4
+			i___142_carry__1_i_7/I5
+			i___142_carry__1_i_7/O
+		LUT6: i___142_carry__1_i_6
+			i___142_carry__1_i_6/I0
+			i___142_carry__1_i_6/I1
+			i___142_carry__1_i_6/I2
+			i___142_carry__1_i_6/I3
+			i___142_carry__1_i_6/I4
+			i___142_carry__1_i_6/I5
+			i___142_carry__1_i_6/O
+		LUT5: sample_addr[3]_i_1
+			sample_addr[3]_i_1/I0
+			sample_addr[3]_i_1/I1
+			sample_addr[3]_i_1/I2
+			sample_addr[3]_i_1/I3
+			sample_addr[3]_i_1/I4
+			sample_addr[3]_i_1/O
+		LUT6: i___142_carry__1_i_5
+			i___142_carry__1_i_5/I0
+			i___142_carry__1_i_5/I1
+			i___142_carry__1_i_5/I2
+			i___142_carry__1_i_5/I3
+			i___142_carry__1_i_5/I4
+			i___142_carry__1_i_5/I5
+			i___142_carry__1_i_5/O
+		LUT5: i___142_carry__1_i_4
+			i___142_carry__1_i_4/I0
+			i___142_carry__1_i_4/I1
+			i___142_carry__1_i_4/I2
+			i___142_carry__1_i_4/I3
+			i___142_carry__1_i_4/I4
+			i___142_carry__1_i_4/O
+		LUT4: sample_addr[0]_i_1
 			sample_addr[0]_i_1/I0
 			sample_addr[0]_i_1/I1
 			sample_addr[0]_i_1/I2
+			sample_addr[0]_i_1/I3
 			sample_addr[0]_i_1/O
+		LUT5: i___142_carry__1_i_3
+			i___142_carry__1_i_3/I0
+			i___142_carry__1_i_3/I1
+			i___142_carry__1_i_3/I2
+			i___142_carry__1_i_3/I3
+			i___142_carry__1_i_3/I4
+			i___142_carry__1_i_3/O
+		LUT5: i___142_carry__1_i_2
+			i___142_carry__1_i_2/I0
+			i___142_carry__1_i_2/I1
+			i___142_carry__1_i_2/I2
+			i___142_carry__1_i_2/I3
+			i___142_carry__1_i_2/I4
+			i___142_carry__1_i_2/O
+		LUT5: i___142_carry__1_i_1
+			i___142_carry__1_i_1/I0
+			i___142_carry__1_i_1/I1
+			i___142_carry__1_i_1/I2
+			i___142_carry__1_i_1/I3
+			i___142_carry__1_i_1/I4
+			i___142_carry__1_i_1/O
+		LUT3: sample_re_addr[0]_i_1
+			sample_re_addr[0]_i_1/I0
+			sample_re_addr[0]_i_1/I1
+			sample_re_addr[0]_i_1/I2
+			sample_re_addr[0]_i_1/O
 		LUT4: sample_re_addr[3]_i_2
 			sample_re_addr[3]_i_2/I0
 			sample_re_addr[3]_i_2/I1
 			sample_re_addr[3]_i_2/I2
 			sample_re_addr[3]_i_2/I3
 			sample_re_addr[3]_i_2/O
-		LUT4: sample_re_addr[3]_i_3
-			sample_re_addr[3]_i_3/I0
-			sample_re_addr[3]_i_3/I1
-			sample_re_addr[3]_i_3/I2
-			sample_re_addr[3]_i_3/I3
-			sample_re_addr[3]_i_3/O
-		LUT5: sample_re_addr[3]_i_1
+		LUT3: sample_re_addr[3]_i_1
 			sample_re_addr[3]_i_1/I0
 			sample_re_addr[3]_i_1/I1
 			sample_re_addr[3]_i_1/I2
-			sample_re_addr[3]_i_1/I3
-			sample_re_addr[3]_i_1/I4
 			sample_re_addr[3]_i_1/O
-		LUT5: FSM_sequential_state[1]_i_1__0
+		LUT5: FSM_sequential_state[0]_i_1
+			FSM_sequential_state[0]_i_1/I0
+			FSM_sequential_state[0]_i_1/I1
+			FSM_sequential_state[0]_i_1/I2
+			FSM_sequential_state[0]_i_1/I3
+			FSM_sequential_state[0]_i_1/I4
+			FSM_sequential_state[0]_i_1/O
+		LUT4: FSM_sequential_state[1]_i_1__0
 			FSM_sequential_state[1]_i_1__0/I0
 			FSM_sequential_state[1]_i_1__0/I1
 			FSM_sequential_state[1]_i_1__0/I2
 			FSM_sequential_state[1]_i_1__0/I3
-			FSM_sequential_state[1]_i_1__0/I4
 			FSM_sequential_state[1]_i_1__0/O
-		LUT5: weight_re_addr[4]_i_1
+		LUT3: weight_re_addr[4]_i_1
 			weight_re_addr[4]_i_1/I0
 			weight_re_addr[4]_i_1/I1
 			weight_re_addr[4]_i_1/I2
-			weight_re_addr[4]_i_1/I3
-			weight_re_addr[4]_i_1/I4
 			weight_re_addr[4]_i_1/O
-		LUT2: sample_addr[4]_i_1
+		LUT5: weight_re_addr[4]_i_2
+			weight_re_addr[4]_i_2/I0
+			weight_re_addr[4]_i_2/I1
+			weight_re_addr[4]_i_2/I2
+			weight_re_addr[4]_i_2/I3
+			weight_re_addr[4]_i_2/I4
+			weight_re_addr[4]_i_2/O
+		LUT6: FSM_sequential_state[2]_i_2
+			FSM_sequential_state[2]_i_2/I0
+			FSM_sequential_state[2]_i_2/I1
+			FSM_sequential_state[2]_i_2/I2
+			FSM_sequential_state[2]_i_2/I3
+			FSM_sequential_state[2]_i_2/I4
+			FSM_sequential_state[2]_i_2/I5
+			FSM_sequential_state[2]_i_2/O
+		LUT5: FSM_sequential_state[2]_i_1
+			FSM_sequential_state[2]_i_1/I0
+			FSM_sequential_state[2]_i_1/I1
+			FSM_sequential_state[2]_i_1/I2
+			FSM_sequential_state[2]_i_1/I3
+			FSM_sequential_state[2]_i_1/I4
+			FSM_sequential_state[2]_i_1/O
+		LUT3: i___142_carry__1_i_9
+			i___142_carry__1_i_9/I0
+			i___142_carry__1_i_9/I1
+			i___142_carry__1_i_9/I2
+			i___142_carry__1_i_9/O
+		LUT3: sample_addr[4]_i_1
 			sample_addr[4]_i_1/I0
 			sample_addr[4]_i_1/I1
+			sample_addr[4]_i_1/I2
 			sample_addr[4]_i_1/O
-		LUT3: sample_addr[4]_i_2
+		LUT5: sample_addr[4]_i_2
 			sample_addr[4]_i_2/I0
 			sample_addr[4]_i_2/I1
 			sample_addr[4]_i_2/I2
+			sample_addr[4]_i_2/I3
+			sample_addr[4]_i_2/I4
 			sample_addr[4]_i_2/O
-		LUT6: ov_dout[23]_i_1__0
+		LUT4: ov_dout[23]_i_1__0
 			ov_dout[23]_i_1__0/I0
 			ov_dout[23]_i_1__0/I1
 			ov_dout[23]_i_1__0/I2
 			ov_dout[23]_i_1__0/I3
-			ov_dout[23]_i_1__0/I4
-			ov_dout[23]_i_1__0/I5
 			ov_dout[23]_i_1__0/O
+		LUT4: o_dout_valid_i_1__0
+			o_dout_valid_i_1__0/I0
+			o_dout_valid_i_1__0/I1
+			o_dout_valid_i_1__0/I2
+			o_dout_valid_i_1__0/I3
+			o_dout_valid_i_1__0/O
+		LUT4: sample_wr_addr[3]_i_1
+			sample_wr_addr[3]_i_1/I0
+			sample_wr_addr[3]_i_1/I1
+			sample_wr_addr[3]_i_1/I2
+			sample_wr_addr[3]_i_1/I3
+			sample_wr_addr[3]_i_1/O
 		LUT1: sample_wr_addr[0]_i_1
 			sample_wr_addr[0]_i_1/I0
 			sample_wr_addr[0]_i_1/O
@@ -10431,6 +10574,16 @@ LUT Cells (493):
 			i___142_carry__0_i_10/I1
 			i___142_carry__0_i_10/I2
 			i___142_carry__0_i_10/O
+		LUT3: i___142_carry__3_i_11
+			i___142_carry__3_i_11/I0
+			i___142_carry__3_i_11/I1
+			i___142_carry__3_i_11/I2
+			i___142_carry__3_i_11/O
+		LUT3: i___142_carry__3_i_10
+			i___142_carry__3_i_10/I0
+			i___142_carry__3_i_10/I1
+			i___142_carry__3_i_10/I2
+			i___142_carry__3_i_10/O
 		LUT3: i___142_carry__3_i_9
 			i___142_carry__3_i_9/I0
 			i___142_carry__3_i_9/I1
@@ -10449,6 +10602,11 @@ LUT Cells (493):
 			i___142_carry__3_i_8/I4
 			i___142_carry__3_i_8/I5
 			i___142_carry__3_i_8/O
+		LUT3: i___142_carry_i_9
+			i___142_carry_i_9/I0
+			i___142_carry_i_9/I1
+			i___142_carry_i_9/I2
+			i___142_carry_i_9/O
 		LUT3: i___142_carry__0_i_11
 			i___142_carry__0_i_11/I0
 			i___142_carry__0_i_11/I1
@@ -10462,6 +10620,64 @@ LUT Cells (493):
 			i___142_carry__3_i_7/I4
 			i___142_carry__3_i_7/I5
 			i___142_carry__3_i_7/O
+		LUT3: i___142_carry_i_8
+			i___142_carry_i_8/I0
+			i___142_carry_i_8/I1
+			i___142_carry_i_8/I2
+			i___142_carry_i_8/O
+		LUT4: i___142_carry_i_3
+			i___142_carry_i_3/I0
+			i___142_carry_i_3/I1
+			i___142_carry_i_3/I2
+			i___142_carry_i_3/I3
+			i___142_carry_i_3/O
+		LUT5: i___142_carry_i_2
+			i___142_carry_i_2/I0
+			i___142_carry_i_2/I1
+			i___142_carry_i_2/I2
+			i___142_carry_i_2/I3
+			i___142_carry_i_2/I4
+			i___142_carry_i_2/O
+		LUT5: i___142_carry_i_1
+			i___142_carry_i_1/I0
+			i___142_carry_i_1/I1
+			i___142_carry_i_1/I2
+			i___142_carry_i_1/I3
+			i___142_carry_i_1/I4
+			i___142_carry_i_1/O
+		LUT4: i___142_carry_i_7
+			i___142_carry_i_7/I0
+			i___142_carry_i_7/I1
+			i___142_carry_i_7/I2
+			i___142_carry_i_7/I3
+			i___142_carry_i_7/O
+		LUT4: i___142_carry_i_6
+			i___142_carry_i_6/I0
+			i___142_carry_i_6/I1
+			i___142_carry_i_6/I2
+			i___142_carry_i_6/I3
+			i___142_carry_i_6/O
+		LUT6: i___142_carry_i_5
+			i___142_carry_i_5/I0
+			i___142_carry_i_5/I1
+			i___142_carry_i_5/I2
+			i___142_carry_i_5/I3
+			i___142_carry_i_5/I4
+			i___142_carry_i_5/I5
+			i___142_carry_i_5/O
+		LUT3: i___142_carry__3_i_12
+			i___142_carry__3_i_12/I0
+			i___142_carry__3_i_12/I1
+			i___142_carry__3_i_12/I2
+			i___142_carry__3_i_12/O
+		LUT6: i___142_carry_i_4
+			i___142_carry_i_4/I0
+			i___142_carry_i_4/I1
+			i___142_carry_i_4/I2
+			i___142_carry_i_4/I3
+			i___142_carry_i_4/I4
+			i___142_carry_i_4/I5
+			i___142_carry_i_4/O
 		LUT6: i___142_carry__4_i_7
 			i___142_carry__4_i_7/I0
 			i___142_carry__4_i_7/I1
@@ -10470,6 +10686,11 @@ LUT Cells (493):
 			i___142_carry__4_i_7/I4
 			i___142_carry__4_i_7/I5
 			i___142_carry__4_i_7/O
+		LUT3: i___142_carry__4_i_9
+			i___142_carry__4_i_9/I0
+			i___142_carry__4_i_9/I1
+			i___142_carry__4_i_9/I2
+			i___142_carry__4_i_9/O
 		LUT2: weight_re_addr[1]_i_1
 			weight_re_addr[1]_i_1/I0
 			weight_re_addr[1]_i_1/I1
@@ -10479,6 +10700,63 @@ LUT Cells (493):
 			weight_re_addr[2]_i_1/I1
 			weight_re_addr[2]_i_1/I2
 			weight_re_addr[2]_i_1/O
+		LUT3: weight_re_i_1
+			weight_re_i_1/I0
+			weight_re_i_1/I1
+			weight_re_i_1/I2
+			weight_re_i_1/O
+		LUT6: i___142_carry__2_i_5
+			i___142_carry__2_i_5/I0
+			i___142_carry__2_i_5/I1
+			i___142_carry__2_i_5/I2
+			i___142_carry__2_i_5/I3
+			i___142_carry__2_i_5/I4
+			i___142_carry__2_i_5/I5
+			i___142_carry__2_i_5/O
+		LUT5: i___142_carry__2_i_4
+			i___142_carry__2_i_4/I0
+			i___142_carry__2_i_4/I1
+			i___142_carry__2_i_4/I2
+			i___142_carry__2_i_4/I3
+			i___142_carry__2_i_4/I4
+			i___142_carry__2_i_4/O
+		LUT6: i___142_carry__2_i_7
+			i___142_carry__2_i_7/I0
+			i___142_carry__2_i_7/I1
+			i___142_carry__2_i_7/I2
+			i___142_carry__2_i_7/I3
+			i___142_carry__2_i_7/I4
+			i___142_carry__2_i_7/I5
+			i___142_carry__2_i_7/O
+		LUT6: i___142_carry__2_i_6
+			i___142_carry__2_i_6/I0
+			i___142_carry__2_i_6/I1
+			i___142_carry__2_i_6/I2
+			i___142_carry__2_i_6/I3
+			i___142_carry__2_i_6/I4
+			i___142_carry__2_i_6/I5
+			i___142_carry__2_i_6/O
+		LUT5: i___142_carry__2_i_1
+			i___142_carry__2_i_1/I0
+			i___142_carry__2_i_1/I1
+			i___142_carry__2_i_1/I2
+			i___142_carry__2_i_1/I3
+			i___142_carry__2_i_1/I4
+			i___142_carry__2_i_1/O
+		LUT5: i___142_carry__2_i_3
+			i___142_carry__2_i_3/I0
+			i___142_carry__2_i_3/I1
+			i___142_carry__2_i_3/I2
+			i___142_carry__2_i_3/I3
+			i___142_carry__2_i_3/I4
+			i___142_carry__2_i_3/O
+		LUT5: i___142_carry__2_i_2
+			i___142_carry__2_i_2/I0
+			i___142_carry__2_i_2/I1
+			i___142_carry__2_i_2/I2
+			i___142_carry__2_i_2/I3
+			i___142_carry__2_i_2/I4
+			i___142_carry__2_i_2/O
 		LUT5: sum_rst_i_1
 			sum_rst_i_1/I0
 			sum_rst_i_1/I1
@@ -10550,6 +10828,9 @@ LUT Cells (493):
 			weight_re_addr[3]_i_1/I2
 			weight_re_addr[3]_i_1/I3
 			weight_re_addr[3]_i_1/O
+		LUT1: weight_re_addr[0]_i_1
+			weight_re_addr[0]_i_1/I0
+			weight_re_addr[0]_i_1/O
 		LUT5: i___142_carry__0_i_1
 			i___142_carry__0_i_1/I0
 			i___142_carry__0_i_1/I1
@@ -10564,311 +10845,6 @@ LUT Cells (493):
 			sample_wr_addr[4]_i_1/I3
 			sample_wr_addr[4]_i_1/I4
 			sample_wr_addr[4]_i_1/O
-		LUT5: tap_en_i_1
-			tap_en_i_1/I0
-			tap_en_i_1/I1
-			tap_en_i_1/I2
-			tap_en_i_1/I3
-			tap_en_i_1/I4
-			tap_en_i_1/O
-		LUT5: i___142_carry__4_i_3
-			i___142_carry__4_i_3/I0
-			i___142_carry__4_i_3/I1
-			i___142_carry__4_i_3/I2
-			i___142_carry__4_i_3/I3
-			i___142_carry__4_i_3/I4
-			i___142_carry__4_i_3/O
-		LUT5: i___142_carry__4_i_2
-			i___142_carry__4_i_2/I0
-			i___142_carry__4_i_2/I1
-			i___142_carry__4_i_2/I2
-			i___142_carry__4_i_2/I3
-			i___142_carry__4_i_2/I4
-			i___142_carry__4_i_2/O
-		LUT3: sample_re_addr[2]_i_2
-			sample_re_addr[2]_i_2/I0
-			sample_re_addr[2]_i_2/I1
-			sample_re_addr[2]_i_2/I2
-			sample_re_addr[2]_i_2/O
-		LUT5: sample_re_addr[2]_i_1
-			sample_re_addr[2]_i_1/I0
-			sample_re_addr[2]_i_1/I1
-			sample_re_addr[2]_i_1/I2
-			sample_re_addr[2]_i_1/I3
-			sample_re_addr[2]_i_1/I4
-			sample_re_addr[2]_i_1/O
-		LUT3: sample_re_addr[2]_i_3
-			sample_re_addr[2]_i_3/I0
-			sample_re_addr[2]_i_3/I1
-			sample_re_addr[2]_i_3/I2
-			sample_re_addr[2]_i_3/O
-		LUT5: sample_addr[1]_i_1
-			sample_addr[1]_i_1/I0
-			sample_addr[1]_i_1/I1
-			sample_addr[1]_i_1/I2
-			sample_addr[1]_i_1/I3
-			sample_addr[1]_i_1/I4
-			sample_addr[1]_i_1/O
-		LUT3: i___142_carry__1_i_12
-			i___142_carry__1_i_12/I0
-			i___142_carry__1_i_12/I1
-			i___142_carry__1_i_12/I2
-			i___142_carry__1_i_12/O
-		LUT3: i___142_carry__1_i_10
-			i___142_carry__1_i_10/I0
-			i___142_carry__1_i_10/I1
-			i___142_carry__1_i_10/I2
-			i___142_carry__1_i_10/O
-		LUT3: i___142_carry__1_i_11
-			i___142_carry__1_i_11/I0
-			i___142_carry__1_i_11/I1
-			i___142_carry__1_i_11/I2
-			i___142_carry__1_i_11/O
-		LUT6: i___142_carry__1_i_8
-			i___142_carry__1_i_8/I0
-			i___142_carry__1_i_8/I1
-			i___142_carry__1_i_8/I2
-			i___142_carry__1_i_8/I3
-			i___142_carry__1_i_8/I4
-			i___142_carry__1_i_8/I5
-			i___142_carry__1_i_8/O
-		LUT6: i___142_carry__1_i_7
-			i___142_carry__1_i_7/I0
-			i___142_carry__1_i_7/I1
-			i___142_carry__1_i_7/I2
-			i___142_carry__1_i_7/I3
-			i___142_carry__1_i_7/I4
-			i___142_carry__1_i_7/I5
-			i___142_carry__1_i_7/O
-		LUT6: i___142_carry__1_i_6
-			i___142_carry__1_i_6/I0
-			i___142_carry__1_i_6/I1
-			i___142_carry__1_i_6/I2
-			i___142_carry__1_i_6/I3
-			i___142_carry__1_i_6/I4
-			i___142_carry__1_i_6/I5
-			i___142_carry__1_i_6/O
-		LUT3: sample_addr[3]_i_1
-			sample_addr[3]_i_1/I0
-			sample_addr[3]_i_1/I1
-			sample_addr[3]_i_1/I2
-			sample_addr[3]_i_1/O
-		LUT6: i___142_carry__1_i_5
-			i___142_carry__1_i_5/I0
-			i___142_carry__1_i_5/I1
-			i___142_carry__1_i_5/I2
-			i___142_carry__1_i_5/I3
-			i___142_carry__1_i_5/I4
-			i___142_carry__1_i_5/I5
-			i___142_carry__1_i_5/O
-		LUT5: i___142_carry__1_i_4
-			i___142_carry__1_i_4/I0
-			i___142_carry__1_i_4/I1
-			i___142_carry__1_i_4/I2
-			i___142_carry__1_i_4/I3
-			i___142_carry__1_i_4/I4
-			i___142_carry__1_i_4/O
-		LUT5: i___142_carry__1_i_3
-			i___142_carry__1_i_3/I0
-			i___142_carry__1_i_3/I1
-			i___142_carry__1_i_3/I2
-			i___142_carry__1_i_3/I3
-			i___142_carry__1_i_3/I4
-			i___142_carry__1_i_3/O
-		LUT5: i___142_carry__1_i_2
-			i___142_carry__1_i_2/I0
-			i___142_carry__1_i_2/I1
-			i___142_carry__1_i_2/I2
-			i___142_carry__1_i_2/I3
-			i___142_carry__1_i_2/I4
-			i___142_carry__1_i_2/O
-		LUT5: i___142_carry__1_i_1
-			i___142_carry__1_i_1/I0
-			i___142_carry__1_i_1/I1
-			i___142_carry__1_i_1/I2
-			i___142_carry__1_i_1/I3
-			i___142_carry__1_i_1/I4
-			i___142_carry__1_i_1/O
-		LUT4: sample_re_addr[0]_i_1
-			sample_re_addr[0]_i_1/I0
-			sample_re_addr[0]_i_1/I1
-			sample_re_addr[0]_i_1/I2
-			sample_re_addr[0]_i_1/I3
-			sample_re_addr[0]_i_1/O
-		LUT6: FSM_sequential_state[0]_i_1
-			FSM_sequential_state[0]_i_1/I0
-			FSM_sequential_state[0]_i_1/I1
-			FSM_sequential_state[0]_i_1/I2
-			FSM_sequential_state[0]_i_1/I3
-			FSM_sequential_state[0]_i_1/I4
-			FSM_sequential_state[0]_i_1/I5
-			FSM_sequential_state[0]_i_1/O
-		LUT4: FSM_sequential_state[2]_i_2
-			FSM_sequential_state[2]_i_2/I0
-			FSM_sequential_state[2]_i_2/I1
-			FSM_sequential_state[2]_i_2/I2
-			FSM_sequential_state[2]_i_2/I3
-			FSM_sequential_state[2]_i_2/O
-		LUT6: FSM_sequential_state[2]_i_1
-			FSM_sequential_state[2]_i_1/I0
-			FSM_sequential_state[2]_i_1/I1
-			FSM_sequential_state[2]_i_1/I2
-			FSM_sequential_state[2]_i_1/I3
-			FSM_sequential_state[2]_i_1/I4
-			FSM_sequential_state[2]_i_1/I5
-			FSM_sequential_state[2]_i_1/O
-		LUT3: i___142_carry__1_i_9
-			i___142_carry__1_i_9/I0
-			i___142_carry__1_i_9/I1
-			i___142_carry__1_i_9/I2
-			i___142_carry__1_i_9/O
-		LUT6: o_dout_valid_i_1__0
-			o_dout_valid_i_1__0/I0
-			o_dout_valid_i_1__0/I1
-			o_dout_valid_i_1__0/I2
-			o_dout_valid_i_1__0/I3
-			o_dout_valid_i_1__0/I4
-			o_dout_valid_i_1__0/I5
-			o_dout_valid_i_1__0/O
-		LUT4: sample_wr_addr[3]_i_1
-			sample_wr_addr[3]_i_1/I0
-			sample_wr_addr[3]_i_1/I1
-			sample_wr_addr[3]_i_1/I2
-			sample_wr_addr[3]_i_1/I3
-			sample_wr_addr[3]_i_1/O
-		LUT3: i___142_carry__3_i_11
-			i___142_carry__3_i_11/I0
-			i___142_carry__3_i_11/I1
-			i___142_carry__3_i_11/I2
-			i___142_carry__3_i_11/O
-		LUT3: i___142_carry__3_i_10
-			i___142_carry__3_i_10/I0
-			i___142_carry__3_i_10/I1
-			i___142_carry__3_i_10/I2
-			i___142_carry__3_i_10/O
-		LUT3: i___142_carry_i_9
-			i___142_carry_i_9/I0
-			i___142_carry_i_9/I1
-			i___142_carry_i_9/I2
-			i___142_carry_i_9/O
-		LUT3: i___142_carry_i_8
-			i___142_carry_i_8/I0
-			i___142_carry_i_8/I1
-			i___142_carry_i_8/I2
-			i___142_carry_i_8/O
-		LUT4: i___142_carry_i_3
-			i___142_carry_i_3/I0
-			i___142_carry_i_3/I1
-			i___142_carry_i_3/I2
-			i___142_carry_i_3/I3
-			i___142_carry_i_3/O
-		LUT5: i___142_carry_i_2
-			i___142_carry_i_2/I0
-			i___142_carry_i_2/I1
-			i___142_carry_i_2/I2
-			i___142_carry_i_2/I3
-			i___142_carry_i_2/I4
-			i___142_carry_i_2/O
-		LUT5: i___142_carry_i_1
-			i___142_carry_i_1/I0
-			i___142_carry_i_1/I1
-			i___142_carry_i_1/I2
-			i___142_carry_i_1/I3
-			i___142_carry_i_1/I4
-			i___142_carry_i_1/O
-		LUT4: i___142_carry_i_7
-			i___142_carry_i_7/I0
-			i___142_carry_i_7/I1
-			i___142_carry_i_7/I2
-			i___142_carry_i_7/I3
-			i___142_carry_i_7/O
-		LUT4: i___142_carry_i_6
-			i___142_carry_i_6/I0
-			i___142_carry_i_6/I1
-			i___142_carry_i_6/I2
-			i___142_carry_i_6/I3
-			i___142_carry_i_6/O
-		LUT6: i___142_carry_i_5
-			i___142_carry_i_5/I0
-			i___142_carry_i_5/I1
-			i___142_carry_i_5/I2
-			i___142_carry_i_5/I3
-			i___142_carry_i_5/I4
-			i___142_carry_i_5/I5
-			i___142_carry_i_5/O
-		LUT3: i___142_carry__3_i_12
-			i___142_carry__3_i_12/I0
-			i___142_carry__3_i_12/I1
-			i___142_carry__3_i_12/I2
-			i___142_carry__3_i_12/O
-		LUT6: i___142_carry_i_4
-			i___142_carry_i_4/I0
-			i___142_carry_i_4/I1
-			i___142_carry_i_4/I2
-			i___142_carry_i_4/I3
-			i___142_carry_i_4/I4
-			i___142_carry_i_4/I5
-			i___142_carry_i_4/O
-		LUT3: weight_re_i_1
-			weight_re_i_1/I0
-			weight_re_i_1/I1
-			weight_re_i_1/I2
-			weight_re_i_1/O
-		LUT6: i___142_carry__2_i_5
-			i___142_carry__2_i_5/I0
-			i___142_carry__2_i_5/I1
-			i___142_carry__2_i_5/I2
-			i___142_carry__2_i_5/I3
-			i___142_carry__2_i_5/I4
-			i___142_carry__2_i_5/I5
-			i___142_carry__2_i_5/O
-		LUT5: i___142_carry__2_i_4
-			i___142_carry__2_i_4/I0
-			i___142_carry__2_i_4/I1
-			i___142_carry__2_i_4/I2
-			i___142_carry__2_i_4/I3
-			i___142_carry__2_i_4/I4
-			i___142_carry__2_i_4/O
-		LUT6: i___142_carry__2_i_7
-			i___142_carry__2_i_7/I0
-			i___142_carry__2_i_7/I1
-			i___142_carry__2_i_7/I2
-			i___142_carry__2_i_7/I3
-			i___142_carry__2_i_7/I4
-			i___142_carry__2_i_7/I5
-			i___142_carry__2_i_7/O
-		LUT6: i___142_carry__2_i_6
-			i___142_carry__2_i_6/I0
-			i___142_carry__2_i_6/I1
-			i___142_carry__2_i_6/I2
-			i___142_carry__2_i_6/I3
-			i___142_carry__2_i_6/I4
-			i___142_carry__2_i_6/I5
-			i___142_carry__2_i_6/O
-		LUT5: i___142_carry__2_i_1
-			i___142_carry__2_i_1/I0
-			i___142_carry__2_i_1/I1
-			i___142_carry__2_i_1/I2
-			i___142_carry__2_i_1/I3
-			i___142_carry__2_i_1/I4
-			i___142_carry__2_i_1/O
-		LUT5: i___142_carry__2_i_3
-			i___142_carry__2_i_3/I0
-			i___142_carry__2_i_3/I1
-			i___142_carry__2_i_3/I2
-			i___142_carry__2_i_3/I3
-			i___142_carry__2_i_3/I4
-			i___142_carry__2_i_3/O
-		LUT5: i___142_carry__2_i_2
-			i___142_carry__2_i_2/I0
-			i___142_carry__2_i_2/I1
-			i___142_carry__2_i_2/I2
-			i___142_carry__2_i_2/I3
-			i___142_carry__2_i_2/I4
-			i___142_carry__2_i_2/O
-		LUT1: weight_re_addr[0]_i_1
-			weight_re_addr[0]_i_1/I0
-			weight_re_addr[0]_i_1/O
 		LUT2: sample_wr_addr[1]_i_1
 			sample_wr_addr[1]_i_1/I0
 			sample_wr_addr[1]_i_1/I1
@@ -10878,13 +10854,6 @@ LUT Cells (493):
 			sample_wr_addr[2]_i_1/I1
 			sample_wr_addr[2]_i_1/I2
 			sample_wr_addr[2]_i_1/O
-		LUT5: sample_re_addr[4]_i_4
-			sample_re_addr[4]_i_4/I0
-			sample_re_addr[4]_i_4/I1
-			sample_re_addr[4]_i_4/I2
-			sample_re_addr[4]_i_4/I3
-			sample_re_addr[4]_i_4/I4
-			sample_re_addr[4]_i_4/O
 		LUT5: sample_re_addr[4]_i_3
 			sample_re_addr[4]_i_3/I0
 			sample_re_addr[4]_i_3/I1
@@ -10892,18 +10861,22 @@ LUT Cells (493):
 			sample_re_addr[4]_i_3/I3
 			sample_re_addr[4]_i_3/I4
 			sample_re_addr[4]_i_3/O
-		LUT5: sample_re_addr[4]_i_2
+		LUT3: sample_re_addr[4]_i_2
 			sample_re_addr[4]_i_2/I0
 			sample_re_addr[4]_i_2/I1
 			sample_re_addr[4]_i_2/I2
-			sample_re_addr[4]_i_2/I3
-			sample_re_addr[4]_i_2/I4
 			sample_re_addr[4]_i_2/O
-		LUT3: sample_re_addr[4]_i_1
+		LUT2: sample_re_addr[4]_i_1
 			sample_re_addr[4]_i_1/I0
 			sample_re_addr[4]_i_1/I1
-			sample_re_addr[4]_i_1/I2
 			sample_re_addr[4]_i_1/O
+		LUT5: tap_en_i_1
+			tap_en_i_1/I0
+			tap_en_i_1/I1
+			tap_en_i_1/I2
+			tap_en_i_1/I3
+			tap_en_i_1/I4
+			tap_en_i_1/O
 		LUT3: i___142_carry__2_i_9
 			i___142_carry__2_i_9/I0
 			i___142_carry__2_i_9/I1
@@ -10917,6 +10890,13 @@ LUT Cells (493):
 			i___142_carry__2_i_8/I4
 			i___142_carry__2_i_8/I5
 			i___142_carry__2_i_8/O
+		LUT5: i___142_carry__4_i_3
+			i___142_carry__4_i_3/I0
+			i___142_carry__4_i_3/I1
+			i___142_carry__4_i_3/I2
+			i___142_carry__4_i_3/I3
+			i___142_carry__4_i_3/I4
+			i___142_carry__4_i_3/O
 		LUT3: FSM_sequential_state[0]_i_1__0
 			FSM_sequential_state[0]_i_1__0/I0
 			FSM_sequential_state[0]_i_1__0/I1
@@ -11155,6 +11135,10 @@ LUT Cells (493):
 			shift_reg[4]_i_1__0/I0
 			shift_reg[4]_i_1__0/I1
 			shift_reg[4]_i_1__0/O
+		LUT2: ov_dout[23]_i_2
+			ov_dout[23]_i_2/I0
+			ov_dout[23]_i_2/I1
+			ov_dout[23]_i_2/O
 		LUT2: shift_reg[8]_i_1__0
 			shift_reg[8]_i_1__0/I0
 			shift_reg[8]_i_1__0/I1
@@ -11247,23 +11231,17 @@ LUT Cells (493):
 			FSM_sequential_state[0]_i_1__1/I4
 			FSM_sequential_state[0]_i_1__1/I5
 			FSM_sequential_state[0]_i_1__1/O
-		LUT6: counter[3]_i_1
+		LUT5: counter[3]_i_1
 			counter[3]_i_1/I0
 			counter[3]_i_1/I1
 			counter[3]_i_1/I2
 			counter[3]_i_1/I3
 			counter[3]_i_1/I4
-			counter[3]_i_1/I5
 			counter[3]_i_1/O
 		LUT2: shift_reg[6]_i_1__0
 			shift_reg[6]_i_1__0/I0
 			shift_reg[6]_i_1__0/I1
 			shift_reg[6]_i_1__0/O
-		LUT3: counter[3]_i_2
-			counter[3]_i_2/I0
-			counter[3]_i_2/I1
-			counter[3]_i_2/I2
-			counter[3]_i_2/O
 		LUT2: shift_reg[21]_i_1__0
 			shift_reg[21]_i_1__0/I0
 			shift_reg[21]_i_1__0/I1
@@ -11410,11 +11388,6 @@ LUT Cells (493):
 			i___142_carry__4_i_11/I2
 			i___142_carry__4_i_11/I3
 			i___142_carry__4_i_11/O
-		LUT3: i___142_carry__4_i_12
-			i___142_carry__4_i_12/I0
-			i___142_carry__4_i_12/I1
-			i___142_carry__4_i_12/I2
-			i___142_carry__4_i_12/O
 		LUT2: ov_sum[20]_i_3__6
 			ov_sum[20]_i_3__6/I0
 			ov_sum[20]_i_3__6/I1
@@ -11549,16 +11522,6 @@ LUT Cells (493):
 			i___142_carry__4_i_6/I4
 			i___142_carry__4_i_6/I5
 			i___142_carry__4_i_6/O
-		LUT3: i___142_carry__4_i_9
-			i___142_carry__4_i_9/I0
-			i___142_carry__4_i_9/I1
-			i___142_carry__4_i_9/I2
-			i___142_carry__4_i_9/O
-		LUT3: i___142_carry__4_i_8
-			i___142_carry__4_i_8/I0
-			i___142_carry__4_i_8/I1
-			i___142_carry__4_i_8/I2
-			i___142_carry__4_i_8/O
 		LUT3: i___0_carry__2_i_3
 			i___0_carry__2_i_3/I0
 			i___0_carry__2_i_3/I1
@@ -11621,11 +11584,6 @@ LUT Cells (493):
 			i___0_carry__2_i_6/I2
 			i___0_carry__2_i_6/I3
 			i___0_carry__2_i_6/O
-		LUT3: i___0_carry_i_7
-			i___0_carry_i_7/I0
-			i___0_carry_i_7/I1
-			i___0_carry_i_7/I2
-			i___0_carry_i_7/O
 		LUT2: ov_sum[20]_i_5__6
 			ov_sum[20]_i_5__6/I0
 			ov_sum[20]_i_5__6/I1
@@ -11648,11 +11606,6 @@ LUT Cells (493):
 			i___0_carry_i_2/I1
 			i___0_carry_i_2/I2
 			i___0_carry_i_2/O
-		LUT3: i___0_carry_i_3
-			i___0_carry_i_3/I0
-			i___0_carry_i_3/I1
-			i___0_carry_i_3/I2
-			i___0_carry_i_3/O
 		LUT4: i___0_carry_i_4
 			i___0_carry_i_4/I0
 			i___0_carry_i_4/I1
@@ -11665,12 +11618,6 @@ LUT Cells (493):
 			i___0_carry_i_5/I2
 			i___0_carry_i_5/I3
 			i___0_carry_i_5/O
-		LUT4: i___0_carry_i_6
-			i___0_carry_i_6/I0
-			i___0_carry_i_6/I1
-			i___0_carry_i_6/I2
-			i___0_carry_i_6/I3
-			i___0_carry_i_6/O
 		LUT2: ov_sum[8]_i_4__6
 			ov_sum[8]_i_4__6/I0
 			ov_sum[8]_i_4__6/I1
@@ -11718,25 +11665,146 @@ LUT Cells (493):
 			ov_sum[16]_i_2__6/I0
 			ov_sum[16]_i_2__6/I1
 			ov_sum[16]_i_2__6/O
-		LUT5: i___142_carry__4_i_1
-			i___142_carry__4_i_1/I0
-			i___142_carry__4_i_1/I1
-			i___142_carry__4_i_1/I2
-			i___142_carry__4_i_1/I3
-			i___142_carry__4_i_1/I4
-			i___142_carry__4_i_1/O
-		LUT6: i___142_carry__4_i_5
-			i___142_carry__4_i_5/I0
-			i___142_carry__4_i_5/I1
-			i___142_carry__4_i_5/I2
-			i___142_carry__4_i_5/I3
-			i___142_carry__4_i_5/I4
-			i___142_carry__4_i_5/I5
-			i___142_carry__4_i_5/O
+		LUT5: i___142_carry__4_i_2
+			i___142_carry__4_i_2/I0
+			i___142_carry__4_i_2/I1
+			i___142_carry__4_i_2/I2
+			i___142_carry__4_i_2/I3
+			i___142_carry__4_i_2/I4
+			i___142_carry__4_i_2/O
+		LUT2: ov_sum[8]_i_3__5
+			ov_sum[8]_i_3__5/I0
+			ov_sum[8]_i_3__5/I1
+			ov_sum[8]_i_3__5/O
+		LUT2: ov_sum[0]_i_4__5
+			ov_sum[0]_i_4__5/I0
+			ov_sum[0]_i_4__5/I1
+			ov_sum[0]_i_4__5/O
+		LUT2: ov_sum[20]_i_2__5
+			ov_sum[20]_i_2__5/I0
+			ov_sum[20]_i_2__5/I1
+			ov_sum[20]_i_2__5/O
+		LUT2: ov_sum[12]_i_3__5
+			ov_sum[12]_i_3__5/I0
+			ov_sum[12]_i_3__5/I1
+			ov_sum[12]_i_3__5/O
+		LUT3: i___0_carry_i_7
+			i___0_carry_i_7/I0
+			i___0_carry_i_7/I1
+			i___0_carry_i_7/I2
+			i___0_carry_i_7/O
+		LUT2: ov_sum[20]_i_5__5
+			ov_sum[20]_i_5__5/I0
+			ov_sum[20]_i_5__5/I1
+			ov_sum[20]_i_5__5/O
+		LUT2: ov_sum[16]_i_3__5
+			ov_sum[16]_i_3__5/I0
+			ov_sum[16]_i_3__5/I1
+			ov_sum[16]_i_3__5/O
+		LUT2: ov_sum[4]_i_4__5
+			ov_sum[4]_i_4__5/I0
+			ov_sum[4]_i_4__5/I1
+			ov_sum[4]_i_4__5/O
+		LUT3: i___0_carry_i_3
+			i___0_carry_i_3/I0
+			i___0_carry_i_3/I1
+			i___0_carry_i_3/I2
+			i___0_carry_i_3/O
+		LUT4: i___0_carry_i_6
+			i___0_carry_i_6/I0
+			i___0_carry_i_6/I1
+			i___0_carry_i_6/I2
+			i___0_carry_i_6/I3
+			i___0_carry_i_6/O
+		LUT2: ov_sum[8]_i_4__5
+			ov_sum[8]_i_4__5/I0
+			ov_sum[8]_i_4__5/I1
+			ov_sum[8]_i_4__5/O
+		LUT2: ov_sum[0]_i_3__5
+			ov_sum[0]_i_3__5/I0
+			ov_sum[0]_i_3__5/I1
+			ov_sum[0]_i_3__5/O
+		LUT2: ov_sum[20]_i_3__5
+			ov_sum[20]_i_3__5/I0
+			ov_sum[20]_i_3__5/I1
+			ov_sum[20]_i_3__5/O
+		LUT2: ov_sum[12]_i_4__5
+			ov_sum[12]_i_4__5/I0
+			ov_sum[12]_i_4__5/I1
+			ov_sum[12]_i_4__5/O
+		LUT6: i___0_carry__4_i_4
+			i___0_carry__4_i_4/I0
+			i___0_carry__4_i_4/I1
+			i___0_carry__4_i_4/I2
+			i___0_carry__4_i_4/I3
+			i___0_carry__4_i_4/I4
+			i___0_carry__4_i_4/I5
+			i___0_carry__4_i_4/O
+		LUT2: ov_sum[16]_i_4__5
+			ov_sum[16]_i_4__5/I0
+			ov_sum[16]_i_4__5/I1
+			ov_sum[16]_i_4__5/O
+		LUT2: ov_sum[4]_i_3__5
+			ov_sum[4]_i_3__5/I0
+			ov_sum[4]_i_3__5/I1
+			ov_sum[4]_i_3__5/O
+		LUT2: ov_sum[8]_i_5__5
+			ov_sum[8]_i_5__5/I0
+			ov_sum[8]_i_5__5/I1
+			ov_sum[8]_i_5__5/O
+		LUT2: ov_sum[0]_i_2__4
+			ov_sum[0]_i_2__4/I0
+			ov_sum[0]_i_2__4/I1
+			ov_sum[0]_i_2__4/O
+		LUT2: ov_sum[12]_i_5__5
+			ov_sum[12]_i_5__5/I0
+			ov_sum[12]_i_5__5/I1
+			ov_sum[12]_i_5__5/O
+		LUT2: ov_sum[0]_i_1
+			ov_sum[0]_i_1/I0
+			ov_sum[0]_i_1/I1
+			ov_sum[0]_i_1/O
+		LUT2: ov_sum[16]_i_5__5
+			ov_sum[16]_i_5__5/I0
+			ov_sum[16]_i_5__5/I1
+			ov_sum[16]_i_5__5/O
+		LUT2: ov_sum[4]_i_2__5
+			ov_sum[4]_i_2__5/I0
+			ov_sum[4]_i_2__5/I1
+			ov_sum[4]_i_2__5/O
+		LUT2: ov_sum[8]_i_2__5
+			ov_sum[8]_i_2__5/I0
+			ov_sum[8]_i_2__5/I1
+			ov_sum[8]_i_2__5/O
+		LUT2: ov_sum[0]_i_5__5
+			ov_sum[0]_i_5__5/I0
+			ov_sum[0]_i_5__5/I1
+			ov_sum[0]_i_5__5/O
+		LUT2: ov_sum[12]_i_2__5
+			ov_sum[12]_i_2__5/I0
+			ov_sum[12]_i_2__5/I1
+			ov_sum[12]_i_2__5/O
+		LUT2: ov_sum[20]_i_4__5
+			ov_sum[20]_i_4__5/I0
+			ov_sum[20]_i_4__5/I1
+			ov_sum[20]_i_4__5/O
+		LUT2: ov_sum[16]_i_2__5
+			ov_sum[16]_i_2__5/I0
+			ov_sum[16]_i_2__5/I1
+			ov_sum[16]_i_2__5/O
+		LUT2: ov_sum[4]_i_5__5
+			ov_sum[4]_i_5__5/I0
+			ov_sum[4]_i_5__5/I1
+			ov_sum[4]_i_5__5/O
 		LUT2: ov_sum[4]_i_5
 			ov_sum[4]_i_5/I0
 			ov_sum[4]_i_5/I1
 			ov_sum[4]_i_5/O
+		LUT3: i___142_carry__4_i_8
+			i___142_carry__4_i_8/I0
+			i___142_carry__4_i_8/I1
+			i___142_carry__4_i_8/I2
+			i___142_carry__4_i_8/O
 		LUT2: ov_sum[4]_i_4
 			ov_sum[4]_i_4/I0
 			ov_sum[4]_i_4/I1
@@ -11834,6 +11902,21 @@ LUT Cells (493):
 			ov_sum[8]_i_3/I0
 			ov_sum[8]_i_3/I1
 			ov_sum[8]_i_3/O
+		LUT5: i___142_carry__4_i_1
+			i___142_carry__4_i_1/I0
+			i___142_carry__4_i_1/I1
+			i___142_carry__4_i_1/I2
+			i___142_carry__4_i_1/I3
+			i___142_carry__4_i_1/I4
+			i___142_carry__4_i_1/O
+		LUT6: i___142_carry__4_i_5
+			i___142_carry__4_i_5/I0
+			i___142_carry__4_i_5/I1
+			i___142_carry__4_i_5/I2
+			i___142_carry__4_i_5/I3
+			i___142_carry__4_i_5/I4
+			i___142_carry__4_i_5/I5
+			i___142_carry__4_i_5/O
 		LUT6: i___142_carry__4_i_4
 			i___142_carry__4_i_4/I0
 			i___142_carry__4_i_4/I1
@@ -11842,6 +11925,333 @@ LUT Cells (493):
 			i___142_carry__4_i_4/I4
 			i___142_carry__4_i_4/I5
 			i___142_carry__4_i_4/O
+		LUT4: i___70_carry__1_i_8
+			i___70_carry__1_i_8/I0
+			i___70_carry__1_i_8/I1
+			i___70_carry__1_i_8/I2
+			i___70_carry__1_i_8/I3
+			i___70_carry__1_i_8/O
+		LUT4: i___70_carry__1_i_7
+			i___70_carry__1_i_7/I0
+			i___70_carry__1_i_7/I1
+			i___70_carry__1_i_7/I2
+			i___70_carry__1_i_7/I3
+			i___70_carry__1_i_7/O
+		LUT2: ov_sum[8]_i_3__3
+			ov_sum[8]_i_3__3/I0
+			ov_sum[8]_i_3__3/I1
+			ov_sum[8]_i_3__3/O
+		LUT3: i___70_carry__1_i_2
+			i___70_carry__1_i_2/I0
+			i___70_carry__1_i_2/I1
+			i___70_carry__1_i_2/I2
+			i___70_carry__1_i_2/O
+		LUT3: i___70_carry__1_i_1
+			i___70_carry__1_i_1/I0
+			i___70_carry__1_i_1/I1
+			i___70_carry__1_i_1/I2
+			i___70_carry__1_i_1/O
+		LUT4: i___70_carry__1_i_6
+			i___70_carry__1_i_6/I0
+			i___70_carry__1_i_6/I1
+			i___70_carry__1_i_6/I2
+			i___70_carry__1_i_6/I3
+			i___70_carry__1_i_6/O
+		LUT4: i___70_carry__1_i_5
+			i___70_carry__1_i_5/I0
+			i___70_carry__1_i_5/I1
+			i___70_carry__1_i_5/I2
+			i___70_carry__1_i_5/I3
+			i___70_carry__1_i_5/O
+		LUT3: i___70_carry__1_i_4
+			i___70_carry__1_i_4/I0
+			i___70_carry__1_i_4/I1
+			i___70_carry__1_i_4/I2
+			i___70_carry__1_i_4/O
+		LUT3: i___70_carry__1_i_3
+			i___70_carry__1_i_3/I0
+			i___70_carry__1_i_3/I1
+			i___70_carry__1_i_3/I2
+			i___70_carry__1_i_3/O
+		LUT2: ov_sum[0]_i_3__3
+			ov_sum[0]_i_3__3/I0
+			ov_sum[0]_i_3__3/I1
+			ov_sum[0]_i_3__3/O
+		LUT2: ov_sum[12]_i_4__3
+			ov_sum[12]_i_4__3/I0
+			ov_sum[12]_i_4__3/I1
+			ov_sum[12]_i_4__3/O
+		LUT2: ov_sum[16]_i_4__3
+			ov_sum[16]_i_4__3/I0
+			ov_sum[16]_i_4__3/I1
+			ov_sum[16]_i_4__3/O
+		LUT2: ov_sum[4]_i_3__3
+			ov_sum[4]_i_3__3/I0
+			ov_sum[4]_i_3__3/I1
+			ov_sum[4]_i_3__3/O
+		LUT2: ov_sum[8]_i_5__3
+			ov_sum[8]_i_5__3/I0
+			ov_sum[8]_i_5__3/I1
+			ov_sum[8]_i_5__3/O
+		LUT2: ov_sum[0]_i_2__2
+			ov_sum[0]_i_2__2/I0
+			ov_sum[0]_i_2__2/I1
+			ov_sum[0]_i_2__2/O
+		LUT2: ov_sum[0]_i_5__3
+			ov_sum[0]_i_5__3/I0
+			ov_sum[0]_i_5__3/I1
+			ov_sum[0]_i_5__3/O
+		LUT2: ov_sum[4]_i_2__3
+			ov_sum[4]_i_2__3/I0
+			ov_sum[4]_i_2__3/I1
+			ov_sum[4]_i_2__3/O
+		LUT3: i___70_carry_i_2
+			i___70_carry_i_2/I0
+			i___70_carry_i_2/I1
+			i___70_carry_i_2/I2
+			i___70_carry_i_2/O
+		LUT4: i___70_carry_i_4
+			i___70_carry_i_4/I0
+			i___70_carry_i_4/I1
+			i___70_carry_i_4/I2
+			i___70_carry_i_4/I3
+			i___70_carry_i_4/O
+		LUT4: i___70_carry_i_5
+			i___70_carry_i_5/I0
+			i___70_carry_i_5/I1
+			i___70_carry_i_5/I2
+			i___70_carry_i_5/I3
+			i___70_carry_i_5/O
+		LUT2: ov_sum[8]_i_2__3
+			ov_sum[8]_i_2__3/I0
+			ov_sum[8]_i_2__3/I1
+			ov_sum[8]_i_2__3/O
+		LUT3: i___70_carry_i_1
+			i___70_carry_i_1/I0
+			i___70_carry_i_1/I1
+			i___70_carry_i_1/I2
+			i___70_carry_i_1/O
+		LUT3: i___70_carry__4_i_1
+			i___70_carry__4_i_1/I0
+			i___70_carry__4_i_1/I1
+			i___70_carry__4_i_1/I2
+			i___70_carry__4_i_1/O
+		LUT2: ov_sum[20]_i_4__3
+			ov_sum[20]_i_4__3/I0
+			ov_sum[20]_i_4__3/I1
+			ov_sum[20]_i_4__3/O
+		LUT3: i___70_carry__4_i_3
+			i___70_carry__4_i_3/I0
+			i___70_carry__4_i_3/I1
+			i___70_carry__4_i_3/I2
+			i___70_carry__4_i_3/O
+		LUT3: i___70_carry__4_i_2
+			i___70_carry__4_i_2/I0
+			i___70_carry__4_i_2/I1
+			i___70_carry__4_i_2/I2
+			i___70_carry__4_i_2/O
+		LUT4: i___70_carry__4_i_5
+			i___70_carry__4_i_5/I0
+			i___70_carry__4_i_5/I1
+			i___70_carry__4_i_5/I2
+			i___70_carry__4_i_5/I3
+			i___70_carry__4_i_5/O
+		LUT4: i___70_carry__4_i_7
+			i___70_carry__4_i_7/I0
+			i___70_carry__4_i_7/I1
+			i___70_carry__4_i_7/I2
+			i___70_carry__4_i_7/I3
+			i___70_carry__4_i_7/O
+		LUT2: ov_sum[4]_i_5__3
+			ov_sum[4]_i_5__3/I0
+			ov_sum[4]_i_5__3/I1
+			ov_sum[4]_i_5__3/O
+		LUT4: i___70_carry__4_i_6
+			i___70_carry__4_i_6/I0
+			i___70_carry__4_i_6/I1
+			i___70_carry__4_i_6/I2
+			i___70_carry__4_i_6/I3
+			i___70_carry__4_i_6/O
+		LUT2: ov_sum[12]_i_3__3
+			ov_sum[12]_i_3__3/I0
+			ov_sum[12]_i_3__3/I1
+			ov_sum[12]_i_3__3/O
+		LUT4: i___70_carry__2_i_7
+			i___70_carry__2_i_7/I0
+			i___70_carry__2_i_7/I1
+			i___70_carry__2_i_7/I2
+			i___70_carry__2_i_7/I3
+			i___70_carry__2_i_7/O
+		LUT4: i___70_carry__2_i_6
+			i___70_carry__2_i_6/I0
+			i___70_carry__2_i_6/I1
+			i___70_carry__2_i_6/I2
+			i___70_carry__2_i_6/I3
+			i___70_carry__2_i_6/O
+		LUT2: ov_sum[20]_i_5__3
+			ov_sum[20]_i_5__3/I0
+			ov_sum[20]_i_5__3/I1
+			ov_sum[20]_i_5__3/O
+		LUT4: i___70_carry__2_i_8
+			i___70_carry__2_i_8/I0
+			i___70_carry__2_i_8/I1
+			i___70_carry__2_i_8/I2
+			i___70_carry__2_i_8/I3
+			i___70_carry__2_i_8/O
+		LUT3: i___70_carry__2_i_1
+			i___70_carry__2_i_1/I0
+			i___70_carry__2_i_1/I1
+			i___70_carry__2_i_1/I2
+			i___70_carry__2_i_1/O
+		LUT2: ov_sum[16]_i_3__3
+			ov_sum[16]_i_3__3/I0
+			ov_sum[16]_i_3__3/I1
+			ov_sum[16]_i_3__3/O
+		LUT3: i___70_carry__2_i_3
+			i___70_carry__2_i_3/I0
+			i___70_carry__2_i_3/I1
+			i___70_carry__2_i_3/I2
+			i___70_carry__2_i_3/O
+		LUT3: i___70_carry__2_i_2
+			i___70_carry__2_i_2/I0
+			i___70_carry__2_i_2/I1
+			i___70_carry__2_i_2/I2
+			i___70_carry__2_i_2/O
+		LUT4: i___70_carry__2_i_5
+			i___70_carry__2_i_5/I0
+			i___70_carry__2_i_5/I1
+			i___70_carry__2_i_5/I2
+			i___70_carry__2_i_5/I3
+			i___70_carry__2_i_5/O
+		LUT3: i___70_carry__2_i_4
+			i___70_carry__2_i_4/I0
+			i___70_carry__2_i_4/I1
+			i___70_carry__2_i_4/I2
+			i___70_carry__2_i_4/O
+		LUT2: ov_sum[4]_i_4__3
+			ov_sum[4]_i_4__3/I0
+			ov_sum[4]_i_4__3/I1
+			ov_sum[4]_i_4__3/O
+		LUT2: ov_sum[8]_i_4__3
+			ov_sum[8]_i_4__3/I0
+			ov_sum[8]_i_4__3/I1
+			ov_sum[8]_i_4__3/O
+		LUT2: ov_sum[20]_i_2__3
+			ov_sum[20]_i_2__3/I0
+			ov_sum[20]_i_2__3/I1
+			ov_sum[20]_i_2__3/O
+		LUT4: i___70_carry__0_i_8
+			i___70_carry__0_i_8/I0
+			i___70_carry__0_i_8/I1
+			i___70_carry__0_i_8/I2
+			i___70_carry__0_i_8/I3
+			i___70_carry__0_i_8/O
+		LUT4: i___70_carry__0_i_5
+			i___70_carry__0_i_5/I0
+			i___70_carry__0_i_5/I1
+			i___70_carry__0_i_5/I2
+			i___70_carry__0_i_5/I3
+			i___70_carry__0_i_5/O
+		LUT3: i___70_carry__0_i_4
+			i___70_carry__0_i_4/I0
+			i___70_carry__0_i_4/I1
+			i___70_carry__0_i_4/I2
+			i___70_carry__0_i_4/O
+		LUT4: i___70_carry__0_i_7
+			i___70_carry__0_i_7/I0
+			i___70_carry__0_i_7/I1
+			i___70_carry__0_i_7/I2
+			i___70_carry__0_i_7/I3
+			i___70_carry__0_i_7/O
+		LUT4: i___70_carry__0_i_6
+			i___70_carry__0_i_6/I0
+			i___70_carry__0_i_6/I1
+			i___70_carry__0_i_6/I2
+			i___70_carry__0_i_6/I3
+			i___70_carry__0_i_6/O
+		LUT3: i___70_carry__0_i_1
+			i___70_carry__0_i_1/I0
+			i___70_carry__0_i_1/I1
+			i___70_carry__0_i_1/I2
+			i___70_carry__0_i_1/O
+		LUT3: i___70_carry__0_i_3
+			i___70_carry__0_i_3/I0
+			i___70_carry__0_i_3/I1
+			i___70_carry__0_i_3/I2
+			i___70_carry__0_i_3/O
+		LUT3: i___70_carry__0_i_2
+			i___70_carry__0_i_2/I0
+			i___70_carry__0_i_2/I1
+			i___70_carry__0_i_2/I2
+			i___70_carry__0_i_2/O
+		LUT2: ov_sum[20]_i_3__3
+			ov_sum[20]_i_3__3/I0
+			ov_sum[20]_i_3__3/I1
+			ov_sum[20]_i_3__3/O
+		LUT2: ov_sum[16]_i_5__3
+			ov_sum[16]_i_5__3/I0
+			ov_sum[16]_i_5__3/I1
+			ov_sum[16]_i_5__3/O
+		LUT3: i___70_carry__3_i_4
+			i___70_carry__3_i_4/I0
+			i___70_carry__3_i_4/I1
+			i___70_carry__3_i_4/I2
+			i___70_carry__3_i_4/O
+		LUT3: i___70_carry__3_i_3
+			i___70_carry__3_i_3/I0
+			i___70_carry__3_i_3/I1
+			i___70_carry__3_i_3/I2
+			i___70_carry__3_i_3/O
+		LUT3: i___70_carry__3_i_2
+			i___70_carry__3_i_2/I0
+			i___70_carry__3_i_2/I1
+			i___70_carry__3_i_2/I2
+			i___70_carry__3_i_2/O
+		LUT3: i___70_carry__3_i_1
+			i___70_carry__3_i_1/I0
+			i___70_carry__3_i_1/I1
+			i___70_carry__3_i_1/I2
+			i___70_carry__3_i_1/O
+		LUT2: ov_sum[12]_i_2__3
+			ov_sum[12]_i_2__3/I0
+			ov_sum[12]_i_2__3/I1
+			ov_sum[12]_i_2__3/O
+		LUT4: i___70_carry__3_i_8
+			i___70_carry__3_i_8/I0
+			i___70_carry__3_i_8/I1
+			i___70_carry__3_i_8/I2
+			i___70_carry__3_i_8/I3
+			i___70_carry__3_i_8/O
+		LUT4: i___70_carry__3_i_7
+			i___70_carry__3_i_7/I0
+			i___70_carry__3_i_7/I1
+			i___70_carry__3_i_7/I2
+			i___70_carry__3_i_7/I3
+			i___70_carry__3_i_7/O
+		LUT4: i___70_carry__3_i_6
+			i___70_carry__3_i_6/I0
+			i___70_carry__3_i_6/I1
+			i___70_carry__3_i_6/I2
+			i___70_carry__3_i_6/I3
+			i___70_carry__3_i_6/O
+		LUT4: i___70_carry__3_i_5
+			i___70_carry__3_i_5/I0
+			i___70_carry__3_i_5/I1
+			i___70_carry__3_i_5/I2
+			i___70_carry__3_i_5/I3
+			i___70_carry__3_i_5/O
+		LUT2: ov_sum[12]_i_5__3
+			ov_sum[12]_i_5__3/I0
+			ov_sum[12]_i_5__3/I1
+			ov_sum[12]_i_5__3/O
+		LUT2: ov_sum[0]_i_4__3
+			ov_sum[0]_i_4__3/I0
+			ov_sum[0]_i_4__3/I1
+			ov_sum[0]_i_4__3/O
+		LUT2: ov_sum[16]_i_2__3
+			ov_sum[16]_i_2__3/I0
+			ov_sum[16]_i_2__3/I1
+			ov_sum[16]_i_2__3/O
 		LUT2: ov_sum[8]_i_3__0
 			ov_sum[8]_i_3__0/I0
 			ov_sum[8]_i_3__0/I1
@@ -12102,6 +12512,22 @@ LUT Cells (493):
 			ov_sum[4]_i_2__2/I0
 			ov_sum[4]_i_2__2/I1
 			ov_sum[4]_i_2__2/O
+		LUT3: i___70_carry_i_3
+			i___70_carry_i_3/I0
+			i___70_carry_i_3/I1
+			i___70_carry_i_3/I2
+			i___70_carry_i_3/O
+		LUT4: i___70_carry_i_6
+			i___70_carry_i_6/I0
+			i___70_carry_i_6/I1
+			i___70_carry_i_6/I2
+			i___70_carry_i_6/I3
+			i___70_carry_i_6/O
+		LUT3: i___70_carry_i_7
+			i___70_carry_i_7/I0
+			i___70_carry_i_7/I1
+			i___70_carry_i_7/I2
+			i___70_carry_i_7/O
 		LUT2: ov_sum[8]_i_2__2
 			ov_sum[8]_i_2__2/I0
 			ov_sum[8]_i_2__2/I1
@@ -12138,457 +12564,6 @@ LUT Cells (493):
 			ov_sum[4]_i_5__2/I0
 			ov_sum[4]_i_5__2/I1
 			ov_sum[4]_i_5__2/O
-		LUT2: ov_sum[8]_i_3__5
-			ov_sum[8]_i_3__5/I0
-			ov_sum[8]_i_3__5/I1
-			ov_sum[8]_i_3__5/O
-		LUT2: ov_sum[0]_i_4__5
-			ov_sum[0]_i_4__5/I0
-			ov_sum[0]_i_4__5/I1
-			ov_sum[0]_i_4__5/O
-		LUT2: ov_sum[20]_i_2__5
-			ov_sum[20]_i_2__5/I0
-			ov_sum[20]_i_2__5/I1
-			ov_sum[20]_i_2__5/O
-		LUT2: ov_sum[12]_i_3__5
-			ov_sum[12]_i_3__5/I0
-			ov_sum[12]_i_3__5/I1
-			ov_sum[12]_i_3__5/O
-		LUT2: ov_sum[20]_i_5__5
-			ov_sum[20]_i_5__5/I0
-			ov_sum[20]_i_5__5/I1
-			ov_sum[20]_i_5__5/O
-		LUT2: ov_sum[16]_i_3__5
-			ov_sum[16]_i_3__5/I0
-			ov_sum[16]_i_3__5/I1
-			ov_sum[16]_i_3__5/O
-		LUT2: ov_sum[4]_i_4__5
-			ov_sum[4]_i_4__5/I0
-			ov_sum[4]_i_4__5/I1
-			ov_sum[4]_i_4__5/O
-		LUT2: ov_sum[8]_i_4__5
-			ov_sum[8]_i_4__5/I0
-			ov_sum[8]_i_4__5/I1
-			ov_sum[8]_i_4__5/O
-		LUT2: ov_sum[0]_i_3__5
-			ov_sum[0]_i_3__5/I0
-			ov_sum[0]_i_3__5/I1
-			ov_sum[0]_i_3__5/O
-		LUT2: ov_sum[20]_i_3__5
-			ov_sum[20]_i_3__5/I0
-			ov_sum[20]_i_3__5/I1
-			ov_sum[20]_i_3__5/O
-		LUT2: ov_sum[12]_i_4__5
-			ov_sum[12]_i_4__5/I0
-			ov_sum[12]_i_4__5/I1
-			ov_sum[12]_i_4__5/O
-		LUT6: i___0_carry__4_i_4
-			i___0_carry__4_i_4/I0
-			i___0_carry__4_i_4/I1
-			i___0_carry__4_i_4/I2
-			i___0_carry__4_i_4/I3
-			i___0_carry__4_i_4/I4
-			i___0_carry__4_i_4/I5
-			i___0_carry__4_i_4/O
-		LUT2: ov_sum[16]_i_4__5
-			ov_sum[16]_i_4__5/I0
-			ov_sum[16]_i_4__5/I1
-			ov_sum[16]_i_4__5/O
-		LUT2: ov_sum[4]_i_3__5
-			ov_sum[4]_i_3__5/I0
-			ov_sum[4]_i_3__5/I1
-			ov_sum[4]_i_3__5/O
-		LUT2: ov_sum[8]_i_5__5
-			ov_sum[8]_i_5__5/I0
-			ov_sum[8]_i_5__5/I1
-			ov_sum[8]_i_5__5/O
-		LUT2: ov_sum[0]_i_2__4
-			ov_sum[0]_i_2__4/I0
-			ov_sum[0]_i_2__4/I1
-			ov_sum[0]_i_2__4/O
-		LUT2: ov_sum[12]_i_5__5
-			ov_sum[12]_i_5__5/I0
-			ov_sum[12]_i_5__5/I1
-			ov_sum[12]_i_5__5/O
-		LUT2: ov_sum[0]_i_1
-			ov_sum[0]_i_1/I0
-			ov_sum[0]_i_1/I1
-			ov_sum[0]_i_1/O
-		LUT2: ov_sum[16]_i_5__5
-			ov_sum[16]_i_5__5/I0
-			ov_sum[16]_i_5__5/I1
-			ov_sum[16]_i_5__5/O
-		LUT2: ov_sum[4]_i_2__5
-			ov_sum[4]_i_2__5/I0
-			ov_sum[4]_i_2__5/I1
-			ov_sum[4]_i_2__5/O
-		LUT2: ov_sum[8]_i_2__5
-			ov_sum[8]_i_2__5/I0
-			ov_sum[8]_i_2__5/I1
-			ov_sum[8]_i_2__5/O
-		LUT2: ov_sum[0]_i_5__5
-			ov_sum[0]_i_5__5/I0
-			ov_sum[0]_i_5__5/I1
-			ov_sum[0]_i_5__5/O
-		LUT2: ov_sum[12]_i_2__5
-			ov_sum[12]_i_2__5/I0
-			ov_sum[12]_i_2__5/I1
-			ov_sum[12]_i_2__5/O
-		LUT2: ov_sum[20]_i_4__5
-			ov_sum[20]_i_4__5/I0
-			ov_sum[20]_i_4__5/I1
-			ov_sum[20]_i_4__5/O
-		LUT2: ov_sum[16]_i_2__5
-			ov_sum[16]_i_2__5/I0
-			ov_sum[16]_i_2__5/I1
-			ov_sum[16]_i_2__5/O
-		LUT2: ov_sum[4]_i_5__5
-			ov_sum[4]_i_5__5/I0
-			ov_sum[4]_i_5__5/I1
-			ov_sum[4]_i_5__5/O
-		LUT4: i___70_carry__1_i_8
-			i___70_carry__1_i_8/I0
-			i___70_carry__1_i_8/I1
-			i___70_carry__1_i_8/I2
-			i___70_carry__1_i_8/I3
-			i___70_carry__1_i_8/O
-		LUT4: i___70_carry__1_i_7
-			i___70_carry__1_i_7/I0
-			i___70_carry__1_i_7/I1
-			i___70_carry__1_i_7/I2
-			i___70_carry__1_i_7/I3
-			i___70_carry__1_i_7/O
-		LUT2: ov_sum[8]_i_3__3
-			ov_sum[8]_i_3__3/I0
-			ov_sum[8]_i_3__3/I1
-			ov_sum[8]_i_3__3/O
-		LUT3: i___70_carry__1_i_2
-			i___70_carry__1_i_2/I0
-			i___70_carry__1_i_2/I1
-			i___70_carry__1_i_2/I2
-			i___70_carry__1_i_2/O
-		LUT3: i___70_carry__1_i_1
-			i___70_carry__1_i_1/I0
-			i___70_carry__1_i_1/I1
-			i___70_carry__1_i_1/I2
-			i___70_carry__1_i_1/O
-		LUT4: i___70_carry__1_i_6
-			i___70_carry__1_i_6/I0
-			i___70_carry__1_i_6/I1
-			i___70_carry__1_i_6/I2
-			i___70_carry__1_i_6/I3
-			i___70_carry__1_i_6/O
-		LUT4: i___70_carry__1_i_5
-			i___70_carry__1_i_5/I0
-			i___70_carry__1_i_5/I1
-			i___70_carry__1_i_5/I2
-			i___70_carry__1_i_5/I3
-			i___70_carry__1_i_5/O
-		LUT3: i___70_carry__1_i_4
-			i___70_carry__1_i_4/I0
-			i___70_carry__1_i_4/I1
-			i___70_carry__1_i_4/I2
-			i___70_carry__1_i_4/O
-		LUT3: i___70_carry__1_i_3
-			i___70_carry__1_i_3/I0
-			i___70_carry__1_i_3/I1
-			i___70_carry__1_i_3/I2
-			i___70_carry__1_i_3/O
-		LUT2: ov_sum[0]_i_3__3
-			ov_sum[0]_i_3__3/I0
-			ov_sum[0]_i_3__3/I1
-			ov_sum[0]_i_3__3/O
-		LUT2: ov_sum[12]_i_4__3
-			ov_sum[12]_i_4__3/I0
-			ov_sum[12]_i_4__3/I1
-			ov_sum[12]_i_4__3/O
-		LUT2: ov_sum[16]_i_4__3
-			ov_sum[16]_i_4__3/I0
-			ov_sum[16]_i_4__3/I1
-			ov_sum[16]_i_4__3/O
-		LUT2: ov_sum[4]_i_3__3
-			ov_sum[4]_i_3__3/I0
-			ov_sum[4]_i_3__3/I1
-			ov_sum[4]_i_3__3/O
-		LUT2: ov_sum[8]_i_5__3
-			ov_sum[8]_i_5__3/I0
-			ov_sum[8]_i_5__3/I1
-			ov_sum[8]_i_5__3/O
-		LUT2: ov_sum[0]_i_2__2
-			ov_sum[0]_i_2__2/I0
-			ov_sum[0]_i_2__2/I1
-			ov_sum[0]_i_2__2/O
-		LUT2: ov_sum[0]_i_5__3
-			ov_sum[0]_i_5__3/I0
-			ov_sum[0]_i_5__3/I1
-			ov_sum[0]_i_5__3/O
-		LUT2: ov_sum[4]_i_2__3
-			ov_sum[4]_i_2__3/I0
-			ov_sum[4]_i_2__3/I1
-			ov_sum[4]_i_2__3/O
-		LUT3: i___70_carry_i_2
-			i___70_carry_i_2/I0
-			i___70_carry_i_2/I1
-			i___70_carry_i_2/I2
-			i___70_carry_i_2/O
-		LUT3: i___70_carry_i_3
-			i___70_carry_i_3/I0
-			i___70_carry_i_3/I1
-			i___70_carry_i_3/I2
-			i___70_carry_i_3/O
-		LUT4: i___70_carry_i_4
-			i___70_carry_i_4/I0
-			i___70_carry_i_4/I1
-			i___70_carry_i_4/I2
-			i___70_carry_i_4/I3
-			i___70_carry_i_4/O
-		LUT4: i___70_carry_i_5
-			i___70_carry_i_5/I0
-			i___70_carry_i_5/I1
-			i___70_carry_i_5/I2
-			i___70_carry_i_5/I3
-			i___70_carry_i_5/O
-		LUT4: i___70_carry_i_6
-			i___70_carry_i_6/I0
-			i___70_carry_i_6/I1
-			i___70_carry_i_6/I2
-			i___70_carry_i_6/I3
-			i___70_carry_i_6/O
-		LUT2: ov_sum[8]_i_2__3
-			ov_sum[8]_i_2__3/I0
-			ov_sum[8]_i_2__3/I1
-			ov_sum[8]_i_2__3/O
-		LUT3: i___70_carry_i_7
-			i___70_carry_i_7/I0
-			i___70_carry_i_7/I1
-			i___70_carry_i_7/I2
-			i___70_carry_i_7/O
-		LUT3: i___70_carry_i_1
-			i___70_carry_i_1/I0
-			i___70_carry_i_1/I1
-			i___70_carry_i_1/I2
-			i___70_carry_i_1/O
-		LUT3: i___70_carry__4_i_1
-			i___70_carry__4_i_1/I0
-			i___70_carry__4_i_1/I1
-			i___70_carry__4_i_1/I2
-			i___70_carry__4_i_1/O
-		LUT2: ov_sum[20]_i_4__3
-			ov_sum[20]_i_4__3/I0
-			ov_sum[20]_i_4__3/I1
-			ov_sum[20]_i_4__3/O
-		LUT3: i___70_carry__4_i_3
-			i___70_carry__4_i_3/I0
-			i___70_carry__4_i_3/I1
-			i___70_carry__4_i_3/I2
-			i___70_carry__4_i_3/O
-		LUT3: i___70_carry__4_i_2
-			i___70_carry__4_i_2/I0
-			i___70_carry__4_i_2/I1
-			i___70_carry__4_i_2/I2
-			i___70_carry__4_i_2/O
-		LUT4: i___70_carry__4_i_5
-			i___70_carry__4_i_5/I0
-			i___70_carry__4_i_5/I1
-			i___70_carry__4_i_5/I2
-			i___70_carry__4_i_5/I3
-			i___70_carry__4_i_5/O
-		LUT4: i___70_carry__4_i_7
-			i___70_carry__4_i_7/I0
-			i___70_carry__4_i_7/I1
-			i___70_carry__4_i_7/I2
-			i___70_carry__4_i_7/I3
-			i___70_carry__4_i_7/O
-		LUT2: ov_sum[4]_i_5__3
-			ov_sum[4]_i_5__3/I0
-			ov_sum[4]_i_5__3/I1
-			ov_sum[4]_i_5__3/O
-		LUT4: i___70_carry__4_i_6
-			i___70_carry__4_i_6/I0
-			i___70_carry__4_i_6/I1
-			i___70_carry__4_i_6/I2
-			i___70_carry__4_i_6/I3
-			i___70_carry__4_i_6/O
-		LUT2: ov_sum[12]_i_3__3
-			ov_sum[12]_i_3__3/I0
-			ov_sum[12]_i_3__3/I1
-			ov_sum[12]_i_3__3/O
-		LUT4: i___70_carry__2_i_7
-			i___70_carry__2_i_7/I0
-			i___70_carry__2_i_7/I1
-			i___70_carry__2_i_7/I2
-			i___70_carry__2_i_7/I3
-			i___70_carry__2_i_7/O
-		LUT4: i___70_carry__2_i_6
-			i___70_carry__2_i_6/I0
-			i___70_carry__2_i_6/I1
-			i___70_carry__2_i_6/I2
-			i___70_carry__2_i_6/I3
-			i___70_carry__2_i_6/O
-		LUT2: ov_sum[20]_i_5__3
-			ov_sum[20]_i_5__3/I0
-			ov_sum[20]_i_5__3/I1
-			ov_sum[20]_i_5__3/O
-		LUT4: i___70_carry__2_i_8
-			i___70_carry__2_i_8/I0
-			i___70_carry__2_i_8/I1
-			i___70_carry__2_i_8/I2
-			i___70_carry__2_i_8/I3
-			i___70_carry__2_i_8/O
-		LUT3: i___70_carry__2_i_1
-			i___70_carry__2_i_1/I0
-			i___70_carry__2_i_1/I1
-			i___70_carry__2_i_1/I2
-			i___70_carry__2_i_1/O
-		LUT2: ov_sum[16]_i_3__3
-			ov_sum[16]_i_3__3/I0
-			ov_sum[16]_i_3__3/I1
-			ov_sum[16]_i_3__3/O
-		LUT3: i___70_carry__2_i_3
-			i___70_carry__2_i_3/I0
-			i___70_carry__2_i_3/I1
-			i___70_carry__2_i_3/I2
-			i___70_carry__2_i_3/O
-		LUT3: i___70_carry__2_i_2
-			i___70_carry__2_i_2/I0
-			i___70_carry__2_i_2/I1
-			i___70_carry__2_i_2/I2
-			i___70_carry__2_i_2/O
-		LUT4: i___70_carry__2_i_5
-			i___70_carry__2_i_5/I0
-			i___70_carry__2_i_5/I1
-			i___70_carry__2_i_5/I2
-			i___70_carry__2_i_5/I3
-			i___70_carry__2_i_5/O
-		LUT3: i___70_carry__2_i_4
-			i___70_carry__2_i_4/I0
-			i___70_carry__2_i_4/I1
-			i___70_carry__2_i_4/I2
-			i___70_carry__2_i_4/O
-		LUT2: ov_sum[4]_i_4__3
-			ov_sum[4]_i_4__3/I0
-			ov_sum[4]_i_4__3/I1
-			ov_sum[4]_i_4__3/O
-		LUT2: ov_sum[8]_i_4__3
-			ov_sum[8]_i_4__3/I0
-			ov_sum[8]_i_4__3/I1
-			ov_sum[8]_i_4__3/O
-		LUT2: ov_sum[20]_i_2__3
-			ov_sum[20]_i_2__3/I0
-			ov_sum[20]_i_2__3/I1
-			ov_sum[20]_i_2__3/O
-		LUT4: i___70_carry__0_i_8
-			i___70_carry__0_i_8/I0
-			i___70_carry__0_i_8/I1
-			i___70_carry__0_i_8/I2
-			i___70_carry__0_i_8/I3
-			i___70_carry__0_i_8/O
-		LUT4: i___70_carry__0_i_5
-			i___70_carry__0_i_5/I0
-			i___70_carry__0_i_5/I1
-			i___70_carry__0_i_5/I2
-			i___70_carry__0_i_5/I3
-			i___70_carry__0_i_5/O
-		LUT3: i___70_carry__0_i_4
-			i___70_carry__0_i_4/I0
-			i___70_carry__0_i_4/I1
-			i___70_carry__0_i_4/I2
-			i___70_carry__0_i_4/O
-		LUT4: i___70_carry__0_i_7
-			i___70_carry__0_i_7/I0
-			i___70_carry__0_i_7/I1
-			i___70_carry__0_i_7/I2
-			i___70_carry__0_i_7/I3
-			i___70_carry__0_i_7/O
-		LUT4: i___70_carry__0_i_6
-			i___70_carry__0_i_6/I0
-			i___70_carry__0_i_6/I1
-			i___70_carry__0_i_6/I2
-			i___70_carry__0_i_6/I3
-			i___70_carry__0_i_6/O
-		LUT3: i___70_carry__0_i_1
-			i___70_carry__0_i_1/I0
-			i___70_carry__0_i_1/I1
-			i___70_carry__0_i_1/I2
-			i___70_carry__0_i_1/O
-		LUT3: i___70_carry__0_i_3
-			i___70_carry__0_i_3/I0
-			i___70_carry__0_i_3/I1
-			i___70_carry__0_i_3/I2
-			i___70_carry__0_i_3/O
-		LUT3: i___70_carry__0_i_2
-			i___70_carry__0_i_2/I0
-			i___70_carry__0_i_2/I1
-			i___70_carry__0_i_2/I2
-			i___70_carry__0_i_2/O
-		LUT2: ov_sum[20]_i_3__3
-			ov_sum[20]_i_3__3/I0
-			ov_sum[20]_i_3__3/I1
-			ov_sum[20]_i_3__3/O
-		LUT2: ov_sum[16]_i_5__3
-			ov_sum[16]_i_5__3/I0
-			ov_sum[16]_i_5__3/I1
-			ov_sum[16]_i_5__3/O
-		LUT3: i___70_carry__3_i_4
-			i___70_carry__3_i_4/I0
-			i___70_carry__3_i_4/I1
-			i___70_carry__3_i_4/I2
-			i___70_carry__3_i_4/O
-		LUT3: i___70_carry__3_i_3
-			i___70_carry__3_i_3/I0
-			i___70_carry__3_i_3/I1
-			i___70_carry__3_i_3/I2
-			i___70_carry__3_i_3/O
-		LUT3: i___70_carry__3_i_2
-			i___70_carry__3_i_2/I0
-			i___70_carry__3_i_2/I1
-			i___70_carry__3_i_2/I2
-			i___70_carry__3_i_2/O
-		LUT3: i___70_carry__3_i_1
-			i___70_carry__3_i_1/I0
-			i___70_carry__3_i_1/I1
-			i___70_carry__3_i_1/I2
-			i___70_carry__3_i_1/O
-		LUT2: ov_sum[12]_i_2__3
-			ov_sum[12]_i_2__3/I0
-			ov_sum[12]_i_2__3/I1
-			ov_sum[12]_i_2__3/O
-		LUT4: i___70_carry__3_i_8
-			i___70_carry__3_i_8/I0
-			i___70_carry__3_i_8/I1
-			i___70_carry__3_i_8/I2
-			i___70_carry__3_i_8/I3
-			i___70_carry__3_i_8/O
-		LUT4: i___70_carry__3_i_7
-			i___70_carry__3_i_7/I0
-			i___70_carry__3_i_7/I1
-			i___70_carry__3_i_7/I2
-			i___70_carry__3_i_7/I3
-			i___70_carry__3_i_7/O
-		LUT4: i___70_carry__3_i_6
-			i___70_carry__3_i_6/I0
-			i___70_carry__3_i_6/I1
-			i___70_carry__3_i_6/I2
-			i___70_carry__3_i_6/I3
-			i___70_carry__3_i_6/O
-		LUT4: i___70_carry__3_i_5
-			i___70_carry__3_i_5/I0
-			i___70_carry__3_i_5/I1
-			i___70_carry__3_i_5/I2
-			i___70_carry__3_i_5/I3
-			i___70_carry__3_i_5/O
-		LUT2: ov_sum[12]_i_5__3
-			ov_sum[12]_i_5__3/I0
-			ov_sum[12]_i_5__3/I1
-			ov_sum[12]_i_5__3/O
-		LUT2: ov_sum[0]_i_4__3
-			ov_sum[0]_i_4__3/I0
-			ov_sum[0]_i_4__3/I1
-			ov_sum[0]_i_4__3/O
-		LUT2: ov_sum[16]_i_2__3
-			ov_sum[16]_i_2__3/I0
-			ov_sum[16]_i_2__3/I1
-			ov_sum[16]_i_2__3/O
 		LUT2: ov_sum[8]_i_3__4
 			ov_sum[8]_i_3__4/I0
 			ov_sum[8]_i_3__4/I1
@@ -12689,14 +12664,6 @@ LUT Cells (493):
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/I0
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/I1
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/O
-		LUT2: gen_wr_a.gen_word_narrow.mem_reg_i_2
-			gen_wr_a.gen_word_narrow.mem_reg_i_2/I0
-			gen_wr_a.gen_word_narrow.mem_reg_i_2/I1
-			gen_wr_a.gen_word_narrow.mem_reg_i_2/O
-		LUT2: gen_wr_a.gen_word_narrow.mem_reg_i_1
-			gen_wr_a.gen_word_narrow.mem_reg_i_1/I0
-			gen_wr_a.gen_word_narrow.mem_reg_i_1/I1
-			gen_wr_a.gen_word_narrow.mem_reg_i_1/O
 		LUT2: gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/I0
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/I1
@@ -12721,6 +12688,14 @@ LUT Cells (493):
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/I0
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/I1
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/O
+		LUT2: gen_wr_a.gen_word_narrow.mem_reg_i_2
+			gen_wr_a.gen_word_narrow.mem_reg_i_2/I0
+			gen_wr_a.gen_word_narrow.mem_reg_i_2/I1
+			gen_wr_a.gen_word_narrow.mem_reg_i_2/O
+		LUT2: gen_wr_a.gen_word_narrow.mem_reg_i_1
+			gen_wr_a.gen_word_narrow.mem_reg_i_1/I0
+			gen_wr_a.gen_word_narrow.mem_reg_i_1/I1
+			gen_wr_a.gen_word_narrow.mem_reg_i_1/O
 		LUT2: gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/I0
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/I1
@@ -12737,18 +12712,6 @@ LUT Cells (493):
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/I0
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/I1
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/O
-		LUT2: gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/I0
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/I1
-			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/O
-		LUT2: gen_wr_a.gen_word_narrow.mem_reg_i_2
-			gen_wr_a.gen_word_narrow.mem_reg_i_2/I0
-			gen_wr_a.gen_word_narrow.mem_reg_i_2/I1
-			gen_wr_a.gen_word_narrow.mem_reg_i_2/O
-		LUT2: gen_wr_a.gen_word_narrow.mem_reg_i_1
-			gen_wr_a.gen_word_narrow.mem_reg_i_1/I0
-			gen_wr_a.gen_word_narrow.mem_reg_i_1/I1
-			gen_wr_a.gen_word_narrow.mem_reg_i_1/O
 		LUT2: gen_wr_a.gen_word_narrow.mem_reg_i_2
 			gen_wr_a.gen_word_narrow.mem_reg_i_2/I0
 			gen_wr_a.gen_word_narrow.mem_reg_i_2/I1
@@ -12761,6 +12724,14 @@ LUT Cells (493):
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/I0
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/I1
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/O
+		LUT2: gen_wr_a.gen_word_narrow.mem_reg_i_2
+			gen_wr_a.gen_word_narrow.mem_reg_i_2/I0
+			gen_wr_a.gen_word_narrow.mem_reg_i_2/I1
+			gen_wr_a.gen_word_narrow.mem_reg_i_2/O
+		LUT2: gen_wr_a.gen_word_narrow.mem_reg_i_1
+			gen_wr_a.gen_word_narrow.mem_reg_i_1/I0
+			gen_wr_a.gen_word_narrow.mem_reg_i_1/I1
+			gen_wr_a.gen_word_narrow.mem_reg_i_1/O
 		LUT2: gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/I0
 			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/I1
@@ -12773,6 +12744,10 @@ LUT Cells (493):
 			gen_wr_a.gen_word_narrow.mem_reg_i_1/I0
 			gen_wr_a.gen_word_narrow.mem_reg_i_1/I1
 			gen_wr_a.gen_word_narrow.mem_reg_i_1/O
+		LUT2: gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/I0
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/I1
+			gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1/O
 		LUT2: gen_wr_a.gen_word_narrow.mem_reg_i_2
 			gen_wr_a.gen_word_narrow.mem_reg_i_2/I0
 			gen_wr_a.gen_word_narrow.mem_reg_i_2/I1
@@ -12796,30 +12771,8 @@ GND Cells (51):
 			GND/G
 		GND: GND_1
 			GND_1/G
-		GND: GND
-			GND/G
 		GND: GND_1
 			GND_1/G
-		GND: GND
-			GND/G
-		GND: GND
-			GND/G
-		GND: GND_1
-			GND_1/G
-		GND: GND
-			GND/G
-		GND: GND
-			GND/G
-		GND: GND_1
-			GND_1/G
-		GND: GND
-			GND/G
-		GND: GND
-			GND/G
-		GND: GND_1
-			GND_1/G
-		GND: GND
-			GND/G
 		GND: GND
 			GND/G
 		GND: GND
@@ -12838,10 +12791,32 @@ GND Cells (51):
 			GND/G
 		GND: GND
 			GND/G
+		GND: GND_1
+			GND_1/G
 		GND: GND
 			GND/G
 		GND: GND_1
 			GND_1/G
+		GND: GND
+			GND/G
+		GND: GND
+			GND/G
+		GND: GND
+			GND/G
+		GND: GND_1
+			GND_1/G
+		GND: GND
+			GND/G
+		GND: GND
+			GND/G
+		GND: GND_1
+			GND_1/G
+		GND: GND
+			GND/G
+		GND: GND
+			GND/G
+		GND: GND
+			GND/G
 		GND: GND
 			GND/G
 		GND: GND
@@ -12888,60 +12863,6 @@ GND Cells (51):
 			GND/G
 
 Printing CARRYChains... (11)
-	Anchor Carry: fir_filter_inst/ov_dout0_inferred__0/i___0_carry
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry_i_7
-		 FF: Null!
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry_i_6
-		 FF: Null!
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry_i_5
-		 FF: Null!
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry_i_4
-		 FF: Null!
-		Carry: fir_filter_inst/ov_dout0_inferred__0/i___0_carry__0
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__0_i_8
-		 FF: Null!
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__0_i_7
-		 FF: Null!
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__0_i_6
-		 FF: Null!
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__0_i_5
-		 FF: Null!
-		Carry: fir_filter_inst/ov_dout0_inferred__0/i___0_carry__1
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__1_i_8
-		 FF: Null!
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__1_i_7
-		 FF: Null!
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__1_i_6
-		 FF: Null!
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__1_i_5
-		 FF: Null!
-		Carry: fir_filter_inst/ov_dout0_inferred__0/i___0_carry__2
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__2_i_8
-		 FF: Null!
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__2_i_7
-		 FF: Null!
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__2_i_6
-		 FF: Null!
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__2_i_5
-		 FF: Null!
-		Carry: fir_filter_inst/ov_dout0_inferred__0/i___0_carry__3
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__3_i_8
-		 FF: Null!
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__3_i_7
-		 FF: Null!
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__3_i_6
-		 FF: Null!
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__3_i_5
-		 FF: Null!
-		Carry: fir_filter_inst/ov_dout0_inferred__0/i___0_carry__4
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__4_i_7
-		 FF: Null!
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__4_i_6
-		 FF: Null!
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__4_i_5
-		 FF: Null!
-		LUT: fir_filter_inst/genblk1[7].tap_inst/i___0_carry__4_i_4
-		 FF: Null!
 	Anchor Carry: fir_filter_inst/ov_dout0_inferred__0/i___142_carry
 		LUT: fir_filter_inst/i___142_carry_i_7
 		 FF: fir_filter_inst/ov_dout_reg[0]
@@ -12992,14 +12913,14 @@ Printing CARRYChains... (11)
 		 FF: fir_filter_inst/ov_dout_reg[20]
 		LUT: fir_filter_inst/genblk1[0].tap_inst/i___142_carry__4_i_6
 		 FF: fir_filter_inst/ov_dout_reg[21]
-		LUT: fir_filter_inst/genblk1[0].tap_inst/i___142_carry__4_i_5
+		LUT: fir_filter_inst/genblk1[1].tap_inst/i___142_carry__4_i_5
 		 FF: fir_filter_inst/ov_dout_reg[22]
 		LUT: fir_filter_inst/genblk1[1].tap_inst/i___142_carry__4_i_4
 		 FF: fir_filter_inst/ov_dout_reg[23]
 	Anchor Carry: fir_filter_inst/ov_dout0_inferred__0/i___70_carry
-		LUT: fir_filter_inst/genblk1[5].tap_inst/i___70_carry_i_7
+		LUT: fir_filter_inst/genblk1[4].tap_inst/i___70_carry_i_7
 		 FF: Null!
-		LUT: fir_filter_inst/genblk1[5].tap_inst/i___70_carry_i_6
+		LUT: fir_filter_inst/genblk1[4].tap_inst/i___70_carry_i_6
 		 FF: Null!
 		LUT: fir_filter_inst/genblk1[5].tap_inst/i___70_carry_i_5
 		 FF: Null!
@@ -13049,6 +12970,60 @@ Printing CARRYChains... (11)
 		LUT: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__4_i_5
 		 FF: Null!
 		LUT: fir_filter_inst/genblk1[4].tap_inst/i___70_carry__4_i_4
+		 FF: Null!
+	Anchor Carry: fir_filter_inst/ov_dout0_inferred__0/i___0_carry
+		LUT: fir_filter_inst/genblk1[7].tap_inst/i___0_carry_i_7
+		 FF: Null!
+		LUT: fir_filter_inst/genblk1[7].tap_inst/i___0_carry_i_6
+		 FF: Null!
+		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry_i_5
+		 FF: Null!
+		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry_i_4
+		 FF: Null!
+		Carry: fir_filter_inst/ov_dout0_inferred__0/i___0_carry__0
+		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__0_i_8
+		 FF: Null!
+		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__0_i_7
+		 FF: Null!
+		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__0_i_6
+		 FF: Null!
+		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__0_i_5
+		 FF: Null!
+		Carry: fir_filter_inst/ov_dout0_inferred__0/i___0_carry__1
+		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__1_i_8
+		 FF: Null!
+		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__1_i_7
+		 FF: Null!
+		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__1_i_6
+		 FF: Null!
+		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__1_i_5
+		 FF: Null!
+		Carry: fir_filter_inst/ov_dout0_inferred__0/i___0_carry__2
+		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__2_i_8
+		 FF: Null!
+		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__2_i_7
+		 FF: Null!
+		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__2_i_6
+		 FF: Null!
+		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__2_i_5
+		 FF: Null!
+		Carry: fir_filter_inst/ov_dout0_inferred__0/i___0_carry__3
+		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__3_i_8
+		 FF: Null!
+		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__3_i_7
+		 FF: Null!
+		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__3_i_6
+		 FF: Null!
+		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__3_i_5
+		 FF: Null!
+		Carry: fir_filter_inst/ov_dout0_inferred__0/i___0_carry__4
+		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__4_i_7
+		 FF: Null!
+		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__4_i_6
+		 FF: Null!
+		LUT: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__4_i_5
+		 FF: Null!
+		LUT: fir_filter_inst/genblk1[7].tap_inst/i___0_carry__4_i_4
 		 FF: Null!
 	Anchor Carry: fir_filter_inst/genblk1[0].tap_inst/ov_sum_reg[0]_i_1__5
 		LUT: fir_filter_inst/genblk1[0].tap_inst/ov_sum[0]_i_5__6
@@ -13104,6 +13079,60 @@ Printing CARRYChains... (11)
 		 FF: fir_filter_inst/genblk1[0].tap_inst/ov_sum_reg[22]
 		LUT: fir_filter_inst/genblk1[0].tap_inst/ov_sum[20]_i_2__6
 		 FF: fir_filter_inst/genblk1[0].tap_inst/ov_sum_reg[23]
+	Anchor Carry: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[0]_i_1__4
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[0]_i_5__5
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[0]
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[0]_i_4__5
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[1]
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[0]_i_3__5
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[2]
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[0]_i_2__4
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[3]
+		Carry: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[4]_i_1__5
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[4]_i_5__5
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[4]
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[4]_i_4__5
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[5]
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[4]_i_3__5
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[6]
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[4]_i_2__5
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[7]
+		Carry: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[8]_i_1__5
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[8]_i_5__5
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[8]
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[8]_i_4__5
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[9]
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[8]_i_3__5
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[10]
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[8]_i_2__5
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[11]
+		Carry: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[12]_i_1__5
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[12]_i_5__5
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[12]
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[12]_i_4__5
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[13]
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[12]_i_3__5
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[14]
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[12]_i_2__5
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[15]
+		Carry: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[16]_i_1__5
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[16]_i_5__5
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[16]
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[16]_i_4__5
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[17]
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[16]_i_3__5
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[18]
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[16]_i_2__5
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[19]
+		Carry: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[20]_i_1__5
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[20]_i_5__5
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[20]
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[20]_i_4__5
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[21]
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[20]_i_3__5
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[22]
+		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[20]_i_2__5
+		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[23]
 	Anchor Carry: fir_filter_inst/genblk1[1].tap_inst/ov_sum_reg[0]_i_2
 		LUT: fir_filter_inst/genblk1[1].tap_inst/ov_sum[0]_i_6
 		 FF: fir_filter_inst/genblk1[1].tap_inst/ov_sum_reg[0]
@@ -13158,6 +13187,60 @@ Printing CARRYChains... (11)
 		 FF: fir_filter_inst/genblk1[1].tap_inst/ov_sum_reg[22]
 		LUT: fir_filter_inst/genblk1[1].tap_inst/ov_sum[20]_i_2
 		 FF: fir_filter_inst/genblk1[1].tap_inst/ov_sum_reg[23]
+	Anchor Carry: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[0]_i_1__2
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[0]_i_5__3
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[0]
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[0]_i_4__3
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[1]
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[0]_i_3__3
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[2]
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[0]_i_2__2
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[3]
+		Carry: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[4]_i_1__3
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[4]_i_5__3
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[4]
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[4]_i_4__3
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[5]
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[4]_i_3__3
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[6]
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[4]_i_2__3
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[7]
+		Carry: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[8]_i_1__3
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[8]_i_5__3
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[8]
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[8]_i_4__3
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[9]
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[8]_i_3__3
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[10]
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[8]_i_2__3
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[11]
+		Carry: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[12]_i_1__3
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[12]_i_5__3
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[12]
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[12]_i_4__3
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[13]
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[12]_i_3__3
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[14]
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[12]_i_2__3
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[15]
+		Carry: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[16]_i_1__3
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[16]_i_5__3
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[16]
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[16]_i_4__3
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[17]
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[16]_i_3__3
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[18]
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[16]_i_2__3
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[19]
+		Carry: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[20]_i_1__3
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[20]_i_5__3
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[20]
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[20]_i_4__3
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[21]
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[20]_i_3__3
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[22]
+		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[20]_i_2__3
+		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[23]
 	Anchor Carry: fir_filter_inst/genblk1[2].tap_inst/ov_sum_reg[0]_i_1
 		LUT: fir_filter_inst/genblk1[2].tap_inst/ov_sum[0]_i_5__0
 		 FF: fir_filter_inst/genblk1[2].tap_inst/ov_sum_reg[0]
@@ -13320,114 +13403,6 @@ Printing CARRYChains... (11)
 		 FF: fir_filter_inst/genblk1[4].tap_inst/ov_sum_reg[22]
 		LUT: fir_filter_inst/genblk1[4].tap_inst/ov_sum[20]_i_2__2
 		 FF: fir_filter_inst/genblk1[4].tap_inst/ov_sum_reg[23]
-	Anchor Carry: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[0]_i_1__4
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[0]_i_5__5
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[0]
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[0]_i_4__5
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[1]
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[0]_i_3__5
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[2]
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[0]_i_2__4
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[3]
-		Carry: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[4]_i_1__5
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[4]_i_5__5
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[4]
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[4]_i_4__5
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[5]
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[4]_i_3__5
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[6]
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[4]_i_2__5
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[7]
-		Carry: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[8]_i_1__5
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[8]_i_5__5
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[8]
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[8]_i_4__5
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[9]
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[8]_i_3__5
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[10]
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[8]_i_2__5
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[11]
-		Carry: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[12]_i_1__5
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[12]_i_5__5
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[12]
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[12]_i_4__5
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[13]
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[12]_i_3__5
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[14]
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[12]_i_2__5
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[15]
-		Carry: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[16]_i_1__5
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[16]_i_5__5
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[16]
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[16]_i_4__5
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[17]
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[16]_i_3__5
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[18]
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[16]_i_2__5
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[19]
-		Carry: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[20]_i_1__5
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[20]_i_5__5
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[20]
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[20]_i_4__5
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[21]
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[20]_i_3__5
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[22]
-		LUT: fir_filter_inst/genblk1[7].tap_inst/ov_sum[20]_i_2__5
-		 FF: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[23]
-	Anchor Carry: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[0]_i_1__2
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[0]_i_5__3
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[0]
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[0]_i_4__3
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[1]
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[0]_i_3__3
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[2]
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[0]_i_2__2
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[3]
-		Carry: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[4]_i_1__3
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[4]_i_5__3
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[4]
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[4]_i_4__3
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[5]
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[4]_i_3__3
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[6]
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[4]_i_2__3
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[7]
-		Carry: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[8]_i_1__3
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[8]_i_5__3
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[8]
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[8]_i_4__3
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[9]
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[8]_i_3__3
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[10]
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[8]_i_2__3
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[11]
-		Carry: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[12]_i_1__3
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[12]_i_5__3
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[12]
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[12]_i_4__3
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[13]
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[12]_i_3__3
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[14]
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[12]_i_2__3
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[15]
-		Carry: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[16]_i_1__3
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[16]_i_5__3
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[16]
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[16]_i_4__3
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[17]
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[16]_i_3__3
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[18]
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[16]_i_2__3
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[19]
-		Carry: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[20]_i_1__3
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[20]_i_5__3
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[20]
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[20]_i_4__3
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[21]
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[20]_i_3__3
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[22]
-		LUT: fir_filter_inst/genblk1[5].tap_inst/ov_sum[20]_i_2__3
-		 FF: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[23]
 	Anchor Carry: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[0]_i_1__3
 		LUT: fir_filter_inst/genblk1[6].tap_inst/ov_sum[0]_i_5__4
 		 FF: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[0]
@@ -13485,12 +13460,12 @@ Printing CARRYChains... (11)
 
 Printing DSPPairs... (8)
 	(DSP48E1: fir_filter_inst/genblk1[0].tap_inst/ov_sum1, DSP48E1: fir_filter_inst/genblk1[0].tap_inst/ov_sum1__0)
+	(DSP48E1: fir_filter_inst/genblk1[7].tap_inst/ov_sum1, DSP48E1: fir_filter_inst/genblk1[7].tap_inst/ov_sum1__0)
 	(DSP48E1: fir_filter_inst/genblk1[1].tap_inst/ov_sum1, DSP48E1: fir_filter_inst/genblk1[1].tap_inst/ov_sum1__0)
+	(DSP48E1: fir_filter_inst/genblk1[5].tap_inst/ov_sum1, DSP48E1: fir_filter_inst/genblk1[5].tap_inst/ov_sum1__0)
 	(DSP48E1: fir_filter_inst/genblk1[2].tap_inst/ov_sum1, DSP48E1: fir_filter_inst/genblk1[2].tap_inst/ov_sum1__0)
 	(DSP48E1: fir_filter_inst/genblk1[3].tap_inst/ov_sum1, DSP48E1: fir_filter_inst/genblk1[3].tap_inst/ov_sum1__0)
 	(DSP48E1: fir_filter_inst/genblk1[4].tap_inst/ov_sum1, DSP48E1: fir_filter_inst/genblk1[4].tap_inst/ov_sum1__0)
-	(DSP48E1: fir_filter_inst/genblk1[7].tap_inst/ov_sum1, DSP48E1: fir_filter_inst/genblk1[7].tap_inst/ov_sum1__0)
-	(DSP48E1: fir_filter_inst/genblk1[5].tap_inst/ov_sum1, DSP48E1: fir_filter_inst/genblk1[5].tap_inst/ov_sum1__0)
 	(DSP48E1: fir_filter_inst/genblk1[6].tap_inst/ov_sum1, DSP48E1: fir_filter_inst/genblk1[6].tap_inst/ov_sum1__0)
 	CE: serializer_inst/i_en_IBUF                          R: serializer_inst/i_rst_IBUF                        
 	CE: deserializer_inst/<const1>                         R: deserializer_inst/<const0>                        
@@ -13521,7 +13496,7 @@ Printing Unique CE-R pairs with associated FF Cells... (14)
 	CENet: fir_filter_inst/sel, RNet: fir_filter_inst/i_rst_IBUF with cells... (5)
 		LUT: fir_filter_inst/weight_re_addr[2]_i_1 => FF: fir_filter_inst/weight_re_addr_reg[2]
 		LUT: fir_filter_inst/weight_re_addr[3]_i_1 => FF: fir_filter_inst/weight_re_addr_reg[3]
-		LUT: fir_filter_inst/weight_re_addr[4]_i_1 => FF: fir_filter_inst/weight_re_addr_reg[4]
+		LUT: fir_filter_inst/weight_re_addr[4]_i_2 => FF: fir_filter_inst/weight_re_addr_reg[4]
 		LUT: fir_filter_inst/weight_re_addr[0]_i_1 => FF: fir_filter_inst/weight_re_addr_reg[0]
 		LUT: fir_filter_inst/weight_re_addr[1]_i_1 => FF: fir_filter_inst/weight_re_addr_reg[1]
 	CENet: deserializer_inst/counter[4]_i_1__0_n_0, RNet: deserializer_inst/i_rst_IBUF with cells... (5)
@@ -13559,18 +13534,18 @@ Printing Unique CE-R pairs with associated FF Cells... (14)
 		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[15]
 		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[4]
 	CENet: fir_filter_inst/<const1>, RNet: fir_filter_inst/i_rst_IBUF with cells... (6)
-		LUT: fir_filter_inst/weight_re_i_1 => FF: fir_filter_inst/weight_re_reg
 		LUT: fir_filter_inst/o_dout_valid_i_1__0 => FF: fir_filter_inst/o_dout_valid_reg
 		LUT: fir_filter_inst/o_ready_i_1 => FF: fir_filter_inst/o_ready_reg
 		LUT: fir_filter_inst/FSM_sequential_state[0]_i_1 => FF: fir_filter_inst/FSM_sequential_state_reg[0]
 		LUT: fir_filter_inst/FSM_sequential_state[1]_i_1__0 => FF: fir_filter_inst/FSM_sequential_state_reg[1]
 		LUT: fir_filter_inst/FSM_sequential_state[2]_i_1 => FF: fir_filter_inst/FSM_sequential_state_reg[2]
+		LUT: fir_filter_inst/weight_re_i_1 => FF: fir_filter_inst/weight_re_reg
 	CENet: fir_filter_inst/sample_addr, RNet: fir_filter_inst/i_rst_IBUF with cells... (5)
+		LUT: fir_filter_inst/sample_addr[4]_i_2 => FF: fir_filter_inst/sample_addr_reg[4]
+		LUT: fir_filter_inst/sample_addr[3]_i_1 => FF: fir_filter_inst/sample_addr_reg[3]
 		LUT: fir_filter_inst/sample_addr[0]_i_1 => FF: fir_filter_inst/sample_addr_reg[0]
 		LUT: fir_filter_inst/sample_addr[2]_i_1 => FF: fir_filter_inst/sample_addr_reg[2]
 		LUT: fir_filter_inst/sample_addr[1]_i_1 => FF: fir_filter_inst/sample_addr_reg[1]
-		LUT: fir_filter_inst/sample_addr[4]_i_2 => FF: fir_filter_inst/sample_addr_reg[4]
-		LUT: fir_filter_inst/sample_addr[3]_i_1 => FF: fir_filter_inst/sample_addr_reg[3]
 	CENet: deserializer_inst/shift_reg[23]_i_1__0_n_0, RNet: deserializer_inst/i_rst_IBUF with cells... (24)
 		LUT: deserializer_inst/shift_reg[5]_i_1__0 => FF: deserializer_inst/shift_reg_reg[5]
 		LUT: deserializer_inst/shift_reg[12]_i_1__0 => FF: deserializer_inst/shift_reg_reg[12]
@@ -13637,43 +13612,23 @@ Printing Unique CE-R pairs with associated FF Cells... (14)
 		LUT: deserializer_inst/FSM_sequential_state[0]_i_1__1 => FF: deserializer_inst/FSM_sequential_state_reg[0]
 		LUT: deserializer_inst/FSM_sequential_state[1]_i_1 => FF: deserializer_inst/FSM_sequential_state_reg[1]
 	CENet: fir_filter_inst/o_ready_i_1_n_0, RNet: fir_filter_inst/i_rst_IBUF with cells... (5)
+		LUT: fir_filter_inst/sample_wr_addr[4]_i_1 => FF: fir_filter_inst/sample_wr_addr_reg[4]
 		LUT: fir_filter_inst/sample_wr_addr[3]_i_1 => FF: fir_filter_inst/sample_wr_addr_reg[3]
 		LUT: fir_filter_inst/sample_wr_addr[2]_i_1 => FF: fir_filter_inst/sample_wr_addr_reg[2]
 		LUT: fir_filter_inst/sample_wr_addr[1]_i_1 => FF: fir_filter_inst/sample_wr_addr_reg[1]
 		LUT: fir_filter_inst/sample_wr_addr[0]_i_1 => FF: fir_filter_inst/sample_wr_addr_reg[0]
-		LUT: fir_filter_inst/sample_wr_addr[4]_i_1 => FF: fir_filter_inst/sample_wr_addr_reg[4]
 
-Printing LUT Groups... (34)
+Printing LUT Groups... (33)
 	Group:
+		LUT3: fir_filter_inst/sample_addr[2]_i_2
 		LUT3: fir_filter_inst/i___142_carry__2_i_10
 		LUT5: fir_filter_inst/i___142_carry__3_i_2
 		LUT5: fir_filter_inst/i___142_carry__3_i_1
-		LUT3: fir_filter_inst/i___142_carry__2_i_12
 	Group:
+		LUT3: fir_filter_inst/i___142_carry__2_i_12
 		LUT3: fir_filter_inst/i___142_carry__2_i_11
 		LUT5: fir_filter_inst/i___142_carry__3_i_4
 		LUT5: fir_filter_inst/i___142_carry__3_i_3
-		LUT4: fir_filter_inst/sample_re_addr[3]_i_2
-	Group:
-		LUT4: fir_filter_inst/sample_re_addr[3]_i_3
-		LUT2: fir_filter_inst/sample_addr[4]_i_1
-		LUT6: fir_filter_inst/ov_dout[23]_i_1__0
-		LUT3: fir_filter_inst/i___142_carry__0_i_10
-	Group:
-		LUT3: fir_filter_inst/i___142_carry__3_i_9
-		LUT3: fir_filter_inst/i___142_carry__0_i_12
-		LUT3: fir_filter_inst/i___142_carry__0_i_11
-		LUT5: fir_filter_inst/i___142_carry__0_i_3
-	Group:
-		LUT5: fir_filter_inst/i___142_carry__0_i_2
-		LUT5: fir_filter_inst/i___142_carry__0_i_4
-		LUT3: fir_filter_inst/i___142_carry__0_i_9
-		LUT5: fir_filter_inst/i___142_carry__0_i_1
-	Group:
-		LUT5: fir_filter_inst/i___142_carry__4_i_3
-		LUT5: fir_filter_inst/i___142_carry__4_i_2
-		LUT3: fir_filter_inst/sample_re_addr[2]_i_2
-		LUT3: fir_filter_inst/sample_re_addr[2]_i_3
 	Group:
 		LUT3: fir_filter_inst/i___142_carry__1_i_12
 		LUT3: fir_filter_inst/i___142_carry__1_i_10
@@ -13683,12 +13638,22 @@ Printing LUT Groups... (34)
 		LUT5: fir_filter_inst/i___142_carry__1_i_3
 		LUT5: fir_filter_inst/i___142_carry__1_i_2
 		LUT5: fir_filter_inst/i___142_carry__1_i_1
-		LUT4: fir_filter_inst/FSM_sequential_state[2]_i_2
+		LUT4: fir_filter_inst/sample_re_addr[3]_i_2
 	Group:
+		LUT3: fir_filter_inst/weight_re_addr[4]_i_1
+		LUT6: fir_filter_inst/FSM_sequential_state[2]_i_2
 		LUT3: fir_filter_inst/i___142_carry__1_i_9
+		LUT3: fir_filter_inst/sample_addr[4]_i_1
+	Group:
+		LUT4: fir_filter_inst/ov_dout[23]_i_1__0
+		LUT3: fir_filter_inst/i___142_carry__0_i_10
 		LUT3: fir_filter_inst/i___142_carry__3_i_11
 		LUT3: fir_filter_inst/i___142_carry__3_i_10
+	Group:
+		LUT3: fir_filter_inst/i___142_carry__3_i_9
+		LUT3: fir_filter_inst/i___142_carry__0_i_12
 		LUT3: fir_filter_inst/i___142_carry_i_9
+		LUT3: fir_filter_inst/i___142_carry__0_i_11
 	Group:
 		LUT3: fir_filter_inst/i___142_carry_i_8
 		LUT4: fir_filter_inst/i___142_carry_i_3
@@ -13696,73 +13661,78 @@ Printing LUT Groups... (34)
 		LUT5: fir_filter_inst/i___142_carry_i_1
 	Group:
 		LUT3: fir_filter_inst/i___142_carry__3_i_12
+		LUT3: fir_filter_inst/i___142_carry__4_i_9
 		LUT5: fir_filter_inst/i___142_carry__2_i_4
 		LUT5: fir_filter_inst/i___142_carry__2_i_1
+	Group:
 		LUT5: fir_filter_inst/i___142_carry__2_i_3
-	Group:
 		LUT5: fir_filter_inst/i___142_carry__2_i_2
-		LUT5: fir_filter_inst/sample_re_addr[4]_i_4
-		LUT5: fir_filter_inst/sample_re_addr[4]_i_3
-		LUT3: fir_filter_inst/sample_re_addr[4]_i_1
+		LUT5: fir_filter_inst/i___142_carry__0_i_3
+		LUT5: fir_filter_inst/i___142_carry__0_i_2
 	Group:
+		LUT5: fir_filter_inst/i___142_carry__0_i_4
+		LUT3: fir_filter_inst/i___142_carry__0_i_9
+		LUT5: fir_filter_inst/i___142_carry__0_i_1
+		LUT5: fir_filter_inst/sample_re_addr[4]_i_3
+	Group:
+		LUT2: fir_filter_inst/sample_re_addr[4]_i_1
 		LUT3: fir_filter_inst/i___142_carry__2_i_9
+		LUT5: fir_filter_inst/i___142_carry__4_i_3
 		LUT4: serializer_inst/counter[4]_i_1
+	Group:
 		LUT3: serializer_inst/shift_reg[23]_i_3
 		LUT5: serializer_inst/shift_reg[23]_i_1
-	Group:
 		LUT6: serializer_inst/FSM_sequential_state[0]_i_2
 		LUT2: serializer_inst/FSM_sequential_state[1]_i_2
+	Group:
+		LUT2: deserializer_inst/ov_dout[23]_i_2
 		LUT4: deserializer_inst/FSM_sequential_state[0]_i_2__0
 		LUT6: deserializer_inst/ov_dout[23]_i_1
-	Group:
 		LUT6: deserializer_inst/shift_reg[23]_i_1__0
-		LUT2: deserializer_inst/counter[4]_i_1__0
-		LUT3: deserializer_inst/counter[3]_i_2
-		LUT4: deserializer_inst/counter[4]_i_3
 	Group:
+		LUT2: deserializer_inst/counter[4]_i_1__0
+		LUT4: deserializer_inst/counter[4]_i_3
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__1_i_1
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__1_i_2
+	Group:
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__1_i_3
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__1_i_4
-	Group:
 		LUT4: fir_filter_inst/genblk1[0].tap_inst/i___142_carry__4_i_11
-		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___142_carry__4_i_12
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__3_i_1
-		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__3_i_2
 	Group:
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__3_i_2
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__3_i_3
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__3_i_4
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__0_i_1
-		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__0_i_2
 	Group:
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__0_i_2
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__0_i_3
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__0_i_4
-		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___142_carry__4_i_9
-		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___142_carry__4_i_8
-	Group:
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__2_i_3
+	Group:
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__2_i_4
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__2_i_1
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__2_i_2
-	Group:
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry_i_1
-		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry_i_2
-		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry_i_3
-		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__4_i_3
 	Group:
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry_i_2
+		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__4_i_3
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__4_i_1
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__4_i_2
-		LUT5: fir_filter_inst/genblk1[0].tap_inst/i___142_carry__4_i_1
-		LUT3: fir_filter_inst/genblk1[1].tap_inst/i___142_carry__4_i_10
 	Group:
+		LUT5: fir_filter_inst/genblk1[0].tap_inst/i___142_carry__4_i_2
+		LUT3: fir_filter_inst/genblk1[7].tap_inst/i___0_carry_i_3
 		LUT2: fir_filter_inst/genblk1[7].tap_inst/ov_sum[0]_i_1
+		LUT3: fir_filter_inst/genblk1[1].tap_inst/i___142_carry__4_i_8
+	Group:
+		LUT3: fir_filter_inst/genblk1[1].tap_inst/i___142_carry__4_i_10
+		LUT5: fir_filter_inst/genblk1[1].tap_inst/i___142_carry__4_i_1
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__1_i_2
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__1_i_1
-		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__1_i_4
 	Group:
+		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__1_i_4
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__1_i_3
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry_i_2
-		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry_i_3
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry_i_1
 	Group:
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__4_i_1
@@ -13783,34 +13753,35 @@ Printing LUT Groups... (34)
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__3_i_3
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__3_i_2
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__3_i_1
+		LUT3: fir_filter_inst/genblk1[4].tap_inst/i___70_carry_i_3
+	Group:
 		LUT2: fir_filter_inst/genblk2[2].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
+		LUT2: fir_filter_inst/genblk2[1].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
+		LUT2: fir_filter_inst/genblk3[5].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
+		LUT2: fir_filter_inst/genblk3[5].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
 	Group:
 		LUT2: fir_filter_inst/genblk3[4].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
 		LUT2: fir_filter_inst/genblk3[4].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
 		LUT2: fir_filter_inst/genblk2[4].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
-		LUT2: fir_filter_inst/genblk3[2].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
-	Group:
-		LUT2: fir_filter_inst/genblk3[2].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
-		LUT2: fir_filter_inst/genblk3[1].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
-		LUT2: fir_filter_inst/genblk3[1].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
-		LUT2: fir_filter_inst/genblk2[5].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
-	Group:
-		LUT2: fir_filter_inst/genblk2[0].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
-		LUT2: fir_filter_inst/genblk3[6].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
-		LUT2: fir_filter_inst/genblk3[6].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
-		LUT2: fir_filter_inst/genblk2[7].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
-	Group:
-		LUT2: fir_filter_inst/genblk2[1].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
-		LUT2: fir_filter_inst/genblk3[5].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
-		LUT2: fir_filter_inst/genblk3[5].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
 		LUT2: fir_filter_inst/genblk3[3].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
 	Group:
 		LUT2: fir_filter_inst/genblk3[3].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
 		LUT2: fir_filter_inst/genblk2[3].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
-		LUT2: fir_filter_inst/genblk2[6].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
-		LUT2: fir_filter_inst/genblk3[0].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
+		LUT2: fir_filter_inst/genblk3[2].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
+		LUT2: fir_filter_inst/genblk3[2].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
 	Group:
+		LUT2: fir_filter_inst/genblk2[6].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
+		LUT2: fir_filter_inst/genblk3[1].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
+		LUT2: fir_filter_inst/genblk3[1].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
+		LUT2: fir_filter_inst/genblk2[5].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
+	Group:
+		LUT2: fir_filter_inst/genblk3[0].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
 		LUT2: fir_filter_inst/genblk3[0].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
+		LUT2: fir_filter_inst/genblk2[0].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
+		LUT2: fir_filter_inst/genblk3[6].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
+	Group:
+		LUT2: fir_filter_inst/genblk3[6].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
+		LUT2: fir_filter_inst/genblk2[7].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
 		LUT2: fir_filter_inst/genblk3[7].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
 		LUT2: fir_filter_inst/genblk3[7].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
 
@@ -13845,213 +13816,212 @@ Placing LUT-FF Pair Groups... (14)
 
 ALL CELL PATTERNS HAVE BEEN PLACED...
 
-Printing occupiedCLBSites... (172)
-	Site: SLICE_X34Y63
-	Site: SLICE_X34Y64
-	Site: SLICE_X34Y65
-	Site: SLICE_X34Y66
-	Site: SLICE_X34Y67
-	Site: SLICE_X34Y68
-	Site: SLICE_X107Y123
-	Site: SLICE_X107Y124
-	Site: SLICE_X107Y125
-	Site: SLICE_X107Y126
-	Site: SLICE_X107Y127
-	Site: SLICE_X107Y128
-	Site: SLICE_X89Y8
-	Site: SLICE_X89Y9
-	Site: SLICE_X89Y10
-	Site: SLICE_X89Y11
-	Site: SLICE_X89Y12
-	Site: SLICE_X89Y13
-	Site: SLICE_X41Y114
-	Site: SLICE_X41Y115
-	Site: SLICE_X41Y116
-	Site: SLICE_X41Y117
-	Site: SLICE_X41Y118
-	Site: SLICE_X41Y119
-	Site: SLICE_X79Y30
-	Site: SLICE_X79Y31
-	Site: SLICE_X79Y32
-	Site: SLICE_X79Y33
-	Site: SLICE_X79Y34
-	Site: SLICE_X79Y35
-	Site: SLICE_X54Y84
-	Site: SLICE_X54Y85
-	Site: SLICE_X54Y86
-	Site: SLICE_X54Y87
-	Site: SLICE_X54Y88
-	Site: SLICE_X54Y89
-	Site: SLICE_X29Y26
-	Site: SLICE_X29Y27
-	Site: SLICE_X29Y28
-	Site: SLICE_X29Y29
-	Site: SLICE_X29Y30
-	Site: SLICE_X29Y31
-	Site: SLICE_X96Y27
-	Site: SLICE_X96Y28
-	Site: SLICE_X96Y29
-	Site: SLICE_X96Y30
-	Site: SLICE_X96Y31
-	Site: SLICE_X96Y32
-	Site: SLICE_X102Y120
-	Site: SLICE_X102Y121
-	Site: SLICE_X102Y122
-	Site: SLICE_X102Y123
-	Site: SLICE_X102Y124
-	Site: SLICE_X102Y125
-	Site: SLICE_X57Y139
-	Site: SLICE_X57Y140
-	Site: SLICE_X57Y141
-	Site: SLICE_X57Y142
-	Site: SLICE_X57Y143
-	Site: SLICE_X57Y144
-	Site: SLICE_X110Y140
-	Site: SLICE_X110Y141
-	Site: SLICE_X110Y142
-	Site: SLICE_X110Y143
-	Site: SLICE_X110Y144
-	Site: SLICE_X110Y145
-	Site: SLICE_X86Y62
-	Site: SLICE_X86Y62
-	Site: SLICE_X54Y41
-	Site: SLICE_X54Y41
-	Site: SLICE_X58Y129
-	Site: SLICE_X58Y129
-	Site: SLICE_X82Y35
-	Site: SLICE_X82Y35
-	Site: SLICE_X93Y140
-	Site: SLICE_X93Y140
-	Site: SLICE_X16Y27
-	Site: SLICE_X16Y27
-	Site: SLICE_X51Y39
-	Site: SLICE_X51Y39
-	Site: SLICE_X105Y79
-	Site: SLICE_X105Y79
-	Site: SLICE_X98Y108
-	Site: SLICE_X98Y108
-	Site: SLICE_X102Y67
-	Site: SLICE_X102Y67
-	Site: SLICE_X97Y102
-	Site: SLICE_X97Y102
-	Site: SLICE_X62Y29
-	Site: SLICE_X62Y29
-	Site: SLICE_X15Y26
-	Site: SLICE_X15Y26
-	Site: SLICE_X82Y119
-	Site: SLICE_X82Y119
-	Site: SLICE_X81Y39
-	Site: SLICE_X81Y39
-	Site: SLICE_X90Y52
-	Site: SLICE_X90Y52
-	Site: SLICE_X58Y114
-	Site: SLICE_X58Y114
-	Site: SLICE_X26Y76
-	Site: SLICE_X26Y76
-	Site: SLICE_X64Y24
-	Site: SLICE_X64Y24
-	Site: SLICE_X18Y18
-	Site: SLICE_X18Y18
-	Site: SLICE_X46Y67
-	Site: SLICE_X46Y67
-	Site: SLICE_X1Y33
-	Site: SLICE_X1Y33
-	Site: SLICE_X103Y15
-	Site: SLICE_X103Y15
-	Site: SLICE_X64Y68
-	Site: SLICE_X64Y68
-	Site: SLICE_X6Y14
-	Site: SLICE_X6Y14
-	Site: SLICE_X17Y2
-	Site: SLICE_X17Y2
-	Site: SLICE_X32Y45
-	Site: SLICE_X32Y45
-	Site: SLICE_X62Y60
-	Site: SLICE_X62Y60
-	Site: SLICE_X86Y6
-	Site: SLICE_X86Y6
-	Site: SLICE_X21Y16
-	Site: SLICE_X21Y16
-	Site: SLICE_X36Y46
-	Site: SLICE_X36Y46
-	Site: SLICE_X104Y82
-	Site: SLICE_X104Y82
-	Site: SLICE_X88Y79
-	Site: SLICE_X88Y79
-	Site: SLICE_X94Y61
-	Site: SLICE_X94Y61
-	Site: SLICE_X90Y131
-	Site: SLICE_X90Y131
-	Site: SLICE_X94Y111
-	Site: SLICE_X94Y111
-	Site: SLICE_X80Y99
-	Site: SLICE_X30Y116
-	Site: SLICE_X91Y130
-	Site: SLICE_X76Y46
-	Site: SLICE_X97Y67
-	Site: SLICE_X87Y121
-	Site: SLICE_X56Y18
-	Site: SLICE_X84Y32
-	Site: SLICE_X32Y62
-	Site: SLICE_X87Y76
-	Site: SLICE_X86Y32
-	Site: SLICE_X50Y143
-	Site: SLICE_X26Y103
-	Site: SLICE_X0Y23
-	Site: SLICE_X4Y30
-	Site: SLICE_X12Y20
-	Site: SLICE_X16Y0
-	Site: SLICE_X62Y27
-	Site: SLICE_X17Y18
-	Site: SLICE_X30Y107
-	Site: SLICE_X111Y40
-	Site: SLICE_X14Y31
+Printing occupiedCLBSites... (171)
+	Site: SLICE_X76Y21
+	Site: SLICE_X76Y22
+	Site: SLICE_X76Y23
 	Site: SLICE_X76Y24
-	Site: SLICE_X1Y21
-	Site: SLICE_X37Y119
-	Site: SLICE_X53Y77
-	Site: SLICE_X100Y130
-	Site: SLICE_X102Y35
-	Site: SLICE_X51Y127
-	Site: SLICE_X56Y111
-	Site: SLICE_X86Y77
-	Site: SLICE_X62Y77
-	Site: SLICE_X112Y26
-	Site: SLICE_X82Y65
+	Site: SLICE_X76Y25
+	Site: SLICE_X76Y26
+	Site: SLICE_X53Y8
+	Site: SLICE_X53Y9
+	Site: SLICE_X53Y10
+	Site: SLICE_X53Y11
+	Site: SLICE_X53Y12
+	Site: SLICE_X53Y13
+	Site: SLICE_X28Y15
+	Site: SLICE_X28Y16
+	Site: SLICE_X28Y17
+	Site: SLICE_X28Y18
+	Site: SLICE_X28Y19
+	Site: SLICE_X28Y20
+	Site: SLICE_X99Y135
+	Site: SLICE_X99Y136
+	Site: SLICE_X99Y137
+	Site: SLICE_X99Y138
+	Site: SLICE_X99Y139
+	Site: SLICE_X99Y140
+	Site: SLICE_X38Y11
+	Site: SLICE_X38Y12
+	Site: SLICE_X38Y13
+	Site: SLICE_X38Y14
+	Site: SLICE_X38Y15
+	Site: SLICE_X38Y16
+	Site: SLICE_X31Y88
+	Site: SLICE_X31Y89
+	Site: SLICE_X31Y90
+	Site: SLICE_X31Y91
+	Site: SLICE_X31Y92
+	Site: SLICE_X31Y93
+	Site: SLICE_X99Y129
+	Site: SLICE_X99Y130
+	Site: SLICE_X99Y131
+	Site: SLICE_X99Y132
+	Site: SLICE_X99Y133
+	Site: SLICE_X99Y134
+	Site: SLICE_X39Y129
+	Site: SLICE_X39Y130
+	Site: SLICE_X39Y131
+	Site: SLICE_X39Y132
+	Site: SLICE_X39Y133
+	Site: SLICE_X39Y134
+	Site: SLICE_X34Y135
+	Site: SLICE_X34Y136
+	Site: SLICE_X34Y137
+	Site: SLICE_X34Y138
+	Site: SLICE_X34Y139
+	Site: SLICE_X34Y140
+	Site: SLICE_X40Y8
+	Site: SLICE_X40Y9
+	Site: SLICE_X40Y10
+	Site: SLICE_X40Y11
+	Site: SLICE_X40Y12
+	Site: SLICE_X40Y13
+	Site: SLICE_X87Y77
+	Site: SLICE_X87Y78
+	Site: SLICE_X87Y79
+	Site: SLICE_X87Y80
+	Site: SLICE_X87Y81
+	Site: SLICE_X87Y82
+	Site: SLICE_X42Y70
+	Site: SLICE_X42Y70
+	Site: SLICE_X37Y120
+	Site: SLICE_X37Y120
+	Site: SLICE_X96Y46
+	Site: SLICE_X96Y46
+	Site: SLICE_X91Y92
+	Site: SLICE_X91Y92
+	Site: SLICE_X55Y56
+	Site: SLICE_X55Y56
+	Site: SLICE_X54Y72
+	Site: SLICE_X54Y72
+	Site: SLICE_X61Y78
+	Site: SLICE_X61Y78
+	Site: SLICE_X87Y17
+	Site: SLICE_X87Y17
+	Site: SLICE_X42Y135
+	Site: SLICE_X42Y135
+	Site: SLICE_X66Y109
+	Site: SLICE_X66Y109
+	Site: SLICE_X85Y4
+	Site: SLICE_X85Y4
+	Site: SLICE_X42Y117
+	Site: SLICE_X42Y117
+	Site: SLICE_X104Y104
+	Site: SLICE_X104Y104
+	Site: SLICE_X86Y75
+	Site: SLICE_X86Y75
+	Site: SLICE_X23Y49
+	Site: SLICE_X23Y49
+	Site: SLICE_X105Y93
+	Site: SLICE_X105Y93
+	Site: SLICE_X107Y117
+	Site: SLICE_X107Y117
+	Site: SLICE_X36Y18
+	Site: SLICE_X36Y18
+	Site: SLICE_X99Y126
+	Site: SLICE_X99Y126
+	Site: SLICE_X0Y40
+	Site: SLICE_X0Y40
+	Site: SLICE_X40Y54
+	Site: SLICE_X40Y54
+	Site: SLICE_X113Y27
+	Site: SLICE_X113Y27
+	Site: SLICE_X102Y73
+	Site: SLICE_X102Y73
+	Site: SLICE_X10Y3
+	Site: SLICE_X10Y3
+	Site: SLICE_X6Y13
+	Site: SLICE_X6Y13
+	Site: SLICE_X80Y130
+	Site: SLICE_X80Y130
+	Site: SLICE_X38Y44
+	Site: SLICE_X38Y44
+	Site: SLICE_X42Y60
+	Site: SLICE_X42Y60
+	Site: SLICE_X36Y14
+	Site: SLICE_X36Y14
+	Site: SLICE_X88Y128
+	Site: SLICE_X88Y128
+	Site: SLICE_X112Y99
+	Site: SLICE_X112Y99
+	Site: SLICE_X45Y105
+	Site: SLICE_X45Y105
+	Site: SLICE_X68Y36
+	Site: SLICE_X68Y36
+	Site: SLICE_X9Y46
+	Site: SLICE_X9Y46
+	Site: SLICE_X111Y31
+	Site: SLICE_X111Y31
+	Site: SLICE_X83Y94
+	Site: SLICE_X83Y94
+	Site: SLICE_X43Y118
+	Site: SLICE_X107Y149
+	Site: SLICE_X37Y139
+	Site: SLICE_X83Y20
+	Site: SLICE_X98Y54
+	Site: SLICE_X30Y55
+	Site: SLICE_X108Y68
+	Site: SLICE_X61Y7
+	Site: SLICE_X73Y36
+	Site: SLICE_X65Y63
+	Site: SLICE_X42Y42
+	Site: SLICE_X26Y3
+	Site: SLICE_X68Y39
+	Site: SLICE_X88Y30
+	Site: SLICE_X52Y63
+	Site: SLICE_X52Y67
+	Site: SLICE_X99Y8
+	Site: SLICE_X103Y14
+	Site: SLICE_X32Y21
+	Site: SLICE_X37Y49
+	Site: SLICE_X37Y28
+	Site: SLICE_X2Y37
+	Site: SLICE_X29Y52
+	Site: SLICE_X27Y129
+	Site: SLICE_X86Y30
+	Site: SLICE_X51Y44
+	Site: SLICE_X30Y78
+	Site: SLICE_X37Y93
+	Site: SLICE_X36Y149
+	Site: SLICE_X82Y21
+	Site: SLICE_X56Y9
+	Site: SLICE_X91Y76
+	Site: SLICE_X103Y33
 Printing occupiedDSPSites... (16)
-	Site: DSP48_X1Y0
-	Site: DSP48_X1Y1
-	Site: DSP48_X2Y26
-	Site: DSP48_X2Y27
-	Site: DSP48_X3Y8
-	Site: DSP48_X3Y9
-	Site: DSP48_X0Y6
-	Site: DSP48_X0Y7
-	Site: DSP48_X2Y22
-	Site: DSP48_X2Y23
-	Site: DSP48_X4Y42
-	Site: DSP48_X4Y43
-	Site: DSP48_X3Y30
-	Site: DSP48_X3Y31
+	Site: DSP48_X3Y28
+	Site: DSP48_X3Y29
 	Site: DSP48_X3Y34
 	Site: DSP48_X3Y35
+	Site: DSP48_X4Y26
+	Site: DSP48_X4Y27
+	Site: DSP48_X3Y36
+	Site: DSP48_X3Y37
+	Site: DSP48_X4Y52
+	Site: DSP48_X4Y53
+	Site: DSP48_X3Y24
+	Site: DSP48_X3Y25
+	Site: DSP48_X3Y10
+	Site: DSP48_X3Y11
+	Site: DSP48_X1Y0
+	Site: DSP48_X1Y1
 Printing occupiedRAMSites... (16)
-	Site: DSP48_X1Y0
-	Site: DSP48_X1Y1
-	Site: DSP48_X2Y26
-	Site: DSP48_X2Y27
-	Site: DSP48_X3Y8
-	Site: DSP48_X3Y9
-	Site: DSP48_X0Y6
-	Site: DSP48_X0Y7
-	Site: DSP48_X2Y22
-	Site: DSP48_X2Y23
-	Site: DSP48_X4Y42
-	Site: DSP48_X4Y43
-	Site: DSP48_X3Y30
-	Site: DSP48_X3Y31
+	Site: DSP48_X3Y28
+	Site: DSP48_X3Y29
 	Site: DSP48_X3Y34
 	Site: DSP48_X3Y35
+	Site: DSP48_X4Y26
+	Site: DSP48_X4Y27
+	Site: DSP48_X3Y36
+	Site: DSP48_X3Y37
+	Site: DSP48_X4Y52
+	Site: DSP48_X4Y53
+	Site: DSP48_X3Y24
+	Site: DSP48_X3Y25
+	Site: DSP48_X3Y10
+	Site: DSP48_X3Y11
+	Site: DSP48_X1Y0
+	Site: DSP48_X1Y1
 
 Printing remaining cells in EDIFCellGroups...
 	Group: OBUF... (3)
@@ -14069,35 +14039,35 @@ Printing remaining cells in EDIFCellGroups...
 		Unplaced Cell: VCC: deserializer_inst/VCC
 		Unplaced Cell: VCC: fir_filter_inst/genblk1[0].tap_inst/VCC
 		Unplaced Cell: VCC: fir_filter_inst/genblk1[0].tap_inst/VCC_1
+		Unplaced Cell: VCC: fir_filter_inst/genblk1[7].tap_inst/VCC_1
+		Unplaced Cell: VCC: fir_filter_inst/genblk1[7].tap_inst/VCC
 		Unplaced Cell: VCC: fir_filter_inst/genblk1[1].tap_inst/VCC_1
 		Unplaced Cell: VCC: fir_filter_inst/genblk1[1].tap_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk1[5].tap_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk1[5].tap_inst/VCC_1
 		Unplaced Cell: VCC: fir_filter_inst/genblk1[2].tap_inst/VCC_1
 		Unplaced Cell: VCC: fir_filter_inst/genblk1[2].tap_inst/VCC
 		Unplaced Cell: VCC: fir_filter_inst/genblk1[3].tap_inst/VCC_1
 		Unplaced Cell: VCC: fir_filter_inst/genblk1[3].tap_inst/VCC
 		Unplaced Cell: VCC: fir_filter_inst/genblk1[4].tap_inst/VCC_1
 		Unplaced Cell: VCC: fir_filter_inst/genblk1[4].tap_inst/VCC
-		Unplaced Cell: VCC: fir_filter_inst/genblk1[7].tap_inst/VCC_1
-		Unplaced Cell: VCC: fir_filter_inst/genblk1[7].tap_inst/VCC
-		Unplaced Cell: VCC: fir_filter_inst/genblk1[5].tap_inst/VCC
-		Unplaced Cell: VCC: fir_filter_inst/genblk1[5].tap_inst/VCC_1
 		Unplaced Cell: VCC: fir_filter_inst/genblk1[6].tap_inst/VCC_1
 		Unplaced Cell: VCC: fir_filter_inst/genblk1[6].tap_inst/VCC
 		Unplaced Cell: VCC: fir_filter_inst/genblk2[2].xpm_memory_sprom_inst/xpm_memory_base_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk2[1].xpm_memory_sprom_inst/xpm_memory_base_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk3[5].xpm_memory_spram_inst/xpm_memory_base_inst/VCC
 		Unplaced Cell: VCC: fir_filter_inst/genblk3[4].xpm_memory_spram_inst/xpm_memory_base_inst/VCC
 		Unplaced Cell: VCC: fir_filter_inst/genblk2[4].xpm_memory_sprom_inst/xpm_memory_base_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk3[3].xpm_memory_spram_inst/xpm_memory_base_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk2[3].xpm_memory_sprom_inst/xpm_memory_base_inst/VCC
 		Unplaced Cell: VCC: fir_filter_inst/genblk3[2].xpm_memory_spram_inst/xpm_memory_base_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk2[6].xpm_memory_sprom_inst/xpm_memory_base_inst/VCC
 		Unplaced Cell: VCC: fir_filter_inst/genblk3[1].xpm_memory_spram_inst/xpm_memory_base_inst/VCC
 		Unplaced Cell: VCC: fir_filter_inst/genblk2[5].xpm_memory_sprom_inst/xpm_memory_base_inst/VCC
+		Unplaced Cell: VCC: fir_filter_inst/genblk3[0].xpm_memory_spram_inst/xpm_memory_base_inst/VCC
 		Unplaced Cell: VCC: fir_filter_inst/genblk2[0].xpm_memory_sprom_inst/xpm_memory_base_inst/VCC
 		Unplaced Cell: VCC: fir_filter_inst/genblk3[6].xpm_memory_spram_inst/xpm_memory_base_inst/VCC
 		Unplaced Cell: VCC: fir_filter_inst/genblk2[7].xpm_memory_sprom_inst/xpm_memory_base_inst/VCC
-		Unplaced Cell: VCC: fir_filter_inst/genblk2[1].xpm_memory_sprom_inst/xpm_memory_base_inst/VCC
-		Unplaced Cell: VCC: fir_filter_inst/genblk3[5].xpm_memory_spram_inst/xpm_memory_base_inst/VCC
-		Unplaced Cell: VCC: fir_filter_inst/genblk3[3].xpm_memory_spram_inst/xpm_memory_base_inst/VCC
-		Unplaced Cell: VCC: fir_filter_inst/genblk2[3].xpm_memory_sprom_inst/xpm_memory_base_inst/VCC
-		Unplaced Cell: VCC: fir_filter_inst/genblk2[6].xpm_memory_sprom_inst/xpm_memory_base_inst/VCC
-		Unplaced Cell: VCC: fir_filter_inst/genblk3[0].xpm_memory_spram_inst/xpm_memory_base_inst/VCC
 		Unplaced Cell: VCC: fir_filter_inst/genblk3[7].xpm_memory_spram_inst/xpm_memory_base_inst/VCC
 	Group: IBUF... (6)
 		Unplaced Cell: IBUF: i_din_IBUF_inst
@@ -14117,48 +14087,48 @@ Printing remaining cells in EDIFCellGroups...
 		Unplaced Cell: GND: fir_filter_inst/genblk2[2].xpm_memory_sprom_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk1[0].tap_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk1[0].tap_inst/GND_1
+		Unplaced Cell: GND: fir_filter_inst/genblk1[7].tap_inst/GND_1
+		Unplaced Cell: GND: fir_filter_inst/genblk1[7].tap_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk2[1].xpm_memory_sprom_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk3[5].xpm_memory_spram_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk3[4].xpm_memory_spram_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk1[1].tap_inst/GND_1
 		Unplaced Cell: GND: fir_filter_inst/genblk1[1].tap_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk2[4].xpm_memory_sprom_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk3[3].xpm_memory_spram_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk1[5].tap_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk1[5].tap_inst/GND_1
+		Unplaced Cell: GND: fir_filter_inst/genblk2[3].xpm_memory_sprom_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk1[2].tap_inst/GND_1
 		Unplaced Cell: GND: fir_filter_inst/genblk1[2].tap_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk3[2].xpm_memory_spram_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk2[6].xpm_memory_sprom_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk1[3].tap_inst/GND_1
 		Unplaced Cell: GND: fir_filter_inst/genblk1[3].tap_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk3[1].xpm_memory_spram_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk1[4].tap_inst/GND_1
 		Unplaced Cell: GND: fir_filter_inst/genblk1[4].tap_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk2[5].xpm_memory_sprom_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk3[0].xpm_memory_spram_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk2[0].xpm_memory_sprom_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk3[6].xpm_memory_spram_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk2[7].xpm_memory_sprom_inst/GND
-		Unplaced Cell: GND: fir_filter_inst/genblk1[7].tap_inst/GND_1
-		Unplaced Cell: GND: fir_filter_inst/genblk1[7].tap_inst/GND
-		Unplaced Cell: GND: fir_filter_inst/genblk2[1].xpm_memory_sprom_inst/GND
-		Unplaced Cell: GND: fir_filter_inst/genblk3[5].xpm_memory_spram_inst/GND
-		Unplaced Cell: GND: fir_filter_inst/genblk3[3].xpm_memory_spram_inst/GND
-		Unplaced Cell: GND: fir_filter_inst/genblk1[5].tap_inst/GND
-		Unplaced Cell: GND: fir_filter_inst/genblk1[5].tap_inst/GND_1
-		Unplaced Cell: GND: fir_filter_inst/genblk2[3].xpm_memory_sprom_inst/GND
-		Unplaced Cell: GND: fir_filter_inst/genblk2[6].xpm_memory_sprom_inst/GND
-		Unplaced Cell: GND: fir_filter_inst/genblk3[0].xpm_memory_spram_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk3[7].xpm_memory_spram_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk1[6].tap_inst/GND_1
 		Unplaced Cell: GND: fir_filter_inst/genblk1[6].tap_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk2[2].xpm_memory_sprom_inst/xpm_memory_base_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk2[1].xpm_memory_sprom_inst/xpm_memory_base_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk3[5].xpm_memory_spram_inst/xpm_memory_base_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk3[4].xpm_memory_spram_inst/xpm_memory_base_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk2[4].xpm_memory_sprom_inst/xpm_memory_base_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk3[3].xpm_memory_spram_inst/xpm_memory_base_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk2[3].xpm_memory_sprom_inst/xpm_memory_base_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk3[2].xpm_memory_spram_inst/xpm_memory_base_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk2[6].xpm_memory_sprom_inst/xpm_memory_base_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk3[1].xpm_memory_spram_inst/xpm_memory_base_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk2[5].xpm_memory_sprom_inst/xpm_memory_base_inst/GND
+		Unplaced Cell: GND: fir_filter_inst/genblk3[0].xpm_memory_spram_inst/xpm_memory_base_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk2[0].xpm_memory_sprom_inst/xpm_memory_base_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk3[6].xpm_memory_spram_inst/xpm_memory_base_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk2[7].xpm_memory_sprom_inst/xpm_memory_base_inst/GND
-		Unplaced Cell: GND: fir_filter_inst/genblk2[1].xpm_memory_sprom_inst/xpm_memory_base_inst/GND
-		Unplaced Cell: GND: fir_filter_inst/genblk3[5].xpm_memory_spram_inst/xpm_memory_base_inst/GND
-		Unplaced Cell: GND: fir_filter_inst/genblk3[3].xpm_memory_spram_inst/xpm_memory_base_inst/GND
-		Unplaced Cell: GND: fir_filter_inst/genblk2[3].xpm_memory_sprom_inst/xpm_memory_base_inst/GND
-		Unplaced Cell: GND: fir_filter_inst/genblk2[6].xpm_memory_sprom_inst/xpm_memory_base_inst/GND
-		Unplaced Cell: GND: fir_filter_inst/genblk3[0].xpm_memory_spram_inst/xpm_memory_base_inst/GND
 		Unplaced Cell: GND: fir_filter_inst/genblk3[7].xpm_memory_spram_inst/xpm_memory_base_inst/GND

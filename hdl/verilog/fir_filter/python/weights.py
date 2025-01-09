@@ -70,7 +70,7 @@ def main():
 
     PIPE_DEPTH = int(FILTER_DEPTH / NUM_PIPELINES)
     print(f"weights.py: NUM_PIPELINES = {NUM_PIPELINES}")
-    print(f"weights.py: FILTER_DEPTH = {NUM_PIPELINES}")
+    print(f"weights.py: FILTER_DEPTH = {FILTER_DEPTH}")
     print(f"weights.py: PIPE_DEPTH = {PIPE_DEPTH}")
     SAMPLE_RATE = 44000
     CUTOFF_FREQ = 2000

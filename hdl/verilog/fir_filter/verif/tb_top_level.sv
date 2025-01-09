@@ -100,8 +100,8 @@ module tb_top_level;
         $fclose(fd);
         $finish;
     end // initial
-    always begin
 
+    always begin
         tb_err = 0;
         @(posedge tb_clk);
         wait(tb_dout_valid == 1'b1);

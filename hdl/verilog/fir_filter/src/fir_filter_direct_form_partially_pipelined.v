@@ -16,8 +16,8 @@ module fir_filter_direct_form_partially_pipelined
     output reg o_dout_valid
 );
 
-    localparam WR_ADDR_WIDTH = $clog2(FIR_DEPTH);
     localparam PIPE_DEPTH = FIR_DEPTH / PIPELINES;
+    localparam WR_ADDR_WIDTH = $clog2(PIPE_DEPTH);
     localparam RE_ADDR_WIDTH = $clog2(PIPE_DEPTH);
     localparam WR_SEL_WIDTH = WR_ADDR_WIDTH - RE_ADDR_WIDTH;
 
@@ -42,7 +42,7 @@ module fir_filter_direct_form_partially_pipelined
 
     parameter WAIT_DIN_VALID = 4'b0000,
         WRITE_DIN_SAMPLE = 4'b0001,
-        SHIFT_SAMPLES = 4'b0010,
+        INIT_READ = 4'b0010,
         PROCESS_SAMPLE = 4'b0011,
         WAIT_DOUT_READY = 4'b0100;
     reg [3:0] state = WAIT_DIN_VALID;
@@ -67,9 +67,9 @@ module fir_filter_direct_form_partially_pipelined
             WRITE_DIN_SAMPLE: begin
                 // SIGNAL DATA CONSUMED
                 // WRITE SAMPLE INTO RAM
-                next_state <= SHIFT_SAMPLES;
+                next_state <= INIT_READ;
             end
-            SHIFT_SAMPLES: begin
+            INIT_READ: begin
                 next_state <= PROCESS_SAMPLE;
             end
             PROCESS_SAMPLE: begin
@@ -116,12 +116,6 @@ module fir_filter_direct_form_partially_pipelined
                     sum_rst = 1'b1;
                 end
 
-                SHIFT_SAMPLES: begin
-                    tap_en = 1'b0;
-                    sample_re = 1'b1;
-                    sample_re_addr = sample_wr_addr;
-                end
-
                 WRITE_DIN_SAMPLE: begin
                     // SIGNAL DATA CONSUMED
                     // WRITE SAMPLE INTO RAM
@@ -131,22 +125,30 @@ module fir_filter_direct_form_partially_pipelined
                         sample_wr_addr = sample_wr_addr - 1;
                     else
                         sample_wr_addr = FIR_DEPTH - 1;
-                    sample_re_addr = sample_wr_addr;
                     sample_addr = sample_wr_addr;
+                end
+
+                INIT_READ: begin
+                    // to accomodate read-latency
+                    weight_re = 1'b1;
+                    sample_re = 1'b1;
+                    sample_re_addr = sample_wr_addr;
+                    sample_addr = sample_re_addr;
                 end
 
                 PROCESS_SAMPLE: begin
                     // PIPELINED MAC
-                    weight_re = 1'b1;
-                    sample_re = 1'b1;
                     tap_en = 1'b1;
                     if (sample_re_addr < PIPE_DEPTH - 1)
                         sample_re_addr = sample_re_addr + 1;
                     else
                         sample_re_addr = 0;
-                    if (weight_re_addr < PIPE_DEPTH - 1)
+
+                    if (weight_re_addr < PIPE_DEPTH - 1) begin
+                        weight_re = 1'b1;
+                        sample_re = 1'b1;
                         weight_re_addr = weight_re_addr + 1;
-                    else begin
+                    end else begin
                         weight_re_addr = 0;
                         o_dout_valid = 1'b1;
                         ov_dout = acc;
@@ -166,7 +168,6 @@ module fir_filter_direct_form_partially_pipelined
             endcase
         end
     end
-
 
     genvar i;
     generate
@@ -244,7 +245,7 @@ module fir_filter_direct_form_partially_pipelined
             .MEMORY_INIT_FILE( full_name ),     // String
             .MEMORY_INIT_PARAM("0"),       // String
             .MEMORY_OPTIMIZATION("false"),  // String
-            .MEMORY_PRIMITIVE("ultra"),     // String
+            .MEMORY_PRIMITIVE("block"),     // String
             .MEMORY_SIZE(PIPE_DEPTH * DATA_WIDTH),            // DECIMAL
             .MESSAGE_CONTROL(0),           // DECIMAL
             .RAM_DECOMP("auto"),           // String
@@ -299,7 +300,7 @@ module fir_filter_direct_form_partially_pipelined
             .MEMORY_INIT_FILE("none"),     // String
             .MEMORY_INIT_PARAM("0"),       // String
             .MEMORY_OPTIMIZATION("false"),  // String
-            .MEMORY_PRIMITIVE("ultra"),     // String
+            .MEMORY_PRIMITIVE("block"),     // String
             .MEMORY_SIZE(PIPE_DEPTH * DATA_WIDTH),            // DECIMAL
             .MESSAGE_CONTROL(0),           // DECIMAL
 

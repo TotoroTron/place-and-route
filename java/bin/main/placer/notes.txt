@@ -1,0 +1,88 @@
+net i_rst_IBUF can be fully routed via the interactive router.
+however, route_design will not route it.
+possibly it first attempts to route the leaf (lowest) level nets first
+
+
+*************
+
+Command: route_design -nets [get_nets {{fir_filter_inst/genblk1[1].tap_inst/tap_en} {fir_filter_inst/genblk1[3].tap_inst/tap_en} {fir_filter_inst/genblk1[5].tap_inst/tap_en} {fir_filter_inst/genblk1[0].tap_inst/tap_en} {fir_filter_inst/genblk1[6].tap_inst/tap_en} {fir_filter_inst/genblk1[7].tap_inst/tap_en} {fir_filter_inst/genblk1[4].tap_inst/tap_en} {fir_filter_inst/genblk1[2].tap_inst/tap_en} fir_filter_inst/tap_en}]
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command route_design
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+Starting Interactive Router Task
+INFO: [Route 35-47] Routing for 1 net will be attempted.
+INFO: [Route 35-307] 1542 nets already restored were skipped.
+Post Restoration Checksum: NetGraph: 0 | NumContArr: 0 | Constraints: 0 | Timing: 0
+
+Phase 1 Router Initialization
+Phase 1 Router Initialization | Checksum: 17cae3d8c
+
+Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.05 . Memory (MB): peak = 38752.121 ; gain = 0.000 ; free physical = 3314 ; free virtual = 21939
+CRITICAL WARNING: [Route 35-276] Interactive router failed to route 1  net.
+Resolution: Run report_route_status and review the logfile to identify routing failures.
+
+Unroutable connection Types:
+----------------------------
+Type 1 : SLICEL.AQ->SLICEL.CE
+-----Num Open nets: 7
+-----Representative Net: Net[689] fir_filter_inst/tap_en
+-----SLICE_X27Y35.AQ -> SLICE_X40Y69.CE
+-----Driver Term: fir_filter_inst/tap_en_reg/Q Load Term [2912]: fir_filter_inst/genblk1[2].tap_inst/ov_sum_reg[20]/CE
+Ending Interactive Router Task | Checksum: 22355f8a3
+
+Time (s): cpu = 00:00:00.11 ; elapsed = 00:00:00.1 . Memory (MB): peak = 38752.121 ; gain = 0.000 ; free physical = 3314 ; free virtual = 21939
+INFO: [Common 17-83] Releasing license: Implementation
+10 Infos, 0 Warnings, 1 Critical Warnings and 0 Errors encountered.
+route_design failed
+
+*************
+
+we are now encountering the limitations of the vivado router in digesting our random placement...
+
+Unroutable connection Types:
+----------------------------
+    Type 1 : SLICEL.AQ->SLICEL.CE
+
+
+Is this a generic statement for all AQ-CE?
+Why can't the output of a flip-flop drive the CE of another flip-flop?
+    => not true, some CLBs CEs are correctly routed, so wtf?
+
+either some pins are not meant to be connected, 
+OR,
+switchboxes are to congested to connect them (very unlikely for a design using less than 2% of total CLBs).
+
+READ:
+https://adaptivesupport.amd.com/s/article/66823?language=en_US
+https://adaptivesupport.amd.com/s/question/0D52E00006hpJhaSAE/vivado-not-using-local-ilogic-inversion-leading-to-unroutable-design?language=en_US
+
+
+TURNS OUT:
+    Using only default route_design tcl command allows the CE sitepin's port on the switchbox to get "stolen" by LUT sitepins.
+    Using the interactive router, unrouting the LUT sitepin thief, routing the CE net, the rerouting the LUT sitepin at another switchbox port solves the routing error completely.
+    Each LUT input pin has many ports on the switchbox.
+    CE pin only has one port on the switchbox, so it should be given higher priority.
+    Need to use route_design -nets <args> to force it to route Flip Flop nets before routing LUT nets.
+
+
+# report_route_status -show_all
+Design Route Status
+                                               :      # nets :
+   ------------------------------------------- : ----------- :
+   # of logical nets.......................... :        2753 :
+       # of nets not needing routing.......... :        1211 :
+           # of internally routed nets........ :         581 :
+           # of nets with no loads............ :         630 :
+       # of routable nets..................... :        1542 :
+           # of fully routed nets............. :        1542 :
+       # of nets with routing errors.......... :           0 :
+   ------------------------------------------- : ----------- :
+
+# write_checkpoint -force $routed_dcp

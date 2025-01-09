@@ -348,6 +348,13 @@ public class PlacerPackingSiteCentric extends Placer {
             Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
         List<EDIFHierCellInst> visitedDSPs = new ArrayList<>();
         List<Pair<EDIFHierCellInst, EDIFHierCellInst>> pairs = new ArrayList<>();
+
+        if (EDIFCellGroups.get("DSP48E1") == null) {
+            writer.write("\nWARNING: This design has zero DSP48E1 cells!\n");
+            System.out.println("WARNING: This design has zero DSP48E1 cells!");
+            return pairs;
+        }
+
         for (EDIFHierCellInst DSP_CIN : EDIFCellGroups.get("DSP48E1")) {
             List<EDIFHierPortInst> pcins = DSP_CIN.getHierPortInsts().stream()
                     .filter(ehpi -> ehpi.getPortInst().getName().contains("PCIN"))
@@ -365,7 +372,9 @@ public class PlacerPackingSiteCentric extends Placer {
             if (DSP_COUT_SET.size() < 1)
                 continue;
             if (DSP_COUT_SET.size() > 1) {
-                writer.write("WARNING: DSP Cell " + DSP_CIN.getFullHierarchicalInstName()
+                System.out.println("WARNING: DSP Cell " + DSP_CIN.getFullHierarchicalInstName()
+                        + " has multiple DSP cells on PCIN bus!");
+                writer.write("\nWARNING: DSP Cell " + DSP_CIN.getFullHierarchicalInstName()
                         + " has multiple DSP cells on PCIN bus!");
             }
             EDIFHierCellInst DSP_COUT = DSP_COUT_SET.stream().collect(Collectors.toList()).get(0);
@@ -414,6 +423,12 @@ public class PlacerPackingSiteCentric extends Placer {
         List<Site> compatibleSites = new ArrayList<Site>(
                 Arrays.asList(device.getAllCompatibleSites(SiteTypeEnum.RAMB18E1)));
         compatibleSites.removeAll(occupiedRAMSites);
+
+        if (EDIFCellGroups.get("RAMB18E1") == null) {
+            writer.write("\nWARNING: This design has zero RAMB18E1 cells!\n");
+            System.out.println("WARNING: This design has zero RAMB18E1 cells!");
+            return;
+        }
 
         while (true) {
             Tile selectedTile = compatibleSites.get(rand.nextInt(compatibleSites.size())).getTile();
