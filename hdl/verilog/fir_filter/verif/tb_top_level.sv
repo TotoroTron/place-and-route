@@ -1,5 +1,5 @@
 
-`timescale 1ps/1ps
+`timescale 1ns/1ps
 
 module tb_top_level;
 
@@ -56,7 +56,7 @@ module tb_top_level;
 
 
 
-    always #50000 tb_clk = ~tb_clk; // always 50 ns
+    always #50 tb_clk = ~tb_clk; // always 50 ns
     initial begin
         $dumpfile("waveform.vcd");
         $dumpvars;

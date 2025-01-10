@@ -56,7 +56,7 @@ if [ "$start_stage" == "sim_functional" ]; then
 
     # generate sine.mem and weights.mem
     cd "$DESIGN_DIR/python"
-    python3 sine.py
+    # python3 sine.py
     python3 weights.py "$FILTER_DEPTH" "$NUM_PIPELINES"
     python3 generate_xpm_spram.py "$NUM_PIPELINES"
 
@@ -95,7 +95,7 @@ EOL
 
     # Elaboration
     xelab -debug typical -top "tb_$TOP_LEVEL" -snapshot my_tb_snap \
-        -timescale 1ps/1ps \
+        -timescale 1ns/1ps \
         -L xpm # -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver
 
     check_exit_status "xelab"
@@ -175,7 +175,7 @@ EOL
         -debug typical -relax -mt 8 -maxdelay \
         -transport_int_delays \
         -pulse_r 0 -pulse_int_r 0 -pulse_int_e 0 \
-        -timescale 1ps/1ps \
+        -timescale 1ns/1ps \
         -snapshot "${TOP_LEVEL}_time_impl" -top "tb_${TOP_LEVEL}" \
         -sdfroot "$DESIGN_DIR/sim_postroute/${TOP_LEVEL}_time_impl.sdf" \
         -log elaborate.log \
