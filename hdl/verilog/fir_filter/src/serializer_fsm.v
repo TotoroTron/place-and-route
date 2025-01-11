@@ -65,13 +65,18 @@ module serializer_fsm
         if (i_rst) begin
             o_ready <= 1'b0;
             o_dout_valid <= 1'b0;
+            counter <= 0;
+            shift_reg <= 0;
         end else if (i_en) begin
-            o_dout_valid <= 1'b0;
             o_ready <= 1'b0;
-            case (state) 
+            o_dout_valid <= 1'b0;
+            counter <= 0;
+            shift_reg <= 0;
+            case (state)
                 S0: begin
                     // WAIT FOR DIN VALID
                     shift_reg <= 0;
+                    counter <= 0;
                 end
                 S1: begin
                     // SIGNAL DIN CONSUMED

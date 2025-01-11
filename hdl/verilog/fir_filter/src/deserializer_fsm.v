@@ -62,14 +62,16 @@ module deserializer_fsm
 
     // OUTPUT LOGIC
     always @(posedge i_clk) begin
-        o_ready <= 1'b0;
-        o_dout_valid <= 1'b0;
         if (i_rst) begin
             o_ready <= 1'b0;
             o_dout_valid <= 1'b0;
             counter <= 0;
             shift_reg <= 0;
         end else if (i_en) begin
+            o_ready <= 1'b0;
+            o_dout_valid <= 1'b0;
+            counter <= 0;
+            shift_reg <= 0;
             case (state)
                 S0: begin
                     // WAIT FOR DIN VALID
@@ -93,6 +95,7 @@ module deserializer_fsm
                 S3: begin
                     // WAIT FOR RECEIVER TO CONSUME DOUT
                     o_dout_valid <= 1'b1;
+                    counter <= 0;
                 end
                 default: begin
                 end

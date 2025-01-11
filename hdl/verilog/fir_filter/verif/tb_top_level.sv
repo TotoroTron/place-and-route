@@ -26,7 +26,6 @@ module tb_top_level;
     reg [DATA_WIDTH-1:0] tb_word_out;
     reg [ADDR_WIDTH-1:0] tb_addr;
     int num_errors = 0;
-    reg tb_err;
     integer fd; // file writer
 
     // instantiation unit under test 
@@ -69,7 +68,7 @@ module tb_top_level;
         tb_ready = 0;
         @(posedge tb_clk);
         // REPEAT THE SIGNAL 4 TIMES
-        for (int i = 0; i < 1; i = i + 1) begin
+        for (int i = 0; i < 4; i = i + 1) begin
             tb_rst = 0;
             tb_en = 1;
             // FOR EACH SAMPLE IN SIGNAL
@@ -80,7 +79,8 @@ module tb_top_level;
                 tb_en = 1;
                 tb_rst = 0;
                 tb_din_valid = 1;
-                wait(dut_ready == 1'b1);
+                wait(dut_ready == 1'b1); // data is consumed 1 clock after data valid is asserted
+                @(posedge tb_clk);
                 // @(posedge tb_clk iff(dut_ready == 1'b1));
                 // FOR EACH BIT IN SAMPLE
                 for (int j = 0; j < DATA_WIDTH; j++) begin // LSB first
@@ -102,7 +102,6 @@ module tb_top_level;
     end // initial
 
     always begin
-        tb_err = 0;
         @(posedge tb_clk);
         wait(tb_dout_valid == 1'b1);
         // @(posedge tb_clk iff(dut_ready == 1'b1));
@@ -112,10 +111,10 @@ module tb_top_level;
             serial_word[i] = tb_dout;
             @(posedge tb_clk);
         end
+        @(posedge tb_clk);
         tb_ready = 0;
         tb_word_out = serial_word;
         $fdisplay(fd, "%h", tb_word_out);
-        tb_err = 1;
         @(posedge tb_clk);
     end
 
