@@ -71,7 +71,7 @@ module serializer_fsm
             o_ready <= 1'b0;
             o_dout_valid <= 1'b0;
             counter <= 0;
-            shift_reg <= 0;
+            shift_reg <= shift_reg;
             case (state)
                 S0: begin
                     // WAIT FOR DIN VALID
@@ -96,6 +96,7 @@ module serializer_fsm
                     end else begin
                         o_dout_valid <= 1'b0;
                         counter <= 0;
+                        shift_reg <= 0;
                     end
                 end
                 default: begin
