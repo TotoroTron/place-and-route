@@ -40,14 +40,14 @@ module fir_filter_direct_form_partially_pipelined
     reg [DATA_WIDTH-1:0] acc;
     reg sum_rst;
 
-    parameter WAIT_DIN_VALID = 4'b0000,
-        WRITE_DIN_SAMPLE = 4'b0001,
-        INIT_READ = 4'b0010,
-        PROCESS_SAMPLE = 4'b0011,
-        WAIT_DOUT_READY = 4'b0100;
+    parameter 
+        WAIT_DIN_VALID      = 4'b0000,
+        WRITE_DIN_SAMPLE    = 4'b0001,
+        INIT_READ           = 4'b0010,
+        PROCESS_SAMPLE      = 4'b0011,
+        WAIT_DOUT_READY     = 4'b0100;
     reg [3:0] state = WAIT_DIN_VALID;
     reg [3:0] next_state;
-
 
     // STATE REGISTER
     always @(posedge i_clk) begin
@@ -97,6 +97,8 @@ module fir_filter_direct_form_partially_pipelined
             sample_we = 1'b0;
             sample_re = 1'b0;
             weight_re = 1'b0;
+            tap_en = 1'b0;
+            sum_rst = 1'b0;
             sample_wr_addr = 0;
             sample_re_addr = 0;
             weight_re_addr = 0;
@@ -105,6 +107,7 @@ module fir_filter_direct_form_partially_pipelined
         end else begin
             // Default assignments
             o_ready = 1'b0;
+            o_dout_valid = 1'b0;
             sample_we = 1'b0;
             sample_re = 1'b0;
             weight_re = 1'b0;
