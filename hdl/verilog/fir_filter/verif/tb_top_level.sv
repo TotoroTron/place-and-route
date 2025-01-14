@@ -1,11 +1,13 @@
 
 `timescale 1ns/1ps
 
-module tb_top_level;
+module tb_top_level
+#(
+    parameter DATA_WIDTH = 24,
+    parameter FIR_DEPTH = 256,
+    parameter NUM_PIPELINES = 8
+)();
 
-    localparam DATA_WIDTH = 24;
-    localparam FIR_DEPTH = 256;
-    localparam NUM_PIPELINES = 8;
     reg tb_clk;
     reg tb_rst;
     reg tb_en;

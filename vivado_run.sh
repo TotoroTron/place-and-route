@@ -25,14 +25,6 @@ check_exit_status() {
     fi
 }
 
-# Vivado Synthesis Stage
-if [ "$start_stage" == "synth" ] || [ "$start_stage" == "all" ]; then
-    echo "Running Vivado synthesis..."
-    vivado -mode batch -source $SYNTH_TCL -nolog -nojournal
-    check_exit_status "Vivado synthesis"
-    echo "Vivado synthesis completed. Check 'synthesized.dcp'."
-fi
-
 # Vivado Placement Stage
 if [ "$start_stage" == "place" ] || [ "$start_stage" == "all" ]; then
     echo "Running Vivado place..."

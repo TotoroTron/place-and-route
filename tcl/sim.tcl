@@ -1,5 +1,8 @@
-set design "fir_filter"
-set top_level "top_level"
+# set design "fir_filter"
+# set top_level "top_level"
+
+set design [$lindex $argv 0]
+set top_level [$lindex $argv 1]
 
 set root_dir "/home/bcheng/workspace/dev/place-and-route"
 set dcp_file "$root_dir/outputs/routed.dcp" 

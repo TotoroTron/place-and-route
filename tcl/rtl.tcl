@@ -1,4 +1,7 @@
-set design "fir_filter"
+# set design "fir_filter"
+
+set design [$lindex $argv 0]
+set top_params [join [lrange $argv 1 end] " "]
 
 set root_dir "/home/bcheng/workspace/dev/place-and-route"
 set rtl_synth "$root_dir/outputs/rtl_synth.dcp" 
@@ -28,7 +31,6 @@ foreach file $src_files {
 set xdc_file $xdc_dir/constraints.xdc
 read_xdc $xdc_file
 
-set top_params [join $argv " "]
 puts "rtl.tcl: Received parameters: $top_params"
 
 set cmd "synth_design -mode out_of_context -part xc7z020clg400-1 -top top_level -rtl -rtl_skip_mlo -name rtl_1 $top_params"

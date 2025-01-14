@@ -1,4 +1,7 @@
-set design "fir_filter"
+# set design "fir_filter"
+
+set design [$lindex $argv 0]
+set top_params [join [lrange $argv 1 end] " "]
 
 set root_dir "/home/bcheng/workspace/dev/place-and-route"
 set synthesized_dcp "$root_dir/outputs/synthesized.dcp" 
@@ -28,7 +31,9 @@ foreach file $src_files {
 set xdc_file $xdc_dir/constraints.xdc
 read_xdc $xdc_file
 
-set top_params [join $argv " "]
+set design [$lindex $argv 0]
+
+set top_params [join [lrange $argv 1 end] " "]
 puts "synth.tcl: Received parameters: $top_params"
 
 set cmd "synth_design -mode out_of_context -part xc7z020clg400-1 -top top_level $top_params"

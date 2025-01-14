@@ -3,9 +3,6 @@
 DESIGN="fir_filter"
 TOP_LEVEL="top_level"
 
-FILTER_DEPTH=256
-NUM_PIPELINES=8
-
 export XILINX_VIVADO=/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2
 export PATH="$PATH:$XILINX_VIVADO/bin"
 
@@ -39,7 +36,7 @@ while IFS= read -r line; do
     # skip empty lines or lines starting with comment (#)
     [[ -z "$line" || "$line" == \#* ]] && continue
     # append parameter as a -generic_top argument
-    XELAB_TOP_PARAMS+="-generic_top \"$line\" "
+    XELAB_TOP_PARAMS+="-generic_top $line "
     SYNTH_TOP_PARAMS+="-generic $line "
 done <"$TOP_PARAMS_FILE"
 
@@ -63,11 +60,12 @@ fi
 # Vivado RTL Synthesis Stage
 if [ "$start_stage" == "rtl" ]; then
     echo "Running Vivado RTL synthesis..."
-    vivado -mode batch -source $RTL_TCL -nolog -nojournal -tclargs $SYNTH_TOP_PARAMS
+    vivado -mode batch -source $RTL_TCL -nolog -nojournal -tclargs $TOP_LEVEL $SYNTH_TOP_PARAMS
     check_exit_status "Vivado RTL"
     echo "Vivado synthesis completed. Starting GUI."
 fi
 
+# Functional Simulation
 if [ "$start_stage" == "sim_functional" ]; then
     echo "Running Functional Simulation..."
     # generate sine.mem and weights.mem
@@ -114,7 +112,6 @@ EOL
         -L xpm \
         $XELAB_TOP_PARAMS
     # -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver
-
     check_exit_status "xelab"
 
     # Simulation
@@ -163,7 +160,7 @@ if [ "$start_stage" == "sim_postroute" ] || [ "$start_stage" == "all" ]; then
     # cd $PROJ_DIR
 
     echo "Running Post-Implementation Timing Simulation..."
-    vivado -mode batch -source $SIM_TCL -nolog -nojournal
+    vivado -mode batch -source $SIM_TCL -nolog -nojournal -tclargs $DESIGN $TOP_LEVEL
     check_exit_status "Vivado sim"
 
     cd "$DESIGN_DIR/python"
