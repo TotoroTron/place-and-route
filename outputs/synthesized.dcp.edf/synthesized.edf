@@ -4,7 +4,7 @@
   (keywordmap (keywordlevel 0))
 (status
  (written
-  (timeStamp 2025 01 12 17 44 47)
+  (timeStamp 2025 01 14 15 24 06)
   (program "Vivado" (version "2023.2.2"))
   (comment "Built on 'Thu Feb  8 23:52:05 MST 2024'")
   (comment "Built by 'xbuild'")
@@ -42370,7 +42370,7 @@
 
            (property DATA_WIDTH (integer 24))
            (property FIR_DEPTH (integer 256))
-           (property PIPELINES (integer 8))
+           (property NUM_PIPELINES (integer 8))
      )
    )
   )

@@ -52,7 +52,7 @@ check_exit_status() {
 # Vivado Synthesis Stage
 if [ "$start_stage" == "synth" ] || [ "$start_stage" == "all" ]; then
     echo "Running Vivado synthesis..."
-    vivado -mode batch -source $SYNTH_TCL -nolog -nojournal -tclargs $SYNTH_TOP_PARAMS
+    vivado -mode batch -source $SYNTH_TCL -nolog -nojournal -tclargs $DESIGN $SYNTH_TOP_PARAMS
     check_exit_status "Vivado synthesis"
     echo "Vivado synthesis completed. Check 'synthesized.dcp'."
 fi

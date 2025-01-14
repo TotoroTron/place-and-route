@@ -1,6 +1,6 @@
 # set design "fir_filter"
 
-set design [$lindex $argv 0]
+set design [lindex $argv 0]
 set top_params [join [lrange $argv 1 end] " "]
 
 set root_dir "/home/bcheng/workspace/dev/place-and-route"

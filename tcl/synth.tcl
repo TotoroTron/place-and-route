@@ -1,6 +1,6 @@
 # set design "fir_filter"
 
-set design [$lindex $argv 0]
+set design [lindex $argv 0]
 set top_params [join [lrange $argv 1 end] " "]
 
 set root_dir "/home/bcheng/workspace/dev/place-and-route"
@@ -30,8 +30,6 @@ foreach file $src_files {
 # read in constraints file
 set xdc_file $xdc_dir/constraints.xdc
 read_xdc $xdc_file
-
-set design [$lindex $argv 0]
 
 set top_params [join [lrange $argv 1 end] " "]
 puts "synth.tcl: Received parameters: $top_params"
