@@ -107,6 +107,7 @@ module tb_top_level
         wait(tb_dout_valid == 1'b1);
         tb_ready = 1;
         serial_word = 0;
+        @(posedge tb_clk);
         for (int i = 0; i < DATA_WIDTH; i++) begin
             serial_word[i] = tb_dout;
             @(posedge tb_clk);
