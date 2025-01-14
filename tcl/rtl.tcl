@@ -28,7 +28,13 @@ foreach file $src_files {
 set xdc_file $xdc_dir/constraints.xdc
 read_xdc $xdc_file
 
-synth_design -mode out_of_context -part xc7z020clg400-1 -top top_level \
-    -rtl -rtl_skip_mlo -name rtl_1
+set top_params [join $argv " "]
+puts "rtl.tcl: Received parameters: $top_params"
+
+set cmd "synth_design -mode out_of_context -part xc7z020clg400-1 -top top_level -rtl -rtl_skip_mlo -name rtl_1 $top_params"
+puts "rtl.tcl: Running command: $cmd"
+
+# execute synth_design command
+eval $cmd
 
 start_gui

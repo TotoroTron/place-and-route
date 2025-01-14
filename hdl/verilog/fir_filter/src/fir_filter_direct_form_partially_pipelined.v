@@ -3,7 +3,7 @@ module fir_filter_direct_form_partially_pipelined
 #(
     parameter DATA_WIDTH = 24,
     parameter FIR_DEPTH = 16,
-    parameter PIPELINES = 1
+    parameter NUM_PIPELINES = 1
 )(
     input wire i_clk,
     input wire i_rst,
@@ -16,7 +16,7 @@ module fir_filter_direct_form_partially_pipelined
     output reg o_dout_valid
 );
 
-    localparam PIPE_DEPTH = FIR_DEPTH / PIPELINES;
+    localparam PIPE_DEPTH = FIR_DEPTH / NUM_PIPELINES;
     localparam WR_ADDR_WIDTH = $clog2(PIPE_DEPTH);
     localparam RE_ADDR_WIDTH = $clog2(PIPE_DEPTH);
     localparam WR_SEL_WIDTH = WR_ADDR_WIDTH - RE_ADDR_WIDTH;
@@ -25,18 +25,18 @@ module fir_filter_direct_form_partially_pipelined
 
     reg sample_we = 1'b0;
     reg sample_re = 1'b0;
-    wire [DATA_WIDTH-1:0] sample_data [PIPELINES-1:0];
+    wire [DATA_WIDTH-1:0] sample_data [NUM_PIPELINES-1:0];
     reg [RE_ADDR_WIDTH-1:0] sample_re_addr = 0;
     reg [WR_ADDR_WIDTH-1:0] sample_wr_addr = 0;
     reg [WR_ADDR_WIDTH-1:0] sample_addr = 0;
 
     reg weight_re = 1'b0;
     reg [RE_ADDR_WIDTH-1:0] weight_re_addr = 0;
-    wire [DATA_WIDTH-1:0] weight_data [PIPELINES-1:0];
+    wire [DATA_WIDTH-1:0] weight_data [NUM_PIPELINES-1:0];
 
     reg tap_en;
-    wire [DATA_WIDTH-1:0] tap_dout [PIPELINES-1:0];
-    wire [DATA_WIDTH-1:0] part_sum [PIPELINES-1:0];
+    wire [DATA_WIDTH-1:0] tap_dout [NUM_PIPELINES-1:0];
+    wire [DATA_WIDTH-1:0] part_sum [NUM_PIPELINES-1:0];
     reg [DATA_WIDTH-1:0] acc;
     reg sum_rst;
 
@@ -174,7 +174,7 @@ module fir_filter_direct_form_partially_pipelined
 
     genvar i;
     generate
-        for (i = 0; i < PIPELINES; i = i + 1) begin
+        for (i = 0; i < NUM_PIPELINES; i = i + 1) begin
             tap_transposed #(
                 .DATA_WIDTH(DATA_WIDTH)
             ) tap_inst (
@@ -193,7 +193,7 @@ module fir_filter_direct_form_partially_pipelined
     integer k;
     always @(*) begin
         acc = 0;
-        for (k = 0; k < PIPELINES; k = k + 1) begin
+        for (k = 0; k < NUM_PIPELINES; k = k + 1) begin
             acc = acc + part_sum[k];
         end
     end
@@ -203,7 +203,7 @@ module fir_filter_direct_form_partially_pipelined
     // `include "generate_xpm_spram.vh"
 
     generate
-    for (i = 0; i < PIPELINES; i = i + 1) begin
+    for (i = 0; i < NUM_PIPELINES; i = i + 1) begin
 
         // https://stackoverflow.com/questions/58833613/how-to-generate-a-string-from-a-genvar-value-in-a-for-loop
         // https://stackoverflow.com/questions/70439991/how-to-display-string-on-verilog
@@ -284,9 +284,9 @@ module fir_filter_direct_form_partially_pipelined
     end
     endgenerate
 
-    wire [DATA_WIDTH-1:0] spram_din [PIPELINES-1:0];
+    wire [DATA_WIDTH-1:0] spram_din [NUM_PIPELINES-1:0];
     generate
-    for (i = 0; i < PIPELINES; i = i + 1) begin
+    for (i = 0; i < NUM_PIPELINES; i = i + 1) begin
         assign spram_din[i] = (i == 0) ? iv_din : sample_data[i-1];
         // xpm_memory_spram: Single Port RAM
         // Xilinx Parameterized Macro, version 2024.1

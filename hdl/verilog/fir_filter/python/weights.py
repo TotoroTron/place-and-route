@@ -60,13 +60,42 @@ def write_verilog(filename, weights, data_width):
     
     print("Verilog header generated as weights.vh.")
 
+# Function to parse the config file into a dictionary
+def parse_config(file_path):
+    parameters = {}
+    try:
+        with open(file_path, "r") as f:
+            for line in f:
+                # Skip empty lines and comments
+                line = line.strip()
+                if not line or line.startswith("#"):
+                    continue
+                
+                # Split key and value
+                key, value = line.split("=", 1)
+                parameters[key.strip()] = int(value.strip())  # Convert to integer
+    except FileNotFoundError:
+        raise FileNotFoundError(f"Config file not found: {file_path}")
+    except ValueError as e:
+        raise ValueError(f"Error parsing line in config file: {line}. Details: {e}")
+    return parameters
 
 def main():
 
-    # Parameters
-    FILTER_DEPTH = int(sys.argv[1])
-    NUM_PIPELINES = int(sys.argv[2])
-    DATA_WIDTH = 24          # Number of bits for each coefficient
+    DESIGN_DIR = "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/"
+    PARAMS_FILE = DESIGN_DIR + "parameters_top_level.txt"
+    SRC_DIR = DESIGN_DIR + "src/" # verilog sources
+
+    # parse the config file
+    parameters = parse_config(PARAMS_FILE)
+    DATA_WIDTH = parameters.get("DATA_WIDTH", None)
+    FILTER_DEPTH = parameters.get("FIR_DEPTH", None)
+    NUM_PIPELINES = parameters.get("NUM_PIPELINES", None)
+
+    # # Parameters
+    # FILTER_DEPTH = int(sys.argv[1])
+    # NUM_PIPELINES = int(sys.argv[2])
+    # DATA_WIDTH = 24          # Number of bits for each coefficient
 
     PIPE_DEPTH = int(FILTER_DEPTH / NUM_PIPELINES)
     print(f"weights.py: NUM_PIPELINES = {NUM_PIPELINES}")
@@ -79,16 +108,14 @@ def main():
     weights = generate(FILTER_DEPTH, DATA_WIDTH, CUTOFF_FREQ, SAMPLE_RATE)
     print(len(weights))
 
-    design_dir = "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/"
-    src_dir = design_dir + "src/" # verilog sources
 
     for i in range(NUM_PIPELINES):
         weights_subvector = weights[i*PIPE_DEPTH:(i+1)*PIPE_DEPTH]
 
-        mem_fn = src_dir + f"weights_{i:02}.mem"
+        mem_fn = SRC_DIR + f"weights_{i:02}.mem"
         write_mem(mem_fn, weights_subvector, DATA_WIDTH)
 
-        verilog_fn = src_dir + f"weights_{i:02}.vh"
+        verilog_fn = SRC_DIR + f"weights_{i:02}.vh"
         write_verilog(verilog_fn, weights_subvector, DATA_WIDTH)
 
 if __name__ == '__main__':

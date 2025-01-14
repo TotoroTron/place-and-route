@@ -10546,12 +10546,11 @@ LUT Cells (487):
 			sample_addr[4]_i_2/I1
 			sample_addr[4]_i_2/I2
 			sample_addr[4]_i_2/O
-		LUT4: o_dout_valid_i_1__1
-			o_dout_valid_i_1__1/I0
-			o_dout_valid_i_1__1/I1
-			o_dout_valid_i_1__1/I2
-			o_dout_valid_i_1__1/I3
-			o_dout_valid_i_1__1/O
+		LUT3: o_dout_valid_i_1__0
+			o_dout_valid_i_1__0/I0
+			o_dout_valid_i_1__0/I1
+			o_dout_valid_i_1__0/I2
+			o_dout_valid_i_1__0/O
 		LUT4: sample_wr_addr[3]_i_1
 			sample_wr_addr[3]_i_1/I0
 			sample_wr_addr[3]_i_1/I1
@@ -11070,13 +11069,13 @@ LUT Cells (487):
 			shift_reg[14]_i_1__0/I3
 			shift_reg[14]_i_1__0/I4
 			shift_reg[14]_i_1__0/O
-		LUT5: o_dout_valid_i_1__0
-			o_dout_valid_i_1__0/I0
-			o_dout_valid_i_1__0/I1
-			o_dout_valid_i_1__0/I2
-			o_dout_valid_i_1__0/I3
-			o_dout_valid_i_1__0/I4
-			o_dout_valid_i_1__0/O
+		LUT5: o_dout_valid_i_1__1
+			o_dout_valid_i_1__1/I0
+			o_dout_valid_i_1__1/I1
+			o_dout_valid_i_1__1/I2
+			o_dout_valid_i_1__1/I3
+			o_dout_valid_i_1__1/I4
+			o_dout_valid_i_1__1/O
 		LUT6: counter[4]_i_1__0
 			counter[4]_i_1__0/I0
 			counter[4]_i_1__0/I1
@@ -11568,14 +11567,6 @@ LUT Cells (487):
 			ov_sum[12]_i_4__5/I0
 			ov_sum[12]_i_4__5/I1
 			ov_sum[12]_i_4__5/O
-		LUT6: i___0_carry__4_i_4
-			i___0_carry__4_i_4/I0
-			i___0_carry__4_i_4/I1
-			i___0_carry__4_i_4/I2
-			i___0_carry__4_i_4/I3
-			i___0_carry__4_i_4/I4
-			i___0_carry__4_i_4/I5
-			i___0_carry__4_i_4/O
 		LUT2: ov_sum[16]_i_4__5
 			ov_sum[16]_i_4__5/I0
 			ov_sum[16]_i_4__5/I1
@@ -12706,6 +12697,14 @@ LUT Cells (487):
 			i___0_carry__4_i_3/I1
 			i___0_carry__4_i_3/I2
 			i___0_carry__4_i_3/O
+		LUT6: i___0_carry__4_i_4
+			i___0_carry__4_i_4/I0
+			i___0_carry__4_i_4/I1
+			i___0_carry__4_i_4/I2
+			i___0_carry__4_i_4/I3
+			i___0_carry__4_i_4/I4
+			i___0_carry__4_i_4/I5
+			i___0_carry__4_i_4/O
 		LUT3: i___0_carry__4_i_1
 			i___0_carry__4_i_1/I0
 			i___0_carry__4_i_1/I1
@@ -13112,7 +13111,7 @@ Printing CARRYChains... (11)
 		 FF: Null!
 		LUT: fir_filter_inst/genblk1[6].tap_inst/i___0_carry__4_i_5
 		 FF: Null!
-		LUT: fir_filter_inst/genblk1[7].tap_inst/i___0_carry__4_i_4
+		LUT: fir_filter_inst/genblk1[6].tap_inst/i___0_carry__4_i_4
 		 FF: Null!
 	Anchor Carry: fir_filter_inst/genblk1[0].tap_inst/ov_sum_reg[0]_i_1__5
 		LUT: fir_filter_inst/genblk1[0].tap_inst/ov_sum[0]_i_5__6
@@ -13570,7 +13569,7 @@ Printing Unique CE-R pairs... (9)
 
 Printing Unique CE-R pairs with associated FF Cells... (9)
 	CENet: serializer_inst/i_en_IBUF, RNet: serializer_inst/i_rst_IBUF with cells... (9)
-		LUT: serializer_inst/o_dout_valid_i_1__0 => FF: serializer_inst/o_dout_valid_reg
+		LUT: serializer_inst/o_dout_valid_i_1__1 => FF: serializer_inst/o_dout_valid_reg
 		LUT: serializer_inst/counter[0]_i_1__0 => FF: serializer_inst/counter_reg[0]
 		LUT: serializer_inst/counter[4]_i_1__0 => FF: serializer_inst/counter_reg[4]
 		LUT: serializer_inst/counter[1]_i_1__0 => FF: serializer_inst/counter_reg[1]
@@ -13586,7 +13585,7 @@ Printing Unique CE-R pairs with associated FF Cells... (9)
 		LUT: fir_filter_inst/sample_wr_addr[1]_i_1 => FF: fir_filter_inst/sample_wr_addr_reg[1]
 		LUT: fir_filter_inst/sample_wr_addr[0]_i_1 => FF: fir_filter_inst/sample_wr_addr_reg[0]
 	CENet: fir_filter_inst/<const1>, RNet: fir_filter_inst/i_rst_IBUF with cells... (8)
-		LUT: fir_filter_inst/o_dout_valid_i_1__1 => FF: fir_filter_inst/o_dout_valid_reg
+		LUT: fir_filter_inst/o_dout_valid_i_1__0 => FF: fir_filter_inst/o_dout_valid_reg
 		LUT: fir_filter_inst/o_ready_i_1__1 => FF: fir_filter_inst/o_ready_reg
 		LUT: fir_filter_inst/FSM_sequential_state[0]_i_1 => FF: fir_filter_inst/FSM_sequential_state_reg[0]
 		LUT: fir_filter_inst/FSM_sequential_state[1]_i_1__0 => FF: fir_filter_inst/FSM_sequential_state_reg[1]
@@ -13888,207 +13887,207 @@ Placing LUT-FF Pair Groups... (9)
 ALL CELL PATTERNS HAVE BEEN PLACED...
 
 Printing occupiedCLBSites... (167)
-	Site: SLICE_X73Y33
-	Site: SLICE_X73Y34
-	Site: SLICE_X73Y35
-	Site: SLICE_X73Y36
-	Site: SLICE_X73Y37
-	Site: SLICE_X73Y38
-	Site: SLICE_X36Y26
-	Site: SLICE_X36Y27
-	Site: SLICE_X36Y28
-	Site: SLICE_X36Y29
-	Site: SLICE_X36Y30
-	Site: SLICE_X36Y31
-	Site: SLICE_X105Y9
-	Site: SLICE_X105Y10
-	Site: SLICE_X105Y11
-	Site: SLICE_X105Y12
-	Site: SLICE_X105Y13
-	Site: SLICE_X105Y14
-	Site: SLICE_X32Y134
-	Site: SLICE_X32Y135
-	Site: SLICE_X32Y136
-	Site: SLICE_X32Y137
-	Site: SLICE_X32Y138
-	Site: SLICE_X32Y139
-	Site: SLICE_X39Y6
-	Site: SLICE_X39Y7
-	Site: SLICE_X39Y8
-	Site: SLICE_X39Y9
-	Site: SLICE_X39Y10
-	Site: SLICE_X39Y11
-	Site: SLICE_X30Y64
-	Site: SLICE_X30Y65
-	Site: SLICE_X30Y66
-	Site: SLICE_X30Y67
-	Site: SLICE_X30Y68
-	Site: SLICE_X30Y69
-	Site: SLICE_X38Y20
-	Site: SLICE_X38Y21
-	Site: SLICE_X38Y22
-	Site: SLICE_X38Y23
-	Site: SLICE_X38Y24
-	Site: SLICE_X38Y25
-	Site: SLICE_X37Y71
-	Site: SLICE_X37Y72
-	Site: SLICE_X37Y73
-	Site: SLICE_X37Y74
-	Site: SLICE_X37Y75
-	Site: SLICE_X37Y76
-	Site: SLICE_X34Y54
-	Site: SLICE_X34Y55
-	Site: SLICE_X34Y56
-	Site: SLICE_X34Y57
-	Site: SLICE_X34Y58
-	Site: SLICE_X34Y59
-	Site: SLICE_X45Y118
-	Site: SLICE_X45Y119
-	Site: SLICE_X45Y120
-	Site: SLICE_X45Y121
-	Site: SLICE_X45Y122
-	Site: SLICE_X45Y123
-	Site: SLICE_X90Y140
-	Site: SLICE_X90Y141
 	Site: SLICE_X90Y142
 	Site: SLICE_X90Y143
 	Site: SLICE_X90Y144
 	Site: SLICE_X90Y145
-	Site: SLICE_X31Y19
-	Site: SLICE_X31Y19
-	Site: SLICE_X92Y138
-	Site: SLICE_X92Y138
-	Site: SLICE_X89Y50
-	Site: SLICE_X89Y50
-	Site: SLICE_X112Y131
-	Site: SLICE_X112Y131
-	Site: SLICE_X62Y73
-	Site: SLICE_X62Y73
-	Site: SLICE_X62Y118
-	Site: SLICE_X62Y118
-	Site: SLICE_X113Y126
-	Site: SLICE_X113Y126
-	Site: SLICE_X38Y44
-	Site: SLICE_X38Y44
-	Site: SLICE_X36Y132
-	Site: SLICE_X36Y132
-	Site: SLICE_X31Y51
-	Site: SLICE_X31Y51
-	Site: SLICE_X47Y108
-	Site: SLICE_X47Y108
-	Site: SLICE_X96Y8
-	Site: SLICE_X96Y8
-	Site: SLICE_X79Y7
-	Site: SLICE_X79Y7
-	Site: SLICE_X75Y49
-	Site: SLICE_X75Y49
-	Site: SLICE_X39Y94
-	Site: SLICE_X39Y94
-	Site: SLICE_X98Y62
-	Site: SLICE_X98Y62
-	Site: SLICE_X35Y135
-	Site: SLICE_X35Y135
-	Site: SLICE_X0Y1
-	Site: SLICE_X0Y1
-	Site: SLICE_X84Y16
-	Site: SLICE_X84Y16
-	Site: SLICE_X108Y63
-	Site: SLICE_X108Y63
-	Site: SLICE_X38Y133
-	Site: SLICE_X38Y133
-	Site: SLICE_X103Y132
-	Site: SLICE_X103Y132
-	Site: SLICE_X113Y41
-	Site: SLICE_X113Y41
-	Site: SLICE_X41Y23
-	Site: SLICE_X41Y23
-	Site: SLICE_X105Y92
-	Site: SLICE_X105Y92
-	Site: SLICE_X84Y15
-	Site: SLICE_X84Y15
-	Site: SLICE_X90Y118
-	Site: SLICE_X90Y118
-	Site: SLICE_X95Y1
-	Site: SLICE_X95Y1
-	Site: SLICE_X35Y130
-	Site: SLICE_X35Y130
-	Site: SLICE_X111Y141
-	Site: SLICE_X111Y141
-	Site: SLICE_X42Y51
-	Site: SLICE_X42Y51
-	Site: SLICE_X30Y44
-	Site: SLICE_X30Y44
-	Site: SLICE_X104Y146
-	Site: SLICE_X104Y146
-	Site: SLICE_X18Y5
-	Site: SLICE_X18Y5
-	Site: SLICE_X48Y129
-	Site: SLICE_X59Y64
-	Site: SLICE_X22Y1
-	Site: SLICE_X42Y67
-	Site: SLICE_X52Y141
-	Site: SLICE_X98Y6
-	Site: SLICE_X102Y114
-	Site: SLICE_X50Y31
-	Site: SLICE_X82Y146
-	Site: SLICE_X18Y2
-	Site: SLICE_X48Y134
-	Site: SLICE_X94Y25
-	Site: SLICE_X15Y42
-	Site: SLICE_X90Y95
-	Site: SLICE_X42Y133
-	Site: SLICE_X69Y41
-	Site: SLICE_X46Y97
-	Site: SLICE_X105Y110
-	Site: SLICE_X34Y53
-	Site: SLICE_X102Y3
-	Site: SLICE_X6Y2
-	Site: SLICE_X111Y144
-	Site: SLICE_X22Y5
-	Site: SLICE_X62Y124
-	Site: SLICE_X92Y50
-	Site: SLICE_X39Y123
-	Site: SLICE_X106Y12
-	Site: SLICE_X86Y136
-	Site: SLICE_X65Y60
-	Site: SLICE_X35Y62
-	Site: SLICE_X22Y20
-	Site: SLICE_X95Y15
-	Site: SLICE_X91Y109
+	Site: SLICE_X90Y146
+	Site: SLICE_X90Y147
+	Site: SLICE_X0Y31
+	Site: SLICE_X0Y32
+	Site: SLICE_X0Y33
+	Site: SLICE_X0Y34
+	Site: SLICE_X0Y35
+	Site: SLICE_X0Y36
+	Site: SLICE_X71Y26
+	Site: SLICE_X71Y27
+	Site: SLICE_X71Y28
+	Site: SLICE_X71Y29
+	Site: SLICE_X71Y30
+	Site: SLICE_X71Y31
+	Site: SLICE_X45Y17
+	Site: SLICE_X45Y18
+	Site: SLICE_X45Y19
+	Site: SLICE_X45Y20
+	Site: SLICE_X45Y21
+	Site: SLICE_X45Y22
+	Site: SLICE_X110Y18
+	Site: SLICE_X110Y19
+	Site: SLICE_X110Y20
+	Site: SLICE_X110Y21
+	Site: SLICE_X110Y22
+	Site: SLICE_X110Y23
+	Site: SLICE_X100Y133
+	Site: SLICE_X100Y134
+	Site: SLICE_X100Y135
+	Site: SLICE_X100Y136
+	Site: SLICE_X100Y137
+	Site: SLICE_X100Y138
+	Site: SLICE_X26Y0
+	Site: SLICE_X26Y1
+	Site: SLICE_X26Y2
+	Site: SLICE_X26Y3
+	Site: SLICE_X26Y4
+	Site: SLICE_X26Y5
+	Site: SLICE_X92Y42
+	Site: SLICE_X92Y43
+	Site: SLICE_X92Y44
+	Site: SLICE_X92Y45
+	Site: SLICE_X92Y46
+	Site: SLICE_X92Y47
+	Site: SLICE_X84Y25
+	Site: SLICE_X84Y26
+	Site: SLICE_X84Y27
+	Site: SLICE_X84Y28
+	Site: SLICE_X84Y29
+	Site: SLICE_X84Y30
+	Site: SLICE_X34Y133
+	Site: SLICE_X34Y134
+	Site: SLICE_X34Y135
+	Site: SLICE_X34Y136
+	Site: SLICE_X34Y137
+	Site: SLICE_X34Y138
+	Site: SLICE_X44Y130
+	Site: SLICE_X44Y131
+	Site: SLICE_X44Y132
+	Site: SLICE_X44Y133
+	Site: SLICE_X44Y134
+	Site: SLICE_X44Y135
+	Site: SLICE_X86Y9
+	Site: SLICE_X86Y9
+	Site: SLICE_X102Y27
+	Site: SLICE_X102Y27
+	Site: SLICE_X102Y16
+	Site: SLICE_X102Y16
+	Site: SLICE_X102Y57
+	Site: SLICE_X102Y57
+	Site: SLICE_X52Y106
+	Site: SLICE_X52Y106
+	Site: SLICE_X83Y22
+	Site: SLICE_X83Y22
+	Site: SLICE_X2Y14
+	Site: SLICE_X2Y14
+	Site: SLICE_X66Y38
+	Site: SLICE_X66Y38
+	Site: SLICE_X82Y5
+	Site: SLICE_X82Y5
+	Site: SLICE_X90Y59
+	Site: SLICE_X90Y59
+	Site: SLICE_X29Y104
+	Site: SLICE_X29Y104
+	Site: SLICE_X53Y16
+	Site: SLICE_X53Y16
+	Site: SLICE_X65Y130
+	Site: SLICE_X65Y130
+	Site: SLICE_X46Y133
+	Site: SLICE_X46Y133
+	Site: SLICE_X104Y29
+	Site: SLICE_X104Y29
+	Site: SLICE_X29Y80
+	Site: SLICE_X29Y80
+	Site: SLICE_X98Y2
+	Site: SLICE_X98Y2
+	Site: SLICE_X18Y48
+	Site: SLICE_X18Y48
+	Site: SLICE_X10Y44
+	Site: SLICE_X10Y44
+	Site: SLICE_X55Y134
+	Site: SLICE_X55Y134
+	Site: SLICE_X108Y66
+	Site: SLICE_X108Y66
+	Site: SLICE_X66Y129
+	Site: SLICE_X66Y129
+	Site: SLICE_X55Y24
+	Site: SLICE_X55Y24
+	Site: SLICE_X8Y29
+	Site: SLICE_X8Y29
+	Site: SLICE_X102Y14
+	Site: SLICE_X102Y14
+	Site: SLICE_X96Y30
+	Site: SLICE_X96Y30
+	Site: SLICE_X112Y40
+	Site: SLICE_X112Y40
+	Site: SLICE_X82Y123
+	Site: SLICE_X82Y123
+	Site: SLICE_X50Y41
+	Site: SLICE_X50Y41
+	Site: SLICE_X101Y54
+	Site: SLICE_X101Y54
+	Site: SLICE_X97Y4
+	Site: SLICE_X97Y4
+	Site: SLICE_X94Y50
+	Site: SLICE_X94Y50
+	Site: SLICE_X14Y28
+	Site: SLICE_X14Y28
+	Site: SLICE_X41Y105
+	Site: SLICE_X41Y105
+	Site: SLICE_X65Y109
+	Site: SLICE_X62Y134
+	Site: SLICE_X48Y121
+	Site: SLICE_X33Y105
+	Site: SLICE_X58Y62
+	Site: SLICE_X98Y11
+	Site: SLICE_X99Y132
+	Site: SLICE_X50Y99
+	Site: SLICE_X30Y11
+	Site: SLICE_X26Y29
+	Site: SLICE_X83Y31
+	Site: SLICE_X15Y28
+	Site: SLICE_X92Y76
+	Site: SLICE_X56Y138
+	Site: SLICE_X91Y40
+	Site: SLICE_X90Y2
+	Site: SLICE_X46Y137
+	Site: SLICE_X59Y138
+	Site: SLICE_X109Y56
+	Site: SLICE_X110Y99
+	Site: SLICE_X89Y93
+	Site: SLICE_X102Y0
+	Site: SLICE_X12Y16
+	Site: SLICE_X88Y40
+	Site: SLICE_X99Y101
+	Site: SLICE_X79Y24
+	Site: SLICE_X56Y67
+	Site: SLICE_X39Y111
+	Site: SLICE_X49Y142
+	Site: SLICE_X104Y45
+	Site: SLICE_X47Y14
+	Site: SLICE_X43Y26
+	Site: SLICE_X36Y28
 Printing occupiedDSPSites... (16)
-	Site: DSP48_X2Y52
-	Site: DSP48_X2Y53
+	Site: DSP48_X2Y18
+	Site: DSP48_X2Y19
 	Site: DSP48_X1Y4
 	Site: DSP48_X1Y5
-	Site: DSP48_X4Y48
-	Site: DSP48_X4Y49
-	Site: DSP48_X4Y22
-	Site: DSP48_X4Y23
-	Site: DSP48_X0Y18
-	Site: DSP48_X0Y19
-	Site: DSP48_X4Y12
-	Site: DSP48_X4Y13
-	Site: DSP48_X2Y34
-	Site: DSP48_X2Y35
-	Site: DSP48_X4Y16
-	Site: DSP48_X4Y17
+	Site: DSP48_X3Y20
+	Site: DSP48_X3Y21
+	Site: DSP48_X0Y10
+	Site: DSP48_X0Y11
+	Site: DSP48_X1Y8
+	Site: DSP48_X1Y9
+	Site: DSP48_X4Y14
+	Site: DSP48_X4Y15
+	Site: DSP48_X2Y10
+	Site: DSP48_X2Y11
+	Site: DSP48_X3Y44
+	Site: DSP48_X3Y45
 Printing occupiedRAMSites... (16)
-	Site: DSP48_X2Y52
-	Site: DSP48_X2Y53
+	Site: DSP48_X2Y18
+	Site: DSP48_X2Y19
 	Site: DSP48_X1Y4
 	Site: DSP48_X1Y5
-	Site: DSP48_X4Y48
-	Site: DSP48_X4Y49
-	Site: DSP48_X4Y22
-	Site: DSP48_X4Y23
-	Site: DSP48_X0Y18
-	Site: DSP48_X0Y19
-	Site: DSP48_X4Y12
-	Site: DSP48_X4Y13
-	Site: DSP48_X2Y34
-	Site: DSP48_X2Y35
-	Site: DSP48_X4Y16
-	Site: DSP48_X4Y17
+	Site: DSP48_X3Y20
+	Site: DSP48_X3Y21
+	Site: DSP48_X0Y10
+	Site: DSP48_X0Y11
+	Site: DSP48_X1Y8
+	Site: DSP48_X1Y9
+	Site: DSP48_X4Y14
+	Site: DSP48_X4Y15
+	Site: DSP48_X2Y10
+	Site: DSP48_X2Y11
+	Site: DSP48_X3Y44
+	Site: DSP48_X3Y45
 
 Printing remaining cells in EDIFCellGroups...
 	Group: OBUF... (3)

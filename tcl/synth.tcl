@@ -24,11 +24,18 @@ foreach file $src_files {
     }
 }
 
-# Read in constraints file
+# read in constraints file
 set xdc_file $xdc_dir/constraints.xdc
 read_xdc $xdc_file
 
-synth_design -mode out_of_context -part xc7z020clg400-1 -top top_level
+set top_params [join $argv " "]
+puts "synth.tcl: Received parameters: $top_params"
+
+set cmd "synth_design -mode out_of_context -part xc7z020clg400-1 -top top_level $top_params"
+puts "synth.tcl: Running command: $cmd"
+
+# execute synth_design command
+eval $cmd
 
 write_checkpoint -force $synthesized_dcp
 

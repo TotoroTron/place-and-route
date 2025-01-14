@@ -18,11 +18,30 @@ export CLASSPATH=$RAPIDWRIGHT_PATH/bin:$RAPIDWRIGHT_PATH/jars/*
 export _JAVA_OPTIONS=-Xmx32736m
 
 PROJ_DIR="/home/bcheng/workspace/dev/place-and-route"
+
 SYNTH_TCL="$PROJ_DIR/tcl/synth.tcl"
 RTL_TCL="$PROJ_DIR/tcl/rtl.tcl"
 PLACE_TCL="$PROJ_DIR/tcl/place.tcl"
 ROUTE_TCL="$PROJ_DIR/tcl/route.tcl"
 SIM_TCL="$PROJ_DIR/tcl/sim.tcl"
+
+DESIGN_DIR="$PROJ_DIR/hdl/verilog/${DESIGN}"
+TOP_PARAMS_FILE="$DESIGN_DIR/parameters_${TOP_LEVEL}.txt"
+XELAB_TOP_PARAMS=""
+SYNTH_TOP_PARAMS=""
+
+if [[ ! -f "$TOP_PARAMS_FILE" ]]; then
+    echo "Error: parameter file not found at $TOP_PARAMS_FILE"
+    exit 1
+fi
+# read config file and construct xelab -generic_top arguments
+while IFS= read -r line; do
+    # skip empty lines or lines starting with comment (#)
+    [[ -z "$line" || "$line" == \#* ]] && continue
+    # append parameter as a -generic_top argument
+    XELAB_TOP_PARAMS+="-generic_top \"$line\" "
+    SYNTH_TOP_PARAMS+="-generic $line "
+done <"$TOP_PARAMS_FILE"
 
 start_stage=${1:-all} # Use first argument or defaults to all
 
@@ -36,7 +55,7 @@ check_exit_status() {
 # Vivado Synthesis Stage
 if [ "$start_stage" == "synth" ] || [ "$start_stage" == "all" ]; then
     echo "Running Vivado synthesis..."
-    vivado -mode batch -source $SYNTH_TCL -nolog -nojournal
+    vivado -mode batch -source $SYNTH_TCL -nolog -nojournal -tclargs $SYNTH_TOP_PARAMS
     check_exit_status "Vivado synthesis"
     echo "Vivado synthesis completed. Check 'synthesized.dcp'."
 fi
@@ -44,21 +63,17 @@ fi
 # Vivado RTL Synthesis Stage
 if [ "$start_stage" == "rtl" ]; then
     echo "Running Vivado RTL synthesis..."
-    vivado -mode batch -source $RTL_TCL -nolog -nojournal
+    vivado -mode batch -source $RTL_TCL -nolog -nojournal -tclargs $SYNTH_TOP_PARAMS
     check_exit_status "Vivado RTL"
     echo "Vivado synthesis completed. Starting GUI."
 fi
 
 if [ "$start_stage" == "sim_functional" ]; then
-    DESIGN_DIR="$PROJ_DIR/hdl/verilog/${DESIGN}"
-
     echo "Running Functional Simulation..."
-
     # generate sine.mem and weights.mem
     cd "$DESIGN_DIR/python"
-    # python3 sine.py
-    python3 weights.py "$FILTER_DEPTH" "$NUM_PIPELINES"
-    python3 generate_xpm_spram.py "$NUM_PIPELINES"
+    python3 sine.py
+    python3 weights.py
 
     cd "$DESIGN_DIR/sim_functional"
     cat <<EOL >xsim_cfg.tcl
@@ -96,7 +111,9 @@ EOL
     # Elaboration
     xelab -debug typical -top "tb_$TOP_LEVEL" -snapshot my_tb_snap \
         -timescale 1ns/1ps \
-        -L xpm # -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver
+        -L xpm \
+        $XELAB_TOP_PARAMS
+    # -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver
 
     check_exit_status "xelab"
 
@@ -141,7 +158,6 @@ fi
 
 # Post-Implementation Timing Simulation
 if [ "$start_stage" == "sim_postroute" ] || [ "$start_stage" == "all" ]; then
-    DESIGN_DIR="$PROJ_DIR/hdl/verilog/${DESIGN}"
     # cd "$DESIGN_DIR/sim_postroute"
     # rm -r *
     # cd $PROJ_DIR
@@ -149,6 +165,10 @@ if [ "$start_stage" == "sim_postroute" ] || [ "$start_stage" == "all" ]; then
     echo "Running Post-Implementation Timing Simulation..."
     vivado -mode batch -source $SIM_TCL -nolog -nojournal
     check_exit_status "Vivado sim"
+
+    cd "$DESIGN_DIR/python"
+    python3 sine.py
+    python3 weights.py
 
     cd "$DESIGN_DIR/sim_postroute"
 

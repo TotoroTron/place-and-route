@@ -5,7 +5,7 @@ module tb_top_level;
 
     localparam DATA_WIDTH = 24;
     localparam FIR_DEPTH = 256;
-    localparam PIPELINES = 8;
+    localparam NUM_PIPELINES = 8;
     reg tb_clk;
     reg tb_rst;
     reg tb_en;

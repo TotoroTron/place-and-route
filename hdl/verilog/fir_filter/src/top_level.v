@@ -3,7 +3,7 @@ module top_level
 #(
     parameter DATA_WIDTH = 24,
     parameter FIR_DEPTH = 256,
-    parameter PIPELINES = 8
+    parameter NUM_PIPELINES = 8
 )(
     input wire i_clk,
     input wire i_rst,
@@ -46,7 +46,7 @@ module top_level
     #(
         .DATA_WIDTH(DATA_WIDTH),
         .FIR_DEPTH(FIR_DEPTH),
-        .PIPELINES(PIPELINES)
+        .NUM_PIPELINES(NUM_PIPELINES)
     ) fir_filter_inst (
         .i_clk(i_clk),
         .i_rst(i_rst),
