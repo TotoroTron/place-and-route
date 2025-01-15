@@ -21,8 +21,7 @@ module deserializer_fsm
 
     parameter S0 = 4'b0000,
         S1 = 4'b0001,
-        S2 = 4'b0010,
-        S3 = 4'b0011;
+        S2 = 4'b0010;
     reg [3:0] state = S0;
     reg [3:0] next_state;
 
@@ -42,16 +41,13 @@ module deserializer_fsm
                     next_state <= S1;
             end
             S1: begin
-                next_state <= S2;
+                next_state <= S1;
+                // DATA SHIFT
+                if (counter == LENGTH)
+                    next_state <= S2;
             end
             S2: begin
                 next_state <= S2;
-                // DATA SHIFT
-                if (counter == LENGTH)
-                    next_state <= S3;
-            end
-            S3: begin
-                next_state <= S3;
                 // WAIT FOR RECEIVER TO CONSUME OUTPUT DATA
                 if (i_ready)
                     next_state <= S0;
@@ -79,9 +75,6 @@ module deserializer_fsm
                     counter <= 0;
                 end
                 S1: begin
-                    o_ready <= 1'b1;
-                end
-                S2: begin
                     // SIGNAL DIN BEING CONSUMED
                     o_ready <= 1'b1;
                     if (i_din_valid == 1'b1 && counter < LENGTH) begin
@@ -92,7 +85,7 @@ module deserializer_fsm
                         ov_dout <= shift_reg;
                     end
                 end
-                S3: begin
+                S2: begin
                     // WAIT FOR RECEIVER TO CONSUME DOUT
                     o_dout_valid <= 1'b1;
                     counter <= 0;

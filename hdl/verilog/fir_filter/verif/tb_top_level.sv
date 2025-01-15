@@ -81,11 +81,9 @@ module tb_top_level
                 tb_en = 1;
                 tb_rst = 0;
                 tb_din_valid = 1;
-                wait(dut_ready == 1'b1); // data is consumed 1 clock after data valid is asserted
-                @(posedge tb_clk);
-                // @(posedge tb_clk iff(dut_ready == 1'b1));
                 // FOR EACH BIT IN SAMPLE
                 for (int j = 0; j < DATA_WIDTH; j++) begin // LSB first
+                    wait(dut_ready == 1'b1);
                     tb_din = tb_word_in[j];
                     @(posedge tb_clk);
                 end

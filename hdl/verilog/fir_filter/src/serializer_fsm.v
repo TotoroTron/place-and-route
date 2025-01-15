@@ -76,7 +76,6 @@ module serializer_fsm
                 S0: begin
                     // WAIT FOR DIN VALID
                     shift_reg <= 0;
-                    counter <= 0;
                 end
                 S1: begin
                     // SIGNAL DIN CONSUMED
@@ -95,7 +94,6 @@ module serializer_fsm
                         counter <= counter + 1;
                     end else begin
                         o_dout_valid <= 1'b0;
-                        counter <= 0;
                         shift_reg <= 0;
                     end
                 end
