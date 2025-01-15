@@ -48,7 +48,9 @@ module serializer_fsm
                 next_state <= S2;
             end
             S2: begin
-                next_state <= S3;
+                next_state <= S2;
+                if (i_ready)
+                    next_state <= S3;
             end
             S3: begin
                 next_state <= S3;
@@ -88,13 +90,10 @@ module serializer_fsm
                 end
                 S3: begin
                     // DATA SHIFT
-                    if (i_ready && counter < LENGTH) begin
+                    if (i_ready) begin
+                        counter <= counter + 1;
                         o_dout_valid <= 1'b1;
                         shift_reg <= { 1'b0, shift_reg[LENGTH-1:1] };
-                        counter <= counter + 1;
-                    end else begin
-                        o_dout_valid <= 1'b0;
-                        shift_reg <= 0;
                     end
                 end
                 default: begin

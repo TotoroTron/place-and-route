@@ -60,7 +60,7 @@ fi
 # Vivado RTL Synthesis Stage
 if [ "$start_stage" == "rtl" ]; then
     echo "Running Vivado RTL synthesis..."
-    vivado -mode batch -source $RTL_TCL -nolog -nojournal -tclargs $TOP_LEVEL $SYNTH_TOP_PARAMS
+    vivado -mode batch -source $RTL_TCL -nolog -nojournal -tclargs $DESIGN $SYNTH_TOP_PARAMS
     check_exit_status "Vivado RTL"
     echo "Vivado synthesis completed. Starting GUI."
 fi
@@ -107,7 +107,7 @@ EOL
     done
 
     # Elaboration
-    xelab -debug typical -top "tb_$TOP_LEVEL" -snapshot my_tb_snap \
+    xelab -debug typical -top "tb_$TOP_LEVEL" -snapshot "${TOP_LEVEL}_functional" \
         -timescale 1ns/1ps \
         -L xpm \
         $XELAB_TOP_PARAMS
@@ -115,11 +115,11 @@ EOL
     check_exit_status "xelab"
 
     # Simulation
-    xsim my_tb_snap --tclbatch xsim_cfg.tcl
+    xsim "${TOP_LEVEL}_functional" --tclbatch xsim_cfg.tcl
     check_exit_status "xsim"
 
     # Open the wavefile in Vivado
-    xsim my_tb_snap.wdb -gui -tclbatch waveform.tcl
+    xsim "${TOP_LEVEL}_functional".wdb -gui -tclbatch waveform.tcl
 fi
 
 # Gradle Build Stage (replaces Java Compilation)

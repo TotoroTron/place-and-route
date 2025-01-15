@@ -10285,15 +10285,21 @@ DSP48E1 Cells (16):
 			ov_sum1__0/RSTM
 			ov_sum1__0/RSTP
 
-LUT Cells (485):
-	Printing all EDIFCellInsts of type LUT5... (485)
-		LUT5: sample_addr[2]_i_1
+LUT Cells (487):
+	Printing all EDIFCellInsts of type LUT6... (487)
+		LUT6: sample_addr[2]_i_1
 			sample_addr[2]_i_1/I0
 			sample_addr[2]_i_1/I1
 			sample_addr[2]_i_1/I2
 			sample_addr[2]_i_1/I3
 			sample_addr[2]_i_1/I4
+			sample_addr[2]_i_1/I5
 			sample_addr[2]_i_1/O
+		LUT3: sample_addr[2]_i_2
+			sample_addr[2]_i_2/I0
+			sample_addr[2]_i_2/I1
+			sample_addr[2]_i_2/I2
+			sample_addr[2]_i_2/O
 		LUT5: sample_re_addr[2]_i_1
 			sample_re_addr[2]_i_1/I0
 			sample_re_addr[2]_i_1/I1
@@ -10313,6 +10319,12 @@ LUT Cells (485):
 			i___142_carry__3_i_2/I3
 			i___142_carry__3_i_2/I4
 			i___142_carry__3_i_2/O
+		LUT4: state[1]_i_1
+			state[1]_i_1/I0
+			state[1]_i_1/I1
+			state[1]_i_1/I2
+			state[1]_i_1/I3
+			state[1]_i_1/O
 		LUT5: i___142_carry__3_i_1
 			i___142_carry__3_i_1/I0
 			i___142_carry__3_i_1/I1
@@ -10320,11 +10332,6 @@ LUT Cells (485):
 			i___142_carry__3_i_1/I3
 			i___142_carry__3_i_1/I4
 			i___142_carry__3_i_1/O
-		LUT3: state[1]_i_2
-			state[1]_i_2/I0
-			state[1]_i_2/I1
-			state[1]_i_2/I2
-			state[1]_i_2/O
 		LUT3: i___142_carry__2_i_12
 			i___142_carry__2_i_12/I0
 			i___142_carry__2_i_12/I1
@@ -10365,6 +10372,13 @@ LUT Cells (485):
 			i___142_carry__3_i_3/I3
 			i___142_carry__3_i_3/I4
 			i___142_carry__3_i_3/O
+		LUT5: state[0]_i_1
+			state[0]_i_1/I0
+			state[0]_i_1/I1
+			state[0]_i_1/I2
+			state[0]_i_1/I3
+			state[0]_i_1/I4
+			state[0]_i_1/O
 		LUT6: sample_addr[1]_i_1
 			sample_addr[1]_i_1/I0
 			sample_addr[1]_i_1/I1
@@ -10389,13 +10403,6 @@ LUT Cells (485):
 			i___142_carry__1_i_10/I1
 			i___142_carry__1_i_10/I2
 			i___142_carry__1_i_10/O
-		LUT5: state[0]_i_1__0
-			state[0]_i_1__0/I0
-			state[0]_i_1__0/I1
-			state[0]_i_1__0/I2
-			state[0]_i_1__0/I3
-			state[0]_i_1__0/I4
-			state[0]_i_1__0/O
 		LUT3: i___142_carry__1_i_11
 			i___142_carry__1_i_11/I0
 			i___142_carry__1_i_11/I1
@@ -10448,12 +10455,24 @@ LUT Cells (485):
 			i___142_carry__1_i_4/I3
 			i___142_carry__1_i_4/I4
 			i___142_carry__1_i_4/O
+		LUT4: ov_dout[23]_i_1
+			ov_dout[23]_i_1/I0
+			ov_dout[23]_i_1/I1
+			ov_dout[23]_i_1/I2
+			ov_dout[23]_i_1/I3
+			ov_dout[23]_i_1/O
 		LUT4: sample_addr[0]_i_1
 			sample_addr[0]_i_1/I0
 			sample_addr[0]_i_1/I1
 			sample_addr[0]_i_1/I2
 			sample_addr[0]_i_1/I3
 			sample_addr[0]_i_1/O
+		LUT4: sample_addr[3]_i_3
+			sample_addr[3]_i_3/I0
+			sample_addr[3]_i_3/I1
+			sample_addr[3]_i_3/I2
+			sample_addr[3]_i_3/I3
+			sample_addr[3]_i_3/O
 		LUT5: i___142_carry__1_i_3
 			i___142_carry__1_i_3/I0
 			i___142_carry__1_i_3/I1
@@ -10461,6 +10480,10 @@ LUT Cells (485):
 			i___142_carry__1_i_3/I3
 			i___142_carry__1_i_3/I4
 			i___142_carry__1_i_3/O
+		LUT2: sample_addr[3]_i_2
+			sample_addr[3]_i_2/I0
+			sample_addr[3]_i_2/I1
+			sample_addr[3]_i_2/O
 		LUT5: i___142_carry__1_i_2
 			i___142_carry__1_i_2/I0
 			i___142_carry__1_i_2/I1
@@ -10500,45 +10523,24 @@ LUT Cells (485):
 			i___142_carry__1_i_9/I1
 			i___142_carry__1_i_9/I2
 			i___142_carry__1_i_9/O
-		LUT6: o_dout_valid_i_1
+		LUT4: o_dout_valid_i_1
 			o_dout_valid_i_1/I0
 			o_dout_valid_i_1/I1
 			o_dout_valid_i_1/I2
 			o_dout_valid_i_1/I3
-			o_dout_valid_i_1/I4
-			o_dout_valid_i_1/I5
 			o_dout_valid_i_1/O
-		LUT2: sample_addr[4]_i_3
-			sample_addr[4]_i_3/I0
-			sample_addr[4]_i_3/I1
-			sample_addr[4]_i_3/O
 		LUT3: sample_addr[4]_i_1
 			sample_addr[4]_i_1/I0
 			sample_addr[4]_i_1/I1
 			sample_addr[4]_i_1/I2
 			sample_addr[4]_i_1/O
-		LUT6: sample_addr[4]_i_2
+		LUT5: sample_addr[4]_i_2
 			sample_addr[4]_i_2/I0
 			sample_addr[4]_i_2/I1
 			sample_addr[4]_i_2/I2
 			sample_addr[4]_i_2/I3
 			sample_addr[4]_i_2/I4
-			sample_addr[4]_i_2/I5
 			sample_addr[4]_i_2/O
-		LUT6: state[1]_i_1__0
-			state[1]_i_1__0/I0
-			state[1]_i_1__0/I1
-			state[1]_i_1__0/I2
-			state[1]_i_1__0/I3
-			state[1]_i_1__0/I4
-			state[1]_i_1__0/I5
-			state[1]_i_1__0/O
-		LUT4: ov_dout[23]_i_1__0
-			ov_dout[23]_i_1__0/I0
-			ov_dout[23]_i_1__0/I1
-			ov_dout[23]_i_1__0/I2
-			ov_dout[23]_i_1__0/I3
-			ov_dout[23]_i_1__0/O
 		LUT4: sample_wr_addr[3]_i_1
 			sample_wr_addr[3]_i_1/I0
 			sample_wr_addr[3]_i_1/I1
@@ -10684,13 +10686,10 @@ LUT Cells (485):
 			weight_re_addr[2]_i_1/I1
 			weight_re_addr[2]_i_1/I2
 			weight_re_addr[2]_i_1/O
-		LUT6: weight_re_i_1
+		LUT3: weight_re_i_1
 			weight_re_i_1/I0
 			weight_re_i_1/I1
 			weight_re_i_1/I2
-			weight_re_i_1/I3
-			weight_re_i_1/I4
-			weight_re_i_1/I5
 			weight_re_i_1/O
 		LUT6: i___142_carry__2_i_5
 			i___142_carry__2_i_5/I0
@@ -10839,17 +10838,17 @@ LUT Cells (485):
 			sample_wr_addr[2]_i_1/I1
 			sample_wr_addr[2]_i_1/I2
 			sample_wr_addr[2]_i_1/O
-		LUT2: sample_re_addr[4]_i_3
+		LUT5: sample_re_addr[4]_i_3
 			sample_re_addr[4]_i_3/I0
 			sample_re_addr[4]_i_3/I1
+			sample_re_addr[4]_i_3/I2
+			sample_re_addr[4]_i_3/I3
+			sample_re_addr[4]_i_3/I4
 			sample_re_addr[4]_i_3/O
-		LUT6: sample_re_addr[4]_i_2
+		LUT3: sample_re_addr[4]_i_2
 			sample_re_addr[4]_i_2/I0
 			sample_re_addr[4]_i_2/I1
 			sample_re_addr[4]_i_2/I2
-			sample_re_addr[4]_i_2/I3
-			sample_re_addr[4]_i_2/I4
-			sample_re_addr[4]_i_2/I5
 			sample_re_addr[4]_i_2/O
 		LUT2: sample_re_addr[4]_i_1
 			sample_re_addr[4]_i_1/I0
@@ -10909,6 +10908,12 @@ LUT Cells (485):
 			shift_reg[6]_i_1__0/I3
 			shift_reg[6]_i_1__0/I4
 			shift_reg[6]_i_1__0/O
+		LUT4: counter[3]_i_2
+			counter[3]_i_2/I0
+			counter[3]_i_2/I1
+			counter[3]_i_2/I2
+			counter[3]_i_2/I3
+			counter[3]_i_2/O
 		LUT5: shift_reg[21]_i_1__0
 			shift_reg[21]_i_1__0/I0
 			shift_reg[21]_i_1__0/I1
@@ -10920,11 +10925,20 @@ LUT Cells (485):
 			o_ready_i_1__1/I0
 			o_ready_i_1__1/I1
 			o_ready_i_1__1/O
+		LUT2: state[1]_i_3
+			state[1]_i_3/I0
+			state[1]_i_3/I1
+			state[1]_i_3/O
 		LUT3: shift_reg[23]_i_2
 			shift_reg[23]_i_2/I0
 			shift_reg[23]_i_2/I1
 			shift_reg[23]_i_2/I2
 			shift_reg[23]_i_2/O
+		LUT3: shift_reg[23]_i_1
+			shift_reg[23]_i_1/I0
+			shift_reg[23]_i_1/I1
+			shift_reg[23]_i_1/I2
+			shift_reg[23]_i_1/O
 		LUT6: counter[0]_i_1__0
 			counter[0]_i_1__0/I0
 			counter[0]_i_1__0/I1
@@ -10947,18 +10961,18 @@ LUT Cells (485):
 			shift_reg[8]_i_1__0/I3
 			shift_reg[8]_i_1__0/I4
 			shift_reg[8]_i_1__0/O
-		LUT5: counter[3]_i_1__0
+		LUT6: counter[3]_i_1__0
 			counter[3]_i_1__0/I0
 			counter[3]_i_1__0/I1
 			counter[3]_i_1__0/I2
 			counter[3]_i_1__0/I3
 			counter[3]_i_1__0/I4
+			counter[3]_i_1__0/I5
 			counter[3]_i_1__0/O
-		LUT4: state[0]_i_1__1
+		LUT3: state[0]_i_1__1
 			state[0]_i_1__1/I0
 			state[0]_i_1__1/I1
 			state[0]_i_1__1/I2
-			state[0]_i_1__1/I3
 			state[0]_i_1__1/O
 		LUT5: shift_reg[13]_i_1__0
 			shift_reg[13]_i_1__0/I0
@@ -11000,11 +11014,6 @@ LUT Cells (485):
 			shift_reg[1]_i_1__0/I3
 			shift_reg[1]_i_1__0/I4
 			shift_reg[1]_i_1__0/O
-		LUT3: shift_reg[23]_i_1__0
-			shift_reg[23]_i_1__0/I0
-			shift_reg[23]_i_1__0/I1
-			shift_reg[23]_i_1__0/I2
-			shift_reg[23]_i_1__0/O
 		LUT5: shift_reg[3]_i_1__0
 			shift_reg[3]_i_1__0/I0
 			shift_reg[3]_i_1__0/I1
@@ -11144,11 +11153,13 @@ LUT Cells (485):
 			counter[3]_i_1/I3
 			counter[3]_i_1/I4
 			counter[3]_i_1/O
-		LUT3: state[1]_i_1
-			state[1]_i_1/I0
-			state[1]_i_1/I1
-			state[1]_i_1/I2
-			state[1]_i_1/O
+		LUT5: state[1]_i_2
+			state[1]_i_2/I0
+			state[1]_i_2/I1
+			state[1]_i_2/I2
+			state[1]_i_2/I3
+			state[1]_i_2/I4
+			state[1]_i_2/O
 		LUT6: shift_reg[1]_i_1
 			shift_reg[1]_i_1/I0
 			shift_reg[1]_i_1/I1
@@ -11172,33 +11183,6 @@ LUT Cells (485):
 			counter[4]_i_1/I4
 			counter[4]_i_1/I5
 			counter[4]_i_1/O
-		LUT6: state[0]_i_2
-			state[0]_i_2/I0
-			state[0]_i_2/I1
-			state[0]_i_2/I2
-			state[0]_i_2/I3
-			state[0]_i_2/I4
-			state[0]_i_2/I5
-			state[0]_i_2/O
-		LUT2: ov_dout[23]_i_2
-			ov_dout[23]_i_2/I0
-			ov_dout[23]_i_2/I1
-			ov_dout[23]_i_2/O
-		LUT6: shift_reg[23]_i_1
-			shift_reg[23]_i_1/I0
-			shift_reg[23]_i_1/I1
-			shift_reg[23]_i_1/I2
-			shift_reg[23]_i_1/I3
-			shift_reg[23]_i_1/I4
-			shift_reg[23]_i_1/I5
-			shift_reg[23]_i_1/O
-		LUT5: state[0]_i_1
-			state[0]_i_1/I0
-			state[0]_i_1/I1
-			state[0]_i_1/I2
-			state[0]_i_1/I3
-			state[0]_i_1/I4
-			state[0]_i_1/O
 		LUT6: shift_reg[8]_i_1
 			shift_reg[8]_i_1/I0
 			shift_reg[8]_i_1/I1
@@ -11251,14 +11235,12 @@ LUT Cells (485):
 			shift_reg[0]_i_1/I4
 			shift_reg[0]_i_1/I5
 			shift_reg[0]_i_1/O
-		LUT6: ov_dout[23]_i_1
-			ov_dout[23]_i_1/I0
-			ov_dout[23]_i_1/I1
-			ov_dout[23]_i_1/I2
-			ov_dout[23]_i_1/I3
-			ov_dout[23]_i_1/I4
-			ov_dout[23]_i_1/I5
-			ov_dout[23]_i_1/O
+		LUT4: state[0]_i_1__0
+			state[0]_i_1__0/I0
+			state[0]_i_1__0/I1
+			state[0]_i_1__0/I2
+			state[0]_i_1__0/I3
+			state[0]_i_1__0/O
 		LUT4: counter[2]_i_1
 			counter[2]_i_1/I0
 			counter[2]_i_1/I1
@@ -11297,6 +11279,14 @@ LUT Cells (485):
 			shift_reg[10]_i_1/I4
 			shift_reg[10]_i_1/I5
 			shift_reg[10]_i_1/O
+		LUT6: shift_reg[23]_i_1__0
+			shift_reg[23]_i_1__0/I0
+			shift_reg[23]_i_1__0/I1
+			shift_reg[23]_i_1__0/I2
+			shift_reg[23]_i_1__0/I3
+			shift_reg[23]_i_1__0/I4
+			shift_reg[23]_i_1__0/I5
+			shift_reg[23]_i_1__0/O
 		LUT6: shift_reg[18]_i_1
 			shift_reg[18]_i_1/I0
 			shift_reg[18]_i_1/I1
@@ -11358,6 +11348,20 @@ LUT Cells (485):
 			shift_reg[20]_i_1/I4
 			shift_reg[20]_i_1/I5
 			shift_reg[20]_i_1/O
+		LUT4: state[1]_i_1__0
+			state[1]_i_1__0/I0
+			state[1]_i_1__0/I1
+			state[1]_i_1__0/I2
+			state[1]_i_1__0/I3
+			state[1]_i_1__0/O
+		LUT6: ov_dout[23]_i_1__0
+			ov_dout[23]_i_1__0/I0
+			ov_dout[23]_i_1__0/I1
+			ov_dout[23]_i_1__0/I2
+			ov_dout[23]_i_1__0/I3
+			ov_dout[23]_i_1__0/I4
+			ov_dout[23]_i_1__0/I5
+			ov_dout[23]_i_1__0/O
 		LUT2: o_dout_valid_i_1__1
 			o_dout_valid_i_1__1/I0
 			o_dout_valid_i_1__1/I1
@@ -11468,6 +11472,12 @@ LUT Cells (485):
 			ov_sum[0]_i_3__6/I0
 			ov_sum[0]_i_3__6/I1
 			ov_sum[0]_i_3__6/O
+		LUT4: i___142_carry__4_i_11
+			i___142_carry__4_i_11/I0
+			i___142_carry__4_i_11/I1
+			i___142_carry__4_i_11/I2
+			i___142_carry__4_i_11/I3
+			i___142_carry__4_i_11/O
 		LUT2: ov_sum[20]_i_3__6
 			ov_sum[20]_i_3__6/I0
 			ov_sum[20]_i_3__6/I1
@@ -11997,6 +12007,14 @@ LUT Cells (485):
 			i___142_carry__4_i_5/I4
 			i___142_carry__4_i_5/I5
 			i___142_carry__4_i_5/O
+		LUT6: i___142_carry__4_i_4
+			i___142_carry__4_i_4/I0
+			i___142_carry__4_i_4/I1
+			i___142_carry__4_i_4/I2
+			i___142_carry__4_i_4/I3
+			i___142_carry__4_i_4/I4
+			i___142_carry__4_i_4/I5
+			i___142_carry__4_i_4/O
 		LUT4: i___70_carry__1_i_8
 			i___70_carry__1_i_8/I0
 			i___70_carry__1_i_8/I1
@@ -12348,12 +12366,6 @@ LUT Cells (485):
 			ov_sum[4]_i_4__0/I0
 			ov_sum[4]_i_4__0/I1
 			ov_sum[4]_i_4__0/O
-		LUT4: i___142_carry__4_i_11
-			i___142_carry__4_i_11/I0
-			i___142_carry__4_i_11/I1
-			i___142_carry__4_i_11/I2
-			i___142_carry__4_i_11/I3
-			i___142_carry__4_i_11/O
 		LUT2: ov_sum[8]_i_4__0
 			ov_sum[8]_i_4__0/I0
 			ov_sum[8]_i_4__0/I1
@@ -12426,14 +12438,6 @@ LUT Cells (485):
 			ov_sum[16]_i_2__0/I0
 			ov_sum[16]_i_2__0/I1
 			ov_sum[16]_i_2__0/O
-		LUT6: i___142_carry__4_i_4
-			i___142_carry__4_i_4/I0
-			i___142_carry__4_i_4/I1
-			i___142_carry__4_i_4/I2
-			i___142_carry__4_i_4/I3
-			i___142_carry__4_i_4/I4
-			i___142_carry__4_i_4/I5
-			i___142_carry__4_i_4/O
 		LUT2: ov_sum[8]_i_3__1
 			ov_sum[8]_i_3__1/I0
 			ov_sum[8]_i_3__1/I1
@@ -12530,14 +12534,6 @@ LUT Cells (485):
 			ov_sum[4]_i_5__1/I0
 			ov_sum[4]_i_5__1/I1
 			ov_sum[4]_i_5__1/O
-		LUT6: i___70_carry__4_i_4
-			i___70_carry__4_i_4/I0
-			i___70_carry__4_i_4/I1
-			i___70_carry__4_i_4/I2
-			i___70_carry__4_i_4/I3
-			i___70_carry__4_i_4/I4
-			i___70_carry__4_i_4/I5
-			i___70_carry__4_i_4/O
 		LUT2: ov_sum[8]_i_3__2
 			ov_sum[8]_i_3__2/I0
 			ov_sum[8]_i_3__2/I1
@@ -12646,6 +12642,14 @@ LUT Cells (485):
 			ov_sum[16]_i_2__2/I0
 			ov_sum[16]_i_2__2/I1
 			ov_sum[16]_i_2__2/O
+		LUT6: i___70_carry__4_i_4
+			i___70_carry__4_i_4/I0
+			i___70_carry__4_i_4/I1
+			i___70_carry__4_i_4/I2
+			i___70_carry__4_i_4/I3
+			i___70_carry__4_i_4/I4
+			i___70_carry__4_i_4/I5
+			i___70_carry__4_i_4/O
 		LUT2: ov_sum[4]_i_5__2
 			ov_sum[4]_i_5__2/I0
 			ov_sum[4]_i_5__2/I1
@@ -12999,7 +13003,7 @@ Printing CARRYChains... (11)
 		 FF: fir_filter_inst/ov_dout_reg[21]
 		LUT: fir_filter_inst/genblk1[1].tap_inst/i___142_carry__4_i_5
 		 FF: fir_filter_inst/ov_dout_reg[22]
-		LUT: fir_filter_inst/genblk1[2].tap_inst/i___142_carry__4_i_4
+		LUT: fir_filter_inst/genblk1[1].tap_inst/i___142_carry__4_i_4
 		 FF: fir_filter_inst/ov_dout_reg[23]
 	Anchor Carry: fir_filter_inst/ov_dout0_inferred__0/i___70_carry
 		LUT: fir_filter_inst/genblk1[4].tap_inst/i___70_carry_i_7
@@ -13053,7 +13057,7 @@ Printing CARRYChains... (11)
 		 FF: Null!
 		LUT: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__4_i_5
 		 FF: Null!
-		LUT: fir_filter_inst/genblk1[3].tap_inst/i___70_carry__4_i_4
+		LUT: fir_filter_inst/genblk1[4].tap_inst/i___70_carry__4_i_4
 		 FF: Null!
 	Anchor Carry: fir_filter_inst/ov_dout0_inferred__0/i___0_carry
 		LUT: fir_filter_inst/genblk1[7].tap_inst/i___0_carry_i_7
@@ -13553,10 +13557,10 @@ Printing DSPPairs... (8)
 	(DSP48E1: fir_filter_inst/genblk1[6].tap_inst/ov_sum1, DSP48E1: fir_filter_inst/genblk1[6].tap_inst/ov_sum1__0)
 	CE: serializer_inst/i_en_IBUF                          R: serializer_inst/i_rst_IBUF                        
 	CE: fir_filter_inst/<const1>                           R: fir_filter_inst/i_rst_IBUF                        
+	CE: deserializer_inst/ov_dout[23]_i_1__0_n_0           R: deserializer_inst/<const0>                        
 	CE: fir_filter_inst/sample_re_addr[4]_i_1_n_0          R: fir_filter_inst/i_rst_IBUF                        
-	CE: serializer_inst/shift_reg[23]_i_1__0_n_0           R: serializer_inst/i_rst_IBUF                        
-	CE: deserializer_inst/ov_dout[23]_i_1_n_0              R: deserializer_inst/<const0>                        
 	CE: deserializer_inst/i_en_IBUF                        R: deserializer_inst/i_rst_IBUF                      
+	CE: serializer_inst/shift_reg[23]_i_1_n_0              R: serializer_inst/i_rst_IBUF                        
 	CE: fir_filter_inst/o_ready_i_1__0_n_0                 R: fir_filter_inst/i_rst_IBUF                        
 	CE: fir_filter_inst/tap_en_i_1_n_0                     R: fir_filter_inst/i_rst_IBUF                        
 	CE: fir_filter_inst/sample_addr[4]_i_1_n_0             R: fir_filter_inst/i_rst_IBUF                        
@@ -13577,44 +13581,13 @@ Printing Unique CE-R pairs with associated FF Cells... (9)
 	CENet: fir_filter_inst/<const1>, RNet: fir_filter_inst/i_rst_IBUF with cells... (8)
 		LUT: fir_filter_inst/o_dout_valid_i_1 => FF: fir_filter_inst/o_dout_valid_reg
 		LUT: fir_filter_inst/o_ready_i_1__0 => FF: fir_filter_inst/o_ready_reg
-		LUT: fir_filter_inst/state[1]_i_1__0 => FF: fir_filter_inst/state_reg[1]
+		LUT: fir_filter_inst/state[1]_i_1 => FF: fir_filter_inst/state_reg[1]
 		LUT: fir_filter_inst/tap_en_i_1 => FF: fir_filter_inst/tap_en_reg
 		LUT: fir_filter_inst/state[2]_i_1 => FF: fir_filter_inst/state_reg[2]
 		LUT: fir_filter_inst/weight_re_i_1 => FF: fir_filter_inst/weight_re_reg
 		LUT: fir_filter_inst/sum_rst_i_1 => FF: fir_filter_inst/sum_rst_reg
-		LUT: fir_filter_inst/state[0]_i_1__0 => FF: fir_filter_inst/state_reg[0]
-	CENet: fir_filter_inst/sample_re_addr[4]_i_1_n_0, RNet: fir_filter_inst/i_rst_IBUF with cells... (5)
-		LUT: fir_filter_inst/sample_re_addr[4]_i_2 => FF: fir_filter_inst/sample_re_addr_reg[4]
-		LUT: fir_filter_inst/sample_re_addr[3]_i_1 => FF: fir_filter_inst/sample_re_addr_reg[3]
-		LUT: fir_filter_inst/sample_re_addr[2]_i_1 => FF: fir_filter_inst/sample_re_addr_reg[2]
-		LUT: fir_filter_inst/sample_re_addr[1]_i_1 => FF: fir_filter_inst/sample_re_addr_reg[1]
-		LUT: fir_filter_inst/sample_re_addr[0]_i_1 => FF: fir_filter_inst/sample_re_addr_reg[0]
-	CENet: serializer_inst/shift_reg[23]_i_1__0_n_0, RNet: serializer_inst/i_rst_IBUF with cells... (24)
-		LUT: serializer_inst/shift_reg[1]_i_1__0 => FF: serializer_inst/shift_reg_reg[1]
-		LUT: serializer_inst/shift_reg[20]_i_1__0 => FF: serializer_inst/shift_reg_reg[20]
-		LUT: serializer_inst/shift_reg[9]_i_1__0 => FF: serializer_inst/shift_reg_reg[9]
-		LUT: serializer_inst/shift_reg[5]_i_1__0 => FF: serializer_inst/shift_reg_reg[5]
-		LUT: serializer_inst/shift_reg[16]_i_1__0 => FF: serializer_inst/shift_reg_reg[16]
-		LUT: serializer_inst/shift_reg[12]_i_1__0 => FF: serializer_inst/shift_reg_reg[12]
-		LUT: serializer_inst/shift_reg[4]_i_1__0 => FF: serializer_inst/shift_reg_reg[4]
-		LUT: serializer_inst/shift_reg[0]_i_1__0 => FF: serializer_inst/shift_reg_reg[0]
-		LUT: serializer_inst/shift_reg[8]_i_1__0 => FF: serializer_inst/shift_reg_reg[8]
-		LUT: serializer_inst/shift_reg[17]_i_1__0 => FF: serializer_inst/shift_reg_reg[17]
-		LUT: serializer_inst/shift_reg[13]_i_1__0 => FF: serializer_inst/shift_reg_reg[13]
-		LUT: serializer_inst/shift_reg[21]_i_1__0 => FF: serializer_inst/shift_reg_reg[21]
-		LUT: serializer_inst/shift_reg[3]_i_1__0 => FF: serializer_inst/shift_reg_reg[3]
-		LUT: serializer_inst/shift_reg[7]_i_1__0 => FF: serializer_inst/shift_reg_reg[7]
-		LUT: serializer_inst/shift_reg[14]_i_1__0 => FF: serializer_inst/shift_reg_reg[14]
-		LUT: serializer_inst/shift_reg[22]_i_1__0 => FF: serializer_inst/shift_reg_reg[22]
-		LUT: serializer_inst/shift_reg[10]_i_1__0 => FF: serializer_inst/shift_reg_reg[10]
-		LUT: serializer_inst/shift_reg[18]_i_1__0 => FF: serializer_inst/shift_reg_reg[18]
-		LUT: serializer_inst/shift_reg[2]_i_1__0 => FF: serializer_inst/shift_reg_reg[2]
-		LUT: serializer_inst/shift_reg[6]_i_1__0 => FF: serializer_inst/shift_reg_reg[6]
-		LUT: serializer_inst/shift_reg[15]_i_1__0 => FF: serializer_inst/shift_reg_reg[15]
-		LUT: serializer_inst/shift_reg[23]_i_2 => FF: serializer_inst/shift_reg_reg[23]
-		LUT: serializer_inst/shift_reg[11]_i_1__0 => FF: serializer_inst/shift_reg_reg[11]
-		LUT: serializer_inst/shift_reg[19]_i_1__0 => FF: serializer_inst/shift_reg_reg[19]
-	CENet: deserializer_inst/ov_dout[23]_i_1_n_0, RNet: deserializer_inst/<const0> with cells... (24)
+		LUT: fir_filter_inst/state[0]_i_1 => FF: fir_filter_inst/state_reg[0]
+	CENet: deserializer_inst/ov_dout[23]_i_1__0_n_0, RNet: deserializer_inst/<const0> with cells... (24)
 		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[18]
 		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[14]
 		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[10]
@@ -13639,6 +13612,12 @@ Printing Unique CE-R pairs with associated FF Cells... (9)
 		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[11]
 		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[23]
 		LUT: NULL! => FF: deserializer_inst/ov_dout_reg[4]
+	CENet: fir_filter_inst/sample_re_addr[4]_i_1_n_0, RNet: fir_filter_inst/i_rst_IBUF with cells... (5)
+		LUT: fir_filter_inst/sample_re_addr[4]_i_2 => FF: fir_filter_inst/sample_re_addr_reg[4]
+		LUT: fir_filter_inst/sample_re_addr[3]_i_1 => FF: fir_filter_inst/sample_re_addr_reg[3]
+		LUT: fir_filter_inst/sample_re_addr[2]_i_1 => FF: fir_filter_inst/sample_re_addr_reg[2]
+		LUT: fir_filter_inst/sample_re_addr[1]_i_1 => FF: fir_filter_inst/sample_re_addr_reg[1]
+		LUT: fir_filter_inst/sample_re_addr[0]_i_1 => FF: fir_filter_inst/sample_re_addr_reg[0]
 	CENet: deserializer_inst/i_en_IBUF, RNet: deserializer_inst/i_rst_IBUF with cells... (33)
 		LUT: deserializer_inst/shift_reg[1]_i_1 => FF: deserializer_inst/shift_reg_reg[1]
 		LUT: deserializer_inst/o_dout_valid_i_1__1 => FF: deserializer_inst/o_dout_valid_reg
@@ -13646,7 +13625,7 @@ Printing Unique CE-R pairs with associated FF Cells... (9)
 		LUT: deserializer_inst/shift_reg[9]_i_1 => FF: deserializer_inst/shift_reg_reg[9]
 		LUT: deserializer_inst/shift_reg[5]_i_1 => FF: deserializer_inst/shift_reg_reg[5]
 		LUT: deserializer_inst/shift_reg[16]_i_1 => FF: deserializer_inst/shift_reg_reg[16]
-		LUT: deserializer_inst/state[1]_i_1 => FF: deserializer_inst/state_reg[1]
+		LUT: deserializer_inst/state[1]_i_1__0 => FF: deserializer_inst/state_reg[1]
 		LUT: deserializer_inst/shift_reg[12]_i_1 => FF: deserializer_inst/shift_reg_reg[12]
 		LUT: deserializer_inst/counter[0]_i_1 => FF: deserializer_inst/counter_reg[0]
 		LUT: deserializer_inst/counter[4]_i_1 => FF: deserializer_inst/counter_reg[4]
@@ -13667,12 +13646,37 @@ Printing Unique CE-R pairs with associated FF Cells... (9)
 		LUT: deserializer_inst/shift_reg[18]_i_1 => FF: deserializer_inst/shift_reg_reg[18]
 		LUT: deserializer_inst/shift_reg[2]_i_1 => FF: deserializer_inst/shift_reg_reg[2]
 		LUT: deserializer_inst/shift_reg[6]_i_1 => FF: deserializer_inst/shift_reg_reg[6]
-		LUT: deserializer_inst/state[0]_i_1 => FF: deserializer_inst/state_reg[0]
+		LUT: deserializer_inst/state[0]_i_1__0 => FF: deserializer_inst/state_reg[0]
 		LUT: deserializer_inst/shift_reg[15]_i_1 => FF: deserializer_inst/shift_reg_reg[15]
-		LUT: deserializer_inst/shift_reg[23]_i_1 => FF: deserializer_inst/shift_reg_reg[23]
+		LUT: deserializer_inst/shift_reg[23]_i_1__0 => FF: deserializer_inst/shift_reg_reg[23]
 		LUT: deserializer_inst/shift_reg[11]_i_1 => FF: deserializer_inst/shift_reg_reg[11]
 		LUT: deserializer_inst/counter[3]_i_1 => FF: deserializer_inst/counter_reg[3]
 		LUT: deserializer_inst/shift_reg[19]_i_1 => FF: deserializer_inst/shift_reg_reg[19]
+	CENet: serializer_inst/shift_reg[23]_i_1_n_0, RNet: serializer_inst/i_rst_IBUF with cells... (24)
+		LUT: serializer_inst/shift_reg[1]_i_1__0 => FF: serializer_inst/shift_reg_reg[1]
+		LUT: serializer_inst/shift_reg[20]_i_1__0 => FF: serializer_inst/shift_reg_reg[20]
+		LUT: serializer_inst/shift_reg[9]_i_1__0 => FF: serializer_inst/shift_reg_reg[9]
+		LUT: serializer_inst/shift_reg[5]_i_1__0 => FF: serializer_inst/shift_reg_reg[5]
+		LUT: serializer_inst/shift_reg[16]_i_1__0 => FF: serializer_inst/shift_reg_reg[16]
+		LUT: serializer_inst/shift_reg[12]_i_1__0 => FF: serializer_inst/shift_reg_reg[12]
+		LUT: serializer_inst/shift_reg[4]_i_1__0 => FF: serializer_inst/shift_reg_reg[4]
+		LUT: serializer_inst/shift_reg[0]_i_1__0 => FF: serializer_inst/shift_reg_reg[0]
+		LUT: serializer_inst/shift_reg[8]_i_1__0 => FF: serializer_inst/shift_reg_reg[8]
+		LUT: serializer_inst/shift_reg[17]_i_1__0 => FF: serializer_inst/shift_reg_reg[17]
+		LUT: serializer_inst/shift_reg[13]_i_1__0 => FF: serializer_inst/shift_reg_reg[13]
+		LUT: serializer_inst/shift_reg[21]_i_1__0 => FF: serializer_inst/shift_reg_reg[21]
+		LUT: serializer_inst/shift_reg[3]_i_1__0 => FF: serializer_inst/shift_reg_reg[3]
+		LUT: serializer_inst/shift_reg[7]_i_1__0 => FF: serializer_inst/shift_reg_reg[7]
+		LUT: serializer_inst/shift_reg[14]_i_1__0 => FF: serializer_inst/shift_reg_reg[14]
+		LUT: serializer_inst/shift_reg[22]_i_1__0 => FF: serializer_inst/shift_reg_reg[22]
+		LUT: serializer_inst/shift_reg[10]_i_1__0 => FF: serializer_inst/shift_reg_reg[10]
+		LUT: serializer_inst/shift_reg[18]_i_1__0 => FF: serializer_inst/shift_reg_reg[18]
+		LUT: serializer_inst/shift_reg[2]_i_1__0 => FF: serializer_inst/shift_reg_reg[2]
+		LUT: serializer_inst/shift_reg[6]_i_1__0 => FF: serializer_inst/shift_reg_reg[6]
+		LUT: serializer_inst/shift_reg[15]_i_1__0 => FF: serializer_inst/shift_reg_reg[15]
+		LUT: serializer_inst/shift_reg[23]_i_2 => FF: serializer_inst/shift_reg_reg[23]
+		LUT: serializer_inst/shift_reg[11]_i_1__0 => FF: serializer_inst/shift_reg_reg[11]
+		LUT: serializer_inst/shift_reg[19]_i_1__0 => FF: serializer_inst/shift_reg_reg[19]
 	CENet: fir_filter_inst/o_ready_i_1__0_n_0, RNet: fir_filter_inst/i_rst_IBUF with cells... (5)
 		LUT: fir_filter_inst/sample_wr_addr[4]_i_1 => FF: fir_filter_inst/sample_wr_addr_reg[4]
 		LUT: fir_filter_inst/sample_wr_addr[3]_i_1 => FF: fir_filter_inst/sample_wr_addr_reg[3]
@@ -13692,12 +13696,12 @@ Printing Unique CE-R pairs with associated FF Cells... (9)
 		LUT: fir_filter_inst/sample_addr[2]_i_1 => FF: fir_filter_inst/sample_addr_reg[2]
 		LUT: fir_filter_inst/sample_addr[1]_i_1 => FF: fir_filter_inst/sample_addr_reg[1]
 
-Printing LUT Groups... (32)
+Printing LUT Groups... (33)
 	Group:
+		LUT3: fir_filter_inst/sample_addr[2]_i_2
 		LUT3: fir_filter_inst/i___142_carry__2_i_10
 		LUT5: fir_filter_inst/i___142_carry__3_i_2
 		LUT5: fir_filter_inst/i___142_carry__3_i_1
-		LUT3: fir_filter_inst/state[1]_i_2
 	Group:
 		LUT3: fir_filter_inst/i___142_carry__2_i_12
 		LUT3: fir_filter_inst/i___142_carry__2_i_11
@@ -13709,148 +13713,151 @@ Printing LUT Groups... (32)
 		LUT3: fir_filter_inst/i___142_carry__1_i_11
 		LUT5: fir_filter_inst/i___142_carry__1_i_4
 	Group:
+		LUT4: fir_filter_inst/ov_dout[23]_i_1
+		LUT4: fir_filter_inst/sample_addr[3]_i_3
 		LUT5: fir_filter_inst/i___142_carry__1_i_3
+		LUT2: fir_filter_inst/sample_addr[3]_i_2
+	Group:
 		LUT5: fir_filter_inst/i___142_carry__1_i_2
 		LUT5: fir_filter_inst/i___142_carry__1_i_1
 		LUT3: fir_filter_inst/i___142_carry__1_i_9
-	Group:
-		LUT2: fir_filter_inst/sample_addr[4]_i_3
 		LUT3: fir_filter_inst/sample_addr[4]_i_1
-		LUT4: fir_filter_inst/ov_dout[23]_i_1__0
-		LUT3: fir_filter_inst/i___142_carry__0_i_10
 	Group:
+		LUT3: fir_filter_inst/i___142_carry__0_i_10
 		LUT3: fir_filter_inst/i___142_carry__3_i_11
 		LUT3: fir_filter_inst/i___142_carry__3_i_10
 		LUT3: fir_filter_inst/i___142_carry__3_i_9
-		LUT3: fir_filter_inst/i___142_carry__0_i_12
 	Group:
+		LUT3: fir_filter_inst/i___142_carry__0_i_12
 		LUT3: fir_filter_inst/i___142_carry_i_9
 		LUT3: fir_filter_inst/i___142_carry__0_i_11
 		LUT3: fir_filter_inst/i___142_carry_i_8
-		LUT4: fir_filter_inst/i___142_carry_i_3
 	Group:
+		LUT4: fir_filter_inst/i___142_carry_i_3
 		LUT5: fir_filter_inst/i___142_carry_i_2
 		LUT5: fir_filter_inst/i___142_carry_i_1
 		LUT3: fir_filter_inst/i___142_carry__3_i_12
-		LUT3: fir_filter_inst/i___142_carry__4_i_9
 	Group:
+		LUT3: fir_filter_inst/i___142_carry__4_i_9
 		LUT5: fir_filter_inst/i___142_carry__2_i_4
 		LUT5: fir_filter_inst/i___142_carry__2_i_1
 		LUT5: fir_filter_inst/i___142_carry__2_i_3
-		LUT5: fir_filter_inst/i___142_carry__2_i_2
 	Group:
+		LUT5: fir_filter_inst/i___142_carry__2_i_2
 		LUT5: fir_filter_inst/i___142_carry__0_i_3
 		LUT5: fir_filter_inst/i___142_carry__0_i_2
 		LUT5: fir_filter_inst/i___142_carry__0_i_4
+	Group:
 		LUT3: fir_filter_inst/i___142_carry__0_i_9
-	Group:
 		LUT5: fir_filter_inst/i___142_carry__0_i_1
-		LUT2: fir_filter_inst/sample_re_addr[4]_i_3
+		LUT5: fir_filter_inst/sample_re_addr[4]_i_3
 		LUT2: fir_filter_inst/sample_re_addr[4]_i_1
-		LUT3: fir_filter_inst/i___142_carry__2_i_9
 	Group:
+		LUT3: fir_filter_inst/i___142_carry__2_i_9
 		LUT5: fir_filter_inst/i___142_carry__4_i_3
 		LUT6: fir_filter_inst/state[2]_i_2
-		LUT3: serializer_inst/shift_reg[23]_i_1__0
+		LUT4: serializer_inst/counter[3]_i_2
+	Group:
+		LUT2: serializer_inst/state[1]_i_3
+		LUT3: serializer_inst/shift_reg[23]_i_1
 		LUT5: serializer_inst/counter[4]_i_2__0
-	Group:
 		LUT6: serializer_inst/state[1]_i_2__0
-		LUT5: deserializer_inst/counter[4]_i_2
-		LUT6: deserializer_inst/state[0]_i_2
-		LUT2: deserializer_inst/ov_dout[23]_i_2
 	Group:
-		LUT6: deserializer_inst/ov_dout[23]_i_1
+		LUT5: deserializer_inst/state[1]_i_2
+		LUT5: deserializer_inst/counter[4]_i_2
+		LUT6: deserializer_inst/ov_dout[23]_i_1__0
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__1_i_1
+	Group:
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__1_i_2
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__1_i_3
-	Group:
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__1_i_4
+		LUT4: fir_filter_inst/genblk1[0].tap_inst/i___142_carry__4_i_11
+	Group:
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__3_i_1
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__3_i_2
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__3_i_3
-	Group:
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__3_i_4
+	Group:
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__0_i_1
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__0_i_2
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__0_i_3
-	Group:
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__0_i_4
+	Group:
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__2_i_3
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__2_i_4
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__2_i_1
-	Group:
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__2_i_2
+	Group:
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry_i_1
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry_i_2
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__4_i_3
-	Group:
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__4_i_1
+	Group:
 		LUT3: fir_filter_inst/genblk1[0].tap_inst/i___0_carry__4_i_2
 		LUT5: fir_filter_inst/genblk1[0].tap_inst/i___142_carry__4_i_2
 		LUT3: fir_filter_inst/genblk1[7].tap_inst/i___0_carry_i_3
-	Group:
 		LUT2: fir_filter_inst/genblk1[7].tap_inst/ov_sum[0]_i_1
+	Group:
 		LUT3: fir_filter_inst/genblk1[1].tap_inst/i___142_carry__4_i_8
 		LUT3: fir_filter_inst/genblk1[1].tap_inst/i___142_carry__4_i_10
 		LUT5: fir_filter_inst/genblk1[1].tap_inst/i___142_carry__4_i_1
-	Group:
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__1_i_2
+	Group:
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__1_i_1
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__1_i_4
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__1_i_3
-	Group:
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry_i_2
+	Group:
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry_i_1
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__4_i_1
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__4_i_3
-	Group:
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__4_i_2
+	Group:
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__2_i_1
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__2_i_3
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__2_i_2
-	Group:
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__2_i_4
+	Group:
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__0_i_4
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__0_i_1
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__0_i_3
-	Group:
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__0_i_2
+	Group:
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__3_i_4
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__3_i_3
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__3_i_2
-	Group:
 		LUT3: fir_filter_inst/genblk1[5].tap_inst/i___70_carry__3_i_1
-		LUT4: fir_filter_inst/genblk1[2].tap_inst/i___142_carry__4_i_11
+	Group:
 		LUT3: fir_filter_inst/genblk1[4].tap_inst/i___70_carry_i_3
 		LUT2: fir_filter_inst/genblk2[2].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
-	Group:
 		LUT2: fir_filter_inst/genblk2[1].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
 		LUT2: fir_filter_inst/genblk3[5].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
+	Group:
 		LUT2: fir_filter_inst/genblk3[5].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
 		LUT2: fir_filter_inst/genblk3[4].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
-	Group:
 		LUT2: fir_filter_inst/genblk3[4].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
 		LUT2: fir_filter_inst/genblk2[4].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
+	Group:
 		LUT2: fir_filter_inst/genblk3[3].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
 		LUT2: fir_filter_inst/genblk3[3].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
-	Group:
 		LUT2: fir_filter_inst/genblk2[3].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
 		LUT2: fir_filter_inst/genblk3[2].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
+	Group:
 		LUT2: fir_filter_inst/genblk3[2].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
 		LUT2: fir_filter_inst/genblk2[6].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
-	Group:
 		LUT2: fir_filter_inst/genblk3[1].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
 		LUT2: fir_filter_inst/genblk3[1].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
+	Group:
 		LUT2: fir_filter_inst/genblk2[5].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
 		LUT2: fir_filter_inst/genblk3[0].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
-	Group:
 		LUT2: fir_filter_inst/genblk3[0].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
 		LUT2: fir_filter_inst/genblk2[0].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
+	Group:
 		LUT2: fir_filter_inst/genblk3[6].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
 		LUT2: fir_filter_inst/genblk3[6].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
-	Group:
 		LUT2: fir_filter_inst/genblk2[7].xpm_memory_sprom_inst/xpm_memory_base_inst/gen_rd_a.gen_rd_a_synth_template.gen_rf_narrow_reg.douta_reg_reg_i_1
 		LUT2: fir_filter_inst/genblk3[7].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_2
+	Group:
 		LUT2: fir_filter_inst/genblk3[7].xpm_memory_spram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_i_1
 
 Placing carry chains... (11)
@@ -13869,217 +13876,218 @@ Placing carry chains... (11)
 Placing LUT-FF Pair Groups... (9)
 	CENet: serializer_inst/i_en_IBUF                          RNet: serializer_inst/i_rst_IBUF                        
 	CENet: fir_filter_inst/<const1>                           RNet: fir_filter_inst/i_rst_IBUF                        
+	CENet: deserializer_inst/ov_dout[23]_i_1__0_n_0           RNet: deserializer_inst/<const0>                        
 	CENet: fir_filter_inst/sample_re_addr[4]_i_1_n_0          RNet: fir_filter_inst/i_rst_IBUF                        
-	CENet: serializer_inst/shift_reg[23]_i_1__0_n_0           RNet: serializer_inst/i_rst_IBUF                        
-	CENet: deserializer_inst/ov_dout[23]_i_1_n_0              RNet: deserializer_inst/<const0>                        
 	CENet: deserializer_inst/i_en_IBUF                        RNet: deserializer_inst/i_rst_IBUF                      
+	CENet: serializer_inst/shift_reg[23]_i_1_n_0              RNet: serializer_inst/i_rst_IBUF                        
 	CENet: fir_filter_inst/o_ready_i_1__0_n_0                 RNet: fir_filter_inst/i_rst_IBUF                        
 	CENet: fir_filter_inst/tap_en_i_1_n_0                     RNet: fir_filter_inst/i_rst_IBUF                        
 	CENet: fir_filter_inst/sample_addr[4]_i_1_n_0             RNet: fir_filter_inst/i_rst_IBUF                        
 
 ALL CELL PATTERNS HAVE BEEN PLACED...
 
-Printing occupiedCLBSites... (166)
-	Site: SLICE_X103Y105
-	Site: SLICE_X103Y106
-	Site: SLICE_X103Y107
-	Site: SLICE_X103Y108
-	Site: SLICE_X103Y109
-	Site: SLICE_X103Y110
-	Site: SLICE_X96Y9
-	Site: SLICE_X96Y10
-	Site: SLICE_X96Y11
-	Site: SLICE_X96Y12
-	Site: SLICE_X96Y13
-	Site: SLICE_X96Y14
-	Site: SLICE_X5Y19
-	Site: SLICE_X5Y20
-	Site: SLICE_X5Y21
-	Site: SLICE_X5Y22
-	Site: SLICE_X5Y23
-	Site: SLICE_X5Y24
-	Site: SLICE_X110Y88
-	Site: SLICE_X110Y89
-	Site: SLICE_X110Y90
-	Site: SLICE_X110Y91
+Printing occupiedCLBSites... (167)
+	Site: SLICE_X105Y58
+	Site: SLICE_X105Y59
+	Site: SLICE_X105Y60
+	Site: SLICE_X105Y61
+	Site: SLICE_X105Y62
+	Site: SLICE_X105Y63
+	Site: SLICE_X94Y62
+	Site: SLICE_X94Y63
+	Site: SLICE_X94Y64
+	Site: SLICE_X94Y65
+	Site: SLICE_X94Y66
+	Site: SLICE_X94Y67
+	Site: SLICE_X36Y139
+	Site: SLICE_X36Y140
+	Site: SLICE_X36Y141
+	Site: SLICE_X36Y142
+	Site: SLICE_X36Y143
+	Site: SLICE_X36Y144
+	Site: SLICE_X6Y27
+	Site: SLICE_X6Y28
+	Site: SLICE_X6Y29
+	Site: SLICE_X6Y30
+	Site: SLICE_X6Y31
+	Site: SLICE_X6Y32
+	Site: SLICE_X95Y111
+	Site: SLICE_X95Y112
+	Site: SLICE_X95Y113
+	Site: SLICE_X95Y114
+	Site: SLICE_X95Y115
+	Site: SLICE_X95Y116
+	Site: SLICE_X43Y103
+	Site: SLICE_X43Y104
+	Site: SLICE_X43Y105
+	Site: SLICE_X43Y106
+	Site: SLICE_X43Y107
+	Site: SLICE_X43Y108
+	Site: SLICE_X83Y112
+	Site: SLICE_X83Y113
+	Site: SLICE_X83Y114
+	Site: SLICE_X83Y115
+	Site: SLICE_X83Y116
+	Site: SLICE_X83Y117
+	Site: SLICE_X54Y43
+	Site: SLICE_X54Y44
+	Site: SLICE_X54Y45
+	Site: SLICE_X54Y46
+	Site: SLICE_X54Y47
+	Site: SLICE_X54Y48
+	Site: SLICE_X91Y83
+	Site: SLICE_X91Y84
+	Site: SLICE_X91Y85
+	Site: SLICE_X91Y86
+	Site: SLICE_X91Y87
+	Site: SLICE_X91Y88
+	Site: SLICE_X105Y127
+	Site: SLICE_X105Y128
+	Site: SLICE_X105Y129
+	Site: SLICE_X105Y130
+	Site: SLICE_X105Y131
+	Site: SLICE_X105Y132
+	Site: SLICE_X102Y134
+	Site: SLICE_X102Y135
+	Site: SLICE_X102Y136
+	Site: SLICE_X102Y137
+	Site: SLICE_X102Y138
+	Site: SLICE_X102Y139
+	Site: SLICE_X84Y75
+	Site: SLICE_X84Y75
+	Site: SLICE_X75Y1
+	Site: SLICE_X75Y1
+	Site: SLICE_X56Y5
+	Site: SLICE_X56Y5
+	Site: SLICE_X53Y28
+	Site: SLICE_X53Y28
+	Site: SLICE_X88Y45
+	Site: SLICE_X88Y45
+	Site: SLICE_X54Y82
+	Site: SLICE_X54Y82
+	Site: SLICE_X38Y145
+	Site: SLICE_X38Y145
+	Site: SLICE_X33Y114
+	Site: SLICE_X33Y114
+	Site: SLICE_X62Y128
+	Site: SLICE_X62Y128
+	Site: SLICE_X79Y27
+	Site: SLICE_X79Y27
+	Site: SLICE_X12Y49
+	Site: SLICE_X12Y49
+	Site: SLICE_X97Y30
+	Site: SLICE_X97Y30
+	Site: SLICE_X98Y16
+	Site: SLICE_X98Y16
+	Site: SLICE_X10Y4
+	Site: SLICE_X10Y4
 	Site: SLICE_X110Y92
-	Site: SLICE_X110Y93
-	Site: SLICE_X34Y18
-	Site: SLICE_X34Y19
-	Site: SLICE_X34Y20
-	Site: SLICE_X34Y21
-	Site: SLICE_X34Y22
-	Site: SLICE_X34Y23
-	Site: SLICE_X40Y97
-	Site: SLICE_X40Y98
-	Site: SLICE_X40Y99
-	Site: SLICE_X40Y100
-	Site: SLICE_X40Y101
-	Site: SLICE_X40Y102
-	Site: SLICE_X92Y108
-	Site: SLICE_X92Y109
-	Site: SLICE_X92Y110
-	Site: SLICE_X92Y111
-	Site: SLICE_X92Y112
-	Site: SLICE_X92Y113
-	Site: SLICE_X32Y92
-	Site: SLICE_X32Y93
-	Site: SLICE_X32Y94
-	Site: SLICE_X32Y95
-	Site: SLICE_X32Y96
-	Site: SLICE_X32Y97
-	Site: SLICE_X84Y30
-	Site: SLICE_X84Y31
-	Site: SLICE_X84Y32
-	Site: SLICE_X84Y33
-	Site: SLICE_X84Y34
-	Site: SLICE_X84Y35
-	Site: SLICE_X82Y129
-	Site: SLICE_X82Y130
-	Site: SLICE_X82Y131
-	Site: SLICE_X82Y132
-	Site: SLICE_X82Y133
-	Site: SLICE_X82Y134
-	Site: SLICE_X26Y97
-	Site: SLICE_X26Y98
-	Site: SLICE_X26Y99
-	Site: SLICE_X26Y100
-	Site: SLICE_X26Y101
-	Site: SLICE_X26Y102
-	Site: SLICE_X58Y109
-	Site: SLICE_X58Y109
-	Site: SLICE_X62Y103
-	Site: SLICE_X62Y103
-	Site: SLICE_X94Y50
-	Site: SLICE_X94Y50
-	Site: SLICE_X102Y68
-	Site: SLICE_X102Y68
-	Site: SLICE_X4Y1
-	Site: SLICE_X4Y1
-	Site: SLICE_X84Y101
-	Site: SLICE_X84Y101
-	Site: SLICE_X36Y117
-	Site: SLICE_X36Y117
-	Site: SLICE_X102Y134
-	Site: SLICE_X102Y134
-	Site: SLICE_X64Y127
-	Site: SLICE_X64Y127
-	Site: SLICE_X104Y91
-	Site: SLICE_X104Y91
-	Site: SLICE_X47Y125
-	Site: SLICE_X47Y125
-	Site: SLICE_X33Y21
-	Site: SLICE_X33Y21
-	Site: SLICE_X0Y34
-	Site: SLICE_X0Y34
-	Site: SLICE_X22Y7
-	Site: SLICE_X22Y7
-	Site: SLICE_X62Y63
-	Site: SLICE_X62Y63
-	Site: SLICE_X30Y104
-	Site: SLICE_X30Y104
-	Site: SLICE_X1Y36
-	Site: SLICE_X1Y36
-	Site: SLICE_X3Y33
-	Site: SLICE_X3Y33
-	Site: SLICE_X102Y14
-	Site: SLICE_X102Y14
-	Site: SLICE_X22Y10
-	Site: SLICE_X22Y10
-	Site: SLICE_X92Y6
-	Site: SLICE_X92Y6
-	Site: SLICE_X0Y42
-	Site: SLICE_X0Y42
-	Site: SLICE_X51Y137
-	Site: SLICE_X51Y137
-	Site: SLICE_X82Y16
-	Site: SLICE_X82Y16
-	Site: SLICE_X62Y129
-	Site: SLICE_X62Y129
-	Site: SLICE_X65Y148
-	Site: SLICE_X65Y148
-	Site: SLICE_X61Y81
-	Site: SLICE_X61Y81
-	Site: SLICE_X88Y85
-	Site: SLICE_X88Y85
-	Site: SLICE_X80Y93
-	Site: SLICE_X80Y93
-	Site: SLICE_X18Y44
-	Site: SLICE_X18Y44
-	Site: SLICE_X34Y51
-	Site: SLICE_X34Y51
-	Site: SLICE_X42Y109
-	Site: SLICE_X42Y109
-	Site: SLICE_X12Y7
-	Site: SLICE_X12Y7
-	Site: SLICE_X94Y79
-	Site: SLICE_X94Y79
-	Site: SLICE_X92Y49
-	Site: SLICE_X6Y6
-	Site: SLICE_X65Y22
-	Site: SLICE_X51Y45
-	Site: SLICE_X54Y71
-	Site: SLICE_X106Y18
-	Site: SLICE_X45Y97
-	Site: SLICE_X64Y59
-	Site: SLICE_X99Y50
-	Site: SLICE_X97Y21
-	Site: SLICE_X73Y27
-	Site: SLICE_X86Y112
-	Site: SLICE_X32Y113
-	Site: SLICE_X30Y130
-	Site: SLICE_X101Y23
-	Site: SLICE_X50Y82
-	Site: SLICE_X13Y46
-	Site: SLICE_X101Y138
-	Site: SLICE_X112Y51
-	Site: SLICE_X33Y94
-	Site: SLICE_X50Y139
-	Site: SLICE_X93Y25
-	Site: SLICE_X81Y63
-	Site: SLICE_X103Y84
-	Site: SLICE_X6Y44
-	Site: SLICE_X67Y13
-	Site: SLICE_X47Y78
-	Site: SLICE_X110Y61
-	Site: SLICE_X47Y130
-	Site: SLICE_X42Y101
-	Site: SLICE_X95Y77
-	Site: SLICE_X30Y29
+	Site: SLICE_X110Y92
+	Site: SLICE_X43Y18
+	Site: SLICE_X43Y18
+	Site: SLICE_X108Y36
+	Site: SLICE_X108Y36
+	Site: SLICE_X108Y92
+	Site: SLICE_X108Y92
+	Site: SLICE_X45Y105
+	Site: SLICE_X45Y105
+	Site: SLICE_X15Y39
+	Site: SLICE_X15Y39
+	Site: SLICE_X6Y1
+	Site: SLICE_X6Y1
+	Site: SLICE_X78Y4
+	Site: SLICE_X78Y4
+	Site: SLICE_X81Y28
+	Site: SLICE_X81Y28
+	Site: SLICE_X38Y5
+	Site: SLICE_X38Y5
+	Site: SLICE_X29Y48
+	Site: SLICE_X29Y48
+	Site: SLICE_X62Y52
+	Site: SLICE_X62Y52
+	Site: SLICE_X62Y131
+	Site: SLICE_X62Y131
+	Site: SLICE_X104Y80
+	Site: SLICE_X104Y80
+	Site: SLICE_X97Y32
+	Site: SLICE_X97Y32
+	Site: SLICE_X62Y115
+	Site: SLICE_X62Y115
+	Site: SLICE_X57Y43
+	Site: SLICE_X57Y43
+	Site: SLICE_X53Y116
+	Site: SLICE_X53Y116
+	Site: SLICE_X108Y49
+	Site: SLICE_X108Y49
+	Site: SLICE_X104Y128
+	Site: SLICE_X104Y128
+	Site: SLICE_X61Y38
+	Site: SLICE_X45Y88
+	Site: SLICE_X96Y3
+	Site: SLICE_X57Y21
+	Site: SLICE_X89Y56
+	Site: SLICE_X110Y6
+	Site: SLICE_X98Y25
+	Site: SLICE_X35Y134
+	Site: SLICE_X96Y68
+	Site: SLICE_X17Y45
+	Site: SLICE_X104Y32
+	Site: SLICE_X56Y15
+	Site: SLICE_X113Y29
+	Site: SLICE_X67Y15
+	Site: SLICE_X90Y12
+	Site: SLICE_X92Y68
+	Site: SLICE_X52Y81
+	Site: SLICE_X82Y142
+	Site: SLICE_X86Y143
+	Site: SLICE_X92Y55
+	Site: SLICE_X40Y93
+	Site: SLICE_X55Y68
+	Site: SLICE_X82Y109
+	Site: SLICE_X55Y112
+	Site: SLICE_X105Y137
+	Site: SLICE_X69Y42
+	Site: SLICE_X24Y2
+	Site: SLICE_X47Y138
+	Site: SLICE_X90Y20
+	Site: SLICE_X28Y98
+	Site: SLICE_X96Y19
+	Site: SLICE_X91Y25
+	Site: SLICE_X62Y48
 Printing occupiedDSPSites... (16)
-	Site: DSP48_X4Y34
-	Site: DSP48_X4Y35
-	Site: DSP48_X2Y52
-	Site: DSP48_X2Y53
-	Site: DSP48_X4Y2
-	Site: DSP48_X4Y3
-	Site: DSP48_X4Y38
-	Site: DSP48_X4Y39
-	Site: DSP48_X4Y36
-	Site: DSP48_X4Y37
-	Site: DSP48_X2Y24
-	Site: DSP48_X2Y25
-	Site: DSP48_X1Y8
-	Site: DSP48_X1Y9
-	Site: DSP48_X4Y42
-	Site: DSP48_X4Y43
+	Site: DSP48_X2Y22
+	Site: DSP48_X2Y23
+	Site: DSP48_X2Y38
+	Site: DSP48_X2Y39
+	Site: DSP48_X3Y0
+	Site: DSP48_X3Y1
+	Site: DSP48_X0Y16
+	Site: DSP48_X0Y17
+	Site: DSP48_X1Y18
+	Site: DSP48_X1Y19
+	Site: DSP48_X3Y16
+	Site: DSP48_X3Y17
+	Site: DSP48_X3Y2
+	Site: DSP48_X3Y3
+	Site: DSP48_X2Y20
+	Site: DSP48_X2Y21
 Printing occupiedRAMSites... (16)
-	Site: DSP48_X4Y34
-	Site: DSP48_X4Y35
-	Site: DSP48_X2Y52
-	Site: DSP48_X2Y53
-	Site: DSP48_X4Y2
-	Site: DSP48_X4Y3
-	Site: DSP48_X4Y38
-	Site: DSP48_X4Y39
-	Site: DSP48_X4Y36
-	Site: DSP48_X4Y37
-	Site: DSP48_X2Y24
-	Site: DSP48_X2Y25
-	Site: DSP48_X1Y8
-	Site: DSP48_X1Y9
-	Site: DSP48_X4Y42
-	Site: DSP48_X4Y43
+	Site: DSP48_X2Y22
+	Site: DSP48_X2Y23
+	Site: DSP48_X2Y38
+	Site: DSP48_X2Y39
+	Site: DSP48_X3Y0
+	Site: DSP48_X3Y1
+	Site: DSP48_X0Y16
+	Site: DSP48_X0Y17
+	Site: DSP48_X1Y18
+	Site: DSP48_X1Y19
+	Site: DSP48_X3Y16
+	Site: DSP48_X3Y17
+	Site: DSP48_X3Y2
+	Site: DSP48_X3Y3
+	Site: DSP48_X2Y20
+	Site: DSP48_X2Y21
 
 Printing remaining cells in EDIFCellGroups...
 	Group: OBUF... (3)

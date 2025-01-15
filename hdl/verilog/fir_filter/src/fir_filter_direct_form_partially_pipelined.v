@@ -58,20 +58,24 @@ module fir_filter_direct_form_partially_pipelined
     // STATE MACHINE
     always @(*) begin
         case (state)
+            // S0
             WAIT_DIN_VALID: begin
                 next_state <= WAIT_DIN_VALID;
                 // WAIT FOR DIN VALID
                 if (i_din_valid)
                     next_state <= WRITE_DIN_SAMPLE;
             end
+            // S1
             WRITE_DIN_SAMPLE: begin
                 // SIGNAL DATA CONSUMED
                 // WRITE SAMPLE INTO RAM
                 next_state <= INIT_READ;
             end
+            // S2
             INIT_READ: begin
                 next_state <= PROCESS_SAMPLE;
             end
+            // S3
             PROCESS_SAMPLE: begin
                 next_state <= PROCESS_SAMPLE;
                 // PIPELINED MAC
@@ -79,6 +83,7 @@ module fir_filter_direct_form_partially_pipelined
                 if (weight_re_addr == PIPE_DEPTH-1)
                     next_state <= WAIT_DOUT_READY;
             end
+            // S4
             WAIT_DOUT_READY: begin
                 next_state <= WAIT_DOUT_READY;
                 // WAIT FOR RECEIVER TO CONSUME OUTPUT DATA
@@ -114,11 +119,12 @@ module fir_filter_direct_form_partially_pipelined
             tap_en = 1'b0;
             sum_rst = 1'b0;
             case (state)
+                // S0
                 WAIT_DIN_VALID: begin
                     // WAIT FOR INPUT DATA VALID
                     sum_rst = 1'b1;
                 end
-
+                // S1
                 WRITE_DIN_SAMPLE: begin
                     // SIGNAL DATA CONSUMED
                     // WRITE SAMPLE INTO RAM
@@ -130,7 +136,7 @@ module fir_filter_direct_form_partially_pipelined
                         sample_wr_addr = FIR_DEPTH - 1;
                     sample_addr = sample_wr_addr;
                 end
-
+                // S2
                 INIT_READ: begin
                     // to accomodate read-latency
                     weight_re = 1'b1;
@@ -138,7 +144,7 @@ module fir_filter_direct_form_partially_pipelined
                     sample_re_addr = sample_wr_addr;
                     sample_addr = sample_re_addr;
                 end
-
+                // S3
                 PROCESS_SAMPLE: begin
                     // PIPELINED MAC
                     tap_en = 1'b1;
@@ -151,6 +157,7 @@ module fir_filter_direct_form_partially_pipelined
                         weight_re = 1'b1;
                         sample_re = 1'b1;
                         weight_re_addr = weight_re_addr + 1;
+                        o_dout_valid = 1'b0;
                     end else begin
                         weight_re_addr = 0;
                         o_dout_valid = 1'b1;
@@ -158,14 +165,13 @@ module fir_filter_direct_form_partially_pipelined
                     end
                     sample_addr = sample_re_addr;
                 end
-
+                // S4
                 WAIT_DOUT_READY: begin
+                    o_dout_valid = 1'b1;
                     // WAIT FOR RECEIVER TO CONSUME OUTPUT DATA
                 end
 
                 default: begin
-                    o_ready = 1'b0;
-                    o_dout_valid = 1'b0;
                 end
 
             endcase
