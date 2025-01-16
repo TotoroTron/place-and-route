@@ -27,25 +27,26 @@ module fir_filter_direct_form_partially_pipelined
     reg sample_re = 1'b0;
     wire [DATA_WIDTH-1:0] sample_data [NUM_PIPELINES-1:0];
     reg [RE_ADDR_WIDTH-1:0] sample_re_addr = 0;
-    reg [WR_ADDR_WIDTH-1:0] sample_wr_addr = 0;
-    reg [WR_ADDR_WIDTH-1:0] sample_addr = 0;
+    reg [WR_ADDR_WIDTH-1:0] sample_wr_addr = 0; // = PIPE_DEPTH - 1;
+    reg [WR_ADDR_WIDTH-1:0] sample_addr;
 
     reg weight_re = 1'b0;
-    reg [RE_ADDR_WIDTH-1:0] weight_re_addr = 0;
+    reg [RE_ADDR_WIDTH-1:0] weight_re_addr;
     wire [DATA_WIDTH-1:0] weight_data [NUM_PIPELINES-1:0];
 
-    reg tap_en;
+    reg tap_en = 1'b0;
     wire [DATA_WIDTH-1:0] tap_dout [NUM_PIPELINES-1:0];
     wire [DATA_WIDTH-1:0] part_sum [NUM_PIPELINES-1:0];
-    reg [DATA_WIDTH-1:0] acc;
-    reg sum_rst;
+    reg [DATA_WIDTH-1:0] acc = 0;
+    reg sum_rst = 1'b0;
 
     parameter 
-        WAIT_DIN_VALID      = 4'b0000,
-        WRITE_DIN_SAMPLE    = 4'b0001,
-        INIT_READ           = 4'b0010,
-        PROCESS_SAMPLE      = 4'b0011,
-        WAIT_DOUT_READY     = 4'b0100;
+         WAIT_DIN_VALID  = 4'b0000,
+         INIT_SHIFT_REG  = 4'b0001,
+         WRITE_SAMPLE    = 4'b0010,
+         INIT_READ       = 4'b0011,
+         PROCESS_SAMPLE  = 4'b0100,
+         WAIT_DOUT_READY = 4'b0101;
     reg [3:0] state = WAIT_DIN_VALID;
     reg [3:0] next_state;
 
@@ -63,27 +64,33 @@ module fir_filter_direct_form_partially_pipelined
                 next_state <= WAIT_DIN_VALID;
                 // WAIT FOR DIN VALID
                 if (i_din_valid)
-                    next_state <= WRITE_DIN_SAMPLE;
+                    next_state <= INIT_SHIFT_REG;
             end
+
             // S1
-            WRITE_DIN_SAMPLE: begin
+            INIT_SHIFT_REG: begin
+                next_state <= WRITE_SAMPLE;
+            end
+            
+            // S2
+            WRITE_SAMPLE: begin
                 // SIGNAL DATA CONSUMED
                 // WRITE SAMPLE INTO RAM
                 next_state <= INIT_READ;
             end
-            // S2
+            // S3
             INIT_READ: begin
                 next_state <= PROCESS_SAMPLE;
             end
-            // S3
+            // S4
             PROCESS_SAMPLE: begin
                 next_state <= PROCESS_SAMPLE;
                 // PIPELINED MAC
                 // ASSERT OUTPUT DATA VALID WHEN FINISHED
-                if (weight_re_addr == PIPE_DEPTH-1)
+                if (weight_re_addr == PIPE_DEPTH - 1)
                     next_state <= WAIT_DOUT_READY;
             end
-            // S4
+            // S5
             WAIT_DOUT_READY: begin
                 next_state <= WAIT_DOUT_READY;
                 // WAIT FOR RECEIVER TO CONSUME OUTPUT DATA
@@ -104,7 +111,7 @@ module fir_filter_direct_form_partially_pipelined
             weight_re = 1'b0;
             tap_en = 1'b0;
             sum_rst = 1'b0;
-            sample_wr_addr = 0;
+            sample_wr_addr = 0; // = PIPEDEPTH - 1;
             sample_re_addr = 0;
             weight_re_addr = 0;
             sample_addr = 0;
@@ -124,27 +131,38 @@ module fir_filter_direct_form_partially_pipelined
                     // WAIT FOR INPUT DATA VALID
                     sum_rst = 1'b1;
                 end
+
                 // S1
-                WRITE_DIN_SAMPLE: begin
-                    // SIGNAL DATA CONSUMED
-                    // WRITE SAMPLE INTO RAM
-                    o_ready = 1'b1;
-                    sample_we = 1'b1;
-                    if (sample_wr_addr > 0)
-                        sample_wr_addr = sample_wr_addr - 1;
-                    else
-                        sample_wr_addr = FIR_DEPTH - 1;
-                    sample_addr = sample_wr_addr;
-                end
-                // S2
-                INIT_READ: begin
-                    // to accomodate read-latency
-                    weight_re = 1'b1;
+                INIT_SHIFT_REG: begin
+                    // set up sample to be written to next ram on outreg
                     sample_re = 1'b1;
                     sample_re_addr = sample_wr_addr;
                     sample_addr = sample_re_addr;
                 end
+
+                // S2
+                WRITE_SAMPLE: begin
+                    // SIGNAL DATA CONSUMED
+                    // WRITE SAMPLE INTO RAM
+                    o_ready = 1'b1;
+                    sample_we = 1'b1;
+                    sample_addr = sample_wr_addr;
+                end
+
                 // S3
+                INIT_READ: begin // to accomodate read-latency
+                    weight_re = 1'b1;
+                    sample_re = 1'b1;
+                    sample_re_addr = sample_wr_addr;
+                    sample_addr = sample_re_addr;
+                    // update sample write address
+                    if (sample_wr_addr > 0)
+                        sample_wr_addr = sample_wr_addr - 1;
+                    else
+                        sample_wr_addr = PIPE_DEPTH - 1;
+                end
+
+                // S4
                 PROCESS_SAMPLE: begin
                     // PIPELINED MAC
                     tap_en = 1'b1;
@@ -165,7 +183,8 @@ module fir_filter_direct_form_partially_pipelined
                     end
                     sample_addr = sample_re_addr;
                 end
-                // S4
+
+                // S5
                 WAIT_DOUT_READY: begin
                     o_dout_valid = 1'b1;
                     // WAIT FOR RECEIVER TO CONSUME OUTPUT DATA

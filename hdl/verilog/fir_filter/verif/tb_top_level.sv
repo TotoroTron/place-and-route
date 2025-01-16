@@ -74,7 +74,7 @@ module tb_top_level
             tb_rst = 0;
             tb_en = 1;
             // FOR EACH SAMPLE IN SIGNAL
-            for (int t = 0; t < SAMPLES_PER_SIGNAL_PERIOD; t++) begin
+            for (int t = 0; t < SAMPLES_PER_SIGNAL_PERIOD / 16; t++) begin
                 tb_addr = t;
                 tb_din_valid = 0;
                 @(posedge tb_clk);
@@ -105,11 +105,12 @@ module tb_top_level
     always begin
         wait(tb_dout_valid == 1'b1);
         @(posedge tb_clk);
-        tb_ready = 1;
-        serial_word = 0;
         @(posedge tb_clk);
+        serial_word = 0;
+        tb_ready = 1;
         @(posedge tb_clk);
         for (int i = 0; i < DATA_WIDTH; i++) begin
+            @(negedge tb_clk);
             serial_word[i] = tb_dout;
             @(posedge tb_clk);
         end
@@ -122,7 +123,7 @@ module tb_top_level
 
     initial begin
         fd = $fopen("fir_out.txt", "w");
-        #20ms;
+        #1ms;
         $display("Simulation terminated after 20 milliseconds.");
         $fclose(fd);
         $finish;

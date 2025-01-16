@@ -90,9 +90,9 @@ module serializer_fsm
                 end
                 S3: begin
                     // DATA SHIFT
+                    o_dout_valid <= 1'b1;
                     if (i_ready) begin
                         counter <= counter + 1;
-                        o_dout_valid <= 1'b1;
                         shift_reg <= { 1'b0, shift_reg[LENGTH-1:1] };
                     end
                 end
