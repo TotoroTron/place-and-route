@@ -74,7 +74,7 @@ module tb_top_level
             tb_rst = 0;
             tb_en = 1;
             // FOR EACH SAMPLE IN SIGNAL
-            for (int t = 0; t < SAMPLES_PER_SIGNAL_PERIOD / 16; t++) begin
+            for (int t = 0; t < SAMPLES_PER_SIGNAL_PERIOD / 32; t++) begin
                 tb_addr = t;
                 tb_din_valid = 0;
                 @(posedge tb_clk);
@@ -102,23 +102,29 @@ module tb_top_level
         $finish;
     end // initial
 
+
+    always @(posedge tb_clk) begin
+        serial_word = {tb_dout, serial_word[DATA_WIDTH-1:1]};
+    end
+
     always begin
+        wait(tb_dout_valid == 1'b0);
         wait(tb_dout_valid == 1'b1);
-        @(posedge tb_clk);
-        @(posedge tb_clk);
-        serial_word = 0;
         tb_ready = 1;
         @(posedge tb_clk);
+        @(negedge tb_clk);
         for (int i = 0; i < DATA_WIDTH; i++) begin
-            @(negedge tb_clk);
-            serial_word[i] = tb_dout;
+            if (i == DATA_WIDTH-1)
+                tb_word_out = serial_word;
             @(posedge tb_clk);
+            @(negedge tb_clk);
         end
-        @(posedge tb_clk);
         tb_ready = 0;
-        tb_word_out = serial_word;
         $fdisplay(fd, "%h", tb_word_out);
         @(posedge tb_clk);
+        @(posedge tb_clk);
+        @(posedge tb_clk);
+        @(negedge tb_clk);
     end
 
     initial begin

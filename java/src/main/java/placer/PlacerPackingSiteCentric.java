@@ -589,6 +589,12 @@ public class PlacerPackingSiteCentric extends Placer {
                 si.createCell(group.get(i), si.getBEL(LUT6_BELS[i]));
             }
             si.routeSite();
+            // for whatever reason, this does not activate DUSED PIP for
+            // serializer_inst/state[1]_i_3_n_0
+            si.addSitePIP(si.getSitePIP("DUSED", "0"));
+            si.addSitePIP(si.getSitePIP("CUSED", "0"));
+            si.addSitePIP(si.getSitePIP("BUSED", "0"));
+            si.addSitePIP(si.getSitePIP("AUSED", "0"));
         }
     }
 

@@ -17,11 +17,8 @@ module fir_filter_direct_form_partially_pipelined
 );
 
     localparam PIPE_DEPTH = FIR_DEPTH / NUM_PIPELINES;
-    localparam WR_ADDR_WIDTH = $clog2(PIPE_DEPTH);
-    localparam RE_ADDR_WIDTH = $clog2(PIPE_DEPTH);
-    localparam WR_SEL_WIDTH = WR_ADDR_WIDTH - RE_ADDR_WIDTH;
-
-    // reg [WR_SEL_WIDTH-1:0] wr_sel;
+    localparam WR_ADDR_WIDTH = $clog2(PIPE_DEPTH) + 1;
+    localparam RE_ADDR_WIDTH = $clog2(PIPE_DEPTH) + 1;
 
     reg sample_we = 1'b0;
     reg sample_re = 1'b0;

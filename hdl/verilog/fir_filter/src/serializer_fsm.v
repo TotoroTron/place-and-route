@@ -58,7 +58,8 @@ module serializer_fsm
                 if (counter == LENGTH)
                     next_state <= S0;
             end
-            default: next_state <= S0;
+            default: begin
+            end
         endcase
     end
 
@@ -82,11 +83,11 @@ module serializer_fsm
                 S1: begin
                     // SIGNAL DIN CONSUMED
                     o_ready <= 1'b1;
-                    shift_reg <= iv_din;
                 end
                 S2: begin
                     // SIGNAL DOUT VALID
                     o_dout_valid <= 1'b1;
+                    shift_reg <= iv_din;
                 end
                 S3: begin
                     // DATA SHIFT
