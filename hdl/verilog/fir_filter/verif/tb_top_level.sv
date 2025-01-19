@@ -28,7 +28,12 @@ module tb_top_level
     reg [DATA_WIDTH-1:0] tb_word_out;
     reg [ADDR_WIDTH-1:0] tb_addr;
     int num_errors = 0;
-    integer fd; // file writer
+    integer fd_des; // file writer
+    integer fd_ser; // file writer
+    integer error_count_des = 0;
+    integer transactions_des = 0;
+    integer error_count_ser = 0;
+    integer transactions_ser = 0;
 
     // instantiation unit under test 
     top_level
@@ -83,6 +88,23 @@ module tb_top_level
             end
             // done sending 24-bit word
             tb_din_valid = 1'b0;
+
+            transactions_des = transactions_des + 1;
+            @(posedge tb_clk);
+            if (tb_word_in == top_level.fir_din) begin
+                $fdisplay(fd_des, "Success!");
+            end else begin
+                $fdisplay(fd_des, "FAILURE!");
+                error_count_des = error_count_des + 1;
+            end
+            $fdisplay(fd_des,
+                "\t[%4t ns]   TB sent:  0b%024b",
+                $time, tb_word_in
+            );
+            $fdisplay(fd_des,
+                "\t[%4t ns]  FIR rcvd:  0b%024b",
+                $time, top_level.fir_din
+            );
             // arbitrary idle wait between samples
             repeat (50) @(posedge tb_clk);
         end
@@ -90,7 +112,10 @@ module tb_top_level
         // Wait extra time at end
         repeat (1000) @(posedge tb_clk);
 
-        $fclose(fd);
+        $fdisplay(fd_des, "Deserializer errors: (%6d) out of (%6d)", error_count_des, transactions_des);
+        $fdisplay(fd_ser, "Serializer errors: (%6d) out of (%6d)", error_count_ser, transactions_ser);
+        $fclose(fd_des);
+        $fclose(fd_ser);
         $finish;
     end
 
@@ -109,19 +134,38 @@ module tb_top_level
 
                 // once we've collected all 24 bits, print the received word
                 if (tb_bit_counter == DATA_WIDTH-1) begin
-                tb_word_out = tb_shift_reg;
-                $fdisplay(fd, "[%0t ns] TB DESER got word = 0x%06X", $time, tb_word_out);
-                tb_bit_counter <= 0;
+                    tb_bit_counter <= 0;
+                    tb_word_out = tb_shift_reg;
+
+                    transactions_ser = transactions_ser + 1;
+                    if (top_level.fir_dout == tb_word_out) begin
+                        $fdisplay(fd_ser, "Success!");
+                    end else begin
+                        $fdisplay(fd_ser, "FAILURE!");
+                        error_count_ser = error_count_ser + 1;
+                    end
+                    $fdisplay(fd_ser,
+                        "\t[%4t ns]  FIR sent:  0b%024b",
+                        $time, top_level.fir_dout
+                    );
+                    $fdisplay(fd_ser,
+                        "\t[%4t ns]   TB rcvd:  0b%024b",
+                        $time, tb_word_out
+                    );
                 end
             end
         end
     end
 
     initial begin
-        fd = $fopen("fir_out.txt", "w");
+        fd_des = $fopen("deserializer.txt", "w");
+        fd_ser = $fopen("serializer.txt", "w");
         #10ms;
         $display("Simulation terminated after 10 milliseconds.");
-        $fclose(fd);
+        $fdisplay(fd_des, "Deserializer errors: (%6d) out of (%6d)", error_count_des, transactions_des);
+        $fdisplay(fd_ser, "Serializer errors: (%6d) out of (%6d)", error_count_ser, transactions_ser);
+        $fclose(fd_des);
+        $fclose(fd_ser);
         $finish;
     end // initial
 endmodule
