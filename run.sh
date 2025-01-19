@@ -119,7 +119,7 @@ EOL
     check_exit_status "xsim"
 
     # Open the wavefile in Vivado
-    xsim "${TOP_LEVEL}_functional".wdb -gui -tclbatch waveform.tcl
+    # xsim "${TOP_LEVEL}_functional".wdb -gui -tclbatch waveform.tcl
 fi
 
 # Gradle Build Stage (replaces Java Compilation)
@@ -202,7 +202,7 @@ EOL
 
     echo "Beginning xsim..."
     xsim ${TOP_LEVEL}_time_impl -tclbatch xsim_cfg.tcl
-    xsim ${TOP_LEVEL}_time_impl.wdb -gui -tclbatch waveform.tcl
+    # xsim ${TOP_LEVEL}_time_impl.wdb -gui -tclbatch waveform.tcl
     # source /home/bcheng/workspace/tools/oss-cad-suite/environment
     # gtkwave waveform.vcd
 fi

@@ -120,18 +120,18 @@ module tb_top_level
     end
 
     reg [DATA_WIDTH-1:0] tb_shift_reg;
-    reg [$clog2(DATA_WIDTH+1)-1:0] tb_bit_counter;
 
     always begin
         @(posedge tb_clk);
         wait(dut_dout_valid == 1'b0);
         wait(dut_dout_valid == 1'b1);
-        @(posedge tb_clk);
+        @(negedge tb_clk);
         tb_ready = 1'b1;
         repeat(DATA_WIDTH) begin
-            tb_shift_reg <= {dut_dout, tb_shift_reg[DATA_WIDTH-1:1]};
-            @(posedge tb_clk);
+            tb_shift_reg = {dut_dout, tb_shift_reg[DATA_WIDTH-1:1]};
+            @(negedge tb_clk);
         end
+        @(negedge tb_clk);
         tb_ready = 1'b0;
         tb_word_out = tb_shift_reg;
         transactions_ser = transactions_ser + 1;

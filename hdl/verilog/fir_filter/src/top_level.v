@@ -16,8 +16,9 @@ module top_level
     output wire o_dout_valid
 );
 
-    wire [DATA_WIDTH-1:0] fir_din;
-    wire [DATA_WIDTH-1:0] fir_dout;
+    // tell synth not to alter/optimize these signals
+    (* DONT_TOUCH = "TRUE" *) wire [DATA_WIDTH-1:0] fir_din;
+    (* DONT_TOUCH = "TRUE" *) wire [DATA_WIDTH-1:0] fir_dout;
 
     wire des_out_valid;
 

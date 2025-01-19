@@ -4,7 +4,7 @@
   (keywordmap (keywordlevel 0))
 (status
  (written
-  (timeStamp 2025 01 19 15 50 18)
+  (timeStamp 2025 01 19 16 44 39)
   (program "Vivado" (version "2023.2.2"))
   (comment "Built on 'Thu Feb  8 23:52:05 MST 2024'")
   (comment "Built by 'xbuild'")
@@ -3519,7 +3519,7 @@
         (port (array (rename ov_sum_reg_22__0 "ov_sum_reg[22]_0[2:0]") 3) (direction OUTPUT))
         (port (array (rename ov_sum_reg_23__0 "ov_sum_reg[23]_0[4:0]") 5) (direction OUTPUT))
         (port (array (rename ov_sum_reg_5__0 "ov_sum_reg[5]_0[3:0]") 4) (direction OUTPUT))
-        (port (array (rename ov_sum_reg_7__0 "ov_sum_reg[7]_0[3:0]") 4) (direction OUTPUT))
+        (port (array (rename ov_sum_reg_6__0 "ov_sum_reg[6]_0[3:0]") 4) (direction OUTPUT))
         (port (array (rename ov_sum_reg_9__0 "ov_sum_reg[9]_0[3:0]") 4) (direction OUTPUT))
        )
        (contents
@@ -3549,7 +3549,7 @@
            (property INIT (string "32'hDDD4D444"))
          )
          (instance acc0__142_carry__0_i_5 (viewref netlist (cellref LUT6 (libraryref hdi_primitives)))
-           (property INIT (string "64'h9696966996696969"))
+           (property INIT (string "64'hA995566A566AA995"))
          )
          (instance acc0__142_carry__0_i_6 (viewref netlist (cellref LUT6 (libraryref hdi_primitives)))
            (property INIT (string "64'hA995566A566AA995"))
@@ -3684,7 +3684,7 @@
            (property INIT (string "64'hE187871E871E1E78"))
          )
          (instance acc0__142_carry__4_i_6 (viewref netlist (cellref LUT6 (libraryref hdi_primitives)))
-           (property INIT (string "64'hA995566A566AA995"))
+           (property INIT (string "64'h9696966996696969"))
          )
          (instance acc0__142_carry__4_i_7 (viewref netlist (cellref LUT6 (libraryref hdi_primitives)))
            (property INIT (string "64'hA995566A566AA995"))
@@ -4304,9 +4304,9 @@
           )
          )
          (net (rename O_3_ "O[3]") (joined
+          (portref I0 (instanceref acc0__142_carry__0_i_3))
           (portref I0 (instanceref acc0__142_carry_i_9))
-          (portref I2 (instanceref acc0__142_carry__0_i_3))
-          (portref I3 (instanceref acc0__142_carry__0_i_8))
+          (portref I1 (instanceref acc0__142_carry__0_i_8))
           (portref (member O 0))
           )
          )
@@ -4438,8 +4438,8 @@
           )
          )
          (net acc0__142_carry__0_i_12_n_0 (joined
-          (portref I2 (instanceref acc0__142_carry__0_i_5))
           (portref I3 (instanceref acc0__142_carry__1_i_4))
+          (portref I5 (instanceref acc0__142_carry__0_i_5))
           (portref O (instanceref acc0__142_carry__0_i_12))
           )
          )
@@ -4671,23 +4671,23 @@
           )
          )
          (net (rename ov_dout_reg_11__1_ "ov_dout_reg[11][1]") (joined
+          (portref I0 (instanceref acc0__142_carry__0_i_1))
           (portref I0 (instanceref acc0__142_carry__0_i_10))
-          (portref I2 (instanceref acc0__142_carry__0_i_1))
-          (portref I3 (instanceref acc0__142_carry__0_i_6))
+          (portref I1 (instanceref acc0__142_carry__0_i_6))
           (portref (member ov_dout_reg_11_ 2))
           )
          )
          (net (rename ov_dout_reg_11__2_ "ov_dout_reg[11][2]") (joined
           (portref I0 (instanceref acc0__142_carry__0_i_9))
-          (portref I2 (instanceref acc0__142_carry__1_i_4))
-          (portref I5 (instanceref acc0__142_carry__0_i_5))
+          (portref I0 (instanceref acc0__142_carry__1_i_4))
+          (portref I1 (instanceref acc0__142_carry__0_i_5))
           (portref (member ov_dout_reg_11_ 1))
           )
          )
          (net (rename ov_dout_reg_11__3_ "ov_dout_reg[11][3]") (joined
           (portref I0 (instanceref acc0__142_carry__0_i_12))
-          (portref I0 (instanceref acc0__142_carry__1_i_3))
-          (portref I1 (instanceref acc0__142_carry__1_i_8))
+          (portref I2 (instanceref acc0__142_carry__1_i_3))
+          (portref I3 (instanceref acc0__142_carry__1_i_8))
           (portref (member ov_dout_reg_11_ 0))
           )
          )
@@ -4708,7 +4708,7 @@
          (net (rename ov_dout_reg_11__0_2_ "ov_dout_reg[11]_0[2]") (joined
           (portref I1 (instanceref acc0__142_carry__0_i_9))
           (portref I1 (instanceref acc0__142_carry__1_i_4))
-          (portref I4 (instanceref acc0__142_carry__0_i_5))
+          (portref I2 (instanceref acc0__142_carry__0_i_5))
           (portref (member ov_dout_reg_11__0 1))
           )
          )
@@ -4727,9 +4727,9 @@
           )
          )
          (net (rename ov_dout_reg_15__1_ "ov_dout_reg[15][1]") (joined
+          (portref I0 (instanceref acc0__142_carry__1_i_1))
           (portref I0 (instanceref acc0__142_carry__1_i_10))
-          (portref I2 (instanceref acc0__142_carry__1_i_1))
-          (portref I3 (instanceref acc0__142_carry__1_i_6))
+          (portref I1 (instanceref acc0__142_carry__1_i_6))
           (portref (member ov_dout_reg_15_ 2))
           )
          )
@@ -4894,7 +4894,7 @@
           )
          )
          (net (rename ov_dout_reg_23__2_0_ "ov_dout_reg[23]_2[0]") (joined
-          (portref I2 (instanceref acc0__142_carry__4_i_6))
+          (portref I4 (instanceref acc0__142_carry__4_i_6))
           (portref (member ov_dout_reg_23__2 2))
           )
          )
@@ -4909,7 +4909,7 @@
           )
          )
          (net (rename ov_dout_reg_23__3_0_ "ov_dout_reg[23]_3[0]") (joined
-          (portref I1 (instanceref acc0__142_carry__4_i_6))
+          (portref I5 (instanceref acc0__142_carry__4_i_6))
           (portref (member ov_dout_reg_23__3 2))
           )
          )
@@ -4924,7 +4924,7 @@
           )
          )
          (net (rename ov_dout_reg_23__4 "ov_dout_reg[23]_4") (joined
-          (portref I5 (instanceref acc0__142_carry__4_i_6))
+          (portref I2 (instanceref acc0__142_carry__4_i_6))
           (portref ov_dout_reg_23__4)
           )
          )
@@ -6175,7 +6175,7 @@
           )
          )
          (net (rename ov_sum_reg_21_ "ov_sum_reg[21]") (joined
-          (portref I4 (instanceref acc0__142_carry__4_i_6))
+          (portref I1 (instanceref acc0__142_carry__4_i_6))
           (portref (member ov_sum_reg 1))
           )
          )
@@ -6361,30 +6361,30 @@
           (portref (member ov_sum_reg 16))
           )
          )
+         (net (rename ov_sum_reg_6__0_0_ "ov_sum_reg[6]_0[0]") (joined
+          (portref O (instanceref acc0__142_carry__0_i_8))
+          (portref (member ov_sum_reg_6__0 3))
+          )
+         )
+         (net (rename ov_sum_reg_6__0_1_ "ov_sum_reg[6]_0[1]") (joined
+          (portref O (instanceref acc0__142_carry__0_i_7))
+          (portref (member ov_sum_reg_6__0 2))
+          )
+         )
+         (net (rename ov_sum_reg_6__0_2_ "ov_sum_reg[6]_0[2]") (joined
+          (portref O (instanceref acc0__142_carry__0_i_6))
+          (portref (member ov_sum_reg_6__0 1))
+          )
+         )
+         (net (rename ov_sum_reg_6__0_3_ "ov_sum_reg[6]_0[3]") (joined
+          (portref O (instanceref acc0__142_carry__0_i_5))
+          (portref (member ov_sum_reg_6__0 0))
+          )
+         )
          (net (rename ov_sum_reg_7_ "ov_sum_reg[7]") (joined
-          (portref I1 (instanceref acc0__142_carry__0_i_5))
+          (portref I4 (instanceref acc0__142_carry__0_i_5))
           (portref I4 (instanceref acc0__142_carry__1_i_4))
           (portref (member ov_sum_reg 15))
-          )
-         )
-         (net (rename ov_sum_reg_7__0_0_ "ov_sum_reg[7]_0[0]") (joined
-          (portref O (instanceref acc0__142_carry__0_i_8))
-          (portref (member ov_sum_reg_7__0 3))
-          )
-         )
-         (net (rename ov_sum_reg_7__0_1_ "ov_sum_reg[7]_0[1]") (joined
-          (portref O (instanceref acc0__142_carry__0_i_7))
-          (portref (member ov_sum_reg_7__0 2))
-          )
-         )
-         (net (rename ov_sum_reg_7__0_2_ "ov_sum_reg[7]_0[2]") (joined
-          (portref O (instanceref acc0__142_carry__0_i_6))
-          (portref (member ov_sum_reg_7__0 1))
-          )
-         )
-         (net (rename ov_sum_reg_7__0_3_ "ov_sum_reg[7]_0[3]") (joined
-          (portref O (instanceref acc0__142_carry__0_i_5))
-          (portref (member ov_sum_reg_7__0 0))
           )
          )
          (net (rename ov_sum_reg_8_ "ov_sum_reg[8]") (joined
@@ -6556,10 +6556,10 @@
           )
          )
          (net (rename ov_sum_reg_0_3_ "ov_sum_reg_0[3]") (joined
-          (portref I0 (instanceref acc0__142_carry__0_i_3))
-          (portref I1 (instanceref acc0__142_carry__0_i_8))
           (portref I1 (instanceref ov_sum_0__i_3))
+          (portref I2 (instanceref acc0__142_carry__0_i_3))
           (portref I2 (instanceref acc0__142_carry_i_9))
+          (portref I3 (instanceref acc0__142_carry__0_i_8))
           (portref Q (instanceref ov_sum_reg_3_))
           )
          )
@@ -6572,26 +6572,26 @@
           )
          )
          (net (rename ov_sum_reg_0_5_ "ov_sum_reg_0[5]") (joined
-          (portref I0 (instanceref acc0__142_carry__0_i_1))
-          (portref I1 (instanceref acc0__142_carry__0_i_6))
           (portref I1 (instanceref ov_sum_4__i_4))
+          (portref I2 (instanceref acc0__142_carry__0_i_1))
           (portref I2 (instanceref acc0__142_carry__0_i_10))
+          (portref I3 (instanceref acc0__142_carry__0_i_6))
           (portref Q (instanceref ov_sum_reg_5_))
           )
          )
          (net (rename ov_sum_reg_0_6_ "ov_sum_reg_0[6]") (joined
-          (portref I0 (instanceref acc0__142_carry__1_i_4))
           (portref I1 (instanceref ov_sum_4__i_3))
           (portref I2 (instanceref acc0__142_carry__0_i_9))
+          (portref I2 (instanceref acc0__142_carry__1_i_4))
           (portref I3 (instanceref acc0__142_carry__0_i_5))
           (portref Q (instanceref ov_sum_reg_6_))
           )
          )
          (net (rename ov_sum_reg_0_7_ "ov_sum_reg_0[7]") (joined
+          (portref I0 (instanceref acc0__142_carry__1_i_3))
+          (portref I1 (instanceref acc0__142_carry__1_i_8))
           (portref I1 (instanceref ov_sum_4__i_2))
           (portref I2 (instanceref acc0__142_carry__0_i_12))
-          (portref I2 (instanceref acc0__142_carry__1_i_3))
-          (portref I3 (instanceref acc0__142_carry__1_i_8))
           (portref Q (instanceref ov_sum_reg_7_))
           )
          )
@@ -6604,10 +6604,10 @@
           )
          )
          (net (rename ov_sum_reg_0_9_ "ov_sum_reg_0[9]") (joined
-          (portref I0 (instanceref acc0__142_carry__1_i_1))
-          (portref I1 (instanceref acc0__142_carry__1_i_6))
           (portref I1 (instanceref ov_sum_8__i_4))
+          (portref I2 (instanceref acc0__142_carry__1_i_1))
           (portref I2 (instanceref acc0__142_carry__1_i_10))
+          (portref I3 (instanceref acc0__142_carry__1_i_6))
           (portref Q (instanceref ov_sum_reg_9_))
           )
          )
@@ -8781,21 +8781,15 @@
         (port CLK (direction INPUT))
         (port (rename ov_sum_reg_23__0 "ov_sum_reg[23]_0") (direction INPUT))
         (port tap_en (direction INPUT))
-        (port (rename S_0_ "S[0]") (direction OUTPUT))
         (port (array (rename douta "douta[23:0]") 24) (direction INPUT))
         (port (array (rename ov_sum1_0 "ov_sum1_0[23:0]") 24) (direction INPUT))
-        (port (array (rename ov_sum_reg "ov_sum_reg[1:0]") 2) (direction INPUT))
-        (port (array (rename ov_sum_reg_22__0 "ov_sum_reg[22]_0[22:0]") 23) (direction OUTPUT))
-        (port (array (rename ov_sum_reg_0 "ov_sum_reg_0[1:0]") 2) (direction INPUT))
+        (port (array (rename ov_sum_reg "ov_sum_reg[23:0]") 24) (direction OUTPUT))
        )
        (contents
          (instance GND (viewref netlist (cellref GND (libraryref hdi_primitives))))
          (instance GND_1 (viewref netlist (cellref GND (libraryref hdi_primitives))))
          (instance VCC (viewref netlist (cellref VCC (libraryref hdi_primitives))))
          (instance VCC_1 (viewref netlist (cellref VCC (libraryref hdi_primitives))))
-         (instance acc0__70_carry__4_i_4 (viewref netlist (cellref LUT6 (libraryref hdi_primitives)))
-           (property INIT (string "64'h17E8E817E81717E8"))
-         )
          (instance ov_sum1 (viewref netlist (cellref DSP48E1 (libraryref hdi_primitives)))
            (property ACASCREG (integer 0))
            (property ADREG (integer 1))
@@ -9347,11 +9341,6 @@
           (portref (member D 15) (instanceref ov_sum1))
           (portref (member D 15) (instanceref ov_sum1__0))
           (portref G (instanceref GND_1))
-          )
-         )
-         (net (rename S_0_ "S[0]") (joined
-          (portref O (instanceref acc0__70_carry__4_i_4))
-          (portref S_0_)
           )
          )
          (net VCC_2 (joined
@@ -10461,8 +10450,9 @@
           )
          )
          (net (rename ov_sum_reg_0_ "ov_sum_reg[0]") (joined
-          (portref I1 (instanceref acc0__70_carry__4_i_4))
-          (portref (member ov_sum_reg 1))
+          (portref I1 (instanceref ov_sum_0__i_5__1))
+          (portref Q (instanceref ov_sum_reg_0_))
+          (portref (member ov_sum_reg 23))
           )
          )
          (net (rename ov_sum_reg_0__i_1__0_n_0 "ov_sum_reg[0]_i_1__0_n_0") (joined
@@ -10502,6 +10492,24 @@
           (portref (member O 3) (instanceref ov_sum_reg_0__i_1__0))
           )
          )
+         (net (rename ov_sum_reg_10_ "ov_sum_reg[10]") (joined
+          (portref I1 (instanceref ov_sum_8__i_3__1))
+          (portref Q (instanceref ov_sum_reg_10_))
+          (portref (member ov_sum_reg 13))
+          )
+         )
+         (net (rename ov_sum_reg_11_ "ov_sum_reg[11]") (joined
+          (portref I1 (instanceref ov_sum_8__i_2__1))
+          (portref Q (instanceref ov_sum_reg_11_))
+          (portref (member ov_sum_reg 12))
+          )
+         )
+         (net (rename ov_sum_reg_12_ "ov_sum_reg[12]") (joined
+          (portref I1 (instanceref ov_sum_12__i_5__1))
+          (portref Q (instanceref ov_sum_reg_12_))
+          (portref (member ov_sum_reg 11))
+          )
+         )
          (net (rename ov_sum_reg_12__i_1__1_n_0 "ov_sum_reg[12]_i_1__1_n_0") (joined
           (portref CI (instanceref ov_sum_reg_16__i_1__1))
           (portref (member CO 0) (instanceref ov_sum_reg_12__i_1__1))
@@ -10537,6 +10545,30 @@
          (net (rename ov_sum_reg_12__i_1__1_n_7 "ov_sum_reg[12]_i_1__1_n_7") (joined
           (portref D (instanceref ov_sum_reg_12_))
           (portref (member O 3) (instanceref ov_sum_reg_12__i_1__1))
+          )
+         )
+         (net (rename ov_sum_reg_13_ "ov_sum_reg[13]") (joined
+          (portref I1 (instanceref ov_sum_12__i_4__1))
+          (portref Q (instanceref ov_sum_reg_13_))
+          (portref (member ov_sum_reg 10))
+          )
+         )
+         (net (rename ov_sum_reg_14_ "ov_sum_reg[14]") (joined
+          (portref I1 (instanceref ov_sum_12__i_3__1))
+          (portref Q (instanceref ov_sum_reg_14_))
+          (portref (member ov_sum_reg 9))
+          )
+         )
+         (net (rename ov_sum_reg_15_ "ov_sum_reg[15]") (joined
+          (portref I1 (instanceref ov_sum_12__i_2__1))
+          (portref Q (instanceref ov_sum_reg_15_))
+          (portref (member ov_sum_reg 8))
+          )
+         )
+         (net (rename ov_sum_reg_16_ "ov_sum_reg[16]") (joined
+          (portref I1 (instanceref ov_sum_16__i_5__1))
+          (portref Q (instanceref ov_sum_reg_16_))
+          (portref (member ov_sum_reg 7))
           )
          )
          (net (rename ov_sum_reg_16__i_1__1_n_0 "ov_sum_reg[16]_i_1__1_n_0") (joined
@@ -10576,9 +10608,34 @@
           (portref (member O 3) (instanceref ov_sum_reg_16__i_1__1))
           )
          )
+         (net (rename ov_sum_reg_17_ "ov_sum_reg[17]") (joined
+          (portref I1 (instanceref ov_sum_16__i_4__1))
+          (portref Q (instanceref ov_sum_reg_17_))
+          (portref (member ov_sum_reg 6))
+          )
+         )
+         (net (rename ov_sum_reg_18_ "ov_sum_reg[18]") (joined
+          (portref I1 (instanceref ov_sum_16__i_3__1))
+          (portref Q (instanceref ov_sum_reg_18_))
+          (portref (member ov_sum_reg 5))
+          )
+         )
+         (net (rename ov_sum_reg_19_ "ov_sum_reg[19]") (joined
+          (portref I1 (instanceref ov_sum_16__i_2__1))
+          (portref Q (instanceref ov_sum_reg_19_))
+          (portref (member ov_sum_reg 4))
+          )
+         )
          (net (rename ov_sum_reg_1_ "ov_sum_reg[1]") (joined
-          (portref I5 (instanceref acc0__70_carry__4_i_4))
-          (portref (member ov_sum_reg 0))
+          (portref I1 (instanceref ov_sum_0__i_4__1))
+          (portref Q (instanceref ov_sum_reg_1_))
+          (portref (member ov_sum_reg 22))
+          )
+         )
+         (net (rename ov_sum_reg_20_ "ov_sum_reg[20]") (joined
+          (portref I1 (instanceref ov_sum_20__i_5__1))
+          (portref Q (instanceref ov_sum_reg_20_))
+          (portref (member ov_sum_reg 3))
           )
          )
          (net (rename ov_sum_reg_20__i_1__1_n_1 "ov_sum_reg[20]_i_1__1_n_1") (joined
@@ -10613,143 +10670,22 @@
           (portref (member O 3) (instanceref ov_sum_reg_20__i_1__1))
           )
          )
-         (net (rename ov_sum_reg_22__0_0_ "ov_sum_reg[22]_0[0]") (joined
-          (portref I1 (instanceref ov_sum_0__i_5__1))
-          (portref Q (instanceref ov_sum_reg_0_))
-          (portref (member ov_sum_reg_22__0 22))
-          )
-         )
-         (net (rename ov_sum_reg_22__0_10_ "ov_sum_reg[22]_0[10]") (joined
-          (portref I1 (instanceref ov_sum_8__i_3__1))
-          (portref Q (instanceref ov_sum_reg_10_))
-          (portref (member ov_sum_reg_22__0 12))
-          )
-         )
-         (net (rename ov_sum_reg_22__0_11_ "ov_sum_reg[22]_0[11]") (joined
-          (portref I1 (instanceref ov_sum_8__i_2__1))
-          (portref Q (instanceref ov_sum_reg_11_))
-          (portref (member ov_sum_reg_22__0 11))
-          )
-         )
-         (net (rename ov_sum_reg_22__0_12_ "ov_sum_reg[22]_0[12]") (joined
-          (portref I1 (instanceref ov_sum_12__i_5__1))
-          (portref Q (instanceref ov_sum_reg_12_))
-          (portref (member ov_sum_reg_22__0 10))
-          )
-         )
-         (net (rename ov_sum_reg_22__0_13_ "ov_sum_reg[22]_0[13]") (joined
-          (portref I1 (instanceref ov_sum_12__i_4__1))
-          (portref Q (instanceref ov_sum_reg_13_))
-          (portref (member ov_sum_reg_22__0 9))
-          )
-         )
-         (net (rename ov_sum_reg_22__0_14_ "ov_sum_reg[22]_0[14]") (joined
-          (portref I1 (instanceref ov_sum_12__i_3__1))
-          (portref Q (instanceref ov_sum_reg_14_))
-          (portref (member ov_sum_reg_22__0 8))
-          )
-         )
-         (net (rename ov_sum_reg_22__0_15_ "ov_sum_reg[22]_0[15]") (joined
-          (portref I1 (instanceref ov_sum_12__i_2__1))
-          (portref Q (instanceref ov_sum_reg_15_))
-          (portref (member ov_sum_reg_22__0 7))
-          )
-         )
-         (net (rename ov_sum_reg_22__0_16_ "ov_sum_reg[22]_0[16]") (joined
-          (portref I1 (instanceref ov_sum_16__i_5__1))
-          (portref Q (instanceref ov_sum_reg_16_))
-          (portref (member ov_sum_reg_22__0 6))
-          )
-         )
-         (net (rename ov_sum_reg_22__0_17_ "ov_sum_reg[22]_0[17]") (joined
-          (portref I1 (instanceref ov_sum_16__i_4__1))
-          (portref Q (instanceref ov_sum_reg_17_))
-          (portref (member ov_sum_reg_22__0 5))
-          )
-         )
-         (net (rename ov_sum_reg_22__0_18_ "ov_sum_reg[22]_0[18]") (joined
-          (portref I1 (instanceref ov_sum_16__i_3__1))
-          (portref Q (instanceref ov_sum_reg_18_))
-          (portref (member ov_sum_reg_22__0 4))
-          )
-         )
-         (net (rename ov_sum_reg_22__0_19_ "ov_sum_reg[22]_0[19]") (joined
-          (portref I1 (instanceref ov_sum_16__i_2__1))
-          (portref Q (instanceref ov_sum_reg_19_))
-          (portref (member ov_sum_reg_22__0 3))
-          )
-         )
-         (net (rename ov_sum_reg_22__0_1_ "ov_sum_reg[22]_0[1]") (joined
-          (portref I1 (instanceref ov_sum_0__i_4__1))
-          (portref Q (instanceref ov_sum_reg_1_))
-          (portref (member ov_sum_reg_22__0 21))
-          )
-         )
-         (net (rename ov_sum_reg_22__0_20_ "ov_sum_reg[22]_0[20]") (joined
-          (portref I1 (instanceref ov_sum_20__i_5__1))
-          (portref Q (instanceref ov_sum_reg_20_))
-          (portref (member ov_sum_reg_22__0 2))
-          )
-         )
-         (net (rename ov_sum_reg_22__0_21_ "ov_sum_reg[22]_0[21]") (joined
+         (net (rename ov_sum_reg_21_ "ov_sum_reg[21]") (joined
           (portref I1 (instanceref ov_sum_20__i_4__1))
           (portref Q (instanceref ov_sum_reg_21_))
-          (portref (member ov_sum_reg_22__0 1))
+          (portref (member ov_sum_reg 2))
           )
          )
-         (net (rename ov_sum_reg_22__0_22_ "ov_sum_reg[22]_0[22]") (joined
-          (portref I0 (instanceref acc0__70_carry__4_i_4))
+         (net (rename ov_sum_reg_22_ "ov_sum_reg[22]") (joined
           (portref I1 (instanceref ov_sum_20__i_3__1))
           (portref Q (instanceref ov_sum_reg_22_))
-          (portref (member ov_sum_reg_22__0 0))
+          (portref (member ov_sum_reg 1))
           )
          )
-         (net (rename ov_sum_reg_22__0_2_ "ov_sum_reg[22]_0[2]") (joined
-          (portref I1 (instanceref ov_sum_0__i_3__1))
-          (portref Q (instanceref ov_sum_reg_2_))
-          (portref (member ov_sum_reg_22__0 20))
-          )
-         )
-         (net (rename ov_sum_reg_22__0_3_ "ov_sum_reg[22]_0[3]") (joined
-          (portref I1 (instanceref ov_sum_0__i_2__0))
-          (portref Q (instanceref ov_sum_reg_3_))
-          (portref (member ov_sum_reg_22__0 19))
-          )
-         )
-         (net (rename ov_sum_reg_22__0_4_ "ov_sum_reg[22]_0[4]") (joined
-          (portref I1 (instanceref ov_sum_4__i_5__1))
-          (portref Q (instanceref ov_sum_reg_4_))
-          (portref (member ov_sum_reg_22__0 18))
-          )
-         )
-         (net (rename ov_sum_reg_22__0_5_ "ov_sum_reg[22]_0[5]") (joined
-          (portref I1 (instanceref ov_sum_4__i_4__1))
-          (portref Q (instanceref ov_sum_reg_5_))
-          (portref (member ov_sum_reg_22__0 17))
-          )
-         )
-         (net (rename ov_sum_reg_22__0_6_ "ov_sum_reg[22]_0[6]") (joined
-          (portref I1 (instanceref ov_sum_4__i_3__1))
-          (portref Q (instanceref ov_sum_reg_6_))
-          (portref (member ov_sum_reg_22__0 16))
-          )
-         )
-         (net (rename ov_sum_reg_22__0_7_ "ov_sum_reg[22]_0[7]") (joined
-          (portref I1 (instanceref ov_sum_4__i_2__1))
-          (portref Q (instanceref ov_sum_reg_7_))
-          (portref (member ov_sum_reg_22__0 15))
-          )
-         )
-         (net (rename ov_sum_reg_22__0_8_ "ov_sum_reg[22]_0[8]") (joined
-          (portref I1 (instanceref ov_sum_8__i_5__1))
-          (portref Q (instanceref ov_sum_reg_8_))
-          (portref (member ov_sum_reg_22__0 14))
-          )
-         )
-         (net (rename ov_sum_reg_22__0_9_ "ov_sum_reg[22]_0[9]") (joined
-          (portref I1 (instanceref ov_sum_8__i_4__1))
-          (portref Q (instanceref ov_sum_reg_9_))
-          (portref (member ov_sum_reg_22__0 13))
+         (net (rename ov_sum_reg_23_ "ov_sum_reg[23]") (joined
+          (portref I0 (instanceref ov_sum_20__i_2__1))
+          (portref Q (instanceref ov_sum_reg_23_))
+          (portref (member ov_sum_reg 0))
           )
          )
          (net (rename ov_sum_reg_23__0 "ov_sum_reg[23]_0") (joined
@@ -10778,6 +10714,24 @@
           (portref R (instanceref ov_sum_reg_8_))
           (portref R (instanceref ov_sum_reg_9_))
           (portref ov_sum_reg_23__0)
+          )
+         )
+         (net (rename ov_sum_reg_2_ "ov_sum_reg[2]") (joined
+          (portref I1 (instanceref ov_sum_0__i_3__1))
+          (portref Q (instanceref ov_sum_reg_2_))
+          (portref (member ov_sum_reg 21))
+          )
+         )
+         (net (rename ov_sum_reg_3_ "ov_sum_reg[3]") (joined
+          (portref I1 (instanceref ov_sum_0__i_2__0))
+          (portref Q (instanceref ov_sum_reg_3_))
+          (portref (member ov_sum_reg 20))
+          )
+         )
+         (net (rename ov_sum_reg_4_ "ov_sum_reg[4]") (joined
+          (portref I1 (instanceref ov_sum_4__i_5__1))
+          (portref Q (instanceref ov_sum_reg_4_))
+          (portref (member ov_sum_reg 19))
           )
          )
          (net (rename ov_sum_reg_4__i_1__1_n_0 "ov_sum_reg[4]_i_1__1_n_0") (joined
@@ -10817,6 +10771,30 @@
           (portref (member O 3) (instanceref ov_sum_reg_4__i_1__1))
           )
          )
+         (net (rename ov_sum_reg_5_ "ov_sum_reg[5]") (joined
+          (portref I1 (instanceref ov_sum_4__i_4__1))
+          (portref Q (instanceref ov_sum_reg_5_))
+          (portref (member ov_sum_reg 18))
+          )
+         )
+         (net (rename ov_sum_reg_6_ "ov_sum_reg[6]") (joined
+          (portref I1 (instanceref ov_sum_4__i_3__1))
+          (portref Q (instanceref ov_sum_reg_6_))
+          (portref (member ov_sum_reg 17))
+          )
+         )
+         (net (rename ov_sum_reg_7_ "ov_sum_reg[7]") (joined
+          (portref I1 (instanceref ov_sum_4__i_2__1))
+          (portref Q (instanceref ov_sum_reg_7_))
+          (portref (member ov_sum_reg 16))
+          )
+         )
+         (net (rename ov_sum_reg_8_ "ov_sum_reg[8]") (joined
+          (portref I1 (instanceref ov_sum_8__i_5__1))
+          (portref Q (instanceref ov_sum_reg_8_))
+          (portref (member ov_sum_reg 15))
+          )
+         )
          (net (rename ov_sum_reg_8__i_1__1_n_0 "ov_sum_reg[8]_i_1__1_n_0") (joined
           (portref CI (instanceref ov_sum_reg_12__i_1__1))
           (portref (member CO 0) (instanceref ov_sum_reg_8__i_1__1))
@@ -10854,20 +10832,10 @@
           (portref (member O 3) (instanceref ov_sum_reg_8__i_1__1))
           )
          )
-         (net (rename ov_sum_reg_0_0_ "ov_sum_reg_0[0]") (joined
-          (portref I2 (instanceref acc0__70_carry__4_i_4))
-          (portref (member ov_sum_reg_0 1))
-          )
-         )
-         (net (rename ov_sum_reg_0_1_ "ov_sum_reg_0[1]") (joined
-          (portref I3 (instanceref acc0__70_carry__4_i_4))
-          (portref (member ov_sum_reg_0 0))
-          )
-         )
-         (net (rename ov_sum_reg_1_23_ "ov_sum_reg_1[23]") (joined
-          (portref I0 (instanceref ov_sum_20__i_2__1))
-          (portref I4 (instanceref acc0__70_carry__4_i_4))
-          (portref Q (instanceref ov_sum_reg_23_))
+         (net (rename ov_sum_reg_9_ "ov_sum_reg[9]") (joined
+          (portref I1 (instanceref ov_sum_8__i_4__1))
+          (portref Q (instanceref ov_sum_reg_9_))
+          (portref (member ov_sum_reg 14))
           )
          )
          (net tap_en (joined
@@ -10908,14 +10876,13 @@
        (interface 
         (port CLK (direction INPUT))
         (port (rename ov_sum_reg_0__0 "ov_sum_reg[0]_0") (direction INPUT))
-        (port (rename ov_sum_reg_23__1 "ov_sum_reg[23]_1") (direction OUTPUT))
+        (port (rename ov_sum_reg_23__0 "ov_sum_reg[23]_0") (direction OUTPUT))
         (port tap_en (direction INPUT))
         (port (array (rename DI "DI[2:0]") 3) (direction OUTPUT))
         (port (rename O_0_ "O[0]") (direction INPUT))
-        (port (array (rename S "S[2:0]") 3) (direction OUTPUT))
+        (port (array (rename S "S[3:0]") 4) (direction OUTPUT))
         (port (rename acc0__142_carry__4_i_4_0_ "acc0__142_carry__4_i_4[0]") (direction INPUT))
         (port (rename acc0__142_carry__4_i_4_0_0_ "acc0__142_carry__4_i_4_0[0]") (direction INPUT))
-        (port (array (rename acc0__70_carry__4 "acc0__70_carry__4[21:0]") 22) (direction INPUT))
         (port (array (rename douta "douta[23:0]") 24) (direction INPUT))
         (port (array (rename ov_sum1_0 "ov_sum1_0[23:0]") 24) (direction INPUT))
         (port (rename ov_sum_reg_0_ "ov_sum_reg[0]") (direction INPUT))
@@ -10925,12 +10892,13 @@
         (port (array (rename ov_sum_reg_15__0 "ov_sum_reg[15]_0[3:0]") 4) (direction OUTPUT))
         (port (array (rename ov_sum_reg_18__0 "ov_sum_reg[18]_0[3:0]") 4) (direction OUTPUT))
         (port (array (rename ov_sum_reg_19__0 "ov_sum_reg[19]_0[3:0]") 4) (direction OUTPUT))
-        (port (array (rename ov_sum_reg_23__0 "ov_sum_reg[23]_0[3:0]") 4) (direction OUTPUT))
+        (port (array (rename ov_sum_reg_1__0 "ov_sum_reg[1]_0[1:0]") 2) (direction OUTPUT))
         (port (array (rename ov_sum_reg_2__0 "ov_sum_reg[2]_0[1:0]") 2) (direction OUTPUT))
         (port (array (rename ov_sum_reg_3__0 "ov_sum_reg[3]_0[1:0]") 2) (direction OUTPUT))
         (port (array (rename ov_sum_reg_6__0 "ov_sum_reg[6]_0[3:0]") 4) (direction OUTPUT))
         (port (array (rename ov_sum_reg_7__0 "ov_sum_reg[7]_0[3:0]") 4) (direction OUTPUT))
-        (port (array (rename ov_sum_reg_0 "ov_sum_reg_0[21:0]") 22) (direction INPUT))
+        (port (array (rename ov_sum_reg_0 "ov_sum_reg_0[22:0]") 23) (direction INPUT))
+        (port (array (rename ov_sum_reg_1 "ov_sum_reg_1[22:0]") 23) (direction INPUT))
        )
        (contents
          (instance GND (viewref netlist (cellref GND (libraryref hdi_primitives))))
@@ -11079,6 +11047,9 @@
          (instance acc0__70_carry__4_i_3 (viewref netlist (cellref LUT3 (libraryref hdi_primitives)))
            (property INIT (string "8'hE8"))
            (property HLUTNM (string "lutpair37"))
+         )
+         (instance acc0__70_carry__4_i_4 (viewref netlist (cellref LUT6 (libraryref hdi_primitives)))
+           (property INIT (string "64'h6969699669969696"))
          )
          (instance acc0__70_carry__4_i_5 (viewref netlist (cellref LUT4 (libraryref hdi_primitives)))
            (property INIT (string "16'h6996"))
@@ -11684,16 +11655,21 @@
          )
          (net (rename S_0_ "S[0]") (joined
           (portref O (instanceref acc0__70_carry__4_i_7))
-          (portref (member S 2))
+          (portref (member S 3))
           )
          )
          (net (rename S_1_ "S[1]") (joined
           (portref O (instanceref acc0__70_carry__4_i_6))
-          (portref (member S 1))
+          (portref (member S 2))
           )
          )
          (net (rename S_2_ "S[2]") (joined
           (portref O (instanceref acc0__70_carry__4_i_5))
+          (portref (member S 1))
+          )
+         )
+         (net (rename S_3_ "S[3]") (joined
+          (portref O (instanceref acc0__70_carry__4_i_4))
           (portref (member S 0))
           )
          )
@@ -11805,136 +11781,6 @@
          (net (rename acc0__142_carry__4_i_4_0_0_ "acc0__142_carry__4_i_4_0[0]") (joined
           (portref I2 (instanceref acc0__142_carry__4_i_11))
           (portref acc0__142_carry__4_i_4_0_0_)
-          )
-         )
-         (net (rename acc0__70_carry__4_0_ "acc0__70_carry__4[0]") (joined
-          (portref I2 (instanceref acc0__70_carry_i_2))
-          (portref (member acc0__70_carry__4 21))
-          )
-         )
-         (net (rename acc0__70_carry__4_10_ "acc0__70_carry__4[10]") (joined
-          (portref I2 (instanceref acc0__70_carry__1_i_5))
-          (portref I2 (instanceref acc0__70_carry__2_i_4))
-          (portref (member acc0__70_carry__4 11))
-          )
-         )
-         (net (rename acc0__70_carry__4_11_ "acc0__70_carry__4[11]") (joined
-          (portref I2 (instanceref acc0__70_carry__2_i_3))
-          (portref I2 (instanceref acc0__70_carry__2_i_8))
-          (portref (member acc0__70_carry__4 10))
-          )
-         )
-         (net (rename acc0__70_carry__4_12_ "acc0__70_carry__4[12]") (joined
-          (portref I2 (instanceref acc0__70_carry__2_i_2))
-          (portref I2 (instanceref acc0__70_carry__2_i_7))
-          (portref (member acc0__70_carry__4 9))
-          )
-         )
-         (net (rename acc0__70_carry__4_13_ "acc0__70_carry__4[13]") (joined
-          (portref I2 (instanceref acc0__70_carry__2_i_1))
-          (portref I2 (instanceref acc0__70_carry__2_i_6))
-          (portref (member acc0__70_carry__4 8))
-          )
-         )
-         (net (rename acc0__70_carry__4_14_ "acc0__70_carry__4[14]") (joined
-          (portref I2 (instanceref acc0__70_carry__2_i_5))
-          (portref I2 (instanceref acc0__70_carry__3_i_4))
-          (portref (member acc0__70_carry__4 7))
-          )
-         )
-         (net (rename acc0__70_carry__4_15_ "acc0__70_carry__4[15]") (joined
-          (portref I2 (instanceref acc0__70_carry__3_i_3))
-          (portref I2 (instanceref acc0__70_carry__3_i_8))
-          (portref (member acc0__70_carry__4 6))
-          )
-         )
-         (net (rename acc0__70_carry__4_16_ "acc0__70_carry__4[16]") (joined
-          (portref I2 (instanceref acc0__70_carry__3_i_2))
-          (portref I2 (instanceref acc0__70_carry__3_i_7))
-          (portref (member acc0__70_carry__4 5))
-          )
-         )
-         (net (rename acc0__70_carry__4_17_ "acc0__70_carry__4[17]") (joined
-          (portref I2 (instanceref acc0__70_carry__3_i_1))
-          (portref I2 (instanceref acc0__70_carry__3_i_6))
-          (portref (member acc0__70_carry__4 4))
-          )
-         )
-         (net (rename acc0__70_carry__4_18_ "acc0__70_carry__4[18]") (joined
-          (portref I2 (instanceref acc0__70_carry__3_i_5))
-          (portref I2 (instanceref acc0__70_carry__4_i_3))
-          (portref (member acc0__70_carry__4 3))
-          )
-         )
-         (net (rename acc0__70_carry__4_19_ "acc0__70_carry__4[19]") (joined
-          (portref I2 (instanceref acc0__70_carry__4_i_2))
-          (portref I2 (instanceref acc0__70_carry__4_i_7))
-          (portref (member acc0__70_carry__4 2))
-          )
-         )
-         (net (rename acc0__70_carry__4_1_ "acc0__70_carry__4[1]") (joined
-          (portref I2 (instanceref acc0__70_carry_i_1))
-          (portref I2 (instanceref acc0__70_carry_i_5))
-          (portref (member acc0__70_carry__4 20))
-          )
-         )
-         (net (rename acc0__70_carry__4_20_ "acc0__70_carry__4[20]") (joined
-          (portref I2 (instanceref acc0__70_carry__4_i_1))
-          (portref I2 (instanceref acc0__70_carry__4_i_6))
-          (portref (member acc0__70_carry__4 1))
-          )
-         )
-         (net (rename acc0__70_carry__4_21_ "acc0__70_carry__4[21]") (joined
-          (portref I2 (instanceref acc0__70_carry__4_i_5))
-          (portref (member acc0__70_carry__4 0))
-          )
-         )
-         (net (rename acc0__70_carry__4_2_ "acc0__70_carry__4[2]") (joined
-          (portref I2 (instanceref acc0__70_carry__0_i_4))
-          (portref I2 (instanceref acc0__70_carry_i_4))
-          (portref (member acc0__70_carry__4 19))
-          )
-         )
-         (net (rename acc0__70_carry__4_3_ "acc0__70_carry__4[3]") (joined
-          (portref I2 (instanceref acc0__70_carry__0_i_3))
-          (portref I2 (instanceref acc0__70_carry__0_i_8))
-          (portref (member acc0__70_carry__4 18))
-          )
-         )
-         (net (rename acc0__70_carry__4_4_ "acc0__70_carry__4[4]") (joined
-          (portref I2 (instanceref acc0__70_carry__0_i_2))
-          (portref I2 (instanceref acc0__70_carry__0_i_7))
-          (portref (member acc0__70_carry__4 17))
-          )
-         )
-         (net (rename acc0__70_carry__4_5_ "acc0__70_carry__4[5]") (joined
-          (portref I2 (instanceref acc0__70_carry__0_i_1))
-          (portref I2 (instanceref acc0__70_carry__0_i_6))
-          (portref (member acc0__70_carry__4 16))
-          )
-         )
-         (net (rename acc0__70_carry__4_6_ "acc0__70_carry__4[6]") (joined
-          (portref I2 (instanceref acc0__70_carry__0_i_5))
-          (portref I2 (instanceref acc0__70_carry__1_i_4))
-          (portref (member acc0__70_carry__4 15))
-          )
-         )
-         (net (rename acc0__70_carry__4_7_ "acc0__70_carry__4[7]") (joined
-          (portref I2 (instanceref acc0__70_carry__1_i_3))
-          (portref I2 (instanceref acc0__70_carry__1_i_8))
-          (portref (member acc0__70_carry__4 14))
-          )
-         )
-         (net (rename acc0__70_carry__4_8_ "acc0__70_carry__4[8]") (joined
-          (portref I2 (instanceref acc0__70_carry__1_i_2))
-          (portref I2 (instanceref acc0__70_carry__1_i_7))
-          (portref (member acc0__70_carry__4 13))
-          )
-         )
-         (net (rename acc0__70_carry__4_9_ "acc0__70_carry__4[9]") (joined
-          (portref I2 (instanceref acc0__70_carry__1_i_1))
-          (portref I2 (instanceref acc0__70_carry__1_i_6))
-          (portref (member acc0__70_carry__4 12))
           )
          )
          (net (rename douta_0_ "douta[0]") (joined
@@ -13219,6 +13065,19 @@
           (portref (member ov_sum_reg_19__0 0))
           )
          )
+         (net (rename ov_sum_reg_1__0_0_ "ov_sum_reg[1]_0[0]") (joined
+          (portref I1 (instanceref ov_sum_0__i_5__2))
+          (portref Q (instanceref ov_sum_reg_0_))
+          (portref (member ov_sum_reg_1__0 1))
+          )
+         )
+         (net (rename ov_sum_reg_1__0_1_ "ov_sum_reg[1]_0[1]") (joined
+          (portref I0 (instanceref acc0__70_carry_i_2))
+          (portref I1 (instanceref ov_sum_0__i_4__2))
+          (portref Q (instanceref ov_sum_reg_1_))
+          (portref (member ov_sum_reg_1__0 0))
+          )
+         )
          (net (rename ov_sum_reg_20__i_1__2_n_1 "ov_sum_reg[20]_i_1__2_n_1") (joined
           (portref (member CO 1) (instanceref ov_sum_reg_20__i_1__2))
           )
@@ -13251,35 +13110,9 @@
           (portref (member O 3) (instanceref ov_sum_reg_20__i_1__2))
           )
          )
-         (net (rename ov_sum_reg_23__0_0_ "ov_sum_reg[23]_0[0]") (joined
-          (portref I1 (instanceref ov_sum_0__i_5__2))
-          (portref Q (instanceref ov_sum_reg_0_))
-          (portref (member ov_sum_reg_23__0 3))
-          )
-         )
-         (net (rename ov_sum_reg_23__0_1_ "ov_sum_reg[23]_0[1]") (joined
-          (portref I0 (instanceref acc0__70_carry_i_2))
-          (portref I1 (instanceref ov_sum_0__i_4__2))
-          (portref Q (instanceref ov_sum_reg_1_))
-          (portref (member ov_sum_reg_23__0 2))
-          )
-         )
-         (net (rename ov_sum_reg_23__0_2_ "ov_sum_reg[23]_0[2]") (joined
-          (portref I1 (instanceref ov_sum_20__i_3__2))
-          (portref I3 (instanceref acc0__70_carry__4_i_5))
-          (portref Q (instanceref ov_sum_reg_22_))
-          (portref (member ov_sum_reg_23__0 1))
-          )
-         )
-         (net (rename ov_sum_reg_23__0_3_ "ov_sum_reg[23]_0[3]") (joined
-          (portref I0 (instanceref ov_sum_20__i_2__2))
-          (portref Q (instanceref ov_sum_reg_23_))
-          (portref (member ov_sum_reg_23__0 0))
-          )
-         )
-         (net (rename ov_sum_reg_23__1 "ov_sum_reg[23]_1") (joined
+         (net (rename ov_sum_reg_23__0 "ov_sum_reg[23]_0") (joined
           (portref O (instanceref acc0__142_carry__4_i_11))
-          (portref ov_sum_reg_23__1)
+          (portref ov_sum_reg_23__0)
           )
          )
          (net (rename ov_sum_reg_2__0_0_ "ov_sum_reg[2]_0[0]") (joined
@@ -13424,268 +13257,423 @@
          )
          (net (rename ov_sum_reg_0_0_ "ov_sum_reg_0[0]") (joined
           (portref I1 (instanceref acc0__70_carry_i_2))
-          (portref (member ov_sum_reg_0 21))
+          (portref (member ov_sum_reg_0 22))
           )
          )
          (net (rename ov_sum_reg_0_10_ "ov_sum_reg_0[10]") (joined
           (portref I1 (instanceref acc0__70_carry__1_i_5))
           (portref I1 (instanceref acc0__70_carry__2_i_4))
-          (portref (member ov_sum_reg_0 11))
+          (portref (member ov_sum_reg_0 12))
           )
          )
          (net (rename ov_sum_reg_0_11_ "ov_sum_reg_0[11]") (joined
           (portref I1 (instanceref acc0__70_carry__2_i_3))
           (portref I1 (instanceref acc0__70_carry__2_i_8))
-          (portref (member ov_sum_reg_0 10))
+          (portref (member ov_sum_reg_0 11))
           )
          )
          (net (rename ov_sum_reg_0_12_ "ov_sum_reg_0[12]") (joined
           (portref I1 (instanceref acc0__70_carry__2_i_2))
           (portref I1 (instanceref acc0__70_carry__2_i_7))
-          (portref (member ov_sum_reg_0 9))
+          (portref (member ov_sum_reg_0 10))
           )
          )
          (net (rename ov_sum_reg_0_13_ "ov_sum_reg_0[13]") (joined
           (portref I1 (instanceref acc0__70_carry__2_i_1))
           (portref I1 (instanceref acc0__70_carry__2_i_6))
-          (portref (member ov_sum_reg_0 8))
+          (portref (member ov_sum_reg_0 9))
           )
          )
          (net (rename ov_sum_reg_0_14_ "ov_sum_reg_0[14]") (joined
           (portref I1 (instanceref acc0__70_carry__2_i_5))
           (portref I1 (instanceref acc0__70_carry__3_i_4))
-          (portref (member ov_sum_reg_0 7))
+          (portref (member ov_sum_reg_0 8))
           )
          )
          (net (rename ov_sum_reg_0_15_ "ov_sum_reg_0[15]") (joined
           (portref I1 (instanceref acc0__70_carry__3_i_3))
           (portref I1 (instanceref acc0__70_carry__3_i_8))
-          (portref (member ov_sum_reg_0 6))
+          (portref (member ov_sum_reg_0 7))
           )
          )
          (net (rename ov_sum_reg_0_16_ "ov_sum_reg_0[16]") (joined
           (portref I1 (instanceref acc0__70_carry__3_i_2))
           (portref I1 (instanceref acc0__70_carry__3_i_7))
-          (portref (member ov_sum_reg_0 5))
+          (portref (member ov_sum_reg_0 6))
           )
          )
          (net (rename ov_sum_reg_0_17_ "ov_sum_reg_0[17]") (joined
           (portref I1 (instanceref acc0__70_carry__3_i_1))
           (portref I1 (instanceref acc0__70_carry__3_i_6))
-          (portref (member ov_sum_reg_0 4))
+          (portref (member ov_sum_reg_0 5))
           )
          )
          (net (rename ov_sum_reg_0_18_ "ov_sum_reg_0[18]") (joined
           (portref I1 (instanceref acc0__70_carry__3_i_5))
           (portref I1 (instanceref acc0__70_carry__4_i_3))
-          (portref (member ov_sum_reg_0 3))
+          (portref (member ov_sum_reg_0 4))
           )
          )
          (net (rename ov_sum_reg_0_19_ "ov_sum_reg_0[19]") (joined
           (portref I1 (instanceref acc0__70_carry__4_i_2))
           (portref I1 (instanceref acc0__70_carry__4_i_7))
-          (portref (member ov_sum_reg_0 2))
+          (portref (member ov_sum_reg_0 3))
           )
          )
          (net (rename ov_sum_reg_0_1_ "ov_sum_reg_0[1]") (joined
           (portref I1 (instanceref acc0__70_carry_i_1))
           (portref I1 (instanceref acc0__70_carry_i_5))
-          (portref (member ov_sum_reg_0 20))
+          (portref (member ov_sum_reg_0 21))
           )
          )
          (net (rename ov_sum_reg_0_20_ "ov_sum_reg_0[20]") (joined
           (portref I1 (instanceref acc0__70_carry__4_i_1))
           (portref I1 (instanceref acc0__70_carry__4_i_6))
-          (portref (member ov_sum_reg_0 1))
+          (portref (member ov_sum_reg_0 2))
           )
          )
          (net (rename ov_sum_reg_0_21_ "ov_sum_reg_0[21]") (joined
           (portref I1 (instanceref acc0__70_carry__4_i_5))
+          (portref I4 (instanceref acc0__70_carry__4_i_4))
+          (portref (member ov_sum_reg_0 1))
+          )
+         )
+         (net (rename ov_sum_reg_0_22_ "ov_sum_reg_0[22]") (joined
+          (portref I2 (instanceref acc0__70_carry__4_i_4))
           (portref (member ov_sum_reg_0 0))
           )
          )
          (net (rename ov_sum_reg_0_2_ "ov_sum_reg_0[2]") (joined
           (portref I1 (instanceref acc0__70_carry__0_i_4))
           (portref I1 (instanceref acc0__70_carry_i_4))
-          (portref (member ov_sum_reg_0 19))
+          (portref (member ov_sum_reg_0 20))
           )
          )
          (net (rename ov_sum_reg_0_3_ "ov_sum_reg_0[3]") (joined
           (portref I1 (instanceref acc0__70_carry__0_i_3))
           (portref I1 (instanceref acc0__70_carry__0_i_8))
-          (portref (member ov_sum_reg_0 18))
+          (portref (member ov_sum_reg_0 19))
           )
          )
          (net (rename ov_sum_reg_0_4_ "ov_sum_reg_0[4]") (joined
           (portref I1 (instanceref acc0__70_carry__0_i_2))
           (portref I1 (instanceref acc0__70_carry__0_i_7))
-          (portref (member ov_sum_reg_0 17))
+          (portref (member ov_sum_reg_0 18))
           )
          )
          (net (rename ov_sum_reg_0_5_ "ov_sum_reg_0[5]") (joined
           (portref I1 (instanceref acc0__70_carry__0_i_1))
           (portref I1 (instanceref acc0__70_carry__0_i_6))
-          (portref (member ov_sum_reg_0 16))
+          (portref (member ov_sum_reg_0 17))
           )
          )
          (net (rename ov_sum_reg_0_6_ "ov_sum_reg_0[6]") (joined
           (portref I1 (instanceref acc0__70_carry__0_i_5))
           (portref I1 (instanceref acc0__70_carry__1_i_4))
-          (portref (member ov_sum_reg_0 15))
+          (portref (member ov_sum_reg_0 16))
           )
          )
          (net (rename ov_sum_reg_0_7_ "ov_sum_reg_0[7]") (joined
           (portref I1 (instanceref acc0__70_carry__1_i_3))
           (portref I1 (instanceref acc0__70_carry__1_i_8))
-          (portref (member ov_sum_reg_0 14))
+          (portref (member ov_sum_reg_0 15))
           )
          )
          (net (rename ov_sum_reg_0_8_ "ov_sum_reg_0[8]") (joined
           (portref I1 (instanceref acc0__70_carry__1_i_2))
           (portref I1 (instanceref acc0__70_carry__1_i_7))
-          (portref (member ov_sum_reg_0 13))
+          (portref (member ov_sum_reg_0 14))
           )
          )
          (net (rename ov_sum_reg_0_9_ "ov_sum_reg_0[9]") (joined
           (portref I1 (instanceref acc0__70_carry__1_i_1))
           (portref I1 (instanceref acc0__70_carry__1_i_6))
-          (portref (member ov_sum_reg_0 12))
+          (portref (member ov_sum_reg_0 13))
+          )
+         )
+         (net (rename ov_sum_reg_1_0_ "ov_sum_reg_1[0]") (joined
+          (portref I2 (instanceref acc0__70_carry_i_2))
+          (portref (member ov_sum_reg_1 22))
           )
          )
          (net (rename ov_sum_reg_1_10_ "ov_sum_reg_1[10]") (joined
+          (portref I2 (instanceref acc0__70_carry__1_i_5))
+          (portref I2 (instanceref acc0__70_carry__2_i_4))
+          (portref (member ov_sum_reg_1 12))
+          )
+         )
+         (net (rename ov_sum_reg_1_11_ "ov_sum_reg_1[11]") (joined
+          (portref I2 (instanceref acc0__70_carry__2_i_3))
+          (portref I2 (instanceref acc0__70_carry__2_i_8))
+          (portref (member ov_sum_reg_1 11))
+          )
+         )
+         (net (rename ov_sum_reg_1_12_ "ov_sum_reg_1[12]") (joined
+          (portref I2 (instanceref acc0__70_carry__2_i_2))
+          (portref I2 (instanceref acc0__70_carry__2_i_7))
+          (portref (member ov_sum_reg_1 10))
+          )
+         )
+         (net (rename ov_sum_reg_1_13_ "ov_sum_reg_1[13]") (joined
+          (portref I2 (instanceref acc0__70_carry__2_i_1))
+          (portref I2 (instanceref acc0__70_carry__2_i_6))
+          (portref (member ov_sum_reg_1 9))
+          )
+         )
+         (net (rename ov_sum_reg_1_14_ "ov_sum_reg_1[14]") (joined
+          (portref I2 (instanceref acc0__70_carry__2_i_5))
+          (portref I2 (instanceref acc0__70_carry__3_i_4))
+          (portref (member ov_sum_reg_1 8))
+          )
+         )
+         (net (rename ov_sum_reg_1_15_ "ov_sum_reg_1[15]") (joined
+          (portref I2 (instanceref acc0__70_carry__3_i_3))
+          (portref I2 (instanceref acc0__70_carry__3_i_8))
+          (portref (member ov_sum_reg_1 7))
+          )
+         )
+         (net (rename ov_sum_reg_1_16_ "ov_sum_reg_1[16]") (joined
+          (portref I2 (instanceref acc0__70_carry__3_i_2))
+          (portref I2 (instanceref acc0__70_carry__3_i_7))
+          (portref (member ov_sum_reg_1 6))
+          )
+         )
+         (net (rename ov_sum_reg_1_17_ "ov_sum_reg_1[17]") (joined
+          (portref I2 (instanceref acc0__70_carry__3_i_1))
+          (portref I2 (instanceref acc0__70_carry__3_i_6))
+          (portref (member ov_sum_reg_1 5))
+          )
+         )
+         (net (rename ov_sum_reg_1_18_ "ov_sum_reg_1[18]") (joined
+          (portref I2 (instanceref acc0__70_carry__3_i_5))
+          (portref I2 (instanceref acc0__70_carry__4_i_3))
+          (portref (member ov_sum_reg_1 4))
+          )
+         )
+         (net (rename ov_sum_reg_1_19_ "ov_sum_reg_1[19]") (joined
+          (portref I2 (instanceref acc0__70_carry__4_i_2))
+          (portref I2 (instanceref acc0__70_carry__4_i_7))
+          (portref (member ov_sum_reg_1 3))
+          )
+         )
+         (net (rename ov_sum_reg_1_1_ "ov_sum_reg_1[1]") (joined
+          (portref I2 (instanceref acc0__70_carry_i_1))
+          (portref I2 (instanceref acc0__70_carry_i_5))
+          (portref (member ov_sum_reg_1 21))
+          )
+         )
+         (net (rename ov_sum_reg_1_20_ "ov_sum_reg_1[20]") (joined
+          (portref I2 (instanceref acc0__70_carry__4_i_1))
+          (portref I2 (instanceref acc0__70_carry__4_i_6))
+          (portref (member ov_sum_reg_1 2))
+          )
+         )
+         (net (rename ov_sum_reg_1_21_ "ov_sum_reg_1[21]") (joined
+          (portref I2 (instanceref acc0__70_carry__4_i_5))
+          (portref I3 (instanceref acc0__70_carry__4_i_4))
+          (portref (member ov_sum_reg_1 1))
+          )
+         )
+         (net (rename ov_sum_reg_1_22_ "ov_sum_reg_1[22]") (joined
+          (portref I1 (instanceref acc0__70_carry__4_i_4))
+          (portref (member ov_sum_reg_1 0))
+          )
+         )
+         (net (rename ov_sum_reg_1_2_ "ov_sum_reg_1[2]") (joined
+          (portref I2 (instanceref acc0__70_carry__0_i_4))
+          (portref I2 (instanceref acc0__70_carry_i_4))
+          (portref (member ov_sum_reg_1 20))
+          )
+         )
+         (net (rename ov_sum_reg_1_3_ "ov_sum_reg_1[3]") (joined
+          (portref I2 (instanceref acc0__70_carry__0_i_3))
+          (portref I2 (instanceref acc0__70_carry__0_i_8))
+          (portref (member ov_sum_reg_1 19))
+          )
+         )
+         (net (rename ov_sum_reg_1_4_ "ov_sum_reg_1[4]") (joined
+          (portref I2 (instanceref acc0__70_carry__0_i_2))
+          (portref I2 (instanceref acc0__70_carry__0_i_7))
+          (portref (member ov_sum_reg_1 18))
+          )
+         )
+         (net (rename ov_sum_reg_1_5_ "ov_sum_reg_1[5]") (joined
+          (portref I2 (instanceref acc0__70_carry__0_i_1))
+          (portref I2 (instanceref acc0__70_carry__0_i_6))
+          (portref (member ov_sum_reg_1 17))
+          )
+         )
+         (net (rename ov_sum_reg_1_6_ "ov_sum_reg_1[6]") (joined
+          (portref I2 (instanceref acc0__70_carry__0_i_5))
+          (portref I2 (instanceref acc0__70_carry__1_i_4))
+          (portref (member ov_sum_reg_1 16))
+          )
+         )
+         (net (rename ov_sum_reg_1_7_ "ov_sum_reg_1[7]") (joined
+          (portref I2 (instanceref acc0__70_carry__1_i_3))
+          (portref I2 (instanceref acc0__70_carry__1_i_8))
+          (portref (member ov_sum_reg_1 15))
+          )
+         )
+         (net (rename ov_sum_reg_1_8_ "ov_sum_reg_1[8]") (joined
+          (portref I2 (instanceref acc0__70_carry__1_i_2))
+          (portref I2 (instanceref acc0__70_carry__1_i_7))
+          (portref (member ov_sum_reg_1 14))
+          )
+         )
+         (net (rename ov_sum_reg_1_9_ "ov_sum_reg_1[9]") (joined
+          (portref I2 (instanceref acc0__70_carry__1_i_1))
+          (portref I2 (instanceref acc0__70_carry__1_i_6))
+          (portref (member ov_sum_reg_1 13))
+          )
+         )
+         (net (rename ov_sum_reg_2_10_ "ov_sum_reg_2[10]") (joined
           (portref I0 (instanceref acc0__70_carry__1_i_1))
           (portref I0 (instanceref acc0__70_carry__1_i_6))
           (portref I1 (instanceref ov_sum_8__i_3__2))
           (portref Q (instanceref ov_sum_reg_10_))
           )
          )
-         (net (rename ov_sum_reg_1_11_ "ov_sum_reg_1[11]") (joined
+         (net (rename ov_sum_reg_2_11_ "ov_sum_reg_2[11]") (joined
           (portref I0 (instanceref acc0__70_carry__1_i_5))
           (portref I0 (instanceref acc0__70_carry__2_i_4))
           (portref I1 (instanceref ov_sum_8__i_2__2))
           (portref Q (instanceref ov_sum_reg_11_))
           )
          )
-         (net (rename ov_sum_reg_1_12_ "ov_sum_reg_1[12]") (joined
+         (net (rename ov_sum_reg_2_12_ "ov_sum_reg_2[12]") (joined
           (portref I0 (instanceref acc0__70_carry__2_i_3))
           (portref I0 (instanceref acc0__70_carry__2_i_8))
           (portref I1 (instanceref ov_sum_12__i_5__2))
           (portref Q (instanceref ov_sum_reg_12_))
           )
          )
-         (net (rename ov_sum_reg_1_13_ "ov_sum_reg_1[13]") (joined
+         (net (rename ov_sum_reg_2_13_ "ov_sum_reg_2[13]") (joined
           (portref I0 (instanceref acc0__70_carry__2_i_2))
           (portref I0 (instanceref acc0__70_carry__2_i_7))
           (portref I1 (instanceref ov_sum_12__i_4__2))
           (portref Q (instanceref ov_sum_reg_13_))
           )
          )
-         (net (rename ov_sum_reg_1_14_ "ov_sum_reg_1[14]") (joined
+         (net (rename ov_sum_reg_2_14_ "ov_sum_reg_2[14]") (joined
           (portref I0 (instanceref acc0__70_carry__2_i_1))
           (portref I0 (instanceref acc0__70_carry__2_i_6))
           (portref I1 (instanceref ov_sum_12__i_3__2))
           (portref Q (instanceref ov_sum_reg_14_))
           )
          )
-         (net (rename ov_sum_reg_1_15_ "ov_sum_reg_1[15]") (joined
+         (net (rename ov_sum_reg_2_15_ "ov_sum_reg_2[15]") (joined
           (portref I0 (instanceref acc0__70_carry__2_i_5))
           (portref I0 (instanceref acc0__70_carry__3_i_4))
           (portref I1 (instanceref ov_sum_12__i_2__2))
           (portref Q (instanceref ov_sum_reg_15_))
           )
          )
-         (net (rename ov_sum_reg_1_16_ "ov_sum_reg_1[16]") (joined
+         (net (rename ov_sum_reg_2_16_ "ov_sum_reg_2[16]") (joined
           (portref I0 (instanceref acc0__70_carry__3_i_3))
           (portref I0 (instanceref acc0__70_carry__3_i_8))
           (portref I1 (instanceref ov_sum_16__i_5__2))
           (portref Q (instanceref ov_sum_reg_16_))
           )
          )
-         (net (rename ov_sum_reg_1_17_ "ov_sum_reg_1[17]") (joined
+         (net (rename ov_sum_reg_2_17_ "ov_sum_reg_2[17]") (joined
           (portref I0 (instanceref acc0__70_carry__3_i_2))
           (portref I0 (instanceref acc0__70_carry__3_i_7))
           (portref I1 (instanceref ov_sum_16__i_4__2))
           (portref Q (instanceref ov_sum_reg_17_))
           )
          )
-         (net (rename ov_sum_reg_1_18_ "ov_sum_reg_1[18]") (joined
+         (net (rename ov_sum_reg_2_18_ "ov_sum_reg_2[18]") (joined
           (portref I0 (instanceref acc0__70_carry__3_i_1))
           (portref I0 (instanceref acc0__70_carry__3_i_6))
           (portref I1 (instanceref ov_sum_16__i_3__2))
           (portref Q (instanceref ov_sum_reg_18_))
           )
          )
-         (net (rename ov_sum_reg_1_19_ "ov_sum_reg_1[19]") (joined
+         (net (rename ov_sum_reg_2_19_ "ov_sum_reg_2[19]") (joined
           (portref I0 (instanceref acc0__70_carry__3_i_5))
           (portref I0 (instanceref acc0__70_carry__4_i_3))
           (portref I1 (instanceref ov_sum_16__i_2__2))
           (portref Q (instanceref ov_sum_reg_19_))
           )
          )
-         (net (rename ov_sum_reg_1_20_ "ov_sum_reg_1[20]") (joined
+         (net (rename ov_sum_reg_2_20_ "ov_sum_reg_2[20]") (joined
           (portref I0 (instanceref acc0__70_carry__4_i_2))
           (portref I0 (instanceref acc0__70_carry__4_i_7))
           (portref I1 (instanceref ov_sum_20__i_5__2))
           (portref Q (instanceref ov_sum_reg_20_))
           )
          )
-         (net (rename ov_sum_reg_1_21_ "ov_sum_reg_1[21]") (joined
+         (net (rename ov_sum_reg_2_21_ "ov_sum_reg_2[21]") (joined
           (portref I0 (instanceref acc0__70_carry__4_i_1))
           (portref I0 (instanceref acc0__70_carry__4_i_6))
           (portref I1 (instanceref ov_sum_20__i_4__2))
           (portref Q (instanceref ov_sum_reg_21_))
           )
          )
-         (net (rename ov_sum_reg_1_2_ "ov_sum_reg_1[2]") (joined
+         (net (rename ov_sum_reg_2_22_ "ov_sum_reg_2[22]") (joined
+          (portref I1 (instanceref ov_sum_20__i_3__2))
+          (portref I3 (instanceref acc0__70_carry__4_i_5))
+          (portref I5 (instanceref acc0__70_carry__4_i_4))
+          (portref Q (instanceref ov_sum_reg_22_))
+          )
+         )
+         (net (rename ov_sum_reg_2_23_ "ov_sum_reg_2[23]") (joined
+          (portref I0 (instanceref acc0__70_carry__4_i_4))
+          (portref I0 (instanceref ov_sum_20__i_2__2))
+          (portref Q (instanceref ov_sum_reg_23_))
+          )
+         )
+         (net (rename ov_sum_reg_2_2_ "ov_sum_reg_2[2]") (joined
           (portref I0 (instanceref acc0__70_carry_i_1))
           (portref I0 (instanceref acc0__70_carry_i_5))
           (portref I1 (instanceref ov_sum_0__i_3__2))
           (portref Q (instanceref ov_sum_reg_2_))
           )
          )
-         (net (rename ov_sum_reg_1_3_ "ov_sum_reg_1[3]") (joined
+         (net (rename ov_sum_reg_2_3_ "ov_sum_reg_2[3]") (joined
           (portref I0 (instanceref acc0__70_carry__0_i_4))
           (portref I0 (instanceref acc0__70_carry_i_4))
           (portref I1 (instanceref ov_sum_0__i_2__1))
           (portref Q (instanceref ov_sum_reg_3_))
           )
          )
-         (net (rename ov_sum_reg_1_4_ "ov_sum_reg_1[4]") (joined
+         (net (rename ov_sum_reg_2_4_ "ov_sum_reg_2[4]") (joined
           (portref I0 (instanceref acc0__70_carry__0_i_3))
           (portref I0 (instanceref acc0__70_carry__0_i_8))
           (portref I1 (instanceref ov_sum_4__i_5__2))
           (portref Q (instanceref ov_sum_reg_4_))
           )
          )
-         (net (rename ov_sum_reg_1_5_ "ov_sum_reg_1[5]") (joined
+         (net (rename ov_sum_reg_2_5_ "ov_sum_reg_2[5]") (joined
           (portref I0 (instanceref acc0__70_carry__0_i_2))
           (portref I0 (instanceref acc0__70_carry__0_i_7))
           (portref I1 (instanceref ov_sum_4__i_4__2))
           (portref Q (instanceref ov_sum_reg_5_))
           )
          )
-         (net (rename ov_sum_reg_1_6_ "ov_sum_reg_1[6]") (joined
+         (net (rename ov_sum_reg_2_6_ "ov_sum_reg_2[6]") (joined
           (portref I0 (instanceref acc0__70_carry__0_i_1))
           (portref I0 (instanceref acc0__70_carry__0_i_6))
           (portref I1 (instanceref ov_sum_4__i_3__2))
           (portref Q (instanceref ov_sum_reg_6_))
           )
          )
-         (net (rename ov_sum_reg_1_7_ "ov_sum_reg_1[7]") (joined
+         (net (rename ov_sum_reg_2_7_ "ov_sum_reg_2[7]") (joined
           (portref I0 (instanceref acc0__70_carry__0_i_5))
           (portref I0 (instanceref acc0__70_carry__1_i_4))
           (portref I1 (instanceref ov_sum_4__i_2__2))
           (portref Q (instanceref ov_sum_reg_7_))
           )
          )
-         (net (rename ov_sum_reg_1_8_ "ov_sum_reg_1[8]") (joined
+         (net (rename ov_sum_reg_2_8_ "ov_sum_reg_2[8]") (joined
           (portref I0 (instanceref acc0__70_carry__1_i_3))
           (portref I0 (instanceref acc0__70_carry__1_i_8))
           (portref I1 (instanceref ov_sum_8__i_5__2))
           (portref Q (instanceref ov_sum_reg_8_))
           )
          )
-         (net (rename ov_sum_reg_1_9_ "ov_sum_reg_1[9]") (joined
+         (net (rename ov_sum_reg_2_9_ "ov_sum_reg_2[9]") (joined
           (portref I0 (instanceref acc0__70_carry__1_i_2))
           (portref I0 (instanceref acc0__70_carry__1_i_7))
           (portref I1 (instanceref ov_sum_8__i_4__2))
@@ -13734,9 +13722,9 @@
         (port (rename DI_0_ "DI[0]") (direction OUTPUT))
         (port (array (rename S "S[1:0]") 2) (direction OUTPUT))
         (port (array (rename acc0__70_carry "acc0__70_carry[1:0]") 2) (direction INPUT))
-        (port (array (rename acc0__70_carry_0 "acc0__70_carry_0[1:0]") 2) (direction INPUT))
         (port (array (rename douta "douta[23:0]") 24) (direction INPUT))
         (port (array (rename ov_sum1_0 "ov_sum1_0[23:0]") 24) (direction INPUT))
+        (port (array (rename ov_sum_reg "ov_sum_reg[1:0]") 2) (direction INPUT))
         (port (array (rename ov_sum_reg_23__0 "ov_sum_reg[23]_0[22:0]") 23) (direction OUTPUT))
        )
        (contents
@@ -14431,17 +14419,6 @@
          (net (rename acc0__70_carry_1_ "acc0__70_carry[1]") (joined
           (portref I0 (instanceref acc0__70_carry_i_6))
           (portref (member acc0__70_carry 0))
-          )
-         )
-         (net (rename acc0__70_carry_0_0_ "acc0__70_carry_0[0]") (joined
-          (portref I2 (instanceref acc0__70_carry_i_3))
-          (portref I2 (instanceref acc0__70_carry_i_7))
-          (portref (member acc0__70_carry_0 1))
-          )
-         )
-         (net (rename acc0__70_carry_0_1_ "acc0__70_carry_0[1]") (joined
-          (portref I2 (instanceref acc0__70_carry_i_6))
-          (portref (member acc0__70_carry_0 0))
           )
          )
          (net (rename douta_0_ "douta[0]") (joined
@@ -15451,10 +15428,9 @@
           )
          )
          (net (rename ov_sum_reg_0_ "ov_sum_reg[0]") (joined
-          (portref I0 (instanceref acc0__70_carry_i_3))
-          (portref I0 (instanceref acc0__70_carry_i_7))
-          (portref I1 (instanceref ov_sum_0__i_5__3))
-          (portref Q (instanceref ov_sum_reg_0_))
+          (portref I2 (instanceref acc0__70_carry_i_3))
+          (portref I2 (instanceref acc0__70_carry_i_7))
+          (portref (member ov_sum_reg 1))
           )
          )
          (net (rename ov_sum_reg_0__i_1__2_n_0 "ov_sum_reg[0]_i_1__2_n_0") (joined
@@ -15566,6 +15542,11 @@
          (net (rename ov_sum_reg_16__i_1__3_n_7 "ov_sum_reg[16]_i_1__3_n_7") (joined
           (portref D (instanceref ov_sum_reg_16_))
           (portref (member O 3) (instanceref ov_sum_reg_16__i_1__3))
+          )
+         )
+         (net (rename ov_sum_reg_1_ "ov_sum_reg[1]") (joined
+          (portref I2 (instanceref acc0__70_carry_i_6))
+          (portref (member ov_sum_reg 0))
           )
          )
          (net (rename ov_sum_reg_20__i_1__3_n_1 "ov_sum_reg[20]_i_1__3_n_1") (joined
@@ -15839,6 +15820,13 @@
          (net (rename ov_sum_reg_8__i_1__3_n_7 "ov_sum_reg[8]_i_1__3_n_7") (joined
           (portref D (instanceref ov_sum_reg_8_))
           (portref (member O 3) (instanceref ov_sum_reg_8__i_1__3))
+          )
+         )
+         (net (rename ov_sum_reg_0_0_ "ov_sum_reg_0[0]") (joined
+          (portref I0 (instanceref acc0__70_carry_i_3))
+          (portref I0 (instanceref acc0__70_carry_i_7))
+          (portref I1 (instanceref ov_sum_0__i_5__3))
+          (portref Q (instanceref ov_sum_reg_0_))
           )
          )
          (net tap_en (joined
@@ -16559,7 +16547,7 @@
           )
          )
          (net (rename acc0__0_carry__4_1_ "acc0__0_carry__4[1]") (joined
-          (portref I5 (instanceref acc0__0_carry__4_i_4))
+          (portref I4 (instanceref acc0__0_carry__4_i_4))
           (portref (member acc0__0_carry__4 0))
           )
          )
@@ -17714,7 +17702,7 @@
           )
          )
          (net (rename ov_sum_reg_1_ "ov_sum_reg[1]") (joined
-          (portref I3 (instanceref acc0__0_carry__4_i_4))
+          (portref I5 (instanceref acc0__0_carry__4_i_4))
           (portref (member ov_sum_reg 0))
           )
          )
@@ -17965,7 +17953,7 @@
          )
          (net (rename ov_sum_reg_0_23_ "ov_sum_reg_0[23]") (joined
           (portref I0 (instanceref ov_sum_20__i_2__4))
-          (portref I4 (instanceref acc0__0_carry__4_i_4))
+          (portref I3 (instanceref acc0__0_carry__4_i_4))
           (portref Q (instanceref ov_sum_reg_23_))
           )
          )
@@ -18211,10 +18199,10 @@
            (property INIT (string "32'hE8FF00E8"))
          )
          (instance acc0__142_carry__4_i_12 (viewref netlist (cellref LUT3 (libraryref hdi_primitives)))
-           (property INIT (string "8'h96"))
+           (property INIT (string "8'h69"))
          )
          (instance acc0__142_carry__4_i_5 (viewref netlist (cellref LUT6 (libraryref hdi_primitives)))
-           (property INIT (string "64'h566AA995A995566A"))
+           (property INIT (string "64'hA995566A566AA995"))
          )
          (instance acc0__142_carry__4_i_8 (viewref netlist (cellref LUT3 (libraryref hdi_primitives)))
            (property INIT (string "8'h69"))
@@ -19166,18 +19154,18 @@
          )
          (net (rename acc0__142_carry__4_i_5_0_0_ "acc0__142_carry__4_i_5_0[0]") (joined
           (portref I0 (instanceref acc0__142_carry__4_i_1))
-          (portref I0 (instanceref acc0__142_carry__4_i_9))
+          (portref I2 (instanceref acc0__142_carry__4_i_9))
           (portref (member acc0__142_carry__4_i_5_0 2))
           )
          )
          (net (rename acc0__142_carry__4_i_5_0_1_ "acc0__142_carry__4_i_5_0[1]") (joined
-          (portref I0 (instanceref acc0__142_carry__4_i_8))
-          (portref I3 (instanceref acc0__142_carry__4_i_5))
+          (portref I1 (instanceref acc0__142_carry__4_i_5))
+          (portref I2 (instanceref acc0__142_carry__4_i_8))
           (portref (member acc0__142_carry__4_i_5_0 1))
           )
          )
          (net (rename acc0__142_carry__4_i_5_0_2_ "acc0__142_carry__4_i_5_0[2]") (joined
-          (portref I0 (instanceref acc0__142_carry__4_i_12))
+          (portref I2 (instanceref acc0__142_carry__4_i_12))
           (portref (member acc0__142_carry__4_i_5_0 0))
           )
          )
@@ -19199,19 +19187,19 @@
           )
          )
          (net (rename acc0__142_carry__4_i_5_2_0_ "acc0__142_carry__4_i_5_2[0]") (joined
+          (portref I0 (instanceref acc0__142_carry__4_i_9))
           (portref I2 (instanceref acc0__142_carry__4_i_1))
-          (portref I2 (instanceref acc0__142_carry__4_i_9))
           (portref (member acc0__142_carry__4_i_5_2 2))
           )
          )
          (net (rename acc0__142_carry__4_i_5_2_1_ "acc0__142_carry__4_i_5_2[1]") (joined
-          (portref I1 (instanceref acc0__142_carry__4_i_5))
-          (portref I2 (instanceref acc0__142_carry__4_i_8))
+          (portref I0 (instanceref acc0__142_carry__4_i_8))
+          (portref I3 (instanceref acc0__142_carry__4_i_5))
           (portref (member acc0__142_carry__4_i_5_2 1))
           )
          )
          (net (rename acc0__142_carry__4_i_5_2_2_ "acc0__142_carry__4_i_5_2[2]") (joined
-          (portref I2 (instanceref acc0__142_carry__4_i_12))
+          (portref I0 (instanceref acc0__142_carry__4_i_12))
           (portref (member acc0__142_carry__4_i_5_2 0))
           )
          )
@@ -28242,7 +28230,7 @@
         (port i_rst_IBUF (direction INPUT))
         (port (array (rename Q "Q[4:0]") 5) (direction INPUT))
         (port (array (rename douta "douta[23:0]") 24) (direction OUTPUT))
-        (port (array (rename gen_wr_a_gen_word_narrow_mem_reg "gen_wr_a.gen_word_narrow.mem_reg[23:0]") 24) (direction INPUT))
+        (port (array (rename out "out[23:0]") 24) (direction INPUT))
         (port (rename wea_0_ "wea[0]") (direction INPUT))
        )
        (contents
@@ -28522,126 +28510,6 @@
           (portref (member douta 14))
           )
          )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_0_ "gen_wr_a.gen_word_narrow.mem_reg[0]") (joined
-          (portref (member dina 23) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 23))
-          )
-         )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_10_ "gen_wr_a.gen_word_narrow.mem_reg[10]") (joined
-          (portref (member dina 13) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 13))
-          )
-         )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_11_ "gen_wr_a.gen_word_narrow.mem_reg[11]") (joined
-          (portref (member dina 12) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 12))
-          )
-         )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_12_ "gen_wr_a.gen_word_narrow.mem_reg[12]") (joined
-          (portref (member dina 11) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 11))
-          )
-         )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_13_ "gen_wr_a.gen_word_narrow.mem_reg[13]") (joined
-          (portref (member dina 10) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 10))
-          )
-         )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_14_ "gen_wr_a.gen_word_narrow.mem_reg[14]") (joined
-          (portref (member dina 9) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 9))
-          )
-         )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_15_ "gen_wr_a.gen_word_narrow.mem_reg[15]") (joined
-          (portref (member dina 8) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 8))
-          )
-         )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_16_ "gen_wr_a.gen_word_narrow.mem_reg[16]") (joined
-          (portref (member dina 7) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 7))
-          )
-         )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_17_ "gen_wr_a.gen_word_narrow.mem_reg[17]") (joined
-          (portref (member dina 6) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 6))
-          )
-         )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_18_ "gen_wr_a.gen_word_narrow.mem_reg[18]") (joined
-          (portref (member dina 5) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 5))
-          )
-         )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_19_ "gen_wr_a.gen_word_narrow.mem_reg[19]") (joined
-          (portref (member dina 4) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 4))
-          )
-         )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_1_ "gen_wr_a.gen_word_narrow.mem_reg[1]") (joined
-          (portref (member dina 22) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 22))
-          )
-         )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_20_ "gen_wr_a.gen_word_narrow.mem_reg[20]") (joined
-          (portref (member dina 3) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 3))
-          )
-         )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_21_ "gen_wr_a.gen_word_narrow.mem_reg[21]") (joined
-          (portref (member dina 2) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 2))
-          )
-         )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_22_ "gen_wr_a.gen_word_narrow.mem_reg[22]") (joined
-          (portref (member dina 1) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 1))
-          )
-         )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_23_ "gen_wr_a.gen_word_narrow.mem_reg[23]") (joined
-          (portref (member dina 0) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 0))
-          )
-         )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_2_ "gen_wr_a.gen_word_narrow.mem_reg[2]") (joined
-          (portref (member dina 21) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 21))
-          )
-         )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_3_ "gen_wr_a.gen_word_narrow.mem_reg[3]") (joined
-          (portref (member dina 20) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 20))
-          )
-         )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_4_ "gen_wr_a.gen_word_narrow.mem_reg[4]") (joined
-          (portref (member dina 19) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 19))
-          )
-         )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_5_ "gen_wr_a.gen_word_narrow.mem_reg[5]") (joined
-          (portref (member dina 18) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 18))
-          )
-         )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_6_ "gen_wr_a.gen_word_narrow.mem_reg[6]") (joined
-          (portref (member dina 17) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 17))
-          )
-         )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_7_ "gen_wr_a.gen_word_narrow.mem_reg[7]") (joined
-          (portref (member dina 16) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 16))
-          )
-         )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_8_ "gen_wr_a.gen_word_narrow.mem_reg[8]") (joined
-          (portref (member dina 15) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 15))
-          )
-         )
-         (net (rename gen_wr_a_gen_word_narrow_mem_reg_9_ "gen_wr_a.gen_word_narrow.mem_reg[9]") (joined
-          (portref (member dina 14) (instanceref xpm_memory_base_inst))
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 14))
-          )
-         )
          (net i_en_IBUF (joined
           (portref ena (instanceref xpm_memory_base_inst))
           (portref regcea (instanceref xpm_memory_base_inst))
@@ -28651,6 +28519,126 @@
          (net i_rst_IBUF (joined
           (portref rsta (instanceref xpm_memory_base_inst))
           (portref i_rst_IBUF)
+          )
+         )
+         (net (rename out_0_ "out[0]") (joined
+          (portref (member dina 23) (instanceref xpm_memory_base_inst))
+          (portref (member out 23))
+          )
+         )
+         (net (rename out_10_ "out[10]") (joined
+          (portref (member dina 13) (instanceref xpm_memory_base_inst))
+          (portref (member out 13))
+          )
+         )
+         (net (rename out_11_ "out[11]") (joined
+          (portref (member dina 12) (instanceref xpm_memory_base_inst))
+          (portref (member out 12))
+          )
+         )
+         (net (rename out_12_ "out[12]") (joined
+          (portref (member dina 11) (instanceref xpm_memory_base_inst))
+          (portref (member out 11))
+          )
+         )
+         (net (rename out_13_ "out[13]") (joined
+          (portref (member dina 10) (instanceref xpm_memory_base_inst))
+          (portref (member out 10))
+          )
+         )
+         (net (rename out_14_ "out[14]") (joined
+          (portref (member dina 9) (instanceref xpm_memory_base_inst))
+          (portref (member out 9))
+          )
+         )
+         (net (rename out_15_ "out[15]") (joined
+          (portref (member dina 8) (instanceref xpm_memory_base_inst))
+          (portref (member out 8))
+          )
+         )
+         (net (rename out_16_ "out[16]") (joined
+          (portref (member dina 7) (instanceref xpm_memory_base_inst))
+          (portref (member out 7))
+          )
+         )
+         (net (rename out_17_ "out[17]") (joined
+          (portref (member dina 6) (instanceref xpm_memory_base_inst))
+          (portref (member out 6))
+          )
+         )
+         (net (rename out_18_ "out[18]") (joined
+          (portref (member dina 5) (instanceref xpm_memory_base_inst))
+          (portref (member out 5))
+          )
+         )
+         (net (rename out_19_ "out[19]") (joined
+          (portref (member dina 4) (instanceref xpm_memory_base_inst))
+          (portref (member out 4))
+          )
+         )
+         (net (rename out_1_ "out[1]") (joined
+          (portref (member dina 22) (instanceref xpm_memory_base_inst))
+          (portref (member out 22))
+          )
+         )
+         (net (rename out_20_ "out[20]") (joined
+          (portref (member dina 3) (instanceref xpm_memory_base_inst))
+          (portref (member out 3))
+          )
+         )
+         (net (rename out_21_ "out[21]") (joined
+          (portref (member dina 2) (instanceref xpm_memory_base_inst))
+          (portref (member out 2))
+          )
+         )
+         (net (rename out_22_ "out[22]") (joined
+          (portref (member dina 1) (instanceref xpm_memory_base_inst))
+          (portref (member out 1))
+          )
+         )
+         (net (rename out_23_ "out[23]") (joined
+          (portref (member dina 0) (instanceref xpm_memory_base_inst))
+          (portref (member out 0))
+          )
+         )
+         (net (rename out_2_ "out[2]") (joined
+          (portref (member dina 21) (instanceref xpm_memory_base_inst))
+          (portref (member out 21))
+          )
+         )
+         (net (rename out_3_ "out[3]") (joined
+          (portref (member dina 20) (instanceref xpm_memory_base_inst))
+          (portref (member out 20))
+          )
+         )
+         (net (rename out_4_ "out[4]") (joined
+          (portref (member dina 19) (instanceref xpm_memory_base_inst))
+          (portref (member out 19))
+          )
+         )
+         (net (rename out_5_ "out[5]") (joined
+          (portref (member dina 18) (instanceref xpm_memory_base_inst))
+          (portref (member out 18))
+          )
+         )
+         (net (rename out_6_ "out[6]") (joined
+          (portref (member dina 17) (instanceref xpm_memory_base_inst))
+          (portref (member out 17))
+          )
+         )
+         (net (rename out_7_ "out[7]") (joined
+          (portref (member dina 16) (instanceref xpm_memory_base_inst))
+          (portref (member out 16))
+          )
+         )
+         (net (rename out_8_ "out[8]") (joined
+          (portref (member dina 15) (instanceref xpm_memory_base_inst))
+          (portref (member out 15))
+          )
+         )
+         (net (rename out_9_ "out[9]") (joined
+          (portref (member dina 14) (instanceref xpm_memory_base_inst))
+          (portref (member out 14))
           )
          )
          (net (rename wea_0_ "wea[0]") (joined
@@ -35978,8 +35966,8 @@
         (port i_en_IBUF (direction INPUT))
         (port i_rst_IBUF (direction INPUT))
         (port ser_ready (direction INPUT))
-        (port (array (rename Q "Q[23:0]") 24) (direction INPUT))
-        (port (array (rename ov_dout_reg_23__0 "ov_dout_reg[23]_0[23:0]") 24) (direction OUTPUT))
+        (port (array (rename Q "Q[23:0]") 24) (direction OUTPUT))
+        (port (array (rename out "out[23:0]") 24) (direction INPUT))
         (port (rename wea_0_ "wea[0]") (direction OUTPUT))
        )
        (contents
@@ -36494,122 +36482,122 @@
           )
          )
          (net (rename Q_0_ "Q[0]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 23) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_0_))
           (portref (member Q 23))
           )
          )
          (net (rename Q_10_ "Q[10]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 13) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_10_))
           (portref (member Q 13))
           )
          )
          (net (rename Q_11_ "Q[11]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 12) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_11_))
           (portref (member Q 12))
           )
          )
          (net (rename Q_12_ "Q[12]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 11) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_12_))
           (portref (member Q 11))
           )
          )
          (net (rename Q_13_ "Q[13]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 10) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_13_))
           (portref (member Q 10))
           )
          )
          (net (rename Q_14_ "Q[14]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 9) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_14_))
           (portref (member Q 9))
           )
          )
          (net (rename Q_15_ "Q[15]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 8) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_15_))
           (portref (member Q 8))
           )
          )
          (net (rename Q_16_ "Q[16]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 7) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_16_))
           (portref (member Q 7))
           )
          )
          (net (rename Q_17_ "Q[17]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 6) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_17_))
           (portref (member Q 6))
           )
          )
          (net (rename Q_18_ "Q[18]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 5) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_18_))
           (portref (member Q 5))
           )
          )
          (net (rename Q_19_ "Q[19]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 4) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_19_))
           (portref (member Q 4))
           )
          )
          (net (rename Q_1_ "Q[1]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 22) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_1_))
           (portref (member Q 22))
           )
          )
          (net (rename Q_20_ "Q[20]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 3) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_20_))
           (portref (member Q 3))
           )
          )
          (net (rename Q_21_ "Q[21]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 2) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_21_))
           (portref (member Q 2))
           )
          )
          (net (rename Q_22_ "Q[22]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 1) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_22_))
           (portref (member Q 1))
           )
          )
          (net (rename Q_23_ "Q[23]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 0) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_23_))
           (portref (member Q 0))
           )
          )
          (net (rename Q_2_ "Q[2]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 21) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_2_))
           (portref (member Q 21))
           )
          )
          (net (rename Q_3_ "Q[3]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 20) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_3_))
           (portref (member Q 20))
           )
          )
          (net (rename Q_4_ "Q[4]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 19) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_4_))
           (portref (member Q 19))
           )
          )
          (net (rename Q_5_ "Q[5]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 18) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_5_))
           (portref (member Q 18))
           )
          )
          (net (rename Q_6_ "Q[6]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 17) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_6_))
           (portref (member Q 17))
           )
          )
          (net (rename Q_7_ "Q[7]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 16) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_7_))
           (portref (member Q 16))
           )
          )
          (net (rename Q_8_ "Q[8]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 15) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_8_))
           (portref (member Q 15))
           )
          )
          (net (rename Q_9_ "Q[9]") (joined
-          (portref (member gen_wr_a_gen_word_narrow_mem_reg 14) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref Q (instanceref ov_dout_reg_9_))
           (portref (member Q 14))
           )
          )
@@ -36780,19 +36768,19 @@
          )
          (net acc0__0_carry__4_n_5 (joined
           (portref (member O 1) (instanceref acc0__0_carry__4))
-          (portref (member acc0__142_carry__4_i_5_0 0) (instanceref genblk1_7__tap_inst))
+          (portref (member acc0__142_carry__4_i_5_2 0) (instanceref genblk1_7__tap_inst))
           (portref (member ov_dout_reg_23__3 0) (instanceref genblk1_1__tap_inst))
           )
          )
          (net acc0__0_carry__4_n_6 (joined
           (portref (member O 2) (instanceref acc0__0_carry__4))
-          (portref (member acc0__142_carry__4_i_5_0 1) (instanceref genblk1_7__tap_inst))
+          (portref (member acc0__142_carry__4_i_5_2 1) (instanceref genblk1_7__tap_inst))
           (portref (member ov_dout_reg_23__3 1) (instanceref genblk1_1__tap_inst))
           )
          )
          (net acc0__0_carry__4_n_7 (joined
           (portref (member O 3) (instanceref acc0__0_carry__4))
-          (portref (member acc0__142_carry__4_i_5_0 2) (instanceref genblk1_7__tap_inst))
+          (portref (member acc0__142_carry__4_i_5_2 2) (instanceref genblk1_7__tap_inst))
           (portref (member ov_dout_reg_23__3 2) (instanceref genblk1_1__tap_inst))
           )
          )
@@ -37399,22 +37387,22 @@
          )
          (net (rename genblk1_1__tap_inst_n_30 "genblk1[1].tap_inst_n_30") (joined
           (portref (member S 0) (instanceref acc0__142_carry__0))
-          (portref (member ov_sum_reg_7__0 0) (instanceref genblk1_1__tap_inst))
+          (portref (member ov_sum_reg_6__0 0) (instanceref genblk1_1__tap_inst))
           )
          )
          (net (rename genblk1_1__tap_inst_n_31 "genblk1[1].tap_inst_n_31") (joined
           (portref (member S 1) (instanceref acc0__142_carry__0))
-          (portref (member ov_sum_reg_7__0 1) (instanceref genblk1_1__tap_inst))
+          (portref (member ov_sum_reg_6__0 1) (instanceref genblk1_1__tap_inst))
           )
          )
          (net (rename genblk1_1__tap_inst_n_32 "genblk1[1].tap_inst_n_32") (joined
           (portref (member S 2) (instanceref acc0__142_carry__0))
-          (portref (member ov_sum_reg_7__0 2) (instanceref genblk1_1__tap_inst))
+          (portref (member ov_sum_reg_6__0 2) (instanceref genblk1_1__tap_inst))
           )
          )
          (net (rename genblk1_1__tap_inst_n_33 "genblk1[1].tap_inst_n_33") (joined
           (portref (member S 3) (instanceref acc0__142_carry__0))
-          (portref (member ov_sum_reg_7__0 3) (instanceref genblk1_1__tap_inst))
+          (portref (member ov_sum_reg_6__0 3) (instanceref genblk1_1__tap_inst))
           )
          )
          (net (rename genblk1_1__tap_inst_n_34 "genblk1[1].tap_inst_n_34") (joined
@@ -37522,224 +37510,224 @@
           (portref (member S 1) (instanceref acc0__142_carry))
           )
          )
-         (net (rename genblk1_3__tap_inst_n_23 "genblk1[3].tap_inst_n_23") (joined
-          (portref S_0_ (instanceref genblk1_3__tap_inst))
-          (portref (member S 0) (instanceref acc0__70_carry__4))
-          )
-         )
          (net (rename genblk1_4__tap_inst_n_10 "genblk1[4].tap_inst_n_10") (joined
-          (portref (member DI 3) (instanceref acc0__70_carry__4))
-          (portref (member DI 2) (instanceref genblk1_4__tap_inst))
-          )
-         )
-         (net (rename genblk1_4__tap_inst_n_11 "genblk1[4].tap_inst_n_11") (joined
           (portref (member DI 0) (instanceref acc0__70_carry))
           (portref (member ov_sum_reg_2__0 0) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_12 "genblk1[4].tap_inst_n_12") (joined
+         (net (rename genblk1_4__tap_inst_n_11 "genblk1[4].tap_inst_n_11") (joined
           (portref (member DI 1) (instanceref acc0__70_carry))
           (portref (member ov_sum_reg_2__0 1) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_13 "genblk1[4].tap_inst_n_13") (joined
+         (net (rename genblk1_4__tap_inst_n_12 "genblk1[4].tap_inst_n_12") (joined
           (portref (member S 0) (instanceref acc0__70_carry))
           (portref (member ov_sum_reg_3__0 0) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_14 "genblk1[4].tap_inst_n_14") (joined
+         (net (rename genblk1_4__tap_inst_n_13 "genblk1[4].tap_inst_n_13") (joined
           (portref (member S 1) (instanceref acc0__70_carry))
           (portref (member ov_sum_reg_3__0 1) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_15 "genblk1[4].tap_inst_n_15") (joined
+         (net (rename genblk1_4__tap_inst_n_14 "genblk1[4].tap_inst_n_14") (joined
           (portref (member DI 0) (instanceref acc0__70_carry__0))
           (portref (member ov_sum_reg_6__0 0) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_16 "genblk1[4].tap_inst_n_16") (joined
+         (net (rename genblk1_4__tap_inst_n_15 "genblk1[4].tap_inst_n_15") (joined
           (portref (member DI 1) (instanceref acc0__70_carry__0))
           (portref (member ov_sum_reg_6__0 1) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_17 "genblk1[4].tap_inst_n_17") (joined
+         (net (rename genblk1_4__tap_inst_n_16 "genblk1[4].tap_inst_n_16") (joined
           (portref (member DI 2) (instanceref acc0__70_carry__0))
           (portref (member ov_sum_reg_6__0 2) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_18 "genblk1[4].tap_inst_n_18") (joined
+         (net (rename genblk1_4__tap_inst_n_17 "genblk1[4].tap_inst_n_17") (joined
           (portref (member DI 3) (instanceref acc0__70_carry__0))
           (portref (member ov_sum_reg_6__0 3) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_19 "genblk1[4].tap_inst_n_19") (joined
+         (net (rename genblk1_4__tap_inst_n_18 "genblk1[4].tap_inst_n_18") (joined
           (portref (member S 0) (instanceref acc0__70_carry__0))
           (portref (member ov_sum_reg_7__0 0) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_20 "genblk1[4].tap_inst_n_20") (joined
+         (net (rename genblk1_4__tap_inst_n_19 "genblk1[4].tap_inst_n_19") (joined
           (portref (member S 1) (instanceref acc0__70_carry__0))
           (portref (member ov_sum_reg_7__0 1) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_21 "genblk1[4].tap_inst_n_21") (joined
+         (net (rename genblk1_4__tap_inst_n_2 "genblk1[4].tap_inst_n_2") (joined
+          (portref ov_dout_reg_23__5 (instanceref genblk1_1__tap_inst))
+          (portref ov_sum_reg_23__0 (instanceref genblk1_4__tap_inst))
+          )
+         )
+         (net (rename genblk1_4__tap_inst_n_20 "genblk1[4].tap_inst_n_20") (joined
           (portref (member S 2) (instanceref acc0__70_carry__0))
           (portref (member ov_sum_reg_7__0 2) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_22 "genblk1[4].tap_inst_n_22") (joined
+         (net (rename genblk1_4__tap_inst_n_21 "genblk1[4].tap_inst_n_21") (joined
           (portref (member S 3) (instanceref acc0__70_carry__0))
           (portref (member ov_sum_reg_7__0 3) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_23 "genblk1[4].tap_inst_n_23") (joined
+         (net (rename genblk1_4__tap_inst_n_22 "genblk1[4].tap_inst_n_22") (joined
           (portref (member DI 0) (instanceref acc0__70_carry__1))
           (portref (member ov_sum_reg_10__0 0) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_24 "genblk1[4].tap_inst_n_24") (joined
+         (net (rename genblk1_4__tap_inst_n_23 "genblk1[4].tap_inst_n_23") (joined
           (portref (member DI 1) (instanceref acc0__70_carry__1))
           (portref (member ov_sum_reg_10__0 1) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_25 "genblk1[4].tap_inst_n_25") (joined
+         (net (rename genblk1_4__tap_inst_n_24 "genblk1[4].tap_inst_n_24") (joined
           (portref (member DI 2) (instanceref acc0__70_carry__1))
           (portref (member ov_sum_reg_10__0 2) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_26 "genblk1[4].tap_inst_n_26") (joined
+         (net (rename genblk1_4__tap_inst_n_25 "genblk1[4].tap_inst_n_25") (joined
           (portref (member DI 3) (instanceref acc0__70_carry__1))
           (portref (member ov_sum_reg_10__0 3) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_27 "genblk1[4].tap_inst_n_27") (joined
+         (net (rename genblk1_4__tap_inst_n_26 "genblk1[4].tap_inst_n_26") (joined
           (portref (member S 0) (instanceref acc0__70_carry__1))
           (portref (member ov_sum_reg_11__0 0) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_28 "genblk1[4].tap_inst_n_28") (joined
+         (net (rename genblk1_4__tap_inst_n_27 "genblk1[4].tap_inst_n_27") (joined
           (portref (member S 1) (instanceref acc0__70_carry__1))
           (portref (member ov_sum_reg_11__0 1) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_29 "genblk1[4].tap_inst_n_29") (joined
+         (net (rename genblk1_4__tap_inst_n_28 "genblk1[4].tap_inst_n_28") (joined
           (portref (member S 2) (instanceref acc0__70_carry__1))
           (portref (member ov_sum_reg_11__0 2) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_30 "genblk1[4].tap_inst_n_30") (joined
+         (net (rename genblk1_4__tap_inst_n_29 "genblk1[4].tap_inst_n_29") (joined
           (portref (member S 3) (instanceref acc0__70_carry__1))
           (portref (member ov_sum_reg_11__0 3) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_31 "genblk1[4].tap_inst_n_31") (joined
+         (net (rename genblk1_4__tap_inst_n_3 "genblk1[4].tap_inst_n_3") (joined
+          (portref (member S 0) (instanceref acc0__70_carry__4))
+          (portref (member S 0) (instanceref genblk1_4__tap_inst))
+          )
+         )
+         (net (rename genblk1_4__tap_inst_n_30 "genblk1[4].tap_inst_n_30") (joined
           (portref (member DI 0) (instanceref acc0__70_carry__2))
           (portref (member ov_sum_reg_14__0 0) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_32 "genblk1[4].tap_inst_n_32") (joined
+         (net (rename genblk1_4__tap_inst_n_31 "genblk1[4].tap_inst_n_31") (joined
           (portref (member DI 1) (instanceref acc0__70_carry__2))
           (portref (member ov_sum_reg_14__0 1) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_33 "genblk1[4].tap_inst_n_33") (joined
+         (net (rename genblk1_4__tap_inst_n_32 "genblk1[4].tap_inst_n_32") (joined
           (portref (member DI 2) (instanceref acc0__70_carry__2))
           (portref (member ov_sum_reg_14__0 2) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_34 "genblk1[4].tap_inst_n_34") (joined
+         (net (rename genblk1_4__tap_inst_n_33 "genblk1[4].tap_inst_n_33") (joined
           (portref (member DI 3) (instanceref acc0__70_carry__2))
           (portref (member ov_sum_reg_14__0 3) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_35 "genblk1[4].tap_inst_n_35") (joined
+         (net (rename genblk1_4__tap_inst_n_34 "genblk1[4].tap_inst_n_34") (joined
           (portref (member S 0) (instanceref acc0__70_carry__2))
           (portref (member ov_sum_reg_15__0 0) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_36 "genblk1[4].tap_inst_n_36") (joined
+         (net (rename genblk1_4__tap_inst_n_35 "genblk1[4].tap_inst_n_35") (joined
           (portref (member S 1) (instanceref acc0__70_carry__2))
           (portref (member ov_sum_reg_15__0 1) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_37 "genblk1[4].tap_inst_n_37") (joined
+         (net (rename genblk1_4__tap_inst_n_36 "genblk1[4].tap_inst_n_36") (joined
           (portref (member S 2) (instanceref acc0__70_carry__2))
           (portref (member ov_sum_reg_15__0 2) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_38 "genblk1[4].tap_inst_n_38") (joined
+         (net (rename genblk1_4__tap_inst_n_37 "genblk1[4].tap_inst_n_37") (joined
           (portref (member S 3) (instanceref acc0__70_carry__2))
           (portref (member ov_sum_reg_15__0 3) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_39 "genblk1[4].tap_inst_n_39") (joined
+         (net (rename genblk1_4__tap_inst_n_38 "genblk1[4].tap_inst_n_38") (joined
           (portref (member DI 0) (instanceref acc0__70_carry__3))
           (portref (member ov_sum_reg_18__0 0) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_4 "genblk1[4].tap_inst_n_4") (joined
-          (portref ov_dout_reg_23__5 (instanceref genblk1_1__tap_inst))
-          (portref ov_sum_reg_23__1 (instanceref genblk1_4__tap_inst))
-          )
-         )
-         (net (rename genblk1_4__tap_inst_n_40 "genblk1[4].tap_inst_n_40") (joined
+         (net (rename genblk1_4__tap_inst_n_39 "genblk1[4].tap_inst_n_39") (joined
           (portref (member DI 1) (instanceref acc0__70_carry__3))
           (portref (member ov_sum_reg_18__0 1) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_41 "genblk1[4].tap_inst_n_41") (joined
+         (net (rename genblk1_4__tap_inst_n_4 "genblk1[4].tap_inst_n_4") (joined
+          (portref (member S 1) (instanceref acc0__70_carry__4))
+          (portref (member S 1) (instanceref genblk1_4__tap_inst))
+          )
+         )
+         (net (rename genblk1_4__tap_inst_n_40 "genblk1[4].tap_inst_n_40") (joined
           (portref (member DI 2) (instanceref acc0__70_carry__3))
           (portref (member ov_sum_reg_18__0 2) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_42 "genblk1[4].tap_inst_n_42") (joined
+         (net (rename genblk1_4__tap_inst_n_41 "genblk1[4].tap_inst_n_41") (joined
           (portref (member DI 3) (instanceref acc0__70_carry__3))
           (portref (member ov_sum_reg_18__0 3) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_43 "genblk1[4].tap_inst_n_43") (joined
+         (net (rename genblk1_4__tap_inst_n_42 "genblk1[4].tap_inst_n_42") (joined
           (portref (member S 0) (instanceref acc0__70_carry__3))
           (portref (member ov_sum_reg_19__0 0) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_44 "genblk1[4].tap_inst_n_44") (joined
+         (net (rename genblk1_4__tap_inst_n_43 "genblk1[4].tap_inst_n_43") (joined
           (portref (member S 1) (instanceref acc0__70_carry__3))
           (portref (member ov_sum_reg_19__0 1) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_45 "genblk1[4].tap_inst_n_45") (joined
+         (net (rename genblk1_4__tap_inst_n_44 "genblk1[4].tap_inst_n_44") (joined
           (portref (member S 2) (instanceref acc0__70_carry__3))
           (portref (member ov_sum_reg_19__0 2) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_46 "genblk1[4].tap_inst_n_46") (joined
+         (net (rename genblk1_4__tap_inst_n_45 "genblk1[4].tap_inst_n_45") (joined
           (portref (member S 3) (instanceref acc0__70_carry__3))
           (portref (member ov_sum_reg_19__0 3) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename genblk1_4__tap_inst_n_5 "genblk1[4].tap_inst_n_5") (joined
-          (portref (member S 1) (instanceref acc0__70_carry__4))
-          (portref (member S 0) (instanceref genblk1_4__tap_inst))
-          )
-         )
-         (net (rename genblk1_4__tap_inst_n_6 "genblk1[4].tap_inst_n_6") (joined
           (portref (member S 2) (instanceref acc0__70_carry__4))
-          (portref (member S 1) (instanceref genblk1_4__tap_inst))
-          )
-         )
-         (net (rename genblk1_4__tap_inst_n_7 "genblk1[4].tap_inst_n_7") (joined
-          (portref (member S 3) (instanceref acc0__70_carry__4))
           (portref (member S 2) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_8 "genblk1[4].tap_inst_n_8") (joined
+         (net (rename genblk1_4__tap_inst_n_6 "genblk1[4].tap_inst_n_6") (joined
+          (portref (member S 3) (instanceref acc0__70_carry__4))
+          (portref (member S 3) (instanceref genblk1_4__tap_inst))
+          )
+         )
+         (net (rename genblk1_4__tap_inst_n_7 "genblk1[4].tap_inst_n_7") (joined
           (portref (member DI 1) (instanceref acc0__70_carry__4))
           (portref (member DI 0) (instanceref genblk1_4__tap_inst))
           )
          )
-         (net (rename genblk1_4__tap_inst_n_9 "genblk1[4].tap_inst_n_9") (joined
+         (net (rename genblk1_4__tap_inst_n_8 "genblk1[4].tap_inst_n_8") (joined
           (portref (member DI 2) (instanceref acc0__70_carry__4))
           (portref (member DI 1) (instanceref genblk1_4__tap_inst))
+          )
+         )
+         (net (rename genblk1_4__tap_inst_n_9 "genblk1[4].tap_inst_n_9") (joined
+          (portref (member DI 3) (instanceref acc0__70_carry__4))
+          (portref (member DI 2) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename genblk1_5__tap_inst_n_23 "genblk1[5].tap_inst_n_23") (joined
@@ -38098,6 +38086,126 @@
           (portref O (instanceref o_ready_i_1__1))
           )
          )
+         (net (rename out_0_ "out[0]") (joined
+          (portref (member out 23) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 23))
+          )
+         )
+         (net (rename out_10_ "out[10]") (joined
+          (portref (member out 13) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 13))
+          )
+         )
+         (net (rename out_11_ "out[11]") (joined
+          (portref (member out 12) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 12))
+          )
+         )
+         (net (rename out_12_ "out[12]") (joined
+          (portref (member out 11) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 11))
+          )
+         )
+         (net (rename out_13_ "out[13]") (joined
+          (portref (member out 10) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 10))
+          )
+         )
+         (net (rename out_14_ "out[14]") (joined
+          (portref (member out 9) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 9))
+          )
+         )
+         (net (rename out_15_ "out[15]") (joined
+          (portref (member out 8) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 8))
+          )
+         )
+         (net (rename out_16_ "out[16]") (joined
+          (portref (member out 7) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 7))
+          )
+         )
+         (net (rename out_17_ "out[17]") (joined
+          (portref (member out 6) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 6))
+          )
+         )
+         (net (rename out_18_ "out[18]") (joined
+          (portref (member out 5) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 5))
+          )
+         )
+         (net (rename out_19_ "out[19]") (joined
+          (portref (member out 4) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 4))
+          )
+         )
+         (net (rename out_1_ "out[1]") (joined
+          (portref (member out 22) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 22))
+          )
+         )
+         (net (rename out_20_ "out[20]") (joined
+          (portref (member out 3) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 3))
+          )
+         )
+         (net (rename out_21_ "out[21]") (joined
+          (portref (member out 2) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 2))
+          )
+         )
+         (net (rename out_22_ "out[22]") (joined
+          (portref (member out 1) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 1))
+          )
+         )
+         (net (rename out_23_ "out[23]") (joined
+          (portref (member out 0) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 0))
+          )
+         )
+         (net (rename out_2_ "out[2]") (joined
+          (portref (member out 21) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 21))
+          )
+         )
+         (net (rename out_3_ "out[3]") (joined
+          (portref (member out 20) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 20))
+          )
+         )
+         (net (rename out_4_ "out[4]") (joined
+          (portref (member out 19) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 19))
+          )
+         )
+         (net (rename out_5_ "out[5]") (joined
+          (portref (member out 18) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 18))
+          )
+         )
+         (net (rename out_6_ "out[6]") (joined
+          (portref (member out 17) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 17))
+          )
+         )
+         (net (rename out_7_ "out[7]") (joined
+          (portref (member out 16) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 16))
+          )
+         )
+         (net (rename out_8_ "out[8]") (joined
+          (portref (member out 15) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 15))
+          )
+         )
+         (net (rename out_9_ "out[9]") (joined
+          (portref (member out 14) (instanceref genblk3_0__xpm_memory_spram_inst))
+          (portref (member out 14))
+          )
+         )
          (net (rename ov_dout_23__i_1_n_0 "ov_dout[23]_i_1_n_0") (joined
           (portref CE (instanceref ov_dout_reg_0_))
           (portref CE (instanceref ov_dout_reg_10_))
@@ -38124,126 +38232,6 @@
           (portref CE (instanceref ov_dout_reg_8_))
           (portref CE (instanceref ov_dout_reg_9_))
           (portref O (instanceref ov_dout_23__i_1))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_0_ "ov_dout_reg[23]_0[0]") (joined
-          (portref Q (instanceref ov_dout_reg_0_))
-          (portref (member ov_dout_reg_23__0 23))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_10_ "ov_dout_reg[23]_0[10]") (joined
-          (portref Q (instanceref ov_dout_reg_10_))
-          (portref (member ov_dout_reg_23__0 13))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_11_ "ov_dout_reg[23]_0[11]") (joined
-          (portref Q (instanceref ov_dout_reg_11_))
-          (portref (member ov_dout_reg_23__0 12))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_12_ "ov_dout_reg[23]_0[12]") (joined
-          (portref Q (instanceref ov_dout_reg_12_))
-          (portref (member ov_dout_reg_23__0 11))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_13_ "ov_dout_reg[23]_0[13]") (joined
-          (portref Q (instanceref ov_dout_reg_13_))
-          (portref (member ov_dout_reg_23__0 10))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_14_ "ov_dout_reg[23]_0[14]") (joined
-          (portref Q (instanceref ov_dout_reg_14_))
-          (portref (member ov_dout_reg_23__0 9))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_15_ "ov_dout_reg[23]_0[15]") (joined
-          (portref Q (instanceref ov_dout_reg_15_))
-          (portref (member ov_dout_reg_23__0 8))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_16_ "ov_dout_reg[23]_0[16]") (joined
-          (portref Q (instanceref ov_dout_reg_16_))
-          (portref (member ov_dout_reg_23__0 7))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_17_ "ov_dout_reg[23]_0[17]") (joined
-          (portref Q (instanceref ov_dout_reg_17_))
-          (portref (member ov_dout_reg_23__0 6))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_18_ "ov_dout_reg[23]_0[18]") (joined
-          (portref Q (instanceref ov_dout_reg_18_))
-          (portref (member ov_dout_reg_23__0 5))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_19_ "ov_dout_reg[23]_0[19]") (joined
-          (portref Q (instanceref ov_dout_reg_19_))
-          (portref (member ov_dout_reg_23__0 4))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_1_ "ov_dout_reg[23]_0[1]") (joined
-          (portref Q (instanceref ov_dout_reg_1_))
-          (portref (member ov_dout_reg_23__0 22))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_20_ "ov_dout_reg[23]_0[20]") (joined
-          (portref Q (instanceref ov_dout_reg_20_))
-          (portref (member ov_dout_reg_23__0 3))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_21_ "ov_dout_reg[23]_0[21]") (joined
-          (portref Q (instanceref ov_dout_reg_21_))
-          (portref (member ov_dout_reg_23__0 2))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_22_ "ov_dout_reg[23]_0[22]") (joined
-          (portref Q (instanceref ov_dout_reg_22_))
-          (portref (member ov_dout_reg_23__0 1))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_23_ "ov_dout_reg[23]_0[23]") (joined
-          (portref Q (instanceref ov_dout_reg_23_))
-          (portref (member ov_dout_reg_23__0 0))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_2_ "ov_dout_reg[23]_0[2]") (joined
-          (portref Q (instanceref ov_dout_reg_2_))
-          (portref (member ov_dout_reg_23__0 21))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_3_ "ov_dout_reg[23]_0[3]") (joined
-          (portref Q (instanceref ov_dout_reg_3_))
-          (portref (member ov_dout_reg_23__0 20))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_4_ "ov_dout_reg[23]_0[4]") (joined
-          (portref Q (instanceref ov_dout_reg_4_))
-          (portref (member ov_dout_reg_23__0 19))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_5_ "ov_dout_reg[23]_0[5]") (joined
-          (portref Q (instanceref ov_dout_reg_5_))
-          (portref (member ov_dout_reg_23__0 18))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_6_ "ov_dout_reg[23]_0[6]") (joined
-          (portref Q (instanceref ov_dout_reg_6_))
-          (portref (member ov_dout_reg_23__0 17))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_7_ "ov_dout_reg[23]_0[7]") (joined
-          (portref Q (instanceref ov_dout_reg_7_))
-          (portref (member ov_dout_reg_23__0 16))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_8_ "ov_dout_reg[23]_0[8]") (joined
-          (portref Q (instanceref ov_dout_reg_8_))
-          (portref (member ov_dout_reg_23__0 15))
-          )
-         )
-         (net (rename ov_dout_reg_23__0_9_ "ov_dout_reg[23]_0[9]") (joined
-          (portref Q (instanceref ov_dout_reg_9_))
-          (portref (member ov_dout_reg_23__0 14))
           )
          )
          (net (rename ov_sum_reg_10_ "ov_sum_reg[10]") (joined
@@ -38368,17 +38356,17 @@
           )
          )
          (net (rename ov_sum_reg_0_20_ "ov_sum_reg_0[20]") (joined
-          (portref (member acc0__142_carry__4_i_5_2 2) (instanceref genblk1_7__tap_inst))
+          (portref (member acc0__142_carry__4_i_5_0 2) (instanceref genblk1_7__tap_inst))
           (portref (member ov_sum_reg_23__0 3) (instanceref genblk1_1__tap_inst))
           )
          )
          (net (rename ov_sum_reg_0_21_ "ov_sum_reg_0[21]") (joined
-          (portref (member acc0__142_carry__4_i_5_2 1) (instanceref genblk1_7__tap_inst))
+          (portref (member acc0__142_carry__4_i_5_0 1) (instanceref genblk1_7__tap_inst))
           (portref (member ov_sum_reg_23__0 2) (instanceref genblk1_1__tap_inst))
           )
          )
          (net (rename ov_sum_reg_0_22_ "ov_sum_reg_0[22]") (joined
-          (portref (member acc0__142_carry__4_i_5_2 0) (instanceref genblk1_7__tap_inst))
+          (portref (member acc0__142_carry__4_i_5_0 0) (instanceref genblk1_7__tap_inst))
           (portref (member ov_sum_reg_23__0 1) (instanceref genblk1_1__tap_inst))
           )
          )
@@ -38511,255 +38499,249 @@
           )
          )
          (net (rename ov_sum_reg_2_0_ "ov_sum_reg_2[0]") (joined
-          (portref (member acc0__70_carry_0 1) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_22__0 22) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 23) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 1) (instanceref genblk1_5__tap_inst))
           )
          )
          (net (rename ov_sum_reg_2_10_ "ov_sum_reg_2[10]") (joined
-          (portref (member acc0__70_carry__4 12) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_22__0 12) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 13) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg_1 13) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_2_11_ "ov_sum_reg_2[11]") (joined
-          (portref (member acc0__70_carry__4 11) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_22__0 11) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 12) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg_1 12) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_2_12_ "ov_sum_reg_2[12]") (joined
-          (portref (member acc0__70_carry__4 10) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_22__0 10) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 11) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg_1 11) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_2_13_ "ov_sum_reg_2[13]") (joined
-          (portref (member acc0__70_carry__4 9) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_22__0 9) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 10) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg_1 10) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_2_14_ "ov_sum_reg_2[14]") (joined
-          (portref (member acc0__70_carry__4 8) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_22__0 8) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 9) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg_1 9) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_2_15_ "ov_sum_reg_2[15]") (joined
-          (portref (member acc0__70_carry__4 7) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_22__0 7) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 8) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg_1 8) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_2_16_ "ov_sum_reg_2[16]") (joined
-          (portref (member acc0__70_carry__4 6) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_22__0 6) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 7) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg_1 7) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_2_17_ "ov_sum_reg_2[17]") (joined
-          (portref (member acc0__70_carry__4 5) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_22__0 5) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 6) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg_1 6) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_2_18_ "ov_sum_reg_2[18]") (joined
-          (portref (member acc0__70_carry__4 4) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_22__0 4) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 5) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg_1 5) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_2_19_ "ov_sum_reg_2[19]") (joined
-          (portref (member acc0__70_carry__4 3) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_22__0 3) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 4) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg_1 4) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_2_1_ "ov_sum_reg_2[1]") (joined
-          (portref (member acc0__70_carry_0 0) (instanceref genblk1_5__tap_inst))
-          (portref (member acc0__70_carry__4 21) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_22__0 21) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 22) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 0) (instanceref genblk1_5__tap_inst))
+          (portref (member ov_sum_reg_1 22) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_2_20_ "ov_sum_reg_2[20]") (joined
-          (portref (member acc0__70_carry__4 2) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_22__0 2) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 3) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg_1 3) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_2_21_ "ov_sum_reg_2[21]") (joined
-          (portref (member acc0__70_carry__4 1) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_22__0 1) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 2) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg_1 2) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_2_22_ "ov_sum_reg_2[22]") (joined
-          (portref (member acc0__70_carry__4 0) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_22__0 0) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 1) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg_1 1) (instanceref genblk1_4__tap_inst))
+          )
+         )
+         (net (rename ov_sum_reg_2_23_ "ov_sum_reg_2[23]") (joined
+          (portref (member ov_sum_reg 0) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg_1 0) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_2_2_ "ov_sum_reg_2[2]") (joined
-          (portref (member acc0__70_carry__4 20) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_22__0 20) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 21) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg_1 21) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_2_3_ "ov_sum_reg_2[3]") (joined
-          (portref (member acc0__70_carry__4 19) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_22__0 19) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 20) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg_1 20) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_2_4_ "ov_sum_reg_2[4]") (joined
-          (portref (member acc0__70_carry__4 18) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_22__0 18) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 19) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg_1 19) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_2_5_ "ov_sum_reg_2[5]") (joined
-          (portref (member acc0__70_carry__4 17) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_22__0 17) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 18) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg_1 18) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_2_6_ "ov_sum_reg_2[6]") (joined
-          (portref (member acc0__70_carry__4 16) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_22__0 16) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 17) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg_1 17) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_2_7_ "ov_sum_reg_2[7]") (joined
-          (portref (member acc0__70_carry__4 15) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_22__0 15) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 16) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg_1 16) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_2_8_ "ov_sum_reg_2[8]") (joined
-          (portref (member acc0__70_carry__4 14) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_22__0 14) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 15) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg_1 15) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_2_9_ "ov_sum_reg_2[9]") (joined
-          (portref (member acc0__70_carry__4 13) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_22__0 13) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg 14) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg_1 14) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_3_0_ "ov_sum_reg_3[0]") (joined
           (portref (member acc0__70_carry 1) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_23__0 3) (instanceref genblk1_4__tap_inst))
+          (portref (member ov_sum_reg_1__0 1) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_3_1_ "ov_sum_reg_3[1]") (joined
           (portref (member acc0__70_carry 0) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_23__0 2) (instanceref genblk1_4__tap_inst))
-          )
-         )
-         (net (rename ov_sum_reg_3_22_ "ov_sum_reg_3[22]") (joined
-          (portref (member ov_sum_reg_23__0 1) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_0 1) (instanceref genblk1_3__tap_inst))
-          )
-         )
-         (net (rename ov_sum_reg_3_23_ "ov_sum_reg_3[23]") (joined
-          (portref (member ov_sum_reg_23__0 0) (instanceref genblk1_4__tap_inst))
-          (portref (member ov_sum_reg_0 0) (instanceref genblk1_3__tap_inst))
+          (portref (member ov_sum_reg_1__0 0) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_4_10_ "ov_sum_reg_4[10]") (joined
           (portref (member ov_sum_reg_23__0 13) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_0 12) (instanceref genblk1_4__tap_inst))
+          (portref (member ov_sum_reg_0 13) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_4_11_ "ov_sum_reg_4[11]") (joined
           (portref (member ov_sum_reg_23__0 12) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_0 11) (instanceref genblk1_4__tap_inst))
+          (portref (member ov_sum_reg_0 12) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_4_12_ "ov_sum_reg_4[12]") (joined
           (portref (member ov_sum_reg_23__0 11) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_0 10) (instanceref genblk1_4__tap_inst))
+          (portref (member ov_sum_reg_0 11) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_4_13_ "ov_sum_reg_4[13]") (joined
           (portref (member ov_sum_reg_23__0 10) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_0 9) (instanceref genblk1_4__tap_inst))
+          (portref (member ov_sum_reg_0 10) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_4_14_ "ov_sum_reg_4[14]") (joined
           (portref (member ov_sum_reg_23__0 9) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_0 8) (instanceref genblk1_4__tap_inst))
+          (portref (member ov_sum_reg_0 9) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_4_15_ "ov_sum_reg_4[15]") (joined
           (portref (member ov_sum_reg_23__0 8) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_0 7) (instanceref genblk1_4__tap_inst))
+          (portref (member ov_sum_reg_0 8) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_4_16_ "ov_sum_reg_4[16]") (joined
           (portref (member ov_sum_reg_23__0 7) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_0 6) (instanceref genblk1_4__tap_inst))
+          (portref (member ov_sum_reg_0 7) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_4_17_ "ov_sum_reg_4[17]") (joined
           (portref (member ov_sum_reg_23__0 6) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_0 5) (instanceref genblk1_4__tap_inst))
+          (portref (member ov_sum_reg_0 6) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_4_18_ "ov_sum_reg_4[18]") (joined
           (portref (member ov_sum_reg_23__0 5) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_0 4) (instanceref genblk1_4__tap_inst))
+          (portref (member ov_sum_reg_0 5) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_4_19_ "ov_sum_reg_4[19]") (joined
           (portref (member ov_sum_reg_23__0 4) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_0 3) (instanceref genblk1_4__tap_inst))
+          (portref (member ov_sum_reg_0 4) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_4_1_ "ov_sum_reg_4[1]") (joined
           (portref (member ov_sum_reg_23__0 22) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_0 21) (instanceref genblk1_4__tap_inst))
+          (portref (member ov_sum_reg_0 22) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_4_20_ "ov_sum_reg_4[20]") (joined
           (portref (member ov_sum_reg_23__0 3) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_0 2) (instanceref genblk1_4__tap_inst))
+          (portref (member ov_sum_reg_0 3) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_4_21_ "ov_sum_reg_4[21]") (joined
           (portref (member ov_sum_reg_23__0 2) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_0 1) (instanceref genblk1_4__tap_inst))
+          (portref (member ov_sum_reg_0 2) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_4_22_ "ov_sum_reg_4[22]") (joined
-          (portref (member ov_sum_reg 1) (instanceref genblk1_3__tap_inst))
           (portref (member ov_sum_reg_23__0 1) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_0 0) (instanceref genblk1_4__tap_inst))
+          (portref (member ov_sum_reg_0 1) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_4_23_ "ov_sum_reg_4[23]") (joined
-          (portref (member ov_sum_reg 0) (instanceref genblk1_3__tap_inst))
           (portref (member ov_sum_reg_23__0 0) (instanceref genblk1_5__tap_inst))
+          (portref (member ov_sum_reg_0 0) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_4_2_ "ov_sum_reg_4[2]") (joined
           (portref (member ov_sum_reg_23__0 21) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_0 20) (instanceref genblk1_4__tap_inst))
+          (portref (member ov_sum_reg_0 21) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_4_3_ "ov_sum_reg_4[3]") (joined
           (portref (member ov_sum_reg_23__0 20) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_0 19) (instanceref genblk1_4__tap_inst))
+          (portref (member ov_sum_reg_0 20) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_4_4_ "ov_sum_reg_4[4]") (joined
           (portref (member ov_sum_reg_23__0 19) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_0 18) (instanceref genblk1_4__tap_inst))
+          (portref (member ov_sum_reg_0 19) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_4_5_ "ov_sum_reg_4[5]") (joined
           (portref (member ov_sum_reg_23__0 18) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_0 17) (instanceref genblk1_4__tap_inst))
+          (portref (member ov_sum_reg_0 18) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_4_6_ "ov_sum_reg_4[6]") (joined
           (portref (member ov_sum_reg_23__0 17) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_0 16) (instanceref genblk1_4__tap_inst))
+          (portref (member ov_sum_reg_0 17) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_4_7_ "ov_sum_reg_4[7]") (joined
           (portref (member ov_sum_reg_23__0 16) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_0 15) (instanceref genblk1_4__tap_inst))
+          (portref (member ov_sum_reg_0 16) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_4_8_ "ov_sum_reg_4[8]") (joined
           (portref (member ov_sum_reg_23__0 15) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_0 14) (instanceref genblk1_4__tap_inst))
+          (portref (member ov_sum_reg_0 15) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_4_9_ "ov_sum_reg_4[9]") (joined
           (portref (member ov_sum_reg_23__0 14) (instanceref genblk1_5__tap_inst))
-          (portref (member ov_sum_reg_0 13) (instanceref genblk1_4__tap_inst))
+          (portref (member ov_sum_reg_0 14) (instanceref genblk1_4__tap_inst))
           )
          )
          (net (rename ov_sum_reg_5_0_ "ov_sum_reg_5[0]") (joined
@@ -41507,7 +41489,7 @@
         (port o_dout_valid_OBUF (direction OUTPUT))
         (port ser_ready (direction OUTPUT))
         (port (rename Q_0_ "Q[0]") (direction OUTPUT))
-        (port (array (rename shift_reg_reg_23__0 "shift_reg_reg[23]_0[23:0]") 24) (direction INPUT))
+        (port (array (rename out "out[23:0]") 24) (direction INPUT))
        )
        (contents
          (instance VCC (viewref netlist (cellref VCC (libraryref hdi_primitives))))
@@ -41979,6 +41961,126 @@
           (portref O (instanceref o_dout_valid_i_1__0))
           )
          )
+         (net (rename out_0_ "out[0]") (joined
+          (portref I0 (instanceref shift_reg_0__i_1__0))
+          (portref (member out 23))
+          )
+         )
+         (net (rename out_10_ "out[10]") (joined
+          (portref I0 (instanceref shift_reg_10__i_1__0))
+          (portref (member out 13))
+          )
+         )
+         (net (rename out_11_ "out[11]") (joined
+          (portref I0 (instanceref shift_reg_11__i_1__0))
+          (portref (member out 12))
+          )
+         )
+         (net (rename out_12_ "out[12]") (joined
+          (portref I0 (instanceref shift_reg_12__i_1__0))
+          (portref (member out 11))
+          )
+         )
+         (net (rename out_13_ "out[13]") (joined
+          (portref I0 (instanceref shift_reg_13__i_1__0))
+          (portref (member out 10))
+          )
+         )
+         (net (rename out_14_ "out[14]") (joined
+          (portref I0 (instanceref shift_reg_14__i_1__0))
+          (portref (member out 9))
+          )
+         )
+         (net (rename out_15_ "out[15]") (joined
+          (portref I0 (instanceref shift_reg_15__i_1__0))
+          (portref (member out 8))
+          )
+         )
+         (net (rename out_16_ "out[16]") (joined
+          (portref I0 (instanceref shift_reg_16__i_1__0))
+          (portref (member out 7))
+          )
+         )
+         (net (rename out_17_ "out[17]") (joined
+          (portref I0 (instanceref shift_reg_17__i_1__0))
+          (portref (member out 6))
+          )
+         )
+         (net (rename out_18_ "out[18]") (joined
+          (portref I0 (instanceref shift_reg_18__i_1__0))
+          (portref (member out 5))
+          )
+         )
+         (net (rename out_19_ "out[19]") (joined
+          (portref I0 (instanceref shift_reg_19__i_1__0))
+          (portref (member out 4))
+          )
+         )
+         (net (rename out_1_ "out[1]") (joined
+          (portref I0 (instanceref shift_reg_1__i_1__0))
+          (portref (member out 22))
+          )
+         )
+         (net (rename out_20_ "out[20]") (joined
+          (portref I0 (instanceref shift_reg_20__i_1__0))
+          (portref (member out 3))
+          )
+         )
+         (net (rename out_21_ "out[21]") (joined
+          (portref I0 (instanceref shift_reg_21__i_1__0))
+          (portref (member out 2))
+          )
+         )
+         (net (rename out_22_ "out[22]") (joined
+          (portref I0 (instanceref shift_reg_22__i_1__0))
+          (portref (member out 1))
+          )
+         )
+         (net (rename out_23_ "out[23]") (joined
+          (portref I1 (instanceref shift_reg_23__i_1__0))
+          (portref (member out 0))
+          )
+         )
+         (net (rename out_2_ "out[2]") (joined
+          (portref I0 (instanceref shift_reg_2__i_1__0))
+          (portref (member out 21))
+          )
+         )
+         (net (rename out_3_ "out[3]") (joined
+          (portref I0 (instanceref shift_reg_3__i_1__0))
+          (portref (member out 20))
+          )
+         )
+         (net (rename out_4_ "out[4]") (joined
+          (portref I0 (instanceref shift_reg_4__i_1__0))
+          (portref (member out 19))
+          )
+         )
+         (net (rename out_5_ "out[5]") (joined
+          (portref I0 (instanceref shift_reg_5__i_1__0))
+          (portref (member out 18))
+          )
+         )
+         (net (rename out_6_ "out[6]") (joined
+          (portref I0 (instanceref shift_reg_6__i_1__0))
+          (portref (member out 17))
+          )
+         )
+         (net (rename out_7_ "out[7]") (joined
+          (portref I0 (instanceref shift_reg_7__i_1__0))
+          (portref (member out 16))
+          )
+         )
+         (net (rename out_8_ "out[8]") (joined
+          (portref I0 (instanceref shift_reg_8__i_1__0))
+          (portref (member out 15))
+          )
+         )
+         (net (rename out_9_ "out[9]") (joined
+          (portref I0 (instanceref shift_reg_9__i_1__0))
+          (portref (member out 14))
+          )
+         )
          (net ser_ready (joined
           (portref Q (instanceref o_ready_reg))
           (portref ser_ready)
@@ -42102,126 +42204,6 @@
          (net (rename shift_reg_9__i_1__0_n_0 "shift_reg[9]_i_1__0_n_0") (joined
           (portref D (instanceref shift_reg_reg_9_))
           (portref O (instanceref shift_reg_9__i_1__0))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_0_ "shift_reg_reg[23]_0[0]") (joined
-          (portref I0 (instanceref shift_reg_0__i_1__0))
-          (portref (member shift_reg_reg_23__0 23))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_10_ "shift_reg_reg[23]_0[10]") (joined
-          (portref I0 (instanceref shift_reg_10__i_1__0))
-          (portref (member shift_reg_reg_23__0 13))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_11_ "shift_reg_reg[23]_0[11]") (joined
-          (portref I0 (instanceref shift_reg_11__i_1__0))
-          (portref (member shift_reg_reg_23__0 12))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_12_ "shift_reg_reg[23]_0[12]") (joined
-          (portref I0 (instanceref shift_reg_12__i_1__0))
-          (portref (member shift_reg_reg_23__0 11))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_13_ "shift_reg_reg[23]_0[13]") (joined
-          (portref I0 (instanceref shift_reg_13__i_1__0))
-          (portref (member shift_reg_reg_23__0 10))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_14_ "shift_reg_reg[23]_0[14]") (joined
-          (portref I0 (instanceref shift_reg_14__i_1__0))
-          (portref (member shift_reg_reg_23__0 9))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_15_ "shift_reg_reg[23]_0[15]") (joined
-          (portref I0 (instanceref shift_reg_15__i_1__0))
-          (portref (member shift_reg_reg_23__0 8))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_16_ "shift_reg_reg[23]_0[16]") (joined
-          (portref I0 (instanceref shift_reg_16__i_1__0))
-          (portref (member shift_reg_reg_23__0 7))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_17_ "shift_reg_reg[23]_0[17]") (joined
-          (portref I0 (instanceref shift_reg_17__i_1__0))
-          (portref (member shift_reg_reg_23__0 6))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_18_ "shift_reg_reg[23]_0[18]") (joined
-          (portref I0 (instanceref shift_reg_18__i_1__0))
-          (portref (member shift_reg_reg_23__0 5))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_19_ "shift_reg_reg[23]_0[19]") (joined
-          (portref I0 (instanceref shift_reg_19__i_1__0))
-          (portref (member shift_reg_reg_23__0 4))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_1_ "shift_reg_reg[23]_0[1]") (joined
-          (portref I0 (instanceref shift_reg_1__i_1__0))
-          (portref (member shift_reg_reg_23__0 22))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_20_ "shift_reg_reg[23]_0[20]") (joined
-          (portref I0 (instanceref shift_reg_20__i_1__0))
-          (portref (member shift_reg_reg_23__0 3))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_21_ "shift_reg_reg[23]_0[21]") (joined
-          (portref I0 (instanceref shift_reg_21__i_1__0))
-          (portref (member shift_reg_reg_23__0 2))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_22_ "shift_reg_reg[23]_0[22]") (joined
-          (portref I0 (instanceref shift_reg_22__i_1__0))
-          (portref (member shift_reg_reg_23__0 1))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_23_ "shift_reg_reg[23]_0[23]") (joined
-          (portref I1 (instanceref shift_reg_23__i_1__0))
-          (portref (member shift_reg_reg_23__0 0))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_2_ "shift_reg_reg[23]_0[2]") (joined
-          (portref I0 (instanceref shift_reg_2__i_1__0))
-          (portref (member shift_reg_reg_23__0 21))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_3_ "shift_reg_reg[23]_0[3]") (joined
-          (portref I0 (instanceref shift_reg_3__i_1__0))
-          (portref (member shift_reg_reg_23__0 20))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_4_ "shift_reg_reg[23]_0[4]") (joined
-          (portref I0 (instanceref shift_reg_4__i_1__0))
-          (portref (member shift_reg_reg_23__0 19))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_5_ "shift_reg_reg[23]_0[5]") (joined
-          (portref I0 (instanceref shift_reg_5__i_1__0))
-          (portref (member shift_reg_reg_23__0 18))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_6_ "shift_reg_reg[23]_0[6]") (joined
-          (portref I0 (instanceref shift_reg_6__i_1__0))
-          (portref (member shift_reg_reg_23__0 17))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_7_ "shift_reg_reg[23]_0[7]") (joined
-          (portref I0 (instanceref shift_reg_7__i_1__0))
-          (portref (member shift_reg_reg_23__0 16))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_8_ "shift_reg_reg[23]_0[8]") (joined
-          (portref I0 (instanceref shift_reg_8__i_1__0))
-          (portref (member shift_reg_reg_23__0 15))
-          )
-         )
-         (net (rename shift_reg_reg_23__0_9_ "shift_reg_reg[23]_0[9]") (joined
-          (portref I0 (instanceref shift_reg_9__i_1__0))
-          (portref (member shift_reg_reg_23__0 14))
           )
          )
          (net (rename shift_reg_reg_n_0__10_ "shift_reg_reg_n_0_[10]") (joined
@@ -42479,243 +42461,339 @@
          )
          (net (rename fir_din_0_ "fir_din[0]") (joined
           (portref (member Q 23) (instanceref deserializer_inst))
-          (portref (member Q 23) (instanceref fir_filter_inst))
+          (portref (member out 23) (instanceref fir_filter_inst))
           )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net (rename fir_din_10_ "fir_din[10]") (joined
           (portref (member Q 13) (instanceref deserializer_inst))
-          (portref (member Q 13) (instanceref fir_filter_inst))
+          (portref (member out 13) (instanceref fir_filter_inst))
           )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net (rename fir_din_11_ "fir_din[11]") (joined
           (portref (member Q 12) (instanceref deserializer_inst))
-          (portref (member Q 12) (instanceref fir_filter_inst))
+          (portref (member out 12) (instanceref fir_filter_inst))
           )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net (rename fir_din_12_ "fir_din[12]") (joined
           (portref (member Q 11) (instanceref deserializer_inst))
-          (portref (member Q 11) (instanceref fir_filter_inst))
+          (portref (member out 11) (instanceref fir_filter_inst))
           )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net (rename fir_din_13_ "fir_din[13]") (joined
           (portref (member Q 10) (instanceref deserializer_inst))
-          (portref (member Q 10) (instanceref fir_filter_inst))
+          (portref (member out 10) (instanceref fir_filter_inst))
           )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net (rename fir_din_14_ "fir_din[14]") (joined
           (portref (member Q 9) (instanceref deserializer_inst))
-          (portref (member Q 9) (instanceref fir_filter_inst))
+          (portref (member out 9) (instanceref fir_filter_inst))
           )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net (rename fir_din_15_ "fir_din[15]") (joined
           (portref (member Q 8) (instanceref deserializer_inst))
-          (portref (member Q 8) (instanceref fir_filter_inst))
+          (portref (member out 8) (instanceref fir_filter_inst))
           )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net (rename fir_din_16_ "fir_din[16]") (joined
           (portref (member Q 7) (instanceref deserializer_inst))
-          (portref (member Q 7) (instanceref fir_filter_inst))
+          (portref (member out 7) (instanceref fir_filter_inst))
           )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net (rename fir_din_17_ "fir_din[17]") (joined
           (portref (member Q 6) (instanceref deserializer_inst))
-          (portref (member Q 6) (instanceref fir_filter_inst))
+          (portref (member out 6) (instanceref fir_filter_inst))
           )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net (rename fir_din_18_ "fir_din[18]") (joined
           (portref (member Q 5) (instanceref deserializer_inst))
-          (portref (member Q 5) (instanceref fir_filter_inst))
+          (portref (member out 5) (instanceref fir_filter_inst))
           )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net (rename fir_din_19_ "fir_din[19]") (joined
           (portref (member Q 4) (instanceref deserializer_inst))
-          (portref (member Q 4) (instanceref fir_filter_inst))
+          (portref (member out 4) (instanceref fir_filter_inst))
           )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net (rename fir_din_1_ "fir_din[1]") (joined
           (portref (member Q 22) (instanceref deserializer_inst))
-          (portref (member Q 22) (instanceref fir_filter_inst))
+          (portref (member out 22) (instanceref fir_filter_inst))
           )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net (rename fir_din_20_ "fir_din[20]") (joined
           (portref (member Q 3) (instanceref deserializer_inst))
-          (portref (member Q 3) (instanceref fir_filter_inst))
+          (portref (member out 3) (instanceref fir_filter_inst))
           )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net (rename fir_din_21_ "fir_din[21]") (joined
           (portref (member Q 2) (instanceref deserializer_inst))
-          (portref (member Q 2) (instanceref fir_filter_inst))
+          (portref (member out 2) (instanceref fir_filter_inst))
           )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net (rename fir_din_22_ "fir_din[22]") (joined
           (portref (member Q 1) (instanceref deserializer_inst))
-          (portref (member Q 1) (instanceref fir_filter_inst))
+          (portref (member out 1) (instanceref fir_filter_inst))
           )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net (rename fir_din_23_ "fir_din[23]") (joined
           (portref (member Q 0) (instanceref deserializer_inst))
-          (portref (member Q 0) (instanceref fir_filter_inst))
+          (portref (member out 0) (instanceref fir_filter_inst))
           )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net (rename fir_din_2_ "fir_din[2]") (joined
           (portref (member Q 21) (instanceref deserializer_inst))
-          (portref (member Q 21) (instanceref fir_filter_inst))
+          (portref (member out 21) (instanceref fir_filter_inst))
           )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net (rename fir_din_3_ "fir_din[3]") (joined
           (portref (member Q 20) (instanceref deserializer_inst))
-          (portref (member Q 20) (instanceref fir_filter_inst))
+          (portref (member out 20) (instanceref fir_filter_inst))
           )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net (rename fir_din_4_ "fir_din[4]") (joined
           (portref (member Q 19) (instanceref deserializer_inst))
-          (portref (member Q 19) (instanceref fir_filter_inst))
+          (portref (member out 19) (instanceref fir_filter_inst))
           )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net (rename fir_din_5_ "fir_din[5]") (joined
           (portref (member Q 18) (instanceref deserializer_inst))
-          (portref (member Q 18) (instanceref fir_filter_inst))
+          (portref (member out 18) (instanceref fir_filter_inst))
           )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net (rename fir_din_6_ "fir_din[6]") (joined
           (portref (member Q 17) (instanceref deserializer_inst))
-          (portref (member Q 17) (instanceref fir_filter_inst))
+          (portref (member out 17) (instanceref fir_filter_inst))
           )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net (rename fir_din_7_ "fir_din[7]") (joined
           (portref (member Q 16) (instanceref deserializer_inst))
-          (portref (member Q 16) (instanceref fir_filter_inst))
+          (portref (member out 16) (instanceref fir_filter_inst))
           )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net (rename fir_din_8_ "fir_din[8]") (joined
           (portref (member Q 15) (instanceref deserializer_inst))
-          (portref (member Q 15) (instanceref fir_filter_inst))
+          (portref (member out 15) (instanceref fir_filter_inst))
           )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net (rename fir_din_9_ "fir_din[9]") (joined
           (portref (member Q 14) (instanceref deserializer_inst))
+          (portref (member out 14) (instanceref fir_filter_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_0_ "fir_dout[0]") (joined
+          (portref (member Q 23) (instanceref fir_filter_inst))
+          (portref (member out 23) (instanceref serializer_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_10_ "fir_dout[10]") (joined
+          (portref (member Q 13) (instanceref fir_filter_inst))
+          (portref (member out 13) (instanceref serializer_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_11_ "fir_dout[11]") (joined
+          (portref (member Q 12) (instanceref fir_filter_inst))
+          (portref (member out 12) (instanceref serializer_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_12_ "fir_dout[12]") (joined
+          (portref (member Q 11) (instanceref fir_filter_inst))
+          (portref (member out 11) (instanceref serializer_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_13_ "fir_dout[13]") (joined
+          (portref (member Q 10) (instanceref fir_filter_inst))
+          (portref (member out 10) (instanceref serializer_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_14_ "fir_dout[14]") (joined
+          (portref (member Q 9) (instanceref fir_filter_inst))
+          (portref (member out 9) (instanceref serializer_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_15_ "fir_dout[15]") (joined
+          (portref (member Q 8) (instanceref fir_filter_inst))
+          (portref (member out 8) (instanceref serializer_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_16_ "fir_dout[16]") (joined
+          (portref (member Q 7) (instanceref fir_filter_inst))
+          (portref (member out 7) (instanceref serializer_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_17_ "fir_dout[17]") (joined
+          (portref (member Q 6) (instanceref fir_filter_inst))
+          (portref (member out 6) (instanceref serializer_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_18_ "fir_dout[18]") (joined
+          (portref (member Q 5) (instanceref fir_filter_inst))
+          (portref (member out 5) (instanceref serializer_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_19_ "fir_dout[19]") (joined
+          (portref (member Q 4) (instanceref fir_filter_inst))
+          (portref (member out 4) (instanceref serializer_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_1_ "fir_dout[1]") (joined
+          (portref (member Q 22) (instanceref fir_filter_inst))
+          (portref (member out 22) (instanceref serializer_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_20_ "fir_dout[20]") (joined
+          (portref (member Q 3) (instanceref fir_filter_inst))
+          (portref (member out 3) (instanceref serializer_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_21_ "fir_dout[21]") (joined
+          (portref (member Q 2) (instanceref fir_filter_inst))
+          (portref (member out 2) (instanceref serializer_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_22_ "fir_dout[22]") (joined
+          (portref (member Q 1) (instanceref fir_filter_inst))
+          (portref (member out 1) (instanceref serializer_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_23_ "fir_dout[23]") (joined
+          (portref (member Q 0) (instanceref fir_filter_inst))
+          (portref (member out 0) (instanceref serializer_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_2_ "fir_dout[2]") (joined
+          (portref (member Q 21) (instanceref fir_filter_inst))
+          (portref (member out 21) (instanceref serializer_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_3_ "fir_dout[3]") (joined
+          (portref (member Q 20) (instanceref fir_filter_inst))
+          (portref (member out 20) (instanceref serializer_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_4_ "fir_dout[4]") (joined
+          (portref (member Q 19) (instanceref fir_filter_inst))
+          (portref (member out 19) (instanceref serializer_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_5_ "fir_dout[5]") (joined
+          (portref (member Q 18) (instanceref fir_filter_inst))
+          (portref (member out 18) (instanceref serializer_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_6_ "fir_dout[6]") (joined
+          (portref (member Q 17) (instanceref fir_filter_inst))
+          (portref (member out 17) (instanceref serializer_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_7_ "fir_dout[7]") (joined
+          (portref (member Q 16) (instanceref fir_filter_inst))
+          (portref (member out 16) (instanceref serializer_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_8_ "fir_dout[8]") (joined
+          (portref (member Q 15) (instanceref fir_filter_inst))
+          (portref (member out 15) (instanceref serializer_inst))
+          )
+
+           (property DONT_TOUCH (boolean (true)))
+         )
+         (net (rename fir_dout_9_ "fir_dout[9]") (joined
           (portref (member Q 14) (instanceref fir_filter_inst))
+          (portref (member out 14) (instanceref serializer_inst))
           )
-         )
-         (net fir_filter_inst_n_10 (joined
-          (portref (member ov_dout_reg_23__0 8) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 8) (instanceref serializer_inst))
-          )
-         )
-         (net fir_filter_inst_n_11 (joined
-          (portref (member ov_dout_reg_23__0 9) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 9) (instanceref serializer_inst))
-          )
-         )
-         (net fir_filter_inst_n_12 (joined
-          (portref (member ov_dout_reg_23__0 10) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 10) (instanceref serializer_inst))
-          )
-         )
-         (net fir_filter_inst_n_13 (joined
-          (portref (member ov_dout_reg_23__0 11) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 11) (instanceref serializer_inst))
-          )
-         )
-         (net fir_filter_inst_n_14 (joined
-          (portref (member ov_dout_reg_23__0 12) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 12) (instanceref serializer_inst))
-          )
-         )
-         (net fir_filter_inst_n_15 (joined
-          (portref (member ov_dout_reg_23__0 13) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 13) (instanceref serializer_inst))
-          )
-         )
-         (net fir_filter_inst_n_16 (joined
-          (portref (member ov_dout_reg_23__0 14) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 14) (instanceref serializer_inst))
-          )
-         )
-         (net fir_filter_inst_n_17 (joined
-          (portref (member ov_dout_reg_23__0 15) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 15) (instanceref serializer_inst))
-          )
-         )
-         (net fir_filter_inst_n_18 (joined
-          (portref (member ov_dout_reg_23__0 16) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 16) (instanceref serializer_inst))
-          )
-         )
-         (net fir_filter_inst_n_19 (joined
-          (portref (member ov_dout_reg_23__0 17) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 17) (instanceref serializer_inst))
-          )
-         )
-         (net fir_filter_inst_n_2 (joined
-          (portref (member ov_dout_reg_23__0 0) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 0) (instanceref serializer_inst))
-          )
-         )
-         (net fir_filter_inst_n_20 (joined
-          (portref (member ov_dout_reg_23__0 18) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 18) (instanceref serializer_inst))
-          )
-         )
-         (net fir_filter_inst_n_21 (joined
-          (portref (member ov_dout_reg_23__0 19) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 19) (instanceref serializer_inst))
-          )
-         )
-         (net fir_filter_inst_n_22 (joined
-          (portref (member ov_dout_reg_23__0 20) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 20) (instanceref serializer_inst))
-          )
-         )
-         (net fir_filter_inst_n_23 (joined
-          (portref (member ov_dout_reg_23__0 21) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 21) (instanceref serializer_inst))
-          )
-         )
-         (net fir_filter_inst_n_24 (joined
-          (portref (member ov_dout_reg_23__0 22) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 22) (instanceref serializer_inst))
-          )
-         )
-         (net fir_filter_inst_n_25 (joined
-          (portref (member ov_dout_reg_23__0 23) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 23) (instanceref serializer_inst))
-          )
-         )
-         (net fir_filter_inst_n_3 (joined
-          (portref (member ov_dout_reg_23__0 1) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 1) (instanceref serializer_inst))
-          )
-         )
-         (net fir_filter_inst_n_4 (joined
-          (portref (member ov_dout_reg_23__0 2) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 2) (instanceref serializer_inst))
-          )
-         )
-         (net fir_filter_inst_n_5 (joined
-          (portref (member ov_dout_reg_23__0 3) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 3) (instanceref serializer_inst))
-          )
-         )
-         (net fir_filter_inst_n_6 (joined
-          (portref (member ov_dout_reg_23__0 4) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 4) (instanceref serializer_inst))
-          )
-         )
-         (net fir_filter_inst_n_7 (joined
-          (portref (member ov_dout_reg_23__0 5) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 5) (instanceref serializer_inst))
-          )
-         )
-         (net fir_filter_inst_n_8 (joined
-          (portref (member ov_dout_reg_23__0 6) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 6) (instanceref serializer_inst))
-          )
-         )
-         (net fir_filter_inst_n_9 (joined
-          (portref (member ov_dout_reg_23__0 7) (instanceref fir_filter_inst))
-          (portref (member shift_reg_reg_23__0 7) (instanceref serializer_inst))
-          )
+
+           (property DONT_TOUCH (boolean (true)))
          )
          (net fir_out_valid (joined
           (portref fir_out_valid (instanceref fir_filter_inst))
