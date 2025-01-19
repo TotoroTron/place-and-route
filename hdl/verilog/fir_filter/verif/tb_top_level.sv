@@ -15,16 +15,16 @@ module tb_top_level
     reg tb_din_valid;
     reg tb_ready;
     wire dut_ready;
-    wire tb_dout;
-    wire tb_dout_valid;
+    wire dut_dout;
+    wire dut_dout_valid;
 
     localparam int SIGNAL_FREQ = 200;
     localparam int SAMPLE_FREQ = 44000;
     localparam int SAMPLES_PER_SIGNAL_PERIOD = SAMPLE_FREQ/SIGNAL_FREQ;
     localparam int ADDR_WIDTH = $clog2(SAMPLES_PER_SIGNAL_PERIOD);
+    localparam CLK_PERIOD = 100; // ns
 
     reg [DATA_WIDTH-1:0] tb_word_in;
-    reg [DATA_WIDTH-1:0] serial_word;
     reg [DATA_WIDTH-1:0] tb_word_out;
     reg [ADDR_WIDTH-1:0] tb_addr;
     int num_errors = 0;
@@ -43,94 +43,86 @@ module tb_top_level
         .i_din_valid(tb_din_valid),
         .i_ready(tb_ready),
         .o_ready(dut_ready),
-        .o_dout(tb_dout),
-        .o_dout_valid(tb_dout_valid)
+        .o_dout(dut_dout),
+        .o_dout_valid(dut_dout_valid)
     );
 
 
     wire signed [DATA_WIDTH-1:0] sine_signal [SAMPLES_PER_SIGNAL_PERIOD-1:0];
     `include "sine_signal.vh"
 
-    always @(tb_addr) begin
-        tb_word_in = sine_signal[tb_addr];
+    initial begin
+        tb_clk = 1'b0;
+        forever #(CLK_PERIOD/2) tb_clk = ~tb_clk;
     end
 
-
-
-    always #50 tb_clk = ~tb_clk; // always 50 ns
     initial begin
         $dumpfile("waveform.vcd");
         $dumpvars;
-        num_errors = 0;
-        tb_clk = 1;
-        tb_rst = 1;
-        tb_en = 0;
-        tb_din = 0;
-        tb_din_valid = 0;
-        tb_ready = 0;
+        num_errors   = 0;
+        tb_clk       = 1'b1;
+        tb_rst       = 1'b1;
+        tb_en        = 1'b0;
+        tb_din       = 1'b0;
+        tb_din_valid = 1'b0;
         @(posedge tb_clk);
+        tb_rst = 0;
+        tb_en  = 1;
 
-        repeat(1) begin
-            tb_rst = 0;
-            tb_en = 1;
-            // FOR EACH SAMPLE IN SIGNAL
-            for (int t = 0; t < SAMPLES_PER_SIGNAL_PERIOD / 32; t++) begin
-                tb_addr = t;
-                tb_din_valid = 0;
+        for (int t = 0; t < SAMPLES_PER_SIGNAL_PERIOD / 8; t++) begin
+            tb_addr    = t;
+            tb_word_in = sine_signal[tb_addr];
+            @(posedge tb_clk);
+            tb_din_valid = 1'b1;
+
+            // For each bit in the sample, LSB first
+            for (int j = 0; j < DATA_WIDTH; j++) begin
+                // wait for deserializer ready for next bit
+                wait(dut_ready == 1'b1);
+                // LSB first
+                tb_din = tb_word_in[j];
                 @(posedge tb_clk);
-                tb_en = 1;
-                tb_rst = 0;
-                tb_din_valid = 1;
-                // FOR EACH BIT IN SAMPLE
-                for (int j = 0; j < DATA_WIDTH; j++) begin // LSB first
-                    wait(dut_ready == 1'b1);
-                    tb_din = tb_word_in[j];
-                    @(posedge tb_clk);
-                end
-                tb_din_valid = 0;
-                // arbitrary wait
-                repeat (50) begin
-                    @(posedge tb_clk);
+            end
+            // done sending 24-bit word
+            tb_din_valid = 1'b0;
+            // arbitrary idle wait between samples
+            repeat (50) @(posedge tb_clk);
+        end
+
+        // Wait extra time at end
+        repeat (1000) @(posedge tb_clk);
+
+        $fclose(fd);
+        $finish;
+    end
+
+    reg [DATA_WIDTH-1:0] tb_shift_reg;
+    reg [$clog2(DATA_WIDTH+1)-1:0] tb_bit_counter;
+    assign tb_ready = 1'b1;
+    always @(posedge tb_clk) begin
+        if (tb_rst) begin
+            tb_shift_reg   <= {DATA_WIDTH{1'b0}};
+            tb_bit_counter <= 0;
+        end else begin
+            if (dut_dout_valid) begin
+                // shift in the new bit on the left side:
+                tb_shift_reg   <= {dut_dout, tb_shift_reg[DATA_WIDTH-1:1]};
+                tb_bit_counter <= tb_bit_counter + 1;
+
+                // once we've collected all 24 bits, print the received word
+                if (tb_bit_counter == DATA_WIDTH-1) begin
+                tb_word_out = tb_shift_reg;
+                $fdisplay(fd, "[%0t ns] TB DESER got word = 0x%06X", $time, tb_word_out);
+                tb_bit_counter <= 0;
                 end
             end
         end
-
-        repeat (1000) begin
-            @(posedge tb_clk);
-        end
-        $fclose(fd);
-        $finish;
-    end // initial
-
-
-    always @(posedge tb_clk) begin
-        serial_word = {tb_dout, serial_word[DATA_WIDTH-1:1]};
-    end
-
-    always begin
-        wait(tb_dout_valid == 1'b0);
-        wait(tb_dout_valid == 1'b1);
-        tb_ready = 1;
-        @(posedge tb_clk);
-        @(negedge tb_clk);
-        for (int i = 0; i < DATA_WIDTH; i++) begin
-            if (i == DATA_WIDTH-1)
-                tb_word_out = serial_word;
-            @(posedge tb_clk);
-            @(negedge tb_clk);
-        end
-        tb_ready = 0;
-        $fdisplay(fd, "%h", tb_word_out);
-        @(posedge tb_clk);
-        @(posedge tb_clk);
-        @(posedge tb_clk);
-        @(negedge tb_clk);
     end
 
     initial begin
         fd = $fopen("fir_out.txt", "w");
-        #1ms;
-        $display("Simulation terminated after 20 milliseconds.");
+        #10ms;
+        $display("Simulation terminated after 10 milliseconds.");
         $fclose(fd);
         $finish;
     end // initial

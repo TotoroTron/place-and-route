@@ -17,79 +17,78 @@ module deserializer_fsm
 
     reg [LENGTH-1:0] shift_reg;
     localparam LENGTH_BITS = $clog2(LENGTH)+1;
-    reg [LENGTH_BITS-1:0] counter = { (LENGTH){1'b0} };
+    reg [LENGTH_BITS-1:0] counter = { (LENGTH_BITS){1'b0} };
 
-    parameter S0 = 4'b0000,
-        S1 = 4'b0001,
-        S2 = 4'b0010;
-    reg [3:0] state = S0;
+    parameter 
+        IDLE = 4'b0000,
+        SHIFT_IN = 4'b0001,
+        OUTPUT = 4'b0010;
+    reg [3:0] state = IDLE;
     reg [3:0] next_state;
 
     // STATE REGISTER
     always @(posedge i_clk) begin
-        if (i_rst) state <= S0;
+        if (i_rst) state <= IDLE;
         else if (i_en) state <= next_state;
     end
 
     // STATE MACHINE
     always @(*) begin
         case (state)
-            S0: begin
-                next_state <= S0;
-                // WAIT FOR DIN VALID
+            IDLE: begin
+                next_state <= IDLE;
                 if (i_din_valid)
-                    next_state <= S1;
+                    next_state <= SHIFT_IN;
             end
-            S1: begin
-                next_state <= S1;
-                // DATA SHIFT
-                if (counter == LENGTH)
-                    next_state <= S2;
+
+            SHIFT_IN: begin
+                next_state <= SHIFT_IN;
+                if (counter == LENGTH - 1)
+                    next_state <= OUTPUT;
             end
-            S2: begin
-                next_state <= S2;
-                // WAIT FOR RECEIVER TO CONSUME OUTPUT DATA
+
+            OUTPUT: begin
+                next_state <= OUTPUT;
                 if (i_ready)
-                    next_state <= S0;
+                    next_state <= IDLE;
             end
-            default: next_state <= S0;
+
+            default: begin
+                next_state <= IDLE;
+            end
         endcase
     end
 
     // OUTPUT LOGIC
     always @(posedge i_clk) begin
         if (i_rst) begin
-            o_ready <= 1'b0;
+            o_ready      <= 1'b0;
             o_dout_valid <= 1'b0;
-            counter <= 0;
-            shift_reg <= 0;
+            counter      <= 0;
+            shift_reg    <= 0;
         end else if (i_en) begin
-            o_ready <= 1'b0;
+            o_ready      <= 1'b0;
             o_dout_valid <= 1'b0;
-            counter <= 0;
-            shift_reg <= 0;
+
             case (state)
-                S0: begin
-                    // WAIT FOR DIN VALID
-                    shift_reg <= 0;
-                    counter <= 0;
+                IDLE: begin
+                    counter         <= 0;
+                    shift_reg       <= 0;
                 end
-                S1: begin
-                    // SIGNAL DIN BEING CONSUMED
-                    o_ready <= 1'b1;
-                    if (i_din_valid == 1'b1 && counter < LENGTH) begin
-                        shift_reg <= { i_din, shift_reg[LENGTH-1:1] };
-                        counter <= counter + 1;
-                    end else begin
-                        counter <= 0;
-                        ov_dout <= shift_reg;
+
+                SHIFT_IN: begin
+                    o_ready         <= 1'b1;
+                    if (i_din_valid && o_ready) begin
+                        shift_reg   <= { i_din, shift_reg[LENGTH-1:1] };
+                        counter     <= counter + 1;
                     end
                 end
-                S2: begin
-                    // WAIT FOR RECEIVER TO CONSUME DOUT
-                    o_dout_valid <= 1'b1;
-                    counter <= 0;
+
+                OUTPUT: begin
+                    o_dout_valid    <= 1'b1;
+                    ov_dout         <= shift_reg;
                 end
+
                 default: begin
                 end
             endcase
