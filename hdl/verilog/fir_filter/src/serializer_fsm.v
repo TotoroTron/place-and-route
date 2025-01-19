@@ -86,7 +86,8 @@ module serializer_fsm
 
                 SHIFT_OUT: begin
                     o_dout_valid <= 1'b1;
-                    if (o_dout_valid && i_ready) begin
+                    // if (o_dout_valid && i_ready) begin
+                    if (i_ready) begin
                         counter   <= counter + 1;
                         shift_reg <= {1'b0, shift_reg[LENGTH-1:1]};
                     end

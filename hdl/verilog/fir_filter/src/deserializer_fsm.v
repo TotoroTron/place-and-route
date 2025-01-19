@@ -78,7 +78,8 @@ module deserializer_fsm
 
                 SHIFT_IN: begin
                     o_ready         <= 1'b1;
-                    if (i_din_valid && o_ready) begin
+                    // if (i_din_valid && o_ready) begin
+                    if (i_din_valid) begin
                         shift_reg   <= { i_din, shift_reg[LENGTH-1:1] };
                         counter     <= counter + 1;
                     end

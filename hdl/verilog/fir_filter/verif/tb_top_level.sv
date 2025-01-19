@@ -77,10 +77,8 @@ module tb_top_level
 
             // For each bit in the sample, LSB first
             for (int j = 0; j < DATA_WIDTH; j++) begin
-                // wait for deserializer ready for next bit
-                wait(dut_ready == 1'b1);
-                // LSB first
                 tb_din = tb_word_in[j];
+                wait(dut_ready == 1'b1);
                 @(posedge tb_clk);
             end
             // done sending 24-bit word
