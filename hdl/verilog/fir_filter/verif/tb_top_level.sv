@@ -121,41 +121,75 @@ module tb_top_level
 
     reg [DATA_WIDTH-1:0] tb_shift_reg;
     reg [$clog2(DATA_WIDTH+1)-1:0] tb_bit_counter;
-    assign tb_ready = 1'b1;
-    always @(posedge tb_clk) begin
-        if (tb_rst) begin
-            tb_shift_reg   <= {DATA_WIDTH{1'b0}};
-            tb_bit_counter <= 0;
+
+    always begin
+        @(posedge tb_clk);
+        wait(dut_dout_valid == 1'b0);
+        wait(dut_dout_valid == 1'b1);
+        @(posedge tb_clk);
+        tb_ready = 1'b1;
+        repeat(DATA_WIDTH) begin
+            tb_shift_reg <= {dut_dout, tb_shift_reg[DATA_WIDTH-1:1]};
+            @(posedge tb_clk);
+        end
+        tb_ready = 1'b0;
+        tb_word_out = tb_shift_reg;
+        transactions_ser = transactions_ser + 1;
+        if (top_level.fir_dout == tb_word_out) begin
+            $fdisplay(fd_ser, "Success!");
         end else begin
-            if (dut_dout_valid) begin
-                // shift in the new bit on the left side:
-                tb_shift_reg   <= {dut_dout, tb_shift_reg[DATA_WIDTH-1:1]};
-                tb_bit_counter <= tb_bit_counter + 1;
-
-                // once we've collected all 24 bits, print the received word
-                if (tb_bit_counter == DATA_WIDTH-1) begin
-                    tb_bit_counter <= 0;
-                    tb_word_out = tb_shift_reg;
-
-                    transactions_ser = transactions_ser + 1;
-                    if (top_level.fir_dout == tb_word_out) begin
-                        $fdisplay(fd_ser, "Success!");
-                    end else begin
-                        $fdisplay(fd_ser, "FAILURE!");
-                        error_count_ser = error_count_ser + 1;
-                    end
-                    $fdisplay(fd_ser,
-                        "\t[%4t ns]  FIR sent:  0b%024b",
-                        $time, top_level.fir_dout
-                    );
-                    $fdisplay(fd_ser,
-                        "\t[%4t ns]   TB rcvd:  0b%024b",
-                        $time, tb_word_out
-                    );
-                end
-            end
+            $fdisplay(fd_ser, "FAILURE!");
+            error_count_ser = error_count_ser + 1;
+        end
+        $fdisplay(fd_ser,
+            "\t[%4t ns]  FIR sent:  0b%024b",
+            $time, top_level.fir_dout
+        );
+        $fdisplay(fd_ser,
+            "\t[%4t ns]   TB rcvd:  0b%024b",
+            $time, tb_word_out
+        );
+        repeat (50) begin
+            @(posedge tb_clk);
         end
     end
+
+
+    // always @(posedge tb_clk) begin
+    //     if (tb_rst) begin
+    //         tb_shift_reg   <= {DATA_WIDTH{1'b0}};
+    //         tb_bit_counter <= 0;
+    //     end else begin
+    //         if (dut_dout_valid) begin
+    //             tb_ready = 1'b1;
+    //             // shift in the new bit on the left side:
+    //             tb_shift_reg   <= {dut_dout, tb_shift_reg[DATA_WIDTH-1:1]};
+    //             tb_bit_counter <= tb_bit_counter + 1;
+
+    //             // once we've collected all 24 bits, print the received word
+    //             if (tb_bit_counter == DATA_WIDTH-1) begin
+    //                 tb_bit_counter <= 0;
+    //                 tb_word_out = tb_shift_reg;
+
+    //                 transactions_ser = transactions_ser + 1;
+    //                 if (top_level.fir_dout == tb_word_out) begin
+    //                     $fdisplay(fd_ser, "Success!");
+    //                 end else begin
+    //                     $fdisplay(fd_ser, "FAILURE!");
+    //                     error_count_ser = error_count_ser + 1;
+    //                 end
+    //                 $fdisplay(fd_ser,
+    //                     "\t[%4t ns]  FIR sent:  0b%024b",
+    //                     $time, top_level.fir_dout
+    //                 );
+    //                 $fdisplay(fd_ser,
+    //                     "\t[%4t ns]   TB rcvd:  0b%024b",
+    //                     $time, tb_word_out
+    //                 );
+    //             end
+    //         end
+    //     end
+    // end
 
     initial begin
         fd_des = $fopen("deserializer.txt", "w");
