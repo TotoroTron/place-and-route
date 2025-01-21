@@ -125,7 +125,9 @@ INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more in
     java currently does not know how to place FDSE
 
 
-*************************
+**************************
+**************************
+**************************
 
 
 SIM_FUNCTIONAL:
@@ -162,3 +164,234 @@ run: Time (s): cpu = 00:00:03 ; elapsed = 00:00:11 . Memory (MB): peak = 1451.48
 ## exit
 INFO: xsimkernel Simulation Memory Usage: 153156 KB (Peak: 200988 KB), Simulation CPU Usage: 11350 ms
 INFO: [Common 17-206] Exiting xsim at Tue Jan 21 15:28:43 2025...
+
+
+**************************
+**************************
+**************************
+
+with the exact same RTL and testbench... different results.
+the problem must be in java.
+
+****** xsim v2023.2.2 (64-bit)
+  **** SW Build 4126759 on Thu Feb  8 23:52:05 MST 2024
+  **** IP Build 4126054 on Fri Feb  9 11:39:09 MST 2024
+  **** SharedData Build 4115275 on Tue Jan 30 00:40:57 MST 2024
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/top_level_time_impl/xsim_script.tcl
+# xsim {top_level_time_impl} -autoloadwcfg -tclbatch {xsim_cfg.tcl}
+Time resolution is 1 ps
+open_wave_config /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/sim_postroute/top_level_time_impl.wcfg
+WARNING: Simulation object /tb_top_level/dut/fir_filter_inst/weight_re_addr_reg was not found in the design.
+WARNING: Simulation object /tb_top_level/dut/fir_filter_inst/\ov_dout_reg[23]_0  was not found in the design.
+source xsim_cfg.tcl
+## log_wave -recursive *
+## run all
+Simulation terminated after 10 milliseconds.
+Deserializer errors: (     3) out of (     3)
+Serializezr errors: (     0) out of (     1)
+$finish called at time : 10 ms : File "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_top_level.sv" Line 173
+run: Time (s): cpu = 00:01:12 ; elapsed = 00:04:01 . Memory (MB): peak = 1451.488 ; gain = 0.000 ; free physical = 4687 ; free virtual = 27060
+## exit
+INFO: xsimkernel Simulation Memory Usage: 153156 KB (Peak: 200988 KB), Simulation CPU Usage: 241070 ms
+INFO: [Common 17-206] Exiting xsim at Tue Jan 21 15:52:26 2025...
+
+
+**************************
+**************************
+**************************
+
+
+****** xsim v2023.2.2 (64-bit)
+  **** SW Build 4126759 on Thu Feb  8 23:52:05 MST 2024
+  **** IP Build 4126054 on Fri Feb  9 11:39:09 MST 2024
+  **** SharedData Build 4115275 on Tue Jan 30 00:40:57 MST 2024
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/top_level_time_impl/xsim_script.tcl
+# xsim {top_level_time_impl} -autoloadwcfg -tclbatch {xsim_cfg.tcl}
+Time resolution is 1 ps
+open_wave_config /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/sim_postroute/top_level_time_impl.wcfg
+WARNING: Simulation object /tb_top_level/dut/fir_filter_inst/weight_re_addr_reg was not found in the design.
+WARNING: Simulation object /tb_top_level/dut/fir_filter_inst/\ov_dout_reg[23]_0  was not found in the design.
+source xsim_cfg.tcl
+## log_wave -recursive *
+## run all
+Deserializer errors: (     0) out of (    27)
+Serializezr errors: (    14) out of (    27)
+$finish called at time : 305300 ns : File "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_top_level.sv" Line 119
+run: Time (s): cpu = 00:00:03 ; elapsed = 00:00:11 . Memory (MB): peak = 1387.488 ; gain = 0.000 ; free physical = 3522 ; free virtual = 24123
+## exit
+INFO: xsimkernel Simulation Memory Usage: 153156 KB (Peak: 200988 KB), Simulation CPU Usage: 11780 ms
+INFO: [Common 17-206] Exiting xsim at Tue Jan 21 16:02:46 2025...
+
+
+Success!
+	[             9250000 ns]  FIR sent:  0b000000000000000101101110
+	[             9250000 ns]   TB rcvd:  0b000000000000000101101110
+Success!
+	[            16850000 ns]  FIR sent:  0b000000000000000000111000
+	[            16850000 ns]   TB rcvd:  0b000000000000000000111000
+Success!
+	[            24450000 ns]  FIR sent:  0b000000000000001010101110
+	[            24450000 ns]   TB rcvd:  0b000000000000001010101110
+FAILURE!
+	[            32050000 ns]  FIR sent:  0b111111111111111000000011
+	[            32050000 ns]   TB rcvd:  0b000111111111111000000011
+Success!
+	[            39650000 ns]  FIR sent:  0b000000000000000100111000
+	[            39650000 ns]   TB rcvd:  0b000000000000000100111000
+Success!
+	[            47250000 ns]  FIR sent:  0b000000000000001111111101
+	[            47250000 ns]   TB rcvd:  0b000000000000001111111101
+Success!
+	[            54850000 ns]  FIR sent:  0b000000000000001110110010
+	[            54850000 ns]   TB rcvd:  0b000000000000001110110010
+FAILURE!
+	[            62450000 ns]  FIR sent:  0b111111111111111011101000
+	[            62450000 ns]   TB rcvd:  0b000111111111111011101000
+Success!
+	[            70050000 ns]  FIR sent:  0b000000000000001100111000
+	[            70050000 ns]   TB rcvd:  0b000000000000001100111000
+FAILURE!
+	[            77650000 ns]  FIR sent:  0b111111111111111100001101
+	[            77650000 ns]   TB rcvd:  0b000111111111111100001101
+FAILURE!
+	[            85250000 ns]  FIR sent:  0b111111111111110100000001
+	[            85250000 ns]   TB rcvd:  0b000111111111110100000001
+FAILURE!
+	[            92850000 ns]  FIR sent:  0b111111111111111111000001
+	[            92850000 ns]   TB rcvd:  0b000111111111111111000001
+Success!
+	[           100450000 ns]  FIR sent:  0b000000000000001001110001
+	[           100450000 ns]   TB rcvd:  0b000000000000001001110001
+FAILURE!
+	[           108050000 ns]  FIR sent:  0b111111111111111010011000
+	[           108050000 ns]   TB rcvd:  0b000111111111111010011000
+FAILURE!
+	[           115650000 ns]  FIR sent:  0b111111111111110010001101
+	[           115650000 ns]   TB rcvd:  0b000111111111110010001101
+Success!
+	[           123250000 ns]  FIR sent:  0b000000000000000000100001
+	[           123250000 ns]   TB rcvd:  0b000000000000000000100001
+FAILURE!
+	[           130850000 ns]  FIR sent:  0b111111111111101101000110
+	[           130850000 ns]   TB rcvd:  0b000111111111101101000110
+Success!
+	[           138450000 ns]  FIR sent:  0b000000000000011111010000
+	[           138450000 ns]   TB rcvd:  0b000000000000011111010000
+FAILURE!
+	[           146050000 ns]  FIR sent:  0b111111111111110001010111
+	[           146050000 ns]   TB rcvd:  0b000111111111110001010111
+FAILURE!
+	[           153650000 ns]  FIR sent:  0b111111111111111000000101
+	[           153650000 ns]   TB rcvd:  0b000111111111111000000101
+FAILURE!
+	[           161250000 ns]  FIR sent:  0b111111111111110111000100
+	[           161250000 ns]   TB rcvd:  0b000111111111110111000100
+FAILURE!
+	[           168850000 ns]  FIR sent:  0b111111111111101101001000
+	[           168850000 ns]   TB rcvd:  0b000111111111101101001000
+FAILURE!
+	[           176450000 ns]  FIR sent:  0b111111111111100101011010
+	[           176450000 ns]   TB rcvd:  0b000111111111100101011010
+FAILURE!
+	[           184050000 ns]  FIR sent:  0b111111111111101100010111
+	[           184050000 ns]   TB rcvd:  0b000111111111101100010111
+Success!
+	[           191650000 ns]  FIR sent:  0b000000000000010100000111
+	[           191650000 ns]   TB rcvd:  0b000000000000010100000111
+Success!
+	[           199250000 ns]  FIR sent:  0b000000000000010111000010
+	[           199250000 ns]   TB rcvd:  0b000000000000010111000010
+Success!
+	[           206850000 ns]  FIR sent:  0b000000000000011010110011
+	[           206850000 ns]   TB rcvd:  0b000000000000011010110011
+Serializer errors: (    14) out of (    27)
+
+****** xsim v2023.2.2 (64-bit)
+  **** SW Build 4126759 on Thu Feb  8 23:52:05 MST 2024
+  **** IP Build 4126054 on Fri Feb  9 11:39:09 MST 2024
+  **** SharedData Build 4115275 on Tue Jan 30 00:40:57 MST 2024
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/top_level_time_impl/xsim_script.tcl
+# xsim {top_level_time_impl} -autoloadwcfg -tclbatch {xsim_cfg.tcl}
+Time resolution is 1 ps
+open_wave_config /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/sim_postroute/top_level_time_impl.wcfg
+WARNING: Simulation object /tb_top_level/dut/fir_filter_inst/weight_re_addr_reg was not found in the design.
+WARNING: Simulation object /tb_top_level/dut/fir_filter_inst/\ov_dout_reg[23]_0  was not found in the design.
+source xsim_cfg.tcl
+## log_wave -recursive *
+## run all
+Deserializer errors: (     0) out of (    27)
+Serializezr errors: (    25) out of (    27)
+$finish called at time : 308 us : File "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_top_level.sv" Line 119
+run: Time (s): cpu = 00:00:04 ; elapsed = 00:00:12 . Memory (MB): peak = 1451.488 ; gain = 128.000 ; free physical = 4484 ; free virtual = 25096
+## exit
+INFO: xsimkernel Simulation Memory Usage: 153156 KB (Peak: 200988 KB), Simulation CPU Usage: 11950 ms
+INFO: [Common 17-206] Exiting xsim at Tue Jan 21 16:21:15 2025...
+
+the problem is definitely in java.
+
+
+*********************
+*********************
+TRYING ONE-HOT FSM STATE ENCODING
+
+Routing Is Done.
+INFO: [Common 17-83] Releasing license: Implementation
+15 Infos, 3 Warnings, 3 Critical Warnings and 0 Errors encountered.
+route_design completed successfully
+route_design: Time (s): cpu = 00:01:14 ; elapsed = 00:00:18 . Memory (MB): peak = 2796.109 ; gain = 358.043 ; free physical = 1891 ; free virtual = 22514
+# report_route_status -show_all
+Design Route Status
+                                               :      # nets :
+   ------------------------------------------- : ----------- :
+   # of logical nets.......................... :        2745 :
+       # of nets not needing routing.......... :        1202 :
+           # of internally routed nets........ :         572 :
+           # of nets with no loads............ :         630 :
+       # of routable nets..................... :        1538 :
+           # of fully routed nets............. :        1538 :
+       # of nets with routing errors.......... :           5 :
+           # of nets with some unplaced pins.. :           5 :
+           # of nets with some unrouted pins.. :           2 :
+   ------------------------------------------- : ----------- :
+
+
+Nets with Routing Errors:
+  deserializer_inst/next_state[0]
+    Unplaced Pin: deserializer_inst/FSM_onehot_state_reg[0]/D
+  deserializer_inst/state[0]
+    Unplaced Pin: deserializer_inst/FSM_onehot_state_reg[0]/Q
+  i_clk_IBUF
+    Unplaced Pin: deserializer_inst/FSM_onehot_state_reg[0]/C
+  i_en_IBUF
+    Unplaced Pin: deserializer_inst/FSM_onehot_state_reg[0]/CE
+  i_rst_IBUF
+    Unplaced Pin: deserializer_inst/FSM_onehot_state_reg[0]/S
+
+***********************
+$$$$$$$$$$$$$$$$$$$$$$$
+
+## run all
+Deserializer errors: (     0) out of (    27)
+Serializezr errors: (    27) out of (    27)
+
+
+
+## run all
+Deserializer errors: (     0) out of (    27)
+Serializezr errors: (     0) out of (    27)
+$finish called at time : 305300 ns : File "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_top_level.sv" Line 119
+run: Time (s): cpu = 00:00:04 ; elapsed = 00:00:12 . Memory (MB): peak = 1451.488 ; gain = 128.000 ; free physical = 5810 ; free virtual = 26510
+
+
+with the same exact RTL... only placement/routing changed.
+but what indication of timing failure?
+
