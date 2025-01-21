@@ -98,3 +98,67 @@ CRITICAL WARNING: [Route 35-19] Pin mapping failure, cannot reach driver pin: se
 
 Phase 1 Build RT Design
 CRITICAL WARNING: [Route 35-19] Pin mapping failure, cannot reach driver pin: serializer_inst/state[1]_i_3/O at site SLICE_X67Y30. Design will fail DRC and router will skip routing of net serializer_inst/state[1]_i_3_n_0.
+
+
+INFO: [Synth 8-7082] The signal gen_wr_a.gen_word_narrow.mem_reg is implemented as Block RAM but is better mapped onto distributed LUT RAM for the following reason(s): The depth (5 address bits) is shallow. Please use attribute (* ram_style = "distributed" *) to instruct Vivado to infer distributed LUT RAM.
+INFO: [Synth 8-7082] The signal gen_wr_a.gen_word_narrow.mem_reg is implemented as Block RAM but is better mapped onto distributed LUT RAM for the following reason(s): The depth (5 address bits) is shallow. Please use attribute (* ram_style = "distributed" *) to instruct Vivado to infer distributed LUT RAM.
+INFO: [Synth 8-7082] The signal gen_wr_a.gen_word_narrow.mem_reg is implemented as Block RAM but is better mapped onto distributed LUT RAM for the following reason(s): The depth (5 address bits) is shallow. Please use attribute (* ram_style = "distributed" *) to instruct Vivado to infer distributed LUT RAM.
+INFO: [Synth 8-7082] The signal gen_wr_a.gen_word_narrow.mem_reg is implemented as Block RAM but is better mapped onto distributed LUT RAM for the following reason(s): The depth (5 address bits) is shallow. Please use attribute (* ram_style = "distributed" *) to instruct Vivado to infer distributed LUT RAM.
+INFO: [Synth 8-7082] The signal gen_wr_a.gen_word_narrow.mem_reg is implemented as Block RAM but is better mapped onto distributed LUT RAM for the following reason(s): The depth (5 address bits) is shallow. Please use attribute (* ram_style = "distributed" *) to instruct Vivado to infer distributed LUT RAM.
+INFO: [Synth 8-7082] The signal gen_wr_a.gen_word_narrow.mem_reg is implemented as Block RAM but is better mapped onto distributed LUT RAM for the following reason(s): The depth (5 address bits) is shallow. Please use attribute (* ram_style = "distributed" *) to instruct Vivado to infer distributed LUT RAM.
+INFO: [Synth 8-7082] The signal gen_wr_a.gen_word_narrow.mem_reg is implemented as Block RAM but is better mapped onto distributed LUT RAM for the following reason(s): The depth (5 address bits) is shallow. Please use attribute (* ram_style = "distributed" *) to instruct Vivado to infer distributed LUT RAM.
+INFO: [Synth 8-7082] The signal gen_wr_a.gen_word_narrow.mem_reg is implemented as Block RAM but is better mapped onto distributed LUT RAM for the following reason(s): The depth (5 address bits) is shallow. Please use attribute (* ram_style = "distributed" *) to instruct Vivado to infer distributed LUT RAM.
+
+
+Deserializer errors: (     0) out of (    27)
+Serializezr errors: (    26) out of (    27)
+$finish called at time : 308 us : File "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_top_level.sv" Line 120
+run: Time (s): cpu = 00:00:03 ; elapsed = 00:00:09 . Memory (MB): peak = 1387.488 ; gain = 0.000 ; free physical = 6790 ; free virtual = 27097
+
+
+CRITICAL WARNING: [DRC UNPL-2] Unplaced Cell Alert: fir_filter_inst/sum_rst_reg is not placed. Every cell should be placed in order to route successfully and generate a valid bitstream. Please ensure the tcl cmd place_design was run successfully.
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors, 1 Critical Warnings
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+
+===> don't reset signals to 1'b1. this will cause synth to infer FDSE instead of FDRE!
+    java currently does not know how to place FDSE
+
+
+*************************
+
+
+SIM_FUNCTIONAL:
+
+Deserializer errors: (     0) out of (    27)
+Serializezr errors: (     0) out of (    27)
+$finish called at time : 310700 ns : File "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_top_level.sv" Line 120
+## exit
+INFO: [Common 17-206] Exiting xsim at Tue Jan 21 15:31:01 2025...
+
+
+SIM_POSTROUTE:
+
+****** xsim v2023.2.2 (64-bit)
+  **** SW Build 4126759 on Thu Feb  8 23:52:05 MST 2024
+  **** IP Build 4126054 on Fri Feb  9 11:39:09 MST 2024
+  **** SharedData Build 4115275 on Tue Jan 30 00:40:57 MST 2024
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/top_level_time_impl/xsim_script.tcl
+# xsim {top_level_time_impl} -autoloadwcfg -tclbatch {xsim_cfg.tcl}
+Time resolution is 1 ps
+open_wave_config /home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/sim_postroute/top_level_time_impl.wcfg
+WARNING: Simulation object /tb_top_level/dut/fir_filter_inst/weight_re_addr_reg was not found in the design.
+WARNING: Simulation object /tb_top_level/dut/fir_filter_inst/\ov_dout_reg[23]_0  was not found in the design.
+source xsim_cfg.tcl
+## log_wave -recursive *
+## run all
+Deserializer errors: (     0) out of (    27)
+Serializezr errors: (     0) out of (    27)
+$finish called at time : 308 us : File "/home/bcheng/workspace/dev/place-and-route/hdl/verilog/fir_filter/verif/tb_top_level.sv" Line 120
+run: Time (s): cpu = 00:00:03 ; elapsed = 00:00:11 . Memory (MB): peak = 1451.488 ; gain = 128.000 ; free physical = 6626 ; free virtual = 26977
+## exit
+INFO: xsimkernel Simulation Memory Usage: 153156 KB (Peak: 200988 KB), Simulation CPU Usage: 11350 ms
+INFO: [Common 17-206] Exiting xsim at Tue Jan 21 15:28:43 2025...

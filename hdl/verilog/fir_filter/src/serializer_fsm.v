@@ -18,15 +18,15 @@ module serializer_fsm
     reg [LENGTH-1:0] shift_reg;
     assign o_dout = shift_reg[0];
 
-    localparam LENGTH_BITS = $clog2(LENGTH)+1;
-    reg [LENGTH_BITS-1:0] counter = { (LENGTH_BITS){1'b0} };
+    localparam LENGTH_BITS = $clog2(LENGTH);
+    reg [LENGTH_BITS-1:0] counter; // = { (LENGTH_BITS){1'b0} }
 
     parameter 
-        IDLE = 4'b0000,
-        LOAD = 4'b0001,
-        SHIFT_OUT = 4'b0010;
-    reg [3:0] state = IDLE;
-    reg [3:0] next_state;
+        IDLE = 2'b00,
+        LOAD = 2'b01,
+        SHIFT_OUT = 2'b10;
+    reg [1:0] state = IDLE;
+    reg [1:0] next_state;
 
 
     // STATE REGISTER
@@ -37,26 +37,27 @@ module serializer_fsm
 
     // STATE MACHINE
     always @(*) begin
-        next_state = state;
         case (state)
             IDLE: begin
+                next_state <= IDLE;
                 if (i_din_valid) begin
-                    next_state = LOAD;
+                    next_state <= LOAD;
                 end
             end
 
             LOAD: begin
-                next_state = SHIFT_OUT;
+                next_state <= SHIFT_OUT;
             end
 
             SHIFT_OUT: begin
+                next_state <= SHIFT_OUT;
                 if (counter == LENGTH - 1) begin
-                    next_state = IDLE;
+                    next_state <= IDLE;
                 end
             end
 
             default: begin
-                next_state = IDLE;
+                next_state <= IDLE;
             end
         endcase
     end
@@ -81,15 +82,15 @@ module serializer_fsm
                 LOAD: begin
                     o_ready      <= 1'b1;
                     shift_reg    <= iv_din;
-                    counter      <= 0;
+                    // counter      <= 0;
                 end
 
                 SHIFT_OUT: begin
                     o_dout_valid <= 1'b1;
                     // if (o_dout_valid && i_ready) begin
                     if (i_ready) begin
-                        counter   <= counter + 1;
                         shift_reg <= {1'b0, shift_reg[LENGTH-1:1]};
+                        counter   <= counter + 1;
                     end
                 end
 

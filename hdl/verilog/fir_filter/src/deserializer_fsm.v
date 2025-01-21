@@ -16,13 +16,13 @@ module deserializer_fsm
 );
 
     reg [LENGTH-1:0] shift_reg;
-    localparam LENGTH_BITS = $clog2(LENGTH)+1;
-    reg [LENGTH_BITS-1:0] counter = { (LENGTH_BITS){1'b0} };
+    localparam LENGTH_BITS = $clog2(LENGTH);
+    reg [LENGTH_BITS-1:0] counter;
 
     parameter 
-        IDLE = 4'b0000,
-        SHIFT_IN = 4'b0001,
-        OUTPUT = 4'b0010;
+        IDLE = 2'b00,
+        SHIFT_IN = 2'b01,
+        OUTPUT = 2'b10;
     reg [3:0] state = IDLE;
     reg [3:0] next_state;
 

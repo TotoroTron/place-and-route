@@ -38,14 +38,14 @@ module fir_filter_direct_form_partially_pipelined
     reg sum_rst = 1'b0;
 
     parameter 
-         WAIT_DIN_VALID  = 4'b0000,
-         INIT_SHIFT_REG  = 4'b0001,
-         WRITE_SAMPLE    = 4'b0010,
-         INIT_READ       = 4'b0011,
-         PROCESS_SAMPLE  = 4'b0100,
-         WAIT_DOUT_READY = 4'b0101;
-    reg [3:0] state = WAIT_DIN_VALID;
-    reg [3:0] next_state;
+         WAIT_DIN_VALID  = 3'b000,
+         INIT_SHIFT_REG  = 3'b001,
+         WRITE_SAMPLE    = 3'b010,
+         INIT_READ       = 3'b011,
+         PROCESS_SAMPLE  = 3'b100,
+         WAIT_DOUT_READY = 3'b101;
+    reg [2:0] state = WAIT_DIN_VALID;
+    reg [2:0] next_state;
 
     // STATE REGISTER
     always @(posedge i_clk) begin
@@ -127,6 +127,7 @@ module fir_filter_direct_form_partially_pipelined
                 WAIT_DIN_VALID: begin
                     // WAIT FOR INPUT DATA VALID
                     sum_rst = 1'b1;
+                    weight_re_addr = 0;
                 end
 
                 // S1
@@ -168,21 +169,16 @@ module fir_filter_direct_form_partially_pipelined
                     else
                         sample_re_addr = 0;
 
-                    if (weight_re_addr < PIPE_DEPTH - 1) begin
-                        weight_re = 1'b1;
-                        sample_re = 1'b1;
-                        weight_re_addr = weight_re_addr + 1;
-                        o_dout_valid = 1'b0;
-                    end else begin
-                        weight_re_addr = 0;
-                        o_dout_valid = 1'b1;
-                        ov_dout = acc;
-                    end
+                    weight_re = 1'b1;
+                    sample_re = 1'b1;
+                    weight_re_addr = weight_re_addr + 1;
+
                     sample_addr = sample_re_addr;
                 end
 
                 // S5
                 WAIT_DOUT_READY: begin
+                    ov_dout = acc;
                     o_dout_valid = 1'b1;
                     // WAIT FOR RECEIVER TO CONSUME OUTPUT DATA
                 end
