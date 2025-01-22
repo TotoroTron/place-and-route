@@ -72,38 +72,40 @@ module tb_top_level
         tb_rst = 0;
         tb_en  = 1;
 
-        for (int t = 0; t < SAMPLES_PER_SIGNAL_PERIOD / 8; t++) begin
-            tb_addr    = t;
-            tb_word_in = sine_signal[tb_addr];
-            @(posedge tb_clk);
-            tb_din_valid = 1'b1;
-            // For each bit in the sample, LSB first
-            for (int j = 0; j < DATA_WIDTH; j++) begin
-                tb_din = tb_word_in[j];
-                wait(dut_ready == 1'b1);
+        repeat (2) begin
+            for (int t = 0; t < SAMPLES_PER_SIGNAL_PERIOD; t++) begin
+                tb_addr    = t;
+                tb_word_in = sine_signal[tb_addr];
                 @(posedge tb_clk);
-            end
-            // done sending 24-bit word
-            tb_din_valid = 1'b0;
+                tb_din_valid = 1'b1;
+                // For each bit in the sample, LSB first
+                for (int j = 0; j < DATA_WIDTH; j++) begin
+                    tb_din = tb_word_in[j];
+                    wait(dut_ready == 1'b1);
+                    @(posedge tb_clk);
+                end
+                // done sending 24-bit word
+                tb_din_valid = 1'b0;
 
-            transactions_des = transactions_des + 1;
-            @(posedge tb_clk);
-            if (tb_word_in == top_level.fir_din) begin
-                $fdisplay(fd_des, "Success!");
-            end else begin
-                $fdisplay(fd_des, "FAILURE!");
-                error_count_des = error_count_des + 1;
+                transactions_des = transactions_des + 1;
+                @(posedge tb_clk);
+                if (tb_word_in == top_level.fir_din) begin
+                    $fdisplay(fd_des, "Success!");
+                end else begin
+                    $fdisplay(fd_des, "FAILURE!");
+                    error_count_des = error_count_des + 1;
+                end
+                $fdisplay(fd_des,
+                    "\t[%4t ns]   TB sent:  0b%024b",
+                    $time, tb_word_in
+                );
+                $fdisplay(fd_des,
+                    "\t[%4t ns]  FIR rcvd:  0b%024b",
+                    $time, top_level.fir_din
+                );
+                // arbitrary idle wait between samples
+                repeat (50) @(posedge tb_clk);
             end
-            $fdisplay(fd_des,
-                "\t[%4t ns]   TB sent:  0b%024b",
-                $time, tb_word_in
-            );
-            $fdisplay(fd_des,
-                "\t[%4t ns]  FIR rcvd:  0b%024b",
-                $time, top_level.fir_din
-            );
-            // arbitrary idle wait between samples
-            repeat (50) @(posedge tb_clk);
         end
 
         // Wait extra time at end
