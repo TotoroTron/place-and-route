@@ -89,8 +89,8 @@ public class PlacerPackingSiteCentric extends Placer {
                 Arrays.asList(device.getAllCompatibleSites(selectedSiteType)));
         availableSites.removeAll(occupiedCLBSites);
 
-        Site selectedSite = availableSites.get(rand.nextInt(availableSites.size()));
-        // Site selectedSite = availableSites.get(0);
+        // Site selectedSite = availableSites.get(rand.nextInt(availableSites.size()));
+        Site selectedSite = availableSites.get(0);
 
         occupiedCLBSites.add(selectedSite);
 
@@ -550,12 +550,27 @@ public class PlacerPackingSiteCentric extends Placer {
                         si.createCell(lut, si.getBEL(LUT6_BELS[i]));
                 }
                 si.routeSite();
+
                 // accomodate LUT outputs that have sinks outside the lutff pair
-                si.addSitePIP(si.getSitePIP("DUSED", "0"));
-                si.addSitePIP(si.getSitePIP("CUSED", "0"));
-                si.addSitePIP(si.getSitePIP("BUSED", "0"));
-                si.addSitePIP(si.getSitePIP("AUSED", "0"));
+                // si.addSitePIP(si.getSitePIP("DUSED", "0"));
+                // si.addSitePIP(si.getSitePIP("CUSED", "0"));
+                // si.addSitePIP(si.getSitePIP("BUSED", "0"));
+                // si.addSitePIP(si.getSitePIP("AUSED", "0"));
                 // si.addSitePIP(si.getSitePIP("DOUTMUX", "O6"));
+                //
+                List<String> lutOPIP = new ArrayList<>(List.of("AUSED", "BUSED", "CUSED", "DUSED"));
+                //
+                // DOES NOT SUPPORT STACKED LUTS OR LUT5s!
+                //
+                for (int i = 0; i < LUTFFPairs.size(); i++) {
+                    EDIFHierCellInst lut = LUTFFPairs.get(i).key();
+                    if (lut != null) {
+                        EDIFHierPortInst lutOPort = lut.getPortInst("O");
+                        if (lutOPort.getHierarchicalNet().getLeafHierPortInsts(false, true).size() > 1) {
+                            si.addSitePIP(si.getSitePIP(lutOPIP.get(i), "0"));
+                        }
+                    }
+                }
                 rerouteFFSrCeNets(si);
             }
         }

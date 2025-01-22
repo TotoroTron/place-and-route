@@ -27,7 +27,6 @@ module tb_top_level
     logic [DATA_WIDTH-1:0] tb_word_in;
     logic [DATA_WIDTH-1:0] tb_word_out;
     logic [ADDR_WIDTH-1:0] tb_addr;
-    int num_errors = 0;
     integer fd_des; // file writer
     integer fd_ser; // file writer
     integer error_count_des = 0;
@@ -64,7 +63,6 @@ module tb_top_level
     initial begin
         $dumpfile("waveform.vcd");
         $dumpvars;
-        num_errors   = 0;
         tb_clk       = 1'b1;
         tb_rst       = 1'b1;
         tb_en        = 1'b0;
@@ -127,6 +125,7 @@ module tb_top_level
         @(posedge tb_clk);
         wait(dut_dout_valid == 1'b0);
         wait(dut_dout_valid == 1'b1);
+        @(posedge tb_clk);
         @(negedge tb_clk);
         tb_ready = 1'b1;
         repeat(DATA_WIDTH) begin
