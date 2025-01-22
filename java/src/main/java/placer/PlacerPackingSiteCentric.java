@@ -465,34 +465,63 @@ public class PlacerPackingSiteCentric extends Placer {
 
     private Map<Pair<String, String>, LUTFFGroup> findLUTFFGroups(
             Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
-        List<EDIFHierCellInst> visitedFFs = new ArrayList<>();
+        List<EDIFHierCellInst> visitedFDREs = new ArrayList<>();
+        List<EDIFHierCellInst> visitedFDSEs = new ArrayList<>();
         List<EDIFHierCellInst> visitedLUTs = new ArrayList<>();
         Map<Pair<String, String>, LUTFFGroup> groups = new HashMap<>();
 
-        for (EDIFHierCellInst ffCell : EDIFCellGroups.get("FDRE")) {
+        for (EDIFHierCellInst fdre : EDIFCellGroups.get("FDRE")) {
             // examine the CE net to determine which group
-            EDIFHierPortInst CEPort = ffCell.getPortInst("CE");
+            EDIFHierPortInst CEPort = fdre.getPortInst("CE");
             String CENet = CEPort.getHierarchicalNet().getHierarchicalNetName();
-            EDIFHierPortInst RPort = ffCell.getPortInst("R");
+
+            EDIFHierPortInst RPort = fdre.getPortInst("R");
             String RNet = RPort.getHierarchicalNet().getHierarchicalNetName();
             var enableResetPair = new Pair<String, String>(CENet, RNet);
 
             // examine the D net to find the LUT pair
-            EDIFHierPortInst DPort = ffCell.getPortInst("D");
+            EDIFHierPortInst DPort = fdre.getPortInst("D");
             EDIFHierPortInst sourcePort = DPort.getHierarchicalNet().getLeafHierPortInsts(true, false).get(0);
 
             EDIFHierCellInst sourceCell = sourcePort.getHierarchicalInst()
                     .getChild(sourcePort.getPortInst().getCellInst().getName());
 
             var LUTFFPair = sourceCell.getCellType().getName().contains("LUT")
-                    ? new Pair<EDIFHierCellInst, EDIFHierCellInst>(sourceCell, ffCell)
-                    : new Pair<EDIFHierCellInst, EDIFHierCellInst>(null, ffCell);
+                    ? new Pair<EDIFHierCellInst, EDIFHierCellInst>(sourceCell, fdre)
+                    : new Pair<EDIFHierCellInst, EDIFHierCellInst>(null, fdre);
 
             groups.computeIfAbsent(enableResetPair, k -> new LUTFFGroup(new ArrayList<>())).group().add(LUTFFPair);
-            visitedFFs.add(ffCell);
+            visitedFDREs.add(fdre);
             visitedLUTs.add(sourceCell);
         }
-        EDIFCellGroups.get("FDRE").removeAll(visitedFFs);
+
+        for (EDIFHierCellInst fdse : EDIFCellGroups.get("FDSE")) {
+            // examine the CE net to determine which group
+            EDIFHierPortInst CEPort = fdse.getPortInst("CE");
+            String CENet = CEPort.getHierarchicalNet().getHierarchicalNetName();
+
+            EDIFHierPortInst SPort = fdse.getPortInst("S");
+            String SNet = SPort.getHierarchicalNet().getHierarchicalNetName();
+            var enableResetPair = new Pair<String, String>(CENet, SNet);
+
+            // examine the D net to find the LUT pair
+            EDIFHierPortInst DPort = fdse.getPortInst("D");
+            EDIFHierPortInst sourcePort = DPort.getHierarchicalNet().getLeafHierPortInsts(true, false).get(0);
+
+            EDIFHierCellInst sourceCell = sourcePort.getHierarchicalInst()
+                    .getChild(sourcePort.getPortInst().getCellInst().getName());
+
+            var LUTFFPair = sourceCell.getCellType().getName().contains("LUT")
+                    ? new Pair<EDIFHierCellInst, EDIFHierCellInst>(sourceCell, fdse)
+                    : new Pair<EDIFHierCellInst, EDIFHierCellInst>(null, fdse);
+
+            groups.computeIfAbsent(enableResetPair, k -> new LUTFFGroup(new ArrayList<>())).group().add(LUTFFPair);
+            visitedFDSEs.add(fdse);
+            visitedLUTs.add(sourceCell);
+        }
+
+        EDIFCellGroups.get("FDSE").removeAll(visitedFDSEs);
+        EDIFCellGroups.get("FDRE").removeAll(visitedFDREs);
         EDIFCellGroups.get("LUT").removeAll(visitedLUTs);
         return groups;
     }
