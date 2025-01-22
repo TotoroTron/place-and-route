@@ -1,6 +1,0 @@
-*
-!.gitignore
-!simulate.sh
-!open_wdb.sh
-!xsim_cfg.tcl
-!waveform.tcl

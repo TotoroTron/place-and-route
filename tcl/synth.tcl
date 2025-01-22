@@ -35,7 +35,6 @@ set top_params [join [lrange $argv 1 end] " "]
 puts "synth.tcl: Received parameters: $top_params"
 
 set cmd "synth_design -mode out_of_context -part xc7z020clg400-1 -fsm_extraction user_encoding -top top_level $top_params"
-# set cmd "synth_design -mode out_of_context -part xc7z020clg400-1 -top top_level $top_params"
 puts "synth.tcl: Running command: $cmd"
 
 # execute synth_design command
