@@ -38,14 +38,14 @@ module fir_filter_direct_form_partially_pipelined
     reg sum_rst = 1'b0;
 
     parameter 
-         WAIT_DIN_VALID  = 3'b000,
-         INIT_SHIFT_REG  = 3'b001,
-         WRITE_SAMPLE    = 3'b010,
-         INIT_READ       = 3'b011,
-         PROCESS_SAMPLE  = 3'b100,
-         WAIT_DOUT_READY = 3'b101;
-    reg [2:0] state = WAIT_DIN_VALID;
-    reg [2:0] next_state;
+         WAIT_DIN_VALID  = 6'b000001,
+         INIT_SHIFT_REG  = 6'b000010,
+         WRITE_SAMPLE    = 6'b000100,
+         INIT_READ       = 6'b001000,
+         PROCESS_SAMPLE  = 6'b010000,
+         WAIT_DOUT_READY = 6'b100000;
+    reg [5:0] state = WAIT_DIN_VALID;
+    reg [5:0] next_state;
 
     // STATE REGISTER
     always @(posedge i_clk) begin

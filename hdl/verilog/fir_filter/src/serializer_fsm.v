@@ -22,11 +22,11 @@ module serializer_fsm
     reg [LENGTH_BITS-1:0] counter; // = { (LENGTH_BITS){1'b0} }
 
     parameter 
-        IDLE = 2'b00,
-        LOAD = 2'b01,
-        SHIFT_OUT = 2'b10;
-    reg [1:0] state = IDLE;
-    reg [1:0] next_state;
+        IDLE = 3'b000,
+        LOAD = 3'b010,
+        SHIFT_OUT = 3'b100;
+    reg [2:0] state = IDLE;
+    reg [2:0] next_state;
 
 
     // STATE REGISTER

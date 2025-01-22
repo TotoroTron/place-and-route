@@ -20,11 +20,11 @@ module deserializer_fsm
     reg [LENGTH_BITS-1:0] counter;
 
     parameter 
-        IDLE = 2'b00,
-        SHIFT_IN = 2'b01,
-        OUTPUT = 2'b10;
-    reg [3:0] state = IDLE;
-    reg [3:0] next_state;
+        IDLE = 3'b001,
+        SHIFT_IN = 3'b010,
+        OUTPUT = 3'b100;
+    reg [2:0] state = IDLE;
+    reg [2:0] next_state;
 
     // STATE REGISTER
     always @(posedge i_clk) begin
