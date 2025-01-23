@@ -7,10 +7,14 @@ import java.util.logging.Level;
 
 import java.io.IOException;
 
+import com.xilinx.rapidwright.design.Design;
+import com.xilinx.rapidwright.device.Device;
+
 public class Main {
 
     private static final Logger logger = Logger.getLogger(Main.class.getName());
     protected static final String rootDir = "/home/bcheng/workspace/dev/place-and-route/";
+    protected static final String synthesizedDcp = rootDir + "/outputs/synthesized.dcp";
 
     public static void main(String[] args) {
         try {
@@ -19,27 +23,20 @@ public class Main {
             fileHandler.setFormatter(new SimpleFormatter());
             logger.addHandler(fileHandler);
             logger.setLevel(Level.ALL); // Set logging level to record all messages
-
             logger.log(Level.INFO, "Begin Placer...");
 
-            // PlacerFirst FPlacer = new PlacerFirst();
-            // FPlacer.run();
+            Design design = Design.readCheckpoint(synthesizedDcp);
+            Device device = Device.getDevice("xc7z020clg400-1");
 
-            // PlacerRandom RPlacer = new PlacerRandom();
-            // RPlacer.run();
+            PackerBasic BPacker = new PackerBasic(rootDir, design, device);
+            PackedDesign packedDesign = BPacker.run();
 
-            // PlacerPackingHier PPlacer = new PlacerPackingHier();
-            // PPlacer.printUniqueSites();
-            // PPlacer.run();
-
-            PlacerSiteCentric SCPlacer = new PlacerSiteCentric();
+            PlacerSiteCentric SCPlacer = new PlacerSiteCentric(rootDir, design, device);
             SCPlacer.printUniqueSites();
-            SCPlacer.run();
+            SCPlacer.run(packedDesign);
 
             // ViewVivadoCheckpoint ViewVivado = new ViewVivadoCheckpoint();
             // ViewVivado.run();
-
-            logger.log(Level.INFO, "Data writing complete. Check 'output.txt'");
 
         } catch (IOException e) {
             logger.log(Level.SEVERE, "An IOException occurred while configuring the logger.", e);

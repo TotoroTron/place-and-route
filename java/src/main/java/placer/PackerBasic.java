@@ -30,7 +30,9 @@ public class PackerBasic extends Packer {
         writer.write(packerName + ".txt");
     }
 
-    public void packDesign() throws IOException {
+    public PackedDesign packDesign() throws IOException {
+        PackedDesign packedDesign = new PackedDesign();
+
         // Create a map to group cells by type
         Map<String, List<EDIFHierCellInst>> EDIFCellGroups = new HashMap<>();
         Set<String> uniqueEdifCellTypes = new HashSet<>();
@@ -72,6 +74,7 @@ public class PackerBasic extends Packer {
         //
         // return them to packer?
         //
+        return packedDesign;
 
     }
 

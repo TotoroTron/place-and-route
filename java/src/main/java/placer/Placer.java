@@ -40,12 +40,11 @@ public abstract class Placer {
     protected String placerName;
     FileWriter writer;
 
-    protected Device device;
-    protected Design design;
+    protected final Device device;
+    protected final Design design;
     // protected EDIFNetlist netlist;
 
-    protected String rootDir = "/home/bcheng/workspace/dev/place-and-route/";
-    protected String synthesizedDcp = rootDir + "/outputs/synthesized.dcp";
+    protected String rootDir;
     protected String placedDcp = rootDir + "/outputs/placed.dcp";
 
     protected String[] FF5_BELS = new String[] { "A5FF", "B5FF", "C5FF", "D5FF" };
@@ -53,18 +52,19 @@ public abstract class Placer {
     protected String[] LUT5_BELS = new String[] { "A5LUT", "B5LUT", "C5LUT", "D5LUT" };
     protected String[] LUT6_BELS = new String[] { "A6LUT", "B6LUT", "C6LUT", "D6LUT" };
 
-    public Placer() throws IOException {
-        design = Design.readCheckpoint(synthesizedDcp);
-        device = Device.getDevice("xc7z020clg400-1");
+    public Placer(String rootDir, Design design, Device device) throws IOException {
+        this.rootDir = rootDir;
+        this.design = design;
+        this.device = device;
     }
 
-    public void run() throws IOException {
-        placeDesign();
+    public void run(PackedDesign packedDesign) throws IOException {
+        placeDesign(packedDesign);
         writer.close();
         design.writeCheckpoint(placedDcp);
     }
 
-    protected abstract void placeDesign() throws IOException;
+    protected abstract void placeDesign(PackedDesign packedDesign) throws IOException;
 
     public static <T> List<List<T>> splitIntoGroups(List<T> list, int groupSize) {
         List<List<T>> result = new ArrayList<>();

@@ -25,13 +25,12 @@ public abstract class Packer {
         this.design = design;
     }
 
-    public void run() throws IOException {
-        packDesign();
+    public PackedDesign run() throws IOException {
+        PackedDesign packedDesign = packDesign();
         writer.close();
-        // return BEL packs?
-
+        return packedDesign;
     }
 
-    protected abstract void packDesign() throws IOException;
+    protected abstract PackedDesign packDesign() throws IOException;
 
 }

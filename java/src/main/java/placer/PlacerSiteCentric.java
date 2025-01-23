@@ -16,6 +16,7 @@ import java.util.Random;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.Net;
 import com.xilinx.rapidwright.design.Cell;
 import com.xilinx.rapidwright.design.SiteInst;
@@ -27,6 +28,7 @@ import com.xilinx.rapidwright.edif.EDIFHierCellInst;
 import com.xilinx.rapidwright.edif.EDIFHierPortInst;
 import com.xilinx.rapidwright.edif.EDIFCellInst;
 
+import com.xilinx.rapidwright.device.Device;
 import com.xilinx.rapidwright.device.BEL;
 import com.xilinx.rapidwright.device.BELPin;
 import com.xilinx.rapidwright.device.Site;
@@ -37,12 +39,87 @@ import com.xilinx.rapidwright.device.Tile;
 
 public class PlacerSiteCentric extends Placer {
 
-    public PlacerSiteCentric() throws IOException {
-        super();
+    public PlacerSiteCentric(String rootDir, Design design, Device device) throws IOException {
+        super(rootDir, design, device);
         placerName = "PlacerSiteCentric";
         writer = new FileWriter(rootDir + "outputs/printout/" + placerName + ".txt");
         writer.write(placerName + ".txt");
     }
+
+    public void placeDesign(PackedDesign packedDesign) throws IOException {
+        // Create a map to group cells by type
+        Map<String, List<EDIFHierCellInst>> EDIFCellGroups = new HashMap<>();
+        Set<String> uniqueEdifCellTypes = new HashSet<>();
+
+        for (EDIFHierCellInst ehci : design.getNetlist().getAllLeafHierCellInstances()) {
+            String cellType = ehci.getInst().getCellType().getName();
+            // group all luts together
+            if (cellType.contains("LUT"))
+                cellType = "LUT";
+            // populate unique cell types
+            if (uniqueEdifCellTypes.add(cellType)) // set returns bool
+                EDIFCellGroups.put(cellType, new ArrayList<>()); // spawn unique group
+            // add cell to corresponding group
+            EDIFCellGroups.get(cellType).add(ehci); // add cell to corresponding group
+        }
+
+        writer.write("\n\nSet of all Unique EDIF Cell Types... (" + uniqueEdifCellTypes.size() + ")");
+        for (String edifCellType : uniqueEdifCellTypes) {
+            writer.write("\n\t" + edifCellType);
+        }
+        writer.write("\nPrinting EDIFCells By Type...");
+        for (Map.Entry<String, List<EDIFHierCellInst>> entry : EDIFCellGroups.entrySet()) {
+            writer.write("\n\n" + entry.getKey() + " Cells (" + entry.getValue().size() + "):");
+            List<EDIFCellInst> cells = entry.getValue().stream()
+                    .map(e -> e.getInst())
+                    .collect(Collectors.toList());
+            printEDIFCellInstList(cells);
+        }
+
+        List<Pair<EDIFHierCellInst, EDIFHierCellInst>> DSPPairs = findDSPPairs(EDIFCellGroups);
+        List<List<CarryCellGroup>> CARRYChains = findCarryChains(EDIFCellGroups);
+        Map<Pair<String, String>, LUTFFGroup> LUTFFGroups = findLUTFFGroups(EDIFCellGroups);
+        List<List<EDIFHierCellInst>> LUTGroups = buildLUTGroups(EDIFCellGroups);
+
+        printCARRYChains(CARRYChains);
+        printDSPPairs(DSPPairs);
+        printLUTFFGroups(LUTFFGroups);
+        printLUTGroups(LUTGroups);
+
+        List<Site> occupiedDSPSites = new ArrayList<>();
+        List<Site> occupiedRAMSites = new ArrayList<>();
+        List<Site> occupiedCLBSites = new ArrayList<>();
+
+        placeCarryChainSites(CARRYChains, occupiedCLBSites);
+        placeDSPPairSites(DSPPairs, occupiedDSPSites);
+        placeRAMSites(occupiedRAMSites, EDIFCellGroups);
+        placeLUTFFPairGroups(LUTFFGroups, occupiedCLBSites);
+        placeLUTGroups(LUTGroups, occupiedCLBSites);
+
+        writer.write("\n\nALL CELL PATTERNS HAVE BEEN PLACED...");
+        writer.write("\n\nPrinting occupiedCLBSites... (" + occupiedCLBSites.size() + ")");
+        for (Site site : occupiedCLBSites) {
+            writer.write("\n\tSite: " + site.getName());
+        }
+        writer.write("\nPrinting occupiedDSPSites... (" + occupiedDSPSites.size() + ")");
+        for (Site site : occupiedDSPSites) {
+            writer.write("\n\tSite: " + site.getName());
+        }
+        writer.write("\nPrinting occupiedRAMSites... (" + occupiedRAMSites.size() + ")");
+        for (Site site : occupiedDSPSites) {
+            writer.write("\n\tSite: " + site.getName());
+        }
+        writer.write("\n\nPrinting remaining cells in EDIFCellGroups...");
+        for (Map.Entry<String, List<EDIFHierCellInst>> entry : EDIFCellGroups.entrySet()) {
+            writer.write("\n\tGroup: " + entry.getKey() + "... (" + entry.getValue().size() + ")");
+            if (entry.getValue().isEmpty())
+                writer.write("\n\t\tEmpty!");
+            for (EDIFHierCellInst ehci : entry.getValue()) {
+                writer.write("\n\t\tUnplaced Cell: " + ehci.getCellType() + ": " + ehci.getFullHierarchicalInstName());
+            }
+        }
+
+    } // end placeDesign()
 
     protected Site selectCLBSite(List<Site> occupiedCLBSites) {
         Random rand = new Random();
@@ -607,81 +684,6 @@ public class PlacerSiteCentric extends Placer {
         }
     }
 
-    public void placeDesign() throws IOException {
-
-        // Create a map to group cells by type
-        Map<String, List<EDIFHierCellInst>> EDIFCellGroups = new HashMap<>();
-        Set<String> uniqueEdifCellTypes = new HashSet<>();
-
-        for (EDIFHierCellInst ehci : design.getNetlist().getAllLeafHierCellInstances()) {
-            String cellType = ehci.getInst().getCellType().getName();
-            // group all luts together
-            if (cellType.contains("LUT"))
-                cellType = "LUT";
-            // populate unique cell types
-            if (uniqueEdifCellTypes.add(cellType)) // set returns bool
-                EDIFCellGroups.put(cellType, new ArrayList<>()); // spawn unique group
-            // add cell to corresponding group
-            EDIFCellGroups.get(cellType).add(ehci); // add cell to corresponding group
-        }
-
-        writer.write("\n\nSet of all Unique EDIF Cell Types... (" + uniqueEdifCellTypes.size() + ")");
-        for (String edifCellType : uniqueEdifCellTypes) {
-            writer.write("\n\t" + edifCellType);
-        }
-        writer.write("\nPrinting EDIFCells By Type...");
-        for (Map.Entry<String, List<EDIFHierCellInst>> entry : EDIFCellGroups.entrySet()) {
-            writer.write("\n\n" + entry.getKey() + " Cells (" + entry.getValue().size() + "):");
-            List<EDIFCellInst> cells = entry.getValue().stream()
-                    .map(e -> e.getInst())
-                    .collect(Collectors.toList());
-            printEDIFCellInstList(cells);
-        }
-
-        List<Pair<EDIFHierCellInst, EDIFHierCellInst>> DSPPairs = findDSPPairs(EDIFCellGroups);
-        List<List<CarryCellGroup>> CARRYChains = findCarryChains(EDIFCellGroups);
-        Map<Pair<String, String>, LUTFFGroup> LUTFFGroups = findLUTFFGroups(EDIFCellGroups);
-        List<List<EDIFHierCellInst>> LUTGroups = buildLUTGroups(EDIFCellGroups);
-
-        printCARRYChains(CARRYChains);
-        printDSPPairs(DSPPairs);
-        printLUTFFGroups(LUTFFGroups);
-        printLUTGroups(LUTGroups);
-
-        List<Site> occupiedDSPSites = new ArrayList<>();
-        List<Site> occupiedRAMSites = new ArrayList<>();
-        List<Site> occupiedCLBSites = new ArrayList<>();
-
-        placeCarryChainSites(CARRYChains, occupiedCLBSites);
-        placeDSPPairSites(DSPPairs, occupiedDSPSites);
-        placeRAMSites(occupiedRAMSites, EDIFCellGroups);
-        placeLUTFFPairGroups(LUTFFGroups, occupiedCLBSites);
-        placeLUTGroups(LUTGroups, occupiedCLBSites);
-
-        writer.write("\n\nALL CELL PATTERNS HAVE BEEN PLACED...");
-        writer.write("\n\nPrinting occupiedCLBSites... (" + occupiedCLBSites.size() + ")");
-        for (Site site : occupiedCLBSites) {
-            writer.write("\n\tSite: " + site.getName());
-        }
-        writer.write("\nPrinting occupiedDSPSites... (" + occupiedDSPSites.size() + ")");
-        for (Site site : occupiedDSPSites) {
-            writer.write("\n\tSite: " + site.getName());
-        }
-        writer.write("\nPrinting occupiedRAMSites... (" + occupiedRAMSites.size() + ")");
-        for (Site site : occupiedDSPSites) {
-            writer.write("\n\tSite: " + site.getName());
-        }
-        writer.write("\n\nPrinting remaining cells in EDIFCellGroups...");
-        for (Map.Entry<String, List<EDIFHierCellInst>> entry : EDIFCellGroups.entrySet()) {
-            writer.write("\n\tGroup: " + entry.getKey() + "... (" + entry.getValue().size() + ")");
-            if (entry.getValue().isEmpty())
-                writer.write("\n\t\tEmpty!");
-            for (EDIFHierCellInst ehci : entry.getValue()) {
-                writer.write("\n\t\tUnplaced Cell: " + ehci.getCellType() + ": " + ehci.getFullHierarchicalInstName());
-            }
-        }
-
-    } // end placeDesign()
 } // end class
 
 // Pair<List<List<EDIFHierCellInst>>, List<List<EDIFHierCellInst>>>
