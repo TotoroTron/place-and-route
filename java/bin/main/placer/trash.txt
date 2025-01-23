@@ -1,4 +1,105 @@
 
+    public void placeDesign() throws IOException {
+        writer.write("\nPlacing Cells...");
+
+        List<Cell> cells = spawnCells(); // returns placeable cells (no buffer or port cells)
+        Map<String, List<String>> occupiedPlacements = new HashMap<>();
+
+        for (Cell cell : cells) {
+            placeCell(cell, occupiedPlacements);
+            writer.write("\n\tPlaced cell: " + cell.getName() + " at " + cell.getSiteInst().getName());
+        } // end for(Cell)
+
+        printOccupiedSites(occupiedPlacements);
+
+    } // end placDesign()
+
+    protected List<Cell> spawnCells() throws IOException {
+        writer.write("\n\nSpawning cells from netlist...");
+        EDIFNetlist netlist = design.getNetlist();
+
+        List<Cell> cells = new ArrayList<>(); // spawn placeable cells from EDIFNetlist
+        for (EDIFHierCellInst ehci : netlist.getAllLeafHierCellInstances()) {
+
+            // SKIP UNPLACEABLE CELLS
+            if (isBufferCell(design, ehci)) {
+                continue; // buffer cells already placed by constraints
+            }
+
+            Cell cell = design.createCell(ehci.getFullHierarchicalInstName(), ehci.getInst());
+            cell.setEDIFHierCellInst(ehci);
+            Map<SiteTypeEnum, Set<String>> compatiblePlacements = cell.getCompatiblePlacements(device);
+            if (compatiblePlacements.isEmpty()) {
+                writer.write("\n\tWARNING: Cell: " + cell.getName() + " of type: " + cell.getType()
+                        + " has no compatible placements! SKIPPING.");
+                cells.remove(cell);
+                continue;
+            }
+            removeBufferTypes(compatiblePlacements.keySet());
+
+            // ABSTRACT
+            SiteTypeEnum selectedSiteType = selectSiteType(compatiblePlacements);
+            // END ABSTRACT
+
+            if (selectedSiteType == null) {
+                writer.write("\n\tWARNING: SiteTypeEnum: " + selectedSiteType +
+                        " has no compatible sites!");
+                cells.remove(cell);
+                continue;
+            }
+            String s1 = String.format(
+                    "\n\tSpawned cell: %-40s cellType: %-10s",
+                    cell.getName(), cell.getType());
+            writer.write(s1);
+            cells.add(cell);
+        }
+        return cells;
+    }
+
+    protected void placeCell(
+            Cell cell,
+            Map<String, List<String>> occupiedPlacements) throws IOException {
+
+        Map<SiteTypeEnum, Set<String>> compatiblePlacements = cell.getCompatiblePlacements(device);
+        removeBufferTypes(compatiblePlacements.keySet());
+
+        // ABSTRACT
+        SiteTypeEnum selectedSiteType = selectSiteType(compatiblePlacements);
+
+        List<String> siteNames = Arrays.stream(device.getAllCompatibleSites(selectedSiteType))
+                .map(Site::getName) // return as string names only, not the site itself
+                .collect(Collectors.toList()); // collect as list
+        List<String> belNames = compatiblePlacements.get(selectedSiteType).stream()
+                .filter(name -> !name.contains("5FF")) // placing regs on 5FF BELs will cause routing problems
+                .collect(Collectors.toList()); // UG474, CH2 Storage Elements for more information
+        Map<String, List<String>> availablePlacements = new HashMap<>();
+        for (String siteName : siteNames) {
+            availablePlacements.put(siteName, new ArrayList<>(belNames));
+        }
+
+        // ABSTRACT
+        removeOccupiedPlacements(availablePlacements, occupiedPlacements);
+
+        // ABSTRACT
+        String[] selectedPlacement = selectSiteAndBEL(availablePlacements);
+
+        String selectedSiteName = selectedPlacement[0];
+        String selectedBELName = selectedPlacement[1];
+
+        // System.out.println("Selected Site: " + selectedSiteName + ", Selected BEL: "
+        // + selectedBELName);
+        Site selectedSite = device.getSite(selectedSiteName);
+        BEL selectedBEL = selectedSite.getBEL(selectedBELName);
+        if (design.placeCell(cell, selectedSite, selectedBEL)) {
+            addToMap(occupiedPlacements, selectedPlacement[0], selectedPlacement[1]);
+        } else {
+            writer.write("\n\tWARNING: Placement Failed! Cell: " + cell.getName() + ", Type: " + cell.getType());
+        }
+
+    } // end placeCell()
+
+
+
     /*
      *
      * OLD PRINTOUT FUNCTIONS

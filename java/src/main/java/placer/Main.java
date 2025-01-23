@@ -32,7 +32,7 @@ public class Main {
             // PPlacer.printUniqueSites();
             // PPlacer.run();
 
-            PlacerPackingSiteCentric SCPlacer = new PlacerPackingSiteCentric();
+            PlacerSiteCentric SCPlacer = new PlacerSiteCentric();
             SCPlacer.printUniqueSites();
             SCPlacer.run();
 

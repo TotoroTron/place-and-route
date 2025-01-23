@@ -3,10 +3,7 @@ package placer;
 
 import java.util.stream.Collectors;
 
-import org.python.antlr.PythonParser.else_clause_return;
-
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Arrays;
@@ -38,43 +35,13 @@ import com.xilinx.rapidwright.device.SitePIPStatus;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 import com.xilinx.rapidwright.device.Tile;
 
-public class PlacerPackingSiteCentric extends Placer {
+public class PlacerSiteCentric extends Placer {
 
-    public PlacerPackingSiteCentric() throws IOException {
+    public PlacerSiteCentric() throws IOException {
         super();
-        placerName = "PlacerPackingHier";
+        placerName = "PlacerSiteCentric";
         writer = new FileWriter(rootDir + "outputs/printout/" + placerName + ".txt");
         writer.write(placerName + ".txt");
-    }
-
-    protected SiteTypeEnum selectSiteType(
-            Map<SiteTypeEnum, Set<String>> compatiblePlacements) throws IOException {
-
-        Iterator<SiteTypeEnum> iterator = compatiblePlacements.keySet().iterator();
-        SiteTypeEnum selectedSiteType = iterator.next();
-        if (device.getAllSitesOfType(selectedSiteType).length == 0)
-            return null;
-        return selectedSiteType;
-    }
-
-    protected String[] selectSiteAndBEL(
-            Map<String, List<String>> availablePlacements) throws IOException {
-
-        // Random random = new Random();
-        // List<String> availableSiteNames = new
-        // ArrayList<>(availablePlacements.keySet());
-        // String selectedSiteName =
-        // availableSiteNames.get(random.nextInt(availableSiteNames.size()));
-
-        // List<String> availableBELNames = availablePlacements.get(selectedSiteName);
-        // String selectedBELName =
-        // availableBELNames.get(random.nextInt(availableBELNames.size()));
-
-        // Select first site and in first site, first BEL
-        String selectedSiteName = availablePlacements.keySet().iterator().next();
-        String selectedBELName = availablePlacements.get(selectedSiteName).get(0);
-
-        return new String[] { selectedSiteName, selectedBELName };
     }
 
     protected Site selectCLBSite(List<Site> occupiedCLBSites) {
@@ -95,25 +62,6 @@ public class PlacerPackingSiteCentric extends Placer {
         occupiedCLBSites.add(selectedSite);
 
         return selectedSite;
-    }
-
-    protected void removeOccupiedPlacements(
-            Map<String, List<String>> availablePlacements,
-            Map<String, List<String>> occupiedPlacements) throws IOException {
-        for (Map.Entry<String, List<String>> entry : occupiedPlacements.entrySet()) {
-            String siteName = entry.getKey();
-            List<String> occupiedBELs = entry.getValue();
-
-            // SINGLE BEL PER SITE
-            availablePlacements.remove(siteName);
-
-            // // BEL PACKING (CAUSES ILLEGAL PLACEMENT FOR FIRST/RANDOM PLACER)
-            // if (availablePlacements.containsKey(siteName)) {
-            // availablePlacements.get(siteName).removeAll(occupiedBELs);
-            // if (availablePlacements.get(siteName).isEmpty())
-            // availablePlacements.remove(siteName);
-            // }
-        }
     }
 
     private List<List<CarryCellGroup>> findCarryChains(
@@ -659,7 +607,7 @@ public class PlacerPackingSiteCentric extends Placer {
         }
     }
 
-    public @Override void placeDesign() throws IOException {
+    public void placeDesign() throws IOException {
 
         // Create a map to group cells by type
         Map<String, List<EDIFHierCellInst>> EDIFCellGroups = new HashMap<>();
