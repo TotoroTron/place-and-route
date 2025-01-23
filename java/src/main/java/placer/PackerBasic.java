@@ -31,7 +31,6 @@ public class PackerBasic extends Packer {
     }
 
     public PackedDesign packDesign() throws IOException {
-        PackedDesign packedDesign = new PackedDesign();
 
         // Create a map to group cells by type
         Map<String, List<EDIFHierCellInst>> EDIFCellGroups = new HashMap<>();
@@ -61,10 +60,13 @@ public class PackerBasic extends Packer {
                     .collect(Collectors.toList());
             printEDIFCellInstList(cells);
         }
+        // List<DSPPair> = findDSPPairs(EDIFCellGroups);
         List<Pair<EDIFHierCellInst, EDIFHierCellInst>> DSPPairs = findDSPPairs(EDIFCellGroups);
         List<List<CarryCellGroup>> CARRYChains = findCarryChains(EDIFCellGroups);
         Map<Pair<String, String>, LUTFFGroup> LUTFFGroups = findLUTFFGroups(EDIFCellGroups);
         List<List<EDIFHierCellInst>> LUTGroups = buildLUTGroups(EDIFCellGroups);
+
+        PackedDesign packedDesign = new PackedDesign(DSPPairs, CARRYChains, LUTFFGroups, LUTGroups);
 
         printCARRYChains(CARRYChains);
         printDSPPairs(DSPPairs);

@@ -45,7 +45,7 @@ public abstract class Placer {
     // protected EDIFNetlist netlist;
 
     protected String rootDir;
-    protected String placedDcp = rootDir + "/outputs/placed.dcp";
+    protected String placedDcp;
 
     protected String[] FF5_BELS = new String[] { "A5FF", "B5FF", "C5FF", "D5FF" };
     protected String[] FF_BELS = new String[] { "AFF", "BFF", "CFF", "DFF" };
@@ -54,6 +54,7 @@ public abstract class Placer {
 
     public Placer(String rootDir, Design design, Device device) throws IOException {
         this.rootDir = rootDir;
+        this.placedDcp = rootDir + "/outputs/placed.dcp";
         this.design = design;
         this.device = device;
     }
