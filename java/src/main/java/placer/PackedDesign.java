@@ -10,13 +10,16 @@ public class PackedDesign {
     List<List<CarryCellGroup>> CARRYChains;
     Map<Pair<String, String>, LUTFFGroup> LUTFFGroups;
     List<List<EDIFHierCellInst>> LUTGroups;
+    List<EDIFHierCellInst> RAMCells;
 
     PackedDesign(
             List<Pair<EDIFHierCellInst, EDIFHierCellInst>> DSPPairs,
+            List<EDIFHierCellInst> RAMCells,
             List<List<CarryCellGroup>> CARRYChains,
             Map<Pair<String, String>, LUTFFGroup> LUTFFGroups,
             List<List<EDIFHierCellInst>> LUTGroups) {
         this.DSPPairs = DSPPairs;
+        this.RAMCells = RAMCells;
         this.CARRYChains = CARRYChains;
         this.LUTFFGroups = LUTFFGroups;
         this.LUTGroups = LUTGroups;

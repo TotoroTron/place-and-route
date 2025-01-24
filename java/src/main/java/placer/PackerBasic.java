@@ -62,22 +62,29 @@ public class PackerBasic extends Packer {
         }
         // List<DSPPair> = findDSPPairs(EDIFCellGroups);
         List<Pair<EDIFHierCellInst, EDIFHierCellInst>> DSPPairs = findDSPPairs(EDIFCellGroups);
+        List<EDIFHierCellInst> RAMCells = EDIFCellGroups.get("RAMB18E1");
         List<List<CarryCellGroup>> CARRYChains = findCarryChains(EDIFCellGroups);
         Map<Pair<String, String>, LUTFFGroup> LUTFFGroups = findLUTFFGroups(EDIFCellGroups);
         List<List<EDIFHierCellInst>> LUTGroups = buildLUTGroups(EDIFCellGroups);
 
-        PackedDesign packedDesign = new PackedDesign(DSPPairs, CARRYChains, LUTFFGroups, LUTGroups);
+        PackedDesign packedDesign = new PackedDesign(DSPPairs, RAMCells, CARRYChains, LUTFFGroups, LUTGroups);
 
         printCARRYChains(CARRYChains);
         printDSPPairs(DSPPairs);
         printLUTFFGroups(LUTFFGroups);
         printLUTGroups(LUTGroups);
 
-        //
-        // return them to packer?
-        //
-        return packedDesign;
+        writer.write("\n\nPrinting remaining cells in EDIFCellGroups...");
+        for (Map.Entry<String, List<EDIFHierCellInst>> entry : EDIFCellGroups.entrySet()) {
+            writer.write("\n\tGroup: " + entry.getKey() + "... (" + entry.getValue().size() + ")");
+            if (entry.getValue().isEmpty())
+                writer.write("\n\t\tEmpty!");
+            for (EDIFHierCellInst ehci : entry.getValue()) {
+                writer.write("\n\t\tUnplaced Cell: " + ehci.getCellType() + ": " + ehci.getFullHierarchicalInstName());
+            }
+        }
 
+        return packedDesign;
     }
 
     private List<Pair<EDIFHierCellInst, EDIFHierCellInst>> findDSPPairs(
@@ -356,11 +363,11 @@ public class PackerBasic extends Packer {
     public void printLUTFFGroups(
             Map<Pair<String, String>, LUTFFGroup> LUTFFGroups)
             throws IOException {
+        writer.write("\n\nPrinting Unique CE-R pairs... (" + LUTFFGroups.size() + ")");
         for (Pair<String, String> pair : LUTFFGroups.keySet()) {
             String s1 = String.format("\n\tCE: %-50s R: %-50s", pair.key(), pair.value());
             writer.write(s1);
         }
-        writer.write("\n\nPrinting Unique CE-R pairs... (" + LUTFFGroups.size() + ")");
         writer.write(
                 "\n\nPrinting Unique CE-R pairs with associated FF Cells... (" + LUTFFGroups.size() + ")");
         for (Map.Entry<Pair<String, String>, LUTFFGroup> entry : LUTFFGroups.entrySet()) {

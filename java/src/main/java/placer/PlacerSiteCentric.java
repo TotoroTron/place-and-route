@@ -47,36 +47,9 @@ public class PlacerSiteCentric extends Placer {
     }
 
     public void placeDesign(PackedDesign packedDesign) throws IOException {
-        // Create a map to group cells by type
-        Map<String, List<EDIFHierCellInst>> EDIFCellGroups = new HashMap<>();
-        Set<String> uniqueEdifCellTypes = new HashSet<>();
-
-        for (EDIFHierCellInst ehci : design.getNetlist().getAllLeafHierCellInstances()) {
-            String cellType = ehci.getInst().getCellType().getName();
-            // group all luts together
-            if (cellType.contains("LUT"))
-                cellType = "LUT";
-            // populate unique cell types
-            if (uniqueEdifCellTypes.add(cellType)) // set returns bool
-                EDIFCellGroups.put(cellType, new ArrayList<>()); // spawn unique group
-            // add cell to corresponding group
-            EDIFCellGroups.get(cellType).add(ehci); // add cell to corresponding group
-        }
-
-        writer.write("\n\nSet of all Unique EDIF Cell Types... (" + uniqueEdifCellTypes.size() + ")");
-        for (String edifCellType : uniqueEdifCellTypes) {
-            writer.write("\n\t" + edifCellType);
-        }
-        writer.write("\nPrinting EDIFCells By Type...");
-        for (Map.Entry<String, List<EDIFHierCellInst>> entry : EDIFCellGroups.entrySet()) {
-            writer.write("\n\n" + entry.getKey() + " Cells (" + entry.getValue().size() + "):");
-            List<EDIFCellInst> cells = entry.getValue().stream()
-                    .map(e -> e.getInst())
-                    .collect(Collectors.toList());
-            printEDIFCellInstList(cells);
-        }
 
         List<Pair<EDIFHierCellInst, EDIFHierCellInst>> DSPPairs = packedDesign.DSPPairs;
+        List<EDIFHierCellInst> RAMCells = packedDesign.RAMCells;
         List<List<CarryCellGroup>> CARRYChains = packedDesign.CARRYChains;
         Map<Pair<String, String>, LUTFFGroup> LUTFFGroups = packedDesign.LUTFFGroups;
         List<List<EDIFHierCellInst>> LUTGroups = packedDesign.LUTGroups;
@@ -87,7 +60,7 @@ public class PlacerSiteCentric extends Placer {
 
         placeCarryChainSites(CARRYChains, occupiedCLBSites);
         placeDSPPairSites(DSPPairs, occupiedDSPSites);
-        placeRAMSites(occupiedRAMSites, EDIFCellGroups);
+        placeRAMSites(RAMCells, occupiedRAMSites);
         placeLUTFFPairGroups(LUTFFGroups, occupiedCLBSites);
         placeLUTGroups(LUTGroups, occupiedCLBSites);
 
@@ -101,17 +74,8 @@ public class PlacerSiteCentric extends Placer {
             writer.write("\n\tSite: " + site.getName());
         }
         writer.write("\nPrinting occupiedRAMSites... (" + occupiedRAMSites.size() + ")");
-        for (Site site : occupiedDSPSites) {
+        for (Site site : occupiedRAMSites) {
             writer.write("\n\tSite: " + site.getName());
-        }
-        writer.write("\n\nPrinting remaining cells in EDIFCellGroups...");
-        for (Map.Entry<String, List<EDIFHierCellInst>> entry : EDIFCellGroups.entrySet()) {
-            writer.write("\n\tGroup: " + entry.getKey() + "... (" + entry.getValue().size() + ")");
-            if (entry.getValue().isEmpty())
-                writer.write("\n\t\tEmpty!");
-            for (EDIFHierCellInst ehci : entry.getValue()) {
-                writer.write("\n\t\tUnplaced Cell: " + ehci.getCellType() + ": " + ehci.getFullHierarchicalInstName());
-            }
         }
 
     } // end placeDesign()
@@ -314,14 +278,14 @@ public class PlacerSiteCentric extends Placer {
         }
     } // end placeDSPPairSites()
 
-    private void placeRAMSites(List<Site> occupiedRAMSites, Map<String, List<EDIFHierCellInst>> EDIFCellGroups)
+    private void placeRAMSites(List<EDIFHierCellInst> RAMCells, List<Site> occupiedRAMSites)
             throws IOException {
         Random rand = new Random();
         List<Site> compatibleSites = new ArrayList<Site>(
                 Arrays.asList(device.getAllCompatibleSites(SiteTypeEnum.RAMB18E1)));
         compatibleSites.removeAll(occupiedRAMSites);
 
-        if (EDIFCellGroups.get("RAMB18E1") == null) {
+        if (RAMCells.isEmpty()) {
             writer.write("\nWARNING: This design has zero RAMB18E1 cells!\n");
             System.out.println("WARNING: This design has zero RAMB18E1 cells!");
             return;
@@ -334,29 +298,29 @@ public class PlacerSiteCentric extends Placer {
                             || Arrays.asList(s.getAlternateSiteTypeEnums()).contains(SiteTypeEnum.RAMB18E1))
                     .collect(Collectors.toList());
 
-            if (EDIFCellGroups.get("RAMB18E1").isEmpty())
+            if (RAMCells.isEmpty())
                 break;
 
-            EDIFHierCellInst cell0 = EDIFCellGroups.get("RAMB18E1").get(0);
+            EDIFHierCellInst cell0 = RAMCells.get(0);
             SiteInst si0 = new SiteInst(cell0.getFullHierarchicalInstName(), design, SiteTypeEnum.RAMB18E1,
                     ramSites.get(0));
             si0.createCell(cell0, si0.getBEL("RAMB18E1"));
             si0.routeSite();
             compatibleSites.remove(ramSites.get(0));
             occupiedRAMSites.add(ramSites.get(0));
-            EDIFCellGroups.get("RAMB18E1").remove(cell0);
+            RAMCells.remove(cell0);
 
-            if (EDIFCellGroups.get("RAMB18E1").isEmpty())
+            if (RAMCells.isEmpty())
                 break;
 
-            EDIFHierCellInst cell1 = EDIFCellGroups.get("RAMB18E1").get(0);
+            EDIFHierCellInst cell1 = RAMCells.get(0);
             SiteInst si1 = new SiteInst(cell1.getFullHierarchicalInstName(), design, SiteTypeEnum.RAMB18E1,
                     ramSites.get(1));
             si1.createCell(cell1, si1.getBEL("RAMB18E1"));
             si1.routeSite();
             compatibleSites.remove(ramSites.get(1));
             occupiedRAMSites.add(ramSites.get(1));
-            EDIFCellGroups.get("RAMB18E1").remove(cell1);
+            RAMCells.remove(cell1);
         }
     } // end placeRAMSites()
 
