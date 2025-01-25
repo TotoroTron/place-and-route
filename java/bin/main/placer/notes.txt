@@ -162,3 +162,33 @@ run: Time (s): cpu = 00:00:03 ; elapsed = 00:00:11 . Memory (MB): peak = 1451.48
 ## exit
 INFO: xsimkernel Simulation Memory Usage: 153156 KB (Peak: 200988 KB), Simulation CPU Usage: 11350 ms
 INFO: [Common 17-206] Exiting xsim at Tue Jan 21 15:28:43 2025...
+
+
+
+
+CRITICAL WARNING: [Constraints 18-4867] Instance fir_filter_inst/sample_re_addr[1]_i_1 was already placed at SLICE_X58Y149, restoration for site SLICE_X100Y149 will be ignored.
+CRITICAL WARNING: [Constraints 18-4524] Site SLICE_X100Y149 of SiteType SLICEM found to have 1 fixed instances but what we read indicates it has 2 fixed instances.
+CRITICAL WARNING: [Constraints 18-4867] Instance fir_filter_inst/sample_re_addr[2]_i_1 was already placed at SLICE_X58Y149, restoration for site SLICE_X49Y149 will be ignored.
+CRITICAL WARNING: [Constraints 18-4867] Instance fir_filter_inst/sample_re_addr[0]_i_1 was already placed at SLICE_X37Y149, restoration for site SLICE_X49Y149 will be ignored.
+CRITICAL WARNING: [Constraints 18-4867] Instance fir_filter_inst/sample_re_addr[3]_i_1 was already placed at SLICE_X58Y149, restoration for site SLICE_X49Y149 will be ignored.
+CRITICAL WARNING: [Constraints 18-4867] Instance fir_filter_inst/sample_re_addr[4]_i_2 was already placed at SLICE_X58Y149, restoration for site SLICE_X49Y149 will be ignored.
+CRITICAL WARNING: [Constraints 18-4524] Site SLICE_X49Y149 of SiteType SLICEL found to have 4 fixed instances but what we read indicates it has 8 fixed instances.
+CRITICAL WARNING: [Designutils 20-2070] During XDEF restore, placement information for 18 sites failed to restore.  Please run placement and routing to complete implementation.
+Reading routing.
+
+
+CRITICAL WARNING: [Constraints 18-4867] Instance fir_filter_inst/sample_re_addr[2]_i_1 was already placed at SLICE_X39Y149, restoration for site SLICE_X96Y149 will be ignored. 
+CRITICAL WARNING: [Constraints 18-4867] Instance fir_filter_inst/sample_re_addr[0]_i_1 was already placed at SLICE_X41Y149, restoration for site SLICE_X96Y149 will be ignored. 
+CRITICAL WARNING: [Constraints 18-4867] Instance fir_filter_inst/sample_re_addr[3]_i_1 was already placed at SLICE_X39Y149, restoration for site SLICE_X96Y149 will be ignored.
+CRITICAL WARNING: [Constraints 18-4867] Instance fir_filter_inst/sample_re_addr[4]_i_2 was already placed at SLICE_X39Y149, restoration for site SLICE_X96Y149 will be ignored.
+CRITICAL WARNING: [Constraints 18-4524] Site SLICE_X96Y149 of SiteType SLICEM found to have 4 fixed instances but what we read indicates it has 8 fixed instances.
+CRITICAL WARNING: [Constraints 18-4867] Instance fir_filter_inst/sample_re_addr[1]_i_1 was already placed at SLICE_X39Y149, restoration for site SLICE_X51Y149 will be ignored.
+CRITICAL WARNING: [Constraints 18-4524] Site SLICE_X51Y149 of SiteType SLICEL found to have 1 fixed instances but what we read indicates it has 2 fixed instances.
+CRITICAL WARNING: [Designutils 20-2070] During XDEF restore, placement information for 18 sites failed to restore.  Please run placement and routing to complete implementation.
+Reading routing.
+
+
+
+
+
+
