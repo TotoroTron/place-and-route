@@ -1,0 +1,121 @@
+Relationship between Site and SiteInst? How BlockPlacer relocates SiteInsts during iterative placement?
+
+Hello, I am currently trying my hand at building a (very crude) general BEL packer and placer as part of my MS technical paper and am using RapidWright to achieve that goal.
+Over the past few months I have learned how to do the following with RapidWright:
+    1) Design entry via Verilog.
+
+    2) synth_design and export dcp via Vivado.
+
+    3) Open the synthesized dcp via RapidWright.
+
+    4) Read the EDIFNetlist, find the set of all unique cellTypes, group EDIFHierCellInsts by their type:
+        Map<String, List<EDIFHierCellInst>> EDIFCellGroups ... ;
+        where the key strings are:
+            DSP48E1, RAMB18E1, CARRY4, FDRE, FDSE, LUT2-6 (all in one group), etc.
+
+    5) Find basic cell patters such as:
+        Carry chains 
+            traverse carry chains by accessing CO[3] and CIN ports, checking if CO[3] is null, if their nets are GND or connected to another CARRY4.
+        DSP cascades
+            access PCOUT ports and check if the nets are connected to other DSP cells.
+        LUT-FF pairs
+            first, find the set of all unique SR-CE net pairs:
+                Map<Pair<String, String>, LUTFFGroup> groups = new HashMap<>();
+                where the keys are unique pairs of net names (probably not robust but currently works for the designs I have).
+            bucket each FF cell into their SR-CE group.
+            every FF cell in their respective group can be packed into the same Site.
+
+    6) Create SiteInsts, si.createCell() using cell patterns found
+        This is where the EDIFHierCellInsts are actually packed into SiteInsts.
+
+    7) Randomly place the SiteInsts onto the device like so:
+
+        protected Site selectCLBSite(List<Site> occupiedCLBSites) {
+            Random rand = new Random();
+            List<SiteTypeEnum> compatibleSiteTypes = new ArrayList<SiteTypeEnum>();
+            compatibleSiteTypes.add(SiteTypeEnum.SLICEL);
+            compatibleSiteTypes.add(SiteTypeEnum.SLICEM);
+            int randIndex = rand.nextInt(compatibleSiteTypes.size());
+            SiteTypeEnum selectedSiteType = compatibleSiteTypes.get(randIndex);
+
+            List<Site> availableSites = new ArrayList<Site>(
+                    Arrays.asList(device.getAllCompatibleSites(selectedSiteType)));
+            availableSites.removeAll(occupiedCLBSites);
+
+            // Random selection.
+            Site selectedSite = availableSites.get(rand.nextInt(availableSites.size()));
+            // Select first available.
+            // Site selectedSite = availableSites.get(0);
+
+            occupiedCLBSites.add(selectedSite);
+
+            return selectedSite;
+        }
+
+        DSP and RAM site selection are also chosen similarly.
+
+    8) IntraSite routing via si.routeSite(). 
+        Manual intervention if the default PIP settings are incorrect via:
+        si.unrouteIntraSiteNet() and si.addSitePIP()
+
+
+Now I've reached a point where I'm not sure how to proceed.
+My goal is to create a basic simulated annealing placer and potentially an analytical placer if time permits.
+This means placing SiteInsts, evaluating a cost function (HPWL), unplacing, moving, and replacing SiteInsts, reevaluating cost function, etc.
+I had hoped to use Site/SiteInst as the atomic unit for placement/movement, however I'm no longer sure that's the best way to proceed or if I'm using SiteInst in a way it's not really meant to be used.
+From what I can understand about BlockPlacer, it treats Module/ModulInst as the atomic unit for placement, however it seems to operate at a higher level of abstraction than what my goal is.
+As in, I can use an off-the-shelf placer/router to implement a design, generate a dcp, open it with RapidWright, instantiate multiple instances of that design via new Module(design) and have BlockPlacer perform simulated annealing to place them in parallel (?).
+
+There are four constructors for SiteInst as specified in the documentation:
+    SiteInst()
+    SiteInst(String name, Design design, SiteTypeEnum type, Site site)
+    SiteInst(String name, Module module, SiteTypeEnum type, Site site)
+    SiteInst(String name, SiteTypeEnum type)
+
+From my understanding, in order to create a new SiteInst() and instill it with Cell-BEL mapping information, a physical device Site must first be specified.
+If I were to unplace() that SiteInst, it would lose its Cell-BEL mapping information.
+
+I was hoping that by using the 4th constructor, SiteInst(String name, SiteTypeEnum type), i could treat them as "floating" SiteInsts where they retain their Cell-BEL mapping information and even intraSite routing information regardless of their placement status.
+
+I looked elsewhere in the RW repository and found this code snippet in RelocationTools.java that seems to confirm this:
+
+    boolean revertPlacement = false;
+    for (Map.Entry<SiteInst, Site> e : oldSite.entrySet()) {
+        Site srcSite = e.getValue();
+        Tile srcTile = srcSite.getTile();
+        Tile destTile = srcTile.getTileXYNeighbor(tileColOffset, tileRowOffset);
+        Site destSite = srcSite.getCorrespondingSite(srcSite.getSiteTypeEnum(), destTile);
+        SiteInst srcSiteInst = e.getKey();
+        assert(destSite != srcSite);
+        if (destTile == null || destSite == null) {
+            String destTileName = srcTile.getRootName() + "_X" + (srcTile.getTileXCoordinate() + tileColOffset)
+                    + "Y" + (srcTile.getTileYCoordinate() + tileRowOffset);
+            System.out.println("ERROR: Failed to move SiteInst '" + srcSiteInst.getName() + "' from Tile '" + srcTile.getName()
+                    + "' to Tile '" + destTileName + "'");
+            revertPlacement = true;
+            continue;
+        }
+        SiteInst destSiteInst = design.getSiteInstFromSite(destSite);
+        if (destSiteInst != null) {
+            if (destSiteInst.getName().startsWith("STATIC_SOURCE")) {
+                destSiteInst.unPlace();
+            } else {
+                System.out.println("ERROR: Failed to move SiteInst '" + srcSiteInst.getName() + "' from Tile '" + srcTile.getName()
+                        + "' to Tile '" + destTile.getName() + "' as it is already occupied");
+                revertPlacement = true;
+                continue;
+            }
+        }
+
+        srcSiteInst.place(destSite);
+    }
+
+From this snippet, it looks like the preffered method is to first place the SiteInst *somewhere*, **anywhere**, then look for another compatible Site, place the SiteInst at a different Site, then unplace the SiteInst from the previous Site.
+It seems that SiteInsts are literally instances of specific Sites on the device, e.g. instance of SLICEL_X5Y10, instance of SLICEL_X20Y50, etc.
+instead of instances of a general SiteTypeEnum.
+Is this because a SLICEL for a 7-Series architecture will be different for some other architecture?
+
+Is the better course of action to start learning about BlockPlacer, Module, ModuleInst, ModuleInstImpl, package individual Sites as single-Site Modules and try to use AbstractBlockPlacer to implement a custom simulated annealer?
+OR
+Try to define a "floating" SiteInst class that can retain information about Cell-BEL and intraSite routing information throughout the placement iterations?
+

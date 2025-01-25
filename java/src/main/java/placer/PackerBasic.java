@@ -36,6 +36,8 @@ public class PackerBasic extends Packer {
         Map<String, List<EDIFHierCellInst>> EDIFCellGroups = new HashMap<>();
         Set<String> uniqueEdifCellTypes = new HashSet<>();
 
+        // Organize EDIFHierCellInsts into "groups", where group labels are:
+        // RAMB18E1, DSP18E1, CARRY4, FDRE, FDSE, LUT (LUT2-6 all in one group), etc.
         for (EDIFHierCellInst ehci : design.getNetlist().getAllLeafHierCellInstances()) {
             String cellType = ehci.getInst().getCellType().getName();
             // group all luts together
@@ -108,6 +110,7 @@ public class PackerBasic extends Packer {
             List<EDIFHierPortInst> pcouts = pcins.stream()
                     .map(cin -> cin.getHierarchicalNet().getLeafHierPortInsts(true, false).get(0))
                     .collect(Collectors.toList());
+            // find the set of DSP cells that connect to the pcout ports
             Set<EDIFHierCellInst> DSP_COUT_SET = pcouts.stream()
                     .map(cout -> cout.getHierarchicalInst().getChild(cout.getPortInst().getCellInst().getName()))
                     .filter(cell -> cell.getInst().getCellName().equals("DSP48E1"))

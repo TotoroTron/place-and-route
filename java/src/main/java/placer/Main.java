@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collection;
 import com.xilinx.rapidwright.design.SiteInst;
+import com.xilinx.rapidwright.edif.EDIFHierCellInst;
 import com.xilinx.rapidwright.device.Site;
 import com.xilinx.rapidwright.device.BEL;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
@@ -84,27 +85,32 @@ public class Main {
     }
 
     public static void testSiteInst() throws IOException {
-        SiteInst si = new SiteInst("SiteInst si = new SiteInst(String name, SiteTypeEnum type)", SiteTypeEnum.SLICEL);
-        System.out.println("\n" + si.getName());
+        Design design = Design.readCheckpoint(synthesizedDcp);
+        Device device = Device.getDevice("xc7z020clg400-1");
 
-        /*
-         * BEL[] bels = si.getBELs();
-         * performing this produces the exception below:
-         *
-         * Exception in thread "main" java.lang.NullPointerException: Cannot invoke
-         * "com.xilinx.rapidwright.device.j.a()" because the return value of
-         * "com.xilinx.rapidwright.design.SiteInst.a()" is null
-         * at com.xilinx.rapidwright.design.SiteInst.getBELs(Unknown Source)
-         */
+        // create a new site inst using constructor:
+        // SiteInst(String name, Design design, SiteTypeEnum type, Site site)
+        SiteInst si = new SiteInst("MySiteInst", design, SiteTypeEnum.SLICEL, device.getSite("X32Y149"));
 
-        // BEL[] bels = si.getBELs();
-        // if (bels == null)
-        // System.out.println("\tBEL[] Null!");
-        // for (BEL bel : Arrays.asList(bels)) {
-        // System.out.println("\tBEL: " + bel.getName());
-        // }
+        BEL[] bels = si.getBELs();
 
-        // SiteInst si = new SiteInst("MySiteInst", design, SiteTypeEnum.SLICEL,
-        // device.getSite("SLICE_X32Y149"));
+        // look at the design EDIF netlist and find just one FDRE ehci
+        EDIFHierCellInst testCell = null;
+        for (EDIFHierCellInst ehci : design.getNetlist().getAllLeafHierCellInstances()) {
+            if (ehci.getCellName().equals("FDRE")) {
+                testCell = ehci;
+                break;
+            }
+        }
+        if (testCell == null) {
+            System.out.println("Could not find a FDRE EDIFHierCellInst from netlist!");
+            return;
+        }
+        System.out.println("Found EDIFHierCellInst: " + testCell.getFullHierarchicalInstName());
+
+        // create a cell in this SiteInst. this necessarily assigns it a BEL, in this
+        // case "AFF"
+        si.createCell(testCell, si.getBEL("AFF"));
+
     };
 }
