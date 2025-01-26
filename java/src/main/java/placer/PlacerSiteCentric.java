@@ -36,6 +36,7 @@ import com.xilinx.rapidwright.device.SitePIP;
 import com.xilinx.rapidwright.device.SitePIPStatus;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 import com.xilinx.rapidwright.device.Tile;
+import com.xilinx.rapidwright.device.TileTypeEnum;
 
 public class PlacerSiteCentric extends Placer {
 
@@ -98,6 +99,36 @@ public class PlacerSiteCentric extends Placer {
         occupiedCLBSites.add(selectedSite);
 
         return selectedSite;
+    }
+
+    protected Site selectDSPSite(List<Site> occupiedDSPSites, List<Tile> occupiedDSPTiles) {
+        Random rand = new Random();
+        List<Site> compatibleSites = new ArrayList<Site>(
+                Arrays.asList(device.getAllCompatibleSites(SiteTypeEnum.DSP48E1)));
+        Site selectedSite = compatibleSites.get(rand.nextInt(compatibleSites.size()));
+        occupiedDSPSites.add(selectedSite);
+        occupiedDSPTiles.add(selectedSite.getTile());
+        return selectedSite;
+    }
+
+    protected Tile selectDSPTile(List<Site> occupiedDSPSites, List<Tile> occupiedDSPTiles) {
+        Random rand = new Random();
+        List<TileTypeEnum> compatibleTileTypes = new ArrayList<TileTypeEnum>();
+        compatibleTileTypes.add(TileTypeEnum.DSP_L);
+        compatibleTileTypes.add(TileTypeEnum.DSP_R);
+        int randIndex = rand.nextInt(compatibleTileTypes.size());
+        TileTypeEnum selectedTileType = compatibleTileTypes.get(randIndex);
+
+        List<Tile> compatibleTiles = device.getAllTiles().stream()
+                .filter(t -> t.getTileTypeEnum().equals(selectedTileType))
+                .collect(Collectors.toList());
+
+        compatibleTiles.removeAll(occupiedDSPTiles);
+        Tile selectedTile = compatibleTiles.get(rand.nextInt(compatibleTiles.size()));
+        occupiedDSPTiles.add(selectedTile);
+        occupiedDSPSites.addAll(Arrays.asList(selectedTile.getSites()));
+
+        return selectedTile;
     }
 
     private Site findCarryChainAnchorSite(SiteTypeEnum selectedSiteType, List<CarryCellGroup> chain)
