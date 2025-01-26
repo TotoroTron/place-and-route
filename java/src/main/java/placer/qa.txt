@@ -1,20 +1,17 @@
 Relationship between Site and SiteInst? How BlockPlacer relocates SiteInsts during iterative placement?
 
-Hello, I am currently trying my hand at building a (very crude) general BEL packer and placer as part of my MS technical paper and am using RapidWright to achieve that goal.
-Over the past few months I have learned how to do the following with RapidWright:
-    1) Design entry via Verilog.
+Hello, I am currently trying my hand at building a (very crude) BEL packer and placer as part of my MS technical paper and am using RapidWright to achieve that goal.
+I have so far learned how to do the following with RapidWright:
 
-    2) synth_design and export dcp via Vivado.
+    1) Design entry via Verilog, synth_design and export dcp via Vivado, open the synthesized dcp in Java via RapidWright.
 
-    3) Open the synthesized dcp via RapidWright.
-
-    4) Read the EDIFNetlist, find the set of all unique cellTypes, group EDIFHierCellInsts by their type:
+    2) Read the EDIFNetlist, find the set of all unique cellTypes, group EDIFHierCellInsts by their type:
         Map<String, List<EDIFHierCellInst>> EDIFCellGroups ... ;
         where the key strings are:
             DSP48E1, RAMB18E1, CARRY4, FDRE, FDSE, LUT2-6 (all in one group), etc.
 
-    5) Find basic cell patters such as:
-        Carry chains 
+    3) Find basic cell patters such as:
+        Carry chains
             traverse carry chains by accessing CO[3] and CIN ports, checking if CO[3] is null, if their nets are GND or connected to another CARRY4.
         DSP cascades
             access PCOUT ports and check if the nets are connected to other DSP cells.
@@ -25,46 +22,20 @@ Over the past few months I have learned how to do the following with RapidWright
             bucket each FF cell into their SR-CE group.
             every FF cell in their respective group can be packed into the same Site.
 
-    6) Create SiteInsts, si.createCell() using cell patterns found
-        This is where the EDIFHierCellInsts are actually packed into SiteInsts.
+    4) Create SiteInsts, map EDIFHierCellInsts onto BELs in accordance to the cell patterns
+        Random placement of SiteInsts by selecting randomly from device.getAllCompatibleSites(SiteTypeEnum. ...);
+        Placement currently only happens once. No simulated annealing or iterative placements or movements.
 
-    7) Randomly place the SiteInsts onto the device like so:
-
-        protected Site selectCLBSite(List<Site> occupiedCLBSites) {
-            Random rand = new Random();
-            List<SiteTypeEnum> compatibleSiteTypes = new ArrayList<SiteTypeEnum>();
-            compatibleSiteTypes.add(SiteTypeEnum.SLICEL);
-            compatibleSiteTypes.add(SiteTypeEnum.SLICEM);
-            int randIndex = rand.nextInt(compatibleSiteTypes.size());
-            SiteTypeEnum selectedSiteType = compatibleSiteTypes.get(randIndex);
-
-            List<Site> availableSites = new ArrayList<Site>(
-                    Arrays.asList(device.getAllCompatibleSites(selectedSiteType)));
-            availableSites.removeAll(occupiedCLBSites);
-
-            // Random selection.
-            Site selectedSite = availableSites.get(rand.nextInt(availableSites.size()));
-            // Select first available.
-            // Site selectedSite = availableSites.get(0);
-
-            occupiedCLBSites.add(selectedSite);
-
-            return selectedSite;
-        }
-
-        DSP and RAM site selection are also chosen similarly.
-
-    8) IntraSite routing via si.routeSite(). 
+    5) IntraSite routing via si.routeSite().
         Manual intervention if the default PIP settings are incorrect via:
         si.unrouteIntraSiteNet() and si.addSitePIP()
 
+    6) Write the placed design checkpoint, open the dcp with Vivado to perform inter-Site routing, perform post-implementation simulation to verify design.
 
-Now I've reached a point where I'm not sure how to proceed.
-My goal is to create a basic simulated annealing placer and potentially an analytical placer if time permits.
-This means placing SiteInsts, evaluating a cost function (HPWL), unplacing, moving, and replacing SiteInsts, reevaluating cost function, etc.
-I had hoped to use Site/SiteInst as the atomic unit for placement/movement, however I'm no longer sure that's the best way to proceed or if I'm using SiteInst in a way it's not really meant to be used.
-From what I can understand about BlockPlacer, it treats Module/ModulInst as the atomic unit for placement, however it seems to operate at a higher level of abstraction than what my goal is.
-As in, I can use an off-the-shelf placer/router to implement a design, generate a dcp, open it with RapidWright, instantiate multiple instances of that design via new Module(design) and have BlockPlacer perform simulated annealing to place them in parallel (?).
+In summary i've made a very bad but working placer.
+My next step is to actually perform simulated annealing by using the packed SiteInsts as the atomic unit of placement and movement.
+This means placing SiteInsts, evaluating a cost function (HPWL), evaluating a stopping criterion, unplacing, moving, and replacing SiteInsts, reevaluating cost function, etc.
+However, I am realizing that I may be using Site/SiteInst in a way not meant to be used.
 
 There are four constructors for SiteInst as specified in the documentation:
     SiteInst()
@@ -72,10 +43,32 @@ There are four constructors for SiteInst as specified in the documentation:
     SiteInst(String name, Module module, SiteTypeEnum type, Site site)
     SiteInst(String name, SiteTypeEnum type)
 
-From my understanding, in order to create a new SiteInst() and instill it with Cell-BEL mapping information, a physical device Site must first be specified.
-If I were to unplace() that SiteInst, it would lose its Cell-BEL mapping information.
+If I were to use the 4th constructor SiteInst(String name, SiteTypeEnum type) and try to perform si.getBELs(), I would get the following exception:
 
-I was hoping that by using the 4th constructor, SiteInst(String name, SiteTypeEnum type), i could treat them as "floating" SiteInsts where they retain their Cell-BEL mapping information and even intraSite routing information regardless of their placement status.
+    Exception in thread "main" java.lang.NullPointerException: Cannot invoke
+    "com.xilinx.rapidwright.device.j.a()" because the return value of
+    "com.xilinx.rapidwright.design.SiteInst.a()" is null
+    at com.xilinx.rapidwright.design.SiteInst.getBELs(Unknown Source)
+
+If I were to use either the 2nd constructor SiteInst(String name, Design design, SiteTypeEnum type, Site site), then perform unplace(), then perform si.getBELs(), I would also get a similar exception.
+
+THIS IS ACTUALLY NOT TRUE!
+    From what I've learned in some small experiments, in order to create a new SiteInst() and instill it with Cell-BEL mapping information, a physical device Site must first be specified.
+    If I unplace a SiteInst, I lose access to its Cell-BEL mappings. << wrong, a siteinst does preserve its bel-cell map if unplaced()
+    I was hoping that by using the 4th constructor, SiteInst(String name, SiteTypeEnum type), i could treat them as "floating" SiteInsts where they retain their Cell-BEL mapping information and even intraSite routing information regardless of their placement status.
+
+    The only catch is, you DO have to construct a SiteInst WITH a physical Site in order to access its BELs.
+    So, you can't use constructor 4 and do si.createCell(ehci, bel);
+
+    Found EDIFHierCellInst: fir_filter_inst/o_dout_valid_reg
+    Exception in thread "main" java.lang.NullPointerException: Cannot invoke "com.xilinx.rapidwright.device.j.a(String)" because the return value of "com.xilinx.rapidwright.design.SiteInst.a()" is null
+            at com.xilinx.rapidwright.design.SiteInst.getBEL(Unknown Source)
+            at placer.Main.testSiteInst1(Main.java:135)
+            at placer.Main.main(Main.java:47)
+
+    So, you have to have an initial placement to pack SiteInsts with BELs.
+
+
 
 I looked elsewhere in the RW repository and found this code snippet in RelocationTools.java that seems to confirm this:
 
@@ -112,8 +105,13 @@ I looked elsewhere in the RW repository and found this code snippet in Relocatio
 
 From this snippet, it looks like the preffered method is to first place the SiteInst *somewhere*, **anywhere**, then look for another compatible Site, place the SiteInst at a different Site, then unplace the SiteInst from the previous Site.
 It seems that SiteInsts are literally instances of specific Sites on the device, e.g. instance of SLICEL_X5Y10, instance of SLICEL_X20Y50, etc.
-instead of instances of a general SiteTypeEnum.
+instead of instances of a generic SiteTypeEnum.
 Is this because a SLICEL for a 7-Series architecture will be different for some other architecture?
+
+
+From what I can understand about BlockPlacer, it treats Module/ModulInst as the atomic unit for placement, however it seems to operate at a higher level of abstraction than what my goal is.
+As in, I can use an off-the-shelf placer/router to implement a design, generate a dcp, open it with RapidWright, instantiate multiple instances of that design via new Module(design) and have BlockPlacer perform simulated annealing to place them in parallel (?).
+
 
 Is the better course of action to start learning about BlockPlacer, Module, ModuleInst, ModuleInstImpl, package individual Sites as single-Site Modules and try to use AbstractBlockPlacer to implement a custom simulated annealer?
 OR
