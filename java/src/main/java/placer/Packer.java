@@ -26,6 +26,8 @@ public abstract class Packer {
     }
 
     public PackedDesign run() throws IOException {
+        writer = new FileWriter(rootDir + "/outputs/printout/" + packerName + ".txt");
+        writer.write(packerName + ".txt");
         PackedDesign packedDesign = packDesign();
         writer.close();
         return packedDesign;

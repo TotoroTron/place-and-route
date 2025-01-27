@@ -60,7 +60,7 @@ public abstract class Placer {
     }
 
     public void run(PackedDesign packedDesign) throws IOException {
-        writer = new FileWriter(rootDir + "outputs/printout/" + placerName + ".txt");
+        writer = new FileWriter(rootDir + "/outputs/printout/" + placerName + ".txt");
         writer.write(placerName + ".txt");
         placeDesign(packedDesign);
         writer.close();
@@ -347,7 +347,7 @@ public abstract class Placer {
     }
 
     public Set<SiteTypeEnum> printUniqueSites() throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "outputs/printout/DeviceUniqueSites.txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "/outputs/printout/DeviceUniqueSites.txt"));
         writer.write("\nPrinting unique sites in the device: ");
         writer.newLine();
         Site[] sites = device.getAllSites();
@@ -394,7 +394,7 @@ public abstract class Placer {
 
     public void printSitesOfType(SiteTypeEnum type) throws IOException {
         BufferedWriter writer = new BufferedWriter(
-                new FileWriter(rootDir + "outputs/printout/AllSites_" + type + ".txt"));
+                new FileWriter(rootDir + "/outputs/printout/AllSites_" + type + ".txt"));
         Site[] sites = device.getAllSitesOfType(type);
 
         writer.write("Found sites of type " + type + "(" + sites.length + ").");

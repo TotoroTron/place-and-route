@@ -4562,3 +4562,83 @@ Jan 27, 2025 2:19:06 PM placer.Main main
 INFO: Begin Placer...
 Jan 27, 2025 2:20:26 PM placer.Main main
 INFO: Begin Placer...
+Jan 27, 2025 5:13:35 PM placer.Main main
+INFO: Begin Placer...
+Jan 27, 2025 5:13:35 PM placer.Main main
+SEVERE: An IOException occurred while configuring the logger.
+java.io.FileNotFoundException: /home/bcheng/workspace/dev/place-and-routeoutputs/printout/PackerBasic.txt (No such file or directory)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:123)
+	at java.base/java.io.FileWriter.<init>(FileWriter.java:66)
+	at placer.PackerBasic.<init>(PackerBasic.java:29)
+	at placer.Main.main(Main.java:52)
+
+Jan 27, 2025 5:14:32 PM placer.Main main
+INFO: Begin Placer...
+Jan 27, 2025 5:14:33 PM placer.Main main
+SEVERE: An IOException occurred while configuring the logger.
+java.io.FileNotFoundException: /home/bcheng/workspace/dev/place-and-routeoutputs/printout/PackerBasic.txt (No such file or directory)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:123)
+	at java.base/java.io.FileWriter.<init>(FileWriter.java:66)
+	at placer.PackerBasic.<init>(PackerBasic.java:29)
+	at placer.Main.main(Main.java:52)
+
+Jan 27, 2025 5:22:22 PM placer.Main main
+INFO: Begin Placer...
+Jan 27, 2025 5:22:23 PM placer.Main main
+SEVERE: An IOException occurred while configuring the logger.
+java.io.FileNotFoundException: /home/bcheng/workspace/dev/place-and-routeoutputs/printout/PackerBasic.txt (No such file or directory)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:123)
+	at java.base/java.io.FileWriter.<init>(FileWriter.java:66)
+	at placer.Packer.run(Packer.java:29)
+	at placer.Main.main(Main.java:53)
+
+Jan 27, 2025 5:22:47 PM placer.Main main
+INFO: Begin Placer...
+Jan 27, 2025 5:23:46 PM placer.Main main
+INFO: Begin Placer...
+Jan 27, 2025 5:25:49 PM placer.Main main
+INFO: Begin Placer...
+Jan 27, 2025 5:25:50 PM placer.Main main
+SEVERE: An IOException occurred while configuring the logger.
+java.io.FileNotFoundException: /home/bcheng/workspace/dev/place-and-routeoutputs/printout/DeviceUniqueSites.txt (No such file or directory)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:123)
+	at java.base/java.io.FileWriter.<init>(FileWriter.java:66)
+	at placer.Placer.printUniqueSites(Placer.java:350)
+	at placer.Main.main(Main.java:56)
+
+Jan 27, 2025 5:28:14 PM placer.Main main
+INFO: Begin Placer...
+Jan 27, 2025 5:47:02 PM placer.Main main
+INFO: Begin Placer...
+Jan 27, 2025 5:52:01 PM placer.Main main
+INFO: Begin Placer...
+Jan 27, 2025 5:53:58 PM placer.Main main
+INFO: Begin Placer...
+Jan 27, 2025 5:54:06 PM placer.Main main
+INFO: Begin Placer...
+Jan 27, 2025 5:57:23 PM placer.Main main
+INFO: Begin Placer...
+Jan 27, 2025 6:00:44 PM placer.Main main
+INFO: Begin Placer...
+Jan 27, 2025 6:07:53 PM placer.Main main
+INFO: Begin Placer...
+Jan 27, 2025 6:08:32 PM placer.Main main
+INFO: Begin Placer...
+Jan 27, 2025 6:12:46 PM placer.Main main
+INFO: Begin Placer...
+Jan 27, 2025 6:13:24 PM placer.Main main
+INFO: Begin Placer...
+Jan 27, 2025 6:15:44 PM placer.Main main
+INFO: Begin Placer...

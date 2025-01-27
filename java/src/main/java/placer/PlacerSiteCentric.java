@@ -50,6 +50,10 @@ public class PlacerSiteCentric extends Placer {
     public PlacerSiteCentric(String rootDir, Design design, Device device, ClockRegion region) throws IOException {
         super(rootDir, design, device);
         placerName = "PlacerSiteCentric";
+        deviceSiteTypes = new HashSet<>();
+        occupiedSites = new HashMap<>();
+        availableSites = new HashMap<>();
+        regionConstraint = region;
         initAvailableSites();
     }
 
@@ -60,6 +64,7 @@ public class PlacerSiteCentric extends Placer {
             if (deviceSiteTypes.add(siteType)) { // if new unique type is found
                 List<Site> compatibleSites = new ArrayList<>(Arrays.asList(device.getAllSitesOfType(siteType)));
                 if (regionConstraint != null) {
+                    System.out.println("Constraint: " + regionConstraint.getName());
                     compatibleSites.stream()
                             .filter(s -> s.getClockRegion() == regionConstraint)
                             .collect(Collectors.toList());
@@ -68,10 +73,15 @@ public class PlacerSiteCentric extends Placer {
                 occupiedSites.put(siteType, new ArrayList<>());
             }
         }
+
+        Set<ClockRegion> clockregions = new HashSet<>();
+        for (Site site : availableSites.get(SiteTypeEnum.SLICEL)) {
+            if (clockregions.add(site.getClockRegion()))
+                System.out.println(site.getClockRegion().getName());
+        }
     }
 
     public void placeDesign(PackedDesign packedDesign) throws IOException {
-
         List<Pair<EDIFHierCellInst, EDIFHierCellInst>> DSPPairs = packedDesign.DSPPairs;
         List<EDIFHierCellInst> RAMCells = packedDesign.RAMCells;
         List<List<CarryCellGroup>> CARRYChains = packedDesign.CARRYChains;
@@ -82,11 +92,11 @@ public class PlacerSiteCentric extends Placer {
         List<Site> occupiedRAMSites = new ArrayList<>();
         List<Site> occupiedCLBSites = new ArrayList<>();
 
-        placeCarryChainSites(CARRYChains, occupiedCLBSites);
+        placeCarryChainSites(CARRYChains);
         placeDSPPairSites(DSPPairs, occupiedDSPSites);
         placeRAMSites(RAMCells, occupiedRAMSites);
-        placeLUTFFPairGroups(LUTFFGroups, occupiedCLBSites);
-        placeLUTGroups(LUTGroups, occupiedCLBSites);
+        placeLUTFFPairGroups(LUTFFGroups);
+        placeLUTGroups(LUTGroups);
 
         writer.write("\n\nALL CELL PATTERNS HAVE BEEN PLACED...");
         writer.write("\n\nPrinting occupiedCLBSites... (" + occupiedCLBSites.size() + ")");
@@ -101,7 +111,6 @@ public class PlacerSiteCentric extends Placer {
         for (Site site : occupiedRAMSites) {
             writer.write("\n\tSite: " + site.getName());
         }
-
     } // end placeDesign()
 
     protected SiteTypeEnum selectCLBSiteType() {
@@ -132,12 +141,16 @@ public class PlacerSiteCentric extends Placer {
         Site selectedSite = null;
         int attempts = 0;
         while (true) {
-            selectedSite = availableSites.get(selectedSiteType).get(rand.nextInt(availableSites.size()));
+            int numSites = availableSites.get(selectedSiteType).size();
+            selectedSite = availableSites.get(selectedSiteType).get(rand.nextInt(numSites));
             int x = selectedSite.getInstanceX();
             int y = selectedSite.getInstanceY();
             for (int i = 0; i < chainSize; i++) {
                 String name = "SLICE_X" + x + "Y" + (y + i);
-                if (design.getSiteInstFromSiteName(name) == null || device.getSite(name) != null) {
+                if (design.getSiteInstFromSiteName(name) != null
+                        || device.getSite(name) == null
+                        || selectedSite.getClockRegion() != regionConstraint) {
+                    validAnchor = false;
                     break;
                 }
                 validAnchor = true;
@@ -151,7 +164,6 @@ public class PlacerSiteCentric extends Placer {
                 break;
         }
         return selectedSite;
-
     }
 
     protected Site selectBRAMSite(List<Site> occupiedBRAMSites) {
@@ -300,28 +312,15 @@ public class PlacerSiteCentric extends Placer {
         // intervention is required
         rerouteCarryNets(si);
         rerouteFFSrCeNets(si);
-
     } // end placeCarrySite()
 
-    private void placeCarryChainSites(List<List<CarryCellGroup>> EDIFCarryChains,
-            List<Site> occupiedCLBSites)
+    private void placeCarryChainSites(List<List<CarryCellGroup>> EDIFCarryChains)
             throws IOException {
         writer.write("\n\nPlacing carry chains... (" + EDIFCarryChains.size() + ")");
         for (List<CarryCellGroup> chain : EDIFCarryChains) {
             writer.write("\n\t\tchain size: " + chain.size());
-            Random rand = new Random();
-            List<SiteTypeEnum> compatibleSiteTypes = new ArrayList<SiteTypeEnum>();
-            compatibleSiteTypes.add(SiteTypeEnum.SLICEL);
-            compatibleSiteTypes.add(SiteTypeEnum.SLICEM);
-
-            int randIndex = rand.nextInt(compatibleSiteTypes.size());
-            SiteTypeEnum selectedSiteType = compatibleSiteTypes.get(randIndex);
-            Site anchorSite = findCarryChainAnchorSite(selectedSiteType, chain);
-            if (anchorSite == null) {
-                System.out.println("\nWARNING: COULD NOT PLACE CARRY CHAIN ANCHOR!\n");
-                writer.write("\nWARNING: COULD NOT PLACE CARRY CHAIN ANCHOR!");
-                break;
-            }
+            Site anchorSite = selectCarryAnchorSite(chain.size());
+            SiteTypeEnum selectedSiteType = anchorSite.getSiteTypeEnum();
             for (int i = 0; i < chain.size(); i++) {
                 Site site = (i == 0) ? anchorSite
                         : device.getSite("SLICE_X" + anchorSite.getInstanceX() + "Y" + (anchorSite.getInstanceY() + i));
@@ -333,14 +332,14 @@ public class PlacerSiteCentric extends Placer {
                     CINNet.removePin(si.getSitePinInst("CIN"));
                     si.addSitePIP(si.getSitePIP("PRECYINIT", "0"));
                 }
-                occupiedCLBSites.add(site);
+                occupiedSites.get(selectedSiteType).add(site);
+                availableSites.get(selectedSiteType).remove(site);
             }
         } // end for (List<EDIFCellInst> chain : EDIFCarryChains)
     } // end placeCarryChainSites()
 
     private void placeDSPPairSites(List<Pair<EDIFHierCellInst, EDIFHierCellInst>> EDIFDSPPairs,
             List<Site> occupiedDSPSites) throws IOException {
-
         Random rand = new Random();
         List<Site> compatibleSites = new ArrayList<Site>(
                 Arrays.asList(device.getAllCompatibleSites(SiteTypeEnum.DSP48E1)));
@@ -350,18 +349,15 @@ public class PlacerSiteCentric extends Placer {
             List<Site> dspSitePair = Arrays.asList(selectedTile.getSites()).stream()
                     .filter(s -> s.getSiteTypeEnum().equals(SiteTypeEnum.DSP48E1))
                     .collect(Collectors.toList());
-
             // DSP supplying COUT MUST be placed first!
             SiteInst si0 = new SiteInst(
                     pair.key().getFullHierarchicalInstName(), design, SiteTypeEnum.DSP48E1, dspSitePair.get(0));
             si0.createCell(pair.key(), si0.getBEL("DSP48E1"));
             si0.routeSite();
-
             SiteInst si1 = new SiteInst(
                     pair.value().getFullHierarchicalInstName(), design, SiteTypeEnum.DSP48E1, dspSitePair.get(1));
             si1.createCell(pair.value(), si1.getBEL("DSP48E1"));
             si1.routeSite();
-
             compatibleSites.remove(dspSitePair.get(0));
             compatibleSites.remove(dspSitePair.get(1));
             occupiedDSPSites.add(dspSitePair.get(0));
@@ -416,8 +412,7 @@ public class PlacerSiteCentric extends Placer {
     } // end placeRAMSites()
 
     private void placeLUTFFPairGroups(
-            Map<Pair<String, String>, LUTFFGroup> LUTFFEnableResetGroups,
-            List<Site> occupiedCLBSites) throws IOException {
+            Map<Pair<String, String>, LUTFFGroup> LUTFFEnableResetGroups) throws IOException {
         writer.write("\n\nPlacing LUT-FF Pair Groups... (" + LUTFFEnableResetGroups.size() + ")");
 
         for (Map.Entry<Pair<String, String>, LUTFFGroup> entry : LUTFFEnableResetGroups.entrySet()) {
@@ -429,7 +424,7 @@ public class PlacerSiteCentric extends Placer {
 
             for (List<Pair<EDIFHierCellInst, EDIFHierCellInst>> LUTFFPairs : splitIntoGroups(lutffgroup.group(), 4)) {
                 Site selectedSite = selectCLBSite();
-                occupiedCLBSites.add(selectedSite);
+                SiteTypeEnum selectedSiteType = selectedSite.getSiteTypeEnum();
                 SiteInst si = design.createSiteInst(selectedSite);
                 for (int i = 0; i < LUTFFPairs.size(); i++) {
                     EDIFHierCellInst ff = LUTFFPairs.get(i).value();
@@ -466,8 +461,7 @@ public class PlacerSiteCentric extends Placer {
     } // end placeLUTFFPairGroups()
 
     private void placeStackedLUTGroups(
-            Pair<List<List<EDIFHierCellInst>>, List<List<EDIFHierCellInst>>> stackedLUTGroups,
-            List<Site> occupiedCLBSites) {
+            Pair<List<List<EDIFHierCellInst>>, List<List<EDIFHierCellInst>>> stackedLUTGroups) {
         for (List<EDIFHierCellInst> group : stackedLUTGroups.key()) {
             Site selectedSite = selectCLBSite();
             SiteInst si = design.createSiteInst(selectedSite);
@@ -477,7 +471,7 @@ public class PlacerSiteCentric extends Placer {
             si.routeSite();
         }
         for (List<EDIFHierCellInst> group : stackedLUTGroups.value()) {
-            Site selectedSite = selectCLBSite(occupiedCLBSites);
+            Site selectedSite = selectCLBSite();
             SiteInst si = design.createSiteInst(selectedSite);
             for (int i = 0; i < group.size(); i++) {
                 si.createCell(group.get(i), si.getBEL(LUT6_BELS[i]));
@@ -486,10 +480,9 @@ public class PlacerSiteCentric extends Placer {
         }
     }
 
-    private void placeLUTGroups(List<List<EDIFHierCellInst>> LUTGroups,
-            List<Site> occupiedCLBSites) {
+    private void placeLUTGroups(List<List<EDIFHierCellInst>> LUTGroups) {
         for (List<EDIFHierCellInst> group : LUTGroups) {
-            Site selectedSite = selectCLBSite(occupiedCLBSites);
+            Site selectedSite = selectCLBSite();
             SiteInst si = design.createSiteInst(selectedSite);
             for (int i = 0; i < group.size(); i++) {
                 si.createCell(group.get(i), si.getBEL(LUT6_BELS[i]));
@@ -504,36 +497,4 @@ public class PlacerSiteCentric extends Placer {
         }
     }
 
-    private void placeVCCGND(Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
-        List<EDIFHierCellInst> VCCCells = EDIFCellGroups.get("VCC");
-        writer.write("\n\nPrinting VCC Cells...");
-        for (EDIFHierCellInst ehci : VCCCells) {
-            Cell cell = design.createCell(ehci.getFullHierarchicalInstName(), ehci.getInst());
-            Map<SiteTypeEnum, Set<String>> compatiblePlacements = cell.getCompatiblePlacements(device);
-            if (compatiblePlacements.isEmpty()) {
-                writer.write("\n\tVCC Cell: " + cell.getName() + " has no compatible placements!");
-            } else {
-                writer.write("\n\tVCC Cell: " + cell.getName());
-                for (Map.Entry<SiteTypeEnum, Set<String>> entry : compatiblePlacements.entrySet()) {
-                    writer.write("\n\t\tSiteType: " + entry.getKey());
-                }
-            }
-        }
-    }
-
 } // end class
-
-// Pair<List<List<EDIFHierCellInst>>, List<List<EDIFHierCellInst>>>
-// stackedLUTGroups = buildStackedLUTGroups(
-// EDIFCellGroups);
-// placeStackedLUTGroups(stackedLUTGroups, occupiedCLBSites);
-
-// List<SiteTypeEnum> unroutableSites = new ArrayList<>();
-// unroutableSites.add(SiteTypeEnum.ILOGICE2);
-// unroutableSites.add(SiteTypeEnum.ILOGICE3);
-// unroutableSites.add(SiteTypeEnum.OLOGICE2);
-// unroutableSites.add(SiteTypeEnum.OLOGICE3);
-// unroutableSites.add(SiteTypeEnum.IOB33);
-// unroutableSites.add(SiteTypeEnum.IOB18);
-// unroutableSites.add(SiteTypeEnum.IPAD);
-// unroutableSites.add(SiteTypeEnum.OPAD);

@@ -26,8 +26,6 @@ public class PackerBasic extends Packer {
     public PackerBasic(String rootDir, Design design, Device device) throws IOException {
         super(rootDir, design, device);
         packerName = "PackerBasic";
-        writer = new FileWriter(rootDir + "outputs/printout/" + packerName + ".txt");
-        writer.write(packerName + ".txt");
     }
 
     public PackedDesign packDesign() throws IOException {

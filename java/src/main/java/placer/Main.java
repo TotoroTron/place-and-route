@@ -52,7 +52,7 @@ public class Main {
             PackerBasic BPacker = new PackerBasic(rootDir, design, device);
             PackedDesign packedDesign = BPacker.run();
 
-            PlacerSiteCentric SCPlacer = new PlacerSiteCentric(rootDir, design, device, device.getClockRegion("X1Y2"));
+            PlacerSiteCentric SCPlacer = new PlacerSiteCentric(rootDir, design, device, device.getClockRegion(1, 2));
             SCPlacer.printUniqueSites();
             SCPlacer.run(packedDesign);
 
