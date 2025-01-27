@@ -37,14 +37,37 @@ import com.xilinx.rapidwright.device.SitePIPStatus;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 import com.xilinx.rapidwright.device.Tile;
 import com.xilinx.rapidwright.device.TileTypeEnum;
+import com.xilinx.rapidwright.device.SLR;
+import com.xilinx.rapidwright.device.ClockRegion;
 
 public class PlacerSiteCentric extends Placer {
 
-    public PlacerSiteCentric(String rootDir, Design design, Device device) throws IOException {
+    ClockRegion regionConstraint;
+    Set<SiteTypeEnum> deviceSiteTypes;
+    Map<SiteTypeEnum, List<Site>> occupiedSites;
+    Map<SiteTypeEnum, List<Site>> availableSites;
+
+    public PlacerSiteCentric(String rootDir, Design design, Device device, ClockRegion region) throws IOException {
         super(rootDir, design, device);
         placerName = "PlacerSiteCentric";
-        writer = new FileWriter(rootDir + "outputs/printout/" + placerName + ".txt");
-        writer.write(placerName + ".txt");
+        initAvailableSites();
+    }
+
+    private void initAvailableSites() {
+        Site[] deviceSites = device.getAllSites();
+        for (Site site : deviceSites) {
+            SiteTypeEnum siteType = site.getSiteTypeEnum();
+            if (deviceSiteTypes.add(siteType)) { // if new unique type is found
+                List<Site> compatibleSites = new ArrayList<>(Arrays.asList(device.getAllSitesOfType(siteType)));
+                if (regionConstraint != null) {
+                    compatibleSites.stream()
+                            .filter(s -> s.getClockRegion() == regionConstraint)
+                            .collect(Collectors.toList());
+                }
+                availableSites.put(siteType, compatibleSites);
+                occupiedSites.put(siteType, new ArrayList<>());
+            }
+        }
     }
 
     public void placeDesign(PackedDesign packedDesign) throws IOException {
@@ -81,23 +104,63 @@ public class PlacerSiteCentric extends Placer {
 
     } // end placeDesign()
 
-    protected Site selectCLBSite(List<Site> occupiedCLBSites) {
+    protected SiteTypeEnum selectCLBSiteType() {
         Random rand = new Random();
         List<SiteTypeEnum> compatibleSiteTypes = new ArrayList<SiteTypeEnum>();
-        compatibleSiteTypes.add(SiteTypeEnum.SLICEL);
-        compatibleSiteTypes.add(SiteTypeEnum.SLICEM);
-        int randIndex = rand.nextInt(compatibleSiteTypes.size());
-        SiteTypeEnum selectedSiteType = compatibleSiteTypes.get(randIndex);
+        if (deviceSiteTypes.contains(SiteTypeEnum.SLICEL))
+            compatibleSiteTypes.add(SiteTypeEnum.SLICEL);
+        if (deviceSiteTypes.contains(SiteTypeEnum.SLICEM))
+            compatibleSiteTypes.add(SiteTypeEnum.SLICEM);
+        if (compatibleSiteTypes.isEmpty())
+            System.out.println("ERROR: device contains no SLICEL or SLICEM!");
+        SiteTypeEnum selectedSiteType = compatibleSiteTypes.get(rand.nextInt(compatibleSiteTypes.size()));
+        return selectedSiteType;
+    }
 
-        List<Site> availableSites = new ArrayList<Site>(
-                Arrays.asList(device.getAllCompatibleSites(selectedSiteType)));
-        availableSites.removeAll(occupiedCLBSites);
+    protected Site selectCLBSite() {
+        Random rand = new Random();
+        SiteTypeEnum selectedSiteType = selectCLBSiteType();
+        Site selectedSite = availableSites.get(selectedSiteType).remove(rand.nextInt(availableSites.size()));
+        occupiedSites.get(selectedSiteType).add(selectedSite);
+        return selectedSite;
+    }
 
-        // Site selectedSite = availableSites.get(rand.nextInt(availableSites.size()));
-        Site selectedSite = availableSites.get(0);
+    protected Site selectCarryAnchorSite(int chainSize) {
+        Random rand = new Random();
+        SiteTypeEnum selectedSiteType = selectCLBSiteType();
+        boolean validAnchor = false;
+        Site selectedSite = null;
+        int attempts = 0;
+        while (true) {
+            selectedSite = availableSites.get(selectedSiteType).get(rand.nextInt(availableSites.size()));
+            int x = selectedSite.getInstanceX();
+            int y = selectedSite.getInstanceY();
+            for (int i = 0; i < chainSize; i++) {
+                String name = "SLICE_X" + x + "Y" + (y + i);
+                if (design.getSiteInstFromSiteName(name) == null || device.getSite(name) != null) {
+                    break;
+                }
+                validAnchor = true;
+            }
+            attempts++;
+            if (attempts > 1000) {
+                System.out.println("ERROR: Could not find carry chain anchor after 1000 attempts!");
+                break;
+            }
+            if (validAnchor)
+                break;
+        }
+        return selectedSite;
 
-        occupiedCLBSites.add(selectedSite);
+    }
 
+    protected Site selectBRAMSite(List<Site> occupiedBRAMSites) {
+        Random rand = new Random();
+        List<Site> compatibleSites = new ArrayList<Site>(
+                Arrays.asList(device.getAllCompatibleSites(SiteTypeEnum.RAMB18E1)));
+        compatibleSites.removeAll(occupiedBRAMSites);
+        Site selectedSite = compatibleSites.get(rand.nextInt(compatibleSites.size()));
+        occupiedBRAMSites.add(selectedSite);
         return selectedSite;
     }
 
@@ -118,16 +181,13 @@ public class PlacerSiteCentric extends Placer {
         compatibleTileTypes.add(TileTypeEnum.DSP_R);
         int randIndex = rand.nextInt(compatibleTileTypes.size());
         TileTypeEnum selectedTileType = compatibleTileTypes.get(randIndex);
-
         List<Tile> compatibleTiles = device.getAllTiles().stream()
                 .filter(t -> t.getTileTypeEnum().equals(selectedTileType))
                 .collect(Collectors.toList());
-
         compatibleTiles.removeAll(occupiedDSPTiles);
         Tile selectedTile = compatibleTiles.get(rand.nextInt(compatibleTiles.size()));
         occupiedDSPTiles.add(selectedTile);
         occupiedDSPSites.addAll(Arrays.asList(selectedTile.getSites()));
-
         return selectedTile;
     }
 
@@ -250,7 +310,6 @@ public class PlacerSiteCentric extends Placer {
         for (List<CarryCellGroup> chain : EDIFCarryChains) {
             writer.write("\n\t\tchain size: " + chain.size());
             Random rand = new Random();
-            CarryCellGroup anchorGroup = chain.get(0);
             List<SiteTypeEnum> compatibleSiteTypes = new ArrayList<SiteTypeEnum>();
             compatibleSiteTypes.add(SiteTypeEnum.SLICEL);
             compatibleSiteTypes.add(SiteTypeEnum.SLICEM);
@@ -281,6 +340,7 @@ public class PlacerSiteCentric extends Placer {
 
     private void placeDSPPairSites(List<Pair<EDIFHierCellInst, EDIFHierCellInst>> EDIFDSPPairs,
             List<Site> occupiedDSPSites) throws IOException {
+
         Random rand = new Random();
         List<Site> compatibleSites = new ArrayList<Site>(
                 Arrays.asList(device.getAllCompatibleSites(SiteTypeEnum.DSP48E1)));
@@ -368,7 +428,7 @@ public class PlacerSiteCentric extends Placer {
             LUTFFGroup lutffgroup = entry.getValue();
 
             for (List<Pair<EDIFHierCellInst, EDIFHierCellInst>> LUTFFPairs : splitIntoGroups(lutffgroup.group(), 4)) {
-                Site selectedSite = selectCLBSite(occupiedCLBSites);
+                Site selectedSite = selectCLBSite();
                 occupiedCLBSites.add(selectedSite);
                 SiteInst si = design.createSiteInst(selectedSite);
                 for (int i = 0; i < LUTFFPairs.size(); i++) {
@@ -409,7 +469,7 @@ public class PlacerSiteCentric extends Placer {
             Pair<List<List<EDIFHierCellInst>>, List<List<EDIFHierCellInst>>> stackedLUTGroups,
             List<Site> occupiedCLBSites) {
         for (List<EDIFHierCellInst> group : stackedLUTGroups.key()) {
-            Site selectedSite = selectCLBSite(occupiedCLBSites);
+            Site selectedSite = selectCLBSite();
             SiteInst si = design.createSiteInst(selectedSite);
             for (int i = 0; i < group.size(); i++) {
                 si.createCell(group.get(i), si.getBEL(LUT5_BELS[i]));

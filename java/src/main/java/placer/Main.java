@@ -44,15 +44,17 @@ public class Main {
 
             Design design = Design.readCheckpoint(synthesizedDcp);
             Device device = Device.getDevice("xc7z020clg400-1");
-            testSiteInst1();
+            System.out.println("FSR ROWS: " + device.getNumOfClockRegionRows() + ", FSR COLS: "
+                    + device.getNumOfClockRegionsColumns());
+            // testSiteInst1();
             // testModuleInst();
 
-            // PackerBasic BPacker = new PackerBasic(rootDir, design, device);
-            // PackedDesign packedDesign = BPacker.run();
+            PackerBasic BPacker = new PackerBasic(rootDir, design, device);
+            PackedDesign packedDesign = BPacker.run();
 
-            // PlacerSiteCentric SCPlacer = new PlacerSiteCentric(rootDir, design, device);
-            // SCPlacer.printUniqueSites();
-            // SCPlacer.run(packedDesign);
+            PlacerSiteCentric SCPlacer = new PlacerSiteCentric(rootDir, design, device, device.getClockRegion("X1Y2"));
+            SCPlacer.printUniqueSites();
+            SCPlacer.run(packedDesign);
 
             // ViewVivadoCheckpoint ViewVivado = new ViewVivadoCheckpoint();
             // ViewVivado.run();

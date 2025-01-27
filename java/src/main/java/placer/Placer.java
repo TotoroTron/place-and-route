@@ -60,6 +60,8 @@ public abstract class Placer {
     }
 
     public void run(PackedDesign packedDesign) throws IOException {
+        writer = new FileWriter(rootDir + "outputs/printout/" + placerName + ".txt");
+        writer.write(placerName + ".txt");
         placeDesign(packedDesign);
         writer.close();
         design.writeCheckpoint(placedDcp);

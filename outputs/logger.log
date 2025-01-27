@@ -4545,3 +4545,20 @@ Jan 26, 2025 4:14:16 PM placer.Main main
 INFO: Begin Placer...
 Jan 26, 2025 4:15:56 PM placer.Main main
 INFO: Begin Placer...
+Jan 27, 2025 12:03:33 PM placer.Main main
+INFO: Begin Placer...
+Jan 27, 2025 12:03:58 PM placer.Main main
+SEVERE: An IOException occurred while configuring the logger.
+java.io.FileNotFoundException: /home/bcheng/workspace/dev/place-and-routeoutputs/printout/PackerBasic.txt (No such file or directory)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:123)
+	at java.base/java.io.FileWriter.<init>(FileWriter.java:66)
+	at placer.PackerBasic.<init>(PackerBasic.java:29)
+	at placer.Main.main(Main.java:50)
+
+Jan 27, 2025 2:19:06 PM placer.Main main
+INFO: Begin Placer...
+Jan 27, 2025 2:20:26 PM placer.Main main
+INFO: Begin Placer...
