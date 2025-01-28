@@ -26,6 +26,7 @@ import com.xilinx.rapidwright.device.Device;
 import com.xilinx.rapidwright.device.Site;
 import com.xilinx.rapidwright.device.BEL;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
+import com.xilinx.rapidwright.device.ClockRegion;
 
 public class Main {
 
@@ -51,8 +52,10 @@ public class Main {
 
             PackerBasic BPacker = new PackerBasic(rootDir, design, device);
             PackedDesign packedDesign = BPacker.run();
+            ClockRegion region = device.getClockRegion("X1Y2");
+            System.out.println("Main: Region constraint: " + region.getName());
 
-            PlacerSiteCentric SCPlacer = new PlacerSiteCentric(rootDir, design, device, device.getClockRegion(1, 2));
+            PlacerSiteCentric SCPlacer = new PlacerSiteCentric(rootDir, design, device, device.getClockRegion("X1Y2"));
             SCPlacer.printUniqueSites();
             SCPlacer.run(packedDesign);
 

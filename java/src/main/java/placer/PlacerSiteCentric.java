@@ -42,10 +42,10 @@ import com.xilinx.rapidwright.device.ClockRegion;
 
 public class PlacerSiteCentric extends Placer {
 
-    ClockRegion regionConstraint;
-    Set<SiteTypeEnum> deviceSiteTypes;
-    Map<SiteTypeEnum, List<Site>> occupiedSites;
-    Map<SiteTypeEnum, List<Site>> availableSites;
+    protected ClockRegion regionConstraint;
+    protected Set<SiteTypeEnum> deviceSiteTypes;
+    protected Map<SiteTypeEnum, List<Site>> occupiedSites;
+    protected Map<SiteTypeEnum, List<Site>> availableSites;
 
     public PlacerSiteCentric(String rootDir, Design design, Device device, ClockRegion region) throws IOException {
         super(rootDir, design, device);
@@ -64,20 +64,14 @@ public class PlacerSiteCentric extends Placer {
             if (deviceSiteTypes.add(siteType)) { // if new unique type is found
                 List<Site> compatibleSites = new ArrayList<>(Arrays.asList(device.getAllSitesOfType(siteType)));
                 if (regionConstraint != null) {
-                    System.out.println("Constraint: " + regionConstraint.getName());
-                    compatibleSites.stream()
-                            .filter(s -> s.getClockRegion() == regionConstraint)
+                    compatibleSites = compatibleSites.stream()
+                            .filter(s -> s.getClockRegion() != null)
+                            .filter(s -> s.getClockRegion().equals(regionConstraint))
                             .collect(Collectors.toList());
                 }
                 availableSites.put(siteType, compatibleSites);
                 occupiedSites.put(siteType, new ArrayList<>());
             }
-        }
-
-        Set<ClockRegion> clockregions = new HashSet<>();
-        for (Site site : availableSites.get(SiteTypeEnum.SLICEL)) {
-            if (clockregions.add(site.getClockRegion()))
-                System.out.println(site.getClockRegion().getName());
         }
     }
 
@@ -129,7 +123,8 @@ public class PlacerSiteCentric extends Placer {
     protected Site selectCLBSite() {
         Random rand = new Random();
         SiteTypeEnum selectedSiteType = selectCLBSiteType();
-        Site selectedSite = availableSites.get(selectedSiteType).remove(rand.nextInt(availableSites.size()));
+        int randRange = availableSites.get(selectedSiteType).size();
+        Site selectedSite = availableSites.get(selectedSiteType).remove(rand.nextInt(randRange));
         occupiedSites.get(selectedSiteType).add(selectedSite);
         return selectedSite;
     }
@@ -141,8 +136,8 @@ public class PlacerSiteCentric extends Placer {
         Site selectedSite = null;
         int attempts = 0;
         while (true) {
-            int numSites = availableSites.get(selectedSiteType).size();
-            selectedSite = availableSites.get(selectedSiteType).get(rand.nextInt(numSites));
+            int randRange = availableSites.get(selectedSiteType).size();
+            selectedSite = availableSites.get(selectedSiteType).get(rand.nextInt(randRange));
             int x = selectedSite.getInstanceX();
             int y = selectedSite.getInstanceY();
             for (int i = 0; i < chainSize; i++) {

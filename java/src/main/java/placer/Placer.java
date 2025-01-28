@@ -35,6 +35,7 @@ import com.xilinx.rapidwright.device.Site;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 import com.xilinx.rapidwright.device.BEL;
 import com.xilinx.rapidwright.device.BELPin;
+import com.xilinx.rapidwright.device.ClockRegion;
 
 public abstract class Placer {
     protected String placerName;
