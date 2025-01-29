@@ -2,7 +2,6 @@
 package placer;
 
 import java.util.stream.Collectors;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +25,7 @@ import com.xilinx.rapidwright.design.PinType;
 import com.xilinx.rapidwright.edif.EDIFHierNet;
 import com.xilinx.rapidwright.edif.EDIFHierCellInst;
 import com.xilinx.rapidwright.edif.EDIFHierPortInst;
+import com.xilinx.rapidwright.interchange.DeviceResources.Device.SiteTypeBelEntry;
 import com.xilinx.rapidwright.edif.EDIFCellInst;
 
 import com.xilinx.rapidwright.device.Device;
@@ -76,33 +76,35 @@ public class PlacerSiteCentric extends Placer {
     }
 
     public void placeDesign(PackedDesign packedDesign) throws IOException {
-        List<Pair<EDIFHierCellInst, EDIFHierCellInst>> DSPPairs = packedDesign.DSPPairs;
+        // List<Pair<EDIFHierCellInst, EDIFHierCellInst>> DSPPairs =
+        // packedDesign.DSPPairs;
+        List<List<EDIFHierCellInst>> DSPCascades = packedDesign.DSPCascades;
         List<EDIFHierCellInst> RAMCells = packedDesign.RAMCells;
         List<List<CarryCellGroup>> CARRYChains = packedDesign.CARRYChains;
         Map<Pair<String, String>, LUTFFGroup> LUTFFGroups = packedDesign.LUTFFGroups;
         List<List<EDIFHierCellInst>> LUTGroups = packedDesign.LUTGroups;
 
-        List<Site> occupiedDSPSites = new ArrayList<>();
-        List<Site> occupiedRAMSites = new ArrayList<>();
-        List<Site> occupiedCLBSites = new ArrayList<>();
-
         placeCarryChainSites(CARRYChains);
-        placeDSPPairSites(DSPPairs, occupiedDSPSites);
-        placeRAMSites(RAMCells, occupiedRAMSites);
+        placeDSPCascades(DSPCascades);
+        placeRAMSites(RAMCells);
         placeLUTFFPairGroups(LUTFFGroups);
         placeLUTGroups(LUTGroups);
 
         writer.write("\n\nALL CELL PATTERNS HAVE BEEN PLACED...");
-        writer.write("\n\nPrinting occupiedCLBSites... (" + occupiedCLBSites.size() + ")");
-        for (Site site : occupiedCLBSites) {
+        writer.write("\n\nPrinting occupied SLICEL sites... (" + occupiedSites.get(SiteTypeEnum.SLICEL).size() + ")");
+        for (Site site : occupiedSites.get(SiteTypeEnum.SLICEL)) {
             writer.write("\n\tSite: " + site.getName());
         }
-        writer.write("\nPrinting occupiedDSPSites... (" + occupiedDSPSites.size() + ")");
-        for (Site site : occupiedDSPSites) {
+        writer.write("\n\nPrinting occupied SLICEM sites... (" + occupiedSites.get(SiteTypeEnum.SLICEM).size() + ")");
+        for (Site site : occupiedSites.get(SiteTypeEnum.SLICEM)) {
             writer.write("\n\tSite: " + site.getName());
         }
-        writer.write("\nPrinting occupiedRAMSites... (" + occupiedRAMSites.size() + ")");
-        for (Site site : occupiedRAMSites) {
+        writer.write("\n\nPrinting occupiedDSPSites... (" + occupiedSites.get(SiteTypeEnum.DSP48E1).size() + ")");
+        for (Site site : occupiedSites.get(SiteTypeEnum.DSP48E1)) {
+            writer.write("\n\tSite: " + site.getName());
+        }
+        writer.write("\n\nPrinting occupiedRAMSites... (" + occupiedSites.get(SiteTypeEnum.RAMB18E1).size() + ")");
+        for (Site site : occupiedSites.get(SiteTypeEnum.RAMB18E1)) {
             writer.write("\n\tSite: " + site.getName());
         }
     } // end placeDesign()
@@ -114,8 +116,9 @@ public class PlacerSiteCentric extends Placer {
             compatibleSiteTypes.add(SiteTypeEnum.SLICEL);
         if (deviceSiteTypes.contains(SiteTypeEnum.SLICEM))
             compatibleSiteTypes.add(SiteTypeEnum.SLICEM);
-        if (compatibleSiteTypes.isEmpty())
-            System.out.println("ERROR: device contains no SLICEL or SLICEM!");
+        if (compatibleSiteTypes.isEmpty()) {
+            throw new IllegalStateException("ERROR: device contains no Sites of type SLICEL or SLICEM !");
+        }
         SiteTypeEnum selectedSiteType = compatibleSiteTypes.get(rand.nextInt(compatibleSiteTypes.size()));
         return selectedSiteType;
     }
@@ -151,80 +154,54 @@ public class PlacerSiteCentric extends Placer {
                 validAnchor = true;
             }
             attempts++;
-            if (attempts > 1000) {
-                System.out.println("ERROR: Could not find carry chain anchor after 1000 attempts!");
-                break;
-            }
+            if (attempts > 1000)
+                throw new IllegalStateException("ERROR: Could not find CARRY4 chain anchor after 1000 attempts!");
             if (validAnchor)
                 break;
         }
         return selectedSite;
     }
 
-    protected Site selectBRAMSite(List<Site> occupiedBRAMSites) {
+    protected Site selectDSPAnchorSite(int cascadeSize) {
         Random rand = new Random();
-        List<Site> compatibleSites = new ArrayList<Site>(
-                Arrays.asList(device.getAllCompatibleSites(SiteTypeEnum.RAMB18E1)));
-        compatibleSites.removeAll(occupiedBRAMSites);
-        Site selectedSite = compatibleSites.get(rand.nextInt(compatibleSites.size()));
-        occupiedBRAMSites.add(selectedSite);
-        return selectedSite;
-    }
-
-    protected Site selectDSPSite(List<Site> occupiedDSPSites, List<Tile> occupiedDSPTiles) {
-        Random rand = new Random();
-        List<Site> compatibleSites = new ArrayList<Site>(
-                Arrays.asList(device.getAllCompatibleSites(SiteTypeEnum.DSP48E1)));
-        Site selectedSite = compatibleSites.get(rand.nextInt(compatibleSites.size()));
-        occupiedDSPSites.add(selectedSite);
-        occupiedDSPTiles.add(selectedSite.getTile());
-        return selectedSite;
-    }
-
-    protected Tile selectDSPTile(List<Site> occupiedDSPSites, List<Tile> occupiedDSPTiles) {
-        Random rand = new Random();
-        List<TileTypeEnum> compatibleTileTypes = new ArrayList<TileTypeEnum>();
-        compatibleTileTypes.add(TileTypeEnum.DSP_L);
-        compatibleTileTypes.add(TileTypeEnum.DSP_R);
-        int randIndex = rand.nextInt(compatibleTileTypes.size());
-        TileTypeEnum selectedTileType = compatibleTileTypes.get(randIndex);
-        List<Tile> compatibleTiles = device.getAllTiles().stream()
-                .filter(t -> t.getTileTypeEnum().equals(selectedTileType))
-                .collect(Collectors.toList());
-        compatibleTiles.removeAll(occupiedDSPTiles);
-        Tile selectedTile = compatibleTiles.get(rand.nextInt(compatibleTiles.size()));
-        occupiedDSPTiles.add(selectedTile);
-        occupiedDSPSites.addAll(Arrays.asList(selectedTile.getSites()));
-        return selectedTile;
-    }
-
-    private Site findCarryChainAnchorSite(SiteTypeEnum selectedSiteType, List<CarryCellGroup> chain)
-            throws IOException {
-        Site anchorSite = null;
-        int x = 0;
-        int y = 0;
-        Random rand = new Random();
+        SiteTypeEnum siteType = SiteTypeEnum.DSP48E1;
         boolean validAnchor = false;
+        Site selectedSite = null;
         int attempts = 0;
-        Site[] compatibleSites = device.getAllCompatibleSites(selectedSiteType);
-        while (!validAnchor && attempts < 1000) {
-            Site selectedSite = compatibleSites[rand.nextInt(compatibleSites.length)];
-            x = selectedSite.getInstanceX();
-            y = selectedSite.getInstanceY();
-            for (int j = 0; j < chain.size(); j++) {
-                String name = "SLICE_X" + x + "Y" + (y + j);
-                if (design.getSiteInstFromSiteName(name) != null || device.getSite(name) == null) {
-                    // if site is already occupied OR if site doesnt exist
+        while (true) {
+            int randRange = availableSites.get(siteType).size();
+            selectedSite = availableSites.get(siteType).get(rand.nextInt(randRange));
+            int x = selectedSite.getInstanceX();
+            int y = selectedSite.getInstanceY();
+            for (int i = 0; i < cascadeSize; i++) {
+                String name = "DSP48_X" + x + "Y" + (y + i);
+                if (design.getSiteInstFromSiteName(name) != null
+                        || device.getSite(name) == null
+                        || selectedSite.getClockRegion() != regionConstraint) {
                     validAnchor = false;
                     break;
-                } else {
-                    validAnchor = true;
-                    anchorSite = selectedSite;
                 }
+                validAnchor = true;
             }
             attempts++;
+            if (attempts > 1000)
+                throw new IllegalStateException("ERROR: Could not find DSP48E1 cascade anchor after 1000 attempts!");
+            if (validAnchor)
+                break;
         }
-        return anchorSite;
+        return selectedSite;
+    }
+
+    protected Site selectRAMSite() {
+        Random rand = new Random();
+        SiteTypeEnum siteType = SiteTypeEnum.RAMB18E1;
+        if (!deviceSiteTypes.contains(siteType)) {
+            throw new IllegalStateException("ERROR: device contains no Sites of type RAMB18E1 !");
+        }
+        int randRange = availableSites.get(siteType).size();
+        Site selectedSite = availableSites.get(siteType).remove(rand.nextInt(randRange));
+        occupiedSites.get(siteType).add(selectedSite);
+        return selectedSite;
     }
 
     private void rerouteCarryNets(SiteInst si) {
@@ -313,7 +290,8 @@ public class PlacerSiteCentric extends Placer {
             throws IOException {
         writer.write("\n\nPlacing carry chains... (" + EDIFCarryChains.size() + ")");
         for (List<CarryCellGroup> chain : EDIFCarryChains) {
-            writer.write("\n\t\tchain size: " + chain.size());
+            writer.write("\n\t\tChain Size: (" + chain.size() + "), Chain Anchor: "
+                    + chain.get(0).carry().getFullHierarchicalInstName());
             Site anchorSite = selectCarryAnchorSite(chain.size());
             SiteTypeEnum selectedSiteType = anchorSite.getSiteTypeEnum();
             for (int i = 0; i < chain.size(); i++) {
@@ -333,76 +311,35 @@ public class PlacerSiteCentric extends Placer {
         } // end for (List<EDIFCellInst> chain : EDIFCarryChains)
     } // end placeCarryChainSites()
 
-    private void placeDSPPairSites(List<Pair<EDIFHierCellInst, EDIFHierCellInst>> EDIFDSPPairs,
-            List<Site> occupiedDSPSites) throws IOException {
-        Random rand = new Random();
-        List<Site> compatibleSites = new ArrayList<Site>(
-                Arrays.asList(device.getAllCompatibleSites(SiteTypeEnum.DSP48E1)));
-        compatibleSites.removeAll(occupiedDSPSites);
-        for (Pair<EDIFHierCellInst, EDIFHierCellInst> pair : EDIFDSPPairs) {
-            Tile selectedTile = compatibleSites.get(rand.nextInt(compatibleSites.size())).getTile();
-            List<Site> dspSitePair = Arrays.asList(selectedTile.getSites()).stream()
-                    .filter(s -> s.getSiteTypeEnum().equals(SiteTypeEnum.DSP48E1))
-                    .collect(Collectors.toList());
-            // DSP supplying COUT MUST be placed first!
-            SiteInst si0 = new SiteInst(
-                    pair.key().getFullHierarchicalInstName(), design, SiteTypeEnum.DSP48E1, dspSitePair.get(0));
-            si0.createCell(pair.key(), si0.getBEL("DSP48E1"));
-            si0.routeSite();
-            SiteInst si1 = new SiteInst(
-                    pair.value().getFullHierarchicalInstName(), design, SiteTypeEnum.DSP48E1, dspSitePair.get(1));
-            si1.createCell(pair.value(), si1.getBEL("DSP48E1"));
-            si1.routeSite();
-            compatibleSites.remove(dspSitePair.get(0));
-            compatibleSites.remove(dspSitePair.get(1));
-            occupiedDSPSites.add(dspSitePair.get(0));
-            occupiedDSPSites.add(dspSitePair.get(1));
+    private void placeDSPCascades(List<List<EDIFHierCellInst>> EDIFDSPCascades) throws IOException {
+        writer.write("\n\nPlacing DSP Cascades... (" + EDIFDSPCascades.size() + ")");
+        for (List<EDIFHierCellInst> cascade : EDIFDSPCascades) {
+            // each DSP tile has 2 DSP sites on the Zynq 7000
+            writer.write("\n\tCascade Size: (" + cascade.size() + "), Cascade Anchor: "
+                    + cascade.get(0).getFullHierarchicalInstName());
+            Site anchorSite = selectDSPAnchorSite(cascade.size());
+            SiteTypeEnum siteType = SiteTypeEnum.DSP48E1;
+            for (int i = 0; i < cascade.size(); i++) {
+                writer.write("\n\t\tPlacing DSP: " + cascade.get(i).getFullHierarchicalInstName());
+                Site site = (i == 0) ? anchorSite
+                        : device.getSite("DSP48_X" + anchorSite.getInstanceX() + "Y" + (anchorSite.getInstanceY() + i));
+                SiteInst si = new SiteInst(cascade.get(i).getFullHierarchicalInstName(), design, siteType, site);
+                si.createCell(cascade.get(i), si.getBEL("DSP48E1"));
+                occupiedSites.get(siteType).add(site);
+                availableSites.get(siteType).remove(site);
+                si.routeSite();
+            }
         }
-    } // end placeDSPPairSites()
+    } // end placeDSPCascades()
 
-    private void placeRAMSites(List<EDIFHierCellInst> RAMCells, List<Site> occupiedRAMSites)
+    private void placeRAMSites(List<EDIFHierCellInst> RAMCells)
             throws IOException {
-        Random rand = new Random();
-        List<Site> compatibleSites = new ArrayList<Site>(
-                Arrays.asList(device.getAllCompatibleSites(SiteTypeEnum.RAMB18E1)));
-        compatibleSites.removeAll(occupiedRAMSites);
-
-        if (RAMCells.isEmpty()) {
-            writer.write("\nWARNING: This design has zero RAMB18E1 cells!\n");
-            System.out.println("WARNING: This design has zero RAMB18E1 cells!");
-            return;
-        }
-
-        while (true) {
-            Tile selectedTile = compatibleSites.get(rand.nextInt(compatibleSites.size())).getTile();
-            List<Site> ramSites = Arrays.asList(selectedTile.getSites()).stream()
-                    .filter(s -> s.getSiteTypeEnum().equals(SiteTypeEnum.RAMB18E1)
-                            || Arrays.asList(s.getAlternateSiteTypeEnums()).contains(SiteTypeEnum.RAMB18E1))
-                    .collect(Collectors.toList());
-
-            if (RAMCells.isEmpty())
-                break;
-
-            EDIFHierCellInst cell0 = RAMCells.get(0);
-            SiteInst si0 = new SiteInst(cell0.getFullHierarchicalInstName(), design, SiteTypeEnum.RAMB18E1,
-                    ramSites.get(0));
-            si0.createCell(cell0, si0.getBEL("RAMB18E1"));
-            si0.routeSite();
-            compatibleSites.remove(ramSites.get(0));
-            occupiedRAMSites.add(ramSites.get(0));
-            RAMCells.remove(cell0);
-
-            if (RAMCells.isEmpty())
-                break;
-
-            EDIFHierCellInst cell1 = RAMCells.get(0);
-            SiteInst si1 = new SiteInst(cell1.getFullHierarchicalInstName(), design, SiteTypeEnum.RAMB18E1,
-                    ramSites.get(1));
-            si1.createCell(cell1, si1.getBEL("RAMB18E1"));
-            si1.routeSite();
-            compatibleSites.remove(ramSites.get(1));
-            occupiedRAMSites.add(ramSites.get(1));
-            RAMCells.remove(cell1);
+        writer.write("\n\nPlacing RAMBCells... (" + RAMCells.size() + ")");
+        for (EDIFHierCellInst ehci : RAMCells) {
+            Site selectedSite = selectRAMSite();
+            SiteInst si = design.createSiteInst(selectedSite);
+            si.createCell(ehci, si.getBEL("RAMB18E1"));
+            si.routeSite();
         }
     } // end placeRAMSites()
 

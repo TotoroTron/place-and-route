@@ -55,7 +55,8 @@ public class Main {
             ClockRegion region = device.getClockRegion("X1Y2");
             System.out.println("Main: Region constraint: " + region.getName());
 
-            PlacerSiteCentric SCPlacer = new PlacerSiteCentric(rootDir, design, device, device.getClockRegion("X1Y2"));
+            PlacerSiteCentric SCPlacer = new PlacerSiteCentric(rootDir, design, device,
+                    device.getClockRegion("X1Y2"));
             SCPlacer.printUniqueSites();
             SCPlacer.run(packedDesign);
 

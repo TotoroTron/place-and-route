@@ -61,16 +61,18 @@ public class PackerBasic extends Packer {
             printEDIFCellInstList(cells);
         }
         // List<DSPPair> = findDSPPairs(EDIFCellGroups);
-        List<Pair<EDIFHierCellInst, EDIFHierCellInst>> DSPPairs = findDSPPairs(EDIFCellGroups);
+        // List<Pair<EDIFHierCellInst, EDIFHierCellInst>> DSPPairs =
+        // findDSPPairs(EDIFCellGroups);
+        List<List<EDIFHierCellInst>> DSPCascades = findDSPCascades(EDIFCellGroups);
         List<EDIFHierCellInst> RAMCells = EDIFCellGroups.get("RAMB18E1");
         List<List<CarryCellGroup>> CARRYChains = findCarryChains(EDIFCellGroups);
         Map<Pair<String, String>, LUTFFGroup> LUTFFGroups = findLUTFFGroups(EDIFCellGroups);
         List<List<EDIFHierCellInst>> LUTGroups = buildLUTGroups(EDIFCellGroups);
 
-        PackedDesign packedDesign = new PackedDesign(DSPPairs, RAMCells, CARRYChains, LUTFFGroups, LUTGroups);
+        PackedDesign packedDesign = new PackedDesign(DSPCascades, RAMCells, CARRYChains, LUTFFGroups, LUTGroups);
 
         printCARRYChains(CARRYChains);
-        printDSPPairs(DSPPairs);
+        printDSPCascades(DSPCascades);
         printLUTFFGroups(LUTFFGroups);
         printLUTGroups(LUTGroups);
 
@@ -80,55 +82,89 @@ public class PackerBasic extends Packer {
             if (entry.getValue().isEmpty())
                 writer.write("\n\t\tEmpty!");
             for (EDIFHierCellInst ehci : entry.getValue()) {
-                writer.write("\n\t\tUnplaced Cell: " + ehci.getCellType() + ": " + ehci.getFullHierarchicalInstName());
+                writer.write("\n\t\tLoose Cell: " + ehci.getCellType() + ": " + ehci.getFullHierarchicalInstName());
             }
         }
 
         return packedDesign;
     }
 
-    private List<Pair<EDIFHierCellInst, EDIFHierCellInst>> findDSPPairs(
+    private List<List<EDIFHierCellInst>> findDSPCascades(
             Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
-        List<EDIFHierCellInst> visitedDSPs = new ArrayList<>();
-        List<Pair<EDIFHierCellInst, EDIFHierCellInst>> pairs = new ArrayList<>();
-
+        List<List<EDIFHierCellInst>> cascades = new ArrayList<>();
         if (EDIFCellGroups.get("DSP48E1") == null) {
             writer.write("\nWARNING: This design has zero DSP48E1 cells!\n");
             System.out.println("WARNING: This design has zero DSP48E1 cells!");
-            return pairs;
+            return cascades;
         }
 
-        for (EDIFHierCellInst DSP_CIN : EDIFCellGroups.get("DSP48E1")) {
-            List<EDIFHierPortInst> pcins = DSP_CIN.getHierPortInsts().stream()
-                    .filter(ehpi -> ehpi.getPortInst().getName().contains("PCIN"))
-                    .collect(Collectors.toList());
-            if (pcins.isEmpty())
-                continue;
-            // there should only be one source
-            List<EDIFHierPortInst> pcouts = pcins.stream()
-                    .map(cin -> cin.getHierarchicalNet().getLeafHierPortInsts(true, false).get(0))
-                    .collect(Collectors.toList());
-            // find the set of DSP cells that connect to the pcout ports
-            Set<EDIFHierCellInst> DSP_COUT_SET = pcouts.stream()
-                    .map(cout -> cout.getHierarchicalInst().getChild(cout.getPortInst().getCellInst().getName()))
-                    .filter(cell -> cell.getInst().getCellName().equals("DSP48E1"))
-                    .collect(Collectors.toSet());
-            if (DSP_COUT_SET.size() < 1)
-                continue;
-            if (DSP_COUT_SET.size() > 1) {
-                System.out.println("WARNING: DSP Cell " + DSP_CIN.getFullHierarchicalInstName()
-                        + " has multiple DSP cells on PCIN bus!");
-                writer.write("\nWARNING: DSP Cell " + DSP_CIN.getFullHierarchicalInstName()
-                        + " has multiple DSP cells on PCIN bus!");
+        while (!EDIFCellGroups.get("DSP48E1").isEmpty()) {
+            EDIFHierCellInst currCell = EDIFCellGroups.get("DSP48E1").get(0);
+            // traverse in the cin direction to find the anchor
+            while (true) {
+                List<EDIFHierPortInst> cins = currCell.getHierPortInsts().stream()
+                        .filter(ehpi -> {
+                            String name = ehpi.getPortInst().getName();
+                            return name.contains("PCIN")
+                                    || name.contains("ACIN")
+                                    || name.contains("BCIN");
+                        })
+                        .collect(Collectors.toList());
+                if (cins.isEmpty())
+                    break;
+                List<EDIFHierPortInst> couts = cins.stream()
+                        .map(cin -> cin.getHierarchicalNet().getLeafHierPortInsts(true, false).get(0))
+                        .collect(Collectors.toList());
+                Set<EDIFHierCellInst> coutCellSet = couts.stream()
+                        .map(cout -> cout.getHierarchicalInst().getChild(cout.getPortInst().getCellInst()))
+                        .filter(cell -> cell.getInst().getCellName().equals("DSP48E1"))
+                        .collect(Collectors.toSet());
+                if (coutCellSet.size() < 1) // found the cascade anchor!
+                    break;
+                if (coutCellSet.size() > 1) {
+                    throw new IllegalStateException(
+                            "ERROR: DSP48E1 cell " + currCell + "has multiple DSP cells on PCIN/ACIN/BCIN buses !");
+                }
+                EDIFHierCellInst coutCell = coutCellSet.stream().collect(Collectors.toList()).get(0);
+                currCell = coutCell;
             }
-            EDIFHierCellInst DSP_COUT = DSP_COUT_SET.stream().collect(Collectors.toList()).get(0);
-            visitedDSPs.add(DSP_CIN);
-            visitedDSPs.add(DSP_COUT);
-            var pair = new Pair<EDIFHierCellInst, EDIFHierCellInst>(DSP_COUT, DSP_CIN);
-            pairs.add(pair);
+
+            // we now have the cascade anchor as currCell
+            // now traverse in the pcin direction
+            // end of cascade occurs when PCOUT bus contains no DSP cells
+            List<EDIFHierCellInst> cascade = new ArrayList<>();
+            while (true) { // iterating through the cascade itself
+                cascade.add(currCell);
+                List<EDIFHierPortInst> couts = currCell.getHierPortInsts().stream()
+                        .filter(ehpi -> {
+                            String name = ehpi.getPortInst().getName();
+                            return name.contains("PCOUT")
+                                    || name.contains("ACOUT")
+                                    || name.contains("BCOUT");
+                        })
+                        .collect(Collectors.toList());
+                if (couts.isEmpty())
+                    break;
+                List<EDIFHierPortInst> cins = couts.stream()
+                        .map(cout -> cout.getHierarchicalNet().getLeafHierPortInsts(false, true).get(0))
+                        .collect(Collectors.toList());
+                Set<EDIFHierCellInst> cinCellSet = cins.stream()
+                        .map(cin -> cin.getHierarchicalInst().getChild(cin.getPortInst().getCellInst()))
+                        .filter(cell -> cell.getInst().getCellName().equals("DSP48E1"))
+                        .collect(Collectors.toSet());
+                if (cinCellSet.size() < 1) // found the cascade tail!
+                    break;
+                if (cinCellSet.size() > 1) {
+                    throw new IllegalStateException(
+                            "ERROR: DSP48E1 cell " + currCell + "has multiple DSP cells on PCOUT/ACOUT/BCOUT buses !");
+                }
+                EDIFHierCellInst cinCell = cinCellSet.stream().collect(Collectors.toList()).get(0);
+                currCell = cinCell;
+            }
+            EDIFCellGroups.get("DSP48E1").removeAll(cascade);
+            cascades.add(cascade);
         }
-        EDIFCellGroups.get("DSP48E1").removeAll(visitedDSPs);
-        return pairs;
+        return cascades;
     }
 
     private List<List<CarryCellGroup>> findCarryChains(
@@ -350,6 +386,16 @@ public class PackerBasic extends Packer {
 
     private String safeGetName(EDIFHierCellInst instance) {
         return instance != null ? instance.getFullHierarchicalInstName() : "Null!";
+    }
+
+    public void printDSPCascades(List<List<EDIFHierCellInst>> DSPCascades) throws IOException {
+        writer.write("\n\nPrinting DSPCascades... (" + DSPCascades.size() + ")");
+        for (List<EDIFHierCellInst> cascade : DSPCascades) {
+            writer.write("\n\tCascade Anchor: " + cascade.get(0).getFullHierarchicalInstName());
+            for (EDIFHierCellInst ehci : cascade) {
+                writer.write("\n\t\t" + ehci.getFullHierarchicalInstName());
+            }
+        }
     }
 
     public void printDSPPairs(List<Pair<EDIFHierCellInst, EDIFHierCellInst>> DSPPairs) throws IOException {

@@ -70,6 +70,10 @@ public abstract class Placer {
 
     protected abstract void placeDesign(PackedDesign packedDesign) throws IOException;
 
+    public static int ceilDiv(int x, int y) {
+        return -Math.floorDiv(-x, y);
+    }
+
     public static <T> List<List<T>> splitIntoGroups(List<T> list, int groupSize) {
         List<List<T>> result = new ArrayList<>();
         for (int i = 0; i < list.size(); i += groupSize) {
