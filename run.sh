@@ -182,26 +182,50 @@ EOL
 EOL
 
     echo "Beginning xvlog..."
-    xvlog "${TOP_LEVEL}_time_impl.v"
-    xvlog "$XILINX_VIVADO/data/verilog/src/glbl.v"
-    xvlog -sv "$DESIGN_DIR/verif/tb_${TOP_LEVEL}.sv"
-    # xvlog -sv "$PROJ_DIR/hdl/vhdl/counter/counter.srcs/sim_1/new/tb_postroute.sv"
+    xvlog "${TOP_LEVEL}_time_impl.v" -L xil_defaultlib -L uvm --incr --relax
+    check_exit_status "xvlog"
+    xvlog -sv "$DESIGN_DIR/verif/tb_${TOP_LEVEL}.sv" -L xil_defaultlib -L uvm --incr --relax
+    check_exit_status "xvlog"
+    xvlog "$XILINX_VIVADO/data/verilog/src/glbl.v" -L xil_defaultlib -L uvm --incr --relax
+    check_exit_status "xvlog"
 
     echo "Beginning xelab..."
-    xelab \
-        -debug typical -relax -mt 8 -maxdelay \
-        -transport_int_delays \
-        -pulse_r 0 -pulse_int_r 0 -pulse_int_e 0 \
-        -timescale 1ns/1ps \
-        -snapshot "${TOP_LEVEL}_time_impl" -top "tb_${TOP_LEVEL}" \
-        -sdfroot "$DESIGN_DIR/sim_postroute/${TOP_LEVEL}_time_impl.sdf" \
+    # xelab \
+    #     -debug typical -relax -mt 8 -maxdelay \
+    #     -transport_int_delays \
+    #     -pulse_r 0 -pulse_int_r 0 -pulse_int_e 0 \
+    #     -timescale 1ns/1ps \
+    #     -snapshot "${TOP_LEVEL}_time_impl" -top "tb_${TOP_LEVEL}" \
+    #     -sdfroot "$DESIGN_DIR/sim_postroute/${TOP_LEVEL}_time_impl.sdf" \
+    #     -log elaborate.log \
+    #     -verbose 0 \
+    #     $XELAB_TOP_PARAMS \
+    #     glbl
+    # # -L xpm -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver \
+
+    # original from vivado
+    # xelab --incr --debug typical --relax --mt 8 --maxdelay \
+    #     -L xil_defaultlib -L uvm -L simprims_ver -L secureip \
+    #     --snapshot tb_top_level_time_impl \
+    #     -transport_int_delays -pulse_r 0 -pulse_int_r 0 -pulse_e 0 -pulse_int_e 0 \
+    #     xil_defaultlib.tb_top_level xil_defaultlib.glbl \
+    #     -log elaborate.log
+
+    xelab --incr --debug typical --relax --mt 8 --maxdelay \
+        -L xil_defaultlib -L uvm -L simprims_ver -L secureip \
+        --snapshot "${TOP_LEVEL}_time_impl" -top "tb_${TOP_LEVEL}" \
+        -transport_int_delays -pulse_r 0 -pulse_int_r 0 -pulse_e 0 -pulse_int_e 0 \
+        -timescale 1ps/1ps \
         -log elaborate.log \
         -verbose 0 \
+        $XELAB_TOP_PARAMS \
         glbl
-    # -L xpm -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver \
+
+    check_exit_status "xelab"
 
     echo "Beginning xsim..."
     xsim ${TOP_LEVEL}_time_impl -tclbatch xsim_cfg.tcl
+    check_exit_status "xsim"
     # xsim ${TOP_LEVEL}_time_impl.wdb -gui -tclbatch waveform.tcl
     # source /home/bcheng/workspace/tools/oss-cad-suite/environment
     # gtkwave waveform.vcd

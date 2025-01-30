@@ -21,6 +21,22 @@ ROUTE_TCL="$PROJ_DIR/tcl/vivado_route.tcl"
 SIM_TCL="$PROJ_DIR/tcl/vivado_sim.tcl"
 
 DESIGN_DIR="$PROJ_DIR/hdl/verilog/${DESIGN}"
+TOP_PARAMS_FILE="$DESIGN_DIR/parameters_${TOP_LEVEL}.txt"
+XELAB_TOP_PARAMS=""
+SYNTH_TOP_PARAMS=""
+
+if [[ ! -f "$TOP_PARAMS_FILE" ]]; then
+    echo "Error: parameter file not found at $TOP_PARAMS_FILE"
+    exit 1
+fi
+# read config file and construct xelab -generic_top arguments
+while IFS= read -r line; do
+    # skip empty lines or lines starting with comment (#)
+    [[ -z "$line" || "$line" == \#* ]] && continue
+    # append parameter as a -generic_top argument
+    XELAB_TOP_PARAMS+="-generic_top $line "
+    SYNTH_TOP_PARAMS+="-generic $line "
+done <"$TOP_PARAMS_FILE"
 
 start_stage=${1:-all} # Use first argument or defaults to all
 
@@ -91,6 +107,7 @@ EOL
         -sdfroot "$DESIGN_DIR/sim_postroute/${TOP_LEVEL}_time_impl.sdf" \
         -log elaborate.log \
         -verbose 0 \
+        $XELAB_TOP_PARAMS \
         glbl
     # -L xpm -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver \
 

@@ -28,6 +28,9 @@ route_design -verbose -nets $unique_ff_nets
 
 # then route everything else
 route_design -verbose
+report_route_status -show_all
+
+phys_opt_design -verbose
 
 # # route exclusively non-ff nets
 # set all_nets [get_nets]

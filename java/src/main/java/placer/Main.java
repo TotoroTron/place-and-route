@@ -52,11 +52,9 @@ public class Main {
 
             PackerBasic BPacker = new PackerBasic(rootDir, design, device);
             PackedDesign packedDesign = BPacker.run();
-            ClockRegion region = device.getClockRegion("X1Y2");
-            System.out.println("Main: Region constraint: " + region.getName());
 
             PlacerSiteCentric SCPlacer = new PlacerSiteCentric(rootDir, design, device,
-                    device.getClockRegion("X1Y2"));
+                    device.getClockRegion("X1Y1"));
             SCPlacer.printUniqueSites();
             SCPlacer.run(packedDesign);
 

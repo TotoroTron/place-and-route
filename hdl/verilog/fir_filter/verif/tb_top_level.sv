@@ -1,5 +1,5 @@
 
-`timescale 1ns/1ps
+`timescale 1ps/1ps
 
 module tb_top_level
 #(
@@ -22,7 +22,7 @@ module tb_top_level
     localparam int SAMPLE_FREQ = 44000;
     localparam int SAMPLES_PER_SIGNAL_PERIOD = SAMPLE_FREQ/SIGNAL_FREQ;
     localparam int ADDR_WIDTH = $clog2(SAMPLES_PER_SIGNAL_PERIOD);
-    localparam CLK_PERIOD = 100; // ns
+    localparam CLK_PERIOD = 100000; // ps
 
     logic [DATA_WIDTH-1:0] tb_word_in;
     logic [DATA_WIDTH-1:0] tb_word_out;

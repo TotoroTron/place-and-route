@@ -1,18 +1,14 @@
 package placer;
 
-import java.io.FileWriter;
-import java.io.IOException;
-
 import java.util.stream.Collectors;
-
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.HashMap;
+import java.io.IOException;
 
 import com.xilinx.rapidwright.edif.EDIFCellInst;
 import com.xilinx.rapidwright.edif.EDIFPortInst;
@@ -60,9 +56,6 @@ public class PackerBasic extends Packer {
                     .collect(Collectors.toList());
             printEDIFCellInstList(cells);
         }
-        // List<DSPPair> = findDSPPairs(EDIFCellGroups);
-        // List<Pair<EDIFHierCellInst, EDIFHierCellInst>> DSPPairs =
-        // findDSPPairs(EDIFCellGroups);
         List<List<EDIFHierCellInst>> DSPCascades = findDSPCascades(EDIFCellGroups);
         List<EDIFHierCellInst> RAMCells = EDIFCellGroups.get("RAMB18E1");
         List<List<CarryCellGroup>> CARRYChains = findCarryChains(EDIFCellGroups);
@@ -130,8 +123,8 @@ public class PackerBasic extends Packer {
             }
 
             // we now have the cascade anchor as currCell
-            // now traverse in the pcin direction
-            // end of cascade occurs when PCOUT bus contains no DSP cells
+            // now traverse in the cin direction
+            // end of cascade occurs when COUT buses contain no DSP cells
             List<EDIFHierCellInst> cascade = new ArrayList<>();
             while (true) { // iterating through the cascade itself
                 cascade.add(currCell);

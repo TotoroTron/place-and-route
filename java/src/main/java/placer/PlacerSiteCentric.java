@@ -11,33 +11,20 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Random;
-
-import java.io.FileWriter;
 import java.io.IOException;
 
 import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.Net;
-import com.xilinx.rapidwright.design.Cell;
 import com.xilinx.rapidwright.design.SiteInst;
 import com.xilinx.rapidwright.design.SitePinInst;
-import com.xilinx.rapidwright.design.PinType;
 
-import com.xilinx.rapidwright.edif.EDIFHierNet;
 import com.xilinx.rapidwright.edif.EDIFHierCellInst;
 import com.xilinx.rapidwright.edif.EDIFHierPortInst;
-import com.xilinx.rapidwright.interchange.DeviceResources.Device.SiteTypeBelEntry;
-import com.xilinx.rapidwright.edif.EDIFCellInst;
 
 import com.xilinx.rapidwright.device.Device;
-import com.xilinx.rapidwright.device.BEL;
-import com.xilinx.rapidwright.device.BELPin;
 import com.xilinx.rapidwright.device.Site;
-import com.xilinx.rapidwright.device.SitePIP;
 import com.xilinx.rapidwright.device.SitePIPStatus;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
-import com.xilinx.rapidwright.device.Tile;
-import com.xilinx.rapidwright.device.TileTypeEnum;
-import com.xilinx.rapidwright.device.SLR;
 import com.xilinx.rapidwright.device.ClockRegion;
 
 public class PlacerSiteCentric extends Placer {
@@ -76,8 +63,6 @@ public class PlacerSiteCentric extends Placer {
     }
 
     public void placeDesign(PackedDesign packedDesign) throws IOException {
-        // List<Pair<EDIFHierCellInst, EDIFHierCellInst>> DSPPairs =
-        // packedDesign.DSPPairs;
         List<List<EDIFHierCellInst>> DSPCascades = packedDesign.DSPCascades;
         List<EDIFHierCellInst> RAMCells = packedDesign.RAMCells;
         List<List<CarryCellGroup>> CARRYChains = packedDesign.CARRYChains;
@@ -127,7 +112,9 @@ public class PlacerSiteCentric extends Placer {
         Random rand = new Random();
         SiteTypeEnum selectedSiteType = selectCLBSiteType();
         int randRange = availableSites.get(selectedSiteType).size();
-        Site selectedSite = availableSites.get(selectedSiteType).remove(rand.nextInt(randRange));
+        // Site selectedSite =
+        // availableSites.get(selectedSiteType).remove(rand.nextInt(randRange));
+        Site selectedSite = availableSites.get(selectedSiteType).remove(0);
         occupiedSites.get(selectedSiteType).add(selectedSite);
         return selectedSite;
     }
@@ -140,7 +127,9 @@ public class PlacerSiteCentric extends Placer {
         int attempts = 0;
         while (true) {
             int randRange = availableSites.get(selectedSiteType).size();
-            selectedSite = availableSites.get(selectedSiteType).get(rand.nextInt(randRange));
+            // selectedSite =
+            // availableSites.get(selectedSiteType).get(rand.nextInt(randRange));
+            selectedSite = availableSites.get(selectedSiteType).get(attempts);
             int x = selectedSite.getInstanceX();
             int y = selectedSite.getInstanceY();
             for (int i = 0; i < chainSize; i++) {
@@ -170,7 +159,8 @@ public class PlacerSiteCentric extends Placer {
         int attempts = 0;
         while (true) {
             int randRange = availableSites.get(siteType).size();
-            selectedSite = availableSites.get(siteType).get(rand.nextInt(randRange));
+            // selectedSite = availableSites.get(siteType).get(rand.nextInt(randRange));
+            selectedSite = availableSites.get(siteType).get(attempts);
             int x = selectedSite.getInstanceX();
             int y = selectedSite.getInstanceY();
             for (int i = 0; i < cascadeSize; i++) {
@@ -192,15 +182,30 @@ public class PlacerSiteCentric extends Placer {
         return selectedSite;
     }
 
+    protected SiteTypeEnum selectRAMSiteType() {
+        Random rand = new Random();
+
+        List<SiteTypeEnum> compatibleSiteTypes = new ArrayList<SiteTypeEnum>();
+        // if (deviceSiteTypes.contains(SiteTypeEnum.FIFO18E1))
+        // compatibleSiteTypes.add(SiteTypeEnum.FIFO18E1);
+        if (deviceSiteTypes.contains(SiteTypeEnum.RAMB18E1))
+            compatibleSiteTypes.add(SiteTypeEnum.RAMB18E1);
+        if (compatibleSiteTypes.isEmpty()) {
+            throw new IllegalStateException(
+                    "ERROR: device or clock region contains no Sites of type FIFO18E1 or RAMB18E1 !");
+        }
+        SiteTypeEnum selectedSiteType = compatibleSiteTypes.get(rand.nextInt(compatibleSiteTypes.size()));
+        return selectedSiteType;
+    }
+
     protected Site selectRAMSite() {
         Random rand = new Random();
-        SiteTypeEnum siteType = SiteTypeEnum.RAMB18E1;
-        if (!deviceSiteTypes.contains(siteType)) {
-            throw new IllegalStateException("ERROR: device contains no Sites of type RAMB18E1 !");
-        }
-        int randRange = availableSites.get(siteType).size();
-        Site selectedSite = availableSites.get(siteType).remove(rand.nextInt(randRange));
-        occupiedSites.get(siteType).add(selectedSite);
+        SiteTypeEnum selectedSiteType = selectRAMSiteType();
+        int randRange = availableSites.get(selectedSiteType).size();
+        // Site selectedSite =
+        // availableSites.get(selectedSiteType).remove(rand.nextInt(randRange));
+        Site selectedSite = availableSites.get(selectedSiteType).remove(0);
+        occupiedSites.get(selectedSiteType).add(selectedSite);
         return selectedSite;
     }
 
