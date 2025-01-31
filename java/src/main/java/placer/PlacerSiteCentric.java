@@ -3,6 +3,7 @@ package placer;
 
 import java.util.stream.Collectors;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Arrays;
@@ -84,12 +85,18 @@ public class PlacerSiteCentric extends Placer {
         for (Site site : occupiedSites.get(SiteTypeEnum.SLICEM)) {
             writer.write("\n\tSite: " + site.getName());
         }
-        writer.write("\n\nPrinting occupiedDSPSites... (" + occupiedSites.get(SiteTypeEnum.DSP48E1).size() + ")");
+        writer.write("\n\nPrinting occupied DSP48E1 Sites... (" + occupiedSites.get(SiteTypeEnum.DSP48E1).size() + ")");
         for (Site site : occupiedSites.get(SiteTypeEnum.DSP48E1)) {
             writer.write("\n\tSite: " + site.getName());
         }
-        writer.write("\n\nPrinting occupiedRAMSites... (" + occupiedSites.get(SiteTypeEnum.RAMB18E1).size() + ")");
+        writer.write(
+                "\n\nPrinting occupied RAMB18E1 Sites... (" + occupiedSites.get(SiteTypeEnum.RAMB18E1).size() + ")");
         for (Site site : occupiedSites.get(SiteTypeEnum.RAMB18E1)) {
+            writer.write("\n\tSite: " + site.getName());
+        }
+        writer.write(
+                "\n\nPrinting occupied FIFO18E1 Sites... (" + occupiedSites.get(SiteTypeEnum.RAMB18E1).size() + ")");
+        for (Site site : occupiedSites.get(SiteTypeEnum.FIFO18E1)) {
             writer.write("\n\tSite: " + site.getName());
         }
     } // end placeDesign()
@@ -112,9 +119,8 @@ public class PlacerSiteCentric extends Placer {
         Random rand = new Random();
         SiteTypeEnum selectedSiteType = selectCLBSiteType();
         int randRange = availableSites.get(selectedSiteType).size();
-        // Site selectedSite =
-        // availableSites.get(selectedSiteType).remove(rand.nextInt(randRange));
-        Site selectedSite = availableSites.get(selectedSiteType).remove(0);
+        Site selectedSite = availableSites.get(selectedSiteType).remove(rand.nextInt(randRange));
+        // Site selectedSite = availableSites.get(selectedSiteType).remove(0);
         occupiedSites.get(selectedSiteType).add(selectedSite);
         return selectedSite;
     }
@@ -127,16 +133,15 @@ public class PlacerSiteCentric extends Placer {
         int attempts = 0;
         while (true) {
             int randRange = availableSites.get(selectedSiteType).size();
-            // selectedSite =
-            // availableSites.get(selectedSiteType).get(rand.nextInt(randRange));
-            selectedSite = availableSites.get(selectedSiteType).get(attempts);
+            selectedSite = availableSites.get(selectedSiteType).get(rand.nextInt(randRange));
+            // selectedSite = availableSites.get(selectedSiteType).get(attempts);
             int x = selectedSite.getInstanceX();
             int y = selectedSite.getInstanceY();
             for (int i = 0; i < chainSize; i++) {
                 String name = "SLICE_X" + x + "Y" + (y + i);
                 if (design.getSiteInstFromSiteName(name) != null
                         || device.getSite(name) == null
-                        || selectedSite.getClockRegion() != regionConstraint) {
+                        || device.getSite(name).getClockRegion() != regionConstraint) {
                     validAnchor = false;
                     break;
                 }
@@ -159,15 +164,15 @@ public class PlacerSiteCentric extends Placer {
         int attempts = 0;
         while (true) {
             int randRange = availableSites.get(siteType).size();
-            // selectedSite = availableSites.get(siteType).get(rand.nextInt(randRange));
-            selectedSite = availableSites.get(siteType).get(attempts);
+            selectedSite = availableSites.get(siteType).get(rand.nextInt(randRange));
+            // selectedSite = availableSites.get(siteType).get(attempts);
             int x = selectedSite.getInstanceX();
             int y = selectedSite.getInstanceY();
             for (int i = 0; i < cascadeSize; i++) {
                 String name = "DSP48_X" + x + "Y" + (y + i);
                 if (design.getSiteInstFromSiteName(name) != null
                         || device.getSite(name) == null
-                        || selectedSite.getClockRegion() != regionConstraint) {
+                        || device.getSite(name).getClockRegion() != regionConstraint) {
                     validAnchor = false;
                     break;
                 }
@@ -200,11 +205,19 @@ public class PlacerSiteCentric extends Placer {
 
     protected Site selectRAMSite() {
         Random rand = new Random();
-        SiteTypeEnum selectedSiteType = selectRAMSiteType();
-        int randRange = availableSites.get(selectedSiteType).size();
-        // Site selectedSite =
-        // availableSites.get(selectedSiteType).remove(rand.nextInt(randRange));
-        Site selectedSite = availableSites.get(selectedSiteType).remove(0);
+        // SiteTypeEnum selectedSiteType = selectRAMSiteType();
+        List<Site> compatibleSites = new ArrayList<>();
+        compatibleSites.addAll(availableSites.get(SiteTypeEnum.RAMB18E1));
+        compatibleSites.addAll(availableSites.get(SiteTypeEnum.FIFO18E1));
+        compatibleSites.sort(
+                Comparator.comparingInt(Site::getInstanceY)
+                        .thenComparingInt(Site::getInstanceX)
+                        .reversed());
+        int randRange = compatibleSites.size();
+        Site selectedSite = compatibleSites.get(rand.nextInt(randRange));
+        // Site selectedSite = compatibleSites.get(0);
+        SiteTypeEnum selectedSiteType = selectedSite.getSiteTypeEnum();
+        availableSites.get(selectedSiteType).remove(selectedSite);
         occupiedSites.get(selectedSiteType).add(selectedSite);
         return selectedSite;
     }
@@ -342,7 +355,8 @@ public class PlacerSiteCentric extends Placer {
         writer.write("\n\nPlacing RAMBCells... (" + RAMCells.size() + ")");
         for (EDIFHierCellInst ehci : RAMCells) {
             Site selectedSite = selectRAMSite();
-            SiteInst si = design.createSiteInst(selectedSite);
+            SiteInst si = new SiteInst(ehci.getFullHierarchicalInstName(), design, SiteTypeEnum.RAMB18E1,
+                    selectedSite);
             si.createCell(ehci, si.getBEL("RAMB18E1"));
             si.routeSite();
         }
