@@ -63,12 +63,15 @@ module tb_top_level
     initial begin
         $dumpfile("waveform.vcd");
         $dumpvars;
+        @(posedge tb_clk);
+        @(negedge tb_clk);
         tb_clk       = 1'b1;
         tb_rst       = 1'b1;
         tb_en        = 1'b0;
         tb_din       = 1'b0;
         tb_din_valid = 1'b0;
         @(posedge tb_clk);
+        @(negedge tb_clk);
         tb_rst = 0;
         tb_en  = 1;
 
@@ -77,18 +80,21 @@ module tb_top_level
                 tb_addr    = t;
                 tb_word_in = sine_signal[tb_addr];
                 @(posedge tb_clk);
+                @(negedge tb_clk);
                 tb_din_valid = 1'b1;
                 // For each bit in the sample, LSB first
                 for (int j = 0; j < DATA_WIDTH; j++) begin
                     tb_din = tb_word_in[j];
                     wait(dut_ready == 1'b1);
                     @(posedge tb_clk);
+                    @(negedge tb_clk);
                 end
                 // done sending 24-bit word
                 tb_din_valid = 1'b0;
 
                 transactions_des = transactions_des + 1;
                 @(posedge tb_clk);
+                @(negedge tb_clk);
                 if (tb_word_in == top_level.fir_din) begin
                     $fdisplay(fd_des, "Success!");
                 end else begin
@@ -123,6 +129,8 @@ module tb_top_level
     logic [DATA_WIDTH-1:0] tb_shift_reg;
 
     always begin
+        @(posedge tb_clk);
+        @(negedge tb_clk);
         tb_ready = 1'b0;
         @(posedge tb_clk);
         wait(dut_dout_valid == 1'b0);
@@ -132,9 +140,9 @@ module tb_top_level
         tb_ready = 1'b1;
         repeat(DATA_WIDTH) begin
             tb_shift_reg = {dut_dout, tb_shift_reg[DATA_WIDTH-1:1]};
+            @(posedge tb_clk);
             @(negedge tb_clk);
         end
-        @(negedge tb_clk);
         tb_ready = 1'b0;
         tb_word_out = tb_shift_reg;
         transactions_ser = transactions_ser + 1;

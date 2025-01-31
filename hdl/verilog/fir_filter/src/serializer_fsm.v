@@ -51,7 +51,7 @@ module serializer_fsm
 
             SHIFT_OUT: begin
                 next_state <= SHIFT_OUT;
-                if (counter == LENGTH - 1) begin
+                if (counter == LENGTH-1) begin
                     next_state <= IDLE;
                 end
             end

@@ -43,7 +43,7 @@ module deserializer_fsm
 
             SHIFT_IN: begin
                 next_state <= SHIFT_IN;
-                if (counter == LENGTH-1)
+                if (counter == LENGTH)
                     next_state <= OUTPUT;
             end
 

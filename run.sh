@@ -190,6 +190,7 @@ EOL
     check_exit_status "xvlog"
 
     echo "Beginning xelab..."
+
     # xelab \
     #     -debug typical -relax -mt 8 -maxdelay \
     #     -transport_int_delays \
