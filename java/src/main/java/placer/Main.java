@@ -54,7 +54,7 @@ public class Main {
             PackedDesign packedDesign = BPacker.run();
 
             PlacerSiteCentric SCPlacer = new PlacerSiteCentric(rootDir, design, device,
-                    device.getClockRegion("X1Y1"));
+                    device.getClockRegion("X0Y0"));
             SCPlacer.printUniqueSites();
             SCPlacer.run(packedDesign);
 

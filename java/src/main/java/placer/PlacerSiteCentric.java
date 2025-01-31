@@ -95,7 +95,7 @@ public class PlacerSiteCentric extends Placer {
             writer.write("\n\tSite: " + site.getName());
         }
         writer.write(
-                "\n\nPrinting occupied FIFO18E1 Sites... (" + occupiedSites.get(SiteTypeEnum.RAMB18E1).size() + ")");
+                "\n\nPrinting occupied FIFO18E1 Sites... (" + occupiedSites.get(SiteTypeEnum.FIFO18E1).size() + ")");
         for (Site site : occupiedSites.get(SiteTypeEnum.FIFO18E1)) {
             writer.write("\n\tSite: " + site.getName());
         }
@@ -202,6 +202,18 @@ public class PlacerSiteCentric extends Placer {
         SiteTypeEnum selectedSiteType = compatibleSiteTypes.get(rand.nextInt(compatibleSiteTypes.size()));
         return selectedSiteType;
     }
+
+    private void placeRAMSites(List<EDIFHierCellInst> RAMCells)
+            throws IOException {
+        writer.write("\n\nPlacing RAMBCells... (" + RAMCells.size() + ")");
+        for (EDIFHierCellInst ehci : RAMCells) {
+            Site selectedSite = selectRAMSite();
+            SiteInst si = new SiteInst(ehci.getFullHierarchicalInstName(), design, SiteTypeEnum.RAMB18E1,
+                    selectedSite);
+            si.createCell(ehci, si.getBEL("RAMB18E1"));
+            si.routeSite();
+        }
+    } // end placeRAMSites()
 
     protected Site selectRAMSite() {
         Random rand = new Random();
@@ -349,18 +361,6 @@ public class PlacerSiteCentric extends Placer {
             }
         }
     } // end placeDSPCascades()
-
-    private void placeRAMSites(List<EDIFHierCellInst> RAMCells)
-            throws IOException {
-        writer.write("\n\nPlacing RAMBCells... (" + RAMCells.size() + ")");
-        for (EDIFHierCellInst ehci : RAMCells) {
-            Site selectedSite = selectRAMSite();
-            SiteInst si = new SiteInst(ehci.getFullHierarchicalInstName(), design, SiteTypeEnum.RAMB18E1,
-                    selectedSite);
-            si.createCell(ehci, si.getBEL("RAMB18E1"));
-            si.routeSite();
-        }
-    } // end placeRAMSites()
 
     private void placeLUTFFPairGroups(
             Map<Pair<String, String>, LUTFFGroup> LUTFFEnableResetGroups) throws IOException {

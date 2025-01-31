@@ -41,6 +41,8 @@ puts "synth.tcl: Running command: $cmd"
 # execute synth_design command
 eval $cmd
 
+# opt_design
+
 write_checkpoint -force $synthesized_dcp
 
 exit

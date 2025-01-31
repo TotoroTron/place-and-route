@@ -29,6 +29,7 @@ set_property -dict { PACKAGE_PIN N16    IOSTANDARD LVCMOS33 } [get_ports { o_rea
 ## Manually Set Output Buffers
 set_property IO_BUFFER_TYPE OBUF [ get_ports { o_dout o_dout_valid o_ready } ]
 set_property IO_BUFFER_TYPE IBUF [ get_ports { i_clk i_en i_rst i_din i_din_valid i_ready } ]
+set_property CLOCK_BUFFER_TYPE BUFG [ get_nets { i_clk_IBUF } ]
 
 ## Buttons
 set_property -dict { PACKAGE_PIN D19    IOSTANDARD LVCMOS33 } [get_ports { i_din } ]; #IO_L4P_T0_35 Sch=BTN0
