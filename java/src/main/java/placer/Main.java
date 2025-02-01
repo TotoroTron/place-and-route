@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.io.IOException;
 
 import java.util.List;
+import java.util.Set;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -19,6 +20,7 @@ import com.xilinx.rapidwright.design.Module;
 import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.SiteInst;
 import com.xilinx.rapidwright.design.Cell;
+import com.xilinx.rapidwright.design.Unisim;
 
 import com.xilinx.rapidwright.edif.EDIFHierCellInst;
 
@@ -56,6 +58,7 @@ public class Main {
             PlacerSiteCentric SCPlacer = new PlacerSiteCentric(rootDir, design, device,
                     device.getClockRegion("X0Y0"));
             SCPlacer.printUniqueSites();
+            SCPlacer.printGlobalClkBuffers();
             SCPlacer.run(packedDesign);
 
             // ViewVivadoCheckpoint ViewVivado = new ViewVivadoCheckpoint();

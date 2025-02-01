@@ -61,8 +61,10 @@ public class PackerBasic extends Packer {
         List<List<CarryCellGroup>> CARRYChains = findCarryChains(EDIFCellGroups);
         Map<Pair<String, String>, LUTFFGroup> LUTFFGroups = findLUTFFGroups(EDIFCellGroups);
         List<List<EDIFHierCellInst>> LUTGroups = buildLUTGroups(EDIFCellGroups);
+        List<EDIFHierCellInst> BUFGCTRLCells = EDIFCellGroups.get("BUFGCTRL");
 
-        PackedDesign packedDesign = new PackedDesign(DSPCascades, RAMCells, CARRYChains, LUTFFGroups, LUTGroups);
+        PackedDesign packedDesign = new PackedDesign(
+                DSPCascades, RAMCells, CARRYChains, LUTFFGroups, LUTGroups, BUFGCTRLCells);
 
         printCARRYChains(CARRYChains);
         printDSPCascades(DSPCascades);

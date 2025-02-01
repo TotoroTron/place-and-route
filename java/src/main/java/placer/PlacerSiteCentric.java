@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Random;
 import java.io.IOException;
+import java.io.FileWriter;
 
 import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.Net;
@@ -61,6 +62,14 @@ public class PlacerSiteCentric extends Placer {
                 occupiedSites.put(siteType, new ArrayList<>());
             }
         }
+
+    }
+
+    private void printDeviceSiteTypes() throws IOException {
+        writer.write("\n\nDevice Site Types: ");
+        for (SiteTypeEnum ste : deviceSiteTypes) {
+            writer.write("\n\tSiteTypeEnum: " + ste);
+        }
     }
 
     public void placeDesign(PackedDesign packedDesign) throws IOException {
@@ -69,12 +78,16 @@ public class PlacerSiteCentric extends Placer {
         List<List<CarryCellGroup>> CARRYChains = packedDesign.CARRYChains;
         Map<Pair<String, String>, LUTFFGroup> LUTFFGroups = packedDesign.LUTFFGroups;
         List<List<EDIFHierCellInst>> LUTGroups = packedDesign.LUTGroups;
+        List<EDIFHierCellInst> BUFGCTRLCells = packedDesign.BUFGCTRLCells;
+
+        printDeviceSiteTypes();
 
         placeCarryChainSites(CARRYChains);
         placeDSPCascades(DSPCascades);
         placeRAMSites(RAMCells);
         placeLUTFFPairGroups(LUTFFGroups);
         placeLUTGroups(LUTGroups);
+        // placeBUFGCTRLSites(BUFGCTRLCells);
 
         writer.write("\n\nALL CELL PATTERNS HAVE BEEN PLACED...");
         writer.write("\n\nPrinting occupied SLICEL sites... (" + occupiedSites.get(SiteTypeEnum.SLICEL).size() + ")");
@@ -100,6 +113,25 @@ public class PlacerSiteCentric extends Placer {
             writer.write("\n\tSite: " + site.getName());
         }
     } // end placeDesign()
+
+    private Site selectBUFGCTRLSite() {
+        Random rand = new Random();
+        SiteTypeEnum siteType = SiteTypeEnum.BUFGCTRL;
+        int randRange = availableSites.get(siteType).size();
+        Site selectedSite = availableSites.get(siteType).remove(rand.nextInt(randRange));
+        occupiedSites.get(siteType).add(selectedSite);
+        return selectedSite;
+    }
+
+    private void placeBUFGCTRLSites(List<EDIFHierCellInst> BUFGCTRLCells) throws IOException {
+        writer.write("\n\nPlacing BUFGCTRL Cells... (" + BUFGCTRLCells.size());
+        for (EDIFHierCellInst ehci : BUFGCTRLCells) {
+            Site selectedSite = selectBUFGCTRLSite();
+            SiteInst si = new SiteInst(ehci.getFullHierarchicalInstName(), design, SiteTypeEnum.BUFGCTRL, selectedSite);
+            si.createCell(ehci, si.getBEL("BUFGCTRL"));
+            si.routeSite();
+        }
+    }
 
     protected SiteTypeEnum selectCLBSiteType() {
         Random rand = new Random();

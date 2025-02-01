@@ -16,7 +16,32 @@ module top_level
     output wire o_dout_valid
 );
 
-    // tell synth not to alter/optimize these signals
+    wire sys_clk;
+
+    // BUFGCTRL: Global Clock Control Buffer
+    //           7 Series
+    // Xilinx HDL Language Template, version 2024.2
+
+    BUFGCTRL #(
+        .INIT_OUT(0),           // Initial value of the output
+        .PRESELECT_I0("TRUE"),  // Preselect I0 (optional, based on your design requirements)
+        .PRESELECT_I1("FALSE")  // Do not preselect I1
+    )
+    BUFGCTRL_inst (
+        .O(sys_clk),    // Buffered clock output
+        .CE0(1'b1),     // Enable clock input I0
+        .CE1(1'b0),     // Disable clock input I1
+        .I0(i_clk),     // Connect external clock to I0
+        .I1(1'b0),      // Tie I1 to 0 since it's unused
+        .IGNORE0(1'b0), // Do not ignore glitches on I0
+        .IGNORE1(1'b1), // Ignore glitches on the unused I1 path
+        .S0(1'b1),      // Select I0
+        .S1(1'b0)       // Do not select I1
+    );
+
+    // End of BUFGCTRL_inst instantiation    // tell tool not to alter/optimize these signals
+
+
     (* DONT_TOUCH = "TRUE" *) wire [DATA_WIDTH-1:0] fir_din;
     (* DONT_TOUCH = "TRUE" *) wire [DATA_WIDTH-1:0] fir_dout;
 
@@ -32,7 +57,7 @@ module top_level
     #(
         .LENGTH(DATA_WIDTH)
     ) deserializer_inst (
-        .i_clk(i_clk),
+        .i_clk(sys_clk),
         .i_rst(i_rst),
         .i_en(i_en),
         .i_din(i_din),
@@ -49,7 +74,7 @@ module top_level
         .FIR_DEPTH(FIR_DEPTH),
         .NUM_PIPELINES(NUM_PIPELINES)
     ) fir_filter_inst (
-        .i_clk(i_clk),
+        .i_clk(sys_clk),
         .i_rst(i_rst),
         .i_en(i_en),
         .iv_din(fir_din),
@@ -64,7 +89,7 @@ module top_level
     #(
         .LENGTH(DATA_WIDTH)
     ) serializer_inst (
-        .i_clk(i_clk),
+        .i_clk(sys_clk),
         .i_rst(i_rst),
         .i_en(i_en),
         .iv_din(fir_dout),

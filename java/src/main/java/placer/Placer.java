@@ -351,6 +351,25 @@ public abstract class Placer {
         }
     }
 
+    public List<Site> printGlobalClkBuffers() throws IOException {
+        BufferedWriter writer = new BufferedWriter(
+                new FileWriter(rootDir + "/outputs/printout/DeviceGlobalClkBuffers.txt"));
+        writer.write("\nPrinting global clock buffer Sites in the device: ");
+        writer.newLine();
+        Site[] sites = device.getAllSites();
+        List<Site> bufferSites = new ArrayList<>();
+        for (Site site : sites) {
+            if (site.isGlobalClkBuffer()) {
+                bufferSites.add(site);
+                writer.write("\nSite: " + site.getName() + ", Type: " + site.getSiteTypeEnum());
+            }
+        }
+        if (writer != null)
+            writer.close();
+        return bufferSites;
+
+    }
+
     public Set<SiteTypeEnum> printUniqueSites() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "/outputs/printout/DeviceUniqueSites.txt"));
         writer.write("\nPrinting unique sites in the device: ");
