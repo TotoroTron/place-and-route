@@ -282,7 +282,7 @@ public class PlacerSiteCentric extends Placer {
                 si.addSitePIP(si.getSitePIP(FF.charAt(0) + "OUTMUX", "XOR"));
     } // end rerouteCarryNets()
 
-    private void rerouteFFSrCeNets(SiteInst si) {
+    private void rerouteFFClkSrCeNets(SiteInst si) {
         si.addSitePIP("CLKINV", "CLK");
         // activate PIPs for SR and CE pins
         Net SRNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
@@ -337,7 +337,7 @@ public class PlacerSiteCentric extends Placer {
         // sometimes the default routeSite() is insufficient, so some manual
         // intervention is required
         rerouteCarryNets(si);
-        rerouteFFSrCeNets(si);
+        rerouteFFClkSrCeNets(si);
     } // end placeCarrySite()
 
     private void placeCarryChainSites(List<List<CarryCellGroup>> EDIFCarryChains)
@@ -430,7 +430,7 @@ public class PlacerSiteCentric extends Placer {
                         }
                     }
                 }
-                rerouteFFSrCeNets(si);
+                rerouteFFClkSrCeNets(si);
             }
         }
     } // end placeLUTFFPairGroups()

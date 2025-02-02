@@ -75,7 +75,7 @@ module tb_top_level
         tb_rst = 0;
         tb_en  = 1;
 
-        repeat (1) begin
+        repeat (4) begin
             for (int t = 0; t < SAMPLES_PER_SIGNAL_PERIOD; t++) begin
                 tb_addr    = t;
                 tb_word_in = sine_signal[tb_addr];
