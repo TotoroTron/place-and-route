@@ -56,9 +56,9 @@ public class Main {
             PackedDesign packedDesign = BPacker.run();
 
             PlacerSiteCentric SCPlacer = new PlacerSiteCentric(rootDir, design, device,
-                    device.getClockRegion("X0Y0"));
+                    device.getClockRegion("X1Y1"));
             SCPlacer.printUniqueSites();
-            SCPlacer.printGlobalClkBuffers();
+            SCPlacer.printClockBuffers();
             SCPlacer.run(packedDesign);
 
             // ViewVivadoCheckpoint ViewVivado = new ViewVivadoCheckpoint();

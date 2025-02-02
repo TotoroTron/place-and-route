@@ -393,15 +393,6 @@ public class PackerBasic extends Packer {
         }
     }
 
-    public void printDSPPairs(List<Pair<EDIFHierCellInst, EDIFHierCellInst>> DSPPairs) throws IOException {
-        writer.write("\n\nPrinting DSPPairs... (" + DSPPairs.size() + ")");
-        for (Pair<EDIFHierCellInst, EDIFHierCellInst> pair : DSPPairs) {
-            writer.write("\n\t(" + pair.key().getCellType().getName() + ": " + pair.key().getFullHierarchicalInstName()
-                    + ", " + pair.value().getCellType().getName() + ": " + pair.value().getFullHierarchicalInstName()
-                    + ")");
-        }
-    }
-
     public void printLUTFFGroups(
             Map<Pair<String, String>, LUTFFGroup> LUTFFGroups)
             throws IOException {

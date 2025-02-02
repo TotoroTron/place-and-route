@@ -54,15 +54,15 @@ public class PlacerSiteCentric extends Placer {
                 List<Site> compatibleSites = new ArrayList<>(Arrays.asList(device.getAllSitesOfType(siteType)));
                 if (regionConstraint != null) {
                     compatibleSites = compatibleSites.stream()
-                            .filter(s -> s.getClockRegion() != null)
-                            .filter(s -> s.getClockRegion().equals(regionConstraint))
+                            .filter(s -> s.getClockRegion() == null
+                                    ? s.isGlobalClkBuffer()
+                                    : s.getClockRegion().equals(regionConstraint))
                             .collect(Collectors.toList());
                 }
                 availableSites.put(siteType, compatibleSites);
                 occupiedSites.put(siteType, new ArrayList<>());
             }
         }
-
     }
 
     private void printDeviceSiteTypes() throws IOException {
@@ -87,7 +87,7 @@ public class PlacerSiteCentric extends Placer {
         placeRAMSites(RAMCells);
         placeLUTFFPairGroups(LUTFFGroups);
         placeLUTGroups(LUTGroups);
-        // placeBUFGCTRLSites(BUFGCTRLCells);
+        placeBUFGCTRLSites(BUFGCTRLCells);
 
         writer.write("\n\nALL CELL PATTERNS HAVE BEEN PLACED...");
         writer.write("\n\nPrinting occupied SLICEL sites... (" + occupiedSites.get(SiteTypeEnum.SLICEL).size() + ")");
@@ -118,7 +118,9 @@ public class PlacerSiteCentric extends Placer {
         Random rand = new Random();
         SiteTypeEnum siteType = SiteTypeEnum.BUFGCTRL;
         int randRange = availableSites.get(siteType).size();
-        Site selectedSite = availableSites.get(siteType).remove(rand.nextInt(randRange));
+        // Site selectedSite =
+        // availableSites.get(siteType).remove(rand.nextInt(randRange));
+        Site selectedSite = availableSites.get(siteType).remove(0);
         occupiedSites.get(siteType).add(selectedSite);
         return selectedSite;
     }
@@ -292,6 +294,7 @@ public class PlacerSiteCentric extends Placer {
     } // end rerouteCarryNets()
 
     private void rerouteFFSrCeNets(SiteInst si) {
+        si.addSitePIP("CLKINV", "CLK");
         // activate PIPs for SR and CE pins
         Net SRNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
         Net CENet = si.getNetFromSiteWire("CEUSEDMUX_OUT");

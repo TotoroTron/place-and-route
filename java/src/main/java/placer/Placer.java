@@ -351,22 +351,41 @@ public abstract class Placer {
         }
     }
 
-    public List<Site> printGlobalClkBuffers() throws IOException {
+    private void printClockBufferSite(BufferedWriter writer, Site site) throws IOException {
+        writer.write("\nSite: " + site.getName()
+                + ", Type: " + site.getSiteTypeEnum()
+                + ", Clock Region: " + site.getClockRegion());
+    }
+
+    public void printClockBuffers() throws IOException {
         BufferedWriter writer = new BufferedWriter(
                 new FileWriter(rootDir + "/outputs/printout/DeviceGlobalClkBuffers.txt"));
-        writer.write("\nPrinting global clock buffer Sites in the device: ");
-        writer.newLine();
+
         Site[] sites = device.getAllSites();
-        List<Site> bufferSites = new ArrayList<>();
-        for (Site site : sites) {
-            if (site.isGlobalClkBuffer()) {
-                bufferSites.add(site);
-                writer.write("\nSite: " + site.getName() + ", Type: " + site.getSiteTypeEnum());
-            }
-        }
+
+        writer.write("\n\nPrinting Global Clock Buffer Sites in the device... ");
+        for (Site site : sites)
+            if (site.isGlobalClkBuffer())
+                printClockBufferSite(writer, site);
+
+        writer.write("\n\nPrinting Regional Clock Buffer Sites in the device... ");
+        for (Site site : sites)
+            if (site.isRegionalClkBuffer())
+                printClockBufferSite(writer, site);
+
+        writer.write("\n\nPrinting Global Clock Pads in the device... ");
+        for (Site site : sites)
+            if (site.isGlobalClkPad())
+                printClockBufferSite(writer, site);
+
+        writer.write("\n\nPrinting Regional Clock Pads Sites in the device... ");
+        for (Site site : sites)
+            if (site.isRegionalClkPad())
+                printClockBufferSite(writer, site);
+
         if (writer != null)
             writer.close();
-        return bufferSites;
+        return;
 
     }
 

@@ -14,3 +14,7 @@ CRITICAL WARNING: [Netlist 29-154] Cannot set property 'CLOCK_BUFFER_TYPE' becau
 
 BUFG,BUFGCE,BUFH,BUFIO,BUFMR,BUFG_FABRIC,BUFR,NONE
 y,   n      
+
+https://forum.digilent.com/topic/27362-error-for-poor-placing-between-io-and-bufg-no-idea-what-to-do/
+https://www.edaboard.com/threads/pin-to-clock-routing-warning-after-implementation.372448/
+https://adaptivesupport.amd.com/s/question/0D52E00006hpUvDSAU/poor-placement-between-an-io-and-bufg?language=en_US
