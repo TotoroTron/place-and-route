@@ -115,12 +115,14 @@ public class PlacerSiteCentric extends Placer {
     } // end placeDesign()
 
     private Site selectBUFGCTRLSite() {
-        Random rand = new Random();
         SiteTypeEnum siteType = SiteTypeEnum.BUFGCTRL;
-        int randRange = availableSites.get(siteType).size();
-        // Site selectedSite =
-        // availableSites.get(siteType).remove(rand.nextInt(randRange));
-        Site selectedSite = availableSites.get(siteType).remove(0);
+        Site selectedSite = availableSites.get(siteType).stream()
+                .filter(s -> s.getTile().getName().contains("CLK_BUFG_TOP"))
+                .collect(Collectors.toList()).remove(0);
+        // the crystal clock comes in on pin H16 on the xc7z020 which is located on top
+        // half of device, so can only use BUFGs on the top half of the device, which
+        // are (BUFG sites in Tile "CLK_BUFG_TOP..." as opposed to "CLK_BUFG_BOT...").
+        // Otherwise, routing will complain about poor CCIO - BUFG placement.
         occupiedSites.get(siteType).add(selectedSite);
         return selectedSite;
     }
@@ -221,22 +223,6 @@ public class PlacerSiteCentric extends Placer {
         return selectedSite;
     }
 
-    protected SiteTypeEnum selectRAMSiteType() {
-        Random rand = new Random();
-
-        List<SiteTypeEnum> compatibleSiteTypes = new ArrayList<SiteTypeEnum>();
-        // if (deviceSiteTypes.contains(SiteTypeEnum.FIFO18E1))
-        // compatibleSiteTypes.add(SiteTypeEnum.FIFO18E1);
-        if (deviceSiteTypes.contains(SiteTypeEnum.RAMB18E1))
-            compatibleSiteTypes.add(SiteTypeEnum.RAMB18E1);
-        if (compatibleSiteTypes.isEmpty()) {
-            throw new IllegalStateException(
-                    "ERROR: device or clock region contains no Sites of type FIFO18E1 or RAMB18E1 !");
-        }
-        SiteTypeEnum selectedSiteType = compatibleSiteTypes.get(rand.nextInt(compatibleSiteTypes.size()));
-        return selectedSiteType;
-    }
-
     private void placeRAMSites(List<EDIFHierCellInst> RAMCells)
             throws IOException {
         writer.write("\n\nPlacing RAMBCells... (" + RAMCells.size() + ")");
@@ -251,10 +237,13 @@ public class PlacerSiteCentric extends Placer {
 
     protected Site selectRAMSite() {
         Random rand = new Random();
-        // SiteTypeEnum selectedSiteType = selectRAMSiteType();
         List<Site> compatibleSites = new ArrayList<>();
         compatibleSites.addAll(availableSites.get(SiteTypeEnum.RAMB18E1));
         compatibleSites.addAll(availableSites.get(SiteTypeEnum.FIFO18E1));
+        if (compatibleSites.isEmpty()) {
+            throw new IllegalStateException(
+                    "ERROR: device or clock region contains no Sites of type FIFO18E1 or RAMB18E1 !");
+        }
         compatibleSites.sort(
                 Comparator.comparingInt(Site::getInstanceY)
                         .thenComparingInt(Site::getInstanceX)
