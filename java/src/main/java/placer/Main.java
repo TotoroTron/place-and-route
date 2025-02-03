@@ -38,7 +38,6 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            // Logger to keep track of execution progress.
             FileHandler fileHandler = new FileHandler(rootDir + "/outputs/logger.log", true); // 'true' appends to file
             fileHandler.setFormatter(new SimpleFormatter());
             logger.addHandler(fileHandler);

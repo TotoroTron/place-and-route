@@ -17,6 +17,7 @@ import com.xilinx.rapidwright.edif.EDIFHierPortInst;
 import com.xilinx.rapidwright.edif.EDIFHierNet;
 import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.device.Device;
+import com.xilinx.rapidwright.design.tools.LUTTools;
 
 public class PackerBasic extends Packer {
     public PackerBasic(String rootDir, Design design, Device device) throws IOException {
@@ -25,6 +26,8 @@ public class PackerBasic extends Packer {
     }
 
     public PackedDesign packDesign() throws IOException {
+
+        LUTTools lutTools = new LUTTools();
 
         // Create a map to group cells by type
         Map<String, List<EDIFHierCellInst>> EDIFCellGroups = new HashMap<>();
@@ -35,8 +38,10 @@ public class PackerBasic extends Packer {
         for (EDIFHierCellInst ehci : design.getNetlist().getAllLeafHierCellInstances()) {
             String cellType = ehci.getInst().getCellType().getName();
             // group all luts together
-            if (cellType.contains("LUT"))
+            if (cellType.contains("LUT")) {
                 cellType = "LUT";
+                System.out.println(LUTTools.getLUTEquation(ehci.getInst()));
+            }
             // populate unique cell types
             if (uniqueEdifCellTypes.add(cellType)) // set returns bool
                 EDIFCellGroups.put(cellType, new ArrayList<>()); // spawn unique group
@@ -95,7 +100,8 @@ public class PackerBasic extends Packer {
 
         while (!EDIFCellGroups.get("DSP48E1").isEmpty()) {
             EDIFHierCellInst currCell = EDIFCellGroups.get("DSP48E1").get(0);
-            // traverse in the cin direction to find the anchor
+            // traverse in the cin direction to find the anchor.
+            // anchor occurs when cin ports have no DSP cells on them.
             while (true) {
                 List<EDIFHierPortInst> cins = currCell.getHierPortInsts().stream()
                         .filter(ehpi -> {
@@ -125,7 +131,7 @@ public class PackerBasic extends Packer {
             }
 
             // we now have the cascade anchor as currCell
-            // now traverse in the cin direction
+            // now traverse in the cout direction
             // end of cascade occurs when COUT buses contain no DSP cells
             List<EDIFHierCellInst> cascade = new ArrayList<>();
             while (true) { // iterating through the cascade itself
