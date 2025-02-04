@@ -2,16 +2,20 @@
 package placer;
 
 import java.util.List;
-import java.util.Map;
 
+import com.xilinx.rapidwright.device.Site;
+import com.xilinx.rapidwright.device.ClockRegion;
 import com.xilinx.rapidwright.design.SiteInst;
 
 public class PackedDesign {
     List<SiteInst> BUFGCTRLSiteInsts;
-    List<List<SiteInst>> DSPSiteInstCascades;
     List<List<SiteInst>> CARRYSiteInstChains;
+    List<List<SiteInst>> DSPSiteInstCascades;
     List<SiteInst> CLBSiteInsts;
-    List<SiteInst> RAMSiteSiteInsts;
+    List<SiteInst> RAMSiteInsts;
+
+    List<Site> availableSites;
+    List<Site> occupiedSites;
 
     PackedDesign(
             List<SiteInst> BUFGCTRLSiteInsts,
@@ -23,7 +27,15 @@ public class PackedDesign {
         this.CARRYSiteInstChains = CARRYSiteInstChains;
         this.DSPSiteInstCascades = DSPSiteInstCascades;
         this.CLBSiteInsts = CLBSiteInsts;
-        this.RAMSiteSiteInsts = RAMSiteInsts;
+        this.RAMSiteInsts = RAMSiteInsts;
     };
+
+    PackedDesign(PackedDesign packedDesign) {
+        this.BUFGCTRLSiteInsts = packedDesign.BUFGCTRLSiteInsts;
+        this.CARRYSiteInstChains = packedDesign.CARRYSiteInstChains;
+        this.DSPSiteInstCascades = packedDesign.DSPSiteInstCascades;
+        this.CLBSiteInsts = packedDesign.CLBSiteInsts;
+        this.RAMSiteInsts = packedDesign.RAMSiteInsts;
+    }
 
 }

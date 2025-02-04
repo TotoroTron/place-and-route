@@ -1,5 +1,7 @@
 package placer;
 
+import java.util.stream.Collectors;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -29,6 +31,7 @@ import com.xilinx.rapidwright.edif.EDIFPortInst;
 import com.xilinx.rapidwright.edif.EDIFHierPortInst;
 
 import com.xilinx.rapidwright.device.Device;
+import com.xilinx.rapidwright.device.Tile;
 import com.xilinx.rapidwright.device.Site;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 import com.xilinx.rapidwright.device.BEL;
@@ -66,5 +69,27 @@ public abstract class Placer {
     }
 
     protected abstract void placeDesign(PackedDesign packedDesign) throws IOException;
+
+    public double evaluateCost() throws IOException {
+        double cost = 0;
+        Collection<Net> nets = design.getNets();
+        for (Net net : nets) {
+            // System.out.println("Net: " + net.getName());
+            if (net.isClockNet() || net.isStaticNet())
+                continue;
+            Tile srcTile = net.getSourceTile();
+            // this returns null if the net is purely intrasite!
+            if (srcTile == null)
+                continue;
+            // System.out.println("\tsrcTile: " + srcTile.getName());
+            List<Tile> sinkTiles = net.getSinkPins().stream()
+                    .map(spi -> spi.getTile())
+                    .collect(Collectors.toList());
+            for (Tile sinkTile : sinkTiles) {
+                cost = cost + srcTile.getManhattanDistance(sinkTile);
+            }
+        }
+        return cost;
+    }
 
 } // end class Placer
