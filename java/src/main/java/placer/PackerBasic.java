@@ -24,6 +24,7 @@ import com.xilinx.rapidwright.edif.EDIFHierPortInst;
 
 import com.xilinx.rapidwright.device.Device;
 import com.xilinx.rapidwright.device.Site;
+import com.xilinx.rapidwright.device.Tile;
 import com.xilinx.rapidwright.device.SitePIPStatus;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 import com.xilinx.rapidwright.device.ClockRegion;
@@ -64,34 +65,55 @@ public class PackerBasic extends Packer {
         }
     }
 
+    public double evaluateCost() throws IOException {
+        double cost = 0;
+        Collection<Net> nets = design.getNets();
+        for (Net net : nets) {
+            System.out.println("Net: " + net.getName());
+            if (net.isClockNet() || net.isStaticNet())
+                continue;
+            Tile srcTile = net.getSourceTile();
+            // this returns null if the net is purely intrasite!
+            if (srcTile == null)
+                continue;
+            System.out.println("\tsrcTile: " + srcTile.getName());
+            List<Tile> sinkTiles = net.getSinkPins().stream()
+                    .map(spi -> spi.getTile())
+                    .collect(Collectors.toList());
+            for (Tile sinkTile : sinkTiles) {
+                cost = cost + srcTile.getManhattanDistance(sinkTile);
+            }
+        }
+        return cost;
+    }
+
     public PackedDesign packDesign(PrepackedDesign prepackedDesign) throws IOException {
         printDeviceSiteTypes();
 
+        List<EDIFHierCellInst> BUFGCTRLCells = prepackedDesign.BUFGCTRLCells;
         List<List<CarryCellGroup>> CARRYChains = prepackedDesign.CARRYChains;
         List<List<EDIFHierCellInst>> DSPCascades = prepackedDesign.DSPCascades;
         List<EDIFHierCellInst> RAMCells = prepackedDesign.RAMCells;
         Map<Pair<String, String>, LUTFFGroup> LUTFFGroups = prepackedDesign.LUTFFGroups;
         List<List<EDIFHierCellInst>> LUTGroups = prepackedDesign.LUTGroups;
-        List<EDIFHierCellInst> BUFGCTRLCells = prepackedDesign.BUFGCTRLCells;
 
-        // arbitary initial placement
-        //
-        // RENAME THESE TO packCarryChain, packDSPCascades, etc.
-        // packDesign() then returns a new PackedDesign() to the hypothetical Placer
-        //
-        //
+        List<SiteInst> BUFGCTRLSiteInsts = packBUFGCTRLSiteInsts(BUFGCTRLCells);
+        List<List<SiteInst>> CARRYSiteInstChains = packCarryChains(CARRYChains);
+        List<List<SiteInst>> DSPSiteInstCascades = packDSPCascades(DSPCascades);
+        List<SiteInst> RAMSiteInsts = packRAMSiteInsts(RAMCells);
+        List<SiteInst> LUTFFSiteInsts = packLUTFFPairGroups(LUTFFGroups);
+        List<SiteInst> LUTSiteInsts = packLUTGroups(LUTGroups);
+        List<SiteInst> CLBSiteInsts = new ArrayList<>();
+        CLBSiteInsts.addAll(LUTFFSiteInsts);
+        CLBSiteInsts.addAll(LUTSiteInsts);
 
-        packCarryChains(CARRYChains);
-        packDSPCascades(DSPCascades);
-        packRAMSites(RAMCells);
-        packLUTFFPairGroups(LUTFFGroups);
-        packLUTGroups(LUTGroups);
-        packBUFGCTRLSites(BUFGCTRLCells);
-
-        PackedDesign packedDesign = null;
+        PackedDesign packedDesign = new PackedDesign(
+                BUFGCTRLSiteInsts, CARRYSiteInstChains, DSPSiteInstCascades, RAMSiteInsts, CLBSiteInsts);
 
         writer.write("\n\nALL CELL PATTERNS HAVE BEEN ARBITRARILY PLACED...");
         printOccupiedSites();
+        double cost = evaluateCost();
+        writer.write("\n\nInitial HPWL cost: " + cost);
 
         return packedDesign;
 
@@ -120,20 +142,23 @@ public class PackerBasic extends Packer {
         rerouteFFClkSrCeNets(si);
     } // end placeCarrySite()
 
-    private void packCarryChains(List<List<CarryCellGroup>> EDIFCarryChains)
+    private List<List<SiteInst>> packCarryChains(List<List<CarryCellGroup>> EDIFCarryChains)
             throws IOException {
+        List<List<SiteInst>> siteInstChains = new ArrayList<>();
         writer.write("\n\nPlacing carry chains... (" + EDIFCarryChains.size() + ")");
-        for (List<CarryCellGroup> chain : EDIFCarryChains) {
-            writer.write("\n\t\tChain Size: (" + chain.size() + "), Chain Anchor: "
-                    + chain.get(0).carry().getFullHierarchicalInstName());
-            Site anchorSite = selectCarryAnchorSite(chain.size());
+        for (List<CarryCellGroup> edifChain : EDIFCarryChains) {
+            List<SiteInst> siteInstChain = new ArrayList<>();
+            writer.write("\n\t\tChain Size: (" + edifChain.size() + "), Chain Anchor: "
+                    + edifChain.get(0).carry().getFullHierarchicalInstName());
+            Site anchorSite = selectCarryAnchorSite(edifChain.size());
             SiteTypeEnum selectedSiteType = anchorSite.getSiteTypeEnum();
-            for (int i = 0; i < chain.size(); i++) {
+            for (int i = 0; i < edifChain.size(); i++) {
                 Site site = (i == 0) ? anchorSite
                         : device.getSite("SLICE_X" + anchorSite.getInstanceX() + "Y" + (anchorSite.getInstanceY() + i));
-                SiteInst si = new SiteInst(chain.get(i).carry().getFullHierarchicalInstName(), design, selectedSiteType,
+                SiteInst si = new SiteInst(edifChain.get(i).carry().getFullHierarchicalInstName(), design,
+                        selectedSiteType,
                         site);
-                packCarrySite(chain.get(i), si);
+                packCarrySite(edifChain.get(i), si);
                 if (i == 0) { // additional routing logic for anchor site
                     Net CINNet = si.getNetFromSiteWire("CIN");
                     CINNet.removePin(si.getSitePinInst("CIN"));
@@ -141,13 +166,17 @@ public class PackerBasic extends Packer {
                 }
                 occupiedSites.get(selectedSiteType).add(site);
                 availableSites.get(selectedSiteType).remove(site);
+                siteInstChains.add(siteInstChain);
             }
         } // end for (List<EDIFCellInst> chain : EDIFCarryChains)
+        return siteInstChains;
     } // end packCarryChains()
 
-    private void packDSPCascades(List<List<EDIFHierCellInst>> EDIFDSPCascades) throws IOException {
+    private List<List<SiteInst>> packDSPCascades(List<List<EDIFHierCellInst>> EDIFDSPCascades) throws IOException {
+        List<List<SiteInst>> siteInstCascades = new ArrayList<>();
         writer.write("\n\nPlacing DSP Cascades... (" + EDIFDSPCascades.size() + ")");
         for (List<EDIFHierCellInst> cascade : EDIFDSPCascades) {
+            List<SiteInst> siteInstCascade = new ArrayList<>();
             // each DSP tile has 2 DSP sites on the Zynq 7000
             writer.write("\n\tCascade Size: (" + cascade.size() + "), Cascade Anchor: "
                     + cascade.get(0).getFullHierarchicalInstName());
@@ -162,12 +191,16 @@ public class PackerBasic extends Packer {
                 occupiedSites.get(siteType).add(site);
                 availableSites.get(siteType).remove(site);
                 si.routeSite();
+                siteInstCascade.add(si);
             }
+            siteInstCascades.add(siteInstCascade);
         }
+        return siteInstCascades;
     } // end packDSPCascades()
 
-    private void packRAMSites(List<EDIFHierCellInst> RAMCells)
+    private List<SiteInst> packRAMSiteInsts(List<EDIFHierCellInst> RAMCells)
             throws IOException {
+        List<SiteInst> RAMSiteInsts = new ArrayList<>();
         writer.write("\n\nPlacing RAMBCells... (" + RAMCells.size() + ")");
         for (EDIFHierCellInst ehci : RAMCells) {
             Site selectedSite = selectRAMSite();
@@ -175,11 +208,14 @@ public class PackerBasic extends Packer {
                     selectedSite);
             si.createCell(ehci, si.getBEL("RAMB18E1"));
             si.routeSite();
+            RAMSiteInsts.add(si);
         }
-    } // end packRAMSites()
+        return RAMSiteInsts;
+    } // end packRAMSiteInsts()
 
-    private void packLUTFFPairGroups(
+    private List<SiteInst> packLUTFFPairGroups(
             Map<Pair<String, String>, LUTFFGroup> LUTFFEnableResetGroups) throws IOException {
+        List<SiteInst> LUTFFSiteInsts = new ArrayList<>();
         writer.write("\n\nPlacing LUT-FF Pair Groups... (" + LUTFFEnableResetGroups.size() + ")");
         for (Map.Entry<Pair<String, String>, LUTFFGroup> entry : LUTFFEnableResetGroups.entrySet()) {
             Pair<String, String> netPair = entry.getKey();
@@ -188,7 +224,6 @@ public class PackerBasic extends Packer {
             LUTFFGroup lutffgroup = entry.getValue();
             for (List<Pair<EDIFHierCellInst, EDIFHierCellInst>> LUTFFPairs : splitIntoGroups(lutffgroup.group(), 4)) {
                 Site selectedSite = selectCLBSite();
-                SiteTypeEnum selectedSiteType = selectedSite.getSiteTypeEnum();
                 SiteInst si = design.createSiteInst(selectedSite);
                 for (int i = 0; i < LUTFFPairs.size(); i++) {
                     EDIFHierCellInst ff = LUTFFPairs.get(i).value();
@@ -210,11 +245,14 @@ public class PackerBasic extends Packer {
                     }
                 }
                 rerouteFFClkSrCeNets(si);
+                LUTFFSiteInsts.add(si);
             }
         }
+        return LUTFFSiteInsts;
     } // end packLUTFFPairGroups()
 
-    private void packLUTGroups(List<List<EDIFHierCellInst>> LUTGroups) {
+    private List<SiteInst> packLUTGroups(List<List<EDIFHierCellInst>> LUTGroups) {
+        List<SiteInst> LUTSiteInsts = new ArrayList<>();
         for (List<EDIFHierCellInst> group : LUTGroups) {
             Site selectedSite = selectCLBSite();
             SiteInst si = design.createSiteInst(selectedSite);
@@ -228,18 +266,23 @@ public class PackerBasic extends Packer {
             si.addSitePIP(si.getSitePIP("CUSED", "0"));
             si.addSitePIP(si.getSitePIP("BUSED", "0"));
             si.addSitePIP(si.getSitePIP("AUSED", "0"));
+            LUTSiteInsts.add(si);
         }
+        return LUTSiteInsts;
     } // end packLUTGroups()
 
-    private void packBUFGCTRLSites(List<EDIFHierCellInst> BUFGCTRLCells) throws IOException {
+    private List<SiteInst> packBUFGCTRLSiteInsts(List<EDIFHierCellInst> BUFGCTRLCells) throws IOException {
+        List<SiteInst> BUFGCTRLSiteInsts = new ArrayList<>();
         writer.write("\n\nPlacing BUFGCTRL Cells... (" + BUFGCTRLCells.size());
         for (EDIFHierCellInst ehci : BUFGCTRLCells) {
             Site selectedSite = selectBUFGCTRLSite();
             SiteInst si = new SiteInst(ehci.getFullHierarchicalInstName(), design, SiteTypeEnum.BUFGCTRL, selectedSite);
             si.createCell(ehci, si.getBEL("BUFGCTRL"));
             si.routeSite();
+            BUFGCTRLSiteInsts.add(si);
         }
-    } // end packBUFGCTRLSites()
+        return BUFGCTRLSiteInsts;
+    }
 
     protected Site selectCLBSite() {
         List<Site> compatibleSites = new ArrayList<>();

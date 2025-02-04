@@ -65,7 +65,7 @@ public class PrepackerBasic extends Prepacker {
         List<EDIFHierCellInst> BUFGCTRLCells = EDIFCellGroups.get("BUFGCTRL");
 
         PrepackedDesign packedDesign = new PrepackedDesign(
-                DSPCascades, RAMCells, CARRYChains, LUTFFGroups, LUTGroups, BUFGCTRLCells);
+                BUFGCTRLCells, DSPCascades, RAMCells, CARRYChains, LUTFFGroups, LUTGroups);
 
         printCARRYChains(CARRYChains);
         printDSPCascades(DSPCascades);

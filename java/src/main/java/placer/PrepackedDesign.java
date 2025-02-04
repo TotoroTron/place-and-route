@@ -6,26 +6,26 @@ import java.util.Map;
 import com.xilinx.rapidwright.edif.EDIFHierCellInst;
 
 public class PrepackedDesign {
+    List<EDIFHierCellInst> BUFGCTRLCells;
     List<List<EDIFHierCellInst>> DSPCascades;
     List<List<CarryCellGroup>> CARRYChains;
     Map<Pair<String, String>, LUTFFGroup> LUTFFGroups;
     List<List<EDIFHierCellInst>> LUTGroups;
     List<EDIFHierCellInst> RAMCells;
-    List<EDIFHierCellInst> BUFGCTRLCells;
 
     PrepackedDesign(
+            List<EDIFHierCellInst> BUFGCTRLCells,
             List<List<EDIFHierCellInst>> DSPCascades,
             List<EDIFHierCellInst> RAMCells,
             List<List<CarryCellGroup>> CARRYChains,
             Map<Pair<String, String>, LUTFFGroup> LUTFFGroups,
-            List<List<EDIFHierCellInst>> LUTGroups,
-            List<EDIFHierCellInst> BUFGCTRLCells) {
+            List<List<EDIFHierCellInst>> LUTGroups) {
+        this.BUFGCTRLCells = BUFGCTRLCells;
         this.DSPCascades = DSPCascades;
         this.RAMCells = RAMCells;
         this.CARRYChains = CARRYChains;
         this.LUTFFGroups = LUTFFGroups;
         this.LUTGroups = LUTGroups;
-        this.BUFGCTRLCells = BUFGCTRLCells;
     };
 
 }

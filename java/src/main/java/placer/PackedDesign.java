@@ -7,23 +7,23 @@ import java.util.Map;
 import com.xilinx.rapidwright.design.SiteInst;
 
 public class PackedDesign {
-    List<List<SiteInst>> DSPCascades;
-    List<List<SiteInst>> CARRYChains;
-    List<SiteInst> LUTFFSites;
-    List<SiteInst> RAMSites;
-    List<SiteInst> BUFGCTRLSites;
+    List<SiteInst> BUFGCTRLSiteInsts;
+    List<List<SiteInst>> DSPSiteInstCascades;
+    List<List<SiteInst>> CARRYSiteInstChains;
+    List<SiteInst> LUTFFSiteInsts;
+    List<SiteInst> RAMSiteSiteInsts;
 
     PackedDesign(
-            List<List<SiteInst>> DSPCascades,
-            List<List<SiteInst>> CARRYChains,
-            List<SiteInst> LUTFFSites,
-            List<SiteInst> RAMSites,
-            List<SiteInst> BUFGCTRLSites) {
-        this.DSPCascades = DSPCascades;
-        this.CARRYChains = CARRYChains;
-        this.LUTFFSites = LUTFFSites;
-        this.RAMSites = RAMSites;
-        this.BUFGCTRLSites = BUFGCTRLSites;
+            List<SiteInst> BUFGCTRLSiteInsts,
+            List<List<SiteInst>> CARRYSiteInstChains,
+            List<List<SiteInst>> DSPSiteInstCascades,
+            List<SiteInst> LUTFFSiteInsts,
+            List<SiteInst> RAMSiteInsts) {
+        this.BUFGCTRLSiteInsts = BUFGCTRLSiteInsts;
+        this.CARRYSiteInstChains = CARRYSiteInstChains;
+        this.DSPSiteInstCascades = DSPSiteInstCascades;
+        this.LUTFFSiteInsts = LUTFFSiteInsts;
+        this.RAMSiteSiteInsts = RAMSiteInsts;
     };
 
 }
