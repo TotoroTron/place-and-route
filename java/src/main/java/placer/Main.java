@@ -47,14 +47,26 @@ public class Main {
             Design design = Design.readCheckpoint(synthesizedDcp);
             Device device = Device.getDevice("xc7z020clg400-1");
 
-            PackerBasic BPacker = new PackerBasic(rootDir, design, device);
-            PackedDesign packedDesign = BPacker.run();
+            // Stage 1) Prepacker:
+            // works entirely on the EDIFHierCellInst level.
+            // identifies cell patterns like CARRY chains, DSP cascades, LUTFF pairs, etc.
+            PrepackerBasic BPrepacker = new PrepackerBasic(rootDir, design, device);
+            PrepackedDesign prepackedDesign = BPrepacker.run();
 
-            PlacerSiteCentric SCPlacer = new PlacerSiteCentric(rootDir, design, device,
-                    device.getClockRegion("X0Y1"));
-            SCPlacer.printUniqueSites();
-            SCPlacer.printClockBuffers();
-            SCPlacer.run(packedDesign);
+            // Stage 2) Packer:
+            // takes the prepackedDesign and packs the EDIFHierCellInst into SiteInsts
+            // also provides an initial random placement of SiteInsts onto actual Sites.
+            PackerBasic BPacker = new PackerBasic(rootDir, design, device, device.getClockRegion("X0Y1"));
+            BPacker.printUniqueSites();
+            BPacker.printClockBuffers();
+            BPacker.run(prepackedDesign);
+
+            // Stage 3) Placer:
+            // takes the packedDesign and figures out an optimal mapping of SiteInsts onto
+            // Sites via simulated annealing, analytical, electrostatic placement, etc.
+            // works entirely on the SiteInst/Site/Tile level.
+            // PlacerSiteCentric SCPlacer = new PlacerSiteCentric(rootDir, design, device,
+            // device.getClockRegion("X0Y1"));
 
         } catch (IOException e) {
             logger.log(Level.SEVERE, "An IOException occurred while configuring the logger.", e);
@@ -85,6 +97,5 @@ public class Main {
             }
 
         }
-
     }
 }

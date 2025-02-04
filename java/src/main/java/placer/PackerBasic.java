@@ -1,441 +1,472 @@
+
 package placer;
 
 import java.util.stream.Collectors;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.HashSet;
 import java.util.Map;
+import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Random;
 import java.io.IOException;
+import java.io.FileWriter;
 
-import com.xilinx.rapidwright.edif.EDIFCellInst;
-import com.xilinx.rapidwright.edif.EDIFPortInst;
+import com.xilinx.rapidwright.design.Design;
+import com.xilinx.rapidwright.design.Net;
+import com.xilinx.rapidwright.design.SiteInst;
+import com.xilinx.rapidwright.design.SitePinInst;
+
 import com.xilinx.rapidwright.edif.EDIFHierCellInst;
 import com.xilinx.rapidwright.edif.EDIFHierPortInst;
-import com.xilinx.rapidwright.edif.EDIFHierNet;
-import com.xilinx.rapidwright.design.Design;
+
 import com.xilinx.rapidwright.device.Device;
-import com.xilinx.rapidwright.design.tools.LUTTools;
+import com.xilinx.rapidwright.device.Site;
+import com.xilinx.rapidwright.device.SitePIPStatus;
+import com.xilinx.rapidwright.device.SiteTypeEnum;
+import com.xilinx.rapidwright.device.ClockRegion;
 
 public class PackerBasic extends Packer {
-    public PackerBasic(String rootDir, Design design, Device device) throws IOException {
+
+    protected ClockRegion regionConstraint;
+    protected Set<SiteTypeEnum> deviceSiteTypes;
+    protected Map<SiteTypeEnum, List<Site>> occupiedSites;
+    protected Map<SiteTypeEnum, List<Site>> availableSites;
+
+    public PackerBasic(String rootDir, Design design, Device device, ClockRegion region) throws IOException {
         super(rootDir, design, device);
         packerName = "PackerBasic";
+        deviceSiteTypes = new HashSet<>();
+        occupiedSites = new HashMap<>();
+        availableSites = new HashMap<>();
+        regionConstraint = region;
+        initAvailableSites();
     }
 
-    public PackedDesign packDesign() throws IOException {
-
-        LUTTools lutTools = new LUTTools();
-
-        // Create a map to group cells by type
-        Map<String, List<EDIFHierCellInst>> EDIFCellGroups = new HashMap<>();
-        Set<String> uniqueEdifCellTypes = new HashSet<>();
-
-        // Organize EDIFHierCellInsts into "groups", where group labels are:
-        // RAMB18E1, DSP18E1, CARRY4, FDRE, FDSE, LUT (LUT2-6 all in one group), etc.
-        for (EDIFHierCellInst ehci : design.getNetlist().getAllLeafHierCellInstances()) {
-            String cellType = ehci.getInst().getCellType().getName();
-            // group all luts together
-            if (cellType.contains("LUT")) {
-                cellType = "LUT";
-                System.out.println(LUTTools.getLUTEquation(ehci.getInst()));
-            }
-            // populate unique cell types
-            if (uniqueEdifCellTypes.add(cellType)) // set returns bool
-                EDIFCellGroups.put(cellType, new ArrayList<>()); // spawn unique group
-            // add cell to corresponding group
-            EDIFCellGroups.get(cellType).add(ehci); // add cell to corresponding group
-        }
-
-        writer.write("\n\nSet of all Unique EDIF Cell Types... (" + uniqueEdifCellTypes.size() + ")");
-        for (String edifCellType : uniqueEdifCellTypes) {
-            writer.write("\n\t" + edifCellType);
-        }
-        writer.write("\nPrinting EDIFCells By Type...");
-        for (Map.Entry<String, List<EDIFHierCellInst>> entry : EDIFCellGroups.entrySet()) {
-            writer.write("\n\n" + entry.getKey() + " Cells (" + entry.getValue().size() + "):");
-            List<EDIFCellInst> cells = entry.getValue().stream()
-                    .map(e -> e.getInst())
-                    .collect(Collectors.toList());
-            printEDIFCellInstList(cells);
-        }
-        List<List<EDIFHierCellInst>> DSPCascades = findDSPCascades(EDIFCellGroups);
-        List<EDIFHierCellInst> RAMCells = EDIFCellGroups.get("RAMB18E1");
-        List<List<CarryCellGroup>> CARRYChains = findCarryChains(EDIFCellGroups);
-        Map<Pair<String, String>, LUTFFGroup> LUTFFGroups = findLUTFFGroups(EDIFCellGroups);
-        List<List<EDIFHierCellInst>> LUTGroups = buildLUTGroups(EDIFCellGroups);
-        List<EDIFHierCellInst> BUFGCTRLCells = EDIFCellGroups.get("BUFGCTRL");
-
-        PackedDesign packedDesign = new PackedDesign(
-                DSPCascades, RAMCells, CARRYChains, LUTFFGroups, LUTGroups, BUFGCTRLCells);
-
-        printCARRYChains(CARRYChains);
-        printDSPCascades(DSPCascades);
-        printLUTFFGroups(LUTFFGroups);
-        printLUTGroups(LUTGroups);
-
-        writer.write("\n\nPrinting remaining cells in EDIFCellGroups...");
-        for (Map.Entry<String, List<EDIFHierCellInst>> entry : EDIFCellGroups.entrySet()) {
-            writer.write("\n\tGroup: " + entry.getKey() + "... (" + entry.getValue().size() + ")");
-            if (entry.getValue().isEmpty())
-                writer.write("\n\t\tEmpty!");
-            for (EDIFHierCellInst ehci : entry.getValue()) {
-                writer.write("\n\t\tLoose Cell: " + ehci.getCellType() + ": " + ehci.getFullHierarchicalInstName());
-            }
-        }
-
-        return packedDesign;
-    }
-
-    private List<List<EDIFHierCellInst>> findDSPCascades(
-            Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
-        List<List<EDIFHierCellInst>> cascades = new ArrayList<>();
-        if (EDIFCellGroups.get("DSP48E1") == null) {
-            writer.write("\nWARNING: This design has zero DSP48E1 cells!\n");
-            System.out.println("WARNING: This design has zero DSP48E1 cells!");
-            return cascades;
-        }
-
-        while (!EDIFCellGroups.get("DSP48E1").isEmpty()) {
-            EDIFHierCellInst currCell = EDIFCellGroups.get("DSP48E1").get(0);
-            // traverse in the cin direction to find the anchor.
-            // anchor occurs when cin ports have no DSP cells on them.
-            while (true) {
-                List<EDIFHierPortInst> cins = currCell.getHierPortInsts().stream()
-                        .filter(ehpi -> {
-                            String name = ehpi.getPortInst().getName();
-                            return name.contains("PCIN")
-                                    || name.contains("ACIN")
-                                    || name.contains("BCIN");
-                        })
-                        .collect(Collectors.toList());
-                if (cins.isEmpty())
-                    break;
-                List<EDIFHierPortInst> couts = cins.stream()
-                        .map(cin -> cin.getHierarchicalNet().getLeafHierPortInsts(true, false).get(0))
-                        .collect(Collectors.toList());
-                Set<EDIFHierCellInst> coutCellSet = couts.stream()
-                        .map(cout -> cout.getHierarchicalInst().getChild(cout.getPortInst().getCellInst()))
-                        .filter(cell -> cell.getInst().getCellName().equals("DSP48E1"))
-                        .collect(Collectors.toSet());
-                if (coutCellSet.size() < 1) // found the cascade anchor!
-                    break;
-                if (coutCellSet.size() > 1) {
-                    throw new IllegalStateException(
-                            "ERROR: DSP48E1 cell " + currCell + "has multiple DSP cells on PCIN/ACIN/BCIN buses !");
+    private void initAvailableSites() {
+        Site[] deviceSites = device.getAllSites();
+        for (Site site : deviceSites) {
+            SiteTypeEnum siteType = site.getSiteTypeEnum();
+            if (deviceSiteTypes.add(siteType)) { // if new unique type is found
+                List<Site> compatibleSites = new ArrayList<>(Arrays.asList(device.getAllSitesOfType(siteType)));
+                if (regionConstraint != null) {
+                    compatibleSites = compatibleSites.stream()
+                            .filter(s -> s.getClockRegion() == null
+                                    ? s.isGlobalClkBuffer()
+                                    : s.getClockRegion().equals(regionConstraint))
+                            .collect(Collectors.toList());
                 }
-                EDIFHierCellInst coutCell = coutCellSet.stream().collect(Collectors.toList()).get(0);
-                currCell = coutCell;
+                availableSites.put(siteType, compatibleSites);
+                occupiedSites.put(siteType, new ArrayList<>());
             }
+        }
+    }
 
-            // we now have the cascade anchor as currCell
-            // now traverse in the cout direction
-            // end of cascade occurs when COUT buses contain no DSP cells
-            List<EDIFHierCellInst> cascade = new ArrayList<>();
-            while (true) { // iterating through the cascade itself
-                cascade.add(currCell);
-                List<EDIFHierPortInst> couts = currCell.getHierPortInsts().stream()
-                        .filter(ehpi -> {
-                            String name = ehpi.getPortInst().getName();
-                            return name.contains("PCOUT")
-                                    || name.contains("ACOUT")
-                                    || name.contains("BCOUT");
-                        })
-                        .collect(Collectors.toList());
-                if (couts.isEmpty())
+    private void printDeviceSiteTypes() throws IOException {
+        writer.write("\n\nDevice Site Types: ");
+        for (SiteTypeEnum ste : deviceSiteTypes) {
+            writer.write("\n\tSiteTypeEnum: " + ste);
+        }
+    }
+
+    private void printOccupiedSites() throws IOException {
+        for (Map.Entry<SiteTypeEnum, List<Site>> sites : occupiedSites.entrySet()) {
+            writer.write("\n\nPrinting occupied " + sites.getKey() + " sites... ("
+                    + sites.getValue().size() + ")");
+            for (Site site : sites.getValue()) {
+                writer.write("\n\tSite: " + site.getName() + ", Tile: " + site.getTile().getName());
+            }
+        }
+    }
+
+    public void packDesign(PrepackedDesign prepackedDesign) throws IOException {
+        printDeviceSiteTypes();
+
+        List<List<CarryCellGroup>> CARRYChains = prepackedDesign.CARRYChains;
+        List<List<EDIFHierCellInst>> DSPCascades = prepackedDesign.DSPCascades;
+        List<EDIFHierCellInst> RAMCells = prepackedDesign.RAMCells;
+        Map<Pair<String, String>, LUTFFGroup> LUTFFGroups = prepackedDesign.LUTFFGroups;
+        List<List<EDIFHierCellInst>> LUTGroups = prepackedDesign.LUTGroups;
+        List<EDIFHierCellInst> BUFGCTRLCells = prepackedDesign.BUFGCTRLCells;
+
+        // initial random placement
+        //
+        // RENAME THESE TO packCarryChain, packDSPCascades, etc.
+        // packDesign() then returns a new PackedDesign() to the hypothetical Placer
+        //
+        //
+
+        placeCarryChainSites(CARRYChains);
+        placeDSPCascades(DSPCascades);
+        placeRAMSites(RAMCells);
+        placeLUTFFPairGroups(LUTFFGroups);
+        placeLUTGroups(LUTGroups);
+        placeBUFGCTRLSites(BUFGCTRLCells);
+
+        writer.write("\n\nALL CELL PATTERNS HAVE BEEN RANDOMLY PLACED...");
+        printOccupiedSites();
+
+    } // end placeDesign()
+
+    private Site selectBUFGCTRLSite() {
+        SiteTypeEnum siteType = SiteTypeEnum.BUFGCTRL;
+        Site selectedSite = availableSites.get(siteType).stream()
+                .filter(s -> s.getTile().getName().contains("CLK_BUFG_TOP"))
+                .collect(Collectors.toList()).remove(0);
+        // the crystal clock comes in on pin H16 on the xc7z020 which is located on top
+        // half of device, so can only use BUFGs on the top half of the device, which
+        // are (BUFG sites in Tile "CLK_BUFG_TOP..." as opposed to "CLK_BUFG_BOT...").
+        // Otherwise, routing will complain about poor CCIO - BUFG placement.
+        occupiedSites.get(siteType).add(selectedSite);
+        return selectedSite;
+    }
+
+    private void placeBUFGCTRLSites(List<EDIFHierCellInst> BUFGCTRLCells) throws IOException {
+        writer.write("\n\nPlacing BUFGCTRL Cells... (" + BUFGCTRLCells.size());
+        for (EDIFHierCellInst ehci : BUFGCTRLCells) {
+            Site selectedSite = selectBUFGCTRLSite();
+            SiteInst si = new SiteInst(ehci.getFullHierarchicalInstName(), design, SiteTypeEnum.BUFGCTRL, selectedSite);
+            si.createCell(ehci, si.getBEL("BUFGCTRL"));
+            si.routeSite();
+        }
+    }
+
+    protected SiteTypeEnum selectCLBSiteType() {
+        Random rand = new Random();
+        List<SiteTypeEnum> compatibleSiteTypes = new ArrayList<SiteTypeEnum>();
+        if (deviceSiteTypes.contains(SiteTypeEnum.SLICEL))
+            compatibleSiteTypes.add(SiteTypeEnum.SLICEL);
+        if (deviceSiteTypes.contains(SiteTypeEnum.SLICEM))
+            compatibleSiteTypes.add(SiteTypeEnum.SLICEM);
+        if (compatibleSiteTypes.isEmpty()) {
+            throw new IllegalStateException("ERROR: device contains no Sites of type SLICEL or SLICEM !");
+        }
+        SiteTypeEnum selectedSiteType = compatibleSiteTypes.get(rand.nextInt(compatibleSiteTypes.size()));
+        return selectedSiteType;
+    }
+
+    protected Site selectCLBSite() {
+        Random rand = new Random();
+        SiteTypeEnum selectedSiteType = selectCLBSiteType();
+        int randRange = availableSites.get(selectedSiteType).size();
+        Site selectedSite = availableSites.get(selectedSiteType).remove(rand.nextInt(randRange));
+        // Site selectedSite = availableSites.get(selectedSiteType).remove(0);
+        occupiedSites.get(selectedSiteType).add(selectedSite);
+        return selectedSite;
+    }
+
+    protected Site selectCarryAnchorSite(int chainSize) {
+        Random rand = new Random();
+        SiteTypeEnum selectedSiteType = selectCLBSiteType();
+        boolean validAnchor = false;
+        Site selectedSite = null;
+        int attempts = 0;
+        while (true) {
+            int randRange = availableSites.get(selectedSiteType).size();
+            selectedSite = availableSites.get(selectedSiteType).get(rand.nextInt(randRange));
+            // selectedSite = availableSites.get(selectedSiteType).get(attempts);
+            int x = selectedSite.getInstanceX();
+            int y = selectedSite.getInstanceY();
+            for (int i = 0; i < chainSize; i++) {
+                String name = "SLICE_X" + x + "Y" + (y + i);
+                if (design.getSiteInstFromSiteName(name) != null
+                        || device.getSite(name) == null
+                        || device.getSite(name).getClockRegion() != regionConstraint) {
+                    validAnchor = false;
                     break;
-                List<EDIFHierPortInst> cins = couts.stream()
-                        .map(cout -> cout.getHierarchicalNet().getLeafHierPortInsts(false, true).get(0))
-                        .collect(Collectors.toList());
-                Set<EDIFHierCellInst> cinCellSet = cins.stream()
-                        .map(cin -> cin.getHierarchicalInst().getChild(cin.getPortInst().getCellInst()))
-                        .filter(cell -> cell.getInst().getCellName().equals("DSP48E1"))
-                        .collect(Collectors.toSet());
-                if (cinCellSet.size() < 1) // found the cascade tail!
-                    break;
-                if (cinCellSet.size() > 1) {
-                    throw new IllegalStateException(
-                            "ERROR: DSP48E1 cell " + currCell + "has multiple DSP cells on PCOUT/ACOUT/BCOUT buses !");
                 }
-                EDIFHierCellInst cinCell = cinCellSet.stream().collect(Collectors.toList()).get(0);
-                currCell = cinCell;
+                validAnchor = true;
             }
-            EDIFCellGroups.get("DSP48E1").removeAll(cascade);
-            cascades.add(cascade);
+            attempts++;
+            if (attempts > 1000)
+                throw new IllegalStateException("ERROR: Could not find CARRY4 chain anchor after 1000 attempts!");
+            if (validAnchor)
+                break;
         }
-        return cascades;
+        return selectedSite;
     }
 
-    private List<List<CarryCellGroup>> findCarryChains(
-            Map<String, List<EDIFHierCellInst>> EDIFCellGroups) {
-        List<String> OPorts = new ArrayList<>(List.of("O[0]", "O[1]", "O[2]", "O[3]"));
-        List<String> SPorts = new ArrayList<>(List.of("S[0]", "S[1]", "S[2]", "S[3]"));
-        List<List<CarryCellGroup>> carryCellGroupChains = new ArrayList<>();
-        // find the carry chain anchor
-        while (!EDIFCellGroups.get("CARRY4").isEmpty()) { // iterating over chains
-            List<EDIFHierCellInst> chain = new ArrayList<>();
-            EDIFHierCellInst currCell = EDIFCellGroups.get("CARRY4").get(0);
-
-            // every iteration, EDIFCarryCells gets updated so .get(0) is different.
-            while (true) {
-                EDIFHierPortInst currCellPort = currCell.getPortInst("CI");
-                EDIFHierNet hnet = currCellPort.getHierarchicalNet();
-                if (hnet.getNet().isGND())
+    protected Site selectDSPAnchorSite(int cascadeSize) {
+        Random rand = new Random();
+        SiteTypeEnum siteType = SiteTypeEnum.DSP48E1;
+        boolean validAnchor = false;
+        Site selectedSite = null;
+        int attempts = 0;
+        while (true) {
+            int randRange = availableSites.get(siteType).size();
+            selectedSite = availableSites.get(siteType).get(rand.nextInt(randRange));
+            // selectedSite = availableSites.get(siteType).get(attempts);
+            int x = selectedSite.getInstanceX();
+            int y = selectedSite.getInstanceY();
+            for (int i = 0; i < cascadeSize; i++) {
+                String name = "DSP48_X" + x + "Y" + (y + i);
+                if (design.getSiteInstFromSiteName(name) != null
+                        || device.getSite(name) == null
+                        || device.getSite(name).getClockRegion() != regionConstraint) {
+                    validAnchor = false;
                     break;
-                Collection<EDIFHierPortInst> netPorts = hnet.getPortInsts();
-                Map<String, EDIFHierPortInst> netPortsMap = netPorts.stream()
-                        .collect(Collectors.toMap(
-                                p -> p.getPortInst().getName(),
-                                p -> p));
-                EDIFHierPortInst sourceCellPort = netPortsMap.get("CO[3]");
-                EDIFHierCellInst sourceCell = sourceCellPort.getHierarchicalInst()
-                        .getChild(sourceCellPort.getPortInst().getCellInst().getName());
-                currCell = sourceCell;
-            }
-
-            // we now have the starting carry cell as currCell
-            // now traverse in the cout direction
-            // the end of the chain occurs when portinst CO[3] is null
-            List<CarryCellGroup> carryCellGroups = new ArrayList<>();
-            while (true) { // iterating through the chain itself
-                chain.add(currCell); // currCell = carry cell
-                CarryCellGroup carryCellGroup = new CarryCellGroup(currCell, new ArrayList<>(), new ArrayList<>());
-
-                // assemble the carry site cells
-                for (int i = 0; i < 4; i++) {
-                    EDIFHierNet ONet = currCell.getPortInst(OPorts.get(i)).getHierarchicalNet();
-                    EDIFHierPortInst ONetSink = ONet.getLeafHierPortInsts(false, true).get(0);
-                    EDIFHierCellInst ONetSinkCell = ONetSink.getHierarchicalInst()
-                            .getChild(ONetSink.getPortInst().getCellInst().getName());
-                    if (ONetSinkCell.getCellType().getName().contains("FDRE"))
-                        carryCellGroup.ffs().add(ONetSinkCell);
-                    else
-                        carryCellGroup.ffs().add(null);
-
-                    EDIFHierNet SNet = currCell.getPortInst(SPorts.get(i)).getHierarchicalNet();
-                    EDIFHierPortInst SNetSource = SNet.getLeafHierPortInsts(true, false).get(0);
-                    EDIFHierCellInst SNetSourceCell = SNetSource.getHierarchicalInst()
-                            .getChild(SNetSource.getPortInst().getCellInst().getName());
-                    if (SNetSourceCell.getCellType().getName().contains("LUT"))
-                        carryCellGroup.luts().add(SNetSourceCell);
-                    else
-                        carryCellGroup.luts().add(null);
                 }
-                carryCellGroups.add(carryCellGroup);
-                EDIFCellGroups.get("CARRY4").remove(carryCellGroup.carry());
-                EDIFCellGroups.get("FDRE").removeAll(carryCellGroup.ffs());
-                EDIFCellGroups.get("LUT").removeAll(carryCellGroup.luts());
-
-                // find the next carry cell
-                EDIFHierPortInst currCellPort = currCell.getPortInst("CO[3]");
-                if (currCellPort == null)
-                    break;
-                EDIFHierNet hnet = currCellPort.getHierarchicalNet();
-                Collection<EDIFHierPortInst> netPorts = hnet.getPortInsts();
-                Map<String, EDIFHierPortInst> netPortsMap = netPorts.stream()
-                        .collect(Collectors.toMap(
-                                p -> p.getPortInst().getName(),
-                                p -> p));
-                EDIFHierPortInst sinkCellPort = netPortsMap.get("CI");
-                EDIFHierCellInst sinkCell = sinkCellPort.getHierarchicalInst()
-                        .getChild(sinkCellPort.getPortInst().getCellInst().getName());
-                currCell = sinkCell;
-            } // end while(true) iterating through the chain itself
-            carryCellGroupChains.add(carryCellGroups);
-        } // end while() iterating over chains
-        return carryCellGroupChains;
+                validAnchor = true;
+            }
+            attempts++;
+            if (attempts > 1000)
+                throw new IllegalStateException("ERROR: Could not find DSP48E1 cascade anchor after 1000 attempts!");
+            if (validAnchor)
+                break;
+        }
+        return selectedSite;
     }
 
-    private Map<Pair<String, String>, LUTFFGroup> findLUTFFGroups(
-            Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
-        List<EDIFHierCellInst> visitedFDREs = new ArrayList<>();
-        List<EDIFHierCellInst> visitedFDSEs = new ArrayList<>();
-        List<EDIFHierCellInst> visitedLUTs = new ArrayList<>();
-        Map<Pair<String, String>, LUTFFGroup> groups = new HashMap<>();
-
-        for (EDIFHierCellInst fdre : EDIFCellGroups.get("FDRE")) {
-            // examine the CE net to determine which group
-            EDIFHierPortInst CEPort = fdre.getPortInst("CE");
-            String CENet = CEPort.getHierarchicalNet().getHierarchicalNetName();
-
-            EDIFHierPortInst RPort = fdre.getPortInst("R");
-            String RNet = RPort.getHierarchicalNet().getHierarchicalNetName();
-            var enableResetPair = new Pair<String, String>(CENet, RNet);
-
-            // examine the D net to find the LUT pair
-            EDIFHierPortInst DPort = fdre.getPortInst("D");
-            EDIFHierPortInst sourcePort = DPort.getHierarchicalNet().getLeafHierPortInsts(true, false).get(0);
-
-            EDIFHierCellInst sourceCell = sourcePort.getHierarchicalInst()
-                    .getChild(sourcePort.getPortInst().getCellInst().getName());
-
-            var LUTFFPair = sourceCell.getCellType().getName().contains("LUT")
-                    ? new Pair<EDIFHierCellInst, EDIFHierCellInst>(sourceCell, fdre)
-                    : new Pair<EDIFHierCellInst, EDIFHierCellInst>(null, fdre);
-
-            groups.computeIfAbsent(enableResetPair, k -> new LUTFFGroup(new ArrayList<>())).group().add(LUTFFPair);
-            visitedFDREs.add(fdre);
-            visitedLUTs.add(sourceCell);
-        }
-
-        for (EDIFHierCellInst fdse : EDIFCellGroups.get("FDSE")) {
-            // examine the CE net to determine which group
-            EDIFHierPortInst CEPort = fdse.getPortInst("CE");
-            String CENet = CEPort.getHierarchicalNet().getHierarchicalNetName();
-
-            EDIFHierPortInst SPort = fdse.getPortInst("S");
-            String SNet = SPort.getHierarchicalNet().getHierarchicalNetName();
-            var enableResetPair = new Pair<String, String>(CENet, SNet);
-
-            // examine the D net to find the LUT pair
-            EDIFHierPortInst DPort = fdse.getPortInst("D");
-            EDIFHierPortInst sourcePort = DPort.getHierarchicalNet().getLeafHierPortInsts(true, false).get(0);
-
-            EDIFHierCellInst sourceCell = sourcePort.getHierarchicalInst()
-                    .getChild(sourcePort.getPortInst().getCellInst().getName());
-
-            var LUTFFPair = sourceCell.getCellType().getName().contains("LUT")
-                    ? new Pair<EDIFHierCellInst, EDIFHierCellInst>(sourceCell, fdse)
-                    : new Pair<EDIFHierCellInst, EDIFHierCellInst>(null, fdse);
-
-            groups.computeIfAbsent(enableResetPair, k -> new LUTFFGroup(new ArrayList<>())).group().add(LUTFFPair);
-            visitedFDSEs.add(fdse);
-            visitedLUTs.add(sourceCell);
-        }
-
-        EDIFCellGroups.get("FDSE").removeAll(visitedFDSEs);
-        EDIFCellGroups.get("FDRE").removeAll(visitedFDREs);
-        EDIFCellGroups.get("LUT").removeAll(visitedLUTs);
-        return groups;
-    }
-
-    private List<List<EDIFHierCellInst>> buildLUTGroups(Map<String, List<EDIFHierCellInst>> EDIFCellGroups)
+    private void placeRAMSites(List<EDIFHierCellInst> RAMCells)
             throws IOException {
-        List<List<EDIFHierCellInst>> LUTGroups = splitIntoGroups(EDIFCellGroups.get("LUT"), 4);
-        for (List<EDIFHierCellInst> group : LUTGroups)
-            EDIFCellGroups.get("LUT").removeAll(group);
-        return LUTGroups;
-    }
-
-    private Pair<List<List<EDIFHierCellInst>>, List<List<EDIFHierCellInst>>> buildStackedLUTGroups(
-            Map<String, List<EDIFHierCellInst>> EDIFCellGroups) throws IOException {
-        List<EDIFHierCellInst> LUTCells = new ArrayList<>(EDIFCellGroups.get("LUT"));
-        List<EDIFHierCellInst> LUT6Cells = new ArrayList<>();
-        EDIFCellGroups.get("LUT").removeIf(c -> {
-            if (c.getCellType().getName().contains("LUT6")) {
-                LUT6Cells.add(c);
-                return true;
-            }
-            return false;
-        });
-        EDIFCellGroups.get("LUT").removeAll(LUTCells);
-        EDIFCellGroups.get("LUT").removeAll(LUT6Cells);
-        List<List<EDIFHierCellInst>> LUT6Groups = splitIntoGroups(LUT6Cells, 4);
-        List<List<EDIFHierCellInst>> LUTGroups = splitIntoGroups(LUTCells, 8);
-        var pairLists = new Pair<List<List<EDIFHierCellInst>>, List<List<EDIFHierCellInst>>>(LUT6Groups, LUTGroups);
-        return pairLists;
-    }
-
-    public static <T> List<List<T>> splitIntoGroups(List<T> list, int groupSize) {
-        List<List<T>> result = new ArrayList<>();
-        for (int i = 0; i < list.size(); i += groupSize) {
-            // Create subgroups of size groupSize
-            List<T> group = list.subList(i, Math.min(i + groupSize, list.size()));
-            result.add(new ArrayList<>(group));
+        writer.write("\n\nPlacing RAMBCells... (" + RAMCells.size() + ")");
+        for (EDIFHierCellInst ehci : RAMCells) {
+            Site selectedSite = selectRAMSite();
+            SiteInst si = new SiteInst(ehci.getFullHierarchicalInstName(), design, SiteTypeEnum.RAMB18E1,
+                    selectedSite);
+            si.createCell(ehci, si.getBEL("RAMB18E1"));
+            si.routeSite();
         }
-        return result;
-    }
+    } // end placeRAMSites()
 
-    public void printEDIFCellInstList(List<EDIFCellInst> ecis) throws IOException {
-        if (ecis.size() > 0) {
-            String cellType = ecis.get(0).getCellType().getName();
-            writer.write("\n\tPrinting all EDIFCellInsts of type " + cellType + "... (" + ecis.size() + ")");
+    protected Site selectRAMSite() {
+        Random rand = new Random();
+        List<Site> compatibleSites = new ArrayList<>();
+        compatibleSites.addAll(availableSites.get(SiteTypeEnum.RAMB18E1));
+        compatibleSites.addAll(availableSites.get(SiteTypeEnum.FIFO18E1));
+        if (compatibleSites.isEmpty()) {
+            throw new IllegalStateException(
+                    "ERROR: device or clock region contains no Sites of type FIFO18E1 or RAMB18E1 !");
         }
-        for (EDIFCellInst eci : ecis) {
-            writer.write("\n\t\t" + eci.getCellType() + ": " + eci.getName());
-            Collection<EDIFPortInst> epis = eci.getPortInsts();
-            for (EDIFPortInst epi : epis) {
-                writer.write("\n\t\t\t" + epi.getFullName());
-            }
-        }
+        compatibleSites.sort(
+                Comparator.comparingInt(Site::getInstanceY)
+                        .thenComparingInt(Site::getInstanceX)
+                        .reversed());
+        int randRange = compatibleSites.size();
+        Site selectedSite = compatibleSites.get(rand.nextInt(randRange));
+        // Site selectedSite = compatibleSites.get(0);
+        SiteTypeEnum selectedSiteType = selectedSite.getSiteTypeEnum();
+        availableSites.get(selectedSiteType).remove(selectedSite);
+        occupiedSites.get(selectedSiteType).add(selectedSite);
+        return selectedSite;
     }
 
-    public void printCARRYChains(List<List<CarryCellGroup>> CARRYChains) throws IOException {
-        writer.write("\n\nPrinting CARRYChains... (" + CARRYChains.size() + ")");
-        for (List<CarryCellGroup> chain : CARRYChains) {
-            writeChainDetails(chain);
-        }
-    }
+    private void rerouteCarryNets(SiteInst si) {
+        // activate PIPs for CARRY4/COUT
+        si.addSitePIP(si.getSitePIP("COUTUSED", "0"));
+        // undo default CARRY4/DI nets
+        SitePinInst AX = si.getSitePinInst("AX");
+        if (AX != null)
+            si.unrouteIntraSiteNet(AX.getBELPin(), si.getBELPin("ACY0", "AX"));
+        SitePinInst DX = si.getSitePinInst("DX");
+        if (DX != null)
+            si.unrouteIntraSiteNet(DX.getBELPin(), si.getBELPin("DCY0", "DX"));
+        // activate PIPs for CARRY4/DI pins
+        si.addSitePIP(si.getSitePIP("DCY0", "DX"));
+        si.addSitePIP(si.getSitePIP("CCY0", "CX"));
+        si.addSitePIP(si.getSitePIP("BCY0", "BX"));
+        si.addSitePIP(si.getSitePIP("ACY0", "AX"));
+        // remove stray CARRY4/CO nets
+        design.removeNet(si.getNetFromSiteWire("CARRY4_CO2"));
+        design.removeNet(si.getNetFromSiteWire("CARRY4_CO1"));
+        design.removeNet(si.getNetFromSiteWire("CARRY4_CO0"));
+        // add default XOR PIPs for unused FFs
+        for (String FF : FF_BELS)
+            if (si.getCell(FF) == null)
+                si.addSitePIP(si.getSitePIP(FF.charAt(0) + "OUTMUX", "XOR"));
+    } // end rerouteCarryNets()
 
-    private void writeChainDetails(List<CarryCellGroup> chain) throws IOException {
-        writer.write("\n\tAnchor Carry: " + safeGetName(chain.get(0).carry()));
-        writeLutsAndFFs(chain.get(0));
-        for (int i = 1; i < chain.size(); i++) {
-            writer.write("\n\t\tCarry: " + safeGetName(chain.get(i).carry()));
-            writeLutsAndFFs(chain.get(i));
-        }
-    }
-
-    private void writeLutsAndFFs(CarryCellGroup group) throws IOException {
-        for (int j = 0; j < 4; j++) {
-            writer.write("\n\t\tLUT: " + safeGetName(group.luts().get(j)));
-            writer.write("\n\t\t FF: " + safeGetName(group.ffs().get(j)));
-        }
-    }
-
-    private String safeGetName(EDIFHierCellInst instance) {
-        return instance != null ? instance.getFullHierarchicalInstName() : "Null!";
-    }
-
-    public void printDSPCascades(List<List<EDIFHierCellInst>> DSPCascades) throws IOException {
-        writer.write("\n\nPrinting DSPCascades... (" + DSPCascades.size() + ")");
-        for (List<EDIFHierCellInst> cascade : DSPCascades) {
-            writer.write("\n\tCascade Anchor: " + cascade.get(0).getFullHierarchicalInstName());
-            for (EDIFHierCellInst ehci : cascade) {
-                writer.write("\n\t\t" + ehci.getFullHierarchicalInstName());
+    private void rerouteFFClkSrCeNets(SiteInst si) {
+        si.addSitePIP("CLKINV", "CLK");
+        // activate PIPs for SR and CE pins
+        Net SRNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
+        Net CENet = si.getNetFromSiteWire("CEUSEDMUX_OUT");
+        // if routeSite() default PIPs are incorrect, deactivate them then activate
+        // correct PIP
+        if (SRNet != null) {
+            if (SRNet.isGNDNet()) {
+                if (si.getSitePIPStatus(si.getSitePIP("SRUSEDMUX", "IN")) == SitePIPStatus.ON)
+                    for (String FF : FF_BELS)
+                        si.unrouteIntraSiteNet(si.getSitePinInst("SR").getBELPin(), si.getBELPin(FF, "SR"));
+                si.addSitePIP(si.getSitePIP("SRUSEDMUX", "0"));
+            } else {
+                if (si.getSitePIPStatus(si.getSitePIP("SRUSEDMUX", "0")) == SitePIPStatus.ON)
+                    for (String FF : FF_BELS)
+                        si.unrouteIntraSiteNet(si.getBELPin("SRUSEDGND", "0"), si.getBELPin(FF, "SR"));
+                si.addSitePIP(si.getSitePIP("SRUSEDMUX", "IN"));
             }
         }
-    }
+        if (CENet != null) {
+            if (CENet.isVCCNet()) {
+                if (si.getSitePIPStatus(si.getSitePIP("CEUSEDMUX", "IN")) == SitePIPStatus.ON)
+                    for (String FF : FF_BELS)
+                        si.unrouteIntraSiteNet(si.getSitePinInst("CE").getBELPin(), si.getBELPin(FF, "CE"));
+                si.addSitePIP(si.getSitePIP("CEUSEDMUX", "1"));
+            } else {
+                if (si.getSitePIPStatus(si.getSitePIP("CEUSEDMUX", "1")) == SitePIPStatus.ON)
+                    for (String FF : FF_BELS)
+                        si.unrouteIntraSiteNet(si.getBELPin("CEUSEDGND", "1"), si.getBELPin(FF, "CE"));
+                si.addSitePIP(si.getSitePIP("CEUSEDMUX", "IN"));
+            }
+        }
+    } // end rerouteFFSrCeNets()
 
-    public void printLUTFFGroups(
-            Map<Pair<String, String>, LUTFFGroup> LUTFFGroups)
+    private void placeCarrySite(CarryCellGroup carryCellGroup, SiteInst si) {
+        // ****** POTENTIAL FUTURE BUG IN HIDING ********
+        // what guarantees that all of the FFs connected to the CARRY4 all
+        // share the same CE and Reset?
+        for (int i = 0; i < 4; i++) {
+            EDIFHierCellInst ff = carryCellGroup.ffs().get(i);
+            if (ff != null)
+                si.createCell(ff, si.getBEL(FF_BELS[i]));
+            EDIFHierCellInst lut = carryCellGroup.luts().get(i);
+            if (lut != null)
+                si.createCell(lut, si.getBEL(LUT6_BELS[i]));
+            // carry site LUTs MUST be placed on LUT6 BELs.
+            // only LUT6/O6 can connect to CARRY4/S0
+        }
+        si.createCell(carryCellGroup.carry(), si.getBEL("CARRY4"));
+        // default intrasite routing
+        si.routeSite();
+        // sometimes the default routeSite() is insufficient, so some manual
+        // intervention is required
+        rerouteCarryNets(si);
+        rerouteFFClkSrCeNets(si);
+    } // end placeCarrySite()
+
+    private void placeCarryChainSites(List<List<CarryCellGroup>> EDIFCarryChains)
             throws IOException {
-        writer.write("\n\nPrinting Unique CE-R pairs... (" + LUTFFGroups.size() + ")");
-        for (Pair<String, String> pair : LUTFFGroups.keySet()) {
-            String s1 = String.format("\n\tCE: %-50s R: %-50s", pair.key(), pair.value());
-            writer.write(s1);
+        writer.write("\n\nPlacing carry chains... (" + EDIFCarryChains.size() + ")");
+        for (List<CarryCellGroup> chain : EDIFCarryChains) {
+            writer.write("\n\t\tChain Size: (" + chain.size() + "), Chain Anchor: "
+                    + chain.get(0).carry().getFullHierarchicalInstName());
+            Site anchorSite = selectCarryAnchorSite(chain.size());
+            SiteTypeEnum selectedSiteType = anchorSite.getSiteTypeEnum();
+            for (int i = 0; i < chain.size(); i++) {
+                Site site = (i == 0) ? anchorSite
+                        : device.getSite("SLICE_X" + anchorSite.getInstanceX() + "Y" + (anchorSite.getInstanceY() + i));
+                SiteInst si = new SiteInst(chain.get(i).carry().getFullHierarchicalInstName(), design, selectedSiteType,
+                        site);
+                placeCarrySite(chain.get(i), si);
+                if (i == 0) { // additional routing logic for anchor site
+                    Net CINNet = si.getNetFromSiteWire("CIN");
+                    CINNet.removePin(si.getSitePinInst("CIN"));
+                    si.addSitePIP(si.getSitePIP("PRECYINIT", "0"));
+                }
+                occupiedSites.get(selectedSiteType).add(site);
+                availableSites.get(selectedSiteType).remove(site);
+            }
+        } // end for (List<EDIFCellInst> chain : EDIFCarryChains)
+    } // end placeCarryChainSites()
+
+    private void placeDSPCascades(List<List<EDIFHierCellInst>> EDIFDSPCascades) throws IOException {
+        writer.write("\n\nPlacing DSP Cascades... (" + EDIFDSPCascades.size() + ")");
+        for (List<EDIFHierCellInst> cascade : EDIFDSPCascades) {
+            // each DSP tile has 2 DSP sites on the Zynq 7000
+            writer.write("\n\tCascade Size: (" + cascade.size() + "), Cascade Anchor: "
+                    + cascade.get(0).getFullHierarchicalInstName());
+            Site anchorSite = selectDSPAnchorSite(cascade.size());
+            SiteTypeEnum siteType = SiteTypeEnum.DSP48E1;
+            for (int i = 0; i < cascade.size(); i++) {
+                writer.write("\n\t\tPlacing DSP: " + cascade.get(i).getFullHierarchicalInstName());
+                Site site = (i == 0) ? anchorSite
+                        : device.getSite("DSP48_X" + anchorSite.getInstanceX() + "Y" + (anchorSite.getInstanceY() + i));
+                SiteInst si = new SiteInst(cascade.get(i).getFullHierarchicalInstName(), design, siteType, site);
+                si.createCell(cascade.get(i), si.getBEL("DSP48E1"));
+                occupiedSites.get(siteType).add(site);
+                availableSites.get(siteType).remove(site);
+                si.routeSite();
+            }
         }
-        writer.write(
-                "\n\nPrinting Unique CE-R pairs with associated FF Cells... (" + LUTFFGroups.size() + ")");
-        for (Map.Entry<Pair<String, String>, LUTFFGroup> entry : LUTFFGroups.entrySet()) {
+    } // end placeDSPCascades()
+
+    private void placeLUTFFPairGroups(
+            Map<Pair<String, String>, LUTFFGroup> LUTFFEnableResetGroups) throws IOException {
+        writer.write("\n\nPlacing LUT-FF Pair Groups... (" + LUTFFEnableResetGroups.size() + ")");
+
+        for (Map.Entry<Pair<String, String>, LUTFFGroup> entry : LUTFFEnableResetGroups.entrySet()) {
             Pair<String, String> netPair = entry.getKey();
-            String CENet = netPair.key();
-            String RNet = netPair.value();
+
+            String s1 = String.format("\n\tCENet: %-50s RNet: %-50s", netPair.key(), netPair.value());
+            writer.write(s1);
             LUTFFGroup lutffgroup = entry.getValue();
-            writer.write(
-                    "\n\tCENet: " + CENet + ", RNet: " + RNet + " with cells... (" + lutffgroup.group().size() + ")");
-            for (Pair<EDIFHierCellInst, EDIFHierCellInst> pair : lutffgroup.group()) {
-                if (pair.key() == null) {
-                    writer.write("\n\t\tLUT: NULL!" + " => FF: "
-                            + pair.value().getFullHierarchicalInstName());
-                } else {
-                    writer.write("\n\t\tLUT: " + pair.key().getFullHierarchicalInstName() + " => FF: "
-                            + pair.value().getFullHierarchicalInstName());
+
+            for (List<Pair<EDIFHierCellInst, EDIFHierCellInst>> LUTFFPairs : splitIntoGroups(lutffgroup.group(), 4)) {
+                Site selectedSite = selectCLBSite();
+                SiteTypeEnum selectedSiteType = selectedSite.getSiteTypeEnum();
+                SiteInst si = design.createSiteInst(selectedSite);
+                for (int i = 0; i < LUTFFPairs.size(); i++) {
+                    EDIFHierCellInst ff = LUTFFPairs.get(i).value();
+                    EDIFHierCellInst lut = LUTFFPairs.get(i).key();
+                    si.createCell(ff, si.getBEL(FF_BELS[i]));
+                    if (lut != null)
+                        si.createCell(lut, si.getBEL(LUT6_BELS[i]));
                 }
+                si.routeSite();
+
+                // accomodate LUT outputs that have sinks outside the lutff pair
+                // si.addSitePIP(si.getSitePIP("DUSED", "0"));
+                // si.addSitePIP(si.getSitePIP("CUSED", "0"));
+                // si.addSitePIP(si.getSitePIP("BUSED", "0"));
+                // si.addSitePIP(si.getSitePIP("AUSED", "0"));
+                // si.addSitePIP(si.getSitePIP("DOUTMUX", "O6"));
+                //
+                List<String> lutOPIP = new ArrayList<>(List.of("AUSED", "BUSED", "CUSED", "DUSED"));
+                //
+                // DOES NOT SUPPORT STACKED LUTS OR LUT5s!
+                //
+                for (int i = 0; i < LUTFFPairs.size(); i++) {
+                    EDIFHierCellInst lut = LUTFFPairs.get(i).key();
+                    if (lut != null) {
+                        EDIFHierPortInst lutOPort = lut.getPortInst("O");
+                        if (lutOPort.getHierarchicalNet().getLeafHierPortInsts(false, true).size() > 1) {
+                            si.addSitePIP(si.getSitePIP(lutOPIP.get(i), "0"));
+                        }
+                    }
+                }
+                rerouteFFClkSrCeNets(si);
             }
+        }
+    } // end placeLUTFFPairGroups()
+
+    private void placeStackedLUTGroups(
+            Pair<List<List<EDIFHierCellInst>>, List<List<EDIFHierCellInst>>> stackedLUTGroups) {
+        for (List<EDIFHierCellInst> group : stackedLUTGroups.key()) {
+            Site selectedSite = selectCLBSite();
+            SiteInst si = design.createSiteInst(selectedSite);
+            for (int i = 0; i < group.size(); i++) {
+                si.createCell(group.get(i), si.getBEL(LUT5_BELS[i]));
+            }
+            si.routeSite();
+        }
+        for (List<EDIFHierCellInst> group : stackedLUTGroups.value()) {
+            Site selectedSite = selectCLBSite();
+            SiteInst si = design.createSiteInst(selectedSite);
+            for (int i = 0; i < group.size(); i++) {
+                si.createCell(group.get(i), si.getBEL(LUT6_BELS[i]));
+            }
+            si.routeSite();
         }
     }
 
-    public void printLUTGroups(List<List<EDIFHierCellInst>> LUTGroups) throws IOException {
-        writer.write("\n\nPrinting LUT Groups... (" + LUTGroups.size() + ")");
-        for (List<EDIFHierCellInst> list : LUTGroups) {
-            writer.write("\n\tGroup:");
-            for (EDIFHierCellInst ehci : list) {
-                writer.write("\n\t\t" + ehci.getCellType() + ": " + ehci.getFullHierarchicalInstName());
+    private void placeLUTGroups(List<List<EDIFHierCellInst>> LUTGroups) {
+        for (List<EDIFHierCellInst> group : LUTGroups) {
+            Site selectedSite = selectCLBSite();
+            SiteInst si = design.createSiteInst(selectedSite);
+            for (int i = 0; i < group.size(); i++) {
+                si.createCell(group.get(i), si.getBEL(LUT6_BELS[i]));
             }
+            si.routeSite();
+            // for whatever reason, this does not activate DUSED PIP for
+            // serializer_inst/state[1]_i_3_n_0
+            si.addSitePIP(si.getSitePIP("DUSED", "0"));
+            si.addSitePIP(si.getSitePIP("CUSED", "0"));
+            si.addSitePIP(si.getSitePIP("BUSED", "0"));
+            si.addSitePIP(si.getSitePIP("AUSED", "0"));
         }
     }
 
-}
+} // end class
