@@ -45,7 +45,7 @@ public abstract class Packer {
     protected final Design design;
 
     protected String rootDir;
-    protected String placedDcp;
+    protected String packedDcp;
 
     protected String[] FF5_BELS = new String[] { "A5FF", "B5FF", "C5FF", "D5FF" };
     protected String[] FF_BELS = new String[] { "AFF", "BFF", "CFF", "DFF" };
@@ -54,7 +54,7 @@ public abstract class Packer {
 
     public Packer(String rootDir, Design design, Device device) throws IOException {
         this.rootDir = rootDir;
-        this.placedDcp = rootDir + "/outputs/placed.dcp";
+        this.packedDcp = rootDir + "/outputs/packed.dcp";
         this.design = design;
         this.device = device;
     }
@@ -64,10 +64,10 @@ public abstract class Packer {
         writer.write(packerName + ".txt");
         packDesign(prepackedDesign);
         writer.close();
-        design.writeCheckpoint(placedDcp);
+        design.writeCheckpoint(packedDcp);
     }
 
-    protected abstract void packDesign(PrepackedDesign prepackedDesign) throws IOException;
+    protected abstract PackedDesign packDesign(PrepackedDesign prepackedDesign) throws IOException;
 
     public static int ceilDiv(int x, int y) {
         return -Math.floorDiv(-x, y);
