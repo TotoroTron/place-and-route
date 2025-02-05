@@ -74,14 +74,9 @@ public abstract class Placer {
         double cost = 0;
         Collection<Net> nets = design.getNets();
         for (Net net : nets) {
-            // System.out.println("Net: " + net.getName());
-            if (net.isClockNet() || net.isStaticNet())
-                continue;
             Tile srcTile = net.getSourceTile();
-            // this returns null if the net is purely intrasite!
-            if (srcTile == null)
+            if (srcTile == null) // net is null if its' purely intrasite!
                 continue;
-            // System.out.println("\tsrcTile: " + srcTile.getName());
             List<Tile> sinkTiles = net.getSinkPins().stream()
                     .map(spi -> spi.getTile())
                     .collect(Collectors.toList());

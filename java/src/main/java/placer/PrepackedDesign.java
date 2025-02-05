@@ -5,6 +5,9 @@ import java.util.Map;
 
 import com.xilinx.rapidwright.edif.EDIFHierCellInst;
 
+// This is essentially the EDIF representation of Relatively Placed Macros (RPMs)
+// RPMs: a list of basic logical elements (BELs) grouped into sets (RPMs)
+// https://docs.amd.com/r/en-US/ug903-vivado-using-constraints/Defining-Relatively-Placed-Macros 
 public class PrepackedDesign {
     List<EDIFHierCellInst> BUFGCTRLCells;
     List<List<EDIFHierCellInst>> DSPCascades;

@@ -69,14 +69,14 @@ public class PackerBasic extends Packer {
         double cost = 0;
         Collection<Net> nets = design.getNets();
         for (Net net : nets) {
-            System.out.println("Net: " + net.getName());
+            // System.out.println("Net: " + net.getName());
             if (net.isClockNet() || net.isStaticNet())
                 continue;
             Tile srcTile = net.getSourceTile();
             // this returns null if the net is purely intrasite!
             if (srcTile == null)
                 continue;
-            System.out.println("\tsrcTile: " + srcTile.getName());
+            // System.out.println("\tsrcTile: " + srcTile.getName());
             List<Tile> sinkTiles = net.getSinkPins().stream()
                     .map(spi -> spi.getTile())
                     .collect(Collectors.toList());
@@ -108,7 +108,8 @@ public class PackerBasic extends Packer {
         CLBSiteInsts.addAll(LUTSiteInsts);
 
         PackedDesign packedDesign = new PackedDesign(
-                BUFGCTRLSiteInsts, CARRYSiteInstChains, DSPSiteInstCascades, RAMSiteInsts, CLBSiteInsts);
+                BUFGCTRLSiteInsts, CARRYSiteInstChains, DSPSiteInstCascades, RAMSiteInsts, CLBSiteInsts, availableSites,
+                occupiedSites);
 
         writer.write("\n\nALL CELL PATTERNS HAVE BEEN ARBITRARILY PLACED...");
         printOccupiedSites();
@@ -284,7 +285,7 @@ public class PackerBasic extends Packer {
         return BUFGCTRLSiteInsts;
     }
 
-    protected Site selectCLBSite() {
+    private Site selectCLBSite() {
         List<Site> compatibleSites = new ArrayList<>();
         compatibleSites.addAll(availableSites.get(SiteTypeEnum.SLICEL));
         compatibleSites.addAll(availableSites.get(SiteTypeEnum.SLICEM));
@@ -303,7 +304,7 @@ public class PackerBasic extends Packer {
         return selectedSite;
     }
 
-    protected Site selectCarryAnchorSite(int chainSize) {
+    private Site selectCarryAnchorSite(int chainSize) {
         SiteTypeEnum selectedSiteType = SiteTypeEnum.SLICEL;
         boolean validAnchor = false;
         Site selectedSite = null;
@@ -331,7 +332,7 @@ public class PackerBasic extends Packer {
         return selectedSite;
     }
 
-    protected Site selectDSPAnchorSite(int cascadeSize) {
+    private Site selectDSPAnchorSite(int cascadeSize) {
         SiteTypeEnum siteType = SiteTypeEnum.DSP48E1;
         boolean validAnchor = false;
         Site selectedSite = null;
@@ -359,7 +360,7 @@ public class PackerBasic extends Packer {
         return selectedSite;
     }
 
-    protected Site selectRAMSite() {
+    private Site selectRAMSite() {
         List<Site> compatibleSites = new ArrayList<>();
         compatibleSites.addAll(availableSites.get(SiteTypeEnum.RAMB18E1));
         compatibleSites.addAll(availableSites.get(SiteTypeEnum.FIFO18E1));
