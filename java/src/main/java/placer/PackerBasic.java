@@ -1,6 +1,7 @@
 
 package placer;
 
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.Collection;
 import java.util.Comparator;
@@ -31,6 +32,7 @@ import com.xilinx.rapidwright.device.ClockRegion;
 
 public class PackerBasic extends Packer {
 
+    private Random rand;
     protected ClockRegion regionConstraint;
     protected Set<SiteTypeEnum> deviceSiteTypes;
     protected Map<SiteTypeEnum, List<Site>> occupiedSites;
@@ -38,6 +40,7 @@ public class PackerBasic extends Packer {
 
     public PackerBasic(String rootDir, Design design, Device device, ClockRegion region) throws IOException {
         super(rootDir, design, device);
+        rand = new Random();
         packerName = "PackerBasic";
         deviceSiteTypes = new HashSet<>();
         occupiedSites = new HashMap<>();
@@ -286,20 +289,22 @@ public class PackerBasic extends Packer {
     }
 
     private Site selectCLBSite() {
-        List<Site> compatibleSites = new ArrayList<>();
-        compatibleSites.addAll(availableSites.get(SiteTypeEnum.SLICEL));
-        compatibleSites.addAll(availableSites.get(SiteTypeEnum.SLICEM));
-        if (compatibleSites.isEmpty()) {
-            throw new IllegalStateException(
-                    "ERROR: device or clock region contains no Sites of type SLICEL or SLICEM!");
-        }
-        compatibleSites.sort(
-                Comparator.comparingInt(Site::getInstanceY)
-                        .thenComparingInt(Site::getInstanceX)
-                        .reversed());
-        Site selectedSite = compatibleSites.get(0);
-        SiteTypeEnum selectedSiteType = selectedSite.getSiteTypeEnum();
-        availableSites.get(selectedSiteType).remove(selectedSite);
+        // List<Site> compatibleSites = new ArrayList<>();
+        // compatibleSites.addAll(availableSites.get(SiteTypeEnum.SLICEL));
+        // compatibleSites.addAll(availableSites.get(SiteTypeEnum.SLICEM));
+        // if (compatibleSites.isEmpty()) {
+        // throw new IllegalStateException(
+        // "ERROR: device or clock region contains no Sites of type SLICEL or SLICEM!");
+        // }
+        // compatibleSites.sort(
+        // Comparator.comparingInt(Site::getInstanceY)
+        // .thenComparingInt(Site::getInstanceX)
+        // .reversed());
+        // Site selectedSite = compatibleSites.get(0);
+        // SiteTypeEnum selectedSiteType = selectedSite.getSiteTypeEnum();
+        SiteTypeEnum selectedSiteType = SiteTypeEnum.SLICEL;
+        int randIndex = rand.nextInt(availableSites.get(selectedSiteType).size());
+        Site selectedSite = availableSites.get(selectedSiteType).remove(randIndex);
         occupiedSites.get(selectedSiteType).add(selectedSite);
         return selectedSite;
     }
@@ -310,7 +315,8 @@ public class PackerBasic extends Packer {
         Site selectedSite = null;
         int attempts = 0;
         while (true) {
-            selectedSite = availableSites.get(selectedSiteType).get(attempts);
+            int randIndex = rand.nextInt(availableSites.get(selectedSiteType).size());
+            selectedSite = availableSites.get(selectedSiteType).get(randIndex);
             int x = selectedSite.getInstanceX();
             int y = selectedSite.getInstanceY();
             for (int i = 0; i < chainSize; i++) {

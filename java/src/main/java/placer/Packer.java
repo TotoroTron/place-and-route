@@ -59,12 +59,13 @@ public abstract class Packer {
         this.device = device;
     }
 
-    public void run(PrepackedDesign prepackedDesign) throws IOException {
+    public PackedDesign run(PrepackedDesign prepackedDesign) throws IOException {
         writer = new FileWriter(rootDir + "/outputs/printout/" + packerName + ".txt");
         writer.write(packerName + ".txt");
-        packDesign(prepackedDesign);
+        PackedDesign packedDesign = packDesign(prepackedDesign);
         writer.close();
         design.writeCheckpoint(packedDcp);
+        return packedDesign;
     }
 
     protected abstract PackedDesign packDesign(PrepackedDesign prepackedDesign) throws IOException;

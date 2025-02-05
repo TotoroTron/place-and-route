@@ -70,21 +70,4 @@ public abstract class Placer {
 
     protected abstract void placeDesign(PackedDesign packedDesign) throws IOException;
 
-    public double evaluateCost() throws IOException {
-        double cost = 0;
-        Collection<Net> nets = design.getNets();
-        for (Net net : nets) {
-            Tile srcTile = net.getSourceTile();
-            if (srcTile == null) // net is null if its' purely intrasite!
-                continue;
-            List<Tile> sinkTiles = net.getSinkPins().stream()
-                    .map(spi -> spi.getTile())
-                    .collect(Collectors.toList());
-            for (Tile sinkTile : sinkTiles) {
-                cost = cost + srcTile.getManhattanDistance(sinkTile);
-            }
-        }
-        return cost;
-    }
-
 } // end class Placer

@@ -59,14 +59,14 @@ public class Main {
             PackerBasic BPacker = new PackerBasic(rootDir, design, device, device.getClockRegion("X0Y1"));
             BPacker.printUniqueSites();
             BPacker.printClockBuffers();
-            BPacker.run(prepackedDesign);
+            PackedDesign packedDesign = BPacker.run(prepackedDesign);
 
             // Stage 3) Placer:
             // takes the packedDesign and figures out an optimal mapping of SiteInsts onto
             // Sites via simulated annealing, analytical, electrostatic placement, etc.
             // works entirely on the SiteInst/Site/Tile level.
-            // PlacerSiteCentric SCPlacer = new PlacerSiteCentric(rootDir, design, device,
-            // device.getClockRegion("X0Y1"));
+            PlacerGreedyRandom1 GR1Placer = new PlacerGreedyRandom1(rootDir, design, device);
+            GR1Placer.run(packedDesign);
 
         } catch (IOException e) {
             logger.log(Level.SEVERE, "An IOException occurred while configuring the logger.", e);

@@ -22,17 +22,5 @@ public class PlacerAnnealing1 extends Placer {
     }
 
     public void placeDesign(PackedDesign packedDesign) throws IOException {
-        List<List<SiteInst>> CARRYSiteInstChains = packedDesign.CARRYSiteInstChains;
-        List<List<SiteInst>> DSPSiteInstCascades = packedDesign.DSPSiteInstCascades;
-        List<SiteInst> CLBSiteInsts = packedDesign.CLBSiteInsts;
-        List<SiteInst> RAMSiteInsts = packedDesign.RAMSiteInsts;
-        double lowestCost = evaluateCost(); // initial cost
-        int staleAttempts = 0;
-        while (true) {
-            double currCost = evaluateCost();
-
-            if (staleAttempts > 100)
-                break;
-        }
     }
 }
