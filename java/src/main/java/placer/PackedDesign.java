@@ -15,7 +15,6 @@ public class PackedDesign {
     List<List<SiteInst>> DSPSiteInstCascades;
     List<SiteInst> RAMSiteInsts;
     List<SiteInst> CLBSiteInsts;
-
     Map<SiteTypeEnum, List<Site>> availableSites;
     Map<SiteTypeEnum, List<Site>> occupiedSites;
 

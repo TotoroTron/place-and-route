@@ -170,8 +170,9 @@ public class PackerBasic extends Packer {
                 }
                 occupiedSites.get(selectedSiteType).add(site);
                 availableSites.get(selectedSiteType).remove(site);
-                siteInstChains.add(siteInstChain);
+                siteInstChain.add(si);
             }
+            siteInstChains.add(siteInstChain);
         } // end for (List<EDIFCellInst> chain : EDIFCarryChains)
         return siteInstChains;
     } // end packCarryChains()

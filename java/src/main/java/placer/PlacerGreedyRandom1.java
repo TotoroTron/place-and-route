@@ -29,11 +29,13 @@ public class PlacerGreedyRandom1 extends Placer {
     private Random rand;
 
     private List<Double> costHistory;
+    private List<Double> lowestCostHistory;
 
     public PlacerGreedyRandom1(String rootDir, Design design, Device device) throws IOException {
         super(rootDir, design, device);
         placerName = "PlacerGreedyRandom1";
         costHistory = new ArrayList<>();
+        lowestCostHistory = new ArrayList<>();
         rand = new Random();
     }
 
@@ -49,15 +51,33 @@ public class PlacerGreedyRandom1 extends Placer {
             if (currCost < lowestCost) {
                 design.writeCheckpoint(placedDcp);
                 staleMoves = 0;
+                lowestCost = currCost;
+                lowestCostHistory.add(lowestCost);
             }
             staleMoves++;
             totalMoves++;
-            if (staleMoves > 10 || totalMoves > 100)
+            if (staleMoves > 100 || totalMoves > 500)
                 break;
         }
+
         writer.write("\n\n" + placerName + " cost history... ");
-        for (int i = 0; i < costHistory.size(); i++) {
-            writer.write("\n\tIter " + i + ": " + costHistory.get(i));
+        for (int i = 1; i < costHistory.size(); i++) {
+            if (i == 0)
+                writer.write("\n\tIter " + i + ": " + costHistory.get(i));
+            else {
+                double diff = costHistory.get(i) - costHistory.get(i - 1);
+                writer.write("\n\tIter " + i + ": " + costHistory.get(i) + ", diff: " + diff);
+            }
+        }
+
+        writer.write("\n\n" + placerName + " lowest cost history... ");
+        for (int i = 1; i < lowestCostHistory.size(); i++) {
+            if (i == 0)
+                writer.write("\n\tIter " + i + ": " + lowestCostHistory.get(i));
+            else {
+                double diff = lowestCostHistory.get(i) - lowestCostHistory.get(i - 1);
+                writer.write("\n\tMove " + i + ": " + lowestCostHistory.get(i) + ", diff: " + diff);
+            }
         }
         writer.write("\n\nTotal move iterations: " + totalMoves);
         writer.write("\n\nStale move iterations: " + staleMoves);
@@ -107,28 +127,74 @@ public class PlacerGreedyRandom1 extends Placer {
     }
 
     private void randomMove(PackedDesign packedDesign) throws IOException {
+        randomMoveCARRYSiteChains(packedDesign);
+        randomMoveCLBSites(packedDesign);
+    }
+
+    private void randomMoveCLBSites(PackedDesign packedDesign) throws IOException {
         SiteTypeEnum selectedSiteType = SiteTypeEnum.SLICEL;
         for (SiteInst si : packedDesign.CLBSiteInsts) {
-            // System.out.println("Random Move SiteInst: " + si.getName());
-            // writer.write("\nRandom Move SiteInst: " + si.getName());
-
             List<Site> sinkSites = findSinkSites(si);
             double oldCost = evaluateSite(sinkSites, si.getSite());
-            // writer.write("\n\tCurrent Site: " + si.getSiteName() + ", Cost: " + oldCost);
-
             Site newSite = proposeCLBSite(selectedSiteType);
             double newCost = evaluateSite(sinkSites, newSite);
-            // writer.write("\n\tCandidate Site: " + newSite.getName() + ", Cost: " +
-            // newCost);
-
             if (newCost < oldCost) {
                 unplaceSiteInst(si);
                 placeSiteInst(si, newSite);
-                // writer.write("\n\tCandidate site ACCEPTED!");
-            } else {
-                // writer.write("\n\tCandidate site REJECTED!");
             }
         }
+    }
+
+    private void randomMoveCARRYSiteChains(PackedDesign packedDesign) throws IOException {
+        SiteTypeEnum selectedSiteType = SiteTypeEnum.SLICEL;
+        for (List<SiteInst> chain : packedDesign.CARRYSiteInstChains) {
+            Site selectedAnchor = proposeCARRYAnchorSite(selectedSiteType, chain.size());
+            double oldCost = 0;
+            double newCost = 0;
+            List<Site> newSiteChain = new ArrayList<>();
+            for (int i = 0; i < chain.size(); i++) {
+                List<Site> sinkSites = findSinkSites(chain.get(i));
+                oldCost = oldCost + evaluateSite(sinkSites, chain.get(i).getSite());
+                Site newSite = device
+                        .getSite("SLICE_X" + selectedAnchor.getInstanceX() + "Y" + (selectedAnchor.getInstanceY() + i));
+                newSiteChain.add(newSite);
+                newCost = newCost + evaluateSite(sinkSites, newSite);
+            }
+            if (newCost < oldCost) {
+                for (int i = 0; i < chain.size(); i++) {
+                    unplaceSiteInst(chain.get(i));
+                    placeSiteInst(chain.get(i), newSiteChain.get(i));
+                }
+            }
+        }
+
+    }
+
+    private Site proposeCARRYAnchorSite(SiteTypeEnum ste, int chainSize) {
+        boolean validAnchor = false;
+        Site selectedSite = null;
+        int attempts = 0;
+        while (true) {
+            int randIndex = rand.nextInt(availableSites.get(ste).size());
+            selectedSite = availableSites.get(ste).get(randIndex);
+            int x = selectedSite.getInstanceX();
+            int y = selectedSite.getInstanceY();
+            for (int i = 0; i < chainSize; i++) {
+                String name = "SLICE_X" + x + "Y" + (y + i);
+                if (occupiedSites.get(ste).contains(device.getSite(name))) {
+                    validAnchor = false;
+                    break;
+                }
+                validAnchor = true;
+            }
+            attempts++;
+            if (attempts > 1000)
+                throw new IllegalStateException("ERROR: Could not find CARRY4 chain anchor after 1000 attempts!");
+            if (validAnchor)
+                break;
+
+        }
+        return selectedSite;
     }
 
     private Site proposeCLBSite(SiteTypeEnum ste) {
