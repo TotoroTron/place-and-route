@@ -127,7 +127,10 @@ public class PlacerGreedyRandom1 extends Placer {
     }
 
     private void randomMove(PackedDesign packedDesign) throws IOException {
+        // Chunkiest movements first
+        randomMoveDSPSiteCascades(packedDesign);
         randomMoveCARRYSiteChains(packedDesign);
+        randomMoveRAMSites(packedDesign);
         randomMoveCLBSites(packedDesign);
     }
 
@@ -136,11 +139,55 @@ public class PlacerGreedyRandom1 extends Placer {
         for (SiteInst si : packedDesign.CLBSiteInsts) {
             List<Site> sinkSites = findSinkSites(si);
             double oldCost = evaluateSite(sinkSites, si.getSite());
-            Site newSite = proposeCLBSite(selectedSiteType);
+            Site newSite = proposeSite(selectedSiteType);
             double newCost = evaluateSite(sinkSites, newSite);
             if (newCost < oldCost) {
                 unplaceSiteInst(si);
                 placeSiteInst(si, newSite);
+            }
+        }
+    }
+
+    private void randomMoveRAMSites(PackedDesign packedDesign) throws IOException {
+        List<Site> compatibleSites = new ArrayList<>();
+        compatibleSites.addAll(availableSites.get(SiteTypeEnum.RAMB18E1));
+        compatibleSites.addAll(availableSites.get(SiteTypeEnum.FIFO18E1));
+        int randIndex = rand.nextInt(compatibleSites.size());
+        Site selectedSite = compatibleSites.get(randIndex);
+        SiteTypeEnum ste = selectedSite.getSiteTypeEnum();
+        for (SiteInst si : packedDesign.RAMSiteInsts) {
+            List<Site> sinkSites = findSinkSites(si);
+            double oldCost = evaluateSite(sinkSites, si.getSite());
+            Site newSite = proposeSite(ste);
+            double newCost = evaluateSite(sinkSites, newSite);
+            if (newCost < oldCost) {
+                unplaceSiteInst(si);
+                placeSiteInst(si, newSite);
+            }
+        }
+
+    }
+
+    private void randomMoveDSPSiteCascades(PackedDesign packedDesign) throws IOException {
+        SiteTypeEnum ste = SiteTypeEnum.DSP48E1;
+        for (List<SiteInst> cascade : packedDesign.DSPSiteInstCascades) {
+            Site selectedAnchor = proposeDSPAnchorSite(ste, cascade.size());
+            double oldCost = 0;
+            double newCost = 0;
+            List<Site> newSiteCascade = new ArrayList<>();
+            for (int i = 0; i < cascade.size(); i++) {
+                List<Site> sinkSites = findSinkSites(cascade.get(i));
+                oldCost = oldCost + evaluateSite(sinkSites, cascade.get(i).getSite());
+                Site newSite = device
+                        .getSite("DSP48_X" + selectedAnchor.getInstanceX() + "Y" + (selectedAnchor.getInstanceY() + i));
+                newSiteCascade.add(newSite);
+                newCost = newCost + evaluateSite(sinkSites, newSite);
+            }
+            if (newCost < oldCost) {
+                for (int i = 0; i < cascade.size(); i++) {
+                    unplaceSiteInst(cascade.get(i));
+                    placeSiteInst(cascade.get(i), newSiteCascade.get(i));
+                }
             }
         }
     }
@@ -167,7 +214,6 @@ public class PlacerGreedyRandom1 extends Placer {
                 }
             }
         }
-
     }
 
     private Site proposeCARRYAnchorSite(SiteTypeEnum ste, int chainSize) {
@@ -185,11 +231,15 @@ public class PlacerGreedyRandom1 extends Placer {
                     validAnchor = false;
                     break;
                 }
+                if (!availableSites.get(ste).contains(device.getSite(name))) {
+                    validAnchor = false;
+                    break;
+                }
                 validAnchor = true;
             }
             attempts++;
             if (attempts > 1000)
-                throw new IllegalStateException("ERROR: Could not find CARRY4 chain anchor after 1000 attempts!");
+                throw new IllegalStateException("ERROR: Could not propose CARRY4 chain anchor after 1000 attempts!");
             if (validAnchor)
                 break;
 
@@ -197,7 +247,38 @@ public class PlacerGreedyRandom1 extends Placer {
         return selectedSite;
     }
 
-    private Site proposeCLBSite(SiteTypeEnum ste) {
+    private Site proposeDSPAnchorSite(SiteTypeEnum ste, int cascadeSize) {
+        boolean validAnchor = false;
+        Site selectedSite = null;
+        int attempts = 0;
+        while (true) {
+            int randIndex = rand.nextInt(availableSites.get(ste).size());
+            selectedSite = availableSites.get(ste).get(randIndex);
+            int x = selectedSite.getInstanceX();
+            int y = selectedSite.getInstanceY();
+            for (int i = 0; i < cascadeSize; i++) {
+                String name = "DSP48_X" + x + "Y" + (y + i);
+                if (occupiedSites.get(ste).contains(device.getSite(name))) {
+                    validAnchor = false;
+                    break;
+                }
+                if (!availableSites.get(ste).contains(device.getSite(name))) {
+                    validAnchor = false;
+                    break;
+                }
+                validAnchor = true;
+            }
+            attempts++;
+            if (attempts > 1000)
+                throw new IllegalStateException("ERROR: Could not propose DSP48E1 cascade anchor after 1000 attempts!");
+            if (validAnchor)
+                break;
+
+        }
+        return selectedSite;
+    }
+
+    private Site proposeSite(SiteTypeEnum ste) {
         int randIndex = rand.nextInt(availableSites.get(ste).size());
         return availableSites.get(ste).get(randIndex);
     }
@@ -212,34 +293,6 @@ public class PlacerGreedyRandom1 extends Placer {
         occupiedSites.get(si.getSiteTypeEnum()).remove(si.getSite());
         availableSites.get(si.getSiteTypeEnum()).add(si.getSite());
         si.unPlace();
-    }
-
-    private Site selectCarryAnchorSite(int chainSize) {
-        Random rand = new Random();
-        SiteTypeEnum selectedSiteType = SiteTypeEnum.SLICEL;
-        boolean validAnchor = false;
-        Site selectedSite = null;
-        int attempts = 0;
-        while (true) {
-            int randRange = availableSites.get(selectedSiteType).size();
-            selectedSite = availableSites.get(selectedSiteType).get(rand.nextInt(randRange));
-            int x = selectedSite.getInstanceX();
-            int y = selectedSite.getInstanceY();
-            for (int i = 0; i < chainSize; i++) {
-                String name = "SLICE_X" + x + "Y" + (y + i);
-                if (occupiedSites.get(selectedSiteType).contains(device.getSite(name))) {
-                    validAnchor = false;
-                    break;
-                }
-                validAnchor = true;
-            }
-            attempts++;
-            if (attempts > 1000)
-                throw new IllegalStateException("ERROR: Could not find CARRY4 chain anchor after 1000 attempts!");
-            if (validAnchor)
-                break;
-        }
-        return selectedSite;
     }
 
 }
