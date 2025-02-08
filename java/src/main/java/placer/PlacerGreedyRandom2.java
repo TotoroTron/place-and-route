@@ -1,9 +1,11 @@
+
 package placer;
 
 import java.util.stream.Collectors;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,25 +26,18 @@ import com.xilinx.rapidwright.device.Tile;
 import com.xilinx.rapidwright.device.Site;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 
-/*
-*  My first attempt at a general placer.
-*  Random moves, accept each move if it reduces cost.
-*  Only legal moves are considered (bookkeeping via availableSites, occupiedSites).
-*  No swapping Site between SiteInsts during each move.
-*  Sites are assigned to SiteInsts by first-come-first-serve basis.
-*  Cells are locked into their SiteInsts.
-*/
-public class PlacerGreedyRandom1 extends Placer {
+public class PlacerGreedyRandom2 extends Placer {
 
     private Map<SiteTypeEnum, List<Site>> occupiedSites;
     private Map<SiteTypeEnum, List<Site>> availableSites;
+    private Map<SiteTypeEnum, Map<Site, Boolean>> utilization; // ?
     private Random rand;
 
     private List<Double> costHistory;
 
-    public PlacerGreedyRandom1(String rootDir, Design design, Device device) throws IOException {
+    public PlacerGreedyRandom2(String rootDir, Design design, Device device) throws IOException {
         super(rootDir, design, device);
-        placerName = "PlacerGreedyRandom1";
+        placerName = "PlacerGreedyRandom2";
         costHistory = new ArrayList<>();
         rand = new Random();
     }
@@ -63,10 +58,9 @@ public class PlacerGreedyRandom1 extends Placer {
             }
             staleMoves++;
             totalMoves++;
-            if (staleMoves > 100 || totalMoves > 500)
+            if (staleMoves > 25 || totalMoves > 250)
                 break;
         }
-
         exportCostHistory();
         writer.write("\n\nTotal move iterations: " + totalMoves);
         writer.write("\n\nStale move iterations: " + staleMoves);
@@ -123,6 +117,7 @@ public class PlacerGreedyRandom1 extends Placer {
     private void initAvailableSites(PackedDesign packedDesign) throws IOException {
         this.occupiedSites = packedDesign.occupiedSites;
         this.availableSites = packedDesign.availableSites;
+        this.utilization = new HashMap<>();
     }
 
     private void randomMove(PackedDesign packedDesign) throws IOException {
@@ -130,8 +125,6 @@ public class PlacerGreedyRandom1 extends Placer {
         randomMoveDSPSiteCascades(packedDesign);
         randomMoveCARRYSiteChains(packedDesign);
         randomMoveRAMSites(packedDesign);
-        // RAM movement is bugged, some RAMs end up unplaced
-        // Maybe caused by RAMB/FIFO compatibility?
         randomMoveCLBSites(packedDesign);
     }
 
