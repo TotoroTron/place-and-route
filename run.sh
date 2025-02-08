@@ -52,6 +52,12 @@ check_exit_status() {
 # Vivado Synthesis Stage
 if [ "$start_stage" == "synth" ] || [ "$start_stage" == "all" ]; then
     echo "Running Vivado synthesis..."
+    cd "$DESIGN_DIR/src"
+    rm weights*
+    cd "$DESIGN_DIR/python"
+    python3 sine.py
+    python3 weights.py
+    cd $PROJ_DIR
     vivado -mode batch -source $SYNTH_TCL -nolog -nojournal -tclargs $DESIGN $SYNTH_TOP_PARAMS
     check_exit_status "Vivado synthesis"
     echo "Vivado synthesis completed. Check 'synthesized.dcp'."
@@ -60,6 +66,12 @@ fi
 # Vivado RTL Synthesis Stage
 if [ "$start_stage" == "rtl" ]; then
     echo "Running Vivado RTL synthesis..."
+    cd "$DESIGN_DIR/src"
+    rm weights*
+    cd "$DESIGN_DIR/python"
+    python3 sine.py
+    python3 weights.py
+    cd $PROJ_DIR
     vivado -mode batch -source $RTL_TCL -nolog -nojournal -tclargs $DESIGN $SYNTH_TOP_PARAMS
     check_exit_status "Vivado RTL"
     echo "Vivado synthesis completed. Starting GUI."
@@ -69,6 +81,8 @@ fi
 if [ "$start_stage" == "sim_functional" ]; then
     echo "Running Functional Simulation..."
     # generate sine.mem and weights.mem
+    cd "$DESIGN_DIR/src"
+    rm weights*
     cd "$DESIGN_DIR/python"
     python3 sine.py
     python3 weights.py
@@ -138,7 +152,8 @@ if [ "$start_stage" == "place" ] || [ "$start_stage" == "all" ]; then
     cd $PROJ_DIR/java
     gradle run
     check_exit_status "Gradle run"
-    # vivado -mode batch -source $PLACE_TCL -nolog -nojournal
+    cd $PROJ_DIR
+    python3 python/plot_convergence.py
     echo "Java placement executed. Check 'logger.txt' for output."
 fi
 
@@ -163,6 +178,8 @@ if [ "$start_stage" == "sim_postroute" ] || [ "$start_stage" == "all" ]; then
     vivado -mode batch -source $SIM_TCL -nolog -nojournal -tclargs $DESIGN $TOP_LEVEL
     check_exit_status "Vivado sim"
 
+    cd "$DESIGN_DIR/src"
+    rm weights*
     cd "$DESIGN_DIR/python"
     python3 sine.py
     python3 weights.py

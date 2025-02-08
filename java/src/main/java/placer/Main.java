@@ -56,7 +56,9 @@ public class Main {
             // Stage 2) Packer:
             // takes the prepackedDesign and packs the EDIFHierCellInst into SiteInsts
             // also provides an initial random placement of SiteInsts onto actual Sites.
-            PackerBasic BPacker = new PackerBasic(rootDir, design, device, device.getClockRegion("X0Y1"));
+            // PackerBasic BPacker = new PackerBasic(rootDir, design, device,
+            // device.getClockRegion("X1Y0"));
+            PackerBasic BPacker = new PackerBasic(rootDir, design, device, null);
             BPacker.printUniqueSites();
             BPacker.printClockBuffers();
             PackedDesign packedDesign = BPacker.run(prepackedDesign);

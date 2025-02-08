@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.Random;
 
+import java.io.FileWriter;
 import java.io.IOException;
 
 import com.xilinx.rapidwright.design.Design;
@@ -19,6 +20,7 @@ import com.xilinx.rapidwright.design.Net;
 
 import com.xilinx.rapidwright.device.Device;
 import com.xilinx.rapidwright.device.Tile;
+
 import com.xilinx.rapidwright.device.Site;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 
@@ -35,7 +37,6 @@ public class PlacerGreedyRandom1 extends Placer {
         super(rootDir, design, device);
         placerName = "PlacerGreedyRandom1";
         costHistory = new ArrayList<>();
-        lowestCostHistory = new ArrayList<>();
         rand = new Random();
     }
 
@@ -52,7 +53,6 @@ public class PlacerGreedyRandom1 extends Placer {
                 design.writeCheckpoint(placedDcp);
                 staleMoves = 0;
                 lowestCost = currCost;
-                lowestCostHistory.add(lowestCost);
             }
             staleMoves++;
             totalMoves++;
@@ -60,27 +60,19 @@ public class PlacerGreedyRandom1 extends Placer {
                 break;
         }
 
-        writer.write("\n\n" + placerName + " cost history... ");
-        for (int i = 1; i < costHistory.size(); i++) {
-            if (i == 0)
-                writer.write("\n\tIter " + i + ": " + costHistory.get(i));
-            else {
-                double diff = costHistory.get(i) - costHistory.get(i - 1);
-                writer.write("\n\tIter " + i + ": " + costHistory.get(i) + ", diff: " + diff);
-            }
-        }
-
-        writer.write("\n\n" + placerName + " lowest cost history... ");
-        for (int i = 1; i < lowestCostHistory.size(); i++) {
-            if (i == 0)
-                writer.write("\n\tIter " + i + ": " + lowestCostHistory.get(i));
-            else {
-                double diff = lowestCostHistory.get(i) - lowestCostHistory.get(i - 1);
-                writer.write("\n\tMove " + i + ": " + lowestCostHistory.get(i) + ", diff: " + diff);
-            }
-        }
+        exportCostHistory();
         writer.write("\n\nTotal move iterations: " + totalMoves);
         writer.write("\n\nStale move iterations: " + staleMoves);
+    }
+
+    public void exportCostHistory() throws IOException {
+        FileWriter csv = new FileWriter(rootDir + "/outputs/printout/" + placerName + "_Convergence.csv");
+        csv.write("Iter, Cost");
+        for (int i = 0; i < costHistory.size(); i++) {
+            csv.write("\n" + i + ", " + costHistory.get(i));
+        }
+        if (csv != null)
+            csv.close();
     }
 
     private List<Site> findSinkSites(SiteInst si) throws IOException {
@@ -91,7 +83,7 @@ public class PlacerGreedyRandom1 extends Placer {
                 .map(spis -> spis.stream()
                         .map(spi -> spi.getSite())
                         .collect(Collectors.toList()))
-                .flatMap(List::stream) // List<List<Tile>> into List<Tile>
+                .flatMap(List::stream) // List<List<Site>> into List<Site>
                 .collect(Collectors.toList());
         return sinkSites;
     }
@@ -131,7 +123,41 @@ public class PlacerGreedyRandom1 extends Placer {
         randomMoveDSPSiteCascades(packedDesign);
         randomMoveCARRYSiteChains(packedDesign);
         randomMoveRAMSites(packedDesign);
+        // RAM movement is bugged, some RAMs end up unplaced
+        // Maybe caused by RAMB/FIFO compatibility?
         randomMoveCLBSites(packedDesign);
+    }
+
+    private Site proposeSite(SiteTypeEnum ste) {
+        int randIndex = rand.nextInt(availableSites.get(ste).size());
+        return availableSites.get(ste).get(randIndex);
+    }
+
+    private Site proposeRAMSite() {
+        // For some reason, a RAM SiteInst placed on a RAMB18E1 Site
+        // cannot be moved to a FIFO18E1 Site or vice versa.
+        // The placement will simply be ignored.
+        // RAMs are locked by their SiteTypeEnum assigned during the packing
+        // stage's initial random placement.
+        List<Site> compatibleSites = new ArrayList<>();
+        compatibleSites.addAll(availableSites.get(SiteTypeEnum.RAMB18E1));
+        compatibleSites.addAll(availableSites.get(SiteTypeEnum.FIFO18E1));
+        int randIndex = rand.nextInt(compatibleSites.size());
+        Site selectedSite = compatibleSites.get(randIndex);
+        return selectedSite;
+    }
+
+    private void placeSiteInst(SiteInst si, Site site) {
+        availableSites.get(si.getSiteTypeEnum()).remove(site);
+        occupiedSites.get(si.getSiteTypeEnum()).add(site);
+        si.place(site);
+
+    }
+
+    private void unplaceSiteInst(SiteInst si) {
+        occupiedSites.get(si.getSiteTypeEnum()).remove(si.getSite());
+        availableSites.get(si.getSiteTypeEnum()).add(si.getSite());
+        si.unPlace();
     }
 
     private void randomMoveCLBSites(PackedDesign packedDesign) throws IOException {
@@ -149,15 +175,11 @@ public class PlacerGreedyRandom1 extends Placer {
     }
 
     private void randomMoveRAMSites(PackedDesign packedDesign) throws IOException {
-        List<Site> compatibleSites = new ArrayList<>();
-        compatibleSites.addAll(availableSites.get(SiteTypeEnum.RAMB18E1));
-        compatibleSites.addAll(availableSites.get(SiteTypeEnum.FIFO18E1));
-        int randIndex = rand.nextInt(compatibleSites.size());
-        Site selectedSite = compatibleSites.get(randIndex);
-        SiteTypeEnum ste = selectedSite.getSiteTypeEnum();
         for (SiteInst si : packedDesign.RAMSiteInsts) {
             List<Site> sinkSites = findSinkSites(si);
             double oldCost = evaluateSite(sinkSites, si.getSite());
+            // Site newSite = proposeRAMSite();
+            SiteTypeEnum ste = si.getSiteTypeEnum();
             Site newSite = proposeSite(ste);
             double newCost = evaluateSite(sinkSites, newSite);
             if (newCost < oldCost) {
@@ -165,7 +187,6 @@ public class PlacerGreedyRandom1 extends Placer {
                 placeSiteInst(si, newSite);
             }
         }
-
     }
 
     private void randomMoveDSPSiteCascades(PackedDesign packedDesign) throws IOException {
@@ -242,7 +263,6 @@ public class PlacerGreedyRandom1 extends Placer {
                 throw new IllegalStateException("ERROR: Could not propose CARRY4 chain anchor after 1000 attempts!");
             if (validAnchor)
                 break;
-
         }
         return selectedSite;
     }
@@ -273,26 +293,8 @@ public class PlacerGreedyRandom1 extends Placer {
                 throw new IllegalStateException("ERROR: Could not propose DSP48E1 cascade anchor after 1000 attempts!");
             if (validAnchor)
                 break;
-
         }
         return selectedSite;
-    }
-
-    private Site proposeSite(SiteTypeEnum ste) {
-        int randIndex = rand.nextInt(availableSites.get(ste).size());
-        return availableSites.get(ste).get(randIndex);
-    }
-
-    private void placeSiteInst(SiteInst si, Site site) {
-        availableSites.get(si.getSiteTypeEnum()).remove(site);
-        occupiedSites.get(si.getSiteTypeEnum()).add(site);
-        si.place(site);
-    }
-
-    private void unplaceSiteInst(SiteInst si) {
-        occupiedSites.get(si.getSiteTypeEnum()).remove(si.getSite());
-        availableSites.get(si.getSiteTypeEnum()).add(si.getSite());
-        si.unPlace();
     }
 
 }

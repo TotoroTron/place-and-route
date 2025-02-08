@@ -149,7 +149,7 @@ public class PackerBasic extends Packer {
     private List<List<SiteInst>> packCarryChains(List<List<CarryCellGroup>> EDIFCarryChains)
             throws IOException {
         List<List<SiteInst>> siteInstChains = new ArrayList<>();
-        writer.write("\n\nPlacing carry chains... (" + EDIFCarryChains.size() + ")");
+        writer.write("\n\nPacking carry chains... (" + EDIFCarryChains.size() + ")");
         for (List<CarryCellGroup> edifChain : EDIFCarryChains) {
             List<SiteInst> siteInstChain = new ArrayList<>();
             writer.write("\n\t\tChain Size: (" + edifChain.size() + "), Chain Anchor: "
@@ -179,7 +179,7 @@ public class PackerBasic extends Packer {
 
     private List<List<SiteInst>> packDSPCascades(List<List<EDIFHierCellInst>> EDIFDSPCascades) throws IOException {
         List<List<SiteInst>> siteInstCascades = new ArrayList<>();
-        writer.write("\n\nPlacing DSP Cascades... (" + EDIFDSPCascades.size() + ")");
+        writer.write("\n\nPacking DSP Cascades... (" + EDIFDSPCascades.size() + ")");
         for (List<EDIFHierCellInst> cascade : EDIFDSPCascades) {
             List<SiteInst> siteInstCascade = new ArrayList<>();
             // each DSP tile has 2 DSP sites on the Zynq 7000
@@ -201,12 +201,13 @@ public class PackerBasic extends Packer {
             siteInstCascades.add(siteInstCascade);
         }
         return siteInstCascades;
+
     } // end packDSPCascades()
 
     private List<SiteInst> packRAMSiteInsts(List<EDIFHierCellInst> RAMCells)
             throws IOException {
         List<SiteInst> RAMSiteInsts = new ArrayList<>();
-        writer.write("\n\nPlacing RAMBCells... (" + RAMCells.size() + ")");
+        writer.write("\n\nPacking RAMBCells... (" + RAMCells.size() + ")");
         for (EDIFHierCellInst ehci : RAMCells) {
             Site selectedSite = selectRAMSite();
             SiteInst si = new SiteInst(ehci.getFullHierarchicalInstName(), design, SiteTypeEnum.RAMB18E1,
@@ -221,7 +222,7 @@ public class PackerBasic extends Packer {
     private List<SiteInst> packLUTFFPairGroups(
             Map<Pair<String, String>, LUTFFGroup> LUTFFEnableResetGroups) throws IOException {
         List<SiteInst> LUTFFSiteInsts = new ArrayList<>();
-        writer.write("\n\nPlacing LUT-FF Pair Groups... (" + LUTFFEnableResetGroups.size() + ")");
+        writer.write("\n\nPacking LUT-FF Pair Groups... (" + LUTFFEnableResetGroups.size() + ")");
         for (Map.Entry<Pair<String, String>, LUTFFGroup> entry : LUTFFEnableResetGroups.entrySet()) {
             Pair<String, String> netPair = entry.getKey();
             String s1 = String.format("\n\tCENet: %-50s RNet: %-50s", netPair.key(), netPair.value());
@@ -256,8 +257,9 @@ public class PackerBasic extends Packer {
         return LUTFFSiteInsts;
     } // end packLUTFFPairGroups()
 
-    private List<SiteInst> packLUTGroups(List<List<EDIFHierCellInst>> LUTGroups) {
+    private List<SiteInst> packLUTGroups(List<List<EDIFHierCellInst>> LUTGroups) throws IOException {
         List<SiteInst> LUTSiteInsts = new ArrayList<>();
+        writer.write("\n\nPacking LUT Groups...");
         for (List<EDIFHierCellInst> group : LUTGroups) {
             Site selectedSite = selectCLBSite();
             SiteInst si = design.createSiteInst(selectedSite);
@@ -278,7 +280,7 @@ public class PackerBasic extends Packer {
 
     private List<SiteInst> packBUFGCTRLSiteInsts(List<EDIFHierCellInst> BUFGCTRLCells) throws IOException {
         List<SiteInst> BUFGCTRLSiteInsts = new ArrayList<>();
-        writer.write("\n\nPlacing BUFGCTRL Cells... (" + BUFGCTRLCells.size());
+        writer.write("\n\nPacking BUFGCTRL Cells... (" + BUFGCTRLCells.size());
         for (EDIFHierCellInst ehci : BUFGCTRLCells) {
             Site selectedSite = selectBUFGCTRLSite();
             SiteInst si = new SiteInst(ehci.getFullHierarchicalInstName(), design, SiteTypeEnum.BUFGCTRL, selectedSite);
@@ -322,9 +324,11 @@ public class PackerBasic extends Packer {
             int y = selectedSite.getInstanceY();
             for (int i = 0; i < chainSize; i++) {
                 String name = "SLICE_X" + x + "Y" + (y + i);
-                if (design.getSiteInstFromSiteName(name) != null
-                        || device.getSite(name) == null
-                        || device.getSite(name).getClockRegion() != regionConstraint) {
+                if (occupiedSites.get(selectedSiteType).contains(device.getSite(name))) {
+                    validAnchor = false;
+                    break;
+                }
+                if (!availableSites.get(selectedSiteType).contains(device.getSite(name))) {
                     validAnchor = false;
                     break;
                 }
@@ -340,19 +344,22 @@ public class PackerBasic extends Packer {
     }
 
     private Site selectDSPAnchorSite(int cascadeSize) {
-        SiteTypeEnum siteType = SiteTypeEnum.DSP48E1;
+        SiteTypeEnum ste = SiteTypeEnum.DSP48E1;
         boolean validAnchor = false;
         Site selectedSite = null;
         int attempts = 0;
         while (true) {
-            selectedSite = availableSites.get(siteType).get(attempts);
+            int randIndex = rand.nextInt(availableSites.get(ste).size());
+            selectedSite = availableSites.get(ste).get(randIndex);
             int x = selectedSite.getInstanceX();
             int y = selectedSite.getInstanceY();
             for (int i = 0; i < cascadeSize; i++) {
                 String name = "DSP48_X" + x + "Y" + (y + i);
-                if (design.getSiteInstFromSiteName(name) != null
-                        || device.getSite(name) == null
-                        || device.getSite(name).getClockRegion() != regionConstraint) {
+                if (occupiedSites.get(ste).contains(device.getSite(name))) {
+                    validAnchor = false;
+                    break;
+                }
+                if (!availableSites.get(ste).contains(device.getSite(name))) {
                     validAnchor = false;
                     break;
                 }
@@ -375,11 +382,8 @@ public class PackerBasic extends Packer {
             throw new IllegalStateException(
                     "ERROR: device or clock region contains no Sites of type FIFO18E1 or RAMB18E1 !");
         }
-        compatibleSites.sort(
-                Comparator.comparingInt(Site::getInstanceY)
-                        .thenComparingInt(Site::getInstanceX)
-                        .reversed());
-        Site selectedSite = compatibleSites.get(0);
+        int randIndex = rand.nextInt(compatibleSites.size());
+        Site selectedSite = compatibleSites.get(randIndex);
         SiteTypeEnum selectedSiteType = selectedSite.getSiteTypeEnum();
         availableSites.get(selectedSiteType).remove(selectedSite);
         occupiedSites.get(selectedSiteType).add(selectedSite);
@@ -415,9 +419,12 @@ public class PackerBasic extends Packer {
         si.addSitePIP(si.getSitePIP("BCY0", "BX"));
         si.addSitePIP(si.getSitePIP("ACY0", "AX"));
         // remove stray CARRY4/CO nets
-        design.removeNet(si.getNetFromSiteWire("CARRY4_CO2"));
-        design.removeNet(si.getNetFromSiteWire("CARRY4_CO1"));
-        design.removeNet(si.getNetFromSiteWire("CARRY4_CO0"));
+        if (si.getNetFromSiteWire("CARRY4_CO2") != null)
+            design.removeNet(si.getNetFromSiteWire("CARRY4_CO2"));
+        if (si.getNetFromSiteWire("CARRY4_CO1") != null)
+            design.removeNet(si.getNetFromSiteWire("CARRY4_CO1"));
+        if (si.getNetFromSiteWire("CARRY4_CO0") != null)
+            design.removeNet(si.getNetFromSiteWire("CARRY4_CO0"));
         // add default XOR PIPs for unused FFs
         for (String FF : FF_BELS)
             if (si.getCell(FF) == null)

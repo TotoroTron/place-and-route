@@ -186,6 +186,8 @@ public class PrepackerBasic extends Prepacker {
                                 p -> p.getPortInst().getName(),
                                 p -> p));
                 EDIFHierPortInst sourceCellPort = netPortsMap.get("CO[3]");
+                if (sourceCellPort == null)
+                    break;
                 EDIFHierCellInst sourceCell = sourceCellPort.getHierarchicalInst()
                         .getChild(sourceCellPort.getPortInst().getCellInst().getName());
                 currCell = sourceCell;
@@ -201,15 +203,6 @@ public class PrepackerBasic extends Prepacker {
 
                 // assemble the carry site cells
                 for (int i = 0; i < 4; i++) {
-                    EDIFHierNet ONet = currCell.getPortInst(OPorts.get(i)).getHierarchicalNet();
-                    EDIFHierPortInst ONetSink = ONet.getLeafHierPortInsts(false, true).get(0);
-                    EDIFHierCellInst ONetSinkCell = ONetSink.getHierarchicalInst()
-                            .getChild(ONetSink.getPortInst().getCellInst().getName());
-                    if (ONetSinkCell.getCellType().getName().contains("FDRE"))
-                        carryCellGroup.ffs().add(ONetSinkCell);
-                    else
-                        carryCellGroup.ffs().add(null);
-
                     EDIFHierNet SNet = currCell.getPortInst(SPorts.get(i)).getHierarchicalNet();
                     EDIFHierPortInst SNetSource = SNet.getLeafHierPortInsts(true, false).get(0);
                     EDIFHierCellInst SNetSourceCell = SNetSource.getHierarchicalInst()
@@ -218,6 +211,33 @@ public class PrepackerBasic extends Prepacker {
                         carryCellGroup.luts().add(SNetSourceCell);
                     else
                         carryCellGroup.luts().add(null);
+
+                    EDIFHierPortInst OPortInst = currCell.getPortInst(OPorts.get(i));
+                    if (OPortInst == null) {
+                        // If there's no port instance, just add null
+                        carryCellGroup.ffs().add(null);
+                        continue;
+                    }
+                    EDIFHierNet ONet = OPortInst.getHierarchicalNet();
+                    if (ONet == null) {
+                        // If there's no associated net, store null
+                        carryCellGroup.ffs().add(null);
+                        continue;
+                    }
+                    List<EDIFHierPortInst> netSinks = ONet.getLeafHierPortInsts(false, true);
+                    if (netSinks.isEmpty()) {
+                        // If there are no sinks, store null
+                        carryCellGroup.ffs().add(null);
+                        continue;
+                    }
+                    EDIFHierPortInst ONetSink = ONet.getLeafHierPortInsts(false, true).get(0);
+                    EDIFHierCellInst ONetSinkCell = ONetSink.getHierarchicalInst()
+                            .getChild(ONetSink.getPortInst().getCellInst().getName());
+                    if (ONetSinkCell.getCellType().getName().contains("FDRE"))
+                        carryCellGroup.ffs().add(ONetSinkCell);
+                    else
+                        carryCellGroup.ffs().add(null);
+
                 }
                 carryCellGroups.add(carryCellGroup);
                 EDIFCellGroups.get("CARRY4").remove(carryCellGroup.carry());
@@ -235,6 +255,8 @@ public class PrepackerBasic extends Prepacker {
                                 p -> p.getPortInst().getName(),
                                 p -> p));
                 EDIFHierPortInst sinkCellPort = netPortsMap.get("CI");
+                if (sinkCellPort == null)
+                    break;
                 EDIFHierCellInst sinkCell = sinkCellPort.getHierarchicalInst()
                         .getChild(sinkCellPort.getPortInst().getCellInst().getName());
                 currCell = sinkCell;

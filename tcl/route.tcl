@@ -2,7 +2,7 @@
 
 set root_dir "/home/bcheng/workspace/dev/place-and-route"
 set placed_dcp "$root_dir/outputs/placed.dcp"
-# set packed_dcp "$root_dir/outputs/packed.dcp"
+set packed_dcp "$root_dir/outputs/packed.dcp"
 set routed_dcp "$root_dir/outputs/routed.dcp"
 set bitstream_file "$root_dir/outputs/output.bit"
 
