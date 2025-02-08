@@ -15,6 +15,7 @@ import java.util.Random;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import com.xilinx.rapidwright.design.ModuleInst;
 import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.SiteInst;
 import com.xilinx.rapidwright.design.SitePinInst;
@@ -34,12 +35,18 @@ public class PlacerGreedyRandom2 extends Placer {
     private Random rand;
 
     private List<Double> costHistory;
+    private List<Long> moveTimes;
+    private List<Long> evalTimes;
+    private List<Long> writeTimes;
 
     public PlacerGreedyRandom2(String rootDir, Design design, Device device) throws IOException {
         super(rootDir, design, device);
-        placerName = "PlacerGreedyRandom2";
-        costHistory = new ArrayList<>();
-        rand = new Random();
+        this.placerName = "PlacerGreedyRandom2";
+        this.costHistory = new ArrayList<>();
+        this.moveTimes = new ArrayList<>();
+        this.evalTimes = new ArrayList<>();
+        this.writeTimes = new ArrayList<>();
+        this.rand = new Random();
     }
 
     public void placeDesign(PackedDesign packedDesign) throws IOException {
@@ -47,12 +54,25 @@ public class PlacerGreedyRandom2 extends Placer {
         Double lowestCost = evaluateDesign(); // initial cost
         int staleMoves = 0;
         int totalMoves = 0;
+        // ModuleInst lowestCostDesign = new ModuleInst(this.placerName, this.design);
         while (true) {
+            long t0 = System.currentTimeMillis();
             randomMove(packedDesign);
-            Double currCost = evaluateDesign();
-            costHistory.add(currCost);
+            long t1 = System.currentTimeMillis();
+            moveTimes.add(t1 - t0);
+
+            t0 = System.currentTimeMillis();
+            double currCost = evaluateDesign();
+            t1 = System.currentTimeMillis();
+            evalTimes.add(t1 - t0);
+
+            this.costHistory.add(currCost);
             if (currCost < lowestCost) {
+                t0 = System.currentTimeMillis();
                 design.writeCheckpoint(placedDcp);
+                t1 = System.currentTimeMillis();
+                writeTimes.add(t1 - t0);
+                // lowestCostDesign.setDesign(this.design);
                 staleMoves = 0;
                 lowestCost = currCost;
             }
@@ -64,6 +84,21 @@ public class PlacerGreedyRandom2 extends Placer {
         exportCostHistory();
         writer.write("\n\nTotal move iterations: " + totalMoves);
         writer.write("\n\nStale move iterations: " + staleMoves);
+
+        writer.write("\n\nPrinting Move Times... ");
+        for (int i = 0; i < moveTimes.size(); i++) {
+            writer.write("\n\tIter: " + i + ", Time (ms): " + moveTimes.get(i));
+        }
+        writer.write("\n\nPrinting Eval Times... ");
+        for (int i = 0; i < evalTimes.size(); i++) {
+            writer.write("\n\tIter: " + i + ", Time (ms): " + evalTimes.get(i));
+        }
+        writer.write("\n\nPrinting DCP Write Times... ");
+        for (int i = 0; i < writeTimes.size(); i++) {
+            writer.write("\n\tIter: " + i + ", Time (ms): " + writeTimes.get(i));
+        }
+        // lowestCostDesign.getDesign().writeCheckpoint(this.placedDcp);
+        // this.design.writeCheckpoint(this.rootDir + "/outputs/final_placed.dcp");
     }
 
     public void exportCostHistory() throws IOException {
@@ -117,7 +152,6 @@ public class PlacerGreedyRandom2 extends Placer {
     private void initAvailableSites(PackedDesign packedDesign) throws IOException {
         this.occupiedSites = packedDesign.occupiedSites;
         this.availableSites = packedDesign.availableSites;
-        this.utilization = new HashMap<>();
     }
 
     private void randomMove(PackedDesign packedDesign) throws IOException {

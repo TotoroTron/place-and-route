@@ -203,6 +203,7 @@ public class PrepackerBasic extends Prepacker {
 
                 // assemble the carry site cells
                 for (int i = 0; i < 4; i++) {
+                    // CHECKING OUTPUTS (straightforward)
                     EDIFHierNet SNet = currCell.getPortInst(SPorts.get(i)).getHierarchicalNet();
                     EDIFHierPortInst SNetSource = SNet.getLeafHierPortInsts(true, false).get(0);
                     EDIFHierCellInst SNetSourceCell = SNetSource.getHierarchicalInst()
@@ -212,6 +213,11 @@ public class PrepackerBasic extends Prepacker {
                     else
                         carryCellGroup.luts().add(null);
 
+                    // CHECKING INPUTS (a bit more complicated)
+                    // In the scenario that the design calls for more DSPs than
+                    // the device can offer, the synthesizer will sometimes synthesize CARRY
+                    // cells with no output ehpis, OR ehpis with no nets,
+                    // OR ehpis with nets but with no sinks
                     EDIFHierPortInst OPortInst = currCell.getPortInst(OPorts.get(i));
                     if (OPortInst == null) {
                         // If there's no port instance, just add null
@@ -298,6 +304,7 @@ public class PrepackerBasic extends Prepacker {
             visitedLUTs.add(sourceCell);
         }
 
+        // should reduce redundancy with helper functions
         for (EDIFHierCellInst fdse : EDIFCellGroups.get("FDSE")) {
             // examine the CE net to determine which group
             EDIFHierPortInst CEPort = fdse.getPortInst("CE");

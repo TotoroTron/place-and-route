@@ -13,6 +13,8 @@ import java.util.Random;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import com.xilinx.rapidwright.design.Module;
+import com.xilinx.rapidwright.design.ModuleInst;
 import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.SiteInst;
 import com.xilinx.rapidwright.design.SitePinInst;
@@ -66,7 +68,6 @@ public class PlacerGreedyRandom1 extends Placer {
             if (staleMoves > 100 || totalMoves > 500)
                 break;
         }
-
         exportCostHistory();
         writer.write("\n\nTotal move iterations: " + totalMoves);
         writer.write("\n\nStale move iterations: " + staleMoves);
@@ -130,8 +131,6 @@ public class PlacerGreedyRandom1 extends Placer {
         randomMoveDSPSiteCascades(packedDesign);
         randomMoveCARRYSiteChains(packedDesign);
         randomMoveRAMSites(packedDesign);
-        // RAM movement is bugged, some RAMs end up unplaced
-        // Maybe caused by RAMB/FIFO compatibility?
         randomMoveCLBSites(packedDesign);
     }
 

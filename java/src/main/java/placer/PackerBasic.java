@@ -201,7 +201,6 @@ public class PackerBasic extends Packer {
             siteInstCascades.add(siteInstCascade);
         }
         return siteInstCascades;
-
     } // end packDSPCascades()
 
     private List<SiteInst> packRAMSiteInsts(List<EDIFHierCellInst> RAMCells)
