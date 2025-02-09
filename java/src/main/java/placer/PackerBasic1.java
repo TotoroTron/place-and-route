@@ -111,8 +111,8 @@ public class PackerBasic1 extends Packer {
         CLBSiteInsts.addAll(LUTSiteInsts);
 
         PackedDesign packedDesign = new PackedDesign(
-                BUFGCTRLSiteInsts, CARRYSiteInstChains, DSPSiteInstCascades, RAMSiteInsts, CLBSiteInsts, availableSites,
-                occupiedSites);
+                BUFGCTRLSiteInsts, CARRYSiteInstChains, DSPSiteInstCascades, RAMSiteInsts, CLBSiteInsts,
+                deviceSiteTypes);
 
         writer.write("\n\nALL CELL PATTERNS HAVE BEEN ARBITRARILY PLACED...");
         printOccupiedSites();

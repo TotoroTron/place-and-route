@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.io.IOException;
@@ -34,6 +35,7 @@ public class PackerBasic2 extends Packer {
         rand = new Random();
         packerName = "PackerBasic2";
         uniqueSiteTypes = new HashSet<>();
+        dummySites = new HashMap<>();
         initAvailableSites();
     }
 
@@ -58,18 +60,18 @@ public class PackerBasic2 extends Packer {
         List<List<EDIFHierCellInst>> LUTGroups = prepackedDesign.LUTGroups;
 
         List<SiteInst> BUFGCTRLSiteInsts = packBUFGCTRLSiteInsts(BUFGCTRLCells);
+        List<SiteInst> LUTFFSiteInsts = packLUTFFPairGroups(LUTFFGroups);
+        List<SiteInst> LUTSiteInsts = packLUTGroups(LUTGroups);
         List<List<SiteInst>> CARRYSiteInstChains = packCarryChains(CARRYChains);
         List<List<SiteInst>> DSPSiteInstCascades = packDSPCascades(DSPCascades);
         List<SiteInst> RAMSiteInsts = packRAMSiteInsts(RAMCells);
-        List<SiteInst> LUTFFSiteInsts = packLUTFFPairGroups(LUTFFGroups);
-        List<SiteInst> LUTSiteInsts = packLUTGroups(LUTGroups);
         List<SiteInst> CLBSiteInsts = new ArrayList<>();
         CLBSiteInsts.addAll(LUTFFSiteInsts);
         CLBSiteInsts.addAll(LUTSiteInsts);
 
         PackedDesign packedDesign = new PackedDesign(
-                BUFGCTRLSiteInsts, CARRYSiteInstChains, DSPSiteInstCascades, RAMSiteInsts, CLBSiteInsts, null,
-                null);
+                BUFGCTRLSiteInsts, CARRYSiteInstChains, DSPSiteInstCascades, RAMSiteInsts, CLBSiteInsts,
+                uniqueSiteTypes);
         return packedDesign;
 
     } // end placeDesign()
@@ -107,6 +109,7 @@ public class PackerBasic2 extends Packer {
                     + edifChain.get(0).carry().getFullHierarchicalInstName());
             SiteTypeEnum siteType = SiteTypeEnum.SLICEL;
             Site dummySite = dummySites.get(siteType); // select arbitrary site
+            System.out.println("Dummy Site: " + dummySite.getName());
             for (int i = 0; i < edifChain.size(); i++) {
                 SiteInst si = new SiteInst(edifChain.get(i).carry().getFullHierarchicalInstName(), design,
                         siteType, dummySite);
@@ -178,6 +181,7 @@ public class PackerBasic2 extends Packer {
             for (List<Pair<EDIFHierCellInst, EDIFHierCellInst>> LUTFFPairs : splitIntoGroups(lutffgroup.group(), 4)) {
                 SiteTypeEnum siteType = SiteTypeEnum.SLICEL;
                 Site selectedSite = dummySites.get(siteType);
+                System.out.println("Dummy site: " + selectedSite.getName());
                 SiteInst si = design.createSiteInst(selectedSite);
                 for (int i = 0; i < LUTFFPairs.size(); i++) {
                     EDIFHierCellInst ff = LUTFFPairs.get(i).value();
@@ -267,12 +271,6 @@ public class PackerBasic2 extends Packer {
                         .getLeafHierPortInsts(false, true).isEmpty())
                     design.removeNet(si.getNetFromSiteWire("CARRY4_CO" + i));
         }
-        // if (si.getNetFromSiteWire("CARRY4_CO2") != null)
-        // design.removeNet(si.getNetFromSiteWire("CARRY4_CO2"));
-        // if (si.getNetFromSiteWire("CARRY4_CO1") != null)
-        // design.removeNet(si.getNetFromSiteWire("CARRY4_CO1"));
-        // if (si.getNetFromSiteWire("CARRY4_CO0") != null)
-        // design.removeNet(si.getNetFromSiteWire("CARRY4_CO0"));
         // add default XOR PIPs for unused FFs
         for (String FF : FF_BELS)
             if (si.getCell(FF) == null)
