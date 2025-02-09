@@ -30,7 +30,7 @@ import com.xilinx.rapidwright.device.SitePIPStatus;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 import com.xilinx.rapidwright.device.ClockRegion;
 
-public class PackerBasic extends Packer {
+public class PackerBasic1 extends Packer {
 
     private Random rand;
     protected ClockRegion regionConstraint;
@@ -38,10 +38,10 @@ public class PackerBasic extends Packer {
     protected Map<SiteTypeEnum, List<Site>> occupiedSites;
     protected Map<SiteTypeEnum, List<Site>> availableSites;
 
-    public PackerBasic(String rootDir, Design design, Device device, ClockRegion region) throws IOException {
+    public PackerBasic1(String rootDir, Design design, Device device, ClockRegion region) throws IOException {
         super(rootDir, design, device);
         rand = new Random();
-        packerName = "PackerBasic";
+        packerName = "PackerBasic1";
         deviceSiteTypes = new HashSet<>();
         occupiedSites = new HashMap<>();
         availableSites = new HashMap<>();
@@ -305,8 +305,8 @@ public class PackerBasic extends Packer {
         // Site selectedSite = compatibleSites.get(0);
         // SiteTypeEnum selectedSiteType = selectedSite.getSiteTypeEnum();
         SiteTypeEnum selectedSiteType = SiteTypeEnum.SLICEL;
-        int randIndex = rand.nextInt(availableSites.get(selectedSiteType).size());
-        Site selectedSite = availableSites.get(selectedSiteType).remove(randIndex);
+        // int randIndex = rand.nextInt(availableSites.get(selectedSiteType).size());
+        Site selectedSite = availableSites.get(selectedSiteType).remove(0);
         occupiedSites.get(selectedSiteType).add(selectedSite);
         return selectedSite;
     }
@@ -317,8 +317,8 @@ public class PackerBasic extends Packer {
         Site selectedSite = null;
         int attempts = 0;
         while (true) {
-            int randIndex = rand.nextInt(availableSites.get(selectedSiteType).size());
-            selectedSite = availableSites.get(selectedSiteType).get(randIndex);
+            // int randIndex = rand.nextInt(availableSites.get(selectedSiteType).size());
+            selectedSite = availableSites.get(selectedSiteType).get(attempts);
             int x = selectedSite.getInstanceX();
             int y = selectedSite.getInstanceY();
             for (int i = 0; i < chainSize; i++) {
@@ -348,8 +348,8 @@ public class PackerBasic extends Packer {
         Site selectedSite = null;
         int attempts = 0;
         while (true) {
-            int randIndex = rand.nextInt(availableSites.get(ste).size());
-            selectedSite = availableSites.get(ste).get(randIndex);
+            // int randIndex = rand.nextInt(availableSites.get(ste).size());
+            selectedSite = availableSites.get(ste).get(attempts);
             int x = selectedSite.getInstanceX();
             int y = selectedSite.getInstanceY();
             for (int i = 0; i < cascadeSize; i++) {
@@ -381,8 +381,8 @@ public class PackerBasic extends Packer {
             throw new IllegalStateException(
                     "ERROR: device or clock region contains no Sites of type FIFO18E1 or RAMB18E1 !");
         }
-        int randIndex = rand.nextInt(compatibleSites.size());
-        Site selectedSite = compatibleSites.get(randIndex);
+        // int randIndex = rand.nextInt(compatibleSites.size());
+        Site selectedSite = compatibleSites.get(0);
         SiteTypeEnum selectedSiteType = selectedSite.getSiteTypeEnum();
         availableSites.get(selectedSiteType).remove(selectedSite);
         occupiedSites.get(selectedSiteType).add(selectedSite);

@@ -45,4 +45,8 @@ public class PackedDesign {
         this.occupiedSites = packedDesign.occupiedSites;
     }
 
+    PackedDesign() {
+
+    }
+
 }

@@ -58,7 +58,7 @@ public class Main {
             // also provides an initial random placement of SiteInsts onto actual Sites.
             // PackerBasic BPacker = new PackerBasic(rootDir, design, device,
             // device.getClockRegion("X1Y0"));
-            PackerBasic BPacker = new PackerBasic(rootDir, design, device, null);
+            PackerBasic1 BPacker = new PackerBasic1(rootDir, design, device, null);
             BPacker.printUniqueSites();
             BPacker.printClockBuffers();
             PackedDesign packedDesign = BPacker.run(prepackedDesign);

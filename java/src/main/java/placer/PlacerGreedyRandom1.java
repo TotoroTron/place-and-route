@@ -199,6 +199,8 @@ public class PlacerGreedyRandom1 extends Placer {
         SiteTypeEnum ste = SiteTypeEnum.DSP48E1;
         for (List<SiteInst> cascade : packedDesign.DSPSiteInstCascades) {
             Site selectedAnchor = proposeDSPAnchorSite(ste, cascade.size());
+            if (selectedAnchor == null)
+                continue;
             double oldCost = 0;
             double newCost = 0;
             List<Site> newSiteCascade = new ArrayList<>();
@@ -223,6 +225,8 @@ public class PlacerGreedyRandom1 extends Placer {
         SiteTypeEnum selectedSiteType = SiteTypeEnum.SLICEL;
         for (List<SiteInst> chain : packedDesign.CARRYSiteInstChains) {
             Site selectedAnchor = proposeCARRYAnchorSite(selectedSiteType, chain.size());
+            if (selectedAnchor == null)
+                continue;
             double oldCost = 0;
             double newCost = 0;
             List<Site> newSiteChain = new ArrayList<>();
@@ -266,7 +270,9 @@ public class PlacerGreedyRandom1 extends Placer {
             }
             attempts++;
             if (attempts > 1000)
-                throw new IllegalStateException("ERROR: Could not propose CARRY4 chain anchor after 1000 attempts!");
+                return null;
+            // throw new IllegalStateException("ERROR: Could not propose CARRY4 chain anchor
+            // after 1000 attempts!");
             if (validAnchor)
                 break;
         }
@@ -296,7 +302,9 @@ public class PlacerGreedyRandom1 extends Placer {
             }
             attempts++;
             if (attempts > 1000)
-                throw new IllegalStateException("ERROR: Could not propose DSP48E1 cascade anchor after 1000 attempts!");
+                return null;
+            // throw new IllegalStateException("ERROR: Could not propose DSP48E1 cascade
+            // anchor after 1000 attempts!");
             if (validAnchor)
                 break;
         }

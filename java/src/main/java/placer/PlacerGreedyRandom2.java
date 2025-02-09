@@ -154,11 +154,15 @@ public class PlacerGreedyRandom2 extends Placer {
         this.availableSites = packedDesign.availableSites;
     }
 
+    private void initRandomPlacement(PackedDesign packedDesign) throws IOException {
+
+    }
+
     private void randomMove(PackedDesign packedDesign) throws IOException {
         // Chunkiest movements first
-        randomMoveDSPSiteCascades(packedDesign);
+        // randomMoveDSPSiteCascades(packedDesign);
         randomMoveCARRYSiteChains(packedDesign);
-        randomMoveRAMSites(packedDesign);
+        // randomMoveRAMSites(packedDesign);
         randomMoveCLBSites(packedDesign);
     }
 
