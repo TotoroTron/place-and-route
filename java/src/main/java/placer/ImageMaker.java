@@ -49,7 +49,10 @@ public class ImageMaker {
 
     private int x_low, y_low;
     private int width, height;
-    private final int scale = 5; // hard-coded
+    private final int scale = 9; // hard-coded
+    private List<Pair<Net, Double>> netlistCosts;
+    private double highest_cost = 0;
+    private double lowest_cost = Double.MAX_VALUE;
 
     private BufferedImage image;
 
@@ -82,7 +85,9 @@ public class ImageMaker {
         this.device = design.getDevice();
         this.uniqueSiteTypes = new HashSet<>();
         this.allSites = new HashMap<>();
+        this.netlistCosts = new ArrayList<>();
         initSites();
+        evaluateNetlist();
         this.image = new BufferedImage(scale * width, scale * height, BufferedImage.TYPE_INT_RGB);
     }
 
@@ -95,7 +100,7 @@ public class ImageMaker {
             allSites.get(siteType).add(site);
         }
         int x_high = 0, y_high = 0;
-        int x_low = 99999999, y_low = 9999999;
+        int x_low = Integer.MAX_VALUE, y_low = Integer.MAX_VALUE;
         for (Map.Entry<SiteTypeEnum, List<Site>> entry : this.allSites.entrySet()) {
             for (Site site : entry.getValue()) {
                 int site_x = site.getRpmX();
@@ -153,7 +158,7 @@ public class ImageMaker {
                 int destY = (height - 1 - y) * scale; // top-left system
                 int destX = x * scale;
 
-                // Fill a 1-pixel thick 5×5 border with the site color, black interior
+                // Fill a 1-pixel thick border with the site color, black interior
                 for (int dx = 0; dx < scale; dx++) {
                     for (int dy = 0; dy < scale; dy++) {
                         // Check if we're on the border (top/bottom/left/right)
@@ -171,7 +176,6 @@ public class ImageMaker {
     }
 
     public void overlayPlacementOnSiteArrayImage() throws IOException {
-        int scale = 5;
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 SiteInst si = siteInstArray[x][y];
@@ -192,29 +196,42 @@ public class ImageMaker {
         }
     }
 
+    private void evaluateNetlist() {
+        for (Net net : design.getNets()) {
+            if (net.isStaticNet())
+                continue;
+            SitePinInst src = net.getSource();
+            if (src == null) // SPI is null if the net is purely intrasite
+                continue;
+            if (src.getSiteTypeEnum().equals(SiteTypeEnum.BUFGCTRL))
+                continue;
+            List<SitePinInst> sinks = net.getSinkPins();
+            Site srcSite = src.getSite();
+            double cost = 0;
+            for (SitePinInst sink : sinks) {
+                Site sinkSite = sink.getSite();
+                cost = cost + srcSite.getTile().getTileManhattanDistance(sinkSite.getTile());
+            }
+            if (cost < lowest_cost)
+                lowest_cost = cost;
+            if (cost > highest_cost)
+                highest_cost = cost;
+            netlistCosts.add(new Pair<Net, Double>(net, cost));
+        }
+        netlistCosts.sort((cost1, cost2) -> Double.compare(cost1.value(), cost2.value()));
+    }
+
     public void overlayNetsOnPlacementImage() {
         Graphics2D g2d = image.createGraphics();
         try {
             g2d.setStroke(new BasicStroke(1));
-            List<Net> nets = new ArrayList<>(design.getNets());
-            nets.sort((net1, net2) -> Integer.compare(net1.getSinkPins().size(), net2.getSinkPins().size()));
-            for (Net net : nets) {
-                if (net.isStaticNet()) {
-                    System.out.println("Skipped Static Net: " + net.getName());
-                    continue;
-                }
+            for (Pair<Net, Double> pair : netlistCosts) {
+                Net net = pair.key();
+                double cost = pair.value();
                 SitePinInst src = net.getSource();
-                if (src == null) {
-                    // SPI is null of the net is purely intra-site!
-                    continue;
-                }
-                if (src.getSiteTypeEnum().equals(SiteTypeEnum.BUFGCTRL))
-                    continue;
-
                 List<SitePinInst> sinks = net.getSinkPins();
-                int numSinks = sinks.size();
-                int maxSinks = 50; // color of all nets with 50 sinks or more
-                float ratio = (float) Math.min(numSinks, maxSinks) / (float) maxSinks;
+
+                float ratio = (float) Math.min(cost, highest_cost) / (float) highest_cost;
                 int redValue = (int) (0x80 + ratio * (0xFF - 0x80)); // range: 0x40..0xFF
                 Color scaledRed = new Color(redValue, 0, 0);
                 g2d.setColor(scaledRed);

@@ -26,4 +26,4 @@ def plot_csv(filename, output_file):
     plt.savefig(output_file, dpi=200, bbox_inches='tight')
 
 if __name__ == "__main__":
-    plot_csv("outputs/printout/PlacerGreedyRandom2.csv", "outputs/PlacerGreedyRandom2.png")
+    plot_csv("outputs/printout/PlacerGreedyRandom2.csv", "outputs/graphics/PlacerGreedyRandom2.png")

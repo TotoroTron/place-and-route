@@ -63,17 +63,25 @@ public class PlacerGreedyRandom2 extends Placer {
         Double lowestCost = evaluateDesign(); // initial cost
         int staleMoves = 0;
         int totalMoves = 0;
+
+        ImageMaker imPreplace = new ImageMaker(design);
+        imPreplace.construct2DSiteArray();
+        imPreplace.construct2DSiteArrayImage();
+        imPreplace.construct2DPlacementArray();
+        imPreplace.overlayPlacementOnSiteArrayImage();
+        imPreplace.exportImage(rootDir + "/outputs/graphics/" + placerName + "_preplace.png");
+
         unplaceAllSiteInsts(packedDesign);
         randomInitialPlacement(packedDesign);
-        design.writeCheckpoint(rootDir + "/outputs/placed_inital.dcp");
+        design.writeCheckpoint(rootDir + "/outputs/checkpoints/" + placerName + "_inital.dcp");
 
         ImageMaker imInitial = new ImageMaker(design);
         imInitial.construct2DSiteArray();
         imInitial.construct2DSiteArrayImage();
-        imInitial.exportImage(rootDir + "/outputs/site_array.png");
+        imInitial.exportImage(rootDir + "/outputs/graphics/" + placerName + "_device.png");
         imInitial.construct2DPlacementArray();
         imInitial.overlayPlacementOnSiteArrayImage();
-        imInitial.exportImage(rootDir + "/outputs/initial_placement_array.png");
+        imInitial.exportImage(rootDir + "/outputs/graphics/" + placerName + "_initial_random.png");
 
         while (true) {
             long t0 = System.currentTimeMillis();
@@ -106,10 +114,10 @@ public class PlacerGreedyRandom2 extends Placer {
         imPlaced.construct2DSiteArrayImage();
         imPlaced.construct2DPlacementArray();
         imPlaced.overlayPlacementOnSiteArrayImage();
-        imPlaced.exportImage(rootDir + "/outputs/placement_array.png");
+        imPlaced.exportImage(rootDir + "/outputs/graphics/" + placerName + "_placement.png");
 
         imPlaced.overlayNetsOnPlacementImage();
-        imPlaced.exportImage(rootDir + "/outputs/netlist_array.png");
+        imPlaced.exportImage(rootDir + "/outputs/graphics/" + placerName + "_netlist.png");
 
         exportCostHistory(rootDir + "/outputs/printout/" + placerName + ".csv");
         printTimingBenchmarks();
@@ -213,12 +221,6 @@ public class PlacerGreedyRandom2 extends Placer {
     }
 
     private void randomInitCLBSites(PackedDesign packedDesign) throws IOException {
-        // SiteTypeEnum[] compatibleTypes = new SiteTypeEnum[4];
-        // compatibleTypes[0] = SiteTypeEnum.SLICEL;
-        // compatibleTypes[1] = SiteTypeEnum.SLICEL;
-        // SiteTypeEnum ste = (rand.nextDouble() < 0.75)
-        // ? SiteTypeEnum.SLICEL
-        // : SiteTypeEnum.SLICEM;
         for (SiteInst si : packedDesign.CLBSiteInsts) {
             Site selectedSite = proposeSite(si.getSiteTypeEnum());
             placeSiteInst(si, selectedSite);
@@ -226,10 +228,6 @@ public class PlacerGreedyRandom2 extends Placer {
     }
 
     private void randomInitRAMSites(PackedDesign packedDesign) throws IOException {
-        // SiteTypeEnum[] compatibleTypes = new SiteTypeEnum[2];
-        // compatibleTypes[0] = SiteTypeEnum.RAMB18E1;
-        // compatibleTypes[1] = SiteTypeEnum.FIFO18E1;
-        // SiteTypeEnum ste = compatibleTypes[rand.nextInt(2)];
         for (SiteInst si : packedDesign.RAMSiteInsts) {
             Site selectedSite = proposeSite(si.getSiteTypeEnum());
             placeSiteInst(si, selectedSite);
@@ -249,12 +247,6 @@ public class PlacerGreedyRandom2 extends Placer {
     }
 
     private void randomInitCARRYSiteChains(PackedDesign packedDesign) throws IOException {
-        // SiteTypeEnum[] compatibleTypes = new SiteTypeEnum[4];
-        // compatibleTypes[0] = SiteTypeEnum.SLICEL;
-        // compatibleTypes[1] = SiteTypeEnum.SLICEL;
-        // SiteTypeEnum ste = (rand.nextDouble() < 0.75)
-        // ? SiteTypeEnum.SLICEL
-        // : SiteTypeEnum.SLICEM;
         for (List<SiteInst> chain : packedDesign.CARRYSiteInstChains) {
             SiteTypeEnum ste = chain.get(0).getSiteTypeEnum();
             Site selectedAnchor = proposeCARRYAnchorSite(ste, chain.size());

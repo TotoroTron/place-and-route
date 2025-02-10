@@ -34,7 +34,7 @@ public class Main {
 
     private static final Logger logger = Logger.getLogger(Main.class.getName());
     protected static final String rootDir = "/home/bcheng/workspace/dev/place-and-route";
-    protected static final String synthesizedDcp = rootDir + "/outputs/synthesized.dcp";
+    protected static final String synthesizedDcp = rootDir + "/outputs/checkpoints/synthesized.dcp";
 
     public static void main(String[] args) {
         try {

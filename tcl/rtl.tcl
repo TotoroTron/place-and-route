@@ -4,7 +4,7 @@ set design [lindex $argv 0]
 set top_params [join [lrange $argv 1 end] " "]
 
 set root_dir "/home/bcheng/workspace/dev/place-and-route"
-set rtl_synth "$root_dir/outputs/rtl_synth.dcp" 
+set rtl_synth "$root_dir/outputs/checkpoints/rtl_synth.dcp" 
 
 # set design "counter"
 # set src_dir "$root_dir/hdl/vhdl/$design/$design.srcs/sources_1/new"

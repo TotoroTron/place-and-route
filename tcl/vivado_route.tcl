@@ -1,6 +1,6 @@
 set root_dir "/home/bcheng/workspace/dev/place-and-route"
-set placed_dcp "$root_dir/outputs/vivado_placed.dcp"
-set routed_dcp "$root_dir/outputs/vivado_routed.dcp"
+set placed_dcp "$root_dir/outputs/checkpoints/vivado_placed.dcp"
+set routed_dcp "$root_dir/outputs/checkpoint/vivado_routed.dcp"
 set bitstream_file "$root_dir/outputs/output.bit"
 
 open_checkpoint $placed_dcp

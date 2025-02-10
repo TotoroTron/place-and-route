@@ -4,7 +4,7 @@ set design [lindex $argv 0]
 set top_params [join [lrange $argv 1 end] " "]
 
 set root_dir "/home/bcheng/workspace/dev/place-and-route"
-set synthesized_dcp "$root_dir/outputs/synthesized.dcp" 
+set synthesized_dcp "$root_dir/outputs/checkpoints/synthesized.dcp" 
 
 # set design "counter"
 # set src_dir "$root_dir/hdl/vhdl/$design/$design.srcs/sources_1/new"
