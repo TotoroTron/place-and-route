@@ -47,8 +47,8 @@ public class PlacerGreedyRandom2 extends Placer {
 
     private static final Map<SiteTypeEnum, Color> SITE_TYPE_COLORS = new HashMap<>();
     static {
-        SITE_TYPE_COLORS.put(SiteTypeEnum.SLICEL, Color.BLUE);
-        SITE_TYPE_COLORS.put(SiteTypeEnum.SLICEM, Color.BLUE);
+        SITE_TYPE_COLORS.put(SiteTypeEnum.SLICEL, Color.CYAN);
+        SITE_TYPE_COLORS.put(SiteTypeEnum.SLICEM, Color.CYAN);
         SITE_TYPE_COLORS.put(SiteTypeEnum.RAMB18E1, Color.GREEN);
         SITE_TYPE_COLORS.put(SiteTypeEnum.FIFO18E1, Color.GREEN);
         SITE_TYPE_COLORS.put(SiteTypeEnum.RAMB36E1, Color.GREEN);
@@ -71,11 +71,15 @@ public class PlacerGreedyRandom2 extends Placer {
 
     public void placeDesign(PackedDesign packedDesign) throws IOException {
         initSites();
-        export2DSiteArray(construct2DSiteArray(), rootDir + "/outputs/site_array.png");
+        export2DSiteArrayImageUpscaled(construct2DSiteArray(), rootDir + "/outputs/site_array.png");
         Double lowestCost = evaluateDesign(); // initial cost
         int staleMoves = 0;
         int totalMoves = 0;
+        unplaceAllSiteInsts(packedDesign);
         randomInitialPlacement(packedDesign);
+        design.writeCheckpoint(rootDir + "/outputs/placed_inital.dcp");
+        // printSiteInstPlacements(packedDesign);
+
         while (true) {
             long t0 = System.currentTimeMillis();
             randomMove(packedDesign);
@@ -98,38 +102,25 @@ public class PlacerGreedyRandom2 extends Placer {
             }
             staleMoves++;
             totalMoves++;
-            if (staleMoves > 25 || totalMoves > 250)
+            if (staleMoves > 20 || totalMoves > 200)
                 break;
         }
-        exportCostHistory(rootDir + "/outputs/printout/" + placerName + "_Convergence.csv");
+
+        exportCostHistory(rootDir + "/outputs/printout/" + placerName + ".csv");
         printTimingBenchmarks();
         writer.write("\n\nTotal move iterations: " + totalMoves);
         writer.write("\n\nStale move iterations: " + staleMoves);
     }
 
-    public void printTimingBenchmarks() throws IOException {
-        writer.write("\n\nPrinting Move Times... ");
-        for (int i = 0; i < moveTimes.size(); i++) {
-            writer.write("\n\tIter: " + i + ", Time (ms): " + moveTimes.get(i));
+    private void initSites() throws IOException {
+        for (Site site : device.getAllSites()) {
+            SiteTypeEnum siteType = site.getSiteTypeEnum();
+            if (uniqueSiteTypes.add(siteType)) {
+                allSites.put(siteType, new ArrayList<>());
+                occupiedSites.put(siteType, new HashSet<>());
+            }
+            allSites.get(siteType).add(site);
         }
-        writer.write("\n\nPrinting Eval Times... ");
-        for (int i = 0; i < evalTimes.size(); i++) {
-            writer.write("\n\tIter: " + i + ", Time (ms): " + evalTimes.get(i));
-        }
-        writer.write("\n\nPrinting DCP Write Times... ");
-        for (int i = 0; i < writeTimes.size(); i++) {
-            writer.write("\n\tIter: " + i + ", Time (ms): " + writeTimes.get(i));
-        }
-    }
-
-    public void exportCostHistory(String fileName) throws IOException {
-        FileWriter csv = new FileWriter(fileName);
-        csv.write("Iter, Cost");
-        for (int i = 0; i < costHistory.size(); i++) {
-            csv.write("\n" + i + ", " + costHistory.get(i));
-        }
-        if (csv != null)
-            csv.close();
     }
 
     private List<Site> findSinkSites(SiteInst si) throws IOException {
@@ -171,66 +162,24 @@ public class PlacerGreedyRandom2 extends Placer {
         return cost;
     }
 
-    private void initSites() throws IOException {
-        for (Site site : device.getAllSites()) {
-            SiteTypeEnum siteType = site.getSiteTypeEnum();
-            if (uniqueSiteTypes.add(siteType)) {
-                allSites.put(siteType, new ArrayList<>());
-                occupiedSites.put(siteType, new HashSet<>());
+    private void unplaceAllSiteInsts(PackedDesign packedDesign) throws IOException {
+        for (List<SiteInst> cascade : packedDesign.DSPSiteInstCascades) {
+            for (SiteInst si : cascade) {
+                si.unPlace();
             }
-            allSites.get(siteType).add(site);
         }
-    }
+        for (List<SiteInst> chain : packedDesign.CARRYSiteInstChains) {
+            for (SiteInst si : chain) {
+                si.unPlace();
+            }
+        }
+        for (SiteInst si : packedDesign.CLBSiteInsts) {
+            si.unPlace();
+        }
+        for (SiteInst si : packedDesign.RAMSiteInsts) {
+            si.unPlace();
+        }
 
-    public Site[][] construct2DSiteArray() throws IOException {
-        int x_high = 0, y_high = 0;
-        int x_low = 99999999, y_low = 9999999;
-        for (Map.Entry<SiteTypeEnum, List<Site>> entry : this.allSites.entrySet()) {
-            for (Site site : entry.getValue()) {
-                int site_x = site.getRpmX();
-                if (site_x > x_high)
-                    x_high = site_x;
-                if (site_x < x_low)
-                    x_low = site_x;
-                int site_y = site.getRpmY();
-                if (site_y > y_high)
-                    y_high = site_y;
-                if (site_y < y_low)
-                    y_low = site_y;
-            }
-        }
-        int width = x_high - x_low + 1;
-        int height = y_high - y_low + 1;
-        Site[][] siteArray = new Site[width][height];
-        for (Map.Entry<SiteTypeEnum, List<Site>> entry : this.allSites.entrySet()) {
-            for (Site site : entry.getValue()) {
-                int x = site.getRpmX() - x_low;
-                int y = site.getRpmY() - y_low;
-                siteArray[x][y] = site;
-            }
-        }
-        return siteArray;
-    }
-
-    public void export2DSiteArray(Site[][] siteArray, String outputPath) throws IOException {
-        int width = siteArray.length;
-        int height = siteArray[0].length;
-        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                Site site = siteArray[x][y];
-                if (site == null) {
-                    // Possibly color null sites differently, e.g. black or white
-                    image.setRGB(x, y, Color.BLACK.getRGB());
-                } else {
-                    SiteTypeEnum type = site.getSiteTypeEnum();
-                    Color c = SITE_TYPE_COLORS.getOrDefault(type, Color.GRAY);
-                    image.setRGB(x, y, c.getRGB());
-                }
-            }
-        }
-        File outputFile = new File(outputPath);
-        ImageIO.write(image, "png", outputFile);
     }
 
     private void randomInitialPlacement(PackedDesign packedDesign) throws IOException {
@@ -251,7 +200,6 @@ public class PlacerGreedyRandom2 extends Placer {
     private void placeSiteInst(SiteInst si, Site site) {
         occupiedSites.get(si.getSiteTypeEnum()).add(site);
         si.place(site);
-
     }
 
     private void unplaceSiteInst(SiteInst si) {
@@ -260,25 +208,25 @@ public class PlacerGreedyRandom2 extends Placer {
     }
 
     private void randomInitCLBSites(PackedDesign packedDesign) throws IOException {
-        SiteTypeEnum[] compatibleTypes = new SiteTypeEnum[4];
-        compatibleTypes[0] = SiteTypeEnum.SLICEL;
-        compatibleTypes[1] = SiteTypeEnum.SLICEL;
-        SiteTypeEnum ste = (rand.nextDouble() < 0.75)
-                ? SiteTypeEnum.SLICEL
-                : SiteTypeEnum.SLICEM;
+        // SiteTypeEnum[] compatibleTypes = new SiteTypeEnum[4];
+        // compatibleTypes[0] = SiteTypeEnum.SLICEL;
+        // compatibleTypes[1] = SiteTypeEnum.SLICEL;
+        // SiteTypeEnum ste = (rand.nextDouble() < 0.75)
+        // ? SiteTypeEnum.SLICEL
+        // : SiteTypeEnum.SLICEM;
         for (SiteInst si : packedDesign.CLBSiteInsts) {
-            Site selectedSite = proposeSite(ste);
+            Site selectedSite = proposeSite(si.getSiteTypeEnum());
             placeSiteInst(si, selectedSite);
         }
     }
 
     private void randomInitRAMSites(PackedDesign packedDesign) throws IOException {
-        SiteTypeEnum[] compatibleTypes = new SiteTypeEnum[2];
-        compatibleTypes[0] = SiteTypeEnum.RAMB18E1;
-        compatibleTypes[1] = SiteTypeEnum.FIFO18E1;
-        SiteTypeEnum ste = compatibleTypes[rand.nextInt(2)];
-        for (SiteInst si : packedDesign.CLBSiteInsts) {
-            Site selectedSite = proposeSite(ste);
+        // SiteTypeEnum[] compatibleTypes = new SiteTypeEnum[2];
+        // compatibleTypes[0] = SiteTypeEnum.RAMB18E1;
+        // compatibleTypes[1] = SiteTypeEnum.FIFO18E1;
+        // SiteTypeEnum ste = compatibleTypes[rand.nextInt(2)];
+        for (SiteInst si : packedDesign.RAMSiteInsts) {
+            Site selectedSite = proposeSite(si.getSiteTypeEnum());
             placeSiteInst(si, selectedSite);
         }
     }
@@ -296,13 +244,14 @@ public class PlacerGreedyRandom2 extends Placer {
     }
 
     private void randomInitCARRYSiteChains(PackedDesign packedDesign) throws IOException {
-        SiteTypeEnum[] compatibleTypes = new SiteTypeEnum[4];
-        compatibleTypes[0] = SiteTypeEnum.SLICEL;
-        compatibleTypes[1] = SiteTypeEnum.SLICEL;
-        SiteTypeEnum ste = (rand.nextDouble() < 0.75)
-                ? SiteTypeEnum.SLICEL
-                : SiteTypeEnum.SLICEM;
+        // SiteTypeEnum[] compatibleTypes = new SiteTypeEnum[4];
+        // compatibleTypes[0] = SiteTypeEnum.SLICEL;
+        // compatibleTypes[1] = SiteTypeEnum.SLICEL;
+        // SiteTypeEnum ste = (rand.nextDouble() < 0.75)
+        // ? SiteTypeEnum.SLICEL
+        // : SiteTypeEnum.SLICEM;
         for (List<SiteInst> chain : packedDesign.CARRYSiteInstChains) {
+            SiteTypeEnum ste = chain.get(0).getSiteTypeEnum();
             Site selectedAnchor = proposeCARRYAnchorSite(ste, chain.size());
             for (int i = 0; i < chain.size(); i++) {
                 Site newSite = device
@@ -313,11 +262,12 @@ public class PlacerGreedyRandom2 extends Placer {
     }
 
     private void randomMoveCLBSites(PackedDesign packedDesign) throws IOException {
-        SiteTypeEnum selectedSiteType = SiteTypeEnum.SLICEL;
+        // SiteTypeEnum ste = SiteTypeEnum.SLICEL;
         for (SiteInst si : packedDesign.CLBSiteInsts) {
+            SiteTypeEnum ste = si.getSiteTypeEnum();
             List<Site> sinkSites = findSinkSites(si);
             double oldCost = evaluateSite(sinkSites, si.getSite());
-            Site newSite = proposeSite(selectedSiteType);
+            Site newSite = proposeSite(ste);
             double newCost = evaluateSite(sinkSites, newSite);
             if (newCost < oldCost) {
                 unplaceSiteInst(si);
@@ -349,7 +299,6 @@ public class PlacerGreedyRandom2 extends Placer {
             double newCost = 0;
             List<Site> newSiteCascade = new ArrayList<>();
             for (int i = 0; i < cascade.size(); i++) {
-                System.out.println("SiteInst: " + cascade.get(i).getName() + "Site: " + cascade.get(i).getSiteName());
                 List<Site> sinkSites = findSinkSites(cascade.get(i));
                 oldCost = oldCost + evaluateSite(sinkSites, cascade.get(i).getSite());
                 Site newSite = device
@@ -424,8 +373,16 @@ public class PlacerGreedyRandom2 extends Placer {
             int x = selectedSite.getInstanceX();
             int y = selectedSite.getInstanceY();
             for (int i = 0; i < chainSize; i++) {
-                String name = "SLICE_X" + x + "Y" + (y + i);
-                if (occupiedSites.get(ste).contains(device.getSite(name))) {
+                Site site = device.getSite("SLICE_X" + x + "Y" + (y + i));
+                if (site == null) {
+                    validAnchor = false;
+                    break;
+                }
+                if (!allSites.get(ste).contains(site)) {
+                    validAnchor = false;
+                    break;
+                }
+                if (occupiedSites.get(ste).contains(site)) {
                     //
                     // TODO: evaluate potential swap
                     //
@@ -453,8 +410,16 @@ public class PlacerGreedyRandom2 extends Placer {
             int x = selectedSite.getInstanceX();
             int y = selectedSite.getInstanceY();
             for (int i = 0; i < cascadeSize; i++) {
-                String name = "DSP48_X" + x + "Y" + (y + i);
-                if (occupiedSites.get(ste).contains(device.getSite(name))) {
+                Site site = device.getSite("DSP48_X" + x + "Y" + (y + i));
+                if (site == null) {
+                    validAnchor = false;
+                    break;
+                }
+                if (!allSites.get(ste).contains(site)) {
+                    validAnchor = false;
+                    break;
+                }
+                if (occupiedSites.get(ste).contains(site)) {
                     //
                     // TODO: evaluate potential swap
                     //
@@ -472,4 +437,146 @@ public class PlacerGreedyRandom2 extends Placer {
         return selectedSite;
     }
 
+    public void printTimingBenchmarks() throws IOException {
+        writer.write("\n\nPrinting Move Times... ");
+        for (int i = 0; i < moveTimes.size(); i++) {
+            writer.write("\n\tIter: " + i + ", Time (ms): " + moveTimes.get(i));
+        }
+        writer.write("\n\nPrinting Eval Times... ");
+        for (int i = 0; i < evalTimes.size(); i++) {
+            writer.write("\n\tIter: " + i + ", Time (ms): " + evalTimes.get(i));
+        }
+        writer.write("\n\nPrinting DCP Write Times... ");
+        for (int i = 0; i < writeTimes.size(); i++) {
+            writer.write("\n\tIter: " + i + ", Time (ms): " + writeTimes.get(i));
+        }
+    }
+
+    public void exportCostHistory(String fileName) throws IOException {
+        FileWriter csv = new FileWriter(fileName);
+        csv.write("Iter, Cost");
+        for (int i = 0; i < costHistory.size(); i++) {
+            csv.write("\n" + i + ", " + costHistory.get(i));
+        }
+        if (csv != null)
+            csv.close();
+    }
+
+    public Site[][] construct2DSiteArray() throws IOException {
+        int x_high = 0, y_high = 0;
+        int x_low = 99999999, y_low = 9999999;
+        for (Map.Entry<SiteTypeEnum, List<Site>> entry : this.allSites.entrySet()) {
+            for (Site site : entry.getValue()) {
+                int site_x = site.getRpmX();
+                if (site_x > x_high)
+                    x_high = site_x;
+                if (site_x < x_low)
+                    x_low = site_x;
+                int site_y = site.getRpmY();
+                if (site_y > y_high)
+                    y_high = site_y;
+                if (site_y < y_low)
+                    y_low = site_y;
+            }
+        }
+        int width = x_high - x_low + 1;
+        int height = y_high - y_low + 1;
+        Site[][] siteArray = new Site[width][height];
+        for (Map.Entry<SiteTypeEnum, List<Site>> entry : this.allSites.entrySet()) {
+            for (Site site : entry.getValue()) {
+                int x = site.getRpmX() - x_low;
+                int y = site.getRpmY() - y_low;
+                siteArray[x][y] = site;
+            }
+        }
+        return siteArray;
+    }
+
+    public void export2DSiteArrayImage(Site[][] siteArray, String outputPath) throws IOException {
+        int width = siteArray.length;
+        int height = siteArray[0].length;
+        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                Site site = siteArray[x][y];
+                Color color = null;
+                if (site == null) {
+                    color = Color.BLACK;
+                } else {
+                    SiteTypeEnum type = site.getSiteTypeEnum();
+                    color = SITE_TYPE_COLORS.getOrDefault(type, Color.GRAY);
+                }
+                image.setRGB(x, (height - 1 - y), color.getRGB());
+            }
+        }
+        File outputFile = new File(outputPath);
+        ImageIO.write(image, "png", outputFile);
+    }
+
+    public void export2DSiteArrayImageUpscaled(Site[][] siteArray, String outputPath) throws IOException {
+        int width = siteArray.length;
+        int height = siteArray[0].length;
+        int scale = 5; // each site will be 5×5 pixels
+
+        int upscaledWidth = width * scale;
+        int upscaledHeight = height * scale;
+
+        // Create a new (upscaled) BufferedImage
+        BufferedImage image = new BufferedImage(upscaledWidth, upscaledHeight, BufferedImage.TYPE_INT_RGB);
+
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                // Determine the site color
+                Site site = siteArray[x][y];
+                Color c;
+                if (site == null) {
+                    c = Color.BLACK;
+                } else {
+                    SiteTypeEnum type = site.getSiteTypeEnum();
+                    c = SITE_TYPE_COLORS.getOrDefault(type, Color.GRAY);
+                }
+
+                // "Bottom-left" to "top-left" invert:
+                // The 'y' in siteArray=0 means the bottom row, but Java image=0 is the top row.
+                // So we flip (height - 1 - y). For each site, fill 5x5 block.
+                int destY = (height - 1 - y) * scale; // top-left system
+                int destX = x * scale;
+
+                // Fill 5x5 block in the upscaled image
+                for (int dx = 0; dx < scale; dx++) {
+                    for (int dy = 0; dy < scale; dy++) {
+                        image.setRGB(destX + dx, destY + dy, c.getRGB());
+                    }
+                }
+            }
+        }
+
+        // Write out to a file
+        File outputFile = new File(outputPath);
+        ImageIO.write(image, "png", outputFile);
+    }
+
+    private void printSiteInstPlacements(PackedDesign packedDesign) throws IOException {
+        for (List<SiteInst> cascade : packedDesign.DSPSiteInstCascades) {
+            for (SiteInst si : cascade) {
+                String site = si == null ? "Null!" : si.getName();
+                writer.write("\nSiteInst: " + si.getName() + ", Site: " + site);
+            }
+        }
+        for (List<SiteInst> chain : packedDesign.CARRYSiteInstChains) {
+            for (SiteInst si : chain) {
+                String site = si == null ? "Null!" : si.getName();
+                writer.write("\nSiteInst: " + si.getName() + ", Site: " + site);
+            }
+        }
+        for (SiteInst si : packedDesign.CLBSiteInsts) {
+            String site = si == null ? "Null!" : si.getName();
+            writer.write("\nSiteInst: " + si.getName() + ", Site: " + site);
+        }
+        for (SiteInst si : packedDesign.RAMSiteInsts) {
+            String site = si == null ? "Null!" : si.getName();
+            writer.write("\nSiteInst: " + si.getName() + ", Site: " + site);
+        }
+
+    }
 }

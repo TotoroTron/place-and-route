@@ -132,7 +132,6 @@ public class PackerBasic2 extends Packer {
         writer.write("\n\nPacking DSP Cascades... (" + EDIFDSPCascades.size() + ")");
         for (List<EDIFHierCellInst> edifCascade : EDIFDSPCascades) {
             List<SiteInst> siteInstCascade = new ArrayList<>();
-            // each DSP tile has 2 DSP sites on the Zynq 7000
             writer.write("\n\tCascade Size: (" + edifCascade.size() + "), Cascade Anchor: "
                     + edifCascade.get(0).getFullHierarchicalInstName());
             SiteTypeEnum siteType = SiteTypeEnum.DSP48E1;
