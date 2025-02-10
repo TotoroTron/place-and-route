@@ -220,7 +220,7 @@ public class ImageMaker {
                 int numSinks = sinks.size();
                 int maxSinks = 20; // color of all nets with 10 sinks or more
                 float ratio = (float) Math.min(numSinks, maxSinks) / (float) maxSinks;
-                int redValue = (int) (0x40 + ratio * (0xFF - 0x40)); // range: 0x40..0xFF
+                int redValue = (int) (0x80 + ratio * (0xFF - 0x80)); // range: 0x40..0xFF
                 Color scaledRed = new Color(redValue, 0, 0);
                 g2d.setColor(scaledRed);
 
