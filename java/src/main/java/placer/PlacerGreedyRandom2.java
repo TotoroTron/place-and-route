@@ -67,7 +67,13 @@ public class PlacerGreedyRandom2 extends Placer {
         randomInitialPlacement(packedDesign);
         design.writeCheckpoint(rootDir + "/outputs/placed_inital.dcp");
 
-        ImageMaker imageMaker = new ImageMaker(design);
+        ImageMaker imInitial = new ImageMaker(design);
+        imInitial.construct2DSiteArray();
+        imInitial.construct2DSiteArrayImage();
+        imInitial.exportImage(rootDir + "/outputs/site_array.png");
+        imInitial.construct2DPlacementArray();
+        imInitial.overlayPlacementOnSiteArrayImage();
+        imInitial.exportImage(rootDir + "/outputs/initial_placement_array.png");
 
         while (true) {
             long t0 = System.currentTimeMillis();
@@ -91,9 +97,19 @@ public class PlacerGreedyRandom2 extends Placer {
             }
             staleMoves++;
             totalMoves++;
-            if (staleMoves > 10 || totalMoves > 100)
+            if (staleMoves > 25 || totalMoves > 250)
                 break;
         }
+
+        ImageMaker imPlaced = new ImageMaker(design);
+        imPlaced.construct2DSiteArray();
+        imPlaced.construct2DSiteArrayImage();
+        imPlaced.construct2DPlacementArray();
+        imPlaced.overlayPlacementOnSiteArrayImage();
+        imPlaced.exportImage(rootDir + "/outputs/placement_array.png");
+
+        imPlaced.overlayNetsOnPlacementImage();
+        imPlaced.exportImage(rootDir + "/outputs/netlist_array.png");
 
         exportCostHistory(rootDir + "/outputs/printout/" + placerName + ".csv");
         printTimingBenchmarks();

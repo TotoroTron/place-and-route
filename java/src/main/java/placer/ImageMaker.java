@@ -1,6 +1,8 @@
 
 package placer;
 
+import java.awt.Graphics2D;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
@@ -45,9 +47,11 @@ public class ImageMaker {
     private Site[][] siteArray;
     private SiteInst[][] siteInstArray;
 
-    int x_low, x_high;
-    int y_low, y_high;
-    int width, height;
+    private int x_low, y_low;
+    private int width, height;
+    private final int scale = 5; // hard-coded
+
+    private BufferedImage image;
 
     private static final Map<SiteTypeEnum, Color> SITE_TYPE_COLORS = new HashMap<>();
     static {
@@ -77,8 +81,9 @@ public class ImageMaker {
         this.design = design;
         this.device = design.getDevice();
         this.uniqueSiteTypes = new HashSet<>();
+        this.allSites = new HashMap<>();
         initSites();
-        construct2DSiteArray();
+        this.image = new BufferedImage(scale * width, scale * height, BufferedImage.TYPE_INT_RGB);
     }
 
     private void initSites() {
@@ -89,9 +94,6 @@ public class ImageMaker {
             }
             allSites.get(siteType).add(site);
         }
-    }
-
-    public void construct2DSiteArray() throws IOException {
         int x_high = 0, y_high = 0;
         int x_low = 99999999, y_low = 9999999;
         for (Map.Entry<SiteTypeEnum, List<Site>> entry : this.allSites.entrySet()) {
@@ -108,13 +110,14 @@ public class ImageMaker {
                     y_low = site_y;
             }
         }
-        this.x_high = x_high;
         this.x_low = x_low;
-        this.y_high = y_high;
         this.y_low = y_low;
         this.width = x_high - x_low + 1;
         this.height = y_high - y_low + 1;
         this.siteArray = new Site[width][height];
+    }
+
+    public void construct2DSiteArray() throws IOException {
         for (Map.Entry<SiteTypeEnum, List<Site>> entry : this.allSites.entrySet()) {
             for (Site site : entry.getValue()) {
                 int x = site.getRpmX() - x_low;
@@ -125,10 +128,6 @@ public class ImageMaker {
     }
 
     public void construct2DPlacementArray() throws IOException {
-        int width = siteArray.length;
-        int height = siteArray[0].length;
-        int x_low = siteArray[0][0].getRpmX();
-        int y_low = siteArray[0][0].getRpmY();
         this.siteInstArray = new SiteInst[width][height];
         for (SiteInst si : this.design.getSiteInsts()) {
             int x = si.getSite().getRpmX() - x_low;
@@ -137,13 +136,7 @@ public class ImageMaker {
         }
     }
 
-    public void construct2DSiteArrayImage(Site[][] siteArray) throws IOException {
-        int width = siteArray.length;
-        int height = siteArray[0].length;
-        int scale = 5; // each site will be 5×5 pixels
-        int upscaledWidth = width * scale;
-        int upscaledHeight = height * scale;
-        BufferedImage image = new BufferedImage(upscaledWidth, upscaledHeight, BufferedImage.TYPE_INT_RGB);
+    public void construct2DSiteArrayImage() throws IOException {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 Site site = siteArray[x][y];
@@ -177,10 +170,7 @@ public class ImageMaker {
         }
     }
 
-    public BufferedImage overlayPlacementOnSiteArrayImage(BufferedImage image, Site[][] siteArray,
-            SiteInst[][] siteInstArray) throws IOException {
-        int width = siteArray.length;
-        int height = siteArray[0].length;
+    public void overlayPlacementOnSiteArrayImage() throws IOException {
         int scale = 5;
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
@@ -200,22 +190,60 @@ public class ImageMaker {
                 }
             }
         }
-        return image;
     }
 
-    public BufferedImage overlayNetsOnPlacementImage(BufferedImage image, Site[][] siteArray) {
-        int x_low = siteArray[0][0].getRpmX();
-        int y_low = siteArray[0][0].getRpmY();
-        for (Net net : design.getNets()) {
-            SitePinInst src = net.getSource();
-            List<SitePinInst> sinks = net.getSinkPins();
+    public void overlayNetsOnPlacementImage() {
+        Graphics2D g2d = image.createGraphics();
+        try {
+            g2d.setStroke(new BasicStroke(1));
+            List<Net> nets = new ArrayList<>(design.getNets());
+            nets.sort((net1, net2) -> Integer.compare(net1.getSinkPins().size(), net2.getSinkPins().size()));
+            for (Net net : nets) {
+                // if (net.isClockNet()) {
+                // System.out.println("Skipped Clock Net: " + net.getName());
+                // continue;
+                // }
+                //
+                if (net.isStaticNet()) {
+                    System.out.println("Skipped Static Net: " + net.getName());
+                    continue;
+                }
+                SitePinInst src = net.getSource();
+                if (src == null) {
+                    // SPI is null of the net is purely intra-site!
+                    continue;
+                }
+                if (src.getSiteTypeEnum().equals(SiteTypeEnum.BUFGCTRL))
+                    continue;
 
+                List<SitePinInst> sinks = net.getSinkPins();
+                int numSinks = sinks.size();
+                int maxSinks = 20; // color of all nets with 10 sinks or more
+                float ratio = (float) Math.min(numSinks, maxSinks) / (float) maxSinks;
+                int redValue = (int) (0x40 + ratio * (0xFF - 0x40)); // range: 0x40..0xFF
+                Color scaledRed = new Color(redValue, 0, 0);
+                g2d.setColor(scaledRed);
+
+                for (SitePinInst sink : sinks) {
+                    int src_x = src.getSite().getRpmX() - x_low;
+                    int src_y = src.getSite().getRpmY() - y_low;
+                    int src_center_x = src_x * scale + scale / 2;
+                    int src_center_y = (height - 1 - src_y) * scale + scale / 2;
+
+                    int sink_x = sink.getSite().getRpmX() - x_low;
+                    int sink_y = sink.getSite().getRpmY() - y_low;
+                    int sink_center_x = sink_x * scale + scale / 2;
+                    int sink_center_y = (height - 1 - sink_y) * scale + scale / 2;
+
+                    g2d.drawLine(src_center_x, src_center_y, sink_center_x, sink_center_y);
+                }
+            }
+        } finally {
+            g2d.dispose();
         }
-
-        return image;
     }
 
-    public void exportImage(BufferedImage image, String outputPath) throws IOException {
+    public void exportImage(String outputPath) throws IOException {
         // Write out to a file
         File outputFile = new File(outputPath);
         ImageIO.write(image, "png", outputFile);
