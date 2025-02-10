@@ -24,6 +24,9 @@ import com.xilinx.rapidwright.device.SitePIPStatus;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 import com.xilinx.rapidwright.device.ClockRegion;
 
+// DOES NOT WORK!
+// This Packer unPlace()s SiteInsts immediately after creating them. No initial random placement.
+// This causes routeSite() to produce errors regarding null Site.
 public class PackerBasic2 extends Packer {
 
     private Random rand;
