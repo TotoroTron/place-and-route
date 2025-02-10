@@ -199,11 +199,6 @@ public class ImageMaker {
             List<Net> nets = new ArrayList<>(design.getNets());
             nets.sort((net1, net2) -> Integer.compare(net1.getSinkPins().size(), net2.getSinkPins().size()));
             for (Net net : nets) {
-                // if (net.isClockNet()) {
-                // System.out.println("Skipped Clock Net: " + net.getName());
-                // continue;
-                // }
-                //
                 if (net.isStaticNet()) {
                     System.out.println("Skipped Static Net: " + net.getName());
                     continue;
@@ -218,7 +213,7 @@ public class ImageMaker {
 
                 List<SitePinInst> sinks = net.getSinkPins();
                 int numSinks = sinks.size();
-                int maxSinks = 20; // color of all nets with 10 sinks or more
+                int maxSinks = 50; // color of all nets with 50 sinks or more
                 float ratio = (float) Math.min(numSinks, maxSinks) / (float) maxSinks;
                 int redValue = (int) (0x80 + ratio * (0xFF - 0x80)); // range: 0x40..0xFF
                 Color scaledRed = new Color(redValue, 0, 0);
