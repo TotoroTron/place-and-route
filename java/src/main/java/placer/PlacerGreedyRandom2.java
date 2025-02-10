@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 import java.io.FileWriter;
 import java.io.File;
 import java.io.IOException;
-
+import java.nio.Buffer;
 import java.util.stream.Collectors;
 import java.util.Collection;
 import java.util.Collections;
@@ -45,17 +45,6 @@ public class PlacerGreedyRandom2 extends Placer {
     private List<Long> evalTimes;
     private List<Long> writeTimes;
 
-    private static final Map<SiteTypeEnum, Color> SITE_TYPE_COLORS = new HashMap<>();
-    static {
-        SITE_TYPE_COLORS.put(SiteTypeEnum.SLICEL, Color.CYAN);
-        SITE_TYPE_COLORS.put(SiteTypeEnum.SLICEM, Color.CYAN);
-        SITE_TYPE_COLORS.put(SiteTypeEnum.RAMB18E1, Color.GREEN);
-        SITE_TYPE_COLORS.put(SiteTypeEnum.FIFO18E1, Color.GREEN);
-        SITE_TYPE_COLORS.put(SiteTypeEnum.RAMB36E1, Color.GREEN);
-        SITE_TYPE_COLORS.put(SiteTypeEnum.DSP48E1, Color.YELLOW);
-        SITE_TYPE_COLORS.put(SiteTypeEnum.BUFGCTRL, Color.MAGENTA);
-    }
-
     public PlacerGreedyRandom2(String rootDir, Design design, Device device) throws IOException {
         super(rootDir, design, device);
         this.placerName = "PlacerGreedyRandom2";
@@ -71,14 +60,14 @@ public class PlacerGreedyRandom2 extends Placer {
 
     public void placeDesign(PackedDesign packedDesign) throws IOException {
         initSites();
-        export2DSiteArrayImageUpscaled(construct2DSiteArray(), rootDir + "/outputs/site_array.png");
         Double lowestCost = evaluateDesign(); // initial cost
         int staleMoves = 0;
         int totalMoves = 0;
         unplaceAllSiteInsts(packedDesign);
         randomInitialPlacement(packedDesign);
         design.writeCheckpoint(rootDir + "/outputs/placed_inital.dcp");
-        // printSiteInstPlacements(packedDesign);
+
+        ImageMaker imageMaker = new ImageMaker(design);
 
         while (true) {
             long t0 = System.currentTimeMillis();
@@ -102,7 +91,7 @@ public class PlacerGreedyRandom2 extends Placer {
             }
             staleMoves++;
             totalMoves++;
-            if (staleMoves > 20 || totalMoves > 200)
+            if (staleMoves > 10 || totalMoves > 100)
                 break;
         }
 
@@ -462,100 +451,6 @@ public class PlacerGreedyRandom2 extends Placer {
             csv.close();
     }
 
-    public Site[][] construct2DSiteArray() throws IOException {
-        int x_high = 0, y_high = 0;
-        int x_low = 99999999, y_low = 9999999;
-        for (Map.Entry<SiteTypeEnum, List<Site>> entry : this.allSites.entrySet()) {
-            for (Site site : entry.getValue()) {
-                int site_x = site.getRpmX();
-                if (site_x > x_high)
-                    x_high = site_x;
-                if (site_x < x_low)
-                    x_low = site_x;
-                int site_y = site.getRpmY();
-                if (site_y > y_high)
-                    y_high = site_y;
-                if (site_y < y_low)
-                    y_low = site_y;
-            }
-        }
-        int width = x_high - x_low + 1;
-        int height = y_high - y_low + 1;
-        Site[][] siteArray = new Site[width][height];
-        for (Map.Entry<SiteTypeEnum, List<Site>> entry : this.allSites.entrySet()) {
-            for (Site site : entry.getValue()) {
-                int x = site.getRpmX() - x_low;
-                int y = site.getRpmY() - y_low;
-                siteArray[x][y] = site;
-            }
-        }
-        return siteArray;
-    }
-
-    public void export2DSiteArrayImage(Site[][] siteArray, String outputPath) throws IOException {
-        int width = siteArray.length;
-        int height = siteArray[0].length;
-        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                Site site = siteArray[x][y];
-                Color color = null;
-                if (site == null) {
-                    color = Color.BLACK;
-                } else {
-                    SiteTypeEnum type = site.getSiteTypeEnum();
-                    color = SITE_TYPE_COLORS.getOrDefault(type, Color.GRAY);
-                }
-                image.setRGB(x, (height - 1 - y), color.getRGB());
-            }
-        }
-        File outputFile = new File(outputPath);
-        ImageIO.write(image, "png", outputFile);
-    }
-
-    public void export2DSiteArrayImageUpscaled(Site[][] siteArray, String outputPath) throws IOException {
-        int width = siteArray.length;
-        int height = siteArray[0].length;
-        int scale = 5; // each site will be 5×5 pixels
-
-        int upscaledWidth = width * scale;
-        int upscaledHeight = height * scale;
-
-        // Create a new (upscaled) BufferedImage
-        BufferedImage image = new BufferedImage(upscaledWidth, upscaledHeight, BufferedImage.TYPE_INT_RGB);
-
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                // Determine the site color
-                Site site = siteArray[x][y];
-                Color c;
-                if (site == null) {
-                    c = Color.BLACK;
-                } else {
-                    SiteTypeEnum type = site.getSiteTypeEnum();
-                    c = SITE_TYPE_COLORS.getOrDefault(type, Color.GRAY);
-                }
-
-                // "Bottom-left" to "top-left" invert:
-                // The 'y' in siteArray=0 means the bottom row, but Java image=0 is the top row.
-                // So we flip (height - 1 - y). For each site, fill 5x5 block.
-                int destY = (height - 1 - y) * scale; // top-left system
-                int destX = x * scale;
-
-                // Fill 5x5 block in the upscaled image
-                for (int dx = 0; dx < scale; dx++) {
-                    for (int dy = 0; dy < scale; dy++) {
-                        image.setRGB(destX + dx, destY + dy, c.getRGB());
-                    }
-                }
-            }
-        }
-
-        // Write out to a file
-        File outputFile = new File(outputPath);
-        ImageIO.write(image, "png", outputFile);
-    }
-
     private void printSiteInstPlacements(PackedDesign packedDesign) throws IOException {
         for (List<SiteInst> cascade : packedDesign.DSPSiteInstCascades) {
             for (SiteInst si : cascade) {
@@ -577,6 +472,5 @@ public class PlacerGreedyRandom2 extends Placer {
             String site = si == null ? "Null!" : si.getName();
             writer.write("\nSiteInst: " + si.getName() + ", Site: " + site);
         }
-
     }
 }
