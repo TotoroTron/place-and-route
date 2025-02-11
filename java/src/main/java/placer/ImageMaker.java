@@ -49,10 +49,10 @@ public class ImageMaker {
 
     private int x_low, y_low;
     private int width, height;
-    private final int scale = 9; // hard-coded
-    private List<Pair<Net, Double>> netlistCosts;
-    private double highest_cost = 0;
-    private double lowest_cost = Double.MAX_VALUE;
+    private final int scale = 5; // hard-coded
+    private List<Pair<Net, Float>> netlistCosts;
+    private float highest_cost = 0;
+    private float lowest_cost = Float.MAX_VALUE;
 
     private BufferedImage image;
 
@@ -120,6 +120,14 @@ public class ImageMaker {
         this.width = x_high - x_low + 1;
         this.height = y_high - y_low + 1;
         this.siteArray = new Site[width][height];
+    }
+
+    public void renderAll() throws IOException {
+        construct2DSiteArray();
+        construct2DSiteArrayImage();
+        construct2DPlacementArray();
+        overlayPlacementOnSiteArrayImage();
+        overlayNetsOnPlacementImage();
     }
 
     public void construct2DSiteArray() throws IOException {
@@ -207,7 +215,7 @@ public class ImageMaker {
                 continue;
             List<SitePinInst> sinks = net.getSinkPins();
             Site srcSite = src.getSite();
-            double cost = 0;
+            float cost = 0;
             for (SitePinInst sink : sinks) {
                 Site sinkSite = sink.getSite();
                 cost = cost + srcSite.getTile().getTileManhattanDistance(sinkSite.getTile());
@@ -216,22 +224,22 @@ public class ImageMaker {
                 lowest_cost = cost;
             if (cost > highest_cost)
                 highest_cost = cost;
-            netlistCosts.add(new Pair<Net, Double>(net, cost));
+            netlistCosts.add(new Pair<Net, Float>(net, cost));
         }
-        netlistCosts.sort((cost1, cost2) -> Double.compare(cost1.value(), cost2.value()));
+        netlistCosts.sort((cost1, cost2) -> Float.compare(cost1.value(), cost2.value()));
     }
 
     public void overlayNetsOnPlacementImage() {
         Graphics2D g2d = image.createGraphics();
         try {
             g2d.setStroke(new BasicStroke(1));
-            for (Pair<Net, Double> pair : netlistCosts) {
+            for (Pair<Net, Float> pair : netlistCosts) {
                 Net net = pair.key();
-                double cost = pair.value();
+                float cost = pair.value();
                 SitePinInst src = net.getSource();
                 List<SitePinInst> sinks = net.getSinkPins();
 
-                float ratio = (float) Math.min(cost, highest_cost) / (float) highest_cost;
+                float ratio = Math.min(cost, highest_cost) / highest_cost;
                 int redValue = (int) (0x80 + ratio * (0xFF - 0x80)); // range: 0x40..0xFF
                 Color scaledRed = new Color(redValue, 0, 0);
                 g2d.setColor(scaledRed);
@@ -255,10 +263,10 @@ public class ImageMaker {
         }
     }
 
-    public void exportImage(String outputPath) throws IOException {
+    public void exportImage(String outputPath, String filetype) throws IOException {
         // Write out to a file
         File outputFile = new File(outputPath);
-        ImageIO.write(image, "png", outputFile);
+        ImageIO.write(image, filetype, outputFile);
     }
 
 }

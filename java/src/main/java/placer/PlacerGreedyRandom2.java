@@ -35,6 +35,7 @@ import com.xilinx.rapidwright.device.SiteTypeEnum;
 
 public class PlacerGreedyRandom2 extends Placer {
 
+    private String graphicsDir;
     private Set<SiteTypeEnum> uniqueSiteTypes;
     private Map<SiteTypeEnum, List<Site>> allSites;
     private Map<SiteTypeEnum, Set<Site>> occupiedSites;
@@ -43,17 +44,20 @@ public class PlacerGreedyRandom2 extends Placer {
     private List<Double> costHistory;
     private List<Long> moveTimes;
     private List<Long> evalTimes;
+    private List<Long> renderTimes;
     private List<Long> writeTimes;
 
     public PlacerGreedyRandom2(String rootDir, Design design, Device device) throws IOException {
         super(rootDir, design, device);
         this.placerName = "PlacerGreedyRandom2";
+        this.graphicsDir = rootDir + "/outputs/graphics/" + placerName;
         this.uniqueSiteTypes = new HashSet<>();
         this.occupiedSites = new HashMap<>();
         this.allSites = new HashMap<>();
         this.costHistory = new ArrayList<>();
         this.moveTimes = new ArrayList<>();
         this.evalTimes = new ArrayList<>();
+        this.renderTimes = new ArrayList<>();
         this.writeTimes = new ArrayList<>();
         this.rand = new Random();
     }
@@ -67,23 +71,25 @@ public class PlacerGreedyRandom2 extends Placer {
         ImageMaker imPreplace = new ImageMaker(design);
         imPreplace.construct2DSiteArray();
         imPreplace.construct2DSiteArrayImage();
+        imPreplace.exportImage(graphicsDir + "/device.png", "png");
         imPreplace.construct2DPlacementArray();
         imPreplace.overlayPlacementOnSiteArrayImage();
-        imPreplace.exportImage(rootDir + "/outputs/graphics/" + placerName + "_preplace.png");
+        imPreplace.overlayNetsOnPlacementImage();
+        imPreplace.exportImage(graphicsDir + "/preplace.png", "png");
 
         unplaceAllSiteInsts(packedDesign);
         randomInitialPlacement(packedDesign);
         design.writeCheckpoint(rootDir + "/outputs/checkpoints/" + placerName + "_inital.dcp");
-
         ImageMaker imInitial = new ImageMaker(design);
-        imInitial.construct2DSiteArray();
-        imInitial.construct2DSiteArrayImage();
-        imInitial.exportImage(rootDir + "/outputs/graphics/" + placerName + "_device.png");
-        imInitial.construct2DPlacementArray();
-        imInitial.overlayPlacementOnSiteArrayImage();
-        imInitial.exportImage(rootDir + "/outputs/graphics/" + placerName + "_initial_random.png");
+        imInitial.renderAll();
+        imInitial.exportImage(graphicsDir + "/initial_random.png", "png");
+        imInitial.exportImage(graphicsDir + "/gif/" + String.format("%08d", 0) + ".png", "png");
 
+        int frameCounter = 1;
         while (true) {
+            staleMoves++;
+            totalMoves++;
+
             long t0 = System.currentTimeMillis();
             randomMove(packedDesign);
             long t1 = System.currentTimeMillis();
@@ -95,16 +101,25 @@ public class PlacerGreedyRandom2 extends Placer {
             evalTimes.add(t1 - t0);
 
             this.costHistory.add(currCost);
+
             if (currCost < lowestCost) {
+                t0 = System.currentTimeMillis();
+                ImageMaker gifFrame = new ImageMaker(design);
+                gifFrame.renderAll();
+                gifFrame.exportImage(graphicsDir + "/gif/" + String.format("%08d", frameCounter) + ".png", "png");
+                t1 = System.currentTimeMillis();
+                renderTimes.add(t1 - t0);
+
+                frameCounter++;
+
                 t0 = System.currentTimeMillis();
                 design.writeCheckpoint(placedDcp);
                 t1 = System.currentTimeMillis();
                 writeTimes.add(t1 - t0);
+
                 staleMoves = 0;
                 lowestCost = currCost;
             }
-            staleMoves++;
-            totalMoves++;
             if (staleMoves > 25 || totalMoves > 250)
                 break;
         }
@@ -114,10 +129,10 @@ public class PlacerGreedyRandom2 extends Placer {
         imPlaced.construct2DSiteArrayImage();
         imPlaced.construct2DPlacementArray();
         imPlaced.overlayPlacementOnSiteArrayImage();
-        imPlaced.exportImage(rootDir + "/outputs/graphics/" + placerName + "_placement.png");
+        imPlaced.exportImage(graphicsDir + "/placement_final.png", "png");
 
         imPlaced.overlayNetsOnPlacementImage();
-        imPlaced.exportImage(rootDir + "/outputs/graphics/" + placerName + "_netlist.png");
+        imPlaced.exportImage(graphicsDir + "/netlist_final.png", "png");
 
         exportCostHistory(rootDir + "/outputs/printout/" + placerName + ".csv");
         printTimingBenchmarks();
@@ -442,6 +457,10 @@ public class PlacerGreedyRandom2 extends Placer {
         writer.write("\n\nPrinting Eval Times... ");
         for (int i = 0; i < evalTimes.size(); i++) {
             writer.write("\n\tIter: " + i + ", Time (ms): " + evalTimes.get(i));
+        }
+        writer.write("\n\nPrinting Render Times...");
+        for (int i = 0; i < renderTimes.size(); i++) {
+            writer.write("\n\tIter: " + i + ", Time (ms): " + renderTimes.get(i));
         }
         writer.write("\n\nPrinting DCP Write Times... ");
         for (int i = 0; i < writeTimes.size(); i++) {

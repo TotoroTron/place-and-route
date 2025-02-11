@@ -84,6 +84,10 @@ public class Main {
         }
     }
 
+    public static void drawVivadoPlacement() throws IOException {
+
+    }
+
     public static void testModuleInst() throws IOException {
         Design design = Design.readCheckpoint(rootDir + "/outputs/vivado_placed.dcp");
         Collection<ModuleInst> mis = design.getModuleInsts();
