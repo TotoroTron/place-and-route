@@ -41,7 +41,7 @@ public class PlacerGreedyRandom2 extends Placer {
     private Map<SiteTypeEnum, Set<Site>> occupiedSites;
     private Random rand;
 
-    private List<Double> costHistory;
+    private List<Float> costHistory;
     private List<Long> moveTimes;
     private List<Long> evalTimes;
     private List<Long> renderTimes;
@@ -64,7 +64,7 @@ public class PlacerGreedyRandom2 extends Placer {
 
     public void placeDesign(PackedDesign packedDesign) throws IOException {
         initSites();
-        Double lowestCost = evaluateDesign(); // initial cost
+        Float lowestCost = evaluateDesign(); // initial cost
         int staleMoves = 0;
         int totalMoves = 0;
 
@@ -72,17 +72,19 @@ public class PlacerGreedyRandom2 extends Placer {
         imPreplace.construct2DSiteArray();
         imPreplace.construct2DSiteArrayImage();
         imPreplace.exportImage(graphicsDir + "/device.png", "png");
+
         imPreplace.construct2DPlacementArray();
-        imPreplace.overlayPlacementOnSiteArrayImage();
-        imPreplace.overlayNetsOnPlacementImage();
-        imPreplace.exportImage(graphicsDir + "/preplace.png", "png");
+        imPreplace.overlayPlacementOnImage();
+        imPreplace.overlayNetsOnImage();
+        imPreplace.exportImage(graphicsDir + "/post_packing_placement.png", "png");
 
         unplaceAllSiteInsts(packedDesign);
         randomInitialPlacement(packedDesign);
         design.writeCheckpoint(rootDir + "/outputs/checkpoints/" + placerName + "_inital.dcp");
+
         ImageMaker imInitial = new ImageMaker(design);
         imInitial.renderAll();
-        imInitial.exportImage(graphicsDir + "/initial_random.png", "png");
+        imInitial.exportImage(graphicsDir + "/initial_random_placement.png", "png");
         imInitial.exportImage(graphicsDir + "/gif/" + String.format("%08d", 0) + ".png", "png");
 
         int frameCounter = 1;
@@ -96,7 +98,7 @@ public class PlacerGreedyRandom2 extends Placer {
             moveTimes.add(t1 - t0);
 
             t0 = System.currentTimeMillis();
-            double currCost = evaluateDesign();
+            float currCost = evaluateDesign();
             t1 = System.currentTimeMillis();
             evalTimes.add(t1 - t0);
 
@@ -125,14 +127,8 @@ public class PlacerGreedyRandom2 extends Placer {
         }
 
         ImageMaker imPlaced = new ImageMaker(design);
-        imPlaced.construct2DSiteArray();
-        imPlaced.construct2DSiteArrayImage();
-        imPlaced.construct2DPlacementArray();
-        imPlaced.overlayPlacementOnSiteArrayImage();
-        imPlaced.exportImage(graphicsDir + "/placement_final.png", "png");
-
-        imPlaced.overlayNetsOnPlacementImage();
-        imPlaced.exportImage(graphicsDir + "/netlist_final.png", "png");
+        imPlaced.renderAll();
+        imPlaced.exportImage(graphicsDir + "/final_placement.png", "png");
 
         exportCostHistory(rootDir + "/outputs/printout/" + placerName + ".csv");
         printTimingBenchmarks();
@@ -165,16 +161,16 @@ public class PlacerGreedyRandom2 extends Placer {
         return sinkSites;
     }
 
-    private double evaluateSite(List<Site> sinkSites, Site srcSite) throws IOException {
-        double cost = 0;
+    private float evaluateSite(List<Site> sinkSites, Site srcSite) throws IOException {
+        float cost = 0;
         for (Site sinkSite : sinkSites) {
             cost = cost + srcSite.getTile().getTileManhattanDistance(sinkSite.getTile());
         }
         return cost;
     }
 
-    public double evaluateDesign() throws IOException {
-        double cost = 0;
+    public float evaluateDesign() throws IOException {
+        float cost = 0;
         Collection<Net> nets = design.getNets();
         for (Net net : nets) {
             Tile srcTile = net.getSourceTile();
@@ -278,9 +274,9 @@ public class PlacerGreedyRandom2 extends Placer {
         for (SiteInst si : packedDesign.CLBSiteInsts) {
             SiteTypeEnum ste = si.getSiteTypeEnum();
             List<Site> sinkSites = findSinkSites(si);
-            double oldCost = evaluateSite(sinkSites, si.getSite());
+            float oldCost = evaluateSite(sinkSites, si.getSite());
             Site newSite = proposeSite(ste);
-            double newCost = evaluateSite(sinkSites, newSite);
+            float newCost = evaluateSite(sinkSites, newSite);
             if (newCost < oldCost) {
                 unplaceSiteInst(si);
                 placeSiteInst(si, newSite);
@@ -291,11 +287,11 @@ public class PlacerGreedyRandom2 extends Placer {
     private void randomMoveRAMSites(PackedDesign packedDesign) throws IOException {
         for (SiteInst si : packedDesign.RAMSiteInsts) {
             List<Site> sinkSites = findSinkSites(si);
-            double oldCost = evaluateSite(sinkSites, si.getSite());
+            float oldCost = evaluateSite(sinkSites, si.getSite());
             // Site newSite = proposeRAMSite();
             SiteTypeEnum ste = si.getSiteTypeEnum();
             Site newSite = proposeSite(ste);
-            double newCost = evaluateSite(sinkSites, newSite);
+            float newCost = evaluateSite(sinkSites, newSite);
             if (newCost < oldCost) {
                 unplaceSiteInst(si);
                 placeSiteInst(si, newSite);
@@ -307,8 +303,8 @@ public class PlacerGreedyRandom2 extends Placer {
         SiteTypeEnum ste = SiteTypeEnum.DSP48E1;
         for (List<SiteInst> cascade : packedDesign.DSPSiteInstCascades) {
             Site selectedAnchor = proposeDSPAnchorSite(ste, cascade.size());
-            double oldCost = 0;
-            double newCost = 0;
+            float oldCost = 0;
+            float newCost = 0;
             List<Site> newSiteCascade = new ArrayList<>();
             for (int i = 0; i < cascade.size(); i++) {
                 List<Site> sinkSites = findSinkSites(cascade.get(i));
@@ -331,8 +327,8 @@ public class PlacerGreedyRandom2 extends Placer {
         SiteTypeEnum selectedSiteType = SiteTypeEnum.SLICEL;
         for (List<SiteInst> chain : packedDesign.CARRYSiteInstChains) {
             Site selectedAnchor = proposeCARRYAnchorSite(selectedSiteType, chain.size());
-            double oldCost = 0;
-            double newCost = 0;
+            float oldCost = 0;
+            float newCost = 0;
             List<Site> newSiteChain = new ArrayList<>();
             for (int i = 0; i < chain.size(); i++) {
                 List<Site> sinkSites = findSinkSites(chain.get(i));

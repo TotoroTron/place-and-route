@@ -126,8 +126,8 @@ public class ImageMaker {
         construct2DSiteArray();
         construct2DSiteArrayImage();
         construct2DPlacementArray();
-        overlayPlacementOnSiteArrayImage();
-        overlayNetsOnPlacementImage();
+        overlayNetsOnImage();
+        overlayPlacementOnImage();
     }
 
     public void construct2DSiteArray() throws IOException {
@@ -143,8 +143,11 @@ public class ImageMaker {
     public void construct2DPlacementArray() throws IOException {
         this.siteInstArray = new SiteInst[width][height];
         for (SiteInst si : this.design.getSiteInsts()) {
-            int x = si.getSite().getRpmX() - x_low;
-            int y = si.getSite().getRpmY() - y_low;
+            Site site = si.getSite();
+            if (site == null)
+                continue;
+            int x = site.getRpmX() - x_low;
+            int y = site.getRpmY() - y_low;
             this.siteInstArray[x][y] = si;
         }
     }
@@ -183,7 +186,7 @@ public class ImageMaker {
         }
     }
 
-    public void overlayPlacementOnSiteArrayImage() throws IOException {
+    public void overlayPlacementOnImage() throws IOException {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 SiteInst si = siteInstArray[x][y];
@@ -215,9 +218,13 @@ public class ImageMaker {
                 continue;
             List<SitePinInst> sinks = net.getSinkPins();
             Site srcSite = src.getSite();
+            if (srcSite == null)
+                continue; // sink has not been placed yet
             float cost = 0;
             for (SitePinInst sink : sinks) {
                 Site sinkSite = sink.getSite();
+                if (sinkSite == null)
+                    continue; // sink has not been placed yet
                 cost = cost + srcSite.getTile().getTileManhattanDistance(sinkSite.getTile());
             }
             if (cost < lowest_cost)
@@ -229,7 +236,7 @@ public class ImageMaker {
         netlistCosts.sort((cost1, cost2) -> Float.compare(cost1.value(), cost2.value()));
     }
 
-    public void overlayNetsOnPlacementImage() {
+    public void overlayNetsOnImage() {
         Graphics2D g2d = image.createGraphics();
         try {
             g2d.setStroke(new BasicStroke(1));
@@ -244,16 +251,20 @@ public class ImageMaker {
                 Color scaledRed = new Color(redValue, 0, 0);
                 g2d.setColor(scaledRed);
 
+                Site srcSite = src.getSite();
                 for (SitePinInst sink : sinks) {
-                    int src_x = src.getSite().getRpmX() - x_low;
-                    int src_y = src.getSite().getRpmY() - y_low;
-                    int src_center_x = src_x * scale + scale / 2;
-                    int src_center_y = (height - 1 - src_y) * scale + scale / 2;
-
-                    int sink_x = sink.getSite().getRpmX() - x_low;
-                    int sink_y = sink.getSite().getRpmY() - y_low;
+                    Site sinkSite = sink.getSite();
+                    if (sinkSite == null)
+                        continue;
+                    int sink_x = sinkSite.getRpmX() - x_low;
+                    int sink_y = sinkSite.getRpmY() - y_low;
                     int sink_center_x = sink_x * scale + scale / 2;
                     int sink_center_y = (height - 1 - sink_y) * scale + scale / 2;
+
+                    int src_x = srcSite.getRpmX() - x_low;
+                    int src_y = srcSite.getRpmY() - y_low;
+                    int src_center_x = src_x * scale + scale / 2;
+                    int src_center_y = (height - 1 - src_y) * scale + scale / 2;
 
                     g2d.drawLine(src_center_x, src_center_y, sink_center_x, sink_center_y);
                 }

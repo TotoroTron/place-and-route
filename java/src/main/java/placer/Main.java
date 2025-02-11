@@ -62,22 +62,13 @@ public class Main {
             B1Packer.printUniqueSites();
             B1Packer.printClockBuffers();
             PackedDesign packedDesign = B1Packer.run(prepackedDesign);
-            // PackerBasic2 B2Packer = new PackerBasic2(rootDir, design, device, null);
-            // B2Packer.printUniqueSites();
-            // B2Packer.printClockBuffers();
-            // PackedDesign packedDesign = B2Packer.run(prepackedDesign);
 
             // Stage 3) Placer:
             // takes the packedDesign and figures out an optimal mapping of SiteInsts onto
             // Sites via simulated annealing, analytical, electrostatic placement, etc.
             // works entirely on the SiteInst/Site/Tile level.
-            //
-            // PlacerGreedyRandom1 GR1Placer = new PlacerGreedyRandom1(rootDir, design,
-            // device);
-            // GR1Placer.run(packedDesign);
-
-            PlacerGreedyRandom2 GR2Placer = new PlacerGreedyRandom2(rootDir, design, device);
-            GR2Placer.run(packedDesign);
+            PlacerGreedyRandom3 GR3Placer = new PlacerGreedyRandom3(rootDir, design, device);
+            GR3Placer.run(packedDesign);
 
         } catch (IOException e) {
             logger.log(Level.SEVERE, "An IOException occurred while configuring the logger.", e);
