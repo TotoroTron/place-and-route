@@ -68,7 +68,7 @@ public class Main {
             // Sites via simulated annealing, analytical, electrostatic placement, etc.
             // works entirely on the SiteInst/Site/Tile level.
             PlacerGreedyRandom3 GR3Placer = new PlacerGreedyRandom3(rootDir, design, device);
-            GR3Placer.run(packedDesign);
+            GR3Placer.run(packedDesign, prepackedDesign);
 
         } catch (IOException e) {
             logger.log(Level.SEVERE, "An IOException occurred while configuring the logger.", e);

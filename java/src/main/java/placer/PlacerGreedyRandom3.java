@@ -14,12 +14,15 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
+
+import com.xilinx.rapidwright.edif.EDIFHierCellInst;
 
 import com.xilinx.rapidwright.design.ModuleInst;
 import com.xilinx.rapidwright.design.Design;
@@ -33,12 +36,19 @@ import com.xilinx.rapidwright.device.Tile;
 import com.xilinx.rapidwright.device.Site;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 
+// This placer first places cell types in stages:
+// 1) Random init and move DSP and RAM siteinsts.
+// 2) Random init CARRY chains and move DSP, RAM, and CARRY chain.
+// 3) Random init loose CLB siteinsts and move all.
 public class PlacerGreedyRandom3 extends Placer {
 
     private String graphicsDir;
     private Set<SiteTypeEnum> uniqueSiteTypes;
     private Map<SiteTypeEnum, List<Site>> allSites;
-    private Map<SiteTypeEnum, Set<Site>> occupiedSites;
+    private Map<SiteTypeEnum, Map<Site, SiteInst>> occupiedSites;
+
+    // allows fast access to EDIF Cell Pack from device Site
+    private Map<SiteTypeEnum, Map<Site, List<SiteInst>>> occupiedSiteChains;
     private Random rand;
 
     private List<Float> costHistory;
@@ -73,7 +83,6 @@ public class PlacerGreedyRandom3 extends Placer {
 
         int frameCounter = 1;
         while (true) {
-
             long t0 = System.currentTimeMillis();
             if (totalMoves == 0) {
                 randomInitDSPSiteCascades(packedDesign);
@@ -115,12 +124,10 @@ public class PlacerGreedyRandom3 extends Placer {
             t1 = System.currentTimeMillis();
             writeTimes.add(t1 - t0);
 
-            staleMoves = 0;
-            lowestCost = currCost;
-            if (staleMoves > 25 || totalMoves > 300)
+            // staleMoves = 0;
+            if (totalMoves > 300)
                 break;
             totalMoves++;
-            // staleMoves++;
         }
 
         ImageMaker imPlaced = new ImageMaker(design);
@@ -138,7 +145,7 @@ public class PlacerGreedyRandom3 extends Placer {
             SiteTypeEnum siteType = site.getSiteTypeEnum();
             if (uniqueSiteTypes.add(siteType)) {
                 allSites.put(siteType, new ArrayList<>());
-                occupiedSites.put(siteType, new HashSet<>());
+                occupiedSites.put(siteType, new HashMap<>());
             }
             allSites.get(siteType).add(site);
         }
@@ -234,7 +241,7 @@ public class PlacerGreedyRandom3 extends Placer {
     }
 
     private void placeSiteInst(SiteInst si, Site site) {
-        occupiedSites.get(si.getSiteTypeEnum()).add(site);
+        occupiedSites.get(si.getSiteTypeEnum()).put(site, si);
         si.place(site);
     }
 
@@ -264,6 +271,7 @@ public class PlacerGreedyRandom3 extends Placer {
             for (int i = 0; i < cascade.size(); i++) {
                 Site newSite = device
                         .getSite("DSP48_X" + selectedAnchor.getInstanceX() + "Y" + (selectedAnchor.getInstanceY() + i));
+                occupiedSiteChains.get(ste).put(newSite, cascade);
                 placeSiteInst(cascade.get(i), newSite);
             }
         }
@@ -276,13 +284,13 @@ public class PlacerGreedyRandom3 extends Placer {
             for (int i = 0; i < chain.size(); i++) {
                 Site newSite = device
                         .getSite("SLICE_X" + selectedAnchor.getInstanceX() + "Y" + (selectedAnchor.getInstanceY() + i));
+                occupiedSiteChains.get(ste).put(newSite, chain);
                 placeSiteInst(chain.get(i), newSite);
             }
         }
     }
 
     private void randomMoveCLBSites(PackedDesign packedDesign) throws IOException {
-        // SiteTypeEnum ste = SiteTypeEnum.SLICEL;
         for (SiteInst si : packedDesign.CLBSiteInsts) {
             SiteTypeEnum ste = si.getSiteTypeEnum();
             List<Site> sinkSites = findSinkSites(si);
@@ -303,7 +311,6 @@ public class PlacerGreedyRandom3 extends Placer {
         for (SiteInst si : packedDesign.RAMSiteInsts) {
             List<Site> sinkSites = findSinkSites(si);
             float oldCost = evaluateSite(sinkSites, si.getSite());
-            // Site newSite = proposeRAMSite();
             SiteTypeEnum ste = si.getSiteTypeEnum();
             Site newSite = proposeSite(ste);
             float newCost = evaluateSite(sinkSites, newSite);
@@ -315,9 +322,58 @@ public class PlacerGreedyRandom3 extends Placer {
     }
 
     private void randomMoveDSPSiteCascades(PackedDesign packedDesign) throws IOException {
-        SiteTypeEnum ste = SiteTypeEnum.DSP48E1;
+        SiteTypeEnum siteType = SiteTypeEnum.DSP48E1;
         for (List<SiteInst> cascade : packedDesign.DSPSiteInstCascades) {
-            Site selectedAnchor = proposeDSPAnchorSite(ste, cascade.size());
+
+            /*
+             * WORK IN PROGRESS
+             * this control flow is ass!!
+             *
+             */
+
+            Site candidateAnchor = proposeDSPAnchorSite(siteType, cascade.size());
+
+            List<SiteInst> homeBuffer = new ArrayList<>();
+            List<SiteInst> awayBuffer = new ArrayList<>();
+            int awayBufferLow = candidateAnchor.getRpmY();
+            int awayBufferHigh = awayBufferLow;
+
+            int j = 0;
+            while (true) {
+                Site awaySite = device.getSite(
+                        "DSP48_X" + candidateAnchor.getInstanceX() + "Y" + (candidateAnchor.getInstanceY() + j));
+
+                List<SiteInst> existingChain = occupiedSiteChains.get(siteType).get(awaySite);
+                if (existingChain != null) {
+                    int low = existingChain.get(0).getSite().getRpmY();
+                    int high = low + existingChain.size();
+                    if (low < awayBufferLow) {
+                        awayBufferLow = low;
+                    }
+                    if (high >= awayBufferHigh) {
+                        awayBufferHigh = high;
+                    }
+                } else {
+                    awayBufferHigh++;
+                }
+
+                SiteInst awaySiteInst = occupiedSites.get(siteType).get(awaySite);
+                if (awaySiteInst != null) {
+                    occupiedSites.get(siteType).put(awaySite, awaySiteInst);
+                }
+
+                if (awayBufferHigh >= candidateAnchor.getRpmY() + cascade.size())
+                    break;
+
+                j++;
+            }
+
+            /*
+             * WORK IN PROGRESS
+             * this control flow is ass!!
+             *
+             */
+
             float oldCost = 0;
             float newCost = 0;
             List<Site> newSiteCascade = new ArrayList<>();
@@ -325,7 +381,8 @@ public class PlacerGreedyRandom3 extends Placer {
                 List<Site> sinkSites = findSinkSites(cascade.get(i));
                 oldCost = oldCost + evaluateSite(sinkSites, cascade.get(i).getSite());
                 Site newSite = device
-                        .getSite("DSP48_X" + selectedAnchor.getInstanceX() + "Y" + (selectedAnchor.getInstanceY() + i));
+                        .getSite("DSP48_X" + candidateAnchor.getInstanceX() + "Y"
+                                + (candidateAnchor.getInstanceY() + i));
                 newSiteCascade.add(newSite);
                 newCost = newCost + evaluateSite(sinkSites, newSite);
             }
@@ -369,10 +426,7 @@ public class PlacerGreedyRandom3 extends Placer {
         while (true) {
             int randIndex = rand.nextInt(allSites.get(ste).size());
             selectedSite = allSites.get(ste).get(randIndex);
-            if (occupiedSites.get(ste).contains(selectedSite)) {
-                //
-                // TODO: evaluate potential swap
-                //
+            if (occupiedSites.get(ste).containsKey(selectedSite)) {
                 validSite = false;
             } else {
                 validSite = true;
@@ -405,10 +459,7 @@ public class PlacerGreedyRandom3 extends Placer {
                     validAnchor = false;
                     break;
                 }
-                if (occupiedSites.get(ste).contains(site)) {
-                    //
-                    // TODO: evaluate potential swap
-                    //
+                if (occupiedSites.get(ste).containsKey(site)) {
                     validAnchor = false;
                     break;
                 }
@@ -439,13 +490,6 @@ public class PlacerGreedyRandom3 extends Placer {
                     break;
                 }
                 if (!allSites.get(ste).contains(site)) {
-                    validAnchor = false;
-                    break;
-                }
-                if (occupiedSites.get(ste).contains(site)) {
-                    //
-                    // TODO: evaluate potential swap
-                    //
                     validAnchor = false;
                     break;
                 }
