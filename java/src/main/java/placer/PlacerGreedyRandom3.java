@@ -63,6 +63,7 @@ public class PlacerGreedyRandom3 extends Placer {
         this.graphicsDir = rootDir + "/outputs/graphics/" + placerName;
         this.uniqueSiteTypes = new HashSet<>();
         this.occupiedSites = new HashMap<>();
+        this.occupiedSiteChains = new HashMap<>();
         this.allSites = new HashMap<>();
         this.costHistory = new ArrayList<>();
         this.moveTimes = new ArrayList<>();
@@ -83,20 +84,23 @@ public class PlacerGreedyRandom3 extends Placer {
 
         int frameCounter = 1;
         while (true) {
+            if (totalMoves > 600)
+                break;
+            System.out.println("totalMoves = " + totalMoves);
             long t0 = System.currentTimeMillis();
             if (totalMoves == 0) {
                 randomInitDSPSiteCascades(packedDesign);
                 randomInitRAMSites(packedDesign);
-            } else if (totalMoves > 0 && totalMoves < 100) {
+            } else if (totalMoves > 0 && totalMoves < 200) {
                 randomMoveDSPSiteCascades(packedDesign);
                 randomMoveRAMSites(packedDesign);
-            } else if (totalMoves == 100) {
-                randomInitCARRYSiteChains(packedDesign);
-            } else if (totalMoves > 100 && totalMoves < 200) {
-                randomMoveCARRYSiteChains(packedDesign);
             } else if (totalMoves == 200) {
+                randomInitCARRYSiteChains(packedDesign);
+            } else if (totalMoves > 200 && totalMoves < 400) {
+                randomMoveCARRYSiteChains(packedDesign);
+            } else if (totalMoves == 400) {
                 randomInitCLBSites(packedDesign);
-            } else if (totalMoves > 200) {
+            } else if (totalMoves > 400) {
                 randomMove(packedDesign);
             }
             long t1 = System.currentTimeMillis();
@@ -119,16 +123,16 @@ public class PlacerGreedyRandom3 extends Placer {
 
             frameCounter++;
 
-            t0 = System.currentTimeMillis();
-            design.writeCheckpoint(placedDcp);
-            t1 = System.currentTimeMillis();
-            writeTimes.add(t1 - t0);
+            // t0 = System.currentTimeMillis();
+            // design.writeCheckpoint(placedDcp);
+            // t1 = System.currentTimeMillis();
+            // writeTimes.add(t1 - t0);
 
             // staleMoves = 0;
-            if (totalMoves > 300)
-                break;
             totalMoves++;
         }
+
+        design.writeCheckpoint(placedDcp);
 
         ImageMaker imPlaced = new ImageMaker(design);
         imPlaced.renderAll();
@@ -149,6 +153,10 @@ public class PlacerGreedyRandom3 extends Placer {
             }
             allSites.get(siteType).add(site);
         }
+
+        occupiedSiteChains.put(SiteTypeEnum.DSP48E1, new HashMap<>());
+        occupiedSiteChains.put(SiteTypeEnum.SLICEL, new HashMap<>());
+        occupiedSiteChains.put(SiteTypeEnum.SLICEM, new HashMap<>());
     }
 
     private List<Site> findSinkSites(SiteInst si) throws IOException {
@@ -323,7 +331,7 @@ public class PlacerGreedyRandom3 extends Placer {
 
     private void randomMoveDSPSiteCascades(PackedDesign packedDesign) throws IOException {
         SiteTypeEnum siteType = SiteTypeEnum.DSP48E1;
-        for (List<SiteInst> cascade : packedDesign.DSPSiteInstCascades) {
+        for (List<SiteInst> homeCascade : packedDesign.DSPSiteInstCascades) {
 
             /*
              * WORK IN PROGRESS
@@ -331,18 +339,24 @@ public class PlacerGreedyRandom3 extends Placer {
              *
              */
 
-            Site candidateAnchor = proposeDSPAnchorSite(siteType, cascade.size());
+            Site candidateAnchor = proposeDSPAnchorSite(siteType, homeCascade.size());
 
             List<SiteInst> homeBuffer = new ArrayList<>();
             List<SiteInst> awayBuffer = new ArrayList<>();
             int awayBufferLow = candidateAnchor.getRpmY();
             int awayBufferHigh = awayBufferLow;
+            int awayBufferSize = awayBufferHigh - awayBufferLow;
 
-            int j = 0;
+            int k = 0;
+            // Find the size of the away buffer zone.
             while (true) {
-                Site awaySite = device.getSite(
-                        "DSP48_X" + candidateAnchor.getInstanceX() + "Y" + (candidateAnchor.getInstanceY() + j));
+                if (awayBufferHigh >= candidateAnchor.getRpmY() + homeCascade.size())
+                    break;
 
+                Site awaySite = device.getSite(
+                        "DSP48_X" + candidateAnchor.getInstanceX() + "Y" + (candidateAnchor.getInstanceY() + k));
+
+                // If this Site belongs to a Chain...
                 List<SiteInst> existingChain = occupiedSiteChains.get(siteType).get(awaySite);
                 if (existingChain != null) {
                     int low = existingChain.get(0).getSite().getRpmY();
@@ -350,22 +364,49 @@ public class PlacerGreedyRandom3 extends Placer {
                     if (low < awayBufferLow) {
                         awayBufferLow = low;
                     }
-                    if (high >= awayBufferHigh) {
+                    if (high > awayBufferHigh) {
                         awayBufferHigh = high;
                     }
                 } else {
                     awayBufferHigh++;
                 }
+            }
 
+            // Collect all SiteInsts in the away buffer zone.
+            for (int i = 0; i < awayBufferSize; i++) {
+                Site awaySite = device.getSite(
+                        "DSP48_X" + candidateAnchor.getInstanceX() + "Y" + (awayBufferLow + i));
+                // If this Site belongs to either a Chain or loose CLB...
                 SiteInst awaySiteInst = occupiedSites.get(siteType).get(awaySite);
-                if (awaySiteInst != null) {
-                    occupiedSites.get(siteType).put(awaySite, awaySiteInst);
+                if (awaySiteInst != null)
+                    awayBuffer.add(awaySiteInst);
+                else
+                    awayBuffer.add(null);
+            }
+
+            // Find the home buffer zone.
+            Site homeAnchor = homeCascade.get(0).getSite();
+            Site homeTail = homeCascade.get(homeCascade.size() - 1).getSite();
+            int sweepSize = awayBufferSize - homeCascade.size() + 1;
+
+            int homeBufferLow = homeAnchor.getRpmY() - sweepSize;
+            int homeBufferHigh = homeTail.getRpmY() + sweepSize;
+
+            // Sweep the home buffer to find a legal chain swap.
+            for (int i = 0; i < sweepSize; i++) {
+                int collisions = 0;
+                for (int j = 0; j < awayBufferSize; j++) {
+                    Site homeSite = device.getSite(
+                            "DSP_48X" + homeBufferLow + "Y" + j);
+                    if (j >= homeAnchor.getRpmY() && j <= homeTail.getRpmY()) {
+                        // these sites are gettings swapped anyway
+                        continue;
+                    } else if (occupiedSites.get(siteType).containsKey(homeSite) && awayBuffer.get(j) != null) {
+                        collisions++;
+                    }
                 }
-
-                if (awayBufferHigh >= candidateAnchor.getRpmY() + cascade.size())
-                    break;
-
-                j++;
+                if (collisions == 0)
+                    break; // swap is legal
             }
 
             /*
@@ -374,24 +415,24 @@ public class PlacerGreedyRandom3 extends Placer {
              *
              */
 
-            float oldCost = 0;
-            float newCost = 0;
-            List<Site> newSiteCascade = new ArrayList<>();
-            for (int i = 0; i < cascade.size(); i++) {
-                List<Site> sinkSites = findSinkSites(cascade.get(i));
-                oldCost = oldCost + evaluateSite(sinkSites, cascade.get(i).getSite());
-                Site newSite = device
-                        .getSite("DSP48_X" + candidateAnchor.getInstanceX() + "Y"
-                                + (candidateAnchor.getInstanceY() + i));
-                newSiteCascade.add(newSite);
-                newCost = newCost + evaluateSite(sinkSites, newSite);
-            }
-            if (newCost < oldCost) {
-                for (int i = 0; i < cascade.size(); i++) {
-                    unplaceSiteInst(cascade.get(i));
-                    placeSiteInst(cascade.get(i), newSiteCascade.get(i));
-                }
-            }
+            // float oldCost = 0;
+            // float newCost = 0;
+            // List<Site> newSiteCascade = new ArrayList<>();
+            // for (int i = 0; i < cascade.size(); i++) {
+            // List<Site> sinkSites = findSinkSites(cascade.get(i));
+            // oldCost = oldCost + evaluateSite(sinkSites, cascade.get(i).getSite());
+            // Site newSite = device
+            // .getSite("DSP48_X" + candidateAnchor.getInstanceX() + "Y"
+            // + (candidateAnchor.getInstanceY() + i));
+            // newSiteCascade.add(newSite);
+            // newCost = newCost + evaluateSite(sinkSites, newSite);
+            // }
+            // if (newCost < oldCost) {
+            // for (int i = 0; i < cascade.size(); i++) {
+            // unplaceSiteInst(cascade.get(i));
+            // placeSiteInst(cascade.get(i), newSiteCascade.get(i));
+            // }
+            // }
         }
     }
 
