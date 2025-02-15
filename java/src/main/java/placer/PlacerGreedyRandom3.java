@@ -329,6 +329,26 @@ public class PlacerGreedyRandom3 extends Placer {
         }
     }
 
+    private List<Site> findChainBufferZone(Site awayAnchor) throws IOException {
+        List<Site> sites = new ArrayList<>();
+
+        //
+        //
+        //
+
+        return sites;
+    }
+
+    private List<SiteInst> collectSiteInstsInBuffer(Site anchor) throws IOException {
+        List<SiteInst> sis = new ArrayList<>();
+
+        //
+        //
+        //
+
+        return sis;
+    }
+
     private void randomMoveDSPSiteCascades(PackedDesign packedDesign) throws IOException {
         SiteTypeEnum siteType = SiteTypeEnum.DSP48E1;
         for (List<SiteInst> homeCascade : packedDesign.DSPSiteInstCascades) {
@@ -339,22 +359,22 @@ public class PlacerGreedyRandom3 extends Placer {
              *
              */
 
-            Site candidateAnchor = proposeDSPAnchorSite(siteType, homeCascade.size());
+            Site awaySwapAnchor = proposeDSPAnchorSite(siteType, homeCascade.size());
 
             List<SiteInst> homeBuffer = new ArrayList<>();
             List<SiteInst> awayBuffer = new ArrayList<>();
-            int awayBufferLow = candidateAnchor.getRpmY();
+            int awayBufferLow = awaySwapAnchor.getRpmY();
             int awayBufferHigh = awayBufferLow;
             int awayBufferSize = awayBufferHigh - awayBufferLow;
 
             int k = 0;
             // Find the size of the away buffer zone.
             while (true) {
-                if (awayBufferHigh >= candidateAnchor.getRpmY() + homeCascade.size())
+                if (awayBufferHigh >= awaySwapAnchor.getRpmY() + homeCascade.size())
                     break;
 
                 Site awaySite = device.getSite(
-                        "DSP48_X" + candidateAnchor.getInstanceX() + "Y" + (candidateAnchor.getInstanceY() + k));
+                        "DSP48_X" + awaySwapAnchor.getInstanceX() + "Y" + (awaySwapAnchor.getInstanceY() + k));
 
                 // If this Site belongs to a Chain...
                 List<SiteInst> existingChain = occupiedSiteChains.get(siteType).get(awaySite);
@@ -375,7 +395,7 @@ public class PlacerGreedyRandom3 extends Placer {
             // Collect all SiteInsts in the away buffer zone.
             for (int i = 0; i < awayBufferSize; i++) {
                 Site awaySite = device.getSite(
-                        "DSP48_X" + candidateAnchor.getInstanceX() + "Y" + (awayBufferLow + i));
+                        "DSP48_X" + awaySwapAnchor.getInstanceX() + "Y" + (awayBufferLow + i));
                 // If this Site belongs to either a Chain or loose CLB...
                 SiteInst awaySiteInst = occupiedSites.get(siteType).get(awaySite);
                 if (awaySiteInst != null)
