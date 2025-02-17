@@ -17,3 +17,7 @@ clockInfo.txt
 # jdtls
 .metadata/
 jdt.ls-java-project/
+java/bin/
+java/.settings/
+java/.project/
+java/.classpath/
