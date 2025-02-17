@@ -1,16 +1,9 @@
 
 package placer;
 
-import java.awt.Color;
-import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
-
-import org.python.antlr.PythonParser.else_clause_return;
-
 import java.io.FileWriter;
 import java.io.File;
 import java.io.IOException;
-import java.nio.Buffer;
 import java.util.stream.Collectors;
 import java.util.Collection;
 import java.util.Collections;
@@ -343,37 +336,55 @@ public class PlacerGreedyRandom3 extends Placer {
         return siteTypePrefix;
     }
 
-    private List<Site> findAwayBufferZone(SiteTypeEnum siteType, Site initAnchor, Site initTail)
+    private List<Site> findBufferZone(SiteTypeEnum siteType, Site initAnchor, Site initTail)
             throws IOException {
         List<Site> sites = new ArrayList<>();
 
-        int rpmX = initAnchor.getRpmX();
-        int finalAnchorRpmY = initAnchor.getRpmY();
-        int finalTailRpmY = initTail.getRpmY();
+        int instX = initAnchor.getInstanceX();
+        int finalAnchorInstY = initAnchor.getInstanceY();
+        int finalTailInstY = initTail.getInstanceY();
 
         // is there a chain overlap at the anchor?
         List<SiteInst> residentChainAtAnchor = occupiedSiteChains.get(siteType).get(initAnchor);
         if (residentChainAtAnchor != null) {
             Site finalAnchor = residentChainAtAnchor.get(0).getSite();
-            finalAnchorRpmY = finalAnchor.getRpmY();
+            finalAnchorInstY = finalAnchor.getInstanceY();
         }
 
         // is there a chain overlap at the tail?
         List<SiteInst> residentChainAtTail = occupiedSiteChains.get(siteType).get(initTail);
         if (residentChainAtTail != null) {
             Site finalTail = residentChainAtTail.get(0).getSite();
-            finalTailRpmY = finalTail.getRpmY();
+            finalTailInstY = finalTail.getInstanceY();
         }
 
-        // int finalBufferSize = finalTailRpmY - finalAnchorRpmY;
         String siteTypePrefix = getSiteTypePrefix(siteType);
 
         // collect the buffer zone sites
-        for (int i = finalAnchorRpmY; i < finalTailRpmY; i++) {
-            sites.add(device.getSite(siteTypePrefix + "X" + rpmX + "Y" + i));
+        for (int i = finalAnchorInstY; i < finalTailInstY; i++) {
+            sites.add(device.getSite(siteTypePrefix + "X" + instX + "Y" + i));
         }
 
         return sites;
+    }
+
+    private boolean bufferContainsOverlaps(SiteTypeEnum siteType, Site initAnchor, Site initTail)
+            throws IOException {
+        boolean containsOverlap = false;
+        List<SiteInst> residentChainAtAnchor = occupiedSiteChains.get(siteType).get(initAnchor);
+        if (residentChainAtAnchor != null) {
+            Site residentAnchor = residentChainAtAnchor.get(0).getSite();
+            if (residentAnchor.getInstanceY() < initAnchor.getInstanceY())
+                containsOverlap = true;
+        }
+        List<SiteInst> residentChainAtTail = occupiedSiteChains.get(siteType).get(initAnchor);
+        if (residentChainAtTail != null) {
+            Site residentTail = residentChainAtTail.get(0).getSite();
+            if (residentTail.getInstanceY() > initTail.getInstanceY())
+                containsOverlap = true;
+        }
+        return containsOverlap;
+
     }
 
     private List<SiteInst> collectSiteInstsInBuffer(SiteTypeEnum siteType, List<Site> bufferZone)
@@ -392,21 +403,21 @@ public class PlacerGreedyRandom3 extends Placer {
     }
 
     // NOT ROBUST!
-    // What if the away buffer and home buffer themselves overlap?
     // What if the away buffer contains the sink sites of the
     // home buffer and vice versa ?
     // The swap evaluation would falsely report a lower cost on the swap!
     private void randomMoveSiteInstChain(SiteTypeEnum siteType, List<List<SiteInst>> chains) throws IOException {
-        for (List<SiteInst> homeChain : chains) {
-
+        loopThruChains: for (List<SiteInst> homeChain : chains) {
             Site homeChainAnchor = homeChain.get(0).getSite();
+            int homeInstX = homeChainAnchor.getInstanceX();
             Site homeChainTail = homeChain.get(homeChain.size() - 1).getSite();
 
             Site awayInitAnchor = proposeDSPAnchorSite(siteType, homeChain.size());
+            int awayInstX = awayInitAnchor.getInstanceX();
             Site awayInitTail = device.getSite(getSiteTypePrefix(siteType) +
-                    "X" + awayInitAnchor.getRpmX() +
-                    "Y" + (awayInitAnchor.getRpmY() + homeChain.size()));
-            List<Site> awayBuffer = findAwayBufferZone(siteType, awayInitAnchor, awayInitTail);
+                    "X" + awayInstX +
+                    "Y" + (awayInitAnchor.getInstanceY() + homeChain.size()));
+            List<Site> awayBuffer = findBufferZone(siteType, awayInitAnchor, awayInitTail);
             List<SiteInst> siteInstsInAwayBuffer = collectSiteInstsInBuffer(siteType, awayBuffer);
             List<Site> homeBuffer = null;
             List<SiteInst> siteInstsInHomeBuffer = null;
@@ -414,44 +425,72 @@ public class PlacerGreedyRandom3 extends Placer {
             int sweepSize = awayBuffer.size() - homeChain.size() + 1;
             boolean legalSwap = false;
 
-            // sweep home buffer to find a legal chain swap
-            for (int i = 0; i < sweepSize; i++) {
-                // construct the home buffer
-                homeBuffer = new ArrayList<>();
-                for (int j = 0; j < awayBuffer.size(); j++) {
-                    homeBuffer.add(device.getSite(getSiteTypePrefix(siteType) +
-                            "X" + homeChain.get(0).getSite().getRpmX() +
-                            "Y" + (homeChain.get(0).getSite().getRpmY() - sweepSize + i + j)));
-                }
-                siteInstsInHomeBuffer = collectSiteInstsInBuffer(siteType, homeBuffer);
-                // determine legality of swap by detecting SiteInst collisions
-                for (int j = 0; j < awayBuffer.size(); j++) {
-                    int rpmY = homeBuffer.get(j).getRpmY();
-                    if (rpmY >= homeChainAnchor.getRpmY() && rpmY <= homeChainTail.getRpmY())
-                        continue; // these sites are getting swapped anyway
+            // sweep possible home buffers to find a legal chain swap
+            findLegalHomeBuffer: for (int i = 0; i < sweepSize; i++) {
+                int homeBufferAnchorInstY = homeChainAnchor.getInstanceY() - sweepSize + i;
+                Site homeBufferAnchor = device.getSite(getSiteTypePrefix(siteType) +
+                        "X" + homeInstX + "Y" + homeBufferAnchorInstY);
+                int homeBufferTailInstY = homeChainTail.getInstanceY() - sweepSize + i;
+                Site homeBufferTail = device.getSite(getSiteTypePrefix(siteType) +
+                        "X" + homeInstX + "Y" + homeBufferTailInstY);
 
-                    if (siteInstsInAwayBuffer.get(j) != null && siteInstsInHomeBuffer.get(j) != null) {
-                        legalSwap = false;
-                        break;
-                    } else {
-                        legalSwap = true;
+                if (!bufferContainsOverlaps(siteType, homeBufferAnchor, homeBufferTail)) {
+                    homeBuffer = new ArrayList<>();
+                    for (int j = homeBufferAnchorInstY; j < homeBufferTailInstY; j++) {
+                        homeBuffer.add(device.getSite(getSiteTypePrefix(siteType) +
+                                "X" + homeInstX + "Y" + (homeBufferAnchorInstY + j)));
                     }
+                    siteInstsInHomeBuffer = collectSiteInstsInBuffer(siteType, homeBuffer);
+                    break findLegalHomeBuffer; // found a legal chain swap
+                } else {
+                    continue findLegalHomeBuffer; // try again
                 }
-                if (legalSwap)
-                    break;
             }
+
+            // for now, ensure no overlap between away buffer and home buffer
+            if (!Collections.disjoint(awayBuffer, homeBuffer)) {
+                continue loopThruChains; // skip this chain swap proposal
+            }
+
+            if (homeBuffer.size() != awayBuffer.size())
+                throw new IllegalStateException("ERROR: homeBuffer.size() != siteInstInHomeBuffer.size()");
+            if (siteInstsInHomeBuffer.size() != siteInstsInAwayBuffer.size())
+                throw new IllegalStateException("ERROR: siteInstsInHomeBuffer.size() != siteInstInAwayBuffer.size()");
+            if (homeBuffer.size() != siteInstsInHomeBuffer.size())
+                throw new IllegalStateException("ERROR: homeBuffer.size() != siteInstInHomeBuffer.size()");
 
             // evaluate the cost of the swap
             float oldCost = 0;
+            float newCost = 0;
+            for (int i = 0; i < homeBuffer.size(); i++) {
+                if (siteInstsInHomeBuffer.get(i) != null) {
+                    List<Site> homeSinks = findSinkSites(siteInstsInHomeBuffer.get(i));
+                    for (Site sink : homeSinks) {
+                        if (awayBuffer.contains(sink)) {
+                            continue loopThruChains; // skip this chain swap proposal
+                            // CONTINUES THE OUTER-MOST LOOP!
+                        }
+                    }
+                    oldCost = oldCost + evaluateSite(homeSinks, homeBuffer.get(i));
+                    newCost = newCost + evaluateSite(homeSinks, awayBuffer.get(i));
 
-            for (SiteInst si : siteInstsInAwayBuffer) {
-                List<Site> sinks = findSinkSites(si);
-
+                }
+                if (siteInstsInAwayBuffer.get(i) != null) {
+                    List<Site> awaySinks = findSinkSites(siteInstsInAwayBuffer.get(i));
+                    for (Site sink : awaySinks) {
+                        if (homeBuffer.contains(sink)) {
+                            continue loopThruChains; // skip this chain swap proposal
+                            // CONTINUES THE OUTER-MOST LOOP!
+                        }
+                    }
+                    oldCost = oldCost + evaluateSite(awaySinks, awayBuffer.get(i));
+                    newCost = newCost + evaluateSite(awaySinks, homeBuffer.get(i));
+                }
             }
 
-            float newCost = 0;
-
+            //
             // then: perform the swap
+            //
         }
     }
 
