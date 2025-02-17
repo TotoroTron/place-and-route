@@ -18,6 +18,6 @@ clockInfo.txt
 .metadata/
 jdt.ls-java-project/
 java/bin/
-java/.settings/
+java/.settings/*
 java/.project/
-java/.classpath/
+java/.classpath
