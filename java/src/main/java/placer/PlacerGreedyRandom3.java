@@ -398,16 +398,18 @@ public class PlacerGreedyRandom3 extends Placer {
     }
 
     private void randomMoveDSPSiteCascades(PackedDesign packedDesign) throws IOException {
-        SiteTypeEnum siteType = SiteTypeEnum.DSP48E1;
-        randomMoveSiteInstChain(siteType, packedDesign.DSPSiteInstCascades);
+        randomMoveSiteInstChain(packedDesign.DSPSiteInstCascades);
     }
 
-    // NOT ROBUST!
-    // What if the away buffer contains the sink sites of the
-    // home buffer and vice versa ?
-    // The swap evaluation would falsely report a lower cost on the swap!
-    private void randomMoveSiteInstChain(SiteTypeEnum siteType, List<List<SiteInst>> chains) throws IOException {
+    private void randomMoveCARRYSiteChains(PackedDesign packedDesign) throws IOException {
+        randomMoveSiteInstChain(packedDesign.CARRYSiteInstChains);
+    }
+
+    private void randomMoveSiteInstChain(List<List<SiteInst>> chains) throws IOException {
         loopThruChains: for (List<SiteInst> homeChain : chains) {
+
+            SiteTypeEnum siteType = homeChain.get(0).getSiteTypeEnum();
+
             Site homeChainAnchor = homeChain.get(0).getSite();
             int homeInstX = homeChainAnchor.getInstanceX();
             Site homeChainTail = homeChain.get(homeChain.size() - 1).getSite();
@@ -488,35 +490,50 @@ public class PlacerGreedyRandom3 extends Placer {
                 }
             }
 
-            //
-            // then: perform the swap
-            //
+            if (newCost < oldCost) {
+                for (int i = 0; i < homeBuffer.size(); i++) {
+                    SiteInst homeSi = siteInstsInHomeBuffer.get(i);
+                    SiteInst awaySi = siteInstsInHomeBuffer.get(i);
+                    if (homeSi != null)
+                        unplaceSiteInst(homeSi);
+                    if (awaySi != null)
+                        unplaceSiteInst(awaySi);
+
+                    if (homeSi != null)
+                        placeSiteInst(homeSi, awayBuffer.get(i));
+                    if (awaySi != null)
+                        placeSiteInst(awaySi, homeBuffer.get(i));
+                }
+            }
+
         }
     }
 
-    private void randomMoveCARRYSiteChains(PackedDesign packedDesign) throws IOException {
-        SiteTypeEnum selectedSiteType = SiteTypeEnum.SLICEL;
-        for (List<SiteInst> chain : packedDesign.CARRYSiteInstChains) {
-            Site selectedAnchor = proposeCARRYAnchorSite(selectedSiteType, chain.size());
-            float oldCost = 0;
-            float newCost = 0;
-            List<Site> newSiteChain = new ArrayList<>();
-            for (int i = 0; i < chain.size(); i++) {
-                List<Site> sinkSites = findSinkSites(chain.get(i));
-                oldCost = oldCost + evaluateSite(sinkSites, chain.get(i).getSite());
-                Site newSite = device
-                        .getSite("SLICE_X" + selectedAnchor.getInstanceX() + "Y" + (selectedAnchor.getInstanceY() + i));
-                newSiteChain.add(newSite);
-                newCost = newCost + evaluateSite(sinkSites, newSite);
-            }
-            if (newCost < oldCost) {
-                for (int i = 0; i < chain.size(); i++) {
-                    unplaceSiteInst(chain.get(i));
-                    placeSiteInst(chain.get(i), newSiteChain.get(i));
-                }
-            }
-        }
-    }
+    // private void randomMoveCARRYSiteChains(PackedDesign packedDesign) throws
+    // IOException {
+    // SiteTypeEnum selectedSiteType = SiteTypeEnum.SLICEL;
+    // for (List<SiteInst> chain : packedDesign.CARRYSiteInstChains) {
+    // Site selectedAnchor = proposeCARRYAnchorSite(selectedSiteType, chain.size());
+    // float oldCost = 0;
+    // float newCost = 0;
+    // List<Site> newSiteChain = new ArrayList<>();
+    // for (int i = 0; i < chain.size(); i++) {
+    // List<Site> sinkSites = findSinkSites(chain.get(i));
+    // oldCost = oldCost + evaluateSite(sinkSites, chain.get(i).getSite());
+    // Site newSite = device
+    // .getSite("SLICE_X" + selectedAnchor.getInstanceX() + "Y" +
+    // (selectedAnchor.getInstanceY() + i));
+    // newSiteChain.add(newSite);
+    // newCost = newCost + evaluateSite(sinkSites, newSite);
+    // }
+    // if (newCost < oldCost) {
+    // for (int i = 0; i < chain.size(); i++) {
+    // unplaceSiteInst(chain.get(i));
+    // placeSiteInst(chain.get(i), newSiteChain.get(i));
+    // }
+    // }
+    // }
+    // }
 
     private Site proposeSite(SiteTypeEnum ste) {
         boolean validSite = false;
