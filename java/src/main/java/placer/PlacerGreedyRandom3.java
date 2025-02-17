@@ -388,35 +388,70 @@ public class PlacerGreedyRandom3 extends Placer {
 
     private void randomMoveDSPSiteCascades(PackedDesign packedDesign) throws IOException {
         SiteTypeEnum siteType = SiteTypeEnum.DSP48E1;
-        for (List<SiteInst> homeCascade : packedDesign.DSPSiteInstCascades) {
+        randomMoveSiteInstChain(siteType, packedDesign.DSPSiteInstCascades);
+    }
 
-            Site awayInitAnchor = proposeDSPAnchorSite(siteType, homeCascade.size());
+    // NOT ROBUST!
+    // What if the away buffer and home buffer themselves overlap?
+    // What if the away buffer contains the sink sites of the
+    // home buffer and vice versa ?
+    // The swap evaluation would falsely report a lower cost on the swap!
+    private void randomMoveSiteInstChain(SiteTypeEnum siteType, List<List<SiteInst>> chains) throws IOException {
+        for (List<SiteInst> homeChain : chains) {
+
+            Site homeChainAnchor = homeChain.get(0).getSite();
+            Site homeChainTail = homeChain.get(homeChain.size() - 1).getSite();
+
+            Site awayInitAnchor = proposeDSPAnchorSite(siteType, homeChain.size());
             Site awayInitTail = device.getSite(getSiteTypePrefix(siteType) +
                     "X" + awayInitAnchor.getRpmX() +
-                    "Y" + (awayInitAnchor.getRpmY() + homeCascade.size()));
+                    "Y" + (awayInitAnchor.getRpmY() + homeChain.size()));
             List<Site> awayBuffer = findAwayBufferZone(siteType, awayInitAnchor, awayInitTail);
             List<SiteInst> siteInstsInAwayBuffer = collectSiteInstsInBuffer(siteType, awayBuffer);
-            List<SiteInst> siteInstsInHomeBuffer = new ArrayList<>();
+            List<Site> homeBuffer = null;
+            List<SiteInst> siteInstsInHomeBuffer = null;
 
-            int sweepSize = awayBuffer.size() - homeCascade.size() + 1;
+            int sweepSize = awayBuffer.size() - homeChain.size() + 1;
             boolean legalSwap = false;
 
             // sweep home buffer to find a legal chain swap
             for (int i = 0; i < sweepSize; i++) {
-
                 // construct the home buffer
-                List<Site> homeBuffer = new ArrayList<>();
+                homeBuffer = new ArrayList<>();
                 for (int j = 0; j < awayBuffer.size(); j++) {
                     homeBuffer.add(device.getSite(getSiteTypePrefix(siteType) +
-                            "X" + homeCascade.get(0).getSite().getRpmX() +
-                            "Y" + (homeCascade.get(0).getSite().getRpmY() - sweepSize + i + j)));
+                            "X" + homeChain.get(0).getSite().getRpmX() +
+                            "Y" + (homeChain.get(0).getSite().getRpmY() - sweepSize + i + j)));
                 }
-
-                // determine legality of swap
+                siteInstsInHomeBuffer = collectSiteInstsInBuffer(siteType, homeBuffer);
+                // determine legality of swap by detecting SiteInst collisions
                 for (int j = 0; j < awayBuffer.size(); j++) {
+                    int rpmY = homeBuffer.get(j).getRpmY();
+                    if (rpmY >= homeChainAnchor.getRpmY() && rpmY <= homeChainTail.getRpmY())
+                        continue; // these sites are getting swapped anyway
 
+                    if (siteInstsInAwayBuffer.get(j) != null && siteInstsInHomeBuffer.get(j) != null) {
+                        legalSwap = false;
+                        break;
+                    } else {
+                        legalSwap = true;
+                    }
                 }
+                if (legalSwap)
+                    break;
             }
+
+            // evaluate the cost of the swap
+            float oldCost = 0;
+
+            for (SiteInst si : siteInstsInAwayBuffer) {
+                List<Site> sinks = findSinkSites(si);
+
+            }
+
+            float newCost = 0;
+
+            // then: perform the swap
         }
     }
 
