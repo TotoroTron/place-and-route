@@ -4,6 +4,9 @@ package placer;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+
+import org.python.antlr.PythonParser.else_clause_return;
+
 import java.io.FileWriter;
 import java.io.File;
 import java.io.IOException;
@@ -329,23 +332,57 @@ public class PlacerGreedyRandom3 extends Placer {
         }
     }
 
-    private List<Site> findChainBufferZone(Site awayAnchor) throws IOException {
+    private String getSiteTypePrefix(SiteTypeEnum siteType) {
+        String siteTypePrefix = null;
+        if (siteType == SiteTypeEnum.DSP48E1)
+            siteTypePrefix = "DSP48_";
+        else if (siteType == SiteTypeEnum.SLICEL || siteType == SiteTypeEnum.SLICEM)
+            siteTypePrefix = "SLICE_";
+        else
+            throw new IllegalStateException("ERROR: Could not assign a String prefix to  SiteTypeEnum: " + siteType);
+        return siteTypePrefix;
+    }
+
+    private List<Site> findAwayBufferZone(SiteTypeEnum siteType, Site initAnchor, Site initTail)
+            throws IOException {
         List<Site> sites = new ArrayList<>();
 
-        //
-        //
-        //
+        int rpmX = initAnchor.getRpmX();
+        int finalAnchorRpmY = initAnchor.getRpmY();
+        int finalTailRpmY = initTail.getRpmY();
+
+        // is there a chain overlap at the anchor?
+        List<SiteInst> residentChainAtAnchor = occupiedSiteChains.get(siteType).get(initAnchor);
+        if (residentChainAtAnchor != null) {
+            Site finalAnchor = residentChainAtAnchor.get(0).getSite();
+            finalAnchorRpmY = finalAnchor.getRpmY();
+        }
+
+        // is there a chain overlap at the tail?
+        List<SiteInst> residentChainAtTail = occupiedSiteChains.get(siteType).get(initTail);
+        if (residentChainAtTail != null) {
+            Site finalTail = residentChainAtTail.get(0).getSite();
+            finalTailRpmY = finalTail.getRpmY();
+        }
+
+        // int finalBufferSize = finalTailRpmY - finalAnchorRpmY;
+        String siteTypePrefix = getSiteTypePrefix(siteType);
+
+        // collect the buffer zone sites
+        for (int i = finalAnchorRpmY; i < finalTailRpmY; i++) {
+            sites.add(device.getSite(siteTypePrefix + "X" + rpmX + "Y" + i));
+        }
 
         return sites;
     }
 
-    private List<SiteInst> collectSiteInstsInBuffer(Site anchor) throws IOException {
+    private List<SiteInst> collectSiteInstsInBuffer(SiteTypeEnum siteType, List<Site> bufferZone)
+            throws IOException {
         List<SiteInst> sis = new ArrayList<>();
-
-        //
-        //
-        //
-
+        for (Site site : bufferZone) {
+            sis.add(occupiedSites.get(siteType).get(site));
+            // adds null if key doesnt exist in map
+        }
         return sis;
     }
 
@@ -353,106 +390,33 @@ public class PlacerGreedyRandom3 extends Placer {
         SiteTypeEnum siteType = SiteTypeEnum.DSP48E1;
         for (List<SiteInst> homeCascade : packedDesign.DSPSiteInstCascades) {
 
-            /*
-             * WORK IN PROGRESS
-             * this control flow is ass!!
-             *
-             */
+            Site awayInitAnchor = proposeDSPAnchorSite(siteType, homeCascade.size());
+            Site awayInitTail = device.getSite(getSiteTypePrefix(siteType) +
+                    "X" + awayInitAnchor.getRpmX() +
+                    "Y" + (awayInitAnchor.getRpmY() + homeCascade.size()));
+            List<Site> awayBuffer = findAwayBufferZone(siteType, awayInitAnchor, awayInitTail);
+            List<SiteInst> siteInstsInAwayBuffer = collectSiteInstsInBuffer(siteType, awayBuffer);
+            List<SiteInst> siteInstsInHomeBuffer = new ArrayList<>();
 
-            Site awaySwapAnchor = proposeDSPAnchorSite(siteType, homeCascade.size());
+            int sweepSize = awayBuffer.size() - homeCascade.size() + 1;
+            boolean legalSwap = false;
 
-            List<SiteInst> homeBuffer = new ArrayList<>();
-            List<SiteInst> awayBuffer = new ArrayList<>();
-            int awayBufferLow = awaySwapAnchor.getRpmY();
-            int awayBufferHigh = awayBufferLow;
-            int awayBufferSize = awayBufferHigh - awayBufferLow;
-
-            int k = 0;
-            // Find the size of the away buffer zone.
-            while (true) {
-                if (awayBufferHigh >= awaySwapAnchor.getRpmY() + homeCascade.size())
-                    break;
-
-                Site awaySite = device.getSite(
-                        "DSP48_X" + awaySwapAnchor.getInstanceX() + "Y" + (awaySwapAnchor.getInstanceY() + k));
-
-                // If this Site belongs to a Chain...
-                List<SiteInst> existingChain = occupiedSiteChains.get(siteType).get(awaySite);
-                if (existingChain != null) {
-                    int low = existingChain.get(0).getSite().getRpmY();
-                    int high = low + existingChain.size();
-                    if (low < awayBufferLow) {
-                        awayBufferLow = low;
-                    }
-                    if (high > awayBufferHigh) {
-                        awayBufferHigh = high;
-                    }
-                } else {
-                    awayBufferHigh++;
-                }
-            }
-
-            // Collect all SiteInsts in the away buffer zone.
-            for (int i = 0; i < awayBufferSize; i++) {
-                Site awaySite = device.getSite(
-                        "DSP48_X" + awaySwapAnchor.getInstanceX() + "Y" + (awayBufferLow + i));
-                // If this Site belongs to either a Chain or loose CLB...
-                SiteInst awaySiteInst = occupiedSites.get(siteType).get(awaySite);
-                if (awaySiteInst != null)
-                    awayBuffer.add(awaySiteInst);
-                else
-                    awayBuffer.add(null);
-            }
-
-            // Find the home buffer zone.
-            Site homeAnchor = homeCascade.get(0).getSite();
-            Site homeTail = homeCascade.get(homeCascade.size() - 1).getSite();
-            int sweepSize = awayBufferSize - homeCascade.size() + 1;
-
-            int homeBufferLow = homeAnchor.getRpmY() - sweepSize;
-            int homeBufferHigh = homeTail.getRpmY() + sweepSize;
-
-            // Sweep the home buffer to find a legal chain swap.
+            // sweep home buffer to find a legal chain swap
             for (int i = 0; i < sweepSize; i++) {
-                int collisions = 0;
-                for (int j = 0; j < awayBufferSize; j++) {
-                    Site homeSite = device.getSite(
-                            "DSP_48X" + homeBufferLow + "Y" + j);
-                    if (j >= homeAnchor.getRpmY() && j <= homeTail.getRpmY()) {
-                        // these sites are gettings swapped anyway
-                        continue;
-                    } else if (occupiedSites.get(siteType).containsKey(homeSite) && awayBuffer.get(j) != null) {
-                        collisions++;
-                    }
+
+                // construct the home buffer
+                List<Site> homeBuffer = new ArrayList<>();
+                for (int j = 0; j < awayBuffer.size(); j++) {
+                    homeBuffer.add(device.getSite(getSiteTypePrefix(siteType) +
+                            "X" + homeCascade.get(0).getSite().getRpmX() +
+                            "Y" + (homeCascade.get(0).getSite().getRpmY() - sweepSize + i + j)));
                 }
-                if (collisions == 0)
-                    break; // swap is legal
+
+                // determine legality of swap
+                for (int j = 0; j < awayBuffer.size(); j++) {
+
+                }
             }
-
-            /*
-             * WORK IN PROGRESS
-             * this control flow is ass!!
-             *
-             */
-
-            // float oldCost = 0;
-            // float newCost = 0;
-            // List<Site> newSiteCascade = new ArrayList<>();
-            // for (int i = 0; i < cascade.size(); i++) {
-            // List<Site> sinkSites = findSinkSites(cascade.get(i));
-            // oldCost = oldCost + evaluateSite(sinkSites, cascade.get(i).getSite());
-            // Site newSite = device
-            // .getSite("DSP48_X" + candidateAnchor.getInstanceX() + "Y"
-            // + (candidateAnchor.getInstanceY() + i));
-            // newSiteCascade.add(newSite);
-            // newCost = newCost + evaluateSite(sinkSites, newSite);
-            // }
-            // if (newCost < oldCost) {
-            // for (int i = 0; i < cascade.size(); i++) {
-            // unplaceSiteInst(cascade.get(i));
-            // placeSiteInst(cascade.get(i), newSiteCascade.get(i));
-            // }
-            // }
         }
     }
 
