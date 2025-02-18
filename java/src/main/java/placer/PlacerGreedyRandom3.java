@@ -171,6 +171,8 @@ public class PlacerGreedyRandom3 extends Placer {
     }
 
     private float evaluateSite(List<Site> sinkSites, Site srcSite) throws IOException {
+        if (srcSite == null)
+            return 0; // sink is null if net is purely intrasite!
         float cost = 0;
         for (Site sinkSite : sinkSites) {
             if (sinkSite == null)
@@ -269,30 +271,25 @@ public class PlacerGreedyRandom3 extends Placer {
         }
     }
 
-    private void randomInitDSPSiteCascades(PackedDesign packedDesign) throws IOException {
-        SiteTypeEnum ste = SiteTypeEnum.DSP48E1;
-        for (List<SiteInst> cascade : packedDesign.DSPSiteInstCascades) {
-            Site selectedAnchor = proposeChainAnchorSite(ste, cascade.size());
-            for (int i = 0; i < cascade.size(); i++) {
-                Site newSite = device
-                        .getSite("DSP48_X" + selectedAnchor.getInstanceX() + "Y" + (selectedAnchor.getInstanceY() + i));
-                occupiedSiteChains.get(ste).put(newSite, cascade);
-                placeSiteInst(cascade.get(i), newSite);
+    private void randomInitSiteChains(List<List<SiteInst>> chains) throws IOException {
+        for (List<SiteInst> chain : chains) {
+            SiteTypeEnum siteType = chain.get(0).getSiteTypeEnum();
+            Site selectedAnchor = proposeChainAnchorSite(siteType, chain.size());
+            for (int i = 0; i < chain.size(); i++) {
+                Site newSite = device.getSite(getSiteTypePrefix(siteType) + "X" + selectedAnchor.getInstanceX() +
+                        "Y" + (selectedAnchor.getInstanceY() + i));
+                occupiedSiteChains.get(siteType).put(newSite, chain);
+                placeSiteInst(chain.get(i), newSite);
             }
         }
     }
 
+    private void randomInitDSPSiteCascades(PackedDesign packedDesign) throws IOException {
+        randomInitSiteChains(packedDesign.DSPSiteInstCascades);
+    }
+
     private void randomInitCARRYSiteChains(PackedDesign packedDesign) throws IOException {
-        for (List<SiteInst> chain : packedDesign.CARRYSiteInstChains) {
-            SiteTypeEnum ste = chain.get(0).getSiteTypeEnum();
-            Site selectedAnchor = proposeChainAnchorSite(ste, chain.size());
-            for (int i = 0; i < chain.size(); i++) {
-                Site newSite = device
-                        .getSite("SLICE_X" + selectedAnchor.getInstanceX() + "Y" + (selectedAnchor.getInstanceY() + i));
-                occupiedSiteChains.get(ste).put(newSite, chain);
-                placeSiteInst(chain.get(i), newSite);
-            }
-        }
+        randomInitSiteChains(packedDesign.CARRYSiteInstChains);
     }
 
     private void randomMoveCLBSites(PackedDesign packedDesign) throws IOException {
@@ -385,7 +382,6 @@ public class PlacerGreedyRandom3 extends Placer {
                 containsOverlap = true;
         }
         return containsOverlap;
-
     }
 
     private List<SiteInst> collectSiteInstsInBuffer(SiteTypeEnum siteType, List<Site> bufferZone)
@@ -399,14 +395,14 @@ public class PlacerGreedyRandom3 extends Placer {
     }
 
     private void randomMoveDSPSiteCascades(PackedDesign packedDesign) throws IOException {
-        randomMoveSiteInstChain(packedDesign.DSPSiteInstCascades);
+        randomMoveSiteInstChains(packedDesign.DSPSiteInstCascades);
     }
 
     private void randomMoveCARRYSiteChains(PackedDesign packedDesign) throws IOException {
-        randomMoveSiteInstChain(packedDesign.CARRYSiteInstChains);
+        randomMoveSiteInstChains(packedDesign.CARRYSiteInstChains);
     }
 
-    private void randomMoveSiteInstChain(List<List<SiteInst>> chains) throws IOException {
+    private void randomMoveSiteInstChains(List<List<SiteInst>> chains) throws IOException {
         loopThruChains: for (List<SiteInst> homeChain : chains) {
 
             SiteTypeEnum siteType = homeChain.get(0).getSiteTypeEnum();
@@ -414,16 +410,17 @@ public class PlacerGreedyRandom3 extends Placer {
             Site homeChainAnchor = homeChain.get(0).getSite();
             int homeInstX = homeChainAnchor.getInstanceX();
             Site homeChainTail = homeChain.get(homeChain.size() - 1).getSite();
+            System.out.println("homeChainAnchor: " + homeChainAnchor.getName());
+            System.out.println("homeChainTail: " + homeChainTail.getName());
 
             Site awayInitAnchor = proposeChainAnchorSite(siteType, homeChain.size());
-
-            System.out.println("homeChainAnchor: " + homeChainAnchor.getName());
-            System.out.println("awayInitAnchor: " + awayInitAnchor.getName());
-
             int awayInstX = awayInitAnchor.getInstanceX();
             Site awayInitTail = device.getSite(getSiteTypePrefix(siteType) +
                     "X" + awayInstX +
-                    "Y" + (awayInitAnchor.getInstanceY() + homeChain.size()));
+                    "Y" + (awayInitAnchor.getInstanceY() + homeChain.size() - 1));
+            System.out.println("awayInitAnchor: " + awayInitAnchor.getName());
+            System.out.println("awayInitTail: " + awayInitTail.getName());
+
             List<Site> awayBuffer = findBufferZone(siteType, awayInitAnchor, awayInitTail);
             List<SiteInst> siteInstsInAwayBuffer = collectSiteInstsInBuffer(siteType, awayBuffer);
             List<Site> homeBuffer = null;
@@ -437,13 +434,16 @@ public class PlacerGreedyRandom3 extends Placer {
             findLegalHomeBuffer: for (int i = 0; i < sweepSize; i++) {
                 System.out.println("Sweep: " + i);
                 int homeBufferAnchorInstY = homeChainAnchor.getInstanceY() - sweepSize + i;
-                if (homeBufferAnchorInstY < 0) // fell off the device!
-                    continue findLegalHomeBuffer;
                 Site homeBufferAnchor = device.getSite(getSiteTypePrefix(siteType) +
                         "X" + homeInstX + "Y" + homeBufferAnchorInstY);
-                int homeBufferTailInstY = homeChainTail.getInstanceY() - sweepSize + i;
+                if (homeBufferAnchor == null) // fell off the device!
+                    continue findLegalHomeBuffer;
+
+                int homeBufferTailInstY = homeBufferAnchorInstY + awayBuffer.size();
                 Site homeBufferTail = device.getSite(getSiteTypePrefix(siteType) +
                         "X" + homeInstX + "Y" + homeBufferTailInstY);
+                if (homeBufferTail == null) // fell off the device!
+                    continue findLegalHomeBuffer;
 
                 System.out.println("homeBufferAnchorInstY: " + homeBufferAnchorInstY);
                 System.out.println("homeBufferTailInstY: " + homeBufferTailInstY);
@@ -452,6 +452,7 @@ public class PlacerGreedyRandom3 extends Placer {
                     legalSwap = true;
                     homeBuffer = new ArrayList<>();
                     for (int j = homeBufferAnchorInstY; j < homeBufferTailInstY; j++) {
+                        System.out.println("j: " + j);
                         homeBuffer.add(device.getSite(getSiteTypePrefix(siteType) +
                                 "X" + homeInstX + "Y" + (homeBufferAnchorInstY + j)));
                     }
@@ -462,12 +463,10 @@ public class PlacerGreedyRandom3 extends Placer {
                 }
             }
 
-            if (!legalSwap)
-                continue loopThruChains;
+            if (!legalSwap) // all possible home buffers in sweep window failed
+                continue loopThruChains; // skip this chain swap proposal
 
             // for now, ensure no overlap between away buffer and home buffer
-            System.out.println("awayBuffer.size(): " + awayBuffer.size());
-            System.out.println("homeBuffer.size(): " + homeBuffer.size());
             if (!Collections.disjoint(awayBuffer, homeBuffer)) {
                 continue loopThruChains; // skip this chain swap proposal
             }
@@ -496,7 +495,6 @@ public class PlacerGreedyRandom3 extends Placer {
                     }
                     oldCost = oldCost + evaluateSite(homeSinks, homeBuffer.get(i));
                     newCost = newCost + evaluateSite(homeSinks, awayBuffer.get(i));
-
                 }
                 if (siteInstsInAwayBuffer.get(i) != null) {
                     List<Site> awaySinks = findSinkSites(siteInstsInAwayBuffer.get(i));
