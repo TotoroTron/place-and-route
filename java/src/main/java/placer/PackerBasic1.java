@@ -381,8 +381,8 @@ public class PackerBasic1 extends Packer {
             throw new IllegalStateException(
                     "ERROR: device or clock region contains no Sites of type FIFO18E1 or RAMB18E1 !");
         }
-        // int randIndex = rand.nextInt(compatibleSites.size());
-        Site selectedSite = compatibleSites.get(0);
+        int randIndex = rand.nextInt(compatibleSites.size());
+        Site selectedSite = compatibleSites.get(randIndex);
         SiteTypeEnum selectedSiteType = selectedSite.getSiteTypeEnum();
         availableSites.get(selectedSiteType).remove(selectedSite);
         occupiedSites.get(selectedSiteType).add(selectedSite);

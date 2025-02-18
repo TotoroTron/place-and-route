@@ -87,6 +87,7 @@ public class PlacerGreedyRandom3 extends Placer {
             if (totalMoves == 0) {
                 randomInitDSPSiteCascades(packedDesign);
                 randomInitRAMSites(packedDesign);
+                design.writeCheckpoint(rootDir + "/outputs/checkpoints/init_dsp_ram.dcp");
             } else if (totalMoves > 0 && totalMoves < 200) {
                 randomMoveDSPSiteCascades(packedDesign);
                 randomMoveRAMSites(packedDesign);
@@ -271,7 +272,7 @@ public class PlacerGreedyRandom3 extends Placer {
     private void randomInitDSPSiteCascades(PackedDesign packedDesign) throws IOException {
         SiteTypeEnum ste = SiteTypeEnum.DSP48E1;
         for (List<SiteInst> cascade : packedDesign.DSPSiteInstCascades) {
-            Site selectedAnchor = proposeDSPAnchorSite(ste, cascade.size());
+            Site selectedAnchor = proposeChainAnchorSite(ste, cascade.size());
             for (int i = 0; i < cascade.size(); i++) {
                 Site newSite = device
                         .getSite("DSP48_X" + selectedAnchor.getInstanceX() + "Y" + (selectedAnchor.getInstanceY() + i));
@@ -284,7 +285,7 @@ public class PlacerGreedyRandom3 extends Placer {
     private void randomInitCARRYSiteChains(PackedDesign packedDesign) throws IOException {
         for (List<SiteInst> chain : packedDesign.CARRYSiteInstChains) {
             SiteTypeEnum ste = chain.get(0).getSiteTypeEnum();
-            Site selectedAnchor = proposeCARRYAnchorSite(ste, chain.size());
+            Site selectedAnchor = proposeChainAnchorSite(ste, chain.size());
             for (int i = 0; i < chain.size(); i++) {
                 Site newSite = device
                         .getSite("SLICE_X" + selectedAnchor.getInstanceX() + "Y" + (selectedAnchor.getInstanceY() + i));
@@ -414,7 +415,11 @@ public class PlacerGreedyRandom3 extends Placer {
             int homeInstX = homeChainAnchor.getInstanceX();
             Site homeChainTail = homeChain.get(homeChain.size() - 1).getSite();
 
-            Site awayInitAnchor = proposeDSPAnchorSite(siteType, homeChain.size());
+            Site awayInitAnchor = proposeChainAnchorSite(siteType, homeChain.size());
+
+            System.out.println("homeChainAnchor: " + homeChainAnchor.getName());
+            System.out.println("awayInitAnchor: " + awayInitAnchor.getName());
+
             int awayInstX = awayInitAnchor.getInstanceX();
             Site awayInitTail = device.getSite(getSiteTypePrefix(siteType) +
                     "X" + awayInstX +
@@ -425,18 +430,26 @@ public class PlacerGreedyRandom3 extends Placer {
             List<SiteInst> siteInstsInHomeBuffer = null;
 
             int sweepSize = awayBuffer.size() - homeChain.size() + 1;
+            System.out.println("sweepSize: " + sweepSize);
             boolean legalSwap = false;
 
             // sweep possible home buffers to find a legal chain swap
             findLegalHomeBuffer: for (int i = 0; i < sweepSize; i++) {
+                System.out.println("Sweep: " + i);
                 int homeBufferAnchorInstY = homeChainAnchor.getInstanceY() - sweepSize + i;
+                if (homeBufferAnchorInstY < 0) // fell off the device!
+                    continue findLegalHomeBuffer;
                 Site homeBufferAnchor = device.getSite(getSiteTypePrefix(siteType) +
                         "X" + homeInstX + "Y" + homeBufferAnchorInstY);
                 int homeBufferTailInstY = homeChainTail.getInstanceY() - sweepSize + i;
                 Site homeBufferTail = device.getSite(getSiteTypePrefix(siteType) +
                         "X" + homeInstX + "Y" + homeBufferTailInstY);
 
+                System.out.println("homeBufferAnchorInstY: " + homeBufferAnchorInstY);
+                System.out.println("homeBufferTailInstY: " + homeBufferTailInstY);
+
                 if (!bufferContainsOverlaps(siteType, homeBufferAnchor, homeBufferTail)) {
+                    legalSwap = true;
                     homeBuffer = new ArrayList<>();
                     for (int j = homeBufferAnchorInstY; j < homeBufferTailInstY; j++) {
                         homeBuffer.add(device.getSite(getSiteTypePrefix(siteType) +
@@ -449,17 +462,25 @@ public class PlacerGreedyRandom3 extends Placer {
                 }
             }
 
+            if (!legalSwap)
+                continue loopThruChains;
+
             // for now, ensure no overlap between away buffer and home buffer
+            System.out.println("awayBuffer.size(): " + awayBuffer.size());
+            System.out.println("homeBuffer.size(): " + homeBuffer.size());
             if (!Collections.disjoint(awayBuffer, homeBuffer)) {
                 continue loopThruChains; // skip this chain swap proposal
             }
 
             if (homeBuffer.size() != awayBuffer.size())
-                throw new IllegalStateException("ERROR: homeBuffer.size() != siteInstInHomeBuffer.size()");
+                throw new IllegalStateException("ERROR: homeBuffer.size(): " + homeBuffer.size()
+                        + " != awayBuffer.size(): " + awayBuffer.size());
             if (siteInstsInHomeBuffer.size() != siteInstsInAwayBuffer.size())
-                throw new IllegalStateException("ERROR: siteInstsInHomeBuffer.size() != siteInstInAwayBuffer.size()");
+                throw new IllegalStateException("ERROR: siteInstsInHomeBuffer.size(): " + siteInstsInHomeBuffer.size()
+                        + " != siteInstInAwayBuffer.size(): " + siteInstsInAwayBuffer.size());
             if (homeBuffer.size() != siteInstsInHomeBuffer.size())
-                throw new IllegalStateException("ERROR: homeBuffer.size() != siteInstInHomeBuffer.size()");
+                throw new IllegalStateException("ERROR: homeBuffer.size(): " + homeBuffer.size()
+                        + " != siteInstInHomeBuffer.size(): " + siteInstsInHomeBuffer.size());
 
             // evaluate the cost of the swap
             float oldCost = 0;
@@ -588,6 +609,38 @@ public class PlacerGreedyRandom3 extends Placer {
                 break;
         }
         return selectedSite;
+    }
+
+    private Site proposeChainAnchorSite(SiteTypeEnum siteType, int chainSize) {
+        boolean validAnchor = false;
+        Site selectedSite = null;
+        int attempts = 0;
+        while (true) {
+            int randIndex = rand.nextInt(allSites.get(siteType).size());
+            selectedSite = allSites.get(siteType).get(randIndex);
+            int x = selectedSite.getInstanceX();
+            int y = selectedSite.getInstanceY();
+            for (int i = 0; i < chainSize; i++) {
+                Site site = device.getSite(getSiteTypePrefix(siteType) + "X" + x + "Y" + (y + i));
+                if (site == null) {
+                    validAnchor = false;
+                    break;
+                }
+                if (!allSites.get(siteType).contains(site)) {
+                    validAnchor = false;
+                    break;
+                }
+                validAnchor = true;
+            }
+            attempts++;
+            if (attempts > 1000)
+                throw new IllegalStateException(
+                        "ERROR: Could not propose " + siteType + " chain anchor after 1000 attempts!");
+            if (validAnchor)
+                break;
+        }
+        return selectedSite;
+
     }
 
     private Site proposeDSPAnchorSite(SiteTypeEnum ste, int cascadeSize) {
