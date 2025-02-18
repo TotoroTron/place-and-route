@@ -352,15 +352,21 @@ public class PlacerGreedyRandom3 extends Placer {
         // is there a chain overlap at the tail?
         List<SiteInst> residentChainAtTail = occupiedSiteChains.get(siteType).get(initTail);
         if (residentChainAtTail != null) {
-            Site finalTail = residentChainAtTail.get(0).getSite();
+            Site finalTail = residentChainAtTail.get(residentChainAtTail.size() - 1).getSite();
             finalTailInstY = finalTail.getInstanceY();
         }
 
         String siteTypePrefix = getSiteTypePrefix(siteType);
 
+        int finalBufferSize = finalTailInstY - finalAnchorInstY + 1;
+
         // collect the buffer zone sites
-        for (int i = finalAnchorInstY; i < finalTailInstY; i++) {
-            sites.add(device.getSite(siteTypePrefix + "X" + instX + "Y" + i));
+        // for (int i = finalAnchorInstY; i < finalTailInstY; i++) {
+        // sites.add(device.getSite(siteTypePrefix + "X" + instX + "Y" + i));
+        // }
+
+        for (int i = 0; i < finalBufferSize; i++) {
+            sites.add(device.getSite(siteTypePrefix + "X" + instX + "Y" + (finalAnchorInstY + i)));
         }
 
         return sites;
@@ -395,14 +401,14 @@ public class PlacerGreedyRandom3 extends Placer {
     }
 
     private void randomMoveDSPSiteCascades(PackedDesign packedDesign) throws IOException {
-        randomMoveSiteInstChains(packedDesign.DSPSiteInstCascades);
+        randomMoveSiteChains(packedDesign.DSPSiteInstCascades);
     }
 
     private void randomMoveCARRYSiteChains(PackedDesign packedDesign) throws IOException {
-        randomMoveSiteInstChains(packedDesign.CARRYSiteInstChains);
+        randomMoveSiteChains(packedDesign.CARRYSiteInstChains);
     }
 
-    private void randomMoveSiteInstChains(List<List<SiteInst>> chains) throws IOException {
+    private void randomMoveSiteChains(List<List<SiteInst>> chains) throws IOException {
         loopThruChains: for (List<SiteInst> homeChain : chains) {
 
             SiteTypeEnum siteType = homeChain.get(0).getSiteTypeEnum();
@@ -427,7 +433,9 @@ public class PlacerGreedyRandom3 extends Placer {
             List<SiteInst> siteInstsInHomeBuffer = null;
 
             int sweepSize = awayBuffer.size() - homeChain.size() + 1;
-            System.out.println("sweepSize: " + sweepSize);
+            System.out.println("\tawayBuffer.size(): " + awayBuffer.size());
+            System.out.println("\thomeChain.size(): " + homeChain.size());
+            System.out.println("\tsweepSize: " + sweepSize);
             boolean legalSwap = false;
 
             // sweep possible home buffers to find a legal chain swap

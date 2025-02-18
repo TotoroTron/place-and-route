@@ -54,7 +54,7 @@ public abstract class Packer {
 
     public Packer(String rootDir, Design design, Device device) throws IOException {
         this.rootDir = rootDir;
-        this.packedDcp = rootDir + "/outputs/packed.dcp";
+        this.packedDcp = rootDir + "/outputs/checkpoints/packed.dcp";
         this.design = design;
         this.device = device;
     }

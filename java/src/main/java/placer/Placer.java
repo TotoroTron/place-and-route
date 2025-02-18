@@ -55,7 +55,7 @@ public abstract class Placer {
 
     public Placer(String rootDir, Design design, Device device) throws IOException {
         this.rootDir = rootDir;
-        this.placedDcp = rootDir + "/outputs/placed.dcp";
+        this.placedDcp = rootDir + "/outputs/checkpoints/placed.dcp";
         this.design = design;
         this.device = device;
     }

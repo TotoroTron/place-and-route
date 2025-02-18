@@ -209,8 +209,7 @@ public class PackerBasic1 extends Packer {
         writer.write("\n\nPacking RAMBCells... (" + RAMCells.size() + ")");
         for (EDIFHierCellInst ehci : RAMCells) {
             Site selectedSite = selectRAMSite();
-            SiteInst si = new SiteInst(ehci.getFullHierarchicalInstName(), design, SiteTypeEnum.RAMB18E1,
-                    selectedSite);
+            SiteInst si = new SiteInst(ehci.getFullHierarchicalInstName(), design, SiteTypeEnum.RAMB18E1, selectedSite);
             si.createCell(ehci, si.getBEL("RAMB18E1"));
             si.routeSite();
             RAMSiteInsts.add(si);
@@ -381,8 +380,12 @@ public class PackerBasic1 extends Packer {
             throw new IllegalStateException(
                     "ERROR: device or clock region contains no Sites of type FIFO18E1 or RAMB18E1 !");
         }
-        int randIndex = rand.nextInt(compatibleSites.size());
-        Site selectedSite = compatibleSites.get(randIndex);
+        compatibleSites.sort(
+                Comparator.comparingInt(Site::getInstanceY)
+                        .thenComparingInt(Site::getInstanceX)
+                        .reversed());
+        // int randIndex = rand.nextInt(compatibleSites.size());
+        Site selectedSite = compatibleSites.get(0);
         SiteTypeEnum selectedSiteType = selectedSite.getSiteTypeEnum();
         availableSites.get(selectedSiteType).remove(selectedSite);
         occupiedSites.get(selectedSiteType).add(selectedSite);
