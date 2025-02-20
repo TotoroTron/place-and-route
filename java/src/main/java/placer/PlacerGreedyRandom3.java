@@ -43,7 +43,7 @@ public class PlacerGreedyRandom3 extends Placer {
     private Map<SiteTypeEnum, List<Site>> allSites;
     private Map<SiteTypeEnum, Map<Site, SiteInst>> occupiedSites;
 
-    // allows fast access to EDIF Cell Pack from device Site
+    // store chain occupation info for fast access
     private Map<SiteTypeEnum, Map<Site, List<SiteInst>>> occupiedSiteChains;
     private Random rand;
 
@@ -76,30 +76,15 @@ public class PlacerGreedyRandom3 extends Placer {
         int totalMoves = 0;
 
         unplaceAllSiteInsts(packedDesign);
-        // randomInitialPlacement(packedDesign);
+        randomInitialPlacement(packedDesign);
 
         int frameCounter = 1;
         while (true) {
-            if (totalMoves > 600)
+            if (totalMoves > 10)
                 break;
             System.out.println("totalMoves = " + totalMoves);
             long t0 = System.currentTimeMillis();
-            if (totalMoves == 0) {
-                randomInitDSPSiteCascades(packedDesign);
-                randomInitRAMSites(packedDesign);
-                design.writeCheckpoint(rootDir + "/outputs/checkpoints/init_dsp_ram.dcp");
-            } else if (totalMoves > 0 && totalMoves < 200) {
-                randomMoveDSPSiteCascades(packedDesign);
-                randomMoveRAMSites(packedDesign);
-            } else if (totalMoves == 200) {
-                randomInitCARRYSiteChains(packedDesign);
-            } else if (totalMoves > 200 && totalMoves < 400) {
-                randomMoveCARRYSiteChains(packedDesign);
-            } else if (totalMoves == 400) {
-                randomInitCLBSites(packedDesign);
-            } else if (totalMoves > 400) {
-                randomMove(packedDesign);
-            }
+            randomMove(packedDesign);
             long t1 = System.currentTimeMillis();
             moveTimes.add(t1 - t0);
 
@@ -110,7 +95,6 @@ public class PlacerGreedyRandom3 extends Placer {
 
             this.costHistory.add(currCost);
 
-            // if (currCost < lowestCost) {
             t0 = System.currentTimeMillis();
             ImageMaker gifFrame = new ImageMaker(design);
             gifFrame.renderAll();
@@ -222,29 +206,17 @@ public class PlacerGreedyRandom3 extends Placer {
 
     private void randomInitialPlacement(PackedDesign packedDesign) throws IOException {
         randomInitDSPSiteCascades(packedDesign);
-        randomInitRAMSites(packedDesign);
-        for (int i = 0; i < 200; i++) {
-            randomMoveDSPSiteCascades(packedDesign);
-            randomMoveRAMSites(packedDesign);
-        }
         randomInitCARRYSiteChains(packedDesign);
-        for (int i = 0; i < 200; i++) {
-            randomMoveCARRYSiteChains(packedDesign);
-        }
-        randomInitCLBSites(packedDesign);
-
-        // randomInitDSPSiteCascades(packedDesign);
-        // randomInitCARRYSiteChains(packedDesign);
-        // randomInitRAMSites(packedDesign);
+        randomInitRAMSites(packedDesign);
         // randomInitCLBSites(packedDesign);
     }
 
     private void randomMove(PackedDesign packedDesign) throws IOException {
         // Chunkiest movements first
-        randomMoveDSPSiteCascades(packedDesign);
+        // randomMoveDSPSiteCascades(packedDesign);
         randomMoveCARRYSiteChains(packedDesign);
-        randomMoveRAMSites(packedDesign);
-        randomMoveCLBSites(packedDesign);
+        // randomMoveRAMSites(packedDesign);
+        // randomMoveCLBSites(packedDesign);
     }
 
     private void placeSiteInst(SiteInst si, Site site) {
@@ -357,14 +329,7 @@ public class PlacerGreedyRandom3 extends Placer {
         }
 
         String siteTypePrefix = getSiteTypePrefix(siteType);
-
         int finalBufferSize = finalTailInstY - finalAnchorInstY + 1;
-
-        // collect the buffer zone sites
-        // for (int i = finalAnchorInstY; i < finalTailInstY; i++) {
-        // sites.add(device.getSite(siteTypePrefix + "X" + instX + "Y" + i));
-        // }
-
         for (int i = 0; i < finalBufferSize; i++) {
             sites.add(device.getSite(siteTypePrefix + "X" + instX + "Y" + (finalAnchorInstY + i)));
         }
@@ -414,8 +379,17 @@ public class PlacerGreedyRandom3 extends Placer {
             SiteTypeEnum siteType = homeChain.get(0).getSiteTypeEnum();
 
             Site homeChainAnchor = homeChain.get(0).getSite();
+
+            if (homeChainAnchor == null) {
+                System.out.println("homeChainAnchor null!");
+                continue;
+            }
             int homeInstX = homeChainAnchor.getInstanceX();
             Site homeChainTail = homeChain.get(homeChain.size() - 1).getSite();
+            if (homeChainTail == null) {
+                System.out.println("homeChainTail null!");
+                continue;
+            }
             System.out.println("homeChainAnchor: " + homeChainAnchor.getName());
             System.out.println("homeChainTail: " + homeChainTail.getName());
 
@@ -440,7 +414,7 @@ public class PlacerGreedyRandom3 extends Placer {
 
             // sweep possible home buffers to find a legal chain swap
             findLegalHomeBuffer: for (int i = 0; i < sweepSize; i++) {
-                System.out.println("Sweep: " + i);
+                // System.out.println("Sweep: " + i);
                 int homeBufferAnchorInstY = homeChainAnchor.getInstanceY() - sweepSize + i;
                 Site homeBufferAnchor = device.getSite(getSiteTypePrefix(siteType) +
                         "X" + homeInstX + "Y" + homeBufferAnchorInstY);
@@ -453,14 +427,14 @@ public class PlacerGreedyRandom3 extends Placer {
                 if (homeBufferTail == null) // fell off the device!
                     continue findLegalHomeBuffer;
 
-                System.out.println("homeBufferAnchorInstY: " + homeBufferAnchorInstY);
-                System.out.println("homeBufferTailInstY: " + homeBufferTailInstY);
+                // System.out.println("homeBufferAnchorInstY: " + homeBufferAnchorInstY);
+                // System.out.println("homeBufferTailInstY: " + homeBufferTailInstY);
 
                 if (!bufferContainsOverlaps(siteType, homeBufferAnchor, homeBufferTail)) {
                     legalSwap = true;
                     homeBuffer = new ArrayList<>();
                     for (int j = homeBufferAnchorInstY; j < homeBufferTailInstY; j++) {
-                        System.out.println("j: " + j);
+                        // System.out.println("j: " + j);
                         homeBuffer.add(device.getSite(getSiteTypePrefix(siteType) +
                                 "X" + homeInstX + "Y" + (homeBufferAnchorInstY + j)));
                     }
@@ -520,16 +494,39 @@ public class PlacerGreedyRandom3 extends Placer {
             if (newCost < oldCost) {
                 for (int i = 0; i < homeBuffer.size(); i++) {
                     SiteInst homeSi = siteInstsInHomeBuffer.get(i);
-                    SiteInst awaySi = siteInstsInHomeBuffer.get(i);
-                    if (homeSi != null)
-                        unplaceSiteInst(homeSi);
-                    if (awaySi != null)
-                        unplaceSiteInst(awaySi);
+                    SiteInst awaySi = siteInstsInAwayBuffer.get(i);
 
-                    if (homeSi != null)
+                    List<SiteInst> homeSiChain = null;
+                    List<SiteInst> awaySiChain = null;
+
+                    if (homeSi != null) {
+                        System.out.println("Unplaced homeSi " + homeSi.getSiteName());
+                        SiteTypeEnum ste = homeSi.getSiteTypeEnum();
+                        homeSiChain = occupiedSiteChains.get(ste).remove(homeSi.getSite());
+                        unplaceSiteInst(homeSi);
+                    }
+                    if (awaySi != null) {
+                        System.out.println("Unplaced awaySi " + awaySi.getSiteName());
+                        SiteTypeEnum ste = awaySi.getSiteTypeEnum();
+                        awaySiChain = occupiedSiteChains.get(ste).remove(awaySi.getSite());
+                        unplaceSiteInst(awaySi);
+                    }
+
+                    if (homeSi != null) {
+                        SiteTypeEnum ste = homeSi.getSiteTypeEnum();
+                        if (homeSiChain != null)
+                            occupiedSiteChains.get(ste).put(awayBuffer.get(i), homeSiChain);
                         placeSiteInst(homeSi, awayBuffer.get(i));
-                    if (awaySi != null)
+                        System.out.println("Placed homeSi " + homeSi.getSiteName());
+                    }
+                    if (awaySi != null) {
+                        SiteTypeEnum ste = awaySi.getSiteTypeEnum();
+                        if (awaySiChain != null) {
+                            occupiedSiteChains.get(ste).put(homeBuffer.get(i), awaySiChain);
+                        }
                         placeSiteInst(awaySi, homeBuffer.get(i));
+                        System.out.println("Placed awaySi " + awaySi.getSiteName());
+                    }
                 }
             }
 
