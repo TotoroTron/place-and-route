@@ -187,34 +187,33 @@ public class PlacerGreedyRandom3 extends Placer {
     private void unplaceAllSiteInsts(PackedDesign packedDesign) throws IOException {
         for (List<SiteInst> cascade : packedDesign.DSPSiteInstCascades) {
             for (SiteInst si : cascade) {
-                si.unPlace();
+                unplaceSiteInst(si);
             }
         }
         for (List<SiteInst> chain : packedDesign.CARRYSiteInstChains) {
             for (SiteInst si : chain) {
-                si.unPlace();
+                unplaceSiteInst(si);
             }
         }
         for (SiteInst si : packedDesign.CLBSiteInsts) {
-            si.unPlace();
+            unplaceSiteInst(si);
         }
         for (SiteInst si : packedDesign.RAMSiteInsts) {
-            si.unPlace();
+            unplaceSiteInst(si);
         }
 
     }
 
     private void randomInitialPlacement(PackedDesign packedDesign) throws IOException {
         randomInitDSPSiteCascades(packedDesign);
-        randomInitCARRYSiteChains(packedDesign);
+        // randomInitCARRYSiteChains(packedDesign);
         randomInitRAMSites(packedDesign);
         // randomInitCLBSites(packedDesign);
     }
 
     private void randomMove(PackedDesign packedDesign) throws IOException {
-        // Chunkiest movements first
-        // randomMoveDSPSiteCascades(packedDesign);
-        randomMoveCARRYSiteChains(packedDesign);
+        randomMoveDSPSiteCascades(packedDesign);
+        // randomMoveCARRYSiteChains(packedDesign);
         // randomMoveRAMSites(packedDesign);
         // randomMoveCLBSites(packedDesign);
     }
@@ -227,6 +226,44 @@ public class PlacerGreedyRandom3 extends Placer {
     private void unplaceSiteInst(SiteInst si) {
         occupiedSites.get(si.getSiteTypeEnum()).remove(si.getSite());
         si.unPlace();
+    }
+
+    private Site proposeSite(SiteTypeEnum ste) {
+        int randIndex = rand.nextInt(allSites.get(ste).size());
+        Site selectedSite = allSites.get(ste).get(randIndex);
+        return selectedSite;
+    }
+
+    private Site proposeChainAnchorSite(SiteTypeEnum siteType, int chainSize) {
+        boolean validAnchor = false;
+        Site selectedSite = null;
+        int attempts = 0;
+        while (true) {
+            int randIndex = rand.nextInt(allSites.get(siteType).size());
+            selectedSite = allSites.get(siteType).get(randIndex);
+            int x = selectedSite.getInstanceX();
+            int y = selectedSite.getInstanceY();
+            for (int i = 0; i < chainSize; i++) {
+                Site site = device.getSite(getSiteTypePrefix(siteType) + "X" + x + "Y" + (y + i));
+                if (site == null) {
+                    validAnchor = false;
+                    break;
+                }
+                if (!allSites.get(siteType).contains(site)) {
+                    validAnchor = false;
+                    break;
+                }
+                validAnchor = true;
+            }
+            attempts++;
+            if (attempts > 1000)
+                throw new IllegalStateException(
+                        "ERROR: Could not propose " + siteType + " chain anchor after 1000 attempts!");
+            if (validAnchor)
+                break;
+        }
+        return selectedSite;
+
     }
 
     private void randomInitCLBSites(PackedDesign packedDesign) throws IOException {
@@ -243,6 +280,14 @@ public class PlacerGreedyRandom3 extends Placer {
         }
     }
 
+    private void randomInitDSPSiteCascades(PackedDesign packedDesign) throws IOException {
+        randomInitSiteChains(packedDesign.DSPSiteInstCascades);
+    }
+
+    private void randomInitCARRYSiteChains(PackedDesign packedDesign) throws IOException {
+        randomInitSiteChains(packedDesign.CARRYSiteInstChains);
+    }
+
     private void randomInitSiteChains(List<List<SiteInst>> chains) throws IOException {
         for (List<SiteInst> chain : chains) {
             SiteTypeEnum siteType = chain.get(0).getSiteTypeEnum();
@@ -256,113 +301,12 @@ public class PlacerGreedyRandom3 extends Placer {
         }
     }
 
-    private void randomInitDSPSiteCascades(PackedDesign packedDesign) throws IOException {
-        randomInitSiteChains(packedDesign.DSPSiteInstCascades);
-    }
-
-    private void randomInitCARRYSiteChains(PackedDesign packedDesign) throws IOException {
-        randomInitSiteChains(packedDesign.CARRYSiteInstChains);
+    private void randomMoveRAMSites(PackedDesign packedDesign) throws IOException {
+        randomMoveSingleSite(packedDesign.RAMSiteInsts);
     }
 
     private void randomMoveCLBSites(PackedDesign packedDesign) throws IOException {
-        for (SiteInst si : packedDesign.CLBSiteInsts) {
-            SiteTypeEnum ste = si.getSiteTypeEnum();
-            List<Site> sinkSites = findSinkSites(si);
-            if (si.getSite() == null) {
-                System.out.println("SiteInst null: " + si.getName());
-            }
-            float oldCost = evaluateSite(sinkSites, si.getSite());
-            Site newSite = proposeSite(ste);
-            float newCost = evaluateSite(sinkSites, newSite);
-            if (newCost < oldCost) {
-                unplaceSiteInst(si);
-                placeSiteInst(si, newSite);
-            }
-        }
-    }
-
-    private void randomMoveRAMSites(PackedDesign packedDesign) throws IOException {
-        for (SiteInst si : packedDesign.RAMSiteInsts) {
-            List<Site> sinkSites = findSinkSites(si);
-            float oldCost = evaluateSite(sinkSites, si.getSite());
-            SiteTypeEnum ste = si.getSiteTypeEnum();
-            Site newSite = proposeSite(ste);
-            float newCost = evaluateSite(sinkSites, newSite);
-            if (newCost < oldCost) {
-                unplaceSiteInst(si);
-                placeSiteInst(si, newSite);
-            }
-        }
-    }
-
-    private String getSiteTypePrefix(SiteTypeEnum siteType) {
-        String siteTypePrefix = null;
-        if (siteType == SiteTypeEnum.DSP48E1)
-            siteTypePrefix = "DSP48_";
-        else if (siteType == SiteTypeEnum.SLICEL || siteType == SiteTypeEnum.SLICEM)
-            siteTypePrefix = "SLICE_";
-        else
-            throw new IllegalStateException("ERROR: Could not assign a String prefix to  SiteTypeEnum: " + siteType);
-        return siteTypePrefix;
-    }
-
-    private List<Site> findBufferZone(SiteTypeEnum siteType, Site initAnchor, Site initTail)
-            throws IOException {
-        List<Site> sites = new ArrayList<>();
-
-        int instX = initAnchor.getInstanceX();
-        int finalAnchorInstY = initAnchor.getInstanceY();
-        int finalTailInstY = initTail.getInstanceY();
-
-        // is there a chain overlap at the anchor?
-        List<SiteInst> residentChainAtAnchor = occupiedSiteChains.get(siteType).get(initAnchor);
-        if (residentChainAtAnchor != null) {
-            Site finalAnchor = residentChainAtAnchor.get(0).getSite();
-            finalAnchorInstY = finalAnchor.getInstanceY();
-        }
-
-        // is there a chain overlap at the tail?
-        List<SiteInst> residentChainAtTail = occupiedSiteChains.get(siteType).get(initTail);
-        if (residentChainAtTail != null) {
-            Site finalTail = residentChainAtTail.get(residentChainAtTail.size() - 1).getSite();
-            finalTailInstY = finalTail.getInstanceY();
-        }
-
-        String siteTypePrefix = getSiteTypePrefix(siteType);
-        int finalBufferSize = finalTailInstY - finalAnchorInstY + 1;
-        for (int i = 0; i < finalBufferSize; i++) {
-            sites.add(device.getSite(siteTypePrefix + "X" + instX + "Y" + (finalAnchorInstY + i)));
-        }
-
-        return sites;
-    }
-
-    private boolean bufferContainsOverlaps(SiteTypeEnum siteType, Site initAnchor, Site initTail)
-            throws IOException {
-        boolean containsOverlap = false;
-        List<SiteInst> residentChainAtAnchor = occupiedSiteChains.get(siteType).get(initAnchor);
-        if (residentChainAtAnchor != null) {
-            Site residentAnchor = residentChainAtAnchor.get(0).getSite();
-            if (residentAnchor.getInstanceY() < initAnchor.getInstanceY())
-                containsOverlap = true;
-        }
-        List<SiteInst> residentChainAtTail = occupiedSiteChains.get(siteType).get(initAnchor);
-        if (residentChainAtTail != null) {
-            Site residentTail = residentChainAtTail.get(0).getSite();
-            if (residentTail.getInstanceY() > initTail.getInstanceY())
-                containsOverlap = true;
-        }
-        return containsOverlap;
-    }
-
-    private List<SiteInst> collectSiteInstsInBuffer(SiteTypeEnum siteType, List<Site> bufferZone)
-            throws IOException {
-        List<SiteInst> sis = new ArrayList<>();
-        for (Site site : bufferZone) {
-            sis.add(occupiedSites.get(siteType).get(site));
-            // adds null if key doesnt exist in map
-        }
-        return sis;
+        randomMoveSingleSite(packedDesign.CLBSiteInsts);
     }
 
     private void randomMoveDSPSiteCascades(PackedDesign packedDesign) throws IOException {
@@ -371,6 +315,31 @@ public class PlacerGreedyRandom3 extends Placer {
 
     private void randomMoveCARRYSiteChains(PackedDesign packedDesign) throws IOException {
         randomMoveSiteChains(packedDesign.CARRYSiteInstChains);
+    }
+
+    private void randomMoveSingleSite(List<SiteInst> sites) throws IOException {
+        for (SiteInst si : sites) {
+            SiteTypeEnum ste = si.getSiteTypeEnum();
+            List<Site> homeSinks = findSinkSites(si);
+            Site newSite = proposeSite(ste);
+            float oldCost = 0;
+            float newCost = 0;
+            SiteInst awaySi = occupiedSites.get(ste).get(newSite);
+            if (awaySi != null) {
+                List<Site> awaySinks = findSinkSites(awaySi);
+                oldCost += evaluateSite(homeSinks, si.getSite());
+                oldCost += evaluateSite(awaySinks, awaySi.getSite());
+                newCost += evaluateSite(homeSinks, awaySi.getSite());
+                newCost += evaluateSite(awaySinks, si.getSite());
+            } else {
+                oldCost += evaluateSite(homeSinks, si.getSite());
+                newCost += evaluateSite(homeSinks, newSite);
+            }
+            if (newCost < oldCost) {
+                unplaceSiteInst(si);
+                placeSiteInst(si, newSite);
+            }
+        }
     }
 
     private void randomMoveSiteChains(List<List<SiteInst>> chains) throws IOException {
@@ -533,147 +502,107 @@ public class PlacerGreedyRandom3 extends Placer {
         }
     }
 
-    // private void randomMoveCARRYSiteChains(PackedDesign packedDesign) throws
-    // IOException {
-    // SiteTypeEnum selectedSiteType = SiteTypeEnum.SLICEL;
-    // for (List<SiteInst> chain : packedDesign.CARRYSiteInstChains) {
-    // Site selectedAnchor = proposeCARRYAnchorSite(selectedSiteType, chain.size());
-    // float oldCost = 0;
-    // float newCost = 0;
-    // List<Site> newSiteChain = new ArrayList<>();
-    // for (int i = 0; i < chain.size(); i++) {
-    // List<Site> sinkSites = findSinkSites(chain.get(i));
-    // oldCost = oldCost + evaluateSite(sinkSites, chain.get(i).getSite());
-    // Site newSite = device
-    // .getSite("SLICE_X" + selectedAnchor.getInstanceX() + "Y" +
-    // (selectedAnchor.getInstanceY() + i));
-    // newSiteChain.add(newSite);
-    // newCost = newCost + evaluateSite(sinkSites, newSite);
+    // private void randomMoveCLBSites(PackedDesign packedDesign) throws IOException
+    // {
+    // for (SiteInst si : packedDesign.CLBSiteInsts) {
+    // SiteTypeEnum ste = si.getSiteTypeEnum();
+    // List<Site> sinkSites = findSinkSites(si);
+    // if (si.getSite() == null) {
+    // System.out.println("SiteInst null: " + si.getName());
     // }
+    // float oldCost = evaluateSite(sinkSites, si.getSite());
+    // Site newSite = proposeSite(ste);
+    // float newCost = evaluateSite(sinkSites, newSite);
     // if (newCost < oldCost) {
-    // for (int i = 0; i < chain.size(); i++) {
-    // unplaceSiteInst(chain.get(i));
-    // placeSiteInst(chain.get(i), newSiteChain.get(i));
-    // }
+    // unplaceSiteInst(si);
+    // placeSiteInst(si, newSite);
     // }
     // }
     // }
 
-    private Site proposeSite(SiteTypeEnum ste) {
-        boolean validSite = false;
-        Site selectedSite = null;
-        int attempts = 0;
-        while (true) {
-            int randIndex = rand.nextInt(allSites.get(ste).size());
-            selectedSite = allSites.get(ste).get(randIndex);
-            if (occupiedSites.get(ste).containsKey(selectedSite)) {
-                validSite = false;
-            } else {
-                validSite = true;
-            }
-            attempts++;
-            if (attempts > 1000)
-                throw new IllegalStateException("ERROR: Could not propose " + ste + " site after 1000 attempts!");
-            if (validSite)
-                break;
-        }
-        return selectedSite;
+    // private void randomMoveRAMSites(PackedDesign packedDesign) throws IOException
+    // {
+    // for (SiteInst si : packedDesign.RAMSiteInsts) {
+    // List<Site> sinkSites = findSinkSites(si);
+    // float oldCost = evaluateSite(sinkSites, si.getSite());
+    // SiteTypeEnum ste = si.getSiteTypeEnum();
+    // Site newSite = proposeSite(ste);
+    // float newCost = evaluateSite(sinkSites, newSite);
+    // if (newCost < oldCost) {
+    // unplaceSiteInst(si);
+    // placeSiteInst(si, newSite);
+    // }
+    // }
+    // }
+
+    private String getSiteTypePrefix(SiteTypeEnum siteType) {
+        String siteTypePrefix = null;
+        if (siteType == SiteTypeEnum.DSP48E1)
+            siteTypePrefix = "DSP48_";
+        else if (siteType == SiteTypeEnum.SLICEL || siteType == SiteTypeEnum.SLICEM)
+            siteTypePrefix = "SLICE_";
+        else
+            throw new IllegalStateException("ERROR: Could not assign a String prefix to  SiteTypeEnum: " + siteType);
+        return siteTypePrefix;
     }
 
-    private Site proposeCARRYAnchorSite(SiteTypeEnum ste, int chainSize) {
-        boolean validAnchor = false;
-        Site selectedSite = null;
-        int attempts = 0;
-        while (true) {
-            int randIndex = rand.nextInt(allSites.get(ste).size());
-            selectedSite = allSites.get(ste).get(randIndex);
-            int x = selectedSite.getInstanceX();
-            int y = selectedSite.getInstanceY();
-            for (int i = 0; i < chainSize; i++) {
-                Site site = device.getSite("SLICE_X" + x + "Y" + (y + i));
-                if (site == null) {
-                    validAnchor = false;
-                    break;
-                }
-                if (!allSites.get(ste).contains(site)) {
-                    validAnchor = false;
-                    break;
-                }
-                if (occupiedSites.get(ste).containsKey(site)) {
-                    validAnchor = false;
-                    break;
-                }
-                validAnchor = true;
-            }
-            attempts++;
-            if (attempts > 1000)
-                throw new IllegalStateException("ERROR: Could not propose CARRY4 chain anchor after 1000 attempts!");
-            if (validAnchor)
-                break;
+    private List<Site> findBufferZone(SiteTypeEnum siteType, Site initAnchor, Site initTail)
+            throws IOException {
+        List<Site> sites = new ArrayList<>();
+
+        int instX = initAnchor.getInstanceX();
+        int finalAnchorInstY = initAnchor.getInstanceY();
+        int finalTailInstY = initTail.getInstanceY();
+
+        // is there a chain overlap at the anchor?
+        List<SiteInst> residentChainAtAnchor = occupiedSiteChains.get(siteType).get(initAnchor);
+        if (residentChainAtAnchor != null) {
+            Site finalAnchor = residentChainAtAnchor.get(0).getSite();
+            finalAnchorInstY = finalAnchor.getInstanceY();
         }
-        return selectedSite;
+
+        // is there a chain overlap at the tail?
+        List<SiteInst> residentChainAtTail = occupiedSiteChains.get(siteType).get(initTail);
+        if (residentChainAtTail != null) {
+            Site finalTail = residentChainAtTail.get(residentChainAtTail.size() - 1).getSite();
+            finalTailInstY = finalTail.getInstanceY();
+        }
+
+        String siteTypePrefix = getSiteTypePrefix(siteType);
+        int finalBufferSize = finalTailInstY - finalAnchorInstY + 1;
+        for (int i = 0; i < finalBufferSize; i++) {
+            sites.add(device.getSite(siteTypePrefix + "X" + instX + "Y" + (finalAnchorInstY + i)));
+        }
+
+        return sites;
     }
 
-    private Site proposeChainAnchorSite(SiteTypeEnum siteType, int chainSize) {
-        boolean validAnchor = false;
-        Site selectedSite = null;
-        int attempts = 0;
-        while (true) {
-            int randIndex = rand.nextInt(allSites.get(siteType).size());
-            selectedSite = allSites.get(siteType).get(randIndex);
-            int x = selectedSite.getInstanceX();
-            int y = selectedSite.getInstanceY();
-            for (int i = 0; i < chainSize; i++) {
-                Site site = device.getSite(getSiteTypePrefix(siteType) + "X" + x + "Y" + (y + i));
-                if (site == null) {
-                    validAnchor = false;
-                    break;
-                }
-                if (!allSites.get(siteType).contains(site)) {
-                    validAnchor = false;
-                    break;
-                }
-                validAnchor = true;
-            }
-            attempts++;
-            if (attempts > 1000)
-                throw new IllegalStateException(
-                        "ERROR: Could not propose " + siteType + " chain anchor after 1000 attempts!");
-            if (validAnchor)
-                break;
+    private boolean bufferContainsOverlaps(SiteTypeEnum siteType, Site initAnchor, Site initTail)
+            throws IOException {
+        boolean containsOverlap = false;
+        List<SiteInst> residentChainAtAnchor = occupiedSiteChains.get(siteType).get(initAnchor);
+        if (residentChainAtAnchor != null) {
+            Site residentAnchor = residentChainAtAnchor.get(0).getSite();
+            if (residentAnchor.getInstanceY() < initAnchor.getInstanceY())
+                containsOverlap = true;
         }
-        return selectedSite;
-
+        List<SiteInst> residentChainAtTail = occupiedSiteChains.get(siteType).get(initAnchor);
+        if (residentChainAtTail != null) {
+            Site residentTail = residentChainAtTail.get(0).getSite();
+            if (residentTail.getInstanceY() > initTail.getInstanceY())
+                containsOverlap = true;
+        }
+        return containsOverlap;
     }
 
-    private Site proposeDSPAnchorSite(SiteTypeEnum ste, int cascadeSize) {
-        boolean validAnchor = false;
-        Site selectedSite = null;
-        int attempts = 0;
-        while (true) {
-            int randIndex = rand.nextInt(allSites.get(ste).size());
-            selectedSite = allSites.get(ste).get(randIndex);
-            int x = selectedSite.getInstanceX();
-            int y = selectedSite.getInstanceY();
-            for (int i = 0; i < cascadeSize; i++) {
-                Site site = device.getSite("DSP48_X" + x + "Y" + (y + i));
-                if (site == null) {
-                    validAnchor = false;
-                    break;
-                }
-                if (!allSites.get(ste).contains(site)) {
-                    validAnchor = false;
-                    break;
-                }
-                validAnchor = true;
-            }
-            attempts++;
-            if (attempts > 1000)
-                throw new IllegalStateException("ERROR: Could not propose DSP48E1 cascade anchor after 1000 attempts!");
-            if (validAnchor)
-                break;
+    private List<SiteInst> collectSiteInstsInBuffer(SiteTypeEnum siteType, List<Site> bufferZone)
+            throws IOException {
+        List<SiteInst> sis = new ArrayList<>();
+        for (Site site : bufferZone) {
+            sis.add(occupiedSites.get(siteType).get(site));
+            // adds null if key doesnt exist in map
         }
-        return selectedSite;
+        return sis;
     }
 
     public void printTimingBenchmarks() throws IOException {
