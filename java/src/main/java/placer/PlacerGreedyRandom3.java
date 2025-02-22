@@ -2,28 +2,20 @@
 package placer;
 
 import java.io.FileWriter;
-import java.io.File;
 import java.io.IOException;
 import java.util.stream.Collectors;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.LinkedList;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
 
-import com.xilinx.rapidwright.edif.EDIFHierCellInst;
-
-import com.xilinx.rapidwright.design.ModuleInst;
 import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.SiteInst;
-import com.xilinx.rapidwright.design.SitePinInst;
 import com.xilinx.rapidwright.design.Net;
 
 import com.xilinx.rapidwright.device.Device;
@@ -76,7 +68,7 @@ public class PlacerGreedyRandom3 extends Placer {
         int totalMoves = 0;
 
         unplaceAllSiteInsts(packedDesign);
-        randomInitialPlacement(packedDesign);
+        // randomInitialPlacement(packedDesign);
 
         design.writeCheckpoint(rootDir + "/outputs/checkpoints/init_ram_dsp.dcp");
 
@@ -86,24 +78,24 @@ public class PlacerGreedyRandom3 extends Placer {
                 break;
             System.out.println("totalMoves: " + totalMoves);
             long t0 = System.currentTimeMillis();
-            randomMove(packedDesign);
-            // if (totalMoves == 0) {
-            // randomInitDSPSiteCascades(packedDesign);
-            // randomInitRAMSites(packedDesign);
-            // } else if (totalMoves > 0 && totalMoves < 200) {
-            // randomMoveDSPSiteCascades(packedDesign);
-            // randomMoveRAMSites(packedDesign);
-            // } else if (totalMoves == 200) {
-            // randomInitCARRYSiteChains(packedDesign);
-            // } else if (totalMoves > 200 && totalMoves < 400) {
-            // randomMoveDSPSiteCascades(packedDesign);
-            // randomMoveRAMSites(packedDesign);
-            // randomMoveCARRYSiteChains(packedDesign);
-            // } else if (totalMoves == 400) {
-            // randomInitCLBSites(packedDesign);
-            // } else if (totalMoves > 400) {
             // randomMove(packedDesign);
-            // }
+            if (totalMoves == 0) {
+                randomInitDSPSiteCascades(packedDesign);
+                randomInitRAMSites(packedDesign);
+            } else if (totalMoves > 0 && totalMoves < 200) {
+                randomMoveDSPSiteCascades(packedDesign);
+                randomMoveRAMSites(packedDesign);
+            } else if (totalMoves == 200) {
+                randomInitCARRYSiteChains(packedDesign);
+            } else if (totalMoves > 200 && totalMoves < 400) {
+                randomMoveDSPSiteCascades(packedDesign);
+                randomMoveRAMSites(packedDesign);
+                randomMoveCARRYSiteChains(packedDesign);
+            } else if (totalMoves == 400) {
+                randomInitCLBSites(packedDesign);
+            } else if (totalMoves > 400) {
+                randomMove(packedDesign);
+            }
             long t1 = System.currentTimeMillis();
             moveTimes.add(t1 - t0);
 

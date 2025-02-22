@@ -48,6 +48,7 @@ public class PlacerAnnealing1 extends Placer {
     private List<Long> evalTimes;
     private List<Long> renderTimes;
     private List<Long> writeTimes;
+    private List<Pair<Integer, Integer>> spiralPath = SpiralPath.generateDiamondSpiral(1000);
 
     public PlacerAnnealing1(String rootDir, Design design, Device device) throws IOException {
         super(rootDir, design, device);
@@ -259,21 +260,6 @@ public class PlacerAnnealing1 extends Placer {
 
     private Site proposeMidpointAnchorSite(List<SiteInst> chain, boolean swapEnable) {
 
-        List<Pair<Integer, Integer>> spiralSearch = new ArrayList<>();
-        spiralSearch.add(new Pair<Integer, Integer>(0, 0));
-        spiralSearch.add(new Pair<Integer, Integer>(1, 0));
-        spiralSearch.add(new Pair<Integer, Integer>(0, 1));
-        spiralSearch.add(new Pair<Integer, Integer>(-1, 0));
-        spiralSearch.add(new Pair<Integer, Integer>(0, -1));
-        spiralSearch.add(new Pair<Integer, Integer>(2, 0));
-        spiralSearch.add(new Pair<Integer, Integer>(1, 1));
-        spiralSearch.add(new Pair<Integer, Integer>(0, 2));
-        spiralSearch.add(new Pair<Integer, Integer>(-1, 1));
-        spiralSearch.add(new Pair<Integer, Integer>(-2, 0));
-        spiralSearch.add(new Pair<Integer, Integer>(-1, -1));
-        spiralSearch.add(new Pair<Integer, Integer>(0, -2));
-        spiralSearch.add(new Pair<Integer, Integer>(1, -1));
-
         boolean validAnchor = false;
         Site selectedSite = null;
         SiteTypeEnum ste = chain.get(0).getSiteTypeEnum();
@@ -284,21 +270,33 @@ public class PlacerAnnealing1 extends Placer {
         }
         Pair<Integer, Integer> midpoint = findMidpoint(sinks);
         int attempts = 0;
+
         while (true) {
-            int x = midpoint.key();
-            int y = midpoint.value() - chain.size() / 2;
-            for (int i = 0; i < chain.size(); i++) {
-                Site site = device.getSite(getSiteTypePrefix(ste) + "X" + x + "Y" + (y + i));
+
+            int x = midpoint.key() + spiralPath.get(attempts).key();
+            int y = midpoint.value() - chain.size() / 2 + spiralPath.get(attempts).value();
+            Site site = device.getSite(getSiteTypePrefix(ste) + "X" + x + "Y" + y);
+            if (site == null) {
+                validAnchor = false;
+                continue;
             }
-            break;
+            if (!allSites.get(ste).contains(site)) {
+                validAnchor = false;
+                continue;
+            }
+            if (!swapEnable) {
+                if (occupiedSites.get(ste).containsKey(site)) {
+                    validAnchor = false;
+                    continue;
+                }
+            }
+            if (site.getSiteTypeEnum() == ste) {
+                validAnchor = true;
+                selectedSite = site;
+                break;
+            }
         }
         return selectedSite;
-    }
-
-    private Site findClosestCompatibleSite(SiteTypeEnum ste, int rpmX, int rpmY) {
-        Site site = null;
-
-        return site;
     }
 
     private Site proposeRandomAnchorSite(SiteTypeEnum siteType, int chainSize, boolean swapEnable) {

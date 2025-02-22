@@ -6,36 +6,23 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
-import java.io.FileWriter;
 import java.io.File;
 import java.io.IOException;
-import java.nio.Buffer;
-import java.util.stream.Collectors;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Random;
 
 import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.Net;
 import com.xilinx.rapidwright.design.SiteInst;
 import com.xilinx.rapidwright.design.SitePinInst;
 
-import com.xilinx.rapidwright.edif.EDIFHierCellInst;
-import com.xilinx.rapidwright.edif.EDIFHierPortInst;
-
 import com.xilinx.rapidwright.device.Device;
 import com.xilinx.rapidwright.device.Site;
-import com.xilinx.rapidwright.device.SitePIPStatus;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
-import com.xilinx.rapidwright.device.ClockRegion;
 
 public class ImageMaker {
 

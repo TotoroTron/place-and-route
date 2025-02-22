@@ -1,42 +1,10 @@
 package placer;
 
-import java.util.stream.Collectors;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-
 import java.io.FileWriter;
-import java.io.BufferedWriter;
 import java.io.IOException;
 
 import com.xilinx.rapidwright.design.Design;
-import com.xilinx.rapidwright.design.SiteInst;
-import com.xilinx.rapidwright.design.Net;
-import com.xilinx.rapidwright.design.Cell;
-import com.xilinx.rapidwright.design.SitePinInst;
-
-import com.xilinx.rapidwright.edif.EDIFNetlist;
-import com.xilinx.rapidwright.edif.EDIFHierNet;
-import com.xilinx.rapidwright.edif.EDIFNet;
-import com.xilinx.rapidwright.edif.EDIFCellInst;
-import com.xilinx.rapidwright.edif.EDIFHierCellInst;
-import com.xilinx.rapidwright.edif.EDIFPortInst;
-import com.xilinx.rapidwright.edif.EDIFHierPortInst;
-
 import com.xilinx.rapidwright.device.Device;
-import com.xilinx.rapidwright.device.Tile;
-import com.xilinx.rapidwright.device.Site;
-import com.xilinx.rapidwright.device.SiteTypeEnum;
-import com.xilinx.rapidwright.device.BEL;
-import com.xilinx.rapidwright.device.BELPin;
-import com.xilinx.rapidwright.device.ClockRegion;
 
 public abstract class Placer {
     protected String placerName;

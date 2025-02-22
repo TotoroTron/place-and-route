@@ -17,7 +17,6 @@ import com.xilinx.rapidwright.edif.EDIFHierPortInst;
 import com.xilinx.rapidwright.edif.EDIFHierNet;
 import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.device.Device;
-import com.xilinx.rapidwright.design.tools.LUTTools;
 
 public class PrepackerBasic extends Prepacker {
     public PrepackerBasic(String rootDir, Design design, Device device) throws IOException {

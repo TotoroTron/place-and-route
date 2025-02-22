@@ -22,7 +22,6 @@ import com.xilinx.rapidwright.design.Net;
 import com.xilinx.rapidwright.design.Cell;
 import com.xilinx.rapidwright.design.SitePinInst;
 
-import com.xilinx.rapidwright.edif.EDIFNetlist;
 import com.xilinx.rapidwright.edif.EDIFHierNet;
 import com.xilinx.rapidwright.edif.EDIFNet;
 import com.xilinx.rapidwright.edif.EDIFCellInst;
@@ -34,8 +33,6 @@ import com.xilinx.rapidwright.device.Device;
 import com.xilinx.rapidwright.device.Site;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 import com.xilinx.rapidwright.device.BEL;
-import com.xilinx.rapidwright.device.BELPin;
-import com.xilinx.rapidwright.device.ClockRegion;
 
 public abstract class Packer {
     protected String packerName;

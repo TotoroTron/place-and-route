@@ -3,9 +3,7 @@ package placer;
 
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
 import java.util.Set;
-import java.util.HashSet;
 
 import com.xilinx.rapidwright.device.Site;
 import com.xilinx.rapidwright.device.SiteTypeEnum;

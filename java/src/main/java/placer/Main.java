@@ -7,28 +7,15 @@ import java.util.logging.Level;
 
 import java.io.IOException;
 
-import java.util.List;
-import java.util.Set;
-import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Map;
-import java.util.HashMap;
 
 import com.xilinx.rapidwright.design.ModuleInst;
 import com.xilinx.rapidwright.design.Module;
 import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.SiteInst;
-import com.xilinx.rapidwright.design.Cell;
-import com.xilinx.rapidwright.design.Unisim;
-
-import com.xilinx.rapidwright.edif.EDIFHierCellInst;
 
 import com.xilinx.rapidwright.device.Device;
-import com.xilinx.rapidwright.device.Site;
-import com.xilinx.rapidwright.device.BEL;
-import com.xilinx.rapidwright.device.SiteTypeEnum;
-import com.xilinx.rapidwright.device.ClockRegion;
 
 public class Main {
 
