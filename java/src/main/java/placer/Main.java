@@ -67,8 +67,8 @@ public class Main {
             // takes the packedDesign and figures out an optimal mapping of SiteInsts onto
             // Sites via simulated annealing, analytical, electrostatic placement, etc.
             // works entirely on the SiteInst/Site/Tile level.
-            PlacerGreedyRandom3 GR3Placer = new PlacerGreedyRandom3(rootDir, design, device);
-            GR3Placer.run(packedDesign, prepackedDesign);
+            PlacerAnnealing1 SA1Placer = new PlacerAnnealing1(rootDir, design, device);
+            SA1Placer.run(packedDesign, prepackedDesign);
 
         } catch (IOException e) {
             logger.log(Level.SEVERE, "An IOException occurred while configuring the logger.", e);
