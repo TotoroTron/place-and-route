@@ -76,7 +76,7 @@ public class PlacerGreedyRandom3 extends Placer {
         int totalMoves = 0;
 
         unplaceAllSiteInsts(packedDesign);
-        // randomInitialPlacement(packedDesign);
+        randomInitialPlacement(packedDesign);
 
         design.writeCheckpoint(rootDir + "/outputs/checkpoints/init_ram_dsp.dcp");
 
@@ -84,23 +84,26 @@ public class PlacerGreedyRandom3 extends Placer {
         while (true) {
             if (totalMoves > 600)
                 break;
-            long t0 = System.currentTimeMillis();
             System.out.println("totalMoves: " + totalMoves);
-            if (totalMoves == 0) {
-                randomInitDSPSiteCascades(packedDesign);
-                randomInitRAMSites(packedDesign);
-            } else if (totalMoves > 0 && totalMoves < 200) {
-                randomMoveDSPSiteCascades(packedDesign);
-                randomMoveRAMSites(packedDesign);
-            } else if (totalMoves == 200) {
-                randomInitCARRYSiteChains(packedDesign);
-            } else if (totalMoves > 200 && totalMoves < 400) {
-                randomMoveCARRYSiteChains(packedDesign);
-            } else if (totalMoves == 400) {
-                randomInitCLBSites(packedDesign);
-            } else if (totalMoves > 400) {
-                randomMove(packedDesign);
-            }
+            long t0 = System.currentTimeMillis();
+            randomMove(packedDesign);
+            // if (totalMoves == 0) {
+            // randomInitDSPSiteCascades(packedDesign);
+            // randomInitRAMSites(packedDesign);
+            // } else if (totalMoves > 0 && totalMoves < 200) {
+            // randomMoveDSPSiteCascades(packedDesign);
+            // randomMoveRAMSites(packedDesign);
+            // } else if (totalMoves == 200) {
+            // randomInitCARRYSiteChains(packedDesign);
+            // } else if (totalMoves > 200 && totalMoves < 400) {
+            // randomMoveDSPSiteCascades(packedDesign);
+            // randomMoveRAMSites(packedDesign);
+            // randomMoveCARRYSiteChains(packedDesign);
+            // } else if (totalMoves == 400) {
+            // randomInitCLBSites(packedDesign);
+            // } else if (totalMoves > 400) {
+            // randomMove(packedDesign);
+            // }
             long t1 = System.currentTimeMillis();
             moveTimes.add(t1 - t0);
 
@@ -375,6 +378,10 @@ public class PlacerGreedyRandom3 extends Placer {
                 newCost += evaluateSite(homeSinks, newSite);
             }
             if (newCost < oldCost) {
+                System.out.println("newCost: " + newCost);
+                System.out.println("oldCost: " + oldCost);
+                if (awaySi != null)
+                    System.out.println("\tSwap accepted!");
                 unplaceSiteInst(si);
                 placeSiteInst(si, newSite);
             }
