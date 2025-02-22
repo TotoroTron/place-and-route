@@ -82,23 +82,23 @@ public class PlacerGreedyRandom3 extends Placer {
 
         int frameCounter = 1;
         while (true) {
-            if (totalMoves > 400)
+            if (totalMoves > 600)
                 break;
             long t0 = System.currentTimeMillis();
             System.out.println("totalMoves: " + totalMoves);
             if (totalMoves == 0) {
                 randomInitDSPSiteCascades(packedDesign);
                 randomInitRAMSites(packedDesign);
-            } else if (totalMoves > 0 && totalMoves < 100) {
+            } else if (totalMoves > 0 && totalMoves < 200) {
                 randomMoveDSPSiteCascades(packedDesign);
                 randomMoveRAMSites(packedDesign);
-            } else if (totalMoves == 100) {
-                randomInitCARRYSiteChains(packedDesign);
-            } else if (totalMoves > 100 && totalMoves < 200) {
-                randomMoveCARRYSiteChains(packedDesign);
             } else if (totalMoves == 200) {
+                randomInitCARRYSiteChains(packedDesign);
+            } else if (totalMoves > 200 && totalMoves < 400) {
+                randomMoveCARRYSiteChains(packedDesign);
+            } else if (totalMoves == 400) {
                 randomInitCLBSites(packedDesign);
-            } else if (totalMoves > 200) {
+            } else if (totalMoves > 400) {
                 randomMove(packedDesign);
             }
             long t1 = System.currentTimeMillis();
@@ -240,7 +240,7 @@ public class PlacerGreedyRandom3 extends Placer {
         si.unPlace();
     }
 
-    private Site proposeSite(SiteTypeEnum ste) {
+    private Site proposeSite(SiteTypeEnum ste, boolean swapEnable) {
         boolean validSite = false;
         Site selectedSite = null;
         int attempts = 0;
@@ -249,14 +249,16 @@ public class PlacerGreedyRandom3 extends Placer {
                 throw new IllegalStateException("ERROR: Could not propose " + ste + " site after 1000 attempts!");
             int randIndex = rand.nextInt(allSites.get(ste).size());
             selectedSite = allSites.get(ste).get(randIndex);
-            if (occupiedSiteChains.containsKey(ste)) {
+            if (occupiedSiteChains.containsKey(ste)) { // never propose single site swap with a chain
                 if (!occupiedSiteChains.get(ste).containsKey(selectedSite)) {
                     validSite = true;
                 }
-            } else {
+            } else if (!swapEnable) { // swapping with other single sites only
                 if (!occupiedSites.get(ste).containsKey(selectedSite)) {
                     validSite = true;
                 }
+            } else {
+                validSite = true;
             }
             if (validSite)
                 break;
@@ -305,14 +307,14 @@ public class PlacerGreedyRandom3 extends Placer {
 
     private void randomInitCLBSites(PackedDesign packedDesign) throws IOException {
         for (SiteInst si : packedDesign.CLBSiteInsts) {
-            Site selectedSite = proposeSite(si.getSiteTypeEnum());
+            Site selectedSite = proposeSite(si.getSiteTypeEnum(), false);
             placeSiteInst(si, selectedSite);
         }
     }
 
     private void randomInitRAMSites(PackedDesign packedDesign) throws IOException {
         for (SiteInst si : packedDesign.RAMSiteInsts) {
-            Site selectedSite = proposeSite(si.getSiteTypeEnum());
+            Site selectedSite = proposeSite(si.getSiteTypeEnum(), false);
             placeSiteInst(si, selectedSite);
         }
     }
@@ -358,7 +360,7 @@ public class PlacerGreedyRandom3 extends Placer {
         for (SiteInst si : sites) {
             SiteTypeEnum ste = si.getSiteTypeEnum();
             List<Site> homeSinks = findSinkSites(si);
-            Site newSite = proposeSite(ste);
+            Site newSite = proposeSite(ste, true);
             float oldCost = 0;
             float newCost = 0;
             SiteInst awaySi = occupiedSites.get(ste).get(newSite);
