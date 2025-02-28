@@ -75,10 +75,10 @@ public class PlacerAnnealing1 extends Placer {
         unplaceAllSiteInsts(packedDesign);
         randomInitialPlacement(packedDesign);
 
-        design.writeCheckpoint(rootDir + "/outputs/checkpoints/init_ram_dsp.dcp");
+        design.writeCheckpoint(rootDir + "/outputs/checkpoints/init_placed.dcp");
 
         while (true) {
-            if (totalMoves > 400)
+            if (totalMoves > 300)
                 break;
             System.out.println("totalMoves: " + totalMoves);
             long t0 = System.currentTimeMillis();
@@ -113,7 +113,7 @@ public class PlacerAnnealing1 extends Placer {
         imPlaced.renderAll();
         imPlaced.exportImage(graphicsDir + "/final_placement.png", "png");
 
-        exportCostHistory(rootDir + "/outputs/printout/" + placerName + ".csv");
+        exportCostHistory(rootDir + "/outputs/printout/convergence.csv");
         printTimingBenchmarks();
         writer.write("\n\nTotal move iterations: " + totalMoves);
         writer.write("\n\nStale move iterations: " + staleMoves);
@@ -153,6 +153,8 @@ public class PlacerAnnealing1 extends Placer {
         for (Site sinkSite : sinkSites) {
             if (sinkSite == null)
                 continue; // sink has not been placed yet
+            if (sinkSite.isGlobalClkBuffer() || sinkSite.isGlobalClkPad())
+                continue;
             cost = cost + srcSite.getTile().getTileManhattanDistance(sinkSite.getTile());
         }
         return cost;
@@ -162,6 +164,8 @@ public class PlacerAnnealing1 extends Placer {
         float cost = 0;
         Collection<Net> nets = design.getNets();
         for (Net net : nets) {
+            if (net.isClockNet() || net.isStaticNet())
+                continue;
             Tile srcTile = net.getSourceTile();
             if (srcTile == null) // net is null if its' purely intrasite!
                 continue;

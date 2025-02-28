@@ -1,7 +1,7 @@
 # route.tcl
 
 set root_dir "/home/bcheng/workspace/dev/place-and-route"
-set placed_dcp "$root_dir/outputs/checkpoints/placed.dcp"
+set placed_dcp "$root_dir/outputs/checkpoints/init_placed.dcp"
 set packed_dcp "$root_dir/outputs/checkpoints/packed.dcp"
 set routed_dcp "$root_dir/outputs/checkpoints/routed.dcp"
 set bitstream_file "$root_dir/outputs/output.bit"
