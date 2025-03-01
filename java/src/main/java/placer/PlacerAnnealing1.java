@@ -75,10 +75,10 @@ public class PlacerAnnealing1 extends Placer {
         unplaceAllSiteInsts(packedDesign);
         randomInitialPlacement(packedDesign);
 
-        design.writeCheckpoint(rootDir + "/outputs/checkpoints/init_placed.dcp");
+        // design.writeCheckpoint(rootDir + "/outputs/checkpoints/init_placed.dcp");
 
         while (true) {
-            if (totalMoves > 300)
+            if (totalMoves > 200)
                 break;
             System.out.println("totalMoves: " + totalMoves);
             long t0 = System.currentTimeMillis();
@@ -396,10 +396,11 @@ public class PlacerAnnealing1 extends Placer {
         for (SiteInst si : sites) {
             SiteTypeEnum ste = si.getSiteTypeEnum();
             List<Site> homeSinks = findSinkSites(si);
-            Site newSite = proposeSite(ste, true);
+            Site homeSite = si.getSite();
+            Site awaySite = proposeSite(ste, true);
             float oldCost = 0;
             float newCost = 0;
-            SiteInst awaySi = occupiedSites.get(ste).get(newSite);
+            SiteInst awaySi = occupiedSites.get(ste).get(awaySite);
             if (awaySi != null) {
                 List<Site> awaySinks = findSinkSites(awaySi);
                 oldCost += evaluateSite(homeSinks, si.getSite());
@@ -408,15 +409,21 @@ public class PlacerAnnealing1 extends Placer {
                 newCost += evaluateSite(awaySinks, si.getSite());
             } else {
                 oldCost += evaluateSite(homeSinks, si.getSite());
-                newCost += evaluateSite(homeSinks, newSite);
+                newCost += evaluateSite(homeSinks, awaySite);
             }
             if (newCost < oldCost) {
                 // System.out.println("newCost: " + newCost);
                 // System.out.println("oldCost: " + oldCost);
-                if (awaySi != null)
+                if (awaySi != null) {
                     System.out.println("\tSwap accepted!");
-                unplaceSiteInst(si);
-                placeSiteInst(si, newSite);
+                    unplaceSiteInst(si);
+                    unplaceSiteInst(awaySi);
+                    placeSiteInst(si, awaySite);
+                    placeSiteInst(awaySi, homeSite);
+                } else {
+                    unplaceSiteInst(si);
+                    placeSiteInst(si, awaySite);
+                }
             }
         }
     }
