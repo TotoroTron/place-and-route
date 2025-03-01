@@ -403,19 +403,20 @@ public class PlacerAnnealing1 extends Placer {
             SiteInst awaySi = occupiedSites.get(ste).get(awaySite);
             if (awaySi != null) {
                 List<Site> awaySinks = findSinkSites(awaySi);
-                oldCost += evaluateSite(homeSinks, si.getSite());
-                oldCost += evaluateSite(awaySinks, awaySi.getSite());
-                newCost += evaluateSite(homeSinks, awaySi.getSite());
-                newCost += evaluateSite(awaySinks, si.getSite());
+                oldCost += evaluateSite(homeSinks, homeSite);
+                oldCost += evaluateSite(awaySinks, awaySite);
+                newCost += evaluateSite(homeSinks, awaySite);
+                newCost += evaluateSite(awaySinks, homeSite);
             } else {
-                oldCost += evaluateSite(homeSinks, si.getSite());
+                oldCost += evaluateSite(homeSinks, homeSite);
                 newCost += evaluateSite(homeSinks, awaySite);
             }
             if (newCost < oldCost) {
                 // System.out.println("newCost: " + newCost);
                 // System.out.println("oldCost: " + oldCost);
                 if (awaySi != null) {
-                    System.out.println("\tSwap accepted!");
+                    if (homeSite.getSiteTypeEnum() == SiteTypeEnum.RAMB18E1)
+                        System.out.println("RAM Swap Accepted!");
                     unplaceSiteInst(si);
                     unplaceSiteInst(awaySi);
                     placeSiteInst(si, awaySite);
