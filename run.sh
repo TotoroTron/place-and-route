@@ -147,7 +147,7 @@ fi
 
 # Gradle Run Stage (replaces Java Placement)
 if [ "$start_stage" == "place" ] || [ "$start_stage" == "all" ]; then
-    rm $PROJ_DIR/outputs/graphics/*/gif/*
+    rm $PROJ_DIR/outputs/graphics/images/*.png
     rm $PROJ_DIR/outputs/printout/*.txt
     echo "Running Java placement with Gradle..."
     cd $PROJ_DIR/java
@@ -159,6 +159,22 @@ if [ "$start_stage" == "place" ] || [ "$start_stage" == "all" ]; then
 fi
 
 # Return to outer dir
+cd $PROJ_DIR
+
+# Render placement video
+if [ "$start_stage" == "video" ] || [ "$start_stage" == "all" ]; then
+    cd $PROJ_DIR
+    python3 python/plot_convergence.py
+    FPS=10
+    OUTPUT="../video.mp4"
+    INPUT="outputs/graphics/images"
+    INPUT_PATTERN="%08d.png"
+    cd $INPUT
+    ffmpeg -framerate $FPS -i $INPUT_PATTERN -vcodec libx264 "$OUTPUT" -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2"
+    # height not divisible by 2 error:
+    # https://stackoverflow.com/questions/20847674/ffmpeg-libx264-height-not-divisible-by-2
+fi
+
 cd $PROJ_DIR
 
 # Vivado Route Stage
