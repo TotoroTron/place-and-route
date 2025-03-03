@@ -80,7 +80,7 @@ public class PlacerAnnealRandom extends Placer {
         design.writeCheckpoint(rootDir + "/outputs/checkpoints/init_placed.dcp");
 
         this.movesLimit = 800;
-        initCoolingSchedule(10000.0f, 0.95f);
+        initCoolingSchedule(1000.0f, 0.95f);
 
         while (true) {
             if (move >= movesLimit)
@@ -125,7 +125,7 @@ public class PlacerAnnealRandom extends Placer {
         this.coolingSchedule = new ArrayList<>();
         double currentTemp = initialTemp;
         for (int i = 0; i < movesLimit; i++) {
-            if (i > movesLimit - 200) {
+            if (i > movesLimit * 3 / 4) {
                 this.coolingSchedule.add(0.0d);
             } else {
                 this.coolingSchedule.add(currentTemp);
@@ -263,7 +263,6 @@ public class PlacerAnnealRandom extends Placer {
     }
 
     private Site proposeSite(SiteTypeEnum ste, boolean swapEnable) {
-        boolean validSite = false;
         Site selectedSite = null;
         int attempts = 0;
         while (true) {
@@ -273,13 +272,11 @@ public class PlacerAnnealRandom extends Placer {
             selectedSite = allSites.get(ste).get(randIndex);
             if (occupiedSiteChains.containsKey(ste)) { // never propose site swap with a chain
                 if (occupiedSiteChains.get(ste).containsKey(selectedSite)) {
-                    validSite = false;
                     attempts++;
                     continue;
                 }
             } else if (!swapEnable) { // swapping with other single sites only
                 if (occupiedSites.get(ste).containsKey(selectedSite)) {
-                    validSite = false;
                     attempts++;
                     continue;
                 }
@@ -394,8 +391,6 @@ public class PlacerAnnealRandom extends Placer {
                 newCost += evaluateSite(homeSinks, awaySite);
             }
             if (evaluateMoveAcceptance(oldCost, newCost)) {
-                // System.out.println("newCost: " + newCost);
-                // System.out.println("oldCost: " + oldCost);
                 if (awaySi != null) {
                     unplaceSiteInst(si);
                     unplaceSiteInst(awaySi);

@@ -227,7 +227,8 @@ public class PackerBasic1 extends Packer {
             LUTFFGroup lutffgroup = entry.getValue();
             for (List<Pair<EDIFHierCellInst, EDIFHierCellInst>> LUTFFPairs : splitIntoGroups(lutffgroup.group(), 4)) {
                 Site selectedSite = selectCLBSite();
-                SiteInst si = design.createSiteInst(selectedSite);
+                SiteInst si = new SiteInst(LUTFFPairs.get(0).value().getFullHierarchicalInstName(), design,
+                        selectedSite.getSiteTypeEnum(), selectedSite);
                 for (int i = 0; i < LUTFFPairs.size(); i++) {
                     EDIFHierCellInst ff = LUTFFPairs.get(i).value();
                     EDIFHierCellInst lut = LUTFFPairs.get(i).key();
@@ -259,7 +260,8 @@ public class PackerBasic1 extends Packer {
         writer.write("\n\nPacking LUT Groups...");
         for (List<EDIFHierCellInst> group : LUTGroups) {
             Site selectedSite = selectCLBSite();
-            SiteInst si = design.createSiteInst(selectedSite);
+            SiteInst si = new SiteInst(group.get(0).getFullHierarchicalInstName(), design,
+                    selectedSite.getSiteTypeEnum(), selectedSite);
             for (int i = 0; i < group.size(); i++) {
                 si.createCell(group.get(i), si.getBEL(LUT6_BELS[i]));
             }
