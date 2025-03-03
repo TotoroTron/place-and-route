@@ -25,6 +25,7 @@ import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.SiteInst;
 import com.xilinx.rapidwright.design.SitePinInst;
 import com.xilinx.rapidwright.design.Net;
+import com.xilinx.rapidwright.design.Cell;
 
 import com.xilinx.rapidwright.device.Device;
 import com.xilinx.rapidwright.device.Tile;
@@ -48,7 +49,7 @@ public class PlacerAnnealRandom extends Placer {
     private List<Long> evalTimes;
     private List<Long> renderTimes;
     private List<Long> writeTimes;
-    private int movesLimit = 300;
+    private int movesLimit = 400;
     private List<Double> coolingSchedule;
     private double currentTemp;
 
@@ -77,7 +78,7 @@ public class PlacerAnnealRandom extends Placer {
         randomInitialPlacement(packedDesign);
 
         // design.writeCheckpoint(rootDir + "/outputs/checkpoints/init_placed.dcp");
-        initCoolingSchedule(1000.0f, 0.98f);
+        initCoolingSchedule(10000.0f, 0.99f);
 
         while (true) {
             if (move >= movesLimit)
@@ -120,14 +121,11 @@ public class PlacerAnnealRandom extends Placer {
     private void initCoolingSchedule(double initialTemp, double alpha) throws IOException {
         this.writer.write("\nPrinting Cooling Schedule...");
         this.coolingSchedule = new ArrayList<>();
-        // geometric cooling schedule
-        // double initialTemp = 1000.0f;
-        // double alpha = 0.95f; // (0 < alpha < 1)
         double currentTemp = initialTemp;
         for (int i = 0; i < movesLimit; i++) {
             this.coolingSchedule.add(currentTemp);
             this.writer.write("\n\t" + currentTemp);
-            currentTemp *= alpha; // multiply by alpha each step
+            currentTemp *= alpha;
         }
     }
 
@@ -248,6 +246,16 @@ public class PlacerAnnealRandom extends Placer {
         si.unPlace();
     }
 
+    private void printSiteInstStatus(SiteInst si) {
+        Map<String, Cell> belCellMap = si.getCellMap();
+        System.out.println("\tSiteInst: " + si);
+        for (Map.Entry<String, Cell> entry : belCellMap.entrySet()) {
+            String bel = entry.getKey();
+            Cell cell = entry.getValue();
+            System.out.println("\t\tCell: " + cell + ", BEL: " + bel);
+        }
+    }
+
     private Site proposeSite(SiteTypeEnum ste, boolean swapEnable) {
         boolean validSite = false;
         Site selectedSite = null;
@@ -257,20 +265,20 @@ public class PlacerAnnealRandom extends Placer {
                 throw new IllegalStateException("ERROR: Could not propose " + ste + " site after 1000 attempts!");
             int randIndex = rand.nextInt(allSites.get(ste).size());
             selectedSite = allSites.get(ste).get(randIndex);
-            if (occupiedSiteChains.containsKey(ste)) { // never propose single site swap with a chain
-                if (!occupiedSiteChains.get(ste).containsKey(selectedSite)) {
-                    validSite = true;
+            if (occupiedSiteChains.containsKey(ste)) { // never propose site swap with a chain
+                if (occupiedSiteChains.get(ste).containsKey(selectedSite)) {
+                    validSite = false;
+                    attempts++;
+                    continue;
                 }
             } else if (!swapEnable) { // swapping with other single sites only
-                if (!occupiedSites.get(ste).containsKey(selectedSite)) {
-                    validSite = true;
+                if (occupiedSites.get(ste).containsKey(selectedSite)) {
+                    validSite = false;
+                    attempts++;
+                    continue;
                 }
-            } else {
-                validSite = true;
             }
-            if (validSite)
-                break;
-            attempts++;
+            break;
         }
         return selectedSite;
     }
@@ -287,10 +295,6 @@ public class PlacerAnnealRandom extends Placer {
             for (int i = 0; i < chainSize; i++) {
                 Site site = device.getSite(getSiteTypePrefix(siteType) + "X" + x + "Y" + (y + i));
                 if (site == null) {
-                    validAnchor = false;
-                    break;
-                }
-                if (!allSites.get(siteType).contains(site)) {
                     validAnchor = false;
                     break;
                 }
@@ -467,9 +471,25 @@ public class PlacerAnnealRandom extends Placer {
                 throw new IllegalStateException("ERROR: homeBuffer.size(): " + homeBuffer.size()
                         + " != siteInstInHomeBuffer.size(): " + siteInstsInHomeBuffer.size());
 
-            if (homeBuffer.size() > 16) {
-                System.out.println("homeBuffer.size(): " + homeBuffer.size());
-            }
+            // if (homeBuffer.size() > 16) {
+            // System.out.println("homeBuffer.size(): " + homeBuffer.size());
+            // System.out.println("homeChain...");
+            // for (SiteInst si : homeChain) {
+            // if (si == null) {
+            // System.out.println("\tnull");
+            // } else {
+            // printSiteInstStatus(si);
+            // }
+            // }
+            // System.out.println("siteInstsInAwayBuffer...");
+            // for (SiteInst si : siteInstsInAwayBuffer) {
+            // if (si == null) {
+            // System.out.println("\tnull");
+            // } else {
+            // printSiteInstStatus(si);
+            // }
+            // }
+            // }
 
             // evaluate the cost of the swap
             double oldCost = 0;
@@ -574,6 +594,16 @@ public class PlacerAnnealRandom extends Placer {
         String siteTypePrefix = getSiteTypePrefix(siteType);
         for (int i = finalAnchorInstY; i <= finalTailInstY; i++) {
             sites.add(device.getSite(siteTypePrefix + "X" + instX + "Y" + i));
+        }
+
+        if (finalTailInstY - finalAnchorInstY > 16) {
+            System.out.println("buffer size: " + (finalTailInstY - finalAnchorInstY));
+            System.out.println("\tinitAnchor: " + initAnchor.getInstanceY() + ", initTail: " + initTail.getInstanceY());
+            System.out.println("\tfinalAnchorInstY: " + finalAnchorInstY + ", finalTail: " + finalTailInstY);
+            for (Site site : sites) {
+                System.out.println("\t\tSiteInst: " + occupiedSites.get(site.getSiteTypeEnum()).get(site));
+            }
+
         }
 
         // System.out.println("finalAnchor: " + finalAnchorInstY);
