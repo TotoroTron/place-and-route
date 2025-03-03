@@ -32,6 +32,7 @@ import com.xilinx.rapidwright.device.Tile;
 
 import com.xilinx.rapidwright.device.Site;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
+import com.xilinx.rapidwright.device.ClockRegion;
 
 public class PlacerAnnealRandom extends Placer {
 
@@ -39,6 +40,8 @@ public class PlacerAnnealRandom extends Placer {
     private Set<SiteTypeEnum> uniqueSiteTypes;
     private Map<SiteTypeEnum, List<Site>> allSites;
     private Map<SiteTypeEnum, Map<Site, SiteInst>> occupiedSites;
+
+    protected ClockRegion regionConstraint;
 
     // store chain occupation info for fast access
     private Map<SiteTypeEnum, Map<Site, List<SiteInst>>> occupiedSiteChains;
@@ -53,10 +56,11 @@ public class PlacerAnnealRandom extends Placer {
     private List<Double> coolingSchedule;
     private double currentTemp;
 
-    public PlacerAnnealRandom(String rootDir, Design design, Device device) throws IOException {
+    public PlacerAnnealRandom(String rootDir, Design design, Device device, ClockRegion region) throws IOException {
         super(rootDir, design, device);
         this.placerName = "PlacerAnnealRandom";
         this.graphicsDir = rootDir + "/outputs/graphics";
+        this.regionConstraint = region;
         this.uniqueSiteTypes = new HashSet<>();
         this.occupiedSites = new HashMap<>();
         this.occupiedSiteChains = new HashMap<>();
@@ -79,8 +83,8 @@ public class PlacerAnnealRandom extends Placer {
 
         design.writeCheckpoint(rootDir + "/outputs/checkpoints/init_placed.dcp");
 
-        this.movesLimit = 800;
-        initCoolingSchedule(1000.0f, 0.95f);
+        this.movesLimit = 500;
+        initCoolingSchedule(1.0f, 0.1f);
 
         while (true) {
             if (move >= movesLimit)
@@ -123,26 +127,45 @@ public class PlacerAnnealRandom extends Placer {
     private void initCoolingSchedule(double initialTemp, double alpha) throws IOException {
         this.writer.write("\nPrinting Cooling Schedule...");
         this.coolingSchedule = new ArrayList<>();
+
+        // greedy
+        // for (int i = 0; i < movesLimit; i++) {
+        // this.coolingSchedule.add(0.0d);
+        // }
+
+        // geometric cooling
         double currentTemp = initialTemp;
         for (int i = 0; i < movesLimit; i++) {
-            if (i > movesLimit * 3 / 4) {
-                this.coolingSchedule.add(0.0d);
-            } else {
-                this.coolingSchedule.add(currentTemp);
-                this.writer.write("\n\t" + currentTemp);
-                currentTemp *= alpha;
-            }
+            this.coolingSchedule.add(currentTemp);
+            this.writer.write("\n\t" + currentTemp);
+            currentTemp *= alpha;
         }
+
+        // logarithmic cooling
+        // for (int i = 0; i < movesLimit; i++) {
+        // // avoid log(0) by using (i + 1)
+        // double currentTemp = initialTemp / (1 + alpha * Math.log(1 + i));
+        // this.coolingSchedule.add(currentTemp);
+        // this.writer.write("\n\t" + currentTemp);
+        // }
     }
 
     private void initSites() throws IOException {
         for (Site site : device.getAllSites()) {
             SiteTypeEnum siteType = site.getSiteTypeEnum();
             if (uniqueSiteTypes.add(siteType)) {
-                allSites.put(siteType, new ArrayList<>());
+                List<Site> compatibleSites = new ArrayList<>(Arrays.asList(device.getAllSitesOfType(siteType)));
+                if (regionConstraint != null) {
+                    compatibleSites = compatibleSites.stream()
+                            .filter(s -> s.getClockRegion() == null
+                                    ? s.isGlobalClkBuffer()
+                                    : s.getClockRegion().equals(regionConstraint))
+                            .collect(Collectors.toList());
+                }
+
+                allSites.put(siteType, compatibleSites);
                 occupiedSites.put(siteType, new HashMap<>());
             }
-            allSites.get(siteType).add(site);
         }
 
         occupiedSiteChains.put(SiteTypeEnum.DSP48E1, new HashMap<>());
@@ -179,8 +202,8 @@ public class PlacerAnnealRandom extends Placer {
     private double evaluateSite(List<Site> sinkSites, Site srcSite) throws IOException {
         double cost = 0;
         for (Site sinkSite : sinkSites) {
-            if (sinkSite == null)
-                continue; // sink has not been placed yet
+            // if (sinkSite == null)
+            // continue; // sink has not been placed yet
             if (sinkSite.isGlobalClkBuffer() || sinkSite.isGlobalClkPad())
                 continue;
             cost = cost + srcSite.getTile().getTileManhattanDistance(sinkSite.getTile());
@@ -199,7 +222,7 @@ public class PlacerAnnealRandom extends Placer {
                 continue;
             List<Tile> sinkTiles = net.getSinkPins().stream()
                     .map(spi -> spi.getTile())
-                    .filter(tile -> tile != null)
+                    // .filter(tile -> tile != null)
                     .collect(Collectors.toList());
             for (Tile sinkTile : sinkTiles) {
                 cost = cost + srcTile.getTileManhattanDistance(sinkTile);
