@@ -36,7 +36,7 @@ public class ImageMaker {
 
     private int x_low, y_low;
     private int width, height;
-    private final int scale = 5; // hard-coded
+    private final int scale = 3; // hard-coded
     private List<Pair<Net, Float>> netlistCosts;
     private float highest_cost = 0;
     private float lowest_cost = Float.MAX_VALUE;

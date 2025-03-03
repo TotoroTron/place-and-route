@@ -49,7 +49,7 @@ public class PlacerAnnealRandom extends Placer {
     private List<Long> evalTimes;
     private List<Long> renderTimes;
     private List<Long> writeTimes;
-    private int movesLimit = 400;
+    private int movesLimit;
     private List<Double> coolingSchedule;
     private double currentTemp;
 
@@ -77,8 +77,10 @@ public class PlacerAnnealRandom extends Placer {
         unplaceAllSiteInsts(packedDesign);
         randomInitialPlacement(packedDesign);
 
-        // design.writeCheckpoint(rootDir + "/outputs/checkpoints/init_placed.dcp");
-        initCoolingSchedule(10000.0f, 0.99f);
+        design.writeCheckpoint(rootDir + "/outputs/checkpoints/init_placed.dcp");
+
+        this.movesLimit = 800;
+        initCoolingSchedule(10000.0f, 0.95f);
 
         while (true) {
             if (move >= movesLimit)
@@ -123,9 +125,13 @@ public class PlacerAnnealRandom extends Placer {
         this.coolingSchedule = new ArrayList<>();
         double currentTemp = initialTemp;
         for (int i = 0; i < movesLimit; i++) {
-            this.coolingSchedule.add(currentTemp);
-            this.writer.write("\n\t" + currentTemp);
-            currentTemp *= alpha;
+            if (i > movesLimit - 200) {
+                this.coolingSchedule.add(0.0d);
+            } else {
+                this.coolingSchedule.add(currentTemp);
+                this.writer.write("\n\t" + currentTemp);
+                currentTemp *= alpha;
+            }
         }
     }
 
@@ -471,26 +477,6 @@ public class PlacerAnnealRandom extends Placer {
                 throw new IllegalStateException("ERROR: homeBuffer.size(): " + homeBuffer.size()
                         + " != siteInstInHomeBuffer.size(): " + siteInstsInHomeBuffer.size());
 
-            // if (homeBuffer.size() > 16) {
-            // System.out.println("homeBuffer.size(): " + homeBuffer.size());
-            // System.out.println("homeChain...");
-            // for (SiteInst si : homeChain) {
-            // if (si == null) {
-            // System.out.println("\tnull");
-            // } else {
-            // printSiteInstStatus(si);
-            // }
-            // }
-            // System.out.println("siteInstsInAwayBuffer...");
-            // for (SiteInst si : siteInstsInAwayBuffer) {
-            // if (si == null) {
-            // System.out.println("\tnull");
-            // } else {
-            // printSiteInstStatus(si);
-            // }
-            // }
-            // }
-
             // evaluate the cost of the swap
             double oldCost = 0;
             double newCost = 0;
@@ -527,7 +513,6 @@ public class PlacerAnnealRandom extends Placer {
                     SiteInst awaySi = siteInstsInAwayBuffer.get(i);
                     List<SiteInst> homeSiChain = null;
                     List<SiteInst> awaySiChain = null;
-
                     if (homeSi != null) {
                         homeSiChain = occupiedSiteChains.get(ste).remove(homeBuffer.get(i));
                         unplaceSiteInst(homeSi);
@@ -536,7 +521,6 @@ public class PlacerAnnealRandom extends Placer {
                         awaySiChain = occupiedSiteChains.get(ste).remove(awayBuffer.get(i));
                         unplaceSiteInst(awaySi);
                     }
-
                     if (homeSi != null) {
                         placeSiteInst(homeSi, awayBuffer.get(i));
                         if (homeSiChain != null) {
@@ -552,8 +536,8 @@ public class PlacerAnnealRandom extends Placer {
                 }
             }
 
-        }
-    }
+        } // end for loopThruChains
+    } // end randomMoveSiteChains()
 
     private String getSiteTypePrefix(SiteTypeEnum siteType) {
         String siteTypePrefix = null;
@@ -569,9 +553,6 @@ public class PlacerAnnealRandom extends Placer {
     private List<Site> findBufferZone(SiteTypeEnum siteType, Site initAnchor, Site initTail)
             throws IOException {
         List<Site> sites = new ArrayList<>();
-
-        // System.out.println("initAnchor: " + initAnchor.getInstanceY());
-        // System.out.println("initTail: " + initTail.getInstanceY());
 
         int instX = initAnchor.getInstanceX();
         int finalAnchorInstY = initAnchor.getInstanceY();
@@ -599,17 +580,12 @@ public class PlacerAnnealRandom extends Placer {
         if (finalTailInstY - finalAnchorInstY > 16) {
             System.out.println("buffer size: " + (finalTailInstY - finalAnchorInstY));
             System.out.println("\tinitAnchor: " + initAnchor.getInstanceY() + ", initTail: " + initTail.getInstanceY());
-            System.out.println("\tfinalAnchorInstY: " + finalAnchorInstY + ", finalTail: " + finalTailInstY);
+            System.out.println("\tfinalAnchor: " + finalAnchorInstY + ", finalTail: " + finalTailInstY);
             for (Site site : sites) {
                 System.out.println("\t\tSiteInst: " + occupiedSites.get(site.getSiteTypeEnum()).get(site));
             }
 
         }
-
-        // System.out.println("finalAnchor: " + finalAnchorInstY);
-        // System.out.println("finalTail: " + finalTailInstY);
-        // System.out.println();
-
         return sites;
     }
 
@@ -622,7 +598,7 @@ public class PlacerAnnealRandom extends Placer {
             if (residentAnchor.getInstanceY() < initAnchor.getInstanceY())
                 containsOverlap = true;
         }
-        List<SiteInst> residentChainAtTail = occupiedSiteChains.get(siteType).get(initAnchor);
+        List<SiteInst> residentChainAtTail = occupiedSiteChains.get(siteType).get(initTail);
         if (residentChainAtTail != null) {
             Site residentTail = residentChainAtTail.get(residentChainAtTail.size() - 1).getSite();
             if (residentTail.getInstanceY() > initTail.getInstanceY())
