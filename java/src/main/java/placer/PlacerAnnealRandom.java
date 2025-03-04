@@ -42,8 +42,8 @@ public class PlacerAnnealRandom extends Placer {
         randomInitialPlacement(packedDesign);
         design.writeCheckpoint(rootDir + "/outputs/checkpoints/init_placed.dcp");
 
-        this.movesLimit = 500;
-        initCoolingSchedule(1.0f, 0.1f);
+        this.movesLimit = 250;
+        initCoolingSchedule(1000.0f, 0.99f);
         int move = 0;
         while (true) {
             if (move >= movesLimit)
@@ -73,7 +73,6 @@ public class PlacerAnnealRandom extends Placer {
 
             move++;
         }
-
         ImageMaker imPlaced = new ImageMaker(design);
         imPlaced.renderAll();
         imPlaced.exportImage(graphicsDir + "/final_placement.png", "png");
@@ -199,21 +198,21 @@ public class PlacerAnnealRandom extends Placer {
     protected void randomMoveSingleSite(List<SiteInst> sites) throws IOException {
         for (SiteInst si : sites) {
             SiteTypeEnum ste = si.getSiteTypeEnum();
-            List<Site> homeSinks = findSinkSites(si);
+            List<Site> homeConns = findConnectedSites(si);
             Site homeSite = si.getSite();
             Site awaySite = proposeSite(ste, true);
             double oldCost = 0;
             double newCost = 0;
             SiteInst awaySi = occupiedSites.get(ste).get(awaySite);
             if (awaySi != null) {
-                List<Site> awaySinks = findSinkSites(awaySi);
-                oldCost += evaluateSite(homeSinks, homeSite);
-                oldCost += evaluateSite(awaySinks, awaySite);
-                newCost += evaluateSite(homeSinks, awaySite);
-                newCost += evaluateSite(awaySinks, homeSite);
+                List<Site> awayConns = findConnectedSites(awaySi);
+                oldCost += evaluateSite(homeConns, homeSite);
+                oldCost += evaluateSite(awayConns, awaySite);
+                newCost += evaluateSite(homeConns, awaySite);
+                newCost += evaluateSite(awayConns, homeSite);
             } else {
-                oldCost += evaluateSite(homeSinks, homeSite);
-                newCost += evaluateSite(homeSinks, awaySite);
+                oldCost += evaluateSite(homeConns, homeSite);
+                newCost += evaluateSite(homeConns, awaySite);
             }
             if (evaluateMoveAcceptance(oldCost, newCost)) {
                 if (awaySi != null) {
@@ -299,26 +298,26 @@ public class PlacerAnnealRandom extends Placer {
             double newCost = 0;
             for (int i = 0; i < homeBuffer.size(); i++) {
                 if (siteInstsInHomeBuffer.get(i) != null) {
-                    List<Site> homeSinks = findSinkSites(siteInstsInHomeBuffer.get(i));
-                    for (Site sink : homeSinks) {
-                        if (awayBuffer.contains(sink)) {
+                    List<Site> homeConns = findConnectedSites(siteInstsInHomeBuffer.get(i));
+                    for (Site conn : homeConns) {
+                        if (awayBuffer.contains(conn)) {
                             continue loopThruChains; // skip this chain swap proposal
                             // CONTINUES THE OUTER-MOST LOOP!
                         }
                     }
-                    oldCost += evaluateSite(homeSinks, homeBuffer.get(i));
-                    newCost += evaluateSite(homeSinks, awayBuffer.get(i));
+                    oldCost += evaluateSite(homeConns, homeBuffer.get(i));
+                    newCost += evaluateSite(homeConns, awayBuffer.get(i));
                 }
                 if (siteInstsInAwayBuffer.get(i) != null) {
-                    List<Site> awaySinks = findSinkSites(siteInstsInAwayBuffer.get(i));
-                    for (Site sink : awaySinks) {
-                        if (homeBuffer.contains(sink)) {
+                    List<Site> awayConns = findConnectedSites(siteInstsInAwayBuffer.get(i));
+                    for (Site conn : awayConns) {
+                        if (homeBuffer.contains(conn)) {
                             continue loopThruChains; // skip this chain swap proposal
                             // CONTINUES THE OUTER-MOST LOOP!
                         }
                     }
-                    oldCost += evaluateSite(awaySinks, awayBuffer.get(i));
-                    newCost += evaluateSite(awaySinks, homeBuffer.get(i));
+                    oldCost += evaluateSite(awayConns, awayBuffer.get(i));
+                    newCost += evaluateSite(awayConns, homeBuffer.get(i));
                 }
             }
 

@@ -197,21 +197,21 @@ public class PlacerAnnealMidpoint extends Placer {
     protected void randomMoveSingleSite(List<SiteInst> sites) throws IOException {
         for (SiteInst si : sites) {
             SiteTypeEnum ste = si.getSiteTypeEnum();
-            List<Site> homeSinks = findSinkSites(si);
+            List<Site> homeConns = findConnectedSites(si);
             Site homeSite = si.getSite();
             Site awaySite = proposeSite(ste, true);
             double oldCost = 0;
             double newCost = 0;
             SiteInst awaySi = occupiedSites.get(ste).get(awaySite);
             if (awaySi != null) {
-                List<Site> awaySinks = findSinkSites(awaySi);
-                oldCost += evaluateSite(homeSinks, homeSite);
-                oldCost += evaluateSite(awaySinks, awaySite);
-                newCost += evaluateSite(homeSinks, awaySite);
-                newCost += evaluateSite(awaySinks, homeSite);
+                List<Site> awayConns = findConnectedSites(awaySi);
+                oldCost += evaluateSite(homeConns, homeSite);
+                oldCost += evaluateSite(awayConns, awaySite);
+                newCost += evaluateSite(homeConns, awaySite);
+                newCost += evaluateSite(awayConns, homeSite);
             } else {
-                oldCost += evaluateSite(homeSinks, homeSite);
-                newCost += evaluateSite(homeSinks, awaySite);
+                oldCost += evaluateSite(homeConns, homeSite);
+                newCost += evaluateSite(homeConns, awaySite);
             }
             if (evaluateMoveAcceptance(oldCost, newCost)) {
                 if (awaySi != null) {
@@ -297,26 +297,26 @@ public class PlacerAnnealMidpoint extends Placer {
             double newCost = 0;
             for (int i = 0; i < homeBuffer.size(); i++) {
                 if (siteInstsInHomeBuffer.get(i) != null) {
-                    List<Site> homeSinks = findSinkSites(siteInstsInHomeBuffer.get(i));
-                    for (Site sink : homeSinks) {
-                        if (awayBuffer.contains(sink)) {
+                    List<Site> homeConns = findConnectedSites(siteInstsInHomeBuffer.get(i));
+                    for (Site conn : homeConns) {
+                        if (awayBuffer.contains(conn)) {
                             continue loopThruChains; // skip this chain swap proposal
                             // CONTINUES THE OUTER-MOST LOOP!
                         }
                     }
-                    oldCost += evaluateSite(homeSinks, homeBuffer.get(i));
-                    newCost += evaluateSite(homeSinks, awayBuffer.get(i));
+                    oldCost += evaluateSite(homeConns, homeBuffer.get(i));
+                    newCost += evaluateSite(homeConns, awayBuffer.get(i));
                 }
                 if (siteInstsInAwayBuffer.get(i) != null) {
-                    List<Site> awaySinks = findSinkSites(siteInstsInAwayBuffer.get(i));
-                    for (Site sink : awaySinks) {
-                        if (homeBuffer.contains(sink)) {
+                    List<Site> awayConns = findConnectedSites(siteInstsInAwayBuffer.get(i));
+                    for (Site conn : awayConns) {
+                        if (homeBuffer.contains(conn)) {
                             continue loopThruChains; // skip this chain swap proposal
                             // CONTINUES THE OUTER-MOST LOOP!
                         }
                     }
-                    oldCost += evaluateSite(awaySinks, awayBuffer.get(i));
-                    newCost += evaluateSite(awaySinks, homeBuffer.get(i));
+                    oldCost += evaluateSite(awayConns, awayBuffer.get(i));
+                    newCost += evaluateSite(awayConns, homeBuffer.get(i));
                 }
             }
 
@@ -353,12 +353,12 @@ public class PlacerAnnealMidpoint extends Placer {
         } // end for loopThruChains
     } // end randomMoveSiteChains()
 
-    private Pair<Integer, Integer> findMidpoint(List<Site> sinks) {
+    private Pair<Integer, Integer> findMidpoint(List<Site> conns) {
         int sum_x = 0;
         int sum_y = 0;
-        for (Site sink : sinks) {
-            sum_x += sink.getRpmX();
-            sum_y += sink.getRpmY();
+        for (Site conn : conns) {
+            sum_x += conn.getRpmX();
+            sum_y += conn.getRpmY();
         }
         Pair<Integer, Integer> midpoint = new Pair<Integer, Integer>(sum_x / 2, sum_y / 2);
         return midpoint;
@@ -368,11 +368,11 @@ public class PlacerAnnealMidpoint extends Placer {
         boolean validAnchor = false;
         Site selectedSite = null;
         SiteTypeEnum ste = chain.get(0).getSiteTypeEnum();
-        List<Site> sinks = new ArrayList<>();
+        List<Site> conns = new ArrayList<>();
         for (SiteInst si : chain) {
-            sinks.addAll(findSinkSites(si));
+            conns.addAll(findConnectedSites(si));
         }
-        Pair<Integer, Integer> midpoint = findMidpoint(sinks);
+        Pair<Integer, Integer> midpoint = findMidpoint(conns);
         int attempts = 0;
         while (true) {
             int x = midpoint.key() + spiralPath.get(attempts).key();

@@ -124,16 +124,26 @@ public abstract class Placer {
         si.unPlace();
     }
 
-    protected List<Site> findSinkSites(SiteInst si) {
+    protected List<Site> findConnectedSites(SiteInst si) {
         List<Site> sinkSites = si.getSitePinInsts().stream()
-                .filter(spi -> spi.isOutPin())
+                // .map(spi -> {
+                // if (spi.getNet() == null) {
+                // System.out.println("Net is null for SitePinInst: " + spi.getName());
+                // }
+                // return spi.getNet();
+                // })
+                .filter(spi -> {
+                    if (spi.getNet() == null) {
+                        return false;
+                    } else
+                        return true;
+                })
                 .map(spi -> spi.getNet())
-                .map(net -> net.getSinkPins())
+                .map(net -> net.getPins())
                 .map(spis -> spis.stream()
                         .map(spi -> spi.getSite())
                         .collect(Collectors.toList()))
                 .flatMap(List::stream) // List<List<Site>> into List<Site>
-                // .filter(site -> site != null)
                 .collect(Collectors.toList());
         return sinkSites;
     }
@@ -146,6 +156,9 @@ public abstract class Placer {
         // otherwise, accept the move with a probability given by the Boltzmann factor
         double delta = newCost - oldCost;
         double acceptanceProbability = Math.exp(-delta / this.currentTemp);
+        // if (acceptanceProbability > 0.1) {
+        // System.out.println("Acceptance Probability: " + acceptanceProbability);
+        // }
         // decide acceptance based on a uniform random draw in [0, 1)
         return Math.random() < acceptanceProbability;
     }
@@ -153,10 +166,14 @@ public abstract class Placer {
     protected double evaluateSite(List<Site> sinkSites, Site srcSite) throws IOException {
         double cost = 0;
         for (Site sinkSite : sinkSites) {
-            // if (sinkSite == null)
-            // continue; // sink has not been placed yet
-            if (sinkSite.isGlobalClkBuffer() || sinkSite.isGlobalClkPad())
+            if (sinkSite.isGlobalClkBuffer()) {
+                // System.out.println("Skipped global clock buffer evaluation.");
                 continue;
+            }
+            if (sinkSite.isGlobalClkPad()) {
+                // System.out.println("Skipped global clock pad evaluation.");
+                continue;
+            }
             cost = cost + srcSite.getTile().getTileManhattanDistance(sinkSite.getTile());
         }
         return cost;
@@ -166,14 +183,19 @@ public abstract class Placer {
         double cost = 0;
         Collection<Net> nets = design.getNets();
         for (Net net : nets) {
-            if (net.isClockNet() || net.isStaticNet())
+            if (net.isClockNet() || net.isStaticNet()) {
+                // System.out.println("Skipped static net evaluation.");
                 continue;
+            }
+            if (net.isStaticNet()) {
+                // System.out.println("Skipped clock net evaluation.");
+                continue;
+            }
             Tile srcTile = net.getSourceTile();
             if (srcTile == null) // net is null if its' purely intrasite!
                 continue;
             List<Tile> sinkTiles = net.getSinkPins().stream()
                     .map(spi -> spi.getTile())
-                    // .filter(tile -> tile != null)
                     .collect(Collectors.toList());
             for (Tile sinkTile : sinkTiles) {
                 cost = cost + srcTile.getTileManhattanDistance(sinkTile);
@@ -199,7 +221,6 @@ public abstract class Placer {
         for (SiteInst si : packedDesign.RAMSiteInsts) {
             unplaceSiteInst(si);
         }
-
     }
 
     protected String getSiteTypePrefix(SiteTypeEnum siteType) {
