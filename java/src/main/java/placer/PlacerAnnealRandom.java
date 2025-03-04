@@ -42,8 +42,8 @@ public class PlacerAnnealRandom extends Placer {
         randomInitialPlacement(packedDesign);
         design.writeCheckpoint(rootDir + "/outputs/checkpoints/init_placed.dcp");
 
-        this.movesLimit = 250;
-        initCoolingSchedule(1000.0f, 0.99f);
+        this.movesLimit = 500;
+        initCoolingSchedule(10000.0f, 0.95f);
         int move = 0;
         while (true) {
             if (move >= movesLimit)

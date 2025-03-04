@@ -16,6 +16,7 @@ import java.util.Random;
 import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.SiteInst;
 import com.xilinx.rapidwright.design.Net;
+import com.xilinx.rapidwright.design.SitePinInst;
 
 import com.xilinx.rapidwright.device.Device;
 import com.xilinx.rapidwright.device.Tile;
@@ -125,27 +126,30 @@ public abstract class Placer {
     }
 
     protected List<Site> findConnectedSites(SiteInst si) {
-        List<Site> sinkSites = si.getSitePinInsts().stream()
-                // .map(spi -> {
-                // if (spi.getNet() == null) {
-                // System.out.println("Net is null for SitePinInst: " + spi.getName());
-                // }
-                // return spi.getNet();
-                // })
-                .filter(spi -> {
-                    if (spi.getNet() == null) {
-                        return false;
-                    } else
-                        return true;
-                })
+        Collection<SitePinInst> pins = si.getSitePinInsts();
+        // Handle SPI output pins. Get all sinks.
+        List<Site> outputSinks = pins.stream()
+                .filter(spi -> spi.isOutPin())
                 .map(spi -> spi.getNet())
-                .map(net -> net.getPins())
+                .map(net -> net.getSinkPins())
                 .map(spis -> spis.stream()
                         .map(spi -> spi.getSite())
                         .collect(Collectors.toList()))
                 .flatMap(List::stream) // List<List<Site>> into List<Site>
                 .collect(Collectors.toList());
-        return sinkSites;
+        // Handle SPI input pins. Only get the source.
+        List<Site> inputSources = pins.stream()
+                .filter(spi -> !spi.isOutPin())
+                .map(spi -> spi.getNet())
+                .filter(net -> net != null)
+                .map(net -> net.getSource())
+                .filter(spi -> spi != null)
+                .map(spi -> spi.getSite())
+                .collect(Collectors.toList());
+        List<Site> allSites = new ArrayList<>();
+        allSites.addAll(inputSources);
+        allSites.addAll(outputSinks);
+        return allSites;
     }
 
     protected boolean evaluateMoveAcceptance(double oldCost, double newCost) {
@@ -153,27 +157,22 @@ public abstract class Placer {
         if (newCost < oldCost) {
             return true;
         }
-        // otherwise, accept the move with a probability given by the Boltzmann factor
         double delta = newCost - oldCost;
         double acceptanceProbability = Math.exp(-delta / this.currentTemp);
-        // if (acceptanceProbability > 0.1) {
-        // System.out.println("Acceptance Probability: " + acceptanceProbability);
-        // }
-        // decide acceptance based on a uniform random draw in [0, 1)
         return Math.random() < acceptanceProbability;
     }
 
     protected double evaluateSite(List<Site> sinkSites, Site srcSite) throws IOException {
         double cost = 0;
         for (Site sinkSite : sinkSites) {
-            if (sinkSite.isGlobalClkBuffer()) {
-                // System.out.println("Skipped global clock buffer evaluation.");
-                continue;
-            }
-            if (sinkSite.isGlobalClkPad()) {
-                // System.out.println("Skipped global clock pad evaluation.");
-                continue;
-            }
+            // if (sinkSite.isGlobalClkBuffer()) {
+            // // System.out.println("Skipped global clock buffer evaluation.");
+            // continue;
+            // }
+            // if (sinkSite.isGlobalClkPad()) {
+            // // System.out.println("Skipped global clock pad evaluation.");
+            // continue;
+            // }
             cost = cost + srcSite.getTile().getTileManhattanDistance(sinkSite.getTile());
         }
         return cost;
@@ -183,14 +182,14 @@ public abstract class Placer {
         double cost = 0;
         Collection<Net> nets = design.getNets();
         for (Net net : nets) {
-            if (net.isClockNet() || net.isStaticNet()) {
-                // System.out.println("Skipped static net evaluation.");
-                continue;
-            }
-            if (net.isStaticNet()) {
-                // System.out.println("Skipped clock net evaluation.");
-                continue;
-            }
+            // if (net.isClockNet() || net.isStaticNet()) {
+            // // System.out.println("Skipped static net evaluation.");
+            // continue;
+            // }
+            // if (net.isStaticNet()) {
+            // // System.out.println("Skipped clock net evaluation.");
+            // continue;
+            // }
             Tile srcTile = net.getSourceTile();
             if (srcTile == null) // net is null if its' purely intrasite!
                 continue;
