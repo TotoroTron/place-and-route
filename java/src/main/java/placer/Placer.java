@@ -192,7 +192,7 @@ public abstract class Placer {
             // continue;
             // }
             Tile srcTile = net.getSourceTile();
-            if (srcTile == null) // net is null if its' purely intrasite!
+            if (srcTile == null) // tile is null if its' purely intrasite!
                 continue;
             List<Tile> sinkTiles = net.getSinkPins().stream()
                     .map(spi -> spi.getTile())
