@@ -82,9 +82,10 @@ public abstract class Placer {
 
     protected abstract void placeDesign(PackedDesign packedDesign) throws IOException;
 
-    protected abstract Site proposeSite(SiteTypeEnum ste, boolean swapEnable);
+    // protected abstract Site proposeSite(SiteTypeEnum ste, boolean swapEnable);
 
-    protected abstract Site proposeAnchorSite(SiteTypeEnum ste, int chainSize, boolean swapEnable);
+    // protected abstract Site proposeAnchorSite(SiteTypeEnum ste, int chainSize,
+    // boolean swapEnable);
 
     protected abstract void randomInitSingleSite(List<SiteInst> siteInsts) throws IOException;
 
@@ -229,6 +230,8 @@ public abstract class Placer {
             siteTypePrefix = "DSP48_";
         else if (siteType == SiteTypeEnum.SLICEL || siteType == SiteTypeEnum.SLICEM)
             siteTypePrefix = "SLICE_";
+        else if (siteType == SiteTypeEnum.RAMB18E1)
+            siteTypePrefix = "RAMB18_";
         else
             throw new IllegalStateException("ERROR: Could not assign a String prefix to  SiteTypeEnum: " + siteType);
         return siteTypePrefix;

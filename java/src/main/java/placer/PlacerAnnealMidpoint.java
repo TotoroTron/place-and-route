@@ -3,26 +3,34 @@ package placer;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.stream.Collectors;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 
 import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.SiteInst;
+import com.xilinx.rapidwright.design.SitePinInst;
 
 import com.xilinx.rapidwright.device.Device;
 import com.xilinx.rapidwright.device.Site;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
+import com.xilinx.rapidwright.device.ClockRegion;
 
 public class PlacerAnnealMidpoint extends Placer {
 
-    private List<Pair<Integer, Integer>> spiralPath = SpiralPath.generateDiamondSpiral(1000);
+    private int spiralPathMaxRadius = 1000;
+    private List<Pair<Integer, Integer>> spiralPath = SpiralPath.generateDiamondSpiral(spiralPathMaxRadius);
 
-    public PlacerAnnealMidpoint(String rootDir, Design design, Device device) throws IOException {
+    public PlacerAnnealMidpoint(String rootDir, Design design, Device device, ClockRegion region)
+            throws IOException {
         super(rootDir, design, device);
         this.placerName = "PlacerAnnealMidpoint";
-        this.graphicsDir = rootDir + "/outputs/graphics/" + placerName;
+        this.graphicsDir = rootDir + "/outputs/graphics";
+        this.regionConstraint = region;
         this.uniqueSiteTypes = new HashSet<>();
         this.occupiedSites = new HashMap<>();
         this.occupiedSiteChains = new HashMap<>();
@@ -32,6 +40,7 @@ public class PlacerAnnealMidpoint extends Placer {
         this.evalTimes = new ArrayList<>();
         this.renderTimes = new ArrayList<>();
         this.writeTimes = new ArrayList<>();
+        this.rand = new Random();
     }
 
     public void placeDesign(PackedDesign packedDesign) throws IOException {
@@ -41,7 +50,7 @@ public class PlacerAnnealMidpoint extends Placer {
         design.writeCheckpoint(rootDir + "/outputs/checkpoints/init_placed.dcp");
 
         this.movesLimit = 500;
-        initCoolingSchedule(1.0f, 0.1f);
+        initCoolingSchedule(20000.0f, 0.98f);
         int move = 0;
         while (true) {
             if (move >= movesLimit)
@@ -71,13 +80,31 @@ public class PlacerAnnealMidpoint extends Placer {
 
             move++;
         }
-
         ImageMaker imPlaced = new ImageMaker(design);
         imPlaced.renderAll();
         imPlaced.exportImage(graphicsDir + "/final_placement.png", "png");
         exportCostHistory(rootDir + "/outputs/printout/convergence.csv");
         printTimingBenchmarks();
         writer.write("\n\nTotal move iterations: " + move);
+    }
+
+    @Override
+    protected List<Site> findConnectedSites(SiteInst si, List<Site> selfConns) {
+        List<Site> connectedSites = si.getSitePinInsts().stream()
+                .map(spi -> spi.getNet())
+                .filter(net -> net != null)
+                .filter(net -> !net.isClockNet() && !net.isStaticNet())
+                .map(net -> net.getPins())
+                .map(spis -> spis.stream()
+                        .map(spi -> spi.getSite())
+                        // for chain swaps, ignore connections within the buffers.
+                        // DSP cascades can have very many self connections.
+                        // Allows DSP cascades to move more freely
+                        .filter(site -> !((selfConns != null) && selfConns.contains(site)))
+                        .collect(Collectors.toList()))
+                .flatMap(List::stream) // List<List<Site>> into List<Site>
+                .collect(Collectors.toList());
+        return connectedSites;
     }
 
     protected void initCoolingSchedule(double initialTemp, double alpha) throws IOException {
@@ -93,13 +120,6 @@ public class PlacerAnnealMidpoint extends Placer {
         // greedy
         // for (int i = 0; i < movesLimit; i++) {
         // this.coolingSchedule.add(0.0d);
-        // }
-        // logarithmic cooling
-        // for (int i = 0; i < movesLimit; i++) {
-        // // avoid log(0) by using (i + 1)
-        // double currentTemp = initialTemp / (1 + alpha * Math.log(1 + i));
-        // this.coolingSchedule.add(currentTemp);
-        // this.writer.write("\n\t" + currentTemp);
         // }
     }
 
@@ -117,7 +137,7 @@ public class PlacerAnnealMidpoint extends Placer {
         randomMoveSingleSite(packedDesign.CLBSiteInsts);
     }
 
-    protected Site proposeSite(SiteTypeEnum ste, boolean swapEnable) {
+    protected Site proposeRandomSite(SiteTypeEnum ste, boolean swapEnable) {
         Site selectedSite = null;
         int attempts = 0;
         while (true) {
@@ -139,9 +159,55 @@ public class PlacerAnnealMidpoint extends Placer {
             break;
         }
         return selectedSite;
-    } // end proposeSite()
+    } // end proposeRandomSite()
 
-    protected Site proposeAnchorSite(SiteTypeEnum ste, int chainSize, boolean swapEnable) {
+    protected Site proposeMidpointSite(SiteInst si, List<Site> conns, boolean swapEnable) {
+        SiteTypeEnum ste = si.getSiteTypeEnum();
+        Site homeSite = si.getSite();
+        // how to make this midpoint?
+        // Site awaySite = proposeSite(ste, true);
+
+        Pair<Integer, Integer> homeConnsMidpt = findMidpoint(conns);
+        int x = homeConnsMidpt.key();
+        int y = homeConnsMidpt.value();
+        System.out.println("Midpoint: " + x + ", " + y);
+        int spiralPathSize;
+
+        if (si.getSiteTypeEnum() == SiteTypeEnum.SLICEL || si.getSiteTypeEnum() == SiteTypeEnum.SLICEM)
+            spiralPathSize = 100000;
+        else
+            spiralPathSize = 1000000;
+
+        // spiral path search for legal site
+        Site selectedSite = null;
+        int attempts = 0;
+        while (true) {
+            if (attempts > spiralPathSize)
+                throw new IllegalStateException(
+                        "ERROR: Could not propose " + ste + " site after  " + spiralPathSize + " attempts!");
+            int dx = spiralPath.get(attempts).key();
+            int dy = spiralPath.get(attempts).value();
+            selectedSite = device.getSite(getSiteTypePrefix(ste) + "X" + (x + dx) + "Y" + (y + dy));
+            if (selectedSite == null) {
+                attempts++;
+                continue;
+            }
+            if (selectedSite.getSiteTypeEnum() != ste) {
+                attempts++;
+                continue;
+            }
+            if (!swapEnable) { // if swaps disabled
+                if (occupiedSites.get(ste).containsKey(selectedSite)) {
+                    attempts++;
+                    continue;
+                }
+            }
+            break;
+        }
+        return selectedSite;
+    } // end proposeMidpointSite()
+
+    protected Site proposeRandomAnchorSite(SiteTypeEnum ste, int chainSize, boolean swapEnable) {
         boolean validAnchor = false;
         Site selectedSite = null;
         int attempts = 0;
@@ -176,7 +242,7 @@ public class PlacerAnnealMidpoint extends Placer {
 
     protected void randomInitSingleSite(List<SiteInst> siteInsts) throws IOException {
         for (SiteInst si : siteInsts) {
-            Site selectedSite = proposeSite(si.getSiteTypeEnum(), false);
+            Site selectedSite = proposeRandomSite(si.getSiteTypeEnum(), false);
             placeSiteInst(si, selectedSite);
         }
     }
@@ -184,7 +250,7 @@ public class PlacerAnnealMidpoint extends Placer {
     protected void randomInitSiteChains(List<List<SiteInst>> chains) throws IOException {
         for (List<SiteInst> chain : chains) {
             SiteTypeEnum siteType = chain.get(0).getSiteTypeEnum();
-            Site selectedAnchor = proposeAnchorSite(siteType, chain.size(), false);
+            Site selectedAnchor = proposeRandomAnchorSite(siteType, chain.size(), false);
             for (int i = 0; i < chain.size(); i++) {
                 Site newSite = device.getSite(getSiteTypePrefix(siteType) + "X" + selectedAnchor.getInstanceX() +
                         "Y" + (selectedAnchor.getInstanceY() + i));
@@ -197,12 +263,12 @@ public class PlacerAnnealMidpoint extends Placer {
     protected void randomMoveSingleSite(List<SiteInst> sites) throws IOException {
         for (SiteInst si : sites) {
             SiteTypeEnum ste = si.getSiteTypeEnum();
-            List<Site> homeConns = findConnectedSites(si, null);
             Site homeSite = si.getSite();
-            Site awaySite = proposeSite(ste, true);
+            List<Site> homeConns = findConnectedSites(si, null);
+            Site awaySite = proposeMidpointSite(si, homeConns, true);
+            SiteInst awaySi = occupiedSites.get(ste).get(awaySite);
             double oldCost = 0;
             double newCost = 0;
-            SiteInst awaySi = occupiedSites.get(ste).get(awaySite);
             if (awaySi != null) {
                 List<Site> awayConns = findConnectedSites(awaySi, null);
                 oldCost += evaluateSite(homeConns, homeSite);
@@ -235,7 +301,7 @@ public class PlacerAnnealMidpoint extends Placer {
             int homeInstX = homeChainAnchor.getInstanceX();
             Site homeChainTail = homeChain.get(homeChain.size() - 1).getSite();
             //
-            Site awayInitAnchor = proposeAnchorSite(siteType, homeChain.size(), true);
+            Site awayInitAnchor = proposeRandomAnchorSite(siteType, homeChain.size(), true);
             int awayInstX = awayInitAnchor.getInstanceX();
             Site awayInitTail = device.getSite(getSiteTypePrefix(siteType) +
                     "X" + awayInstX +
@@ -308,7 +374,7 @@ public class PlacerAnnealMidpoint extends Placer {
                     newCost += evaluateSite(homeConns, awayBuffer.get(i));
                 }
                 if (siteInstsInAwayBuffer.get(i) != null) {
-                    List<Site> awayConns = findConnectedSites(siteInstsInHomeBuffer.get(i), awayBuffer);
+                    List<Site> awayConns = findConnectedSites(siteInstsInAwayBuffer.get(i), awayBuffer);
                     for (Site conn : awayConns) {
                         if (homeBuffer.contains(conn)) {
                             continue loopThruChains; // skip this chain swap proposal
@@ -356,11 +422,12 @@ public class PlacerAnnealMidpoint extends Placer {
     private Pair<Integer, Integer> findMidpoint(List<Site> conns) {
         int sum_x = 0;
         int sum_y = 0;
+        int size = conns.size();
         for (Site conn : conns) {
             sum_x += conn.getRpmX();
             sum_y += conn.getRpmY();
         }
-        Pair<Integer, Integer> midpoint = new Pair<Integer, Integer>(sum_x / 2, sum_y / 2);
+        Pair<Integer, Integer> midpoint = new Pair<Integer, Integer>(sum_x / size, sum_y / size);
         return midpoint;
     } // end findMidpoint()
 

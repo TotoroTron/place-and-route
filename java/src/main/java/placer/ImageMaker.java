@@ -46,8 +46,8 @@ public class ImageMaker {
     private static final Map<SiteTypeEnum, Color> SITE_TYPE_COLORS = new HashMap<>();
     static {
         // Dull empty colors
-        SITE_TYPE_COLORS.put(SiteTypeEnum.SLICEL, Color.decode("#3A4F5F")); // Dark Gray
-        SITE_TYPE_COLORS.put(SiteTypeEnum.SLICEM, Color.decode("#3A4F5F")); // Dark Gray
+        SITE_TYPE_COLORS.put(SiteTypeEnum.SLICEL, Color.decode("#3A4F5F")); // Dull Blue
+        SITE_TYPE_COLORS.put(SiteTypeEnum.SLICEM, Color.decode("#5F533A")); // Dull Orange
         SITE_TYPE_COLORS.put(SiteTypeEnum.RAMB18E1, Color.decode("#775555")); // Dull Red
         SITE_TYPE_COLORS.put(SiteTypeEnum.FIFO18E1, Color.decode("#775555")); // Dull Red
         SITE_TYPE_COLORS.put(SiteTypeEnum.RAMB36E1, Color.decode("#775555")); // Dull Red
@@ -59,7 +59,7 @@ public class ImageMaker {
     static {
         // Bright active colors
         PLACEMENT_COLORS.put(SiteTypeEnum.SLICEL, Color.decode("#00FFFF")); // Cyan
-        PLACEMENT_COLORS.put(SiteTypeEnum.SLICEM, Color.decode("#00FFFF")); // Cyan
+        PLACEMENT_COLORS.put(SiteTypeEnum.SLICEM, Color.decode("#FFA300")); // Orange
         PLACEMENT_COLORS.put(SiteTypeEnum.RAMB18E1, Color.decode("#FF00FF")); // Magenta
         PLACEMENT_COLORS.put(SiteTypeEnum.FIFO18E1, Color.decode("#FF00FF")); // Magenta
         PLACEMENT_COLORS.put(SiteTypeEnum.RAMB36E1, Color.decode("#FF00FF")); // Magenta
