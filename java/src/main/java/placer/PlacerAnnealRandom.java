@@ -3,6 +3,8 @@ package placer;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.stream.Collectors;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
@@ -11,6 +13,7 @@ import java.util.Random;
 
 import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.SiteInst;
+import com.xilinx.rapidwright.design.SitePinInst;
 
 import com.xilinx.rapidwright.device.Device;
 import com.xilinx.rapidwright.device.Site;
@@ -43,7 +46,7 @@ public class PlacerAnnealRandom extends Placer {
         design.writeCheckpoint(rootDir + "/outputs/checkpoints/init_placed.dcp");
 
         this.movesLimit = 500;
-        initCoolingSchedule(10000.0f, 0.95f);
+        initCoolingSchedule(20000.0f, 0.98f);
         int move = 0;
         while (true) {
             if (move >= movesLimit)
@@ -79,6 +82,25 @@ public class PlacerAnnealRandom extends Placer {
         exportCostHistory(rootDir + "/outputs/printout/convergence.csv");
         printTimingBenchmarks();
         writer.write("\n\nTotal move iterations: " + move);
+    }
+
+    @Override
+    protected List<Site> findConnectedSites(SiteInst si, List<Site> selfConns) {
+        List<Site> connectedSites = si.getSitePinInsts().stream()
+                .map(spi -> spi.getNet())
+                .filter(net -> net != null)
+                .filter(net -> !net.isClockNet() && !net.isStaticNet())
+                .map(net -> net.getPins())
+                .map(spis -> spis.stream()
+                        .map(spi -> spi.getSite())
+                        // for chain swaps, ignore connections within the buffers.
+                        // DSP cascades can have very many self connections.
+                        // Allows DSP cascades to move more freely
+                        .filter(site -> !((selfConns != null) && selfConns.contains(site)))
+                        .collect(Collectors.toList()))
+                .flatMap(List::stream) // List<List<Site>> into List<Site>
+                .collect(Collectors.toList());
+        return connectedSites;
     }
 
     protected void initCoolingSchedule(double initialTemp, double alpha) throws IOException {
@@ -198,14 +220,14 @@ public class PlacerAnnealRandom extends Placer {
     protected void randomMoveSingleSite(List<SiteInst> sites) throws IOException {
         for (SiteInst si : sites) {
             SiteTypeEnum ste = si.getSiteTypeEnum();
-            List<Site> homeConns = findConnectedSites(si);
+            List<Site> homeConns = findConnectedSites(si, null);
             Site homeSite = si.getSite();
             Site awaySite = proposeSite(ste, true);
             double oldCost = 0;
             double newCost = 0;
             SiteInst awaySi = occupiedSites.get(ste).get(awaySite);
             if (awaySi != null) {
-                List<Site> awayConns = findConnectedSites(awaySi);
+                List<Site> awayConns = findConnectedSites(awaySi, null);
                 oldCost += evaluateSite(homeConns, homeSite);
                 oldCost += evaluateSite(awayConns, awaySite);
                 newCost += evaluateSite(homeConns, awaySite);
@@ -298,7 +320,7 @@ public class PlacerAnnealRandom extends Placer {
             double newCost = 0;
             for (int i = 0; i < homeBuffer.size(); i++) {
                 if (siteInstsInHomeBuffer.get(i) != null) {
-                    List<Site> homeConns = findConnectedSites(siteInstsInHomeBuffer.get(i));
+                    List<Site> homeConns = findConnectedSites(siteInstsInHomeBuffer.get(i), homeBuffer);
                     for (Site conn : homeConns) {
                         if (awayBuffer.contains(conn)) {
                             continue loopThruChains; // skip this chain swap proposal
@@ -309,7 +331,7 @@ public class PlacerAnnealRandom extends Placer {
                     newCost += evaluateSite(homeConns, awayBuffer.get(i));
                 }
                 if (siteInstsInAwayBuffer.get(i) != null) {
-                    List<Site> awayConns = findConnectedSites(siteInstsInAwayBuffer.get(i));
+                    List<Site> awayConns = findConnectedSites(siteInstsInAwayBuffer.get(i), awayBuffer);
                     for (Site conn : awayConns) {
                         if (homeBuffer.contains(conn)) {
                             continue loopThruChains; // skip this chain swap proposal

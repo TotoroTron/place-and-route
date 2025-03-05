@@ -197,14 +197,14 @@ public class PlacerAnnealMidpoint extends Placer {
     protected void randomMoveSingleSite(List<SiteInst> sites) throws IOException {
         for (SiteInst si : sites) {
             SiteTypeEnum ste = si.getSiteTypeEnum();
-            List<Site> homeConns = findConnectedSites(si);
+            List<Site> homeConns = findConnectedSites(si, null);
             Site homeSite = si.getSite();
             Site awaySite = proposeSite(ste, true);
             double oldCost = 0;
             double newCost = 0;
             SiteInst awaySi = occupiedSites.get(ste).get(awaySite);
             if (awaySi != null) {
-                List<Site> awayConns = findConnectedSites(awaySi);
+                List<Site> awayConns = findConnectedSites(awaySi, null);
                 oldCost += evaluateSite(homeConns, homeSite);
                 oldCost += evaluateSite(awayConns, awaySite);
                 newCost += evaluateSite(homeConns, awaySite);
@@ -297,7 +297,7 @@ public class PlacerAnnealMidpoint extends Placer {
             double newCost = 0;
             for (int i = 0; i < homeBuffer.size(); i++) {
                 if (siteInstsInHomeBuffer.get(i) != null) {
-                    List<Site> homeConns = findConnectedSites(siteInstsInHomeBuffer.get(i));
+                    List<Site> homeConns = findConnectedSites(siteInstsInHomeBuffer.get(i), homeBuffer);
                     for (Site conn : homeConns) {
                         if (awayBuffer.contains(conn)) {
                             continue loopThruChains; // skip this chain swap proposal
@@ -308,7 +308,7 @@ public class PlacerAnnealMidpoint extends Placer {
                     newCost += evaluateSite(homeConns, awayBuffer.get(i));
                 }
                 if (siteInstsInAwayBuffer.get(i) != null) {
-                    List<Site> awayConns = findConnectedSites(siteInstsInAwayBuffer.get(i));
+                    List<Site> awayConns = findConnectedSites(siteInstsInHomeBuffer.get(i), awayBuffer);
                     for (Site conn : awayConns) {
                         if (homeBuffer.contains(conn)) {
                             continue loopThruChains; // skip this chain swap proposal
@@ -370,7 +370,7 @@ public class PlacerAnnealMidpoint extends Placer {
         SiteTypeEnum ste = chain.get(0).getSiteTypeEnum();
         List<Site> conns = new ArrayList<>();
         for (SiteInst si : chain) {
-            conns.addAll(findConnectedSites(si));
+            conns.addAll(findConnectedSites(si, null));
         }
         Pair<Integer, Integer> midpoint = findMidpoint(conns);
         int attempts = 0;

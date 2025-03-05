@@ -125,7 +125,7 @@ public abstract class Placer {
         si.unPlace();
     }
 
-    protected List<Site> findConnectedSites(SiteInst si) {
+    protected List<Site> findConnectedSites(SiteInst si, List<Site> selfConns) {
         Collection<SitePinInst> pins = si.getSitePinInsts();
         // Handle SPI output pins. Get all sinks.
         List<Site> outputSinks = pins.stream()
@@ -157,6 +157,7 @@ public abstract class Placer {
         if (newCost < oldCost) {
             return true;
         }
+        // otherwise, evaluate probability to accept higher cost
         double delta = newCost - oldCost;
         double acceptanceProbability = Math.exp(-delta / this.currentTemp);
         return Math.random() < acceptanceProbability;
