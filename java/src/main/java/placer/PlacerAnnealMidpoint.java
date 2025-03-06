@@ -55,7 +55,6 @@ public class PlacerAnnealMidpoint extends Placer {
         while (true) {
             if (move >= movesLimit)
                 break;
-            System.out.println("move: " + move);
 
             this.currentTemp = this.coolingSchedule.get(move);
 
@@ -66,6 +65,7 @@ public class PlacerAnnealMidpoint extends Placer {
 
             t0 = System.currentTimeMillis();
             double currCost = evaluateDesign();
+            System.out.println("Move: " + move + ", Design Cost: " + currCost);
             t1 = System.currentTimeMillis();
             evalTimes.add(t1 - t0);
 
@@ -168,15 +168,15 @@ public class PlacerAnnealMidpoint extends Placer {
         // Site awaySite = proposeSite(ste, true);
 
         Pair<Integer, Integer> homeConnsMidpt = findMidpoint(conns);
-        int x = homeConnsMidpt.key();
-        int y = homeConnsMidpt.value();
-        System.out.println("Midpoint: " + x + ", " + y);
+        int mid_x = homeConnsMidpt.key();
+        int mid_y = homeConnsMidpt.value();
+        System.out.println("Midpoint: " + mid_x + ", " + mid_y);
         int spiralPathSize;
 
         if (si.getSiteTypeEnum() == SiteTypeEnum.SLICEL || si.getSiteTypeEnum() == SiteTypeEnum.SLICEM)
-            spiralPathSize = 100000;
+            spiralPathSize = 100;
         else
-            spiralPathSize = 1000000;
+            spiralPathSize = 1000;
 
         // spiral path search for legal site
         Site selectedSite = null;
@@ -184,10 +184,14 @@ public class PlacerAnnealMidpoint extends Placer {
         while (true) {
             if (attempts > spiralPathSize)
                 throw new IllegalStateException(
-                        "ERROR: Could not propose " + ste + " site after  " + spiralPathSize + " attempts!");
+                        "ERROR: Could not propose " + ste + " site after  " + spiralPathSize + " attempts!"
+                                + "\n Site: " + si.getSite());
             int dx = spiralPath.get(attempts).key();
             int dy = spiralPath.get(attempts).value();
-            selectedSite = device.getSite(getSiteTypePrefix(ste) + "X" + (x + dx) + "Y" + (y + dy));
+            int curr_x = mid_x + dx;
+            int curr_y = mid_y + dy;
+            System.out.println("(x, y): (" + curr_x + ", " + curr_y + ")");
+            selectedSite = device.getSite(getSiteTypePrefix(ste) + "X" + curr_x + "Y" + curr_y);
             if (selectedSite == null) {
                 attempts++;
                 continue;

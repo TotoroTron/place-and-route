@@ -32,6 +32,8 @@ public class Main {
             logger.setLevel(Level.ALL); // Set logging level to record all messages
             logger.log(Level.INFO, "Begin Placer...");
 
+            drawVivadoPlacement();
+
             Design design = Design.readCheckpoint(synthesizedDcp);
             Device device = Device.getDevice("xc7z020clg400-1");
 
@@ -69,6 +71,8 @@ public class Main {
     }
 
     public static void drawVivadoPlacement() throws IOException {
+        Design design = Design.readCheckpoint(rootDir + "/outputs/checkpoints/vivado_placed.dcp");
+        Device device = Device.getDevice("xc7z020clg400-1");
 
     }
 
