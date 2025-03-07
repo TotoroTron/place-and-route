@@ -41,6 +41,7 @@ public class PlacerAnnealRandom extends Placer {
 
     public void placeDesign(PackedDesign packedDesign) throws IOException {
         initSites();
+        initRpmGrid();
         unplaceAllSiteInsts(packedDesign);
         randomInitialPlacement(packedDesign);
         design.writeCheckpoint(rootDir + "/outputs/checkpoints/init_placed.dcp");
@@ -134,7 +135,8 @@ public class PlacerAnnealRandom extends Placer {
         randomMoveSingleSite(packedDesign.CLBSiteInsts);
     }
 
-    protected Site proposeSite(SiteTypeEnum ste, boolean swapEnable) {
+    protected Site proposeSite(SiteInst si, List<Site> conns, boolean swapEnable) {
+        SiteTypeEnum ste = si.getSiteTypeEnum();
         Site selectedSite = null;
         int attempts = 0;
         while (true) {
@@ -158,15 +160,17 @@ public class PlacerAnnealRandom extends Placer {
         return selectedSite;
     } // end proposeSite()
 
-    protected Site proposeAnchorSite(SiteTypeEnum ste, int chainSize, boolean swapEnable) {
+    protected Site proposeAnchorSite(List<SiteInst> chain, List<Site> conns, boolean swapEnable) {
+        int chainSize = chain.size();
+        SiteTypeEnum ste = chain.get(0).getSiteTypeEnum();
         boolean validAnchor = false;
-        Site selectedSite = null;
+        Site selectedAnchor = null;
         int attempts = 0;
         while (true) {
             int randIndex = rand.nextInt(allSites.get(ste).size());
-            selectedSite = allSites.get(ste).get(randIndex);
-            int x = selectedSite.getInstanceX();
-            int y = selectedSite.getInstanceY();
+            selectedAnchor = allSites.get(ste).get(randIndex);
+            int x = selectedAnchor.getInstanceX();
+            int y = selectedAnchor.getInstanceY();
             for (int i = 0; i < chainSize; i++) {
                 Site site = device.getSite(getSiteTypePrefix(ste) + "X" + x + "Y" + (y + i));
                 if (site == null) {
@@ -188,12 +192,12 @@ public class PlacerAnnealRandom extends Placer {
             if (validAnchor)
                 break;
         }
-        return selectedSite;
+        return selectedAnchor;
     }
 
     protected void randomInitSingleSite(List<SiteInst> siteInsts) throws IOException {
         for (SiteInst si : siteInsts) {
-            Site selectedSite = proposeSite(si.getSiteTypeEnum(), false);
+            Site selectedSite = proposeSite(si, null, false);
             placeSiteInst(si, selectedSite);
         }
     }
@@ -201,7 +205,7 @@ public class PlacerAnnealRandom extends Placer {
     protected void randomInitSiteChains(List<List<SiteInst>> chains) throws IOException {
         for (List<SiteInst> chain : chains) {
             SiteTypeEnum siteType = chain.get(0).getSiteTypeEnum();
-            Site selectedAnchor = proposeAnchorSite(siteType, chain.size(), false);
+            Site selectedAnchor = proposeAnchorSite(chain, null, false);
             for (int i = 0; i < chain.size(); i++) {
                 Site newSite = device.getSite(getSiteTypePrefix(siteType) + "X" + selectedAnchor.getInstanceX() +
                         "Y" + (selectedAnchor.getInstanceY() + i));
@@ -216,10 +220,10 @@ public class PlacerAnnealRandom extends Placer {
             SiteTypeEnum ste = si.getSiteTypeEnum();
             List<Site> homeConns = findConnectedSites(si, null);
             Site homeSite = si.getSite();
-            Site awaySite = proposeSite(ste, true);
+            Site awaySite = proposeSite(si, homeConns, true);
+            SiteInst awaySi = occupiedSites.get(ste).get(awaySite);
             double oldCost = 0;
             double newCost = 0;
-            SiteInst awaySi = occupiedSites.get(ste).get(awaySite);
             if (awaySi != null) {
                 List<Site> awayConns = findConnectedSites(awaySi, null);
                 oldCost += evaluateSite(homeConns, homeSite);
@@ -252,7 +256,12 @@ public class PlacerAnnealRandom extends Placer {
             int homeInstX = homeChainAnchor.getInstanceX();
             Site homeChainTail = homeChain.get(homeChain.size() - 1).getSite();
             //
-            Site awayInitAnchor = proposeAnchorSite(siteType, homeChain.size(), true);
+            //
+            List<Site> homeChainConns = new ArrayList<>();
+            for (SiteInst si : homeChain) {
+                homeChainConns.addAll(findConnectedSites(si, homeChainConns));
+            }
+            Site awayInitAnchor = proposeAnchorSite(homeChain, homeChainConns, true);
             int awayInstX = awayInitAnchor.getInstanceX();
             Site awayInitTail = device.getSite(getSiteTypePrefix(siteType) +
                     "X" + awayInstX +

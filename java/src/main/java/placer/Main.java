@@ -58,12 +58,22 @@ public class Main {
             // takes the packedDesign and figures out an optimal mapping of SiteInsts onto
             // Sites via simulated annealing, analytical, electrostatic placement, etc.
             // works entirely on the SiteInst/Site/Tile level.
+
             PlacerAnnealRandom SARPlacer = new PlacerAnnealRandom(
                     rootDir, design, device, regionConstraint);
             SARPlacer.run(packedDesign, prepackedDesign);
+
             // PlacerAnnealMidpoint PAMPlacer = new PlacerAnnealMidpoint(
             // rootDir, design, device, regionConstraint);
             // PAMPlacer.run(packedDesign, prepackedDesign);
+
+            // PlacerGreedyRandom GRPlacer = new PlacerGreedyRandom(rootDir, design, device,
+            // regionConstraint);
+            // GRPlacer.run(packedDesign, prepackedDesign);
+
+            // PlacerGreedyMidpoint GMPlacer = new PlacerGreedyMidpoint(rootDir, design,
+            // device, regionConstraint);
+            // GMPlacer.run(packedDesign, prepackedDesign);
 
         } catch (IOException e) {
             logger.log(Level.SEVERE, "An IOException occurred while configuring the logger.", e);
