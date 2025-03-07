@@ -166,11 +166,16 @@ if [ "$start_stage" == "video" ] || [ "$start_stage" == "all" ]; then
     cd $PROJ_DIR
     python3 python/plot_convergence.py
     FPS=10
-    OUTPUT="../video.mp4"
     INPUT="outputs/graphics/images"
     INPUT_PATTERN="%08d.png"
     cd $INPUT
-    ffmpeg -y -framerate $FPS -i $INPUT_PATTERN -vcodec libx264 "$OUTPUT" -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2"
+
+    # OUTPUT="../video.mp4"
+    # ffmpeg -y -framerate $FPS -i $INPUT_PATTERN -vcodec libx264 "$OUTPUT" -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2"
+
+    OUTPUT="../output.gif"
+    ffmpeg -y -framerate $FPS -i $INPUT_PATTERN -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -loop 0 "$OUTPUT"
+
     # height not divisible by 2 error:
     # https://stackoverflow.com/questions/20847674/ffmpeg-libx264-height-not-divisible-by-2
 fi

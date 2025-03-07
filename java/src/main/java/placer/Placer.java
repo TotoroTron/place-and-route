@@ -46,10 +46,11 @@ public abstract class Placer {
     protected ClockRegion regionConstraint;
     protected Set<SiteTypeEnum> uniqueSiteTypes;
     protected Map<SiteTypeEnum, List<Site>> allSites;
+    protected Site[][] rpmGrid;
     protected Map<SiteTypeEnum, Map<Site, SiteInst>> occupiedSites;
-
     // store chain occupation info for fast site-to-chain access
     protected Map<SiteTypeEnum, Map<Site, List<SiteInst>>> occupiedSiteChains;
+
     protected Random rand;
 
     protected String[] FF5_BELS = new String[] { "A5FF", "B5FF", "C5FF", "D5FF" };
@@ -78,6 +79,21 @@ public abstract class Placer {
         placeDesign(packedDesign);
         writer.close();
         design.writeCheckpoint(placedDcp);
+    }
+
+    protected void initRpmGrid() throws IOException {
+        int rpm_x_high = 0, rpm_y_high = 0;
+        int rpm_x_low = Integer.MAX_VALUE, rpm_y_low = Integer.MAX_VALUE;
+        for (Map.Entry<SiteTypeEnum, List<Site>> entry : this.allSites.entrySet()) {
+            for (Site site : entry.getValue()) {
+                int x = site.getRpmX();
+                int y = site.getRpmY();
+                this.rpmGrid[x][y] = site;
+                //
+                // NEED TO INITIALIZE RPM GRID WITH CORRECT DIMENSIONS!
+                //
+            }
+        }
     }
 
     protected abstract void placeDesign(PackedDesign packedDesign) throws IOException;
@@ -264,6 +280,10 @@ public abstract class Placer {
             System.out.println("\tinitAnchor: " + initAnchor.getInstanceY() + ", initTail: " + initTail.getInstanceY());
             System.out.println("\tfinalAnchor: " + finalAnchorInstY + ", finalTail: " + finalTailInstY);
             for (Site site : sites) {
+                if (site == null) {
+                    System.out.println("\t\tnull site.");
+                    continue;
+                }
                 System.out.println("\t\tSiteInst: " + occupiedSites.get(site.getSiteTypeEnum()).get(site));
             }
         }

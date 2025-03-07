@@ -45,6 +45,7 @@ public class PlacerAnnealMidpoint extends Placer {
 
     public void placeDesign(PackedDesign packedDesign) throws IOException {
         initSites();
+        initRpmGrid();
         unplaceAllSiteInsts(packedDesign);
         randomInitialPlacement(packedDesign);
         design.writeCheckpoint(rootDir + "/outputs/checkpoints/init_placed.dcp");
@@ -162,6 +163,9 @@ public class PlacerAnnealMidpoint extends Placer {
     } // end proposeRandomSite()
 
     protected Site proposeMidpointSite(SiteInst si, List<Site> conns, boolean swapEnable) {
+
+        // https://adaptivesupport.amd.com/s/question/0D52E00006hpT8KSAU/vivado-coordinate-systems?language=en_US
+
         SiteTypeEnum ste = si.getSiteTypeEnum();
         Site homeSite = si.getSite();
         // how to make this midpoint?
@@ -170,13 +174,13 @@ public class PlacerAnnealMidpoint extends Placer {
         Pair<Integer, Integer> homeConnsMidpt = findMidpoint(conns);
         int mid_x = homeConnsMidpt.key();
         int mid_y = homeConnsMidpt.value();
-        System.out.println("Midpoint: " + mid_x + ", " + mid_y);
+        // System.out.println("Midpoint: " + mid_x + ", " + mid_y);
         int spiralPathSize;
 
         if (si.getSiteTypeEnum() == SiteTypeEnum.SLICEL || si.getSiteTypeEnum() == SiteTypeEnum.SLICEM)
-            spiralPathSize = 100;
+            spiralPathSize = 10000;
         else
-            spiralPathSize = 1000;
+            spiralPathSize = 10000;
 
         // spiral path search for legal site
         Site selectedSite = null;
@@ -190,8 +194,14 @@ public class PlacerAnnealMidpoint extends Placer {
             int dy = spiralPath.get(attempts).value();
             int curr_x = mid_x + dx;
             int curr_y = mid_y + dy;
-            System.out.println("(x, y): (" + curr_x + ", " + curr_y + ")");
-            selectedSite = device.getSite(getSiteTypePrefix(ste) + "X" + curr_x + "Y" + curr_y);
+            // System.out.println("(x, y): (" + curr_x + ", " + curr_y + ")");
+
+            selectedSite = rpmGrid[curr_x][curr_y];
+            // System.out.println("currSite: " + selectedSite);
+
+            // selectedSite = device.getSite(getSiteTypePrefix(ste) + "X" + curr_x + "Y" +
+            // curr_y);
+
             if (selectedSite == null) {
                 attempts++;
                 continue;
@@ -206,6 +216,7 @@ public class PlacerAnnealMidpoint extends Placer {
                     continue;
                 }
             }
+            System.out.println("Accepted: " + selectedSite);
             break;
         }
         return selectedSite;
@@ -302,15 +313,17 @@ public class PlacerAnnealMidpoint extends Placer {
             //
             SiteTypeEnum siteType = homeChain.get(0).getSiteTypeEnum();
             Site homeChainAnchor = homeChain.get(0).getSite();
-            int homeInstX = homeChainAnchor.getInstanceX();
+            int homeRpmX = homeChainAnchor.getRpmX();
             Site homeChainTail = homeChain.get(homeChain.size() - 1).getSite();
             //
             Site awayInitAnchor = proposeRandomAnchorSite(siteType, homeChain.size(), true);
-            int awayInstX = awayInitAnchor.getInstanceX();
-            Site awayInitTail = device.getSite(getSiteTypePrefix(siteType) +
-                    "X" + awayInstX +
-                    "Y" + (awayInitAnchor.getInstanceY() + homeChain.size() - 1));
-            //
+            int awayRpmX = awayInitAnchor.getRpmY();
+            // Site awayInitTail = device.getSite(getSiteTypePrefix(siteType) +
+            // "X" + awayInstX +
+            // "Y" + (awayInitAnchor.getInstanceY() + homeChain.size() - 1));
+
+            Site awayInitTail = rpmGrid[awayRpmX][awayInitAnchor.getRpmY() + homeChain.size() - 1];
+
             List<Site> awayBuffer = findBufferZone(siteType, awayInitAnchor, awayInitTail);
             List<SiteInst> siteInstsInAwayBuffer = collectSiteInstsInBuffer(siteType, awayBuffer);
             List<Site> homeBuffer = null;
@@ -320,23 +333,26 @@ public class PlacerAnnealMidpoint extends Placer {
             boolean legalSwap = false;
             // sweep possible home buffers to find a legal chain swap
             findLegalHomeBuffer: for (int i = 0; i <= sweepSize; i++) {
-                int homeBufferAnchorInstY = homeChainAnchor.getInstanceY() - sweepSize + i;
-                Site homeBufferAnchor = device.getSite(getSiteTypePrefix(siteType) +
-                        "X" + homeInstX + "Y" + homeBufferAnchorInstY);
+                int homeBufferAnchorRpmY = homeChainAnchor.getInstanceY() - sweepSize + i;
+                // Site homeBufferAnchor = device.getSite(getSiteTypePrefix(siteType) +
+                // "X" + homeInstX + "Y" + homeBufferAnchorInstY);
+                Site homeBufferAnchor = rpmGrid[homeRpmX][homeBufferAnchorRpmY];
                 if (homeBufferAnchor == null) // fell off the device!
                     continue findLegalHomeBuffer;
-                int homeBufferTailInstY = homeBufferAnchorInstY + awayBuffer.size() - 1;
-                Site homeBufferTail = device.getSite(getSiteTypePrefix(siteType) +
-                        "X" + homeInstX + "Y" + homeBufferTailInstY);
+                int homeBufferTailRpmY = homeBufferAnchorRpmY + awayBuffer.size() - 1;
+                // Site homeBufferTail = device.getSite(getSiteTypePrefix(siteType) +
+                // "X" + homeInstX + "Y" + homeBufferTailInstY);
+                Site homeBufferTail = rpmGrid[homeRpmX][homeBufferTailRpmY];
                 if (homeBufferTail == null) // fell off the device!
                     continue findLegalHomeBuffer;
 
                 if (!bufferContainsOverlaps(siteType, homeBufferAnchor, homeBufferTail)) {
                     legalSwap = true;
                     homeBuffer = new ArrayList<>();
-                    for (int y = homeBufferAnchorInstY; y <= homeBufferTailInstY; y++) {
-                        homeBuffer.add(device.getSite(getSiteTypePrefix(siteType) +
-                                "X" + homeInstX + "Y" + y));
+                    for (int y = homeBufferAnchorRpmY; y <= homeBufferTailRpmY; y++) {
+                        // homeBuffer.add(device.getSite(getSiteTypePrefix(siteType) +
+                        // "X" + homeInstX + "Y" + y));
+                        homeBuffer.add(rpmGrid[homeRpmX][y]);
                     }
                     siteInstsInHomeBuffer = collectSiteInstsInBuffer(siteType, homeBuffer);
                     break findLegalHomeBuffer; // found a legal chain swap

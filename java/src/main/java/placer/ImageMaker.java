@@ -127,6 +127,10 @@ public class ImageMaker {
         }
     }
 
+    public Site[][] get2DSiteArray() throws IOException {
+        return this.siteArray;
+    }
+
     public void construct2DPlacementArray() throws IOException {
         this.siteInstArray = new SiteInst[width][height];
         for (SiteInst si : this.design.getSiteInsts()) {
