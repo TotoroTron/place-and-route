@@ -51,7 +51,6 @@ public class PlacerAnnealRandom extends Placer {
         while (true) {
             if (move >= movesLimit)
                 break;
-            System.out.println("move: " + move);
 
             this.currentTemp = this.coolingSchedule.get(move);
 
@@ -62,6 +61,8 @@ public class PlacerAnnealRandom extends Placer {
 
             t0 = System.currentTimeMillis();
             double currCost = evaluateDesign();
+            if (move % 20 == 0)
+                System.out.println("Move: " + move + ", Design Cost: " + currCost);
             t1 = System.currentTimeMillis();
             evalTimes.add(t1 - t0);
 
@@ -116,13 +117,6 @@ public class PlacerAnnealRandom extends Placer {
         // greedy
         // for (int i = 0; i < movesLimit; i++) {
         // this.coolingSchedule.add(0.0d);
-        // }
-        // logarithmic cooling
-        // for (int i = 0; i < movesLimit; i++) {
-        // // avoid log(0) by using (i + 1)
-        // double currentTemp = initialTemp / (1 + alpha * Math.log(1 + i));
-        // this.coolingSchedule.add(currentTemp);
-        // this.writer.write("\n\t" + currentTemp);
         // }
     }
 

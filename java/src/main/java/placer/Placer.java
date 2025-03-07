@@ -82,16 +82,33 @@ public abstract class Placer {
     }
 
     protected void initRpmGrid() throws IOException {
-        int rpm_x_high = 0, rpm_y_high = 0;
-        int rpm_x_low = Integer.MAX_VALUE, rpm_y_low = Integer.MAX_VALUE;
+        int x_high = 0;
+        int y_high = 0;
+        int x_low = Integer.MAX_VALUE;
+        int y_low = Integer.MAX_VALUE;
+        for (Map.Entry<SiteTypeEnum, List<Site>> entry : this.allSites.entrySet()) {
+            for (Site site : entry.getValue()) {
+                int site_x = site.getRpmX();
+                if (site_x > x_high)
+                    x_high = site_x;
+                if (site_x < x_low)
+                    x_low = site_x;
+                int site_y = site.getRpmY();
+                if (site_y > y_high)
+                    y_high = site_y;
+                if (site_y < y_low)
+                    y_low = site_y;
+            }
+        }
+        int width = x_high - x_low + 1;
+        int height = y_high - y_low + 1;
+        this.rpmGrid = new Site[width][height];
+
         for (Map.Entry<SiteTypeEnum, List<Site>> entry : this.allSites.entrySet()) {
             for (Site site : entry.getValue()) {
                 int x = site.getRpmX();
                 int y = site.getRpmY();
                 this.rpmGrid[x][y] = site;
-                //
-                // NEED TO INITIALIZE RPM GRID WITH CORRECT DIMENSIONS!
-                //
             }
         }
     }
@@ -273,17 +290,14 @@ public abstract class Placer {
         }
         String siteTypePrefix = getSiteTypePrefix(siteType);
         for (int i = finalAnchorInstY; i <= finalTailInstY; i++) {
-            sites.add(device.getSite(siteTypePrefix + "X" + instX + "Y" + i));
+            Site site = device.getSite(siteTypePrefix + "X" + instX + "Y" + i);
+            sites.add(site);
         }
         if (finalTailInstY - finalAnchorInstY > 16) {
             System.out.println("buffer size: " + (finalTailInstY - finalAnchorInstY));
             System.out.println("\tinitAnchor: " + initAnchor.getInstanceY() + ", initTail: " + initTail.getInstanceY());
             System.out.println("\tfinalAnchor: " + finalAnchorInstY + ", finalTail: " + finalTailInstY);
             for (Site site : sites) {
-                if (site == null) {
-                    System.out.println("\t\tnull site.");
-                    continue;
-                }
                 System.out.println("\t\tSiteInst: " + occupiedSites.get(site.getSiteTypeEnum()).get(site));
             }
         }

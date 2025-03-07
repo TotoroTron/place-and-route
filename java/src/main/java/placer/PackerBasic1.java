@@ -23,6 +23,7 @@ import com.xilinx.rapidwright.edif.EDIFHierCellInst;
 import com.xilinx.rapidwright.edif.EDIFHierPortInst;
 
 import com.xilinx.rapidwright.device.Device;
+import com.xilinx.rapidwright.device.BEL;
 import com.xilinx.rapidwright.device.Site;
 import com.xilinx.rapidwright.device.Tile;
 import com.xilinx.rapidwright.device.SitePIPStatus;
@@ -208,6 +209,18 @@ public class PackerBasic1 extends Packer {
         writer.write("\n\nPacking RAMBCells... (" + RAMCells.size() + ")");
         for (EDIFHierCellInst ehci : RAMCells) {
             Site selectedSite = selectRAMSite();
+            SiteTypeEnum ste = selectedSite.getSiteTypeEnum();
+            // SiteInst si = null;
+            // if (ste == SiteTypeEnum.RAMB18E1) {
+            // si = new SiteInst(ehci.getFullHierarchicalInstName(), design,
+            // SiteTypeEnum.RAMB18E1, selectedSite);
+            // si.createCell(ehci, si.getBEL("RAMB18E1"));
+            // }
+            // if (ste == SiteTypeEnum.FIFO18E1) {
+            // si = new SiteInst(ehci.getFullHierarchicalInstName(), design,
+            // SiteTypeEnum.FIFO18E1, selectedSite);
+            // si.createCell(ehci, si.getBEL("FIFO18E1"));
+            // }
             SiteInst si = new SiteInst(ehci.getFullHierarchicalInstName(), design, SiteTypeEnum.RAMB18E1, selectedSite);
             si.createCell(ehci, si.getBEL("RAMB18E1"));
             si.routeSite();
@@ -374,22 +387,27 @@ public class PackerBasic1 extends Packer {
     }
 
     private Site selectRAMSite() {
-        List<Site> compatibleSites = new ArrayList<>();
-        compatibleSites.addAll(availableSites.get(SiteTypeEnum.RAMB18E1));
-        compatibleSites.addAll(availableSites.get(SiteTypeEnum.FIFO18E1));
-        if (compatibleSites.isEmpty()) {
-            throw new IllegalStateException(
-                    "ERROR: device or clock region contains no Sites of type FIFO18E1 or RAMB18E1 !");
-        }
-        compatibleSites.sort(
-                Comparator.comparingInt(Site::getInstanceY)
-                        .thenComparingInt(Site::getInstanceX)
-                        .reversed());
+        // List<Site> compatibleSites = new ArrayList<>();
+        // compatibleSites.addAll(availableSites.get(SiteTypeEnum.RAMB18E1));
+        // compatibleSites.addAll(availableSites.get(SiteTypeEnum.FIFO18E1));
+        // if (compatibleSites.isEmpty()) {
+        // throw new IllegalStateException(
+        // "ERROR: device or clock region contains no Sites of type FIFO18E1 or RAMB18E1
+        // !");
+        // }
+        // compatibleSites.sort(
+        // Comparator.comparingInt(Site::getRpmX)
+        // .thenComparingInt(Site::getRpmY)
+        // .reversed());
         // int randIndex = rand.nextInt(compatibleSites.size());
-        Site selectedSite = compatibleSites.get(0);
-        SiteTypeEnum selectedSiteType = selectedSite.getSiteTypeEnum();
-        availableSites.get(selectedSiteType).remove(selectedSite);
-        occupiedSites.get(selectedSiteType).add(selectedSite);
+        // Site selectedSite = compatibleSites.get(rand.nextInt(randIndex));
+        // SiteTypeEnum selectedSiteType = selectedSite.getSiteTypeEnum();
+        //
+        SiteTypeEnum ste = SiteTypeEnum.RAMB18E1;
+        int randIndex = availableSites.get(ste).size();
+        Site selectedSite = availableSites.get(ste).get(rand.nextInt(randIndex));
+        availableSites.get(ste).remove(selectedSite);
+        occupiedSites.get(ste).add(selectedSite);
         return selectedSite;
     }
 

@@ -66,7 +66,8 @@ public class PlacerAnnealMidpoint extends Placer {
 
             t0 = System.currentTimeMillis();
             double currCost = evaluateDesign();
-            System.out.println("Move: " + move + ", Design Cost: " + currCost);
+            if (move % 20 == 0)
+                System.out.println("Move: " + move + ", Design Cost: " + currCost);
             t1 = System.currentTimeMillis();
             evalTimes.add(t1 - t0);
 
@@ -146,7 +147,8 @@ public class PlacerAnnealMidpoint extends Placer {
                 throw new IllegalStateException("ERROR: Could not propose " + ste + " site after 1000 attempts!");
             int randIndex = rand.nextInt(allSites.get(ste).size());
             selectedSite = allSites.get(ste).get(randIndex);
-            if (occupiedSiteChains.containsKey(ste)) { // never propose site swap with a chain
+            if (occupiedSiteChains.containsKey(ste)) {
+                // never propose single site swap with a chain
                 if (occupiedSiteChains.get(ste).containsKey(selectedSite)) {
                     attempts++;
                     continue;
@@ -175,12 +177,10 @@ public class PlacerAnnealMidpoint extends Placer {
         int mid_x = homeConnsMidpt.key();
         int mid_y = homeConnsMidpt.value();
         // System.out.println("Midpoint: " + mid_x + ", " + mid_y);
-        int spiralPathSize;
 
-        if (si.getSiteTypeEnum() == SiteTypeEnum.SLICEL || si.getSiteTypeEnum() == SiteTypeEnum.SLICEM)
-            spiralPathSize = 10000;
-        else
-            spiralPathSize = 10000;
+        // The rpmGrid is non-convex, so we need to radially search around
+        // the proposed midpoint to find a legal site.
+        int spiralPathSize = 10000;
 
         // spiral path search for legal site
         Site selectedSite = null;
@@ -210,13 +210,19 @@ public class PlacerAnnealMidpoint extends Placer {
                 attempts++;
                 continue;
             }
-            if (!swapEnable) { // if swaps disabled
+            if (occupiedSiteChains.containsKey(ste)) {
+                // never propose single site swap with a chain
+                if (occupiedSiteChains.get(ste).containsKey(selectedSite)) {
+                    attempts++;
+                    continue;
+                }
+            } else if (!swapEnable) { // if swaps disabled
                 if (occupiedSites.get(ste).containsKey(selectedSite)) {
                     attempts++;
                     continue;
                 }
             }
-            System.out.println("Accepted: " + selectedSite);
+            // System.out.println("Attempts: " + attempts + " accepted: " + selectedSite);
             break;
         }
         return selectedSite;
@@ -258,6 +264,9 @@ public class PlacerAnnealMidpoint extends Placer {
     protected void randomInitSingleSite(List<SiteInst> siteInsts) throws IOException {
         for (SiteInst si : siteInsts) {
             Site selectedSite = proposeRandomSite(si.getSiteTypeEnum(), false);
+            if (si.getSiteTypeEnum() == SiteTypeEnum.FIFO18E1) {
+                System.out.println(selectedSite);
+            }
             placeSiteInst(si, selectedSite);
         }
     }
@@ -280,6 +289,15 @@ public class PlacerAnnealMidpoint extends Placer {
             SiteTypeEnum ste = si.getSiteTypeEnum();
             Site homeSite = si.getSite();
             List<Site> homeConns = findConnectedSites(si, null);
+
+            // BEGIN DEBUG
+            // if (ste == SiteTypeEnum.FIFO18E1) {
+            // System.out.println("Found FIFO: " + si);
+            // System.out.println("spis: " + si.getSitePinInsts().size());
+            // System.out.println("homeConns: " + homeConns.size());
+            // }
+            // END DEBUG
+
             Site awaySite = proposeMidpointSite(si, homeConns, true);
             SiteInst awaySi = occupiedSites.get(ste).get(awaySite);
             double oldCost = 0;
@@ -313,17 +331,15 @@ public class PlacerAnnealMidpoint extends Placer {
             //
             SiteTypeEnum siteType = homeChain.get(0).getSiteTypeEnum();
             Site homeChainAnchor = homeChain.get(0).getSite();
-            int homeRpmX = homeChainAnchor.getRpmX();
+            int homeInstX = homeChainAnchor.getInstanceX();
             Site homeChainTail = homeChain.get(homeChain.size() - 1).getSite();
             //
             Site awayInitAnchor = proposeRandomAnchorSite(siteType, homeChain.size(), true);
-            int awayRpmX = awayInitAnchor.getRpmY();
-            // Site awayInitTail = device.getSite(getSiteTypePrefix(siteType) +
-            // "X" + awayInstX +
-            // "Y" + (awayInitAnchor.getInstanceY() + homeChain.size() - 1));
-
-            Site awayInitTail = rpmGrid[awayRpmX][awayInitAnchor.getRpmY() + homeChain.size() - 1];
-
+            int awayInstX = awayInitAnchor.getInstanceX();
+            Site awayInitTail = device.getSite(getSiteTypePrefix(siteType) +
+                    "X" + awayInstX +
+                    "Y" + (awayInitAnchor.getInstanceY() + homeChain.size() - 1));
+            //
             List<Site> awayBuffer = findBufferZone(siteType, awayInitAnchor, awayInitTail);
             List<SiteInst> siteInstsInAwayBuffer = collectSiteInstsInBuffer(siteType, awayBuffer);
             List<Site> homeBuffer = null;
@@ -333,26 +349,23 @@ public class PlacerAnnealMidpoint extends Placer {
             boolean legalSwap = false;
             // sweep possible home buffers to find a legal chain swap
             findLegalHomeBuffer: for (int i = 0; i <= sweepSize; i++) {
-                int homeBufferAnchorRpmY = homeChainAnchor.getInstanceY() - sweepSize + i;
-                // Site homeBufferAnchor = device.getSite(getSiteTypePrefix(siteType) +
-                // "X" + homeInstX + "Y" + homeBufferAnchorInstY);
-                Site homeBufferAnchor = rpmGrid[homeRpmX][homeBufferAnchorRpmY];
+                int homeBufferAnchorInstY = homeChainAnchor.getInstanceY() - sweepSize + i;
+                Site homeBufferAnchor = device.getSite(getSiteTypePrefix(siteType) +
+                        "X" + homeInstX + "Y" + homeBufferAnchorInstY);
                 if (homeBufferAnchor == null) // fell off the device!
                     continue findLegalHomeBuffer;
-                int homeBufferTailRpmY = homeBufferAnchorRpmY + awayBuffer.size() - 1;
-                // Site homeBufferTail = device.getSite(getSiteTypePrefix(siteType) +
-                // "X" + homeInstX + "Y" + homeBufferTailInstY);
-                Site homeBufferTail = rpmGrid[homeRpmX][homeBufferTailRpmY];
+                int homeBufferTailInstY = homeBufferAnchorInstY + awayBuffer.size() - 1;
+                Site homeBufferTail = device.getSite(getSiteTypePrefix(siteType) +
+                        "X" + homeInstX + "Y" + homeBufferTailInstY);
                 if (homeBufferTail == null) // fell off the device!
                     continue findLegalHomeBuffer;
 
                 if (!bufferContainsOverlaps(siteType, homeBufferAnchor, homeBufferTail)) {
                     legalSwap = true;
                     homeBuffer = new ArrayList<>();
-                    for (int y = homeBufferAnchorRpmY; y <= homeBufferTailRpmY; y++) {
-                        // homeBuffer.add(device.getSite(getSiteTypePrefix(siteType) +
-                        // "X" + homeInstX + "Y" + y));
-                        homeBuffer.add(rpmGrid[homeRpmX][y]);
+                    for (int y = homeBufferAnchorInstY; y <= homeBufferTailInstY; y++) {
+                        homeBuffer.add(device.getSite(getSiteTypePrefix(siteType) +
+                                "X" + homeInstX + "Y" + y));
                     }
                     siteInstsInHomeBuffer = collectSiteInstsInBuffer(siteType, homeBuffer);
                     break findLegalHomeBuffer; // found a legal chain swap
@@ -360,7 +373,6 @@ public class PlacerAnnealMidpoint extends Placer {
                     continue findLegalHomeBuffer; // try again
                 }
             }
-
             if (!legalSwap) // all possible home buffers in sweep window failed
                 continue loopThruChains; // skip this chain swap proposal
             //
