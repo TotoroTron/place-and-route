@@ -2,9 +2,6 @@
 
 A study on placement algorithms for heterogenous FPGAs.
 
-![gif](outputs/graphics/output.gif)
-
-
 ## Directories
 
 **hdl/**: these are the HDL designs that we want to perform synthesis, placement, and routing on.  
@@ -21,4 +18,5 @@ A study on placement algorithms for heterogenous FPGAs.
 
 **run.sh**: the master script that coordinates `hdl/`, `java/`, `tcl/`, and `outputs/`.
 
-
+## Simulated Annealing
+![gif](outputs/graphics/output.gif)
