@@ -23,6 +23,7 @@ public class PlacerGreedyRandom extends PlacerAnnealRandom {
 
     public PlacerGreedyRandom(String rootDir, Design design, Device device, ClockRegion region) throws IOException {
         super(rootDir, design, device, region);
+        this.placerName = "PlacerGreedyRandom";
     }
 
     @Override
