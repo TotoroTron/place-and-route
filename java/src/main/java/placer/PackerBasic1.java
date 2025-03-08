@@ -18,6 +18,7 @@ import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.Net;
 import com.xilinx.rapidwright.design.SiteInst;
 import com.xilinx.rapidwright.design.SitePinInst;
+import com.xilinx.rapidwright.design.Cell;
 
 import com.xilinx.rapidwright.edif.EDIFHierCellInst;
 import com.xilinx.rapidwright.edif.EDIFHierPortInst;
@@ -221,8 +222,13 @@ public class PackerBasic1 extends Packer {
             }
             if (ste == SiteTypeEnum.FIFO18E1) {
                 si = new SiteInst(
-                        ehci.getFullHierarchicalInstName(), design, SiteTypeEnum.RAMB18E1, selectedSite);
-                si.createCell(ehci, si.getBEL("FIFO18E1"));
+                        ehci.getFullHierarchicalInstName(), design, SiteTypeEnum.FIFO18E1, selectedSite);
+                si.createCell(ehci, si.getBEL("RAMB18E1"));
+                System.out.println("SiteInst:" + si);
+                System.out.println("\tCell-BEL Map:");
+                for (Map.Entry<String, Cell> entry : si.getCellMap().entrySet()) {
+                    System.out.println("\t\t<" + entry.getKey() + ", " + entry.getValue() + ">");
+                }
             }
             si.routeSite();
             RAMSiteInsts.add(si);
