@@ -266,8 +266,7 @@ public class ImageMaker {
     }
 
     public void exportImage(String outputPath, String filetype) throws IOException {
-        // Write out to a file
-        File outputFile = new File(outputPath);
+        File outputFile = new File((outputPath + "." + filetype));
         ImageIO.write(image, filetype, outputFile);
     }
 

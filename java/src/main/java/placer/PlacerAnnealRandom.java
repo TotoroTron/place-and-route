@@ -44,10 +44,13 @@ public class PlacerAnnealRandom extends Placer {
         initRpmGrid();
         unplaceAllSiteInsts(packedDesign);
         randomInitialPlacement(packedDesign);
+        ImageMaker imInitRandom = new ImageMaker(design);
+        imInitRandom.renderAll();
+        imInitRandom.exportImage(graphicsDir + "/random_placement", "png");
         design.writeCheckpoint(rootDir + "/outputs/checkpoints/init_placed.dcp");
 
         this.movesLimit = 500;
-        initCoolingSchedule(20000.0f, 0.98f);
+        initCoolingSchedule(20000.0f, 0.99f);
         int move = 0;
         while (true) {
             if (move >= movesLimit)
@@ -56,7 +59,7 @@ public class PlacerAnnealRandom extends Placer {
             this.currentTemp = this.coolingSchedule.get(move);
 
             long t0 = System.currentTimeMillis();
-            randomMove(packedDesign);
+            move(packedDesign);
             long t1 = System.currentTimeMillis();
             moveTimes.add(t1 - t0);
 
@@ -80,29 +83,10 @@ public class PlacerAnnealRandom extends Placer {
         }
         ImageMaker imPlaced = new ImageMaker(design);
         imPlaced.renderAll();
-        imPlaced.exportImage(graphicsDir + "/final_placement.png", "png");
+        imPlaced.exportImage(graphicsDir + "/final_placement", "png");
         exportCostHistory(rootDir + "/outputs/printout/convergence.csv");
         printTimingBenchmarks();
         writer.write("\n\nTotal move iterations: " + move);
-    }
-
-    @Override
-    protected List<Site> findConnectedSites(SiteInst si, List<Site> selfConns) {
-        List<Site> connectedSites = si.getSitePinInsts().stream()
-                .map(spi -> spi.getNet())
-                .filter(net -> net != null)
-                .filter(net -> !net.isClockNet() && !net.isStaticNet())
-                .map(net -> net.getPins())
-                .map(spis -> spis.stream()
-                        .map(spi -> spi.getSite())
-                        // for chain swaps, ignore connections within the buffers.
-                        // DSP cascades can have very many self connections.
-                        // Allows DSP cascades to move more freely
-                        .filter(site -> !((selfConns != null) && selfConns.contains(site)))
-                        .collect(Collectors.toList()))
-                .flatMap(List::stream) // List<List<Site>> into List<Site>
-                .collect(Collectors.toList());
-        return connectedSites;
     }
 
     protected void initCoolingSchedule(double initialTemp, double alpha) throws IOException {
@@ -128,14 +112,14 @@ public class PlacerAnnealRandom extends Placer {
         randomInitSingleSite(packedDesign.CLBSiteInsts);
     }
 
-    protected void randomMove(PackedDesign packedDesign) throws IOException {
-        randomMoveSiteChains(packedDesign.DSPSiteInstCascades);
-        randomMoveSiteChains(packedDesign.CARRYSiteInstChains);
-        randomMoveSingleSite(packedDesign.RAMSiteInsts);
-        randomMoveSingleSite(packedDesign.CLBSiteInsts);
+    protected void move(PackedDesign packedDesign) throws IOException {
+        moveSiteChains(packedDesign.DSPSiteInstCascades);
+        moveSiteChains(packedDesign.CARRYSiteInstChains);
+        moveSingleSite(packedDesign.RAMSiteInsts);
+        moveSingleSite(packedDesign.CLBSiteInsts);
     }
 
-    protected Site proposeSite(SiteInst si, List<Site> conns, boolean swapEnable) {
+    protected Site proposeSite(SiteInst si, List<Site> connections, boolean swapEnable) {
         SiteTypeEnum ste = si.getSiteTypeEnum();
         Site selectedSite = null;
         int attempts = 0;
@@ -160,7 +144,7 @@ public class PlacerAnnealRandom extends Placer {
         return selectedSite;
     } // end proposeSite()
 
-    protected Site proposeAnchorSite(List<SiteInst> chain, List<Site> conns, boolean swapEnable) {
+    protected Site proposeAnchorSite(List<SiteInst> chain, List<Site> connections, boolean swapEnable) {
         int chainSize = chain.size();
         SiteTypeEnum ste = chain.get(0).getSiteTypeEnum();
         boolean validAnchor = false;
@@ -215,7 +199,7 @@ public class PlacerAnnealRandom extends Placer {
         }
     } // end randomInitSiteChains()
 
-    protected void randomMoveSingleSite(List<SiteInst> sites) throws IOException {
+    protected void moveSingleSite(List<SiteInst> sites) throws IOException {
         for (SiteInst si : sites) {
             SiteTypeEnum ste = si.getSiteTypeEnum();
             List<Site> homeConns = findConnectedSites(si, null);
@@ -248,13 +232,12 @@ public class PlacerAnnealRandom extends Placer {
         }
     } // end randomMoveSingleSite()
 
-    protected void randomMoveSiteChains(List<List<SiteInst>> chains) throws IOException {
+    protected void moveSiteChains(List<List<SiteInst>> chains) throws IOException {
         loopThruChains: for (List<SiteInst> homeChain : chains) {
             //
             SiteTypeEnum siteType = homeChain.get(0).getSiteTypeEnum();
             Site homeChainAnchor = homeChain.get(0).getSite();
             int homeInstX = homeChainAnchor.getInstanceX();
-            Site homeChainTail = homeChain.get(homeChain.size() - 1).getSite();
             //
             //
             List<Site> homeChainConns = new ArrayList<>();

@@ -31,23 +31,28 @@ public class PlacerAnnealMidpoint extends PlacerAnnealRandom {
         this.placerName = "PlacerAnnealMidpoint";
     }
 
-    @Override
-    protected Site proposeSite(SiteInst si, List<Site> conns, boolean swapEnable) {
-        if (conns == null || conns.isEmpty()) {
-            return super.proposeSite(si, conns, swapEnable);
+    private Pair<Integer, Integer> findMidpoint(List<Site> connections) {
+        int sum_x = 0;
+        int sum_y = 0;
+        int size = connections.size();
+        for (Site conn : connections) {
+            sum_x += conn.getRpmX();
+            sum_y += conn.getRpmY();
         }
+        Pair<Integer, Integer> midpoint = new Pair<Integer, Integer>(sum_x / size, sum_y / size);
+        return midpoint;
+    } // end findMidpoint()
 
+    @Override
+    protected Site proposeSite(SiteInst si, List<Site> connections, boolean swapEnable) {
+        if (connections == null || connections.isEmpty()) {
+            return super.proposeSite(si, connections, swapEnable);
+        }
         // https://adaptivesupport.amd.com/s/question/0D52E00006hpT8KSAU/vivado-coordinate-systems?language=en_US
-
         SiteTypeEnum ste = si.getSiteTypeEnum();
-        Site homeSite = si.getSite();
-        // how to make this midpoint?
-        // Site awaySite = proposeSite(ste, true);
-
-        Pair<Integer, Integer> connsMidpt = findMidpoint(conns);
+        Pair<Integer, Integer> connsMidpt = findMidpoint(connections);
         int mid_x = connsMidpt.key();
         int mid_y = connsMidpt.value();
-        // System.out.println("Midpoint: " + mid_x + ", " + mid_y);
 
         // The rpmGrid is non-convex, so we need to radially search around
         // the proposed midpoint to find a legal site.
@@ -64,7 +69,9 @@ public class PlacerAnnealMidpoint extends PlacerAnnealRandom {
             int dy = spiralPath.get(attempts).value();
             int curr_x = mid_x + dx;
             int curr_y = mid_y + dy;
-            // System.out.println("(x, y): (" + curr_x + ", " + curr_y + ")");
+            if (curr_x < 0 || curr_y < 0) {
+                System.out.println("(x, y): (" + curr_x + ", " + curr_y + ")");
+            }
 
             selectedSite = rpmGrid[curr_x][curr_y];
             // System.out.println("currSite: " + selectedSite);
@@ -98,28 +105,16 @@ public class PlacerAnnealMidpoint extends PlacerAnnealRandom {
         return selectedSite;
     } // end proposeSite()
 
-    private Pair<Integer, Integer> findMidpoint(List<Site> conns) {
-        int sum_x = 0;
-        int sum_y = 0;
-        int size = conns.size();
-        for (Site conn : conns) {
-            sum_x += conn.getRpmX();
-            sum_y += conn.getRpmY();
-        }
-        Pair<Integer, Integer> midpoint = new Pair<Integer, Integer>(sum_x / size, sum_y / size);
-        return midpoint;
-    } // end findMidpoint()
-
     @Override
-    protected Site proposeAnchorSite(List<SiteInst> chain, List<Site> conns, boolean swapEnable) {
-        if (conns == null || conns.isEmpty()) {
-            return super.proposeAnchorSite(chain, conns, swapEnable);
+    protected Site proposeAnchorSite(List<SiteInst> chain, List<Site> connections, boolean swapEnable) {
+        if (connections == null || connections.isEmpty()) {
+            return super.proposeAnchorSite(chain, connections, swapEnable);
         }
 
         boolean validAnchor = false;
         Site selectedAnchor = null;
         SiteTypeEnum ste = chain.get(0).getSiteTypeEnum();
-        Pair<Integer, Integer> connsMidpt = findMidpoint(conns);
+        Pair<Integer, Integer> connsMidpt = findMidpoint(connections);
         int mid_x = connsMidpt.key();
         int mid_y = connsMidpt.value();
         int spiralPathSize = 10000;

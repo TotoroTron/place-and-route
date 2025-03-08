@@ -1,0 +1,2012 @@
+PlacerAnnealMidpoint.txt
+Printing Cooling Schedule...
+	20000.0
+	19800.000190734863
+	19602.00037765503
+	19405.980560817723
+	19211.920940279397
+	19019.80191409576
+	18829.604076341766
+	18641.308215151446
+	18454.8953107773
+	18270.346533669126
+	18087.643242572038
+	17906.766982643527
+	17727.699483589327
+	17550.42265781795
+	17374.918598613644
+	17201.169578327645
+	17029.158046587505
+	16858.866628524338
+	16690.278123017775
+	16523.375500958493
+	16358.141903528096
+	16194.560640496213
+	16032.615188534615
+	15872.289189548203
+	15713.566449022666
+	15556.430934388687
+	15400.866773402486
+	15246.858252542572
+	15094.389815422517
+	14943.44606121961
+	14794.011743119221
+	14646.07176677472
+	14499.611188782797
+	14354.615215174037
+	14211.069199918575
+	14068.958643446706
+	13928.269191184283
+	13788.986632102766
+	13651.096897283762
+	13514.58605849793
+	13379.440326798085
+	13245.64605112639
+	13113.18971693545
+	12982.057944823218
+	12852.237489181538
+	12723.71523685821
+	12596.478205832433
+	12470.513543903486
+	12345.808527392535
+	12222.350559857416
+	12100.12717082026
+	11979.126014507863
+	11859.334868604632
+	11740.741633018017
+	11623.334328656274
+	11507.101096218465
+	11392.030194996547
+	11278.110001689447
+	11165.329009228992
+	11053.675825617576
+	10943.139172777468
+	10833.7078854116
+	10725.370909875774
+	10618.117303062123
+	10511.93623129376
+	10406.816969230458
+	10302.748898785294
+	10199.721508052111
+	10097.724390243715
+	9996.747242640682
+	9896.779865550687
+	9797.812161278227
+	9699.834133104663
+	9602.835884278444
+	9506.807617015438
+	9411.739631509266
+	9317.622324951517
+	9224.446190561774
+	9132.20181662733
+	9040.87988555252
+	8950.471172917545
+	8860.966546546715
+	8772.35696558601
+	8684.633479589866
+	8597.787227617086
+	8511.809437335804
+	8426.691424137385
+	8342.424590259203
+	8259.000423916172
+	8176.410498440976
+	8094.646471432893
+	8013.700083915129
+	7933.563159500577
+	7854.227603565925
+	7775.685402434017
+	7697.928622564392
+	7620.949409751916
+	7544.739988333435
+	7469.292660402348
+	7394.59980503105
+	7320.653877501139
+	7247.447408541323
+	7174.973003572954
+	7103.223341963099
+	7032.191176285085
+	6961.869331586436
+	6892.250704664131
+	6823.328263347114
+	6755.095045785973
+	6687.544159749719
+	6620.668781929613
+	6554.4621572499345
+	6488.917598185657
+	6424.028484086941
+	6359.788260510381
+	6296.190438556945
+	6233.228594216527
+	6170.896367719062
+	6109.187462892125
+	6048.095646524956
+	5987.61474773884
+	5927.738657363796
+	5868.461327321479
+	5809.776770014273
+	5751.679057720479
+	5694.16232199556
+	5637.220753079368
+	5580.8485993093
+	5525.0401665393265
+	5469.789817564822
+	5415.0919715531545
+	5360.941103479964
+	5307.331743571083
+	5254.258476750032
+	5201.715942091046
+	5149.698832277564
+	5098.201893066143
+	5047.219922755724
+	4996.747771662207
+	4946.780341598285
+	4897.312585358476
+	4848.339506209304
+	4799.85615738458
+	4751.85764158573
+	4704.339110487118
+	4657.295764246321
+	4610.722851019291
+	4564.6156664803775
+	4518.969553347141
+	4473.779900909922
+	4429.042144566112
+	4384.7517653590885
+	4340.904289521749
+	4297.495288024621
+	4254.520376128484
+	4211.975212941467
+	4169.855500980579
+	4128.1569857376135
+	4086.87545524941
+	4046.0067396723975
+	4005.5467108614007
+	3965.491281952657
+	3925.8364069510026
+	3886.578080321186
+	3847.7123365832713
+	3809.235249912083
+	3771.1429337406603
+	3733.431540367675
+	3696.097260568776
+	3659.1363232118188
+	3622.5449948759438
+	3586.3195794744656
+	3550.45641788153
+	3514.9518875625054
+	3479.8024022080735
+	3445.0044113719746
+	3410.554400112377
+	3376.448888636835
+	3342.6844319507923
+	3309.257619509607
+	3276.1650748740512
+	3243.4034553692554
+	3210.9694517470684
+	3178.8597878517885
+	3147.07122028924
+	3115.600538099158
+	3084.4445624308482
+	3053.600146222095
+	3023.0641738812747
+	2992.8335609726487
+	2962.905253904807
+	2933.2762296222254
+	2903.943495299905
+	2874.9040880410694
+	2846.1550745778804
+	2817.6935509751515
+	2789.5166423370197
+	2761.6215025165534
+	2734.005313828263
+	2706.6652867634866
+	2679.5986597086235
+	2652.8026986661816
+	2626.2746969786176
+	2600.011975054939
+	2574.011880100036
+	2548.271785846726
+	2522.789092290472
+	2497.561225426759
+	2472.585636991091
+	2447.859804201594
+	2423.3812295041885
+	2399.147440320311
+	2375.1559887971607
+	2351.404451560442
+	2327.8904294695776
+	2304.611547375375
+	2281.5654538801095
+	2258.749821100012
+	2236.162344430129
+	2213.8007423115337
+	2191.6627560008674
+	2169.7461493421833
+	2148.048708541073
+	2126.5682419410514
+	2105.302579802176
+	2084.249574081884
+	2063.407098218018
+	2042.7730469140213
+	2022.345335926283
+	2002.1219018536083
+	1982.1007019287945
+	1962.279713812292
+	1942.6569353879265
+	1923.2303845606675
+	1903.998099056415
+	1884.9581362237916
+	1866.1085728379153
+	1847.4475049061343
+	1828.9730474757052
+	1810.6833344433944
+	1792.5765183669823
+	1774.6507702786544
+	1756.9042795002565
+	1739.335253460399
+	1721.9419175133885
+	1704.7225147599725
+	1687.6753058698735
+	1670.7985689061006
+	1654.0905991510165
+	1637.5497089341436
+	1621.1742274616931
+	1604.9625006477984
+	1588.9128909474355
+	1573.0237771910154
+	1557.2935544206289
+	1541.7206337279313
+	1526.3034420936456
+	1511.040422228673
+	1495.9300324167907
+	1480.9707463589234
+	1466.1610530189719
+	1451.4994564711835
+	1436.9844757490491
+	1422.6146446957105
+	1408.388511815864
+	1394.304640129145
+	1380.3616070249786
+	1366.558004118883
+	1352.8924371102069
+	1339.3635256412924
+	1325.9699031580456
+	1312.7102167718995
+	1299.5831271231607
+	1286.5873082457197
+	1273.7214474331151
+	1260.9842451059383
+	1248.3744146805618
+	1235.8906824391825
+	1223.5317874011625
+	1211.2964811956592
+	1199.1835279355262
+	1187.1917040924761
+	1175.3197983734938
+	1163.5666115984818
+	1151.930956579133
+	1140.4116579990114
+	1129.0075522948343
+	1117.717487538941
+	1106.5403233229363
+	1095.4749306424978
+	1084.5201917833358
+	1073.6750002082929
+	1062.9382604455727
+	1052.3088879780862
+	1041.7858091339049
+	1031.3679609778096
+	1021.0542912039228
+	1010.8437580294161
+	1000.7353300892793
+	990.7279863321423
+	980.8207159171393
+	971.0125181118032
+	961.3024021909821
+	951.6893873367663
+	942.172502539416
+	932.750786499279
+	923.4232875296909
+	914.1890634608447
+	905.0471815446226
+	895.996718360379
+	887.0367597216657
+	878.1664005838908
+	869.3847449528993
+	860.6909057944692
+	852.0840049447127
+	843.5631730213719
+	835.1275493360035
+	826.7762818070405
+	818.5085268737231
+	810.3234494108915
+	802.2202226446292
+	794.1980280687511
+	786.2560553621262
+	778.393502306827
+	770.6095747070976
+	762.9034863091323
+	755.2744587216556
+	747.7217213372976
+	740.2445112547547
+	732.8420732017289
+	725.5136594586382
+	718.2585297830893
+	711.0759513351055
+	703.9651986031032
+	696.9255533306075
+	689.9563044437015
+	683.0567479792005
+	676.2261870135453
+	669.4639315924053
+	662.7692986609868
+	656.1416119950375
+	649.5802021325411
+	643.0844063060953
+	636.6535683759652
+	630.2870387638071
+	623.9841743870546
+	617.7443385939608
+	611.5669010992904
+	605.451237920654
+	599.3967313154803
+	593.4027697186182
+	587.4687476805618
+	581.5940658062948
+	575.7781306947451
+	570.0203548788458
+	564.320156766195
+	558.6769605803095
+	553.0901963024651
+	547.5592996141196
+	542.0837118399108
+	536.6628798912249
+	531.2962562103287
+	525.9832987150613
+	520.7234707440783
+	515.5162410026436
+	510.36108350896313
+	505.25747754105606
+	500.2049075841563
+	495.20286327864045
+	490.2508393684766
+	485.3483356501882
+	480.4948569223287
+	475.68991293546145
+	470.93301834263934
+	466.2236926503802
+	461.561460170132
+	456.9458499702238
+	452.3763958282967
+	447.85263618421124
+	443.3741140934247
+	438.94037718083547
+	434.55097759508874
+	430.20547196333894
+	425.90342134646465
+	421.64439119473155
+	417.4279513038985
+	413.2536757717627
+	409.12114295513925
+	405.02993542727114
+	400.9796399356649
+	396.9698473603481
+	393.0001526725441
+	389.0701548937602
+	385.17945705528473
+	381.3276661580894
+	377.51439313313256
+	373.739252802059
+	370.0018638382937
+	366.3018487285235
+	362.6388337345649
+	359.01244885561266
+	355.42232779086606
+	351.86810790252883
+	348.3494301791793
+	344.86593919950656
+	341.4172830964094
+	338.0031135214542
+	334.6230856096886
+	331.2768579448061
+	327.9640925246604
+	324.68445472712307
+	321.4376132762841
+	318.2232402089892
+	315.0410108417126
+	311.89060373776067
+	308.77170067480364
+	305.683986612732
+	302.6271496618343
+	299.60088105129336
+	296.6048750979971
+	293.6388291756616
+	290.7024436842631
+	287.795422019775
+	284.9174705442083
+	282.06829855595095
+	279.24761826040435
+	276.4551447409131
+	273.6905959299857
+	270.9536925808028
+	268.2441582390105
+	265.561719214796
+	262.906104555242
+	260.27704601695757
+	257.67427803898335
+	255.09753771596692
+	252.54656477160694
+	250.0211015323626
+	247.520892901426
+	245.04568633295494
+	242.59523180656316
+	240.16928180206594
+	237.76759127447804
+	235.3899176292617
+	233.03602069782227
+	230.70566271324873
+	228.3986082862969
+	226.1146243816128
+	223.85348029419376
+	221.61494762608496
+	219.39880026330894
+	217.20481435302585
+	215.0327682809221
+	212.88244264882516
+	210.75362025254208
+	208.6460860599198
+	206.55962718912474
+	204.4940328871396
+	202.4490945084753
+	200.42460549409557
+	198.4203613505526
+	196.43615962933112
+	194.471799906399
+	192.52708376196264
+	190.60181476042436
+	188.69579843054066
+	186.80884224577864
+	184.9407556048688
+	183.0913498125526
+	181.26043806052226
+	179.44783540855127
+	177.65335876581366
+	175.87682687238998
+	174.11806028095822
+	172.37688133866786
+	170.65311416919522
+	168.94658465497818
+	167.2571204196286
+	165.5845508105205
+	163.92870688155264
+	162.28942137608308
+	160.66652871003478
+	159.05986495516984
+	157.46926782253124
+	155.8945766460499
+	154.33563236631593
+	152.79227751451205
+	151.26435619650763
+	149.75171407711187
+	148.25419836448438
+	146.77165779470175
+	145.30394261647834
+	143.85090457603994
+	142.41239690214866
+	140.98827429127763
+	139.5783928929338
+	138.18261029512774
+	136.80078550998854
+	135.4327789595226
+	134.078452461515
+	132.73766921557163
+
+Printing Move Times... 
+	Iter: 0, Time (ms): 177
+	Iter: 1, Time (ms): 97
+	Iter: 2, Time (ms): 101
+	Iter: 3, Time (ms): 91
+	Iter: 4, Time (ms): 81
+	Iter: 5, Time (ms): 85
+	Iter: 6, Time (ms): 115
+	Iter: 7, Time (ms): 94
+	Iter: 8, Time (ms): 93
+	Iter: 9, Time (ms): 95
+	Iter: 10, Time (ms): 87
+	Iter: 11, Time (ms): 88
+	Iter: 12, Time (ms): 86
+	Iter: 13, Time (ms): 86
+	Iter: 14, Time (ms): 89
+	Iter: 15, Time (ms): 88
+	Iter: 16, Time (ms): 86
+	Iter: 17, Time (ms): 87
+	Iter: 18, Time (ms): 83
+	Iter: 19, Time (ms): 83
+	Iter: 20, Time (ms): 82
+	Iter: 21, Time (ms): 84
+	Iter: 22, Time (ms): 84
+	Iter: 23, Time (ms): 82
+	Iter: 24, Time (ms): 82
+	Iter: 25, Time (ms): 75
+	Iter: 26, Time (ms): 73
+	Iter: 27, Time (ms): 73
+	Iter: 28, Time (ms): 73
+	Iter: 29, Time (ms): 77
+	Iter: 30, Time (ms): 73
+	Iter: 31, Time (ms): 73
+	Iter: 32, Time (ms): 73
+	Iter: 33, Time (ms): 71
+	Iter: 34, Time (ms): 73
+	Iter: 35, Time (ms): 73
+	Iter: 36, Time (ms): 74
+	Iter: 37, Time (ms): 73
+	Iter: 38, Time (ms): 72
+	Iter: 39, Time (ms): 73
+	Iter: 40, Time (ms): 74
+	Iter: 41, Time (ms): 73
+	Iter: 42, Time (ms): 73
+	Iter: 43, Time (ms): 73
+	Iter: 44, Time (ms): 72
+	Iter: 45, Time (ms): 71
+	Iter: 46, Time (ms): 70
+	Iter: 47, Time (ms): 71
+	Iter: 48, Time (ms): 74
+	Iter: 49, Time (ms): 71
+	Iter: 50, Time (ms): 71
+	Iter: 51, Time (ms): 71
+	Iter: 52, Time (ms): 71
+	Iter: 53, Time (ms): 71
+	Iter: 54, Time (ms): 71
+	Iter: 55, Time (ms): 70
+	Iter: 56, Time (ms): 71
+	Iter: 57, Time (ms): 71
+	Iter: 58, Time (ms): 70
+	Iter: 59, Time (ms): 71
+	Iter: 60, Time (ms): 70
+	Iter: 61, Time (ms): 72
+	Iter: 62, Time (ms): 70
+	Iter: 63, Time (ms): 69
+	Iter: 64, Time (ms): 73
+	Iter: 65, Time (ms): 71
+	Iter: 66, Time (ms): 69
+	Iter: 67, Time (ms): 70
+	Iter: 68, Time (ms): 71
+	Iter: 69, Time (ms): 72
+	Iter: 70, Time (ms): 70
+	Iter: 71, Time (ms): 70
+	Iter: 72, Time (ms): 70
+	Iter: 73, Time (ms): 70
+	Iter: 74, Time (ms): 70
+	Iter: 75, Time (ms): 70
+	Iter: 76, Time (ms): 71
+	Iter: 77, Time (ms): 70
+	Iter: 78, Time (ms): 69
+	Iter: 79, Time (ms): 70
+	Iter: 80, Time (ms): 70
+	Iter: 81, Time (ms): 72
+	Iter: 82, Time (ms): 69
+	Iter: 83, Time (ms): 68
+	Iter: 84, Time (ms): 67
+	Iter: 85, Time (ms): 71
+	Iter: 86, Time (ms): 71
+	Iter: 87, Time (ms): 74
+	Iter: 88, Time (ms): 71
+	Iter: 89, Time (ms): 70
+	Iter: 90, Time (ms): 70
+	Iter: 91, Time (ms): 70
+	Iter: 92, Time (ms): 70
+	Iter: 93, Time (ms): 70
+	Iter: 94, Time (ms): 71
+	Iter: 95, Time (ms): 72
+	Iter: 96, Time (ms): 70
+	Iter: 97, Time (ms): 70
+	Iter: 98, Time (ms): 71
+	Iter: 99, Time (ms): 72
+	Iter: 100, Time (ms): 70
+	Iter: 101, Time (ms): 70
+	Iter: 102, Time (ms): 70
+	Iter: 103, Time (ms): 72
+	Iter: 104, Time (ms): 71
+	Iter: 105, Time (ms): 71
+	Iter: 106, Time (ms): 70
+	Iter: 107, Time (ms): 70
+	Iter: 108, Time (ms): 59
+	Iter: 109, Time (ms): 63
+	Iter: 110, Time (ms): 63
+	Iter: 111, Time (ms): 64
+	Iter: 112, Time (ms): 63
+	Iter: 113, Time (ms): 63
+	Iter: 114, Time (ms): 64
+	Iter: 115, Time (ms): 64
+	Iter: 116, Time (ms): 64
+	Iter: 117, Time (ms): 63
+	Iter: 118, Time (ms): 62
+	Iter: 119, Time (ms): 63
+	Iter: 120, Time (ms): 65
+	Iter: 121, Time (ms): 65
+	Iter: 122, Time (ms): 64
+	Iter: 123, Time (ms): 66
+	Iter: 124, Time (ms): 68
+	Iter: 125, Time (ms): 68
+	Iter: 126, Time (ms): 69
+	Iter: 127, Time (ms): 69
+	Iter: 128, Time (ms): 69
+	Iter: 129, Time (ms): 69
+	Iter: 130, Time (ms): 72
+	Iter: 131, Time (ms): 69
+	Iter: 132, Time (ms): 69
+	Iter: 133, Time (ms): 70
+	Iter: 134, Time (ms): 69
+	Iter: 135, Time (ms): 68
+	Iter: 136, Time (ms): 69
+	Iter: 137, Time (ms): 68
+	Iter: 138, Time (ms): 70
+	Iter: 139, Time (ms): 68
+	Iter: 140, Time (ms): 71
+	Iter: 141, Time (ms): 69
+	Iter: 142, Time (ms): 70
+	Iter: 143, Time (ms): 70
+	Iter: 144, Time (ms): 69
+	Iter: 145, Time (ms): 69
+	Iter: 146, Time (ms): 70
+	Iter: 147, Time (ms): 70
+	Iter: 148, Time (ms): 70
+	Iter: 149, Time (ms): 69
+	Iter: 150, Time (ms): 69
+	Iter: 151, Time (ms): 70
+	Iter: 152, Time (ms): 69
+	Iter: 153, Time (ms): 70
+	Iter: 154, Time (ms): 71
+	Iter: 155, Time (ms): 70
+	Iter: 156, Time (ms): 69
+	Iter: 157, Time (ms): 70
+	Iter: 158, Time (ms): 68
+	Iter: 159, Time (ms): 68
+	Iter: 160, Time (ms): 69
+	Iter: 161, Time (ms): 70
+	Iter: 162, Time (ms): 71
+	Iter: 163, Time (ms): 69
+	Iter: 164, Time (ms): 69
+	Iter: 165, Time (ms): 69
+	Iter: 166, Time (ms): 69
+	Iter: 167, Time (ms): 69
+	Iter: 168, Time (ms): 69
+	Iter: 169, Time (ms): 68
+	Iter: 170, Time (ms): 71
+	Iter: 171, Time (ms): 68
+	Iter: 172, Time (ms): 69
+	Iter: 173, Time (ms): 68
+	Iter: 174, Time (ms): 68
+	Iter: 175, Time (ms): 69
+	Iter: 176, Time (ms): 67
+	Iter: 177, Time (ms): 67
+	Iter: 178, Time (ms): 69
+	Iter: 179, Time (ms): 67
+	Iter: 180, Time (ms): 68
+	Iter: 181, Time (ms): 68
+	Iter: 182, Time (ms): 70
+	Iter: 183, Time (ms): 69
+	Iter: 184, Time (ms): 68
+	Iter: 185, Time (ms): 67
+	Iter: 186, Time (ms): 69
+	Iter: 187, Time (ms): 69
+	Iter: 188, Time (ms): 68
+	Iter: 189, Time (ms): 70
+	Iter: 190, Time (ms): 69
+	Iter: 191, Time (ms): 69
+	Iter: 192, Time (ms): 70
+	Iter: 193, Time (ms): 68
+	Iter: 194, Time (ms): 70
+	Iter: 195, Time (ms): 68
+	Iter: 196, Time (ms): 70
+	Iter: 197, Time (ms): 68
+	Iter: 198, Time (ms): 69
+	Iter: 199, Time (ms): 69
+	Iter: 200, Time (ms): 68
+	Iter: 201, Time (ms): 67
+	Iter: 202, Time (ms): 68
+	Iter: 203, Time (ms): 68
+	Iter: 204, Time (ms): 67
+	Iter: 205, Time (ms): 68
+	Iter: 206, Time (ms): 69
+	Iter: 207, Time (ms): 68
+	Iter: 208, Time (ms): 68
+	Iter: 209, Time (ms): 67
+	Iter: 210, Time (ms): 67
+	Iter: 211, Time (ms): 68
+	Iter: 212, Time (ms): 68
+	Iter: 213, Time (ms): 67
+	Iter: 214, Time (ms): 68
+	Iter: 215, Time (ms): 69
+	Iter: 216, Time (ms): 68
+	Iter: 217, Time (ms): 68
+	Iter: 218, Time (ms): 67
+	Iter: 219, Time (ms): 67
+	Iter: 220, Time (ms): 67
+	Iter: 221, Time (ms): 68
+	Iter: 222, Time (ms): 67
+	Iter: 223, Time (ms): 66
+	Iter: 224, Time (ms): 68
+	Iter: 225, Time (ms): 68
+	Iter: 226, Time (ms): 68
+	Iter: 227, Time (ms): 67
+	Iter: 228, Time (ms): 67
+	Iter: 229, Time (ms): 67
+	Iter: 230, Time (ms): 67
+	Iter: 231, Time (ms): 67
+	Iter: 232, Time (ms): 68
+	Iter: 233, Time (ms): 67
+	Iter: 234, Time (ms): 68
+	Iter: 235, Time (ms): 67
+	Iter: 236, Time (ms): 67
+	Iter: 237, Time (ms): 68
+	Iter: 238, Time (ms): 67
+	Iter: 239, Time (ms): 68
+	Iter: 240, Time (ms): 67
+	Iter: 241, Time (ms): 70
+	Iter: 242, Time (ms): 69
+	Iter: 243, Time (ms): 60
+	Iter: 244, Time (ms): 60
+	Iter: 245, Time (ms): 62
+	Iter: 246, Time (ms): 61
+	Iter: 247, Time (ms): 61
+	Iter: 248, Time (ms): 61
+	Iter: 249, Time (ms): 61
+	Iter: 250, Time (ms): 61
+	Iter: 251, Time (ms): 62
+	Iter: 252, Time (ms): 61
+	Iter: 253, Time (ms): 61
+	Iter: 254, Time (ms): 61
+	Iter: 255, Time (ms): 62
+	Iter: 256, Time (ms): 61
+	Iter: 257, Time (ms): 62
+	Iter: 258, Time (ms): 61
+	Iter: 259, Time (ms): 62
+	Iter: 260, Time (ms): 61
+	Iter: 261, Time (ms): 61
+	Iter: 262, Time (ms): 64
+	Iter: 263, Time (ms): 66
+	Iter: 264, Time (ms): 66
+	Iter: 265, Time (ms): 68
+	Iter: 266, Time (ms): 68
+	Iter: 267, Time (ms): 59
+	Iter: 268, Time (ms): 60
+	Iter: 269, Time (ms): 61
+	Iter: 270, Time (ms): 61
+	Iter: 271, Time (ms): 61
+	Iter: 272, Time (ms): 64
+	Iter: 273, Time (ms): 61
+	Iter: 274, Time (ms): 61
+	Iter: 275, Time (ms): 61
+	Iter: 276, Time (ms): 61
+	Iter: 277, Time (ms): 61
+	Iter: 278, Time (ms): 62
+	Iter: 279, Time (ms): 65
+	Iter: 280, Time (ms): 63
+	Iter: 281, Time (ms): 62
+	Iter: 282, Time (ms): 62
+	Iter: 283, Time (ms): 61
+	Iter: 284, Time (ms): 61
+	Iter: 285, Time (ms): 62
+	Iter: 286, Time (ms): 61
+	Iter: 287, Time (ms): 61
+	Iter: 288, Time (ms): 61
+	Iter: 289, Time (ms): 62
+	Iter: 290, Time (ms): 62
+	Iter: 291, Time (ms): 63
+	Iter: 292, Time (ms): 61
+	Iter: 293, Time (ms): 61
+	Iter: 294, Time (ms): 61
+	Iter: 295, Time (ms): 62
+	Iter: 296, Time (ms): 61
+	Iter: 297, Time (ms): 62
+	Iter: 298, Time (ms): 61
+	Iter: 299, Time (ms): 61
+	Iter: 300, Time (ms): 62
+	Iter: 301, Time (ms): 62
+	Iter: 302, Time (ms): 60
+	Iter: 303, Time (ms): 61
+	Iter: 304, Time (ms): 61
+	Iter: 305, Time (ms): 61
+	Iter: 306, Time (ms): 61
+	Iter: 307, Time (ms): 62
+	Iter: 308, Time (ms): 62
+	Iter: 309, Time (ms): 62
+	Iter: 310, Time (ms): 61
+	Iter: 311, Time (ms): 61
+	Iter: 312, Time (ms): 61
+	Iter: 313, Time (ms): 61
+	Iter: 314, Time (ms): 62
+	Iter: 315, Time (ms): 63
+	Iter: 316, Time (ms): 61
+	Iter: 317, Time (ms): 61
+	Iter: 318, Time (ms): 61
+	Iter: 319, Time (ms): 62
+	Iter: 320, Time (ms): 61
+	Iter: 321, Time (ms): 62
+	Iter: 322, Time (ms): 61
+	Iter: 323, Time (ms): 63
+	Iter: 324, Time (ms): 62
+	Iter: 325, Time (ms): 61
+	Iter: 326, Time (ms): 62
+	Iter: 327, Time (ms): 62
+	Iter: 328, Time (ms): 61
+	Iter: 329, Time (ms): 61
+	Iter: 330, Time (ms): 60
+	Iter: 331, Time (ms): 62
+	Iter: 332, Time (ms): 62
+	Iter: 333, Time (ms): 60
+	Iter: 334, Time (ms): 60
+	Iter: 335, Time (ms): 61
+	Iter: 336, Time (ms): 61
+	Iter: 337, Time (ms): 61
+	Iter: 338, Time (ms): 61
+	Iter: 339, Time (ms): 63
+	Iter: 340, Time (ms): 61
+	Iter: 341, Time (ms): 61
+	Iter: 342, Time (ms): 61
+	Iter: 343, Time (ms): 61
+	Iter: 344, Time (ms): 61
+	Iter: 345, Time (ms): 61
+	Iter: 346, Time (ms): 62
+	Iter: 347, Time (ms): 61
+	Iter: 348, Time (ms): 61
+	Iter: 349, Time (ms): 62
+	Iter: 350, Time (ms): 61
+	Iter: 351, Time (ms): 61
+	Iter: 352, Time (ms): 61
+	Iter: 353, Time (ms): 60
+	Iter: 354, Time (ms): 61
+	Iter: 355, Time (ms): 61
+	Iter: 356, Time (ms): 60
+	Iter: 357, Time (ms): 61
+	Iter: 358, Time (ms): 60
+	Iter: 359, Time (ms): 61
+	Iter: 360, Time (ms): 61
+	Iter: 361, Time (ms): 61
+	Iter: 362, Time (ms): 61
+	Iter: 363, Time (ms): 60
+	Iter: 364, Time (ms): 61
+	Iter: 365, Time (ms): 61
+	Iter: 366, Time (ms): 61
+	Iter: 367, Time (ms): 61
+	Iter: 368, Time (ms): 61
+	Iter: 369, Time (ms): 62
+	Iter: 370, Time (ms): 61
+	Iter: 371, Time (ms): 61
+	Iter: 372, Time (ms): 60
+	Iter: 373, Time (ms): 60
+	Iter: 374, Time (ms): 60
+	Iter: 375, Time (ms): 61
+	Iter: 376, Time (ms): 60
+	Iter: 377, Time (ms): 61
+	Iter: 378, Time (ms): 61
+	Iter: 379, Time (ms): 61
+	Iter: 380, Time (ms): 61
+	Iter: 381, Time (ms): 61
+	Iter: 382, Time (ms): 61
+	Iter: 383, Time (ms): 61
+	Iter: 384, Time (ms): 62
+	Iter: 385, Time (ms): 61
+	Iter: 386, Time (ms): 61
+	Iter: 387, Time (ms): 61
+	Iter: 388, Time (ms): 62
+	Iter: 389, Time (ms): 62
+	Iter: 390, Time (ms): 61
+	Iter: 391, Time (ms): 60
+	Iter: 392, Time (ms): 61
+	Iter: 393, Time (ms): 62
+	Iter: 394, Time (ms): 61
+	Iter: 395, Time (ms): 61
+	Iter: 396, Time (ms): 61
+	Iter: 397, Time (ms): 61
+	Iter: 398, Time (ms): 61
+	Iter: 399, Time (ms): 61
+	Iter: 400, Time (ms): 61
+	Iter: 401, Time (ms): 61
+	Iter: 402, Time (ms): 61
+	Iter: 403, Time (ms): 62
+	Iter: 404, Time (ms): 62
+	Iter: 405, Time (ms): 61
+	Iter: 406, Time (ms): 61
+	Iter: 407, Time (ms): 60
+	Iter: 408, Time (ms): 61
+	Iter: 409, Time (ms): 61
+	Iter: 410, Time (ms): 61
+	Iter: 411, Time (ms): 61
+	Iter: 412, Time (ms): 61
+	Iter: 413, Time (ms): 61
+	Iter: 414, Time (ms): 61
+	Iter: 415, Time (ms): 61
+	Iter: 416, Time (ms): 61
+	Iter: 417, Time (ms): 61
+	Iter: 418, Time (ms): 61
+	Iter: 419, Time (ms): 61
+	Iter: 420, Time (ms): 61
+	Iter: 421, Time (ms): 61
+	Iter: 422, Time (ms): 60
+	Iter: 423, Time (ms): 62
+	Iter: 424, Time (ms): 62
+	Iter: 425, Time (ms): 61
+	Iter: 426, Time (ms): 61
+	Iter: 427, Time (ms): 61
+	Iter: 428, Time (ms): 61
+	Iter: 429, Time (ms): 62
+	Iter: 430, Time (ms): 61
+	Iter: 431, Time (ms): 61
+	Iter: 432, Time (ms): 61
+	Iter: 433, Time (ms): 61
+	Iter: 434, Time (ms): 61
+	Iter: 435, Time (ms): 61
+	Iter: 436, Time (ms): 62
+	Iter: 437, Time (ms): 61
+	Iter: 438, Time (ms): 61
+	Iter: 439, Time (ms): 61
+	Iter: 440, Time (ms): 61
+	Iter: 441, Time (ms): 61
+	Iter: 442, Time (ms): 61
+	Iter: 443, Time (ms): 61
+	Iter: 444, Time (ms): 60
+	Iter: 445, Time (ms): 61
+	Iter: 446, Time (ms): 61
+	Iter: 447, Time (ms): 62
+	Iter: 448, Time (ms): 61
+	Iter: 449, Time (ms): 61
+	Iter: 450, Time (ms): 60
+	Iter: 451, Time (ms): 61
+	Iter: 452, Time (ms): 62
+	Iter: 453, Time (ms): 61
+	Iter: 454, Time (ms): 61
+	Iter: 455, Time (ms): 61
+	Iter: 456, Time (ms): 60
+	Iter: 457, Time (ms): 61
+	Iter: 458, Time (ms): 60
+	Iter: 459, Time (ms): 61
+	Iter: 460, Time (ms): 62
+	Iter: 461, Time (ms): 62
+	Iter: 462, Time (ms): 60
+	Iter: 463, Time (ms): 61
+	Iter: 464, Time (ms): 61
+	Iter: 465, Time (ms): 61
+	Iter: 466, Time (ms): 61
+	Iter: 467, Time (ms): 60
+	Iter: 468, Time (ms): 61
+	Iter: 469, Time (ms): 62
+	Iter: 470, Time (ms): 61
+	Iter: 471, Time (ms): 62
+	Iter: 472, Time (ms): 61
+	Iter: 473, Time (ms): 61
+	Iter: 474, Time (ms): 60
+	Iter: 475, Time (ms): 61
+	Iter: 476, Time (ms): 61
+	Iter: 477, Time (ms): 60
+	Iter: 478, Time (ms): 61
+	Iter: 479, Time (ms): 61
+	Iter: 480, Time (ms): 61
+	Iter: 481, Time (ms): 61
+	Iter: 482, Time (ms): 61
+	Iter: 483, Time (ms): 61
+	Iter: 484, Time (ms): 60
+	Iter: 485, Time (ms): 60
+	Iter: 486, Time (ms): 62
+	Iter: 487, Time (ms): 61
+	Iter: 488, Time (ms): 61
+	Iter: 489, Time (ms): 61
+	Iter: 490, Time (ms): 61
+	Iter: 491, Time (ms): 60
+	Iter: 492, Time (ms): 60
+	Iter: 493, Time (ms): 61
+	Iter: 494, Time (ms): 60
+	Iter: 495, Time (ms): 61
+	Iter: 496, Time (ms): 60
+	Iter: 497, Time (ms): 60
+	Iter: 498, Time (ms): 61
+	Iter: 499, Time (ms): 61
+
+Printing Eval Times... 
+	Iter: 0, Time (ms): 7
+	Iter: 1, Time (ms): 5
+	Iter: 2, Time (ms): 5
+	Iter: 3, Time (ms): 3
+	Iter: 4, Time (ms): 3
+	Iter: 5, Time (ms): 4
+	Iter: 6, Time (ms): 4
+	Iter: 7, Time (ms): 4
+	Iter: 8, Time (ms): 4
+	Iter: 9, Time (ms): 3
+	Iter: 10, Time (ms): 3
+	Iter: 11, Time (ms): 3
+	Iter: 12, Time (ms): 3
+	Iter: 13, Time (ms): 2
+	Iter: 14, Time (ms): 3
+	Iter: 15, Time (ms): 2
+	Iter: 16, Time (ms): 3
+	Iter: 17, Time (ms): 3
+	Iter: 18, Time (ms): 3
+	Iter: 19, Time (ms): 2
+	Iter: 20, Time (ms): 2
+	Iter: 21, Time (ms): 3
+	Iter: 22, Time (ms): 2
+	Iter: 23, Time (ms): 2
+	Iter: 24, Time (ms): 2
+	Iter: 25, Time (ms): 1
+	Iter: 26, Time (ms): 1
+	Iter: 27, Time (ms): 1
+	Iter: 28, Time (ms): 2
+	Iter: 29, Time (ms): 1
+	Iter: 30, Time (ms): 2
+	Iter: 31, Time (ms): 2
+	Iter: 32, Time (ms): 1
+	Iter: 33, Time (ms): 2
+	Iter: 34, Time (ms): 1
+	Iter: 35, Time (ms): 1
+	Iter: 36, Time (ms): 1
+	Iter: 37, Time (ms): 2
+	Iter: 38, Time (ms): 2
+	Iter: 39, Time (ms): 2
+	Iter: 40, Time (ms): 1
+	Iter: 41, Time (ms): 2
+	Iter: 42, Time (ms): 2
+	Iter: 43, Time (ms): 1
+	Iter: 44, Time (ms): 1
+	Iter: 45, Time (ms): 1
+	Iter: 46, Time (ms): 2
+	Iter: 47, Time (ms): 2
+	Iter: 48, Time (ms): 2
+	Iter: 49, Time (ms): 2
+	Iter: 50, Time (ms): 1
+	Iter: 51, Time (ms): 2
+	Iter: 52, Time (ms): 1
+	Iter: 53, Time (ms): 2
+	Iter: 54, Time (ms): 2
+	Iter: 55, Time (ms): 2
+	Iter: 56, Time (ms): 2
+	Iter: 57, Time (ms): 1
+	Iter: 58, Time (ms): 1
+	Iter: 59, Time (ms): 1
+	Iter: 60, Time (ms): 2
+	Iter: 61, Time (ms): 1
+	Iter: 62, Time (ms): 2
+	Iter: 63, Time (ms): 2
+	Iter: 64, Time (ms): 2
+	Iter: 65, Time (ms): 1
+	Iter: 66, Time (ms): 2
+	Iter: 67, Time (ms): 2
+	Iter: 68, Time (ms): 2
+	Iter: 69, Time (ms): 1
+	Iter: 70, Time (ms): 1
+	Iter: 71, Time (ms): 1
+	Iter: 72, Time (ms): 2
+	Iter: 73, Time (ms): 2
+	Iter: 74, Time (ms): 2
+	Iter: 75, Time (ms): 2
+	Iter: 76, Time (ms): 2
+	Iter: 77, Time (ms): 2
+	Iter: 78, Time (ms): 2
+	Iter: 79, Time (ms): 2
+	Iter: 80, Time (ms): 1
+	Iter: 81, Time (ms): 1
+	Iter: 82, Time (ms): 2
+	Iter: 83, Time (ms): 2
+	Iter: 84, Time (ms): 2
+	Iter: 85, Time (ms): 2
+	Iter: 86, Time (ms): 2
+	Iter: 87, Time (ms): 1
+	Iter: 88, Time (ms): 1
+	Iter: 89, Time (ms): 2
+	Iter: 90, Time (ms): 1
+	Iter: 91, Time (ms): 2
+	Iter: 92, Time (ms): 2
+	Iter: 93, Time (ms): 1
+	Iter: 94, Time (ms): 1
+	Iter: 95, Time (ms): 1
+	Iter: 96, Time (ms): 2
+	Iter: 97, Time (ms): 2
+	Iter: 98, Time (ms): 1
+	Iter: 99, Time (ms): 2
+	Iter: 100, Time (ms): 2
+	Iter: 101, Time (ms): 2
+	Iter: 102, Time (ms): 2
+	Iter: 103, Time (ms): 2
+	Iter: 104, Time (ms): 1
+	Iter: 105, Time (ms): 2
+	Iter: 106, Time (ms): 2
+	Iter: 107, Time (ms): 2
+	Iter: 108, Time (ms): 2
+	Iter: 109, Time (ms): 2
+	Iter: 110, Time (ms): 2
+	Iter: 111, Time (ms): 2
+	Iter: 112, Time (ms): 2
+	Iter: 113, Time (ms): 1
+	Iter: 114, Time (ms): 1
+	Iter: 115, Time (ms): 1
+	Iter: 116, Time (ms): 2
+	Iter: 117, Time (ms): 1
+	Iter: 118, Time (ms): 2
+	Iter: 119, Time (ms): 2
+	Iter: 120, Time (ms): 1
+	Iter: 121, Time (ms): 1
+	Iter: 122, Time (ms): 2
+	Iter: 123, Time (ms): 1
+	Iter: 124, Time (ms): 2
+	Iter: 125, Time (ms): 2
+	Iter: 126, Time (ms): 2
+	Iter: 127, Time (ms): 1
+	Iter: 128, Time (ms): 2
+	Iter: 129, Time (ms): 2
+	Iter: 130, Time (ms): 2
+	Iter: 131, Time (ms): 1
+	Iter: 132, Time (ms): 2
+	Iter: 133, Time (ms): 2
+	Iter: 134, Time (ms): 2
+	Iter: 135, Time (ms): 2
+	Iter: 136, Time (ms): 1
+	Iter: 137, Time (ms): 2
+	Iter: 138, Time (ms): 1
+	Iter: 139, Time (ms): 2
+	Iter: 140, Time (ms): 2
+	Iter: 141, Time (ms): 2
+	Iter: 142, Time (ms): 1
+	Iter: 143, Time (ms): 1
+	Iter: 144, Time (ms): 1
+	Iter: 145, Time (ms): 1
+	Iter: 146, Time (ms): 1
+	Iter: 147, Time (ms): 2
+	Iter: 148, Time (ms): 2
+	Iter: 149, Time (ms): 1
+	Iter: 150, Time (ms): 1
+	Iter: 151, Time (ms): 1
+	Iter: 152, Time (ms): 2
+	Iter: 153, Time (ms): 2
+	Iter: 154, Time (ms): 1
+	Iter: 155, Time (ms): 2
+	Iter: 156, Time (ms): 1
+	Iter: 157, Time (ms): 2
+	Iter: 158, Time (ms): 2
+	Iter: 159, Time (ms): 2
+	Iter: 160, Time (ms): 2
+	Iter: 161, Time (ms): 2
+	Iter: 162, Time (ms): 1
+	Iter: 163, Time (ms): 1
+	Iter: 164, Time (ms): 1
+	Iter: 165, Time (ms): 2
+	Iter: 166, Time (ms): 2
+	Iter: 167, Time (ms): 2
+	Iter: 168, Time (ms): 1
+	Iter: 169, Time (ms): 2
+	Iter: 170, Time (ms): 1
+	Iter: 171, Time (ms): 1
+	Iter: 172, Time (ms): 2
+	Iter: 173, Time (ms): 2
+	Iter: 174, Time (ms): 1
+	Iter: 175, Time (ms): 1
+	Iter: 176, Time (ms): 2
+	Iter: 177, Time (ms): 2
+	Iter: 178, Time (ms): 1
+	Iter: 179, Time (ms): 2
+	Iter: 180, Time (ms): 1
+	Iter: 181, Time (ms): 2
+	Iter: 182, Time (ms): 1
+	Iter: 183, Time (ms): 1
+	Iter: 184, Time (ms): 1
+	Iter: 185, Time (ms): 2
+	Iter: 186, Time (ms): 2
+	Iter: 187, Time (ms): 2
+	Iter: 188, Time (ms): 2
+	Iter: 189, Time (ms): 2
+	Iter: 190, Time (ms): 2
+	Iter: 191, Time (ms): 1
+	Iter: 192, Time (ms): 2
+	Iter: 193, Time (ms): 2
+	Iter: 194, Time (ms): 1
+	Iter: 195, Time (ms): 2
+	Iter: 196, Time (ms): 1
+	Iter: 197, Time (ms): 2
+	Iter: 198, Time (ms): 2
+	Iter: 199, Time (ms): 2
+	Iter: 200, Time (ms): 2
+	Iter: 201, Time (ms): 2
+	Iter: 202, Time (ms): 2
+	Iter: 203, Time (ms): 2
+	Iter: 204, Time (ms): 2
+	Iter: 205, Time (ms): 2
+	Iter: 206, Time (ms): 2
+	Iter: 207, Time (ms): 2
+	Iter: 208, Time (ms): 2
+	Iter: 209, Time (ms): 2
+	Iter: 210, Time (ms): 2
+	Iter: 211, Time (ms): 1
+	Iter: 212, Time (ms): 2
+	Iter: 213, Time (ms): 2
+	Iter: 214, Time (ms): 1
+	Iter: 215, Time (ms): 2
+	Iter: 216, Time (ms): 2
+	Iter: 217, Time (ms): 2
+	Iter: 218, Time (ms): 3
+	Iter: 219, Time (ms): 2
+	Iter: 220, Time (ms): 2
+	Iter: 221, Time (ms): 1
+	Iter: 222, Time (ms): 2
+	Iter: 223, Time (ms): 2
+	Iter: 224, Time (ms): 2
+	Iter: 225, Time (ms): 1
+	Iter: 226, Time (ms): 1
+	Iter: 227, Time (ms): 1
+	Iter: 228, Time (ms): 1
+	Iter: 229, Time (ms): 1
+	Iter: 230, Time (ms): 1
+	Iter: 231, Time (ms): 2
+	Iter: 232, Time (ms): 2
+	Iter: 233, Time (ms): 2
+	Iter: 234, Time (ms): 2
+	Iter: 235, Time (ms): 2
+	Iter: 236, Time (ms): 1
+	Iter: 237, Time (ms): 2
+	Iter: 238, Time (ms): 2
+	Iter: 239, Time (ms): 1
+	Iter: 240, Time (ms): 2
+	Iter: 241, Time (ms): 2
+	Iter: 242, Time (ms): 2
+	Iter: 243, Time (ms): 1
+	Iter: 244, Time (ms): 2
+	Iter: 245, Time (ms): 2
+	Iter: 246, Time (ms): 2
+	Iter: 247, Time (ms): 1
+	Iter: 248, Time (ms): 2
+	Iter: 249, Time (ms): 2
+	Iter: 250, Time (ms): 2
+	Iter: 251, Time (ms): 1
+	Iter: 252, Time (ms): 1
+	Iter: 253, Time (ms): 2
+	Iter: 254, Time (ms): 2
+	Iter: 255, Time (ms): 1
+	Iter: 256, Time (ms): 2
+	Iter: 257, Time (ms): 2
+	Iter: 258, Time (ms): 2
+	Iter: 259, Time (ms): 1
+	Iter: 260, Time (ms): 2
+	Iter: 261, Time (ms): 1
+	Iter: 262, Time (ms): 1
+	Iter: 263, Time (ms): 2
+	Iter: 264, Time (ms): 2
+	Iter: 265, Time (ms): 2
+	Iter: 266, Time (ms): 1
+	Iter: 267, Time (ms): 2
+	Iter: 268, Time (ms): 1
+	Iter: 269, Time (ms): 2
+	Iter: 270, Time (ms): 1
+	Iter: 271, Time (ms): 1
+	Iter: 272, Time (ms): 1
+	Iter: 273, Time (ms): 2
+	Iter: 274, Time (ms): 2
+	Iter: 275, Time (ms): 2
+	Iter: 276, Time (ms): 1
+	Iter: 277, Time (ms): 1
+	Iter: 278, Time (ms): 1
+	Iter: 279, Time (ms): 2
+	Iter: 280, Time (ms): 1
+	Iter: 281, Time (ms): 2
+	Iter: 282, Time (ms): 1
+	Iter: 283, Time (ms): 2
+	Iter: 284, Time (ms): 2
+	Iter: 285, Time (ms): 1
+	Iter: 286, Time (ms): 1
+	Iter: 287, Time (ms): 2
+	Iter: 288, Time (ms): 2
+	Iter: 289, Time (ms): 2
+	Iter: 290, Time (ms): 1
+	Iter: 291, Time (ms): 2
+	Iter: 292, Time (ms): 1
+	Iter: 293, Time (ms): 2
+	Iter: 294, Time (ms): 1
+	Iter: 295, Time (ms): 1
+	Iter: 296, Time (ms): 1
+	Iter: 297, Time (ms): 1
+	Iter: 298, Time (ms): 2
+	Iter: 299, Time (ms): 2
+	Iter: 300, Time (ms): 2
+	Iter: 301, Time (ms): 1
+	Iter: 302, Time (ms): 2
+	Iter: 303, Time (ms): 2
+	Iter: 304, Time (ms): 2
+	Iter: 305, Time (ms): 1
+	Iter: 306, Time (ms): 2
+	Iter: 307, Time (ms): 2
+	Iter: 308, Time (ms): 1
+	Iter: 309, Time (ms): 2
+	Iter: 310, Time (ms): 1
+	Iter: 311, Time (ms): 1
+	Iter: 312, Time (ms): 2
+	Iter: 313, Time (ms): 2
+	Iter: 314, Time (ms): 1
+	Iter: 315, Time (ms): 1
+	Iter: 316, Time (ms): 2
+	Iter: 317, Time (ms): 2
+	Iter: 318, Time (ms): 2
+	Iter: 319, Time (ms): 1
+	Iter: 320, Time (ms): 2
+	Iter: 321, Time (ms): 2
+	Iter: 322, Time (ms): 2
+	Iter: 323, Time (ms): 1
+	Iter: 324, Time (ms): 1
+	Iter: 325, Time (ms): 1
+	Iter: 326, Time (ms): 1
+	Iter: 327, Time (ms): 2
+	Iter: 328, Time (ms): 2
+	Iter: 329, Time (ms): 1
+	Iter: 330, Time (ms): 2
+	Iter: 331, Time (ms): 1
+	Iter: 332, Time (ms): 1
+	Iter: 333, Time (ms): 2
+	Iter: 334, Time (ms): 2
+	Iter: 335, Time (ms): 2
+	Iter: 336, Time (ms): 2
+	Iter: 337, Time (ms): 1
+	Iter: 338, Time (ms): 1
+	Iter: 339, Time (ms): 1
+	Iter: 340, Time (ms): 1
+	Iter: 341, Time (ms): 1
+	Iter: 342, Time (ms): 1
+	Iter: 343, Time (ms): 2
+	Iter: 344, Time (ms): 2
+	Iter: 345, Time (ms): 1
+	Iter: 346, Time (ms): 1
+	Iter: 347, Time (ms): 1
+	Iter: 348, Time (ms): 2
+	Iter: 349, Time (ms): 1
+	Iter: 350, Time (ms): 2
+	Iter: 351, Time (ms): 1
+	Iter: 352, Time (ms): 2
+	Iter: 353, Time (ms): 2
+	Iter: 354, Time (ms): 2
+	Iter: 355, Time (ms): 1
+	Iter: 356, Time (ms): 2
+	Iter: 357, Time (ms): 1
+	Iter: 358, Time (ms): 2
+	Iter: 359, Time (ms): 2
+	Iter: 360, Time (ms): 1
+	Iter: 361, Time (ms): 1
+	Iter: 362, Time (ms): 1
+	Iter: 363, Time (ms): 2
+	Iter: 364, Time (ms): 2
+	Iter: 365, Time (ms): 2
+	Iter: 366, Time (ms): 1
+	Iter: 367, Time (ms): 2
+	Iter: 368, Time (ms): 1
+	Iter: 369, Time (ms): 1
+	Iter: 370, Time (ms): 2
+	Iter: 371, Time (ms): 1
+	Iter: 372, Time (ms): 2
+	Iter: 373, Time (ms): 2
+	Iter: 374, Time (ms): 2
+	Iter: 375, Time (ms): 2
+	Iter: 376, Time (ms): 2
+	Iter: 377, Time (ms): 1
+	Iter: 378, Time (ms): 1
+	Iter: 379, Time (ms): 2
+	Iter: 380, Time (ms): 1
+	Iter: 381, Time (ms): 2
+	Iter: 382, Time (ms): 2
+	Iter: 383, Time (ms): 2
+	Iter: 384, Time (ms): 1
+	Iter: 385, Time (ms): 2
+	Iter: 386, Time (ms): 1
+	Iter: 387, Time (ms): 1
+	Iter: 388, Time (ms): 1
+	Iter: 389, Time (ms): 1
+	Iter: 390, Time (ms): 2
+	Iter: 391, Time (ms): 2
+	Iter: 392, Time (ms): 1
+	Iter: 393, Time (ms): 1
+	Iter: 394, Time (ms): 2
+	Iter: 395, Time (ms): 2
+	Iter: 396, Time (ms): 1
+	Iter: 397, Time (ms): 1
+	Iter: 398, Time (ms): 1
+	Iter: 399, Time (ms): 1
+	Iter: 400, Time (ms): 2
+	Iter: 401, Time (ms): 2
+	Iter: 402, Time (ms): 2
+	Iter: 403, Time (ms): 1
+	Iter: 404, Time (ms): 1
+	Iter: 405, Time (ms): 1
+	Iter: 406, Time (ms): 2
+	Iter: 407, Time (ms): 2
+	Iter: 408, Time (ms): 1
+	Iter: 409, Time (ms): 2
+	Iter: 410, Time (ms): 1
+	Iter: 411, Time (ms): 2
+	Iter: 412, Time (ms): 2
+	Iter: 413, Time (ms): 2
+	Iter: 414, Time (ms): 1
+	Iter: 415, Time (ms): 2
+	Iter: 416, Time (ms): 1
+	Iter: 417, Time (ms): 2
+	Iter: 418, Time (ms): 1
+	Iter: 419, Time (ms): 2
+	Iter: 420, Time (ms): 1
+	Iter: 421, Time (ms): 1
+	Iter: 422, Time (ms): 2
+	Iter: 423, Time (ms): 1
+	Iter: 424, Time (ms): 1
+	Iter: 425, Time (ms): 1
+	Iter: 426, Time (ms): 1
+	Iter: 427, Time (ms): 1
+	Iter: 428, Time (ms): 2
+	Iter: 429, Time (ms): 1
+	Iter: 430, Time (ms): 1
+	Iter: 431, Time (ms): 2
+	Iter: 432, Time (ms): 2
+	Iter: 433, Time (ms): 1
+	Iter: 434, Time (ms): 1
+	Iter: 435, Time (ms): 2
+	Iter: 436, Time (ms): 1
+	Iter: 437, Time (ms): 1
+	Iter: 438, Time (ms): 2
+	Iter: 439, Time (ms): 1
+	Iter: 440, Time (ms): 2
+	Iter: 441, Time (ms): 2
+	Iter: 442, Time (ms): 1
+	Iter: 443, Time (ms): 2
+	Iter: 444, Time (ms): 2
+	Iter: 445, Time (ms): 1
+	Iter: 446, Time (ms): 1
+	Iter: 447, Time (ms): 1
+	Iter: 448, Time (ms): 1
+	Iter: 449, Time (ms): 2
+	Iter: 450, Time (ms): 2
+	Iter: 451, Time (ms): 1
+	Iter: 452, Time (ms): 1
+	Iter: 453, Time (ms): 1
+	Iter: 454, Time (ms): 2
+	Iter: 455, Time (ms): 2
+	Iter: 456, Time (ms): 2
+	Iter: 457, Time (ms): 1
+	Iter: 458, Time (ms): 2
+	Iter: 459, Time (ms): 1
+	Iter: 460, Time (ms): 1
+	Iter: 461, Time (ms): 1
+	Iter: 462, Time (ms): 2
+	Iter: 463, Time (ms): 1
+	Iter: 464, Time (ms): 1
+	Iter: 465, Time (ms): 2
+	Iter: 466, Time (ms): 1
+	Iter: 467, Time (ms): 2
+	Iter: 468, Time (ms): 1
+	Iter: 469, Time (ms): 1
+	Iter: 470, Time (ms): 1
+	Iter: 471, Time (ms): 1
+	Iter: 472, Time (ms): 1
+	Iter: 473, Time (ms): 2
+	Iter: 474, Time (ms): 2
+	Iter: 475, Time (ms): 1
+	Iter: 476, Time (ms): 1
+	Iter: 477, Time (ms): 2
+	Iter: 478, Time (ms): 1
+	Iter: 479, Time (ms): 2
+	Iter: 480, Time (ms): 2
+	Iter: 481, Time (ms): 2
+	Iter: 482, Time (ms): 1
+	Iter: 483, Time (ms): 2
+	Iter: 484, Time (ms): 2
+	Iter: 485, Time (ms): 2
+	Iter: 486, Time (ms): 1
+	Iter: 487, Time (ms): 2
+	Iter: 488, Time (ms): 2
+	Iter: 489, Time (ms): 2
+	Iter: 490, Time (ms): 1
+	Iter: 491, Time (ms): 2
+	Iter: 492, Time (ms): 2
+	Iter: 493, Time (ms): 1
+	Iter: 494, Time (ms): 2
+	Iter: 495, Time (ms): 1
+	Iter: 496, Time (ms): 2
+	Iter: 497, Time (ms): 1
+	Iter: 498, Time (ms): 2
+	Iter: 499, Time (ms): 1
+
+Printing Render Times...
+	Iter: 0, Time (ms): 163
+	Iter: 1, Time (ms): 80
+	Iter: 2, Time (ms): 74
+	Iter: 3, Time (ms): 76
+	Iter: 4, Time (ms): 64
+	Iter: 5, Time (ms): 71
+	Iter: 6, Time (ms): 73
+	Iter: 7, Time (ms): 70
+	Iter: 8, Time (ms): 73
+	Iter: 9, Time (ms): 66
+	Iter: 10, Time (ms): 66
+	Iter: 11, Time (ms): 63
+	Iter: 12, Time (ms): 60
+	Iter: 13, Time (ms): 61
+	Iter: 14, Time (ms): 60
+	Iter: 15, Time (ms): 61
+	Iter: 16, Time (ms): 61
+	Iter: 17, Time (ms): 60
+	Iter: 18, Time (ms): 60
+	Iter: 19, Time (ms): 60
+	Iter: 20, Time (ms): 60
+	Iter: 21, Time (ms): 60
+	Iter: 22, Time (ms): 60
+	Iter: 23, Time (ms): 60
+	Iter: 24, Time (ms): 60
+	Iter: 25, Time (ms): 52
+	Iter: 26, Time (ms): 52
+	Iter: 27, Time (ms): 51
+	Iter: 28, Time (ms): 51
+	Iter: 29, Time (ms): 53
+	Iter: 30, Time (ms): 51
+	Iter: 31, Time (ms): 51
+	Iter: 32, Time (ms): 51
+	Iter: 33, Time (ms): 50
+	Iter: 34, Time (ms): 53
+	Iter: 35, Time (ms): 51
+	Iter: 36, Time (ms): 51
+	Iter: 37, Time (ms): 50
+	Iter: 38, Time (ms): 50
+	Iter: 39, Time (ms): 50
+	Iter: 40, Time (ms): 51
+	Iter: 41, Time (ms): 50
+	Iter: 42, Time (ms): 50
+	Iter: 43, Time (ms): 50
+	Iter: 44, Time (ms): 51
+	Iter: 45, Time (ms): 47
+	Iter: 46, Time (ms): 49
+	Iter: 47, Time (ms): 48
+	Iter: 48, Time (ms): 49
+	Iter: 49, Time (ms): 49
+	Iter: 50, Time (ms): 50
+	Iter: 51, Time (ms): 49
+	Iter: 52, Time (ms): 52
+	Iter: 53, Time (ms): 49
+	Iter: 54, Time (ms): 48
+	Iter: 55, Time (ms): 50
+	Iter: 56, Time (ms): 49
+	Iter: 57, Time (ms): 50
+	Iter: 58, Time (ms): 49
+	Iter: 59, Time (ms): 49
+	Iter: 60, Time (ms): 49
+	Iter: 61, Time (ms): 49
+	Iter: 62, Time (ms): 49
+	Iter: 63, Time (ms): 49
+	Iter: 64, Time (ms): 49
+	Iter: 65, Time (ms): 50
+	Iter: 66, Time (ms): 49
+	Iter: 67, Time (ms): 49
+	Iter: 68, Time (ms): 49
+	Iter: 69, Time (ms): 49
+	Iter: 70, Time (ms): 50
+	Iter: 71, Time (ms): 49
+	Iter: 72, Time (ms): 49
+	Iter: 73, Time (ms): 49
+	Iter: 74, Time (ms): 49
+	Iter: 75, Time (ms): 53
+	Iter: 76, Time (ms): 49
+	Iter: 77, Time (ms): 49
+	Iter: 78, Time (ms): 48
+	Iter: 79, Time (ms): 48
+	Iter: 80, Time (ms): 49
+	Iter: 81, Time (ms): 49
+	Iter: 82, Time (ms): 49
+	Iter: 83, Time (ms): 48
+	Iter: 84, Time (ms): 49
+	Iter: 85, Time (ms): 48
+	Iter: 86, Time (ms): 49
+	Iter: 87, Time (ms): 49
+	Iter: 88, Time (ms): 50
+	Iter: 89, Time (ms): 49
+	Iter: 90, Time (ms): 49
+	Iter: 91, Time (ms): 48
+	Iter: 92, Time (ms): 49
+	Iter: 93, Time (ms): 49
+	Iter: 94, Time (ms): 49
+	Iter: 95, Time (ms): 49
+	Iter: 96, Time (ms): 48
+	Iter: 97, Time (ms): 48
+	Iter: 98, Time (ms): 49
+	Iter: 99, Time (ms): 48
+	Iter: 100, Time (ms): 48
+	Iter: 101, Time (ms): 48
+	Iter: 102, Time (ms): 48
+	Iter: 103, Time (ms): 48
+	Iter: 104, Time (ms): 48
+	Iter: 105, Time (ms): 48
+	Iter: 106, Time (ms): 48
+	Iter: 107, Time (ms): 46
+	Iter: 108, Time (ms): 43
+	Iter: 109, Time (ms): 44
+	Iter: 110, Time (ms): 44
+	Iter: 111, Time (ms): 44
+	Iter: 112, Time (ms): 44
+	Iter: 113, Time (ms): 44
+	Iter: 114, Time (ms): 45
+	Iter: 115, Time (ms): 44
+	Iter: 116, Time (ms): 44
+	Iter: 117, Time (ms): 45
+	Iter: 118, Time (ms): 44
+	Iter: 119, Time (ms): 44
+	Iter: 120, Time (ms): 44
+	Iter: 121, Time (ms): 44
+	Iter: 122, Time (ms): 43
+	Iter: 123, Time (ms): 48
+	Iter: 124, Time (ms): 47
+	Iter: 125, Time (ms): 48
+	Iter: 126, Time (ms): 48
+	Iter: 127, Time (ms): 48
+	Iter: 128, Time (ms): 47
+	Iter: 129, Time (ms): 48
+	Iter: 130, Time (ms): 49
+	Iter: 131, Time (ms): 49
+	Iter: 132, Time (ms): 48
+	Iter: 133, Time (ms): 48
+	Iter: 134, Time (ms): 48
+	Iter: 135, Time (ms): 48
+	Iter: 136, Time (ms): 48
+	Iter: 137, Time (ms): 48
+	Iter: 138, Time (ms): 48
+	Iter: 139, Time (ms): 47
+	Iter: 140, Time (ms): 48
+	Iter: 141, Time (ms): 47
+	Iter: 142, Time (ms): 48
+	Iter: 143, Time (ms): 48
+	Iter: 144, Time (ms): 48
+	Iter: 145, Time (ms): 49
+	Iter: 146, Time (ms): 51
+	Iter: 147, Time (ms): 48
+	Iter: 148, Time (ms): 48
+	Iter: 149, Time (ms): 49
+	Iter: 150, Time (ms): 48
+	Iter: 151, Time (ms): 49
+	Iter: 152, Time (ms): 48
+	Iter: 153, Time (ms): 47
+	Iter: 154, Time (ms): 49
+	Iter: 155, Time (ms): 49
+	Iter: 156, Time (ms): 48
+	Iter: 157, Time (ms): 48
+	Iter: 158, Time (ms): 48
+	Iter: 159, Time (ms): 47
+	Iter: 160, Time (ms): 48
+	Iter: 161, Time (ms): 49
+	Iter: 162, Time (ms): 48
+	Iter: 163, Time (ms): 49
+	Iter: 164, Time (ms): 48
+	Iter: 165, Time (ms): 47
+	Iter: 166, Time (ms): 47
+	Iter: 167, Time (ms): 47
+	Iter: 168, Time (ms): 48
+	Iter: 169, Time (ms): 47
+	Iter: 170, Time (ms): 48
+	Iter: 171, Time (ms): 47
+	Iter: 172, Time (ms): 47
+	Iter: 173, Time (ms): 47
+	Iter: 174, Time (ms): 48
+	Iter: 175, Time (ms): 48
+	Iter: 176, Time (ms): 48
+	Iter: 177, Time (ms): 47
+	Iter: 178, Time (ms): 48
+	Iter: 179, Time (ms): 48
+	Iter: 180, Time (ms): 49
+	Iter: 181, Time (ms): 47
+	Iter: 182, Time (ms): 48
+	Iter: 183, Time (ms): 48
+	Iter: 184, Time (ms): 48
+	Iter: 185, Time (ms): 47
+	Iter: 186, Time (ms): 47
+	Iter: 187, Time (ms): 47
+	Iter: 188, Time (ms): 47
+	Iter: 189, Time (ms): 47
+	Iter: 190, Time (ms): 47
+	Iter: 191, Time (ms): 47
+	Iter: 192, Time (ms): 47
+	Iter: 193, Time (ms): 47
+	Iter: 194, Time (ms): 48
+	Iter: 195, Time (ms): 46
+	Iter: 196, Time (ms): 47
+	Iter: 197, Time (ms): 48
+	Iter: 198, Time (ms): 47
+	Iter: 199, Time (ms): 47
+	Iter: 200, Time (ms): 47
+	Iter: 201, Time (ms): 47
+	Iter: 202, Time (ms): 47
+	Iter: 203, Time (ms): 47
+	Iter: 204, Time (ms): 49
+	Iter: 205, Time (ms): 47
+	Iter: 206, Time (ms): 47
+	Iter: 207, Time (ms): 46
+	Iter: 208, Time (ms): 47
+	Iter: 209, Time (ms): 47
+	Iter: 210, Time (ms): 46
+	Iter: 211, Time (ms): 47
+	Iter: 212, Time (ms): 47
+	Iter: 213, Time (ms): 46
+	Iter: 214, Time (ms): 46
+	Iter: 215, Time (ms): 46
+	Iter: 216, Time (ms): 46
+	Iter: 217, Time (ms): 47
+	Iter: 218, Time (ms): 47
+	Iter: 219, Time (ms): 47
+	Iter: 220, Time (ms): 47
+	Iter: 221, Time (ms): 47
+	Iter: 222, Time (ms): 47
+	Iter: 223, Time (ms): 48
+	Iter: 224, Time (ms): 46
+	Iter: 225, Time (ms): 47
+	Iter: 226, Time (ms): 47
+	Iter: 227, Time (ms): 47
+	Iter: 228, Time (ms): 47
+	Iter: 229, Time (ms): 47
+	Iter: 230, Time (ms): 47
+	Iter: 231, Time (ms): 46
+	Iter: 232, Time (ms): 47
+	Iter: 233, Time (ms): 47
+	Iter: 234, Time (ms): 47
+	Iter: 235, Time (ms): 47
+	Iter: 236, Time (ms): 47
+	Iter: 237, Time (ms): 46
+	Iter: 238, Time (ms): 47
+	Iter: 239, Time (ms): 47
+	Iter: 240, Time (ms): 47
+	Iter: 241, Time (ms): 46
+	Iter: 242, Time (ms): 42
+	Iter: 243, Time (ms): 42
+	Iter: 244, Time (ms): 42
+	Iter: 245, Time (ms): 42
+	Iter: 246, Time (ms): 43
+	Iter: 247, Time (ms): 44
+	Iter: 248, Time (ms): 45
+	Iter: 249, Time (ms): 42
+	Iter: 250, Time (ms): 42
+	Iter: 251, Time (ms): 43
+	Iter: 252, Time (ms): 43
+	Iter: 253, Time (ms): 42
+	Iter: 254, Time (ms): 42
+	Iter: 255, Time (ms): 44
+	Iter: 256, Time (ms): 42
+	Iter: 257, Time (ms): 43
+	Iter: 258, Time (ms): 42
+	Iter: 259, Time (ms): 42
+	Iter: 260, Time (ms): 43
+	Iter: 261, Time (ms): 41
+	Iter: 262, Time (ms): 46
+	Iter: 263, Time (ms): 46
+	Iter: 264, Time (ms): 46
+	Iter: 265, Time (ms): 46
+	Iter: 266, Time (ms): 43
+	Iter: 267, Time (ms): 42
+	Iter: 268, Time (ms): 42
+	Iter: 269, Time (ms): 42
+	Iter: 270, Time (ms): 43
+	Iter: 271, Time (ms): 52
+	Iter: 272, Time (ms): 43
+	Iter: 273, Time (ms): 42
+	Iter: 274, Time (ms): 42
+	Iter: 275, Time (ms): 42
+	Iter: 276, Time (ms): 43
+	Iter: 277, Time (ms): 43
+	Iter: 278, Time (ms): 45
+	Iter: 279, Time (ms): 43
+	Iter: 280, Time (ms): 43
+	Iter: 281, Time (ms): 42
+	Iter: 282, Time (ms): 43
+	Iter: 283, Time (ms): 42
+	Iter: 284, Time (ms): 42
+	Iter: 285, Time (ms): 43
+	Iter: 286, Time (ms): 42
+	Iter: 287, Time (ms): 42
+	Iter: 288, Time (ms): 42
+	Iter: 289, Time (ms): 42
+	Iter: 290, Time (ms): 44
+	Iter: 291, Time (ms): 42
+	Iter: 292, Time (ms): 43
+	Iter: 293, Time (ms): 42
+	Iter: 294, Time (ms): 43
+	Iter: 295, Time (ms): 46
+	Iter: 296, Time (ms): 43
+	Iter: 297, Time (ms): 44
+	Iter: 298, Time (ms): 44
+	Iter: 299, Time (ms): 42
+	Iter: 300, Time (ms): 42
+	Iter: 301, Time (ms): 43
+	Iter: 302, Time (ms): 42
+	Iter: 303, Time (ms): 42
+	Iter: 304, Time (ms): 43
+	Iter: 305, Time (ms): 42
+	Iter: 306, Time (ms): 42
+	Iter: 307, Time (ms): 42
+	Iter: 308, Time (ms): 43
+	Iter: 309, Time (ms): 43
+	Iter: 310, Time (ms): 43
+	Iter: 311, Time (ms): 43
+	Iter: 312, Time (ms): 42
+	Iter: 313, Time (ms): 42
+	Iter: 314, Time (ms): 42
+	Iter: 315, Time (ms): 43
+	Iter: 316, Time (ms): 43
+	Iter: 317, Time (ms): 42
+	Iter: 318, Time (ms): 42
+	Iter: 319, Time (ms): 42
+	Iter: 320, Time (ms): 43
+	Iter: 321, Time (ms): 43
+	Iter: 322, Time (ms): 42
+	Iter: 323, Time (ms): 43
+	Iter: 324, Time (ms): 43
+	Iter: 325, Time (ms): 43
+	Iter: 326, Time (ms): 43
+	Iter: 327, Time (ms): 42
+	Iter: 328, Time (ms): 42
+	Iter: 329, Time (ms): 42
+	Iter: 330, Time (ms): 42
+	Iter: 331, Time (ms): 42
+	Iter: 332, Time (ms): 43
+	Iter: 333, Time (ms): 42
+	Iter: 334, Time (ms): 42
+	Iter: 335, Time (ms): 42
+	Iter: 336, Time (ms): 43
+	Iter: 337, Time (ms): 43
+	Iter: 338, Time (ms): 43
+	Iter: 339, Time (ms): 43
+	Iter: 340, Time (ms): 43
+	Iter: 341, Time (ms): 43
+	Iter: 342, Time (ms): 42
+	Iter: 343, Time (ms): 45
+	Iter: 344, Time (ms): 42
+	Iter: 345, Time (ms): 42
+	Iter: 346, Time (ms): 43
+	Iter: 347, Time (ms): 42
+	Iter: 348, Time (ms): 42
+	Iter: 349, Time (ms): 43
+	Iter: 350, Time (ms): 42
+	Iter: 351, Time (ms): 42
+	Iter: 352, Time (ms): 42
+	Iter: 353, Time (ms): 42
+	Iter: 354, Time (ms): 42
+	Iter: 355, Time (ms): 43
+	Iter: 356, Time (ms): 45
+	Iter: 357, Time (ms): 43
+	Iter: 358, Time (ms): 42
+	Iter: 359, Time (ms): 42
+	Iter: 360, Time (ms): 43
+	Iter: 361, Time (ms): 43
+	Iter: 362, Time (ms): 43
+	Iter: 363, Time (ms): 45
+	Iter: 364, Time (ms): 42
+	Iter: 365, Time (ms): 42
+	Iter: 366, Time (ms): 42
+	Iter: 367, Time (ms): 42
+	Iter: 368, Time (ms): 42
+	Iter: 369, Time (ms): 42
+	Iter: 370, Time (ms): 42
+	Iter: 371, Time (ms): 43
+	Iter: 372, Time (ms): 42
+	Iter: 373, Time (ms): 43
+	Iter: 374, Time (ms): 44
+	Iter: 375, Time (ms): 42
+	Iter: 376, Time (ms): 43
+	Iter: 377, Time (ms): 43
+	Iter: 378, Time (ms): 42
+	Iter: 379, Time (ms): 42
+	Iter: 380, Time (ms): 43
+	Iter: 381, Time (ms): 42
+	Iter: 382, Time (ms): 42
+	Iter: 383, Time (ms): 43
+	Iter: 384, Time (ms): 43
+	Iter: 385, Time (ms): 42
+	Iter: 386, Time (ms): 43
+	Iter: 387, Time (ms): 44
+	Iter: 388, Time (ms): 42
+	Iter: 389, Time (ms): 42
+	Iter: 390, Time (ms): 43
+	Iter: 391, Time (ms): 42
+	Iter: 392, Time (ms): 42
+	Iter: 393, Time (ms): 42
+	Iter: 394, Time (ms): 42
+	Iter: 395, Time (ms): 42
+	Iter: 396, Time (ms): 42
+	Iter: 397, Time (ms): 43
+	Iter: 398, Time (ms): 43
+	Iter: 399, Time (ms): 42
+	Iter: 400, Time (ms): 42
+	Iter: 401, Time (ms): 42
+	Iter: 402, Time (ms): 42
+	Iter: 403, Time (ms): 43
+	Iter: 404, Time (ms): 43
+	Iter: 405, Time (ms): 42
+	Iter: 406, Time (ms): 42
+	Iter: 407, Time (ms): 42
+	Iter: 408, Time (ms): 42
+	Iter: 409, Time (ms): 42
+	Iter: 410, Time (ms): 43
+	Iter: 411, Time (ms): 44
+	Iter: 412, Time (ms): 43
+	Iter: 413, Time (ms): 42
+	Iter: 414, Time (ms): 42
+	Iter: 415, Time (ms): 42
+	Iter: 416, Time (ms): 42
+	Iter: 417, Time (ms): 42
+	Iter: 418, Time (ms): 42
+	Iter: 419, Time (ms): 42
+	Iter: 420, Time (ms): 43
+	Iter: 421, Time (ms): 43
+	Iter: 422, Time (ms): 42
+	Iter: 423, Time (ms): 42
+	Iter: 424, Time (ms): 42
+	Iter: 425, Time (ms): 43
+	Iter: 426, Time (ms): 42
+	Iter: 427, Time (ms): 42
+	Iter: 428, Time (ms): 42
+	Iter: 429, Time (ms): 43
+	Iter: 430, Time (ms): 42
+	Iter: 431, Time (ms): 42
+	Iter: 432, Time (ms): 42
+	Iter: 433, Time (ms): 43
+	Iter: 434, Time (ms): 42
+	Iter: 435, Time (ms): 42
+	Iter: 436, Time (ms): 43
+	Iter: 437, Time (ms): 42
+	Iter: 438, Time (ms): 42
+	Iter: 439, Time (ms): 45
+	Iter: 440, Time (ms): 42
+	Iter: 441, Time (ms): 42
+	Iter: 442, Time (ms): 42
+	Iter: 443, Time (ms): 42
+	Iter: 444, Time (ms): 42
+	Iter: 445, Time (ms): 42
+	Iter: 446, Time (ms): 43
+	Iter: 447, Time (ms): 43
+	Iter: 448, Time (ms): 42
+	Iter: 449, Time (ms): 42
+	Iter: 450, Time (ms): 42
+	Iter: 451, Time (ms): 43
+	Iter: 452, Time (ms): 43
+	Iter: 453, Time (ms): 43
+	Iter: 454, Time (ms): 43
+	Iter: 455, Time (ms): 42
+	Iter: 456, Time (ms): 42
+	Iter: 457, Time (ms): 43
+	Iter: 458, Time (ms): 42
+	Iter: 459, Time (ms): 43
+	Iter: 460, Time (ms): 43
+	Iter: 461, Time (ms): 43
+	Iter: 462, Time (ms): 42
+	Iter: 463, Time (ms): 43
+	Iter: 464, Time (ms): 42
+	Iter: 465, Time (ms): 42
+	Iter: 466, Time (ms): 43
+	Iter: 467, Time (ms): 42
+	Iter: 468, Time (ms): 42
+	Iter: 469, Time (ms): 42
+	Iter: 470, Time (ms): 42
+	Iter: 471, Time (ms): 42
+	Iter: 472, Time (ms): 42
+	Iter: 473, Time (ms): 42
+	Iter: 474, Time (ms): 42
+	Iter: 475, Time (ms): 43
+	Iter: 476, Time (ms): 43
+	Iter: 477, Time (ms): 42
+	Iter: 478, Time (ms): 43
+	Iter: 479, Time (ms): 42
+	Iter: 480, Time (ms): 42
+	Iter: 481, Time (ms): 42
+	Iter: 482, Time (ms): 42
+	Iter: 483, Time (ms): 42
+	Iter: 484, Time (ms): 43
+	Iter: 485, Time (ms): 42
+	Iter: 486, Time (ms): 42
+	Iter: 487, Time (ms): 45
+	Iter: 488, Time (ms): 42
+	Iter: 489, Time (ms): 42
+	Iter: 490, Time (ms): 43
+	Iter: 491, Time (ms): 42
+	Iter: 492, Time (ms): 42
+	Iter: 493, Time (ms): 43
+	Iter: 494, Time (ms): 42
+	Iter: 495, Time (ms): 43
+	Iter: 496, Time (ms): 42
+	Iter: 497, Time (ms): 42
+	Iter: 498, Time (ms): 42
+	Iter: 499, Time (ms): 43
+
+Printing DCP Write Times... 
+
+Total move iterations: 500

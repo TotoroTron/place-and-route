@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Random;
 
 import com.xilinx.rapidwright.design.Design;
+import com.xilinx.rapidwright.design.DesignTools;
 import com.xilinx.rapidwright.design.SiteInst;
 import com.xilinx.rapidwright.design.Net;
 import com.xilinx.rapidwright.design.SitePinInst;
@@ -71,6 +72,7 @@ public abstract class Placer {
         placeDesign(packedDesign);
         writer.close();
         design.writeCheckpoint(placedDcp);
+        DesignTools.toCSV(rootDir + "/outputs/printout/" + placerName, design);
     }
 
     public void run(PackedDesign packedDesign, PrepackedDesign prepackedDesign) throws IOException {
@@ -79,6 +81,7 @@ public abstract class Placer {
         placeDesign(packedDesign);
         writer.close();
         design.writeCheckpoint(placedDcp);
+        DesignTools.toCSV(rootDir + "/outputs/printout/" + placerName, design);
     }
 
     protected void initRpmGrid() throws IOException {
@@ -124,9 +127,9 @@ public abstract class Placer {
 
     protected abstract void randomInitSiteChains(List<List<SiteInst>> chains) throws IOException;
 
-    protected abstract void randomMoveSingleSite(List<SiteInst> sites) throws IOException;
+    protected abstract void moveSingleSite(List<SiteInst> sites) throws IOException;
 
-    protected abstract void randomMoveSiteChains(List<List<SiteInst>> chains) throws IOException;
+    protected abstract void moveSiteChains(List<List<SiteInst>> chains) throws IOException;
 
     protected void initSites() throws IOException {
         for (Site site : device.getAllSites()) {
@@ -160,30 +163,21 @@ public abstract class Placer {
     }
 
     protected List<Site> findConnectedSites(SiteInst si, List<Site> selfConns) {
-        Collection<SitePinInst> pins = si.getSitePinInsts();
-        // Handle SPI output pins. Get all sinks.
-        List<Site> outputSinks = pins.stream()
-                .filter(spi -> spi.isOutPin())
+        List<Site> connectedSites = si.getSitePinInsts().stream()
                 .map(spi -> spi.getNet())
-                .map(net -> net.getSinkPins())
+                .filter(net -> net != null)
+                .filter(net -> !net.isClockNet() && !net.isStaticNet())
+                .map(net -> net.getPins())
                 .map(spis -> spis.stream()
                         .map(spi -> spi.getSite())
+                        // for chain swaps, ignore connections within the buffers.
+                        // DSP cascades can have very many self connections.
+                        // Allows DSP cascades to move more freely
+                        .filter(site -> !((selfConns != null) && selfConns.contains(site)))
                         .collect(Collectors.toList()))
                 .flatMap(List::stream) // List<List<Site>> into List<Site>
                 .collect(Collectors.toList());
-        // Handle SPI input pins. Only get the source.
-        List<Site> inputSources = pins.stream()
-                .filter(spi -> !spi.isOutPin())
-                .map(spi -> spi.getNet())
-                .filter(net -> net != null)
-                .map(net -> net.getSource())
-                .filter(spi -> spi != null)
-                .map(spi -> spi.getSite())
-                .collect(Collectors.toList());
-        List<Site> allSites = new ArrayList<>();
-        allSites.addAll(inputSources);
-        allSites.addAll(outputSinks);
-        return allSites;
+        return connectedSites;
     }
 
     protected boolean evaluateMoveAcceptance(double oldCost, double newCost) {
