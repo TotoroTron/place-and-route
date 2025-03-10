@@ -6209,3 +6209,74 @@ Mar 08, 2025 5:25:34 PM placer.Main main
 INFO: Begin Placer...
 Mar 08, 2025 5:32:04 PM placer.Main main
 INFO: Begin Placer...
+Mar 09, 2025 6:20:51 PM placer.Main main
+INFO: Begin Placer...
+Mar 09, 2025 6:26:52 PM placer.Main main
+INFO: Begin Placer...
+Mar 09, 2025 6:27:58 PM placer.Main main
+INFO: Begin Placer...
+Mar 09, 2025 6:31:58 PM placer.Main main
+INFO: Begin Placer...
+Mar 09, 2025 6:59:12 PM placer.Main main
+INFO: Begin Placer...
+Mar 09, 2025 7:02:32 PM placer.Main main
+INFO: Begin Placer...
+Mar 09, 2025 7:04:36 PM placer.Main main
+INFO: Begin Placer...
+Mar 09, 2025 7:12:37 PM placer.Main main
+INFO: Begin Placer...
+Mar 09, 2025 7:15:02 PM placer.Main main
+INFO: Begin Placer...
+Mar 09, 2025 7:15:05 PM placer.Main main
+SEVERE: An IOException occurred while configuring the logger.
+javax.imageio.IIOException: Can't create an ImageOutputStream!
+	at java.desktop/javax.imageio.ImageIO.write(ImageIO.java:1553)
+	at placer.ImageMaker.exportImage(ImageMaker.java:271)
+	at placer.PlacerAnnealRandom.placeDesign(PlacerAnnealRandom.java:94)
+	at placer.Placer.run(Placer.java:77)
+	at placer.Main.main(Main.java:70)
+
+Mar 09, 2025 7:15:49 PM placer.Main main
+INFO: Begin Placer...
+Mar 09, 2025 7:16:09 PM placer.Main main
+INFO: Begin Placer...
+Mar 09, 2025 7:25:53 PM placer.Main main
+INFO: Begin Placer...
+Mar 09, 2025 7:25:55 PM placer.Main main
+SEVERE: An IOException occurred while configuring the logger.
+java.io.FileNotFoundException: /home/bcheng/workspace/dev/place-and-route/outputs/PlacerAnnealRandom/printout/PlacerAnnealRandom.txt (No such file or directory)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:123)
+	at java.base/java.io.FileWriter.<init>(FileWriter.java:66)
+	at placer.PlacerAnnealRandom.<init>(PlacerAnnealRandom.java:45)
+	at placer.Main.main(Main.java:63)
+
+Mar 09, 2025 7:27:58 PM placer.Main main
+INFO: Begin Placer...
+Mar 09, 2025 7:30:03 PM placer.Main main
+INFO: Begin Placer...
+Mar 09, 2025 8:21:52 PM placer.Main main
+INFO: Begin Placer...
+Mar 09, 2025 8:23:58 PM placer.Main main
+INFO: Begin Placer...
+Mar 09, 2025 8:27:34 PM placer.Main main
+INFO: Begin Placer...
+Mar 09, 2025 8:27:37 PM placer.Main main
+SEVERE: An IOException occurred while configuring the logger.
+java.io.FileNotFoundException: null/PlacerAnnealRandom.txt (No such file or directory)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:123)
+	at java.base/java.io.FileWriter.<init>(FileWriter.java:66)
+	at placer.Placer.makeOutputDirs(Placer.java:84)
+	at placer.Main.main(Main.java:69)
+
+Mar 09, 2025 8:28:41 PM placer.Main main
+INFO: Begin Placer...
+Mar 09, 2025 8:33:46 PM placer.Main main
+INFO: Begin Placer...
+Mar 09, 2025 8:40:03 PM placer.Main main
+INFO: Begin Placer...

@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import com.xilinx.rapidwright.design.ModuleInst;
 import com.xilinx.rapidwright.design.Module;
@@ -46,10 +47,10 @@ public class Main {
             // Stage 2) Packer:
             // takes the prepackedDesign and packs the EDIFHierCellInst into SiteInsts
             // also provides an initial random placement of SiteInsts onto actual Sites.
-            // ClockRegion regionConstraint = device.getClockRegion("X1Y0");
-            ClockRegion regionConstraint = null;
+            // ClockRegion region = device.getClockRegion("X1Y0");
+            ClockRegion region = null;
             PackerBasic1 B1Packer = new PackerBasic1(
-                    rootDir, design, device, regionConstraint);
+                    rootDir, design, device, region);
             B1Packer.printUniqueSites();
             B1Packer.printClockBuffers();
             PackedDesign packedDesign = B1Packer.run(prepackedDesign);
@@ -58,22 +59,17 @@ public class Main {
             // takes the packedDesign and figures out an optimal mapping of SiteInsts onto
             // Sites via simulated annealing, analytical, electrostatic placement, etc.
             // works entirely on the SiteInst/Site/Tile level.
+            List<PlacerAnnealRandom> SAPlacers = new ArrayList<PlacerAnnealRandom>();
+            SAPlacers.add(new PlacerAnnealRandom(rootDir, design, device, region));
+            SAPlacers.add(new PlacerAnnealMidpoint(rootDir, design, device, region));
+            SAPlacers.add(new PlacerGreedyRandom(rootDir, design, device, region));
+            SAPlacers.add(new PlacerGreedyMidpoint(rootDir, design, device, region));
 
-            PlacerAnnealRandom SARPlacer = new PlacerAnnealRandom(
-                    rootDir, design, device, regionConstraint);
-            SARPlacer.run(packedDesign, prepackedDesign);
-
-            // PlacerAnnealMidpoint PAMPlacer = new PlacerAnnealMidpoint(
-            // rootDir, design, device, regionConstraint);
-            // PAMPlacer.run(packedDesign, prepackedDesign);
-
-            // PlacerGreedyRandom GRPlacer = new PlacerGreedyRandom(rootDir, design, device,
-            // regionConstraint);
-            // GRPlacer.run(packedDesign, prepackedDesign);
-
-            // PlacerGreedyMidpoint GMPlacer = new PlacerGreedyMidpoint(rootDir, design,
-            // device, regionConstraint);
-            // GMPlacer.run(packedDesign, prepackedDesign);
+            for (PlacerAnnealRandom placer : SAPlacers) {
+                placer.makeOutputDirs(placer.getPlacerName());
+                placer.initCoolingSchedule(10000.0d, 0.95d, 250);
+                placer.run(packedDesign);
+            }
 
         } catch (IOException e) {
             logger.log(Level.SEVERE, "An IOException occurred while configuring the logger.", e);

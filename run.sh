@@ -147,8 +147,7 @@ fi
 
 # Gradle Run Stage (replaces Java Placement)
 if [ "$start_stage" == "place" ] || [ "$start_stage" == "all" ]; then
-    rm $PROJ_DIR/outputs/graphics/images/*.png
-    rm $PROJ_DIR/outputs/printout/*.txt
+    rm $PROJ_DIR/outputs/results/* -r
     echo "Running Java placement with Gradle..."
     cd $PROJ_DIR/java
     gradle run

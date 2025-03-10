@@ -1,6 +1,8 @@
 
 package placer;
 
+import java.io.FileWriter;
+import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.stream.Collectors;
@@ -22,21 +24,11 @@ import com.xilinx.rapidwright.device.ClockRegion;
 
 public class PlacerAnnealRandom extends Placer {
 
+    private String placerName = "PlacerAnnealRandom";
+
     public PlacerAnnealRandom(String rootDir, Design design, Device device, ClockRegion region) throws IOException {
         super(rootDir, design, device);
-        this.placerName = "PlacerAnnealRandom";
-        this.graphicsDir = rootDir + "/outputs/graphics";
         this.regionConstraint = region;
-        this.uniqueSiteTypes = new HashSet<>();
-        this.occupiedSites = new HashMap<>();
-        this.occupiedSiteChains = new HashMap<>();
-        this.allSites = new HashMap<>();
-        this.costHistory = new ArrayList<>();
-        this.moveTimes = new ArrayList<>();
-        this.evalTimes = new ArrayList<>();
-        this.renderTimes = new ArrayList<>();
-        this.writeTimes = new ArrayList<>();
-        this.rand = new Random();
     }
 
     public void placeDesign(PackedDesign packedDesign) throws IOException {
@@ -46,11 +38,9 @@ public class PlacerAnnealRandom extends Placer {
         randomInitialPlacement(packedDesign);
         ImageMaker imInitRandom = new ImageMaker(design);
         imInitRandom.renderAll();
-        imInitRandom.exportImage(graphicsDir + "/random_placement", "png");
+        imInitRandom.exportImage(graphicsDir + "/random_placement.png");
         design.writeCheckpoint(rootDir + "/outputs/checkpoints/init_placed.dcp");
 
-        this.movesLimit = 500;
-        initCoolingSchedule(20000.0f, 0.99f);
         int move = 0;
         while (true) {
             if (move >= movesLimit)
@@ -75,7 +65,7 @@ public class PlacerAnnealRandom extends Placer {
             t0 = System.currentTimeMillis();
             ImageMaker gifFrame = new ImageMaker(design);
             gifFrame.renderAll();
-            gifFrame.exportImage(graphicsDir + "/images/" + String.format("%08d", move) + ".png", "png");
+            gifFrame.exportImage(graphicsDir + "/images/" + String.format("%08d", move) + ".png");
             t1 = System.currentTimeMillis();
             renderTimes.add(t1 - t0);
 
@@ -83,15 +73,19 @@ public class PlacerAnnealRandom extends Placer {
         }
         ImageMaker imPlaced = new ImageMaker(design);
         imPlaced.renderAll();
-        imPlaced.exportImage(graphicsDir + "/final_placement", "png");
+        imPlaced.exportImage(graphicsDir + "/final_placement.png");
         exportCostHistory(rootDir + "/outputs/printout/convergence.csv");
         printTimingBenchmarks();
         writer.write("\n\nTotal move iterations: " + move);
     }
 
-    protected void initCoolingSchedule(double initialTemp, double alpha) throws IOException {
+    public String getPlacerName() {
+        return this.placerName;
+    }
+
+    public void initCoolingSchedule(double initialTemp, double alpha, int movesLimit) throws IOException {
+        this.movesLimit = movesLimit;
         this.writer.write("\nPrinting Cooling Schedule...");
-        this.coolingSchedule = new ArrayList<>();
         // geometric cooling
         double currentTemp = initialTemp;
         for (int i = 0; i < movesLimit; i++) {
@@ -99,10 +93,6 @@ public class PlacerAnnealRandom extends Placer {
             this.writer.write("\n\t" + currentTemp);
             currentTemp *= alpha;
         }
-        // greedy
-        // for (int i = 0; i < movesLimit; i++) {
-        // this.coolingSchedule.add(0.0d);
-        // }
     }
 
     protected void randomInitialPlacement(PackedDesign packedDesign) throws IOException {
@@ -361,5 +351,72 @@ public class PlacerAnnealRandom extends Placer {
 
         } // end for loopThruChains
     } // end randomMoveSiteChains()
+
+    protected List<Site> findBufferZone(SiteTypeEnum siteType, Site initAnchor, Site initTail)
+            throws IOException {
+        List<Site> sites = new ArrayList<>();
+        int instX = initAnchor.getInstanceX();
+        int finalAnchorInstY = initAnchor.getInstanceY();
+        int finalTailInstY = initTail.getInstanceY();
+        // is there a chain overlap at the anchor?
+        List<SiteInst> residentChainAtAnchor = occupiedSiteChains.get(siteType).get(initAnchor);
+        if (residentChainAtAnchor != null) {
+            Site finalAnchor = residentChainAtAnchor.get(0).getSite();
+            finalAnchorInstY = finalAnchor.getInstanceY();
+        }
+        // is there a chain overlap at the tail?
+        List<SiteInst> residentChainAtTail = occupiedSiteChains.get(siteType).get(initTail);
+        if (residentChainAtTail != null) {
+            Site finalTail = residentChainAtTail.get(residentChainAtTail.size() - 1).getSite();
+            finalTailInstY = finalTail.getInstanceY();
+        }
+        String siteTypePrefix = getSiteTypePrefix(siteType);
+        for (int i = finalAnchorInstY; i <= finalTailInstY; i++) {
+            Site site = device.getSite(siteTypePrefix + "X" + instX + "Y" + i);
+            sites.add(site);
+        }
+        if (finalTailInstY - finalAnchorInstY > 16) {
+            System.out.println("buffer size: " + (finalTailInstY - finalAnchorInstY));
+            System.out.println("\tinitAnchor: " + initAnchor.getInstanceY() + ", initTail: " + initTail.getInstanceY());
+            System.out.println("\tfinalAnchor: " + finalAnchorInstY + ", finalTail: " + finalTailInstY);
+            for (Site site : sites) {
+                System.out.println("\t\tSiteInst: " + occupiedSites.get(site.getSiteTypeEnum()).get(site));
+            }
+        }
+        return sites;
+    } // end findBufferZone()
+
+    protected boolean bufferContainsOverlaps(SiteTypeEnum siteType, Site initAnchor, Site initTail)
+            throws IOException {
+        boolean containsOverlap = false;
+        List<SiteInst> residentChainAtAnchor = occupiedSiteChains.get(siteType).get(initAnchor);
+        if (residentChainAtAnchor != null) {
+            Site residentAnchor = residentChainAtAnchor.get(0).getSite();
+            if (residentAnchor.getInstanceY() < initAnchor.getInstanceY())
+                containsOverlap = true;
+        }
+        List<SiteInst> residentChainAtTail = occupiedSiteChains.get(siteType).get(initTail);
+        if (residentChainAtTail != null) {
+            Site residentTail = residentChainAtTail.get(residentChainAtTail.size() - 1).getSite();
+            if (residentTail.getInstanceY() > initTail.getInstanceY())
+                containsOverlap = true;
+        }
+        return containsOverlap;
+    } // end bufferContainsOverlaps()
+
+    protected List<SiteInst> collectSiteInstsInBuffer(SiteTypeEnum siteType, List<Site> bufferZone)
+            throws IOException {
+        List<SiteInst> sis = new ArrayList<>();
+        for (Site site : bufferZone) {
+            SiteInst si = occupiedSites.get(siteType).get(site);
+            if (si == null) {
+                sis.add(null);
+            } else {
+                sis.add(si);
+            }
+            // adds null if key doesnt exist in map
+        }
+        return sis;
+    } // end collectSiteInstsInBuffer()
 
 } // end class

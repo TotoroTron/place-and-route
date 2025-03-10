@@ -22,13 +22,19 @@ import com.xilinx.rapidwright.device.ClockRegion;
 
 public class PlacerAnnealMidpoint extends PlacerAnnealRandom {
 
+    private String placerName = "PlacerAnnealMidpoint";
+
     private int spiralPathMaxRadius = 1000;
     private List<Pair<Integer, Integer>> spiralPath = SpiralPath.generateDiamondSpiral(spiralPathMaxRadius);
 
     public PlacerAnnealMidpoint(String rootDir, Design design, Device device, ClockRegion region)
             throws IOException {
         super(rootDir, design, device, region);
-        this.placerName = "PlacerAnnealMidpoint";
+    }
+
+    @Override
+    public String getPlacerName() {
+        return this.placerName;
     }
 
     private Pair<Integer, Integer> findMidpoint(List<Site> connections) {

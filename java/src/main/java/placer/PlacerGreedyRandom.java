@@ -21,13 +21,20 @@ import com.xilinx.rapidwright.device.ClockRegion;
 
 public class PlacerGreedyRandom extends PlacerAnnealRandom {
 
+    private String placerName = "PlacerGreedyRandom";
+
     public PlacerGreedyRandom(String rootDir, Design design, Device device, ClockRegion region) throws IOException {
         super(rootDir, design, device, region);
-        this.placerName = "PlacerGreedyRandom";
     }
 
     @Override
-    protected void initCoolingSchedule(double initialTemp, double alpha) throws IOException {
+    public String getPlacerName() {
+        return this.placerName;
+    }
+
+    @Override
+    public void initCoolingSchedule(double initialTemp, double alpha, int movesLimit) throws IOException {
+        this.movesLimit = movesLimit;
         this.coolingSchedule = new ArrayList<>();
         for (int i = 0; i < movesLimit; i++) {
             this.coolingSchedule.add(0.0d);

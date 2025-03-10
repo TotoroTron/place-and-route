@@ -19,15 +19,22 @@ import com.xilinx.rapidwright.device.Site;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
 import com.xilinx.rapidwright.device.ClockRegion;
 
-public class PlacerGreedyMidpoint extends PlacerAnnealRandom {
+public class PlacerGreedyMidpoint extends PlacerAnnealMidpoint {
+
+    private String placerName = "PlacerGreedyMidpoint";
 
     public PlacerGreedyMidpoint(String rootDir, Design design, Device device, ClockRegion region) throws IOException {
         super(rootDir, design, device, region);
-        this.placerName = "PlacerGreedyMidpoint";
     }
 
     @Override
-    protected void initCoolingSchedule(double initialTemp, double alpha) throws IOException {
+    public String getPlacerName() {
+        return this.placerName;
+    }
+
+    @Override
+    public void initCoolingSchedule(double initialTemp, double alpha, int movesLimit) throws IOException {
+        this.movesLimit = movesLimit;
         this.coolingSchedule = new ArrayList<>();
         for (int i = 0; i < movesLimit; i++) {
             this.coolingSchedule.add(0.0d);

@@ -1,5 +1,6 @@
 package placer;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
 
@@ -26,14 +28,15 @@ import com.xilinx.rapidwright.device.SiteTypeEnum;
 import com.xilinx.rapidwright.device.ClockRegion;
 
 public abstract class Placer {
-    protected String placerName;
-    FileWriter writer;
+    private String placerName;
+    protected FileWriter writer;
     protected String rootDir;
     protected String graphicsDir;
     protected String placedDcp;
+    protected String printoutDir;
 
-    protected final Device device;
-    protected final Design design;
+    protected Device device;
+    protected Design design;
 
     protected List<Double> costHistory;
     protected List<Long> moveTimes;
@@ -61,28 +64,65 @@ public abstract class Placer {
 
     public Placer(String rootDir, Design design, Device device) throws IOException {
         this.rootDir = rootDir;
-        this.placedDcp = rootDir + "/outputs/checkpoints/placed.dcp";
         this.design = design;
         this.device = device;
+        this.coolingSchedule = new ArrayList<Double>();
+        this.uniqueSiteTypes = new HashSet<>();
+        this.occupiedSites = new HashMap<>();
+        this.occupiedSiteChains = new HashMap<>();
+        this.allSites = new HashMap<>();
+        this.costHistory = new ArrayList<>();
+        this.moveTimes = new ArrayList<>();
+        this.evalTimes = new ArrayList<>();
+        this.renderTimes = new ArrayList<>();
+        this.writeTimes = new ArrayList<>();
+        this.rand = new Random();
+    }
+
+    public void makeOutputDirs(String placerName) throws IOException {
+        this.placerName = placerName;
+        String resultsDir = rootDir + "/outputs/results/" + placerName;
+        this.placedDcp = resultsDir + "/checkpoints";
+        File placedDcp = new File(this.placedDcp);
+        if (!placedDcp.exists()) {
+            placedDcp.mkdirs();
+        }
+        this.graphicsDir = resultsDir + "/graphics";
+        File graphicsDir = new File(this.graphicsDir + "/images");
+        if (!graphicsDir.exists()) {
+            graphicsDir.mkdirs();
+        }
+        this.printoutDir = resultsDir + "/printout";
+        File printoutDir = new File(this.printoutDir);
+        if (!printoutDir.exists()) {
+            printoutDir.mkdirs();
+        }
+        this.writer = new FileWriter(this.printoutDir + "/" + placerName + ".txt");
     }
 
     public void run(PackedDesign packedDesign) throws IOException {
-        writer = new FileWriter(rootDir + "/outputs/printout/" + placerName + ".txt");
-        writer.write(placerName + ".txt");
         placeDesign(packedDesign);
         writer.close();
-        design.writeCheckpoint(placedDcp);
-        DesignTools.toCSV(rootDir + "/outputs/printout/" + placerName, design);
+        design.writeCheckpoint(placedDcp + "/" + placerName + ".dcp");
+        DesignTools.toCSV(printoutDir + "/" + placerName, design);
     }
 
-    public void run(PackedDesign packedDesign, PrepackedDesign prepackedDesign) throws IOException {
-        writer = new FileWriter(rootDir + "/outputs/printout/" + placerName + ".txt");
-        writer.write(placerName + ".txt");
-        placeDesign(packedDesign);
-        writer.close();
-        design.writeCheckpoint(placedDcp);
-        DesignTools.toCSV(rootDir + "/outputs/printout/" + placerName, design);
-    }
+    public abstract String getPlacerName();
+
+    protected abstract void placeDesign(PackedDesign packedDesign) throws IOException;
+
+    // protected abstract Site proposeSite(SiteTypeEnum ste, boolean swapEnable);
+
+    // protected abstract Site proposeAnchorSite(SiteTypeEnum ste, int chainSize,
+    // boolean swapEnable);
+
+    protected abstract void randomInitSingleSite(List<SiteInst> siteInsts) throws IOException;
+
+    protected abstract void randomInitSiteChains(List<List<SiteInst>> chains) throws IOException;
+
+    protected abstract void moveSingleSite(List<SiteInst> sites) throws IOException;
+
+    protected abstract void moveSiteChains(List<List<SiteInst>> chains) throws IOException;
 
     protected void initRpmGrid() throws IOException {
         int x_high = 0;
@@ -115,21 +155,6 @@ public abstract class Placer {
             }
         }
     }
-
-    protected abstract void placeDesign(PackedDesign packedDesign) throws IOException;
-
-    // protected abstract Site proposeSite(SiteTypeEnum ste, boolean swapEnable);
-
-    // protected abstract Site proposeAnchorSite(SiteTypeEnum ste, int chainSize,
-    // boolean swapEnable);
-
-    protected abstract void randomInitSingleSite(List<SiteInst> siteInsts) throws IOException;
-
-    protected abstract void randomInitSiteChains(List<List<SiteInst>> chains) throws IOException;
-
-    protected abstract void moveSingleSite(List<SiteInst> sites) throws IOException;
-
-    protected abstract void moveSiteChains(List<List<SiteInst>> chains) throws IOException;
 
     protected void initSites() throws IOException {
         for (Site site : device.getAllSites()) {
@@ -263,73 +288,6 @@ public abstract class Placer {
             throw new IllegalStateException("ERROR: Could not assign a String prefix to  SiteTypeEnum: " + siteType);
         return siteTypePrefix;
     }
-
-    protected List<Site> findBufferZone(SiteTypeEnum siteType, Site initAnchor, Site initTail)
-            throws IOException {
-        List<Site> sites = new ArrayList<>();
-        int instX = initAnchor.getInstanceX();
-        int finalAnchorInstY = initAnchor.getInstanceY();
-        int finalTailInstY = initTail.getInstanceY();
-        // is there a chain overlap at the anchor?
-        List<SiteInst> residentChainAtAnchor = occupiedSiteChains.get(siteType).get(initAnchor);
-        if (residentChainAtAnchor != null) {
-            Site finalAnchor = residentChainAtAnchor.get(0).getSite();
-            finalAnchorInstY = finalAnchor.getInstanceY();
-        }
-        // is there a chain overlap at the tail?
-        List<SiteInst> residentChainAtTail = occupiedSiteChains.get(siteType).get(initTail);
-        if (residentChainAtTail != null) {
-            Site finalTail = residentChainAtTail.get(residentChainAtTail.size() - 1).getSite();
-            finalTailInstY = finalTail.getInstanceY();
-        }
-        String siteTypePrefix = getSiteTypePrefix(siteType);
-        for (int i = finalAnchorInstY; i <= finalTailInstY; i++) {
-            Site site = device.getSite(siteTypePrefix + "X" + instX + "Y" + i);
-            sites.add(site);
-        }
-        if (finalTailInstY - finalAnchorInstY > 16) {
-            System.out.println("buffer size: " + (finalTailInstY - finalAnchorInstY));
-            System.out.println("\tinitAnchor: " + initAnchor.getInstanceY() + ", initTail: " + initTail.getInstanceY());
-            System.out.println("\tfinalAnchor: " + finalAnchorInstY + ", finalTail: " + finalTailInstY);
-            for (Site site : sites) {
-                System.out.println("\t\tSiteInst: " + occupiedSites.get(site.getSiteTypeEnum()).get(site));
-            }
-        }
-        return sites;
-    } // end findBufferZone()
-
-    protected boolean bufferContainsOverlaps(SiteTypeEnum siteType, Site initAnchor, Site initTail)
-            throws IOException {
-        boolean containsOverlap = false;
-        List<SiteInst> residentChainAtAnchor = occupiedSiteChains.get(siteType).get(initAnchor);
-        if (residentChainAtAnchor != null) {
-            Site residentAnchor = residentChainAtAnchor.get(0).getSite();
-            if (residentAnchor.getInstanceY() < initAnchor.getInstanceY())
-                containsOverlap = true;
-        }
-        List<SiteInst> residentChainAtTail = occupiedSiteChains.get(siteType).get(initTail);
-        if (residentChainAtTail != null) {
-            Site residentTail = residentChainAtTail.get(residentChainAtTail.size() - 1).getSite();
-            if (residentTail.getInstanceY() > initTail.getInstanceY())
-                containsOverlap = true;
-        }
-        return containsOverlap;
-    } // end bufferContainsOverlaps()
-
-    protected List<SiteInst> collectSiteInstsInBuffer(SiteTypeEnum siteType, List<Site> bufferZone)
-            throws IOException {
-        List<SiteInst> sis = new ArrayList<>();
-        for (Site site : bufferZone) {
-            SiteInst si = occupiedSites.get(siteType).get(site);
-            if (si == null) {
-                sis.add(null);
-            } else {
-                sis.add(si);
-            }
-            // adds null if key doesnt exist in map
-        }
-        return sis;
-    } // end collectSiteInstsInBuffer()
 
     public void printTimingBenchmarks() throws IOException {
         writer.write("\n\nPrinting Move Times... ");

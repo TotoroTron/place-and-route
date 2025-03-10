@@ -122,7 +122,7 @@ public class PackerBasic1 extends Packer {
 
         ImageMaker im = new ImageMaker(design);
         im.renderAll();
-        im.exportImage(rootDir + "/outputs/graphics/init_packing", "png");
+        im.exportImage(rootDir + "/outputs/graphics/init_packing.png");
         return packedDesign;
 
     } // end placeDesign()

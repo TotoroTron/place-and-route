@@ -265,9 +265,10 @@ public class ImageMaker {
         }
     }
 
-    public void exportImage(String outputPath, String filetype) throws IOException {
-        File outputFile = new File((outputPath + "." + filetype));
-        ImageIO.write(image, filetype, outputFile);
+    public void exportImage(String fileName) throws IOException {
+        String fileType = "png";
+        File outputFile = new File(fileName);
+        ImageIO.write(image, fileType, outputFile);
     }
 
 }
