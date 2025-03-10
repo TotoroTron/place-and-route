@@ -110,7 +110,15 @@ public class PlacerAnnealRandom extends Placer {
     }
 
     protected Site proposeSite(SiteInst si, List<Site> connections, boolean swapEnable) {
-        SiteTypeEnum ste = si.getSiteTypeEnum();
+        SiteTypeEnum ste = null;
+        SiteTypeEnum[] altStes = si.getAlternateSiteTypeEnums();
+        if (altStes.length == 0) {
+            ste = si.getSiteTypeEnum();
+        } else {
+            int randIndex = rand.nextInt(altStes.length);
+            ste = altStes[randIndex];
+            System.out.println(ste);
+        }
         Site selectedSite = null;
         int attempts = 0;
         while (true) {

@@ -212,24 +212,10 @@ public class PackerBasic1 extends Packer {
         List<SiteInst> RAMSiteInsts = new ArrayList<>();
         writer.write("\n\nPacking RAMBCells... (" + RAMCells.size() + ")");
         for (EDIFHierCellInst ehci : RAMCells) {
-            Site selectedSite = selectRAMSite();
-            SiteTypeEnum ste = selectedSite.getSiteTypeEnum();
-            SiteInst si = null;
-            if (ste == SiteTypeEnum.RAMB18E1) {
-                si = new SiteInst(
-                        ehci.getFullHierarchicalInstName(), design, SiteTypeEnum.RAMB18E1, selectedSite);
-                si.createCell(ehci, si.getBEL("RAMB18E1"));
-            }
-            if (ste == SiteTypeEnum.FIFO18E1) {
-                si = new SiteInst(
-                        ehci.getFullHierarchicalInstName(), design, SiteTypeEnum.FIFO18E1, selectedSite);
-                si.createCell(ehci, si.getBEL("RAMB18E1"));
-                System.out.println("SiteInst:" + si);
-                System.out.println("\tCell-BEL Map:");
-                for (Map.Entry<String, Cell> entry : si.getCellMap().entrySet()) {
-                    System.out.println("\t\t<" + entry.getKey() + ", " + entry.getValue() + ">");
-                }
-            }
+            Site selectedSite = selectRAMSite(); // selects uniformly randomly between RAMB18E1 and FIFO18E1 Site
+            SiteInst si = new SiteInst(
+                    ehci.getFullHierarchicalInstName(), design, SiteTypeEnum.RAMB18E1, selectedSite);
+            si.createCell(ehci, si.getBEL("RAMB18E1"));
             si.routeSite();
             RAMSiteInsts.add(si);
         }
@@ -402,8 +388,8 @@ public class PackerBasic1 extends Packer {
                     "ERROR: device or clock region contains no Sites of type FIFO18E1 or RAMB18E1!");
         }
         compatibleSites.sort(
-                Comparator.comparingInt(Site::getInstanceX)
-                        .thenComparingInt(Site::getInstanceY)
+                Comparator.comparingInt(Site::getInstanceY)
+                        .thenComparingInt(Site::getInstanceX)
                         .reversed());
         Site selectedSite = compatibleSites.get(0);
         SiteTypeEnum ste = selectedSite.getSiteTypeEnum();
