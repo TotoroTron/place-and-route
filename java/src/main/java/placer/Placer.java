@@ -219,10 +219,10 @@ public abstract class Placer {
     protected double evaluateSite(List<Site> sinkSites, Site srcSite) throws IOException {
         double cost = 0;
         for (Site sinkSite : sinkSites) {
-            // if (sinkSite.isGlobalClkBuffer()) {
-            // // System.out.println("Skipped global clock buffer evaluation.");
-            // continue;
-            // }
+            if (sinkSite.isGlobalClkBuffer()) {
+                // System.out.println("Skipped global clock buffer evaluation.");
+                continue;
+            }
             // if (sinkSite.isGlobalClkPad()) {
             // // System.out.println("Skipped global clock pad evaluation.");
             // continue;

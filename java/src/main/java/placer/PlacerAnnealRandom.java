@@ -115,7 +115,7 @@ public class PlacerAnnealRandom extends Placer {
             SiteTypeEnum[] compatibleStes = { SiteTypeEnum.RAMB18E1, SiteTypeEnum.FIFO18E1 };
             int randIndex = rand.nextInt(compatibleStes.length);
             ste = compatibleStes[randIndex];
-            System.out.println(ste);
+            // System.out.println(ste);
         } else {
             ste = si.getSiteTypeEnum();
         }

@@ -203,10 +203,11 @@ public class ImageMaker {
             if (net.isStaticNet())
                 continue;
             SitePinInst src = net.getSource();
-            if (src == null) // SPI is null if the net is purely intrasite
+            if (src == null) { // SPI is null if the net is purely intrasite
                 continue;
-            if (src.getSiteTypeEnum().equals(SiteTypeEnum.BUFGCTRL))
-                continue;
+            }
+            // if (src.getSiteTypeEnum().equals(SiteTypeEnum.BUFGCTRL))
+            // continue;
             List<SitePinInst> sinks = net.getSinkPins();
             Site srcSite = src.getSite();
             if (srcSite == null)
