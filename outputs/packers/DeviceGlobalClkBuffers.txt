@@ -1,0 +1,73 @@
+
+
+Printing Global Clock Buffer Sites in the device... 
+Site: BUFGCTRL_X0Y16, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y17, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y18, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y19, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y20, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y21, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y22, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y23, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y24, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y25, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y26, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y27, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y28, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y29, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y30, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y31, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y0, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y1, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y2, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y3, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y4, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y5, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y6, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y7, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y8, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y9, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y10, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y11, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y12, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y13, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y14, Type: BUFGCTRL, Clock Region: null
+Site: BUFGCTRL_X0Y15, Type: BUFGCTRL, Clock Region: null
+
+Printing Regional Clock Buffer Sites in the device... 
+Site: BUFR_X1Y9, Type: BUFR, Clock Region: X1Y2
+Site: BUFR_X1Y8, Type: BUFR, Clock Region: X1Y2
+Site: BUFR_X1Y11, Type: BUFR, Clock Region: X1Y2
+Site: BUFR_X1Y10, Type: BUFR, Clock Region: X1Y2
+Site: BUFR_X1Y5, Type: BUFR, Clock Region: X1Y1
+Site: BUFR_X1Y4, Type: BUFR, Clock Region: X1Y1
+Site: BUFR_X1Y7, Type: BUFR, Clock Region: X1Y1
+Site: BUFR_X1Y6, Type: BUFR, Clock Region: X1Y1
+Site: BUFR_X0Y1, Type: BUFR, Clock Region: X0Y0
+Site: BUFR_X0Y0, Type: BUFR, Clock Region: X0Y0
+Site: BUFR_X0Y3, Type: BUFR, Clock Region: X0Y0
+Site: BUFR_X0Y2, Type: BUFR, Clock Region: X0Y0
+Site: BUFR_X1Y1, Type: BUFR, Clock Region: X1Y0
+Site: BUFR_X1Y0, Type: BUFR, Clock Region: X1Y0
+Site: BUFR_X1Y3, Type: BUFR, Clock Region: X1Y0
+Site: BUFR_X1Y2, Type: BUFR, Clock Region: X1Y0
+
+Printing Global Clock Pads in the device... 
+
+Printing Regional Clock Pads Sites in the device... 
+Site: IOB_X1Y128, Type: IOB33M, Clock Region: X1Y2
+Site: IOB_X1Y126, Type: IOB33M, Clock Region: X1Y2
+Site: IOB_X1Y124, Type: IOB33M, Clock Region: X1Y2
+Site: IOB_X1Y122, Type: IOB33M, Clock Region: X1Y2
+Site: IOB_X1Y78, Type: IOB33M, Clock Region: X1Y1
+Site: IOB_X1Y76, Type: IOB33M, Clock Region: X1Y1
+Site: IOB_X1Y74, Type: IOB33M, Clock Region: X1Y1
+Site: IOB_X1Y72, Type: IOB33M, Clock Region: X1Y1
+Site: IOB_X0Y28, Type: IOB33M, Clock Region: X0Y0
+Site: IOB_X1Y28, Type: IOB33M, Clock Region: X1Y0
+Site: IOB_X0Y26, Type: IOB33M, Clock Region: X0Y0
+Site: IOB_X1Y26, Type: IOB33M, Clock Region: X1Y0
+Site: IOB_X0Y24, Type: IOB33M, Clock Region: X0Y0
+Site: IOB_X1Y24, Type: IOB33M, Clock Region: X1Y0
+Site: IOB_X0Y22, Type: IOB33M, Clock Region: X0Y0
+Site: IOB_X1Y22, Type: IOB33M, Clock Region: X1Y0

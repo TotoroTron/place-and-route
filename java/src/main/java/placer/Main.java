@@ -51,9 +51,9 @@ public class Main {
             ClockRegion region = null;
             PackerBasic1 B1Packer = new PackerBasic1(
                     rootDir, design, device, region);
+            PackedDesign packedDesign = B1Packer.run(prepackedDesign);
             B1Packer.printUniqueSites();
             B1Packer.printClockBuffers();
-            PackedDesign packedDesign = B1Packer.run(prepackedDesign);
 
             // Stage 3) Placer:
             // takes the packedDesign and figures out an optimal mapping of SiteInsts onto

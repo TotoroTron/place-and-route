@@ -1,6 +1,7 @@
 package placer;
 
 import java.io.FileWriter;
+import java.io.File;
 import java.io.IOException;
 
 import com.xilinx.rapidwright.design.Design;
@@ -26,7 +27,12 @@ public abstract class Prepacker {
     }
 
     public PrepackedDesign run() throws IOException {
-        writer = new FileWriter(rootDir + "/outputs/printout/" + prepackerName + ".txt");
+        String printoutDir = rootDir + "/outputs/prepackers";
+        File printoutFile = new File(printoutDir);
+        if (!printoutFile.exists()) {
+            printoutFile.mkdirs();
+        }
+        writer = new FileWriter(printoutDir + "/" + prepackerName + ".txt");
         writer.write(prepackerName + ".txt");
         PrepackedDesign prepackedDesign = prepackDesign();
         writer.close();

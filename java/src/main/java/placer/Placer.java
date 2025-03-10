@@ -81,7 +81,7 @@ public abstract class Placer {
 
     public void makeOutputDirs(String placerName) throws IOException {
         this.placerName = placerName;
-        String resultsDir = rootDir + "/outputs/results/" + placerName;
+        String resultsDir = rootDir + "/outputs/placers/" + placerName;
         this.placedDcp = resultsDir + "/checkpoints";
         File placedDcp = new File(this.placedDcp);
         if (!placedDcp.exists()) {

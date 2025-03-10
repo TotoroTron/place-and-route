@@ -1,0 +1,881 @@
+PackerBasic1.txt
+
+Device Site Types: 
+	SiteTypeEnum: IDELAYCTRL
+	SiteTypeEnum: PMVIOB
+	SiteTypeEnum: IDELAYE2
+	SiteTypeEnum: PS7
+	SiteTypeEnum: OLOGICE3
+	SiteTypeEnum: IOB33M
+	SiteTypeEnum: FIFO18E1
+	SiteTypeEnum: SLICEL
+	SiteTypeEnum: BUFMRCE
+	SiteTypeEnum: MMCME2_ADV
+	SiteTypeEnum: PHASER_OUT_PHY
+	SiteTypeEnum: XADC
+	SiteTypeEnum: PMV2_SVT
+	SiteTypeEnum: BUFIO
+	SiteTypeEnum: IOB33S
+	SiteTypeEnum: PHY_CONTROL
+	SiteTypeEnum: MTBF2
+	SiteTypeEnum: OUT_FIFO
+	SiteTypeEnum: IN_FIFO
+	SiteTypeEnum: PLLE2_ADV
+	SiteTypeEnum: FRAME_ECC
+	SiteTypeEnum: GCLK_TEST_BUF
+	SiteTypeEnum: SLICEM
+	SiteTypeEnum: PMVBRAM
+	SiteTypeEnum: ICAP
+	SiteTypeEnum: CFG_IO_ACCESS
+	SiteTypeEnum: ILOGICE3
+	SiteTypeEnum: PHASER_IN_PHY
+	SiteTypeEnum: PHASER_REF
+	SiteTypeEnum: DNA_PORT
+	SiteTypeEnum: EFUSE_USR
+	SiteTypeEnum: RAMB18E1
+	SiteTypeEnum: STARTUP
+	SiteTypeEnum: BSCAN
+	SiteTypeEnum: PMV2
+	SiteTypeEnum: DSP48E1
+	SiteTypeEnum: IOPAD
+	SiteTypeEnum: RAMBFIFO36E1
+	SiteTypeEnum: IPAD
+	SiteTypeEnum: BUFHCE
+	SiteTypeEnum: CAPTURE
+	SiteTypeEnum: IOB33
+	SiteTypeEnum: DCIRESET
+	SiteTypeEnum: BUFGCTRL
+	SiteTypeEnum: USR_ACCESS
+	SiteTypeEnum: TIEOFF
+	SiteTypeEnum: BUFR
+	SiteTypeEnum: PMV
+
+Packing BUFGCTRL Cells... (1
+
+Packing carry chains... (47)
+		Chain Size: (6), Chain Anchor: fir_filter_inst/ov_dout_reg[11]_i_50
+		Chain Size: (6), Chain Anchor: fir_filter_inst/ov_dout_reg[3]_i_18
+		Chain Size: (6), Chain Anchor: fir_filter_inst/ov_dout_reg[11]_i_52
+		Chain Size: (6), Chain Anchor: fir_filter_inst/ov_dout_reg[11]_i_51
+		Chain Size: (6), Chain Anchor: fir_filter_inst/ov_dout_reg[11]_i_54
+		Chain Size: (6), Chain Anchor: fir_filter_inst/ov_dout_reg[11]_i_53
+		Chain Size: (6), Chain Anchor: fir_filter_inst/ov_dout_reg[11]_i_56
+		Chain Size: (6), Chain Anchor: fir_filter_inst/ov_dout_reg[11]_i_55
+		Chain Size: (6), Chain Anchor: fir_filter_inst/ov_dout_reg[11]_i_58
+		Chain Size: (6), Chain Anchor: fir_filter_inst/ov_dout_reg[11]_i_57
+		Chain Size: (6), Chain Anchor: fir_filter_inst/ov_dout_reg[3]_i_1
+		Chain Size: (6), Chain Anchor: fir_filter_inst/ov_dout_reg[3]_i_5
+		Chain Size: (6), Chain Anchor: fir_filter_inst/ov_dout_reg[7]_i_15
+		Chain Size: (6), Chain Anchor: fir_filter_inst/ov_dout_reg[7]_i_14
+		Chain Size: (6), Chain Anchor: fir_filter_inst/ov_dout_reg[7]_i_13
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[0].tap_inst/ov_sum_reg[0]_i_1__29
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[11].tap_inst/ov_sum_reg[0]_i_1__8
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[20].tap_inst/ov_sum_reg[0]_i_1__17
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[4].tap_inst/ov_sum_reg[0]_i_1__1
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[18].tap_inst/ov_sum_reg[0]_i_1__15
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[14].tap_inst/ov_sum_reg[0]_i_1__11
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[27].tap_inst/ov_sum_reg[0]_i_1__24
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[28].tap_inst/ov_sum_reg[0]_i_1__25
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[15].tap_inst/ov_sum_reg[0]_i_1__12
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[1].tap_inst/ov_sum_reg[0]_i_2
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[3].tap_inst/ov_sum_reg[0]_i_1__0
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[19].tap_inst/ov_sum_reg[0]_i_1__16
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[26].tap_inst/ov_sum_reg[0]_i_1__23
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[7].tap_inst/ov_sum_reg[0]_i_1__4
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[8].tap_inst/ov_sum_reg[0]_i_1__5
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[23].tap_inst/ov_sum_reg[0]_i_1__20
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[5].tap_inst/ov_sum_reg[0]_i_1__2
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[24].tap_inst/ov_sum_reg[0]_i_1__21
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[21].tap_inst/ov_sum_reg[0]_i_1__18
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[22].tap_inst/ov_sum_reg[0]_i_1__19
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[6].tap_inst/ov_sum_reg[0]_i_1__3
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[29].tap_inst/ov_sum_reg[0]_i_1__26
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[2].tap_inst/ov_sum_reg[0]_i_1
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[13].tap_inst/ov_sum_reg[0]_i_1__10
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[25].tap_inst/ov_sum_reg[0]_i_1__22
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[9].tap_inst/ov_sum_reg[0]_i_1__6
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[31].tap_inst/ov_sum_reg[0]_i_1__28
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[16].tap_inst/ov_sum_reg[0]_i_1__13
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[17].tap_inst/ov_sum_reg[0]_i_1__14
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[30].tap_inst/ov_sum_reg[0]_i_1__27
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[10].tap_inst/ov_sum_reg[0]_i_1__7
+		Chain Size: (6), Chain Anchor: fir_filter_inst/genblk1[12].tap_inst/ov_sum_reg[0]_i_1__9
+
+Packing DSP Cascades... (32)
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[0].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[0].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[0].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[11].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[11].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[11].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[20].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[20].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[20].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[4].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[4].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[4].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[18].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[18].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[18].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[14].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[14].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[14].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[27].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[27].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[27].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[28].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[28].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[28].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[15].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[15].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[15].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[1].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[1].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[1].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[3].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[3].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[3].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[19].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[19].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[19].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[26].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[26].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[26].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[7].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[7].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[7].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[8].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[8].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[8].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[23].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[23].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[23].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[5].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[5].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[5].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[24].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[24].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[24].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[21].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[21].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[21].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[22].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[22].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[22].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[6].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[6].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[6].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[29].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[29].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[29].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[2].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[2].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[2].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[13].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[13].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[13].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[25].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[25].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[25].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[9].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[9].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[9].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[31].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[31].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[31].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[16].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[16].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[16].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[17].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[17].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[17].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[30].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[30].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[30].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[10].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[10].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[10].tap_inst/ov_sum1__0
+	Cascade Size: (2), Cascade Anchor: fir_filter_inst/genblk1[12].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[12].tap_inst/ov_sum1
+		Placing DSP: fir_filter_inst/genblk1[12].tap_inst/ov_sum1__0
+
+Packing RAMBCells... (64)
+
+Packing LUT-FF Pair Groups... (11)
+	CENet: deserializer_inst/counter[4]_i_1_n_0               RNet: deserializer_inst/i_rst_IBUF                      
+	CENet: serializer_inst/i_en_IBUF                          RNet: serializer_inst/i_rst_IBUF                        
+	CENet: fir_filter_inst/weight_re_addr[6]_i_1_n_0          RNet: fir_filter_inst/i_rst_IBUF                        
+	CENet: fir_filter_inst/sel                                RNet: fir_filter_inst/i_rst_IBUF                        
+	CENet: fir_filter_inst/sample_addr[5]_i_1_n_0             RNet: fir_filter_inst/i_rst_IBUF                        
+	CENet: fir_filter_inst/<const1>                           RNet: fir_filter_inst/i_rst_IBUF                        
+	CENet: deserializer_inst/ov_dout[23]_i_1__0_n_0           RNet: deserializer_inst/<const0>                        
+	CENet: fir_filter_inst/sample_re_addr[5]_i_1_n_0          RNet: fir_filter_inst/i_rst_IBUF                        
+	CENet: deserializer_inst/i_en_IBUF                        RNet: deserializer_inst/i_rst_IBUF                      
+	CENet: serializer_inst/shift_reg[23]_i_1_n_0              RNet: serializer_inst/i_rst_IBUF                        
+	CENet: serializer_inst/counter[4]_i_1__0_n_0              RNet: serializer_inst/i_rst_IBUF                        
+
+Packing LUT Groups...
+
+ALL CELL PATTERNS HAVE BEEN ARBITRARILY PLACED...
+
+Printing occupied IDELAYCTRL sites... (0)
+
+Printing occupied PMVIOB sites... (0)
+
+Printing occupied IDELAYE2 sites... (0)
+
+Printing occupied PS7 sites... (0)
+
+Printing occupied OLOGICE3 sites... (0)
+
+Printing occupied IOB33M sites... (0)
+
+Printing occupied FIFO18E1 sites... (32)
+	Site: RAMB18_X5Y58, Tile: BRAM_R_X67Y145
+	Site: RAMB18_X5Y56, Tile: BRAM_R_X67Y140
+	Site: RAMB18_X5Y54, Tile: BRAM_R_X67Y135
+	Site: RAMB18_X5Y52, Tile: BRAM_R_X67Y130
+	Site: RAMB18_X5Y50, Tile: BRAM_R_X67Y125
+	Site: RAMB18_X5Y48, Tile: BRAM_R_X67Y120
+	Site: RAMB18_X5Y46, Tile: BRAM_R_X67Y115
+	Site: RAMB18_X5Y44, Tile: BRAM_R_X67Y110
+	Site: RAMB18_X5Y42, Tile: BRAM_R_X67Y105
+	Site: RAMB18_X5Y40, Tile: BRAM_R_X67Y100
+	Site: RAMB18_X5Y38, Tile: BRAM_R_X67Y95
+	Site: RAMB18_X5Y36, Tile: BRAM_R_X67Y90
+	Site: RAMB18_X5Y34, Tile: BRAM_R_X67Y85
+	Site: RAMB18_X5Y32, Tile: BRAM_R_X67Y80
+	Site: RAMB18_X5Y30, Tile: BRAM_R_X67Y75
+	Site: RAMB18_X5Y28, Tile: BRAM_R_X67Y70
+	Site: RAMB18_X5Y26, Tile: BRAM_R_X67Y65
+	Site: RAMB18_X5Y24, Tile: BRAM_R_X67Y60
+	Site: RAMB18_X5Y22, Tile: BRAM_R_X67Y55
+	Site: RAMB18_X5Y20, Tile: BRAM_R_X67Y50
+	Site: RAMB18_X5Y18, Tile: BRAM_R_X67Y45
+	Site: RAMB18_X5Y16, Tile: BRAM_R_X67Y40
+	Site: RAMB18_X5Y14, Tile: BRAM_R_X67Y35
+	Site: RAMB18_X5Y12, Tile: BRAM_R_X67Y30
+	Site: RAMB18_X5Y10, Tile: BRAM_R_X67Y25
+	Site: RAMB18_X5Y8, Tile: BRAM_R_X67Y20
+	Site: RAMB18_X5Y6, Tile: BRAM_R_X67Y15
+	Site: RAMB18_X5Y4, Tile: BRAM_R_X67Y10
+	Site: RAMB18_X5Y2, Tile: BRAM_R_X67Y5
+	Site: RAMB18_X5Y0, Tile: BRAM_R_X67Y0
+	Site: RAMB18_X4Y58, Tile: BRAM_L_X56Y145
+	Site: RAMB18_X4Y56, Tile: BRAM_L_X56Y140
+
+Printing occupied SLICEL sites... (435)
+	Site: SLICE_X27Y144, Tile: CLBLM_R_X19Y144
+	Site: SLICE_X27Y145, Tile: CLBLM_R_X19Y145
+	Site: SLICE_X27Y146, Tile: CLBLM_R_X19Y146
+	Site: SLICE_X27Y147, Tile: CLBLM_R_X19Y147
+	Site: SLICE_X27Y148, Tile: CLBLM_R_X19Y148
+	Site: SLICE_X27Y149, Tile: CLBLM_R_X19Y149
+	Site: SLICE_X29Y144, Tile: CLBLL_L_X20Y144
+	Site: SLICE_X29Y145, Tile: CLBLL_L_X20Y145
+	Site: SLICE_X29Y146, Tile: CLBLL_L_X20Y146
+	Site: SLICE_X29Y147, Tile: CLBLL_L_X20Y147
+	Site: SLICE_X29Y148, Tile: CLBLL_L_X20Y148
+	Site: SLICE_X29Y149, Tile: CLBLL_L_X20Y149
+	Site: SLICE_X28Y144, Tile: CLBLL_L_X20Y144
+	Site: SLICE_X28Y145, Tile: CLBLL_L_X20Y145
+	Site: SLICE_X28Y146, Tile: CLBLL_L_X20Y146
+	Site: SLICE_X28Y147, Tile: CLBLL_L_X20Y147
+	Site: SLICE_X28Y148, Tile: CLBLL_L_X20Y148
+	Site: SLICE_X28Y149, Tile: CLBLL_L_X20Y149
+	Site: SLICE_X31Y144, Tile: CLBLM_R_X21Y144
+	Site: SLICE_X31Y145, Tile: CLBLM_R_X21Y145
+	Site: SLICE_X31Y146, Tile: CLBLM_R_X21Y146
+	Site: SLICE_X31Y147, Tile: CLBLM_R_X21Y147
+	Site: SLICE_X31Y148, Tile: CLBLM_R_X21Y148
+	Site: SLICE_X31Y149, Tile: CLBLM_R_X21Y149
+	Site: SLICE_X33Y144, Tile: CLBLM_R_X23Y144
+	Site: SLICE_X33Y145, Tile: CLBLM_R_X23Y145
+	Site: SLICE_X33Y146, Tile: CLBLM_R_X23Y146
+	Site: SLICE_X33Y147, Tile: CLBLM_R_X23Y147
+	Site: SLICE_X33Y148, Tile: CLBLM_R_X23Y148
+	Site: SLICE_X33Y149, Tile: CLBLM_R_X23Y149
+	Site: SLICE_X35Y144, Tile: CLBLM_L_X24Y144
+	Site: SLICE_X35Y145, Tile: CLBLM_L_X24Y145
+	Site: SLICE_X35Y146, Tile: CLBLM_L_X24Y146
+	Site: SLICE_X35Y147, Tile: CLBLM_L_X24Y147
+	Site: SLICE_X35Y148, Tile: CLBLM_L_X24Y148
+	Site: SLICE_X35Y149, Tile: CLBLM_L_X24Y149
+	Site: SLICE_X37Y144, Tile: CLBLM_L_X26Y144
+	Site: SLICE_X37Y145, Tile: CLBLM_L_X26Y145
+	Site: SLICE_X37Y146, Tile: CLBLM_L_X26Y146
+	Site: SLICE_X37Y147, Tile: CLBLM_L_X26Y147
+	Site: SLICE_X37Y148, Tile: CLBLM_L_X26Y148
+	Site: SLICE_X37Y149, Tile: CLBLM_L_X26Y149
+	Site: SLICE_X39Y144, Tile: CLBLM_R_X27Y144
+	Site: SLICE_X39Y145, Tile: CLBLM_R_X27Y145
+	Site: SLICE_X39Y146, Tile: CLBLM_R_X27Y146
+	Site: SLICE_X39Y147, Tile: CLBLM_R_X27Y147
+	Site: SLICE_X39Y148, Tile: CLBLM_R_X27Y148
+	Site: SLICE_X39Y149, Tile: CLBLM_R_X27Y149
+	Site: SLICE_X41Y144, Tile: CLBLL_L_X28Y144
+	Site: SLICE_X41Y145, Tile: CLBLL_L_X28Y145
+	Site: SLICE_X41Y146, Tile: CLBLL_L_X28Y146
+	Site: SLICE_X41Y147, Tile: CLBLL_L_X28Y147
+	Site: SLICE_X41Y148, Tile: CLBLL_L_X28Y148
+	Site: SLICE_X41Y149, Tile: CLBLL_L_X28Y149
+	Site: SLICE_X40Y144, Tile: CLBLL_L_X28Y144
+	Site: SLICE_X40Y145, Tile: CLBLL_L_X28Y145
+	Site: SLICE_X40Y146, Tile: CLBLL_L_X28Y146
+	Site: SLICE_X40Y147, Tile: CLBLL_L_X28Y147
+	Site: SLICE_X40Y148, Tile: CLBLL_L_X28Y148
+	Site: SLICE_X40Y149, Tile: CLBLL_L_X28Y149
+	Site: SLICE_X43Y144, Tile: CLBLM_R_X29Y144
+	Site: SLICE_X43Y145, Tile: CLBLM_R_X29Y145
+	Site: SLICE_X43Y146, Tile: CLBLM_R_X29Y146
+	Site: SLICE_X43Y147, Tile: CLBLM_R_X29Y147
+	Site: SLICE_X43Y148, Tile: CLBLM_R_X29Y148
+	Site: SLICE_X43Y149, Tile: CLBLM_R_X29Y149
+	Site: SLICE_X45Y144, Tile: CLBLL_L_X30Y144
+	Site: SLICE_X45Y145, Tile: CLBLL_L_X30Y145
+	Site: SLICE_X45Y146, Tile: CLBLL_L_X30Y146
+	Site: SLICE_X45Y147, Tile: CLBLL_L_X30Y147
+	Site: SLICE_X45Y148, Tile: CLBLL_L_X30Y148
+	Site: SLICE_X45Y149, Tile: CLBLL_L_X30Y149
+	Site: SLICE_X44Y144, Tile: CLBLL_L_X30Y144
+	Site: SLICE_X44Y145, Tile: CLBLL_L_X30Y145
+	Site: SLICE_X44Y146, Tile: CLBLL_L_X30Y146
+	Site: SLICE_X44Y147, Tile: CLBLL_L_X30Y147
+	Site: SLICE_X44Y148, Tile: CLBLL_L_X30Y148
+	Site: SLICE_X44Y149, Tile: CLBLL_L_X30Y149
+	Site: SLICE_X47Y144, Tile: CLBLM_R_X31Y144
+	Site: SLICE_X47Y145, Tile: CLBLM_R_X31Y145
+	Site: SLICE_X47Y146, Tile: CLBLM_R_X31Y146
+	Site: SLICE_X47Y147, Tile: CLBLM_R_X31Y147
+	Site: SLICE_X47Y148, Tile: CLBLM_R_X31Y148
+	Site: SLICE_X47Y149, Tile: CLBLM_R_X31Y149
+	Site: SLICE_X49Y144, Tile: CLBLL_L_X32Y144
+	Site: SLICE_X49Y145, Tile: CLBLL_L_X32Y145
+	Site: SLICE_X49Y146, Tile: CLBLL_L_X32Y146
+	Site: SLICE_X49Y147, Tile: CLBLL_L_X32Y147
+	Site: SLICE_X49Y148, Tile: CLBLL_L_X32Y148
+	Site: SLICE_X49Y149, Tile: CLBLL_L_X32Y149
+	Site: SLICE_X48Y144, Tile: CLBLL_L_X32Y144
+	Site: SLICE_X48Y145, Tile: CLBLL_L_X32Y145
+	Site: SLICE_X48Y146, Tile: CLBLL_L_X32Y146
+	Site: SLICE_X48Y147, Tile: CLBLL_L_X32Y147
+	Site: SLICE_X48Y148, Tile: CLBLL_L_X32Y148
+	Site: SLICE_X48Y149, Tile: CLBLL_L_X32Y149
+	Site: SLICE_X51Y144, Tile: CLBLM_L_X34Y144
+	Site: SLICE_X51Y145, Tile: CLBLM_L_X34Y145
+	Site: SLICE_X51Y146, Tile: CLBLM_L_X34Y146
+	Site: SLICE_X51Y147, Tile: CLBLM_L_X34Y147
+	Site: SLICE_X51Y148, Tile: CLBLM_L_X34Y148
+	Site: SLICE_X51Y149, Tile: CLBLM_L_X34Y149
+	Site: SLICE_X52Y144, Tile: CLBLL_R_X35Y144
+	Site: SLICE_X52Y145, Tile: CLBLL_R_X35Y145
+	Site: SLICE_X52Y146, Tile: CLBLL_R_X35Y146
+	Site: SLICE_X52Y147, Tile: CLBLL_R_X35Y147
+	Site: SLICE_X52Y148, Tile: CLBLL_R_X35Y148
+	Site: SLICE_X52Y149, Tile: CLBLL_R_X35Y149
+	Site: SLICE_X53Y144, Tile: CLBLL_R_X35Y144
+	Site: SLICE_X53Y145, Tile: CLBLL_R_X35Y145
+	Site: SLICE_X53Y146, Tile: CLBLL_R_X35Y146
+	Site: SLICE_X53Y147, Tile: CLBLL_R_X35Y147
+	Site: SLICE_X53Y148, Tile: CLBLL_R_X35Y148
+	Site: SLICE_X53Y149, Tile: CLBLL_R_X35Y149
+	Site: SLICE_X55Y144, Tile: CLBLM_R_X37Y144
+	Site: SLICE_X55Y145, Tile: CLBLM_R_X37Y145
+	Site: SLICE_X55Y146, Tile: CLBLM_R_X37Y146
+	Site: SLICE_X55Y147, Tile: CLBLM_R_X37Y147
+	Site: SLICE_X55Y148, Tile: CLBLM_R_X37Y148
+	Site: SLICE_X55Y149, Tile: CLBLM_R_X37Y149
+	Site: SLICE_X57Y144, Tile: CLBLL_L_X38Y144
+	Site: SLICE_X57Y145, Tile: CLBLL_L_X38Y145
+	Site: SLICE_X57Y146, Tile: CLBLL_L_X38Y146
+	Site: SLICE_X57Y147, Tile: CLBLL_L_X38Y147
+	Site: SLICE_X57Y148, Tile: CLBLL_L_X38Y148
+	Site: SLICE_X57Y149, Tile: CLBLL_L_X38Y149
+	Site: SLICE_X56Y144, Tile: CLBLL_L_X38Y144
+	Site: SLICE_X56Y145, Tile: CLBLL_L_X38Y145
+	Site: SLICE_X56Y146, Tile: CLBLL_L_X38Y146
+	Site: SLICE_X56Y147, Tile: CLBLL_L_X38Y147
+	Site: SLICE_X56Y148, Tile: CLBLL_L_X38Y148
+	Site: SLICE_X56Y149, Tile: CLBLL_L_X38Y149
+	Site: SLICE_X59Y144, Tile: CLBLM_R_X39Y144
+	Site: SLICE_X59Y145, Tile: CLBLM_R_X39Y145
+	Site: SLICE_X59Y146, Tile: CLBLM_R_X39Y146
+	Site: SLICE_X59Y147, Tile: CLBLM_R_X39Y147
+	Site: SLICE_X59Y148, Tile: CLBLM_R_X39Y148
+	Site: SLICE_X59Y149, Tile: CLBLM_R_X39Y149
+	Site: SLICE_X61Y144, Tile: CLBLL_L_X40Y144
+	Site: SLICE_X61Y145, Tile: CLBLL_L_X40Y145
+	Site: SLICE_X61Y146, Tile: CLBLL_L_X40Y146
+	Site: SLICE_X61Y147, Tile: CLBLL_L_X40Y147
+	Site: SLICE_X61Y148, Tile: CLBLL_L_X40Y148
+	Site: SLICE_X61Y149, Tile: CLBLL_L_X40Y149
+	Site: SLICE_X60Y144, Tile: CLBLL_L_X40Y144
+	Site: SLICE_X60Y145, Tile: CLBLL_L_X40Y145
+	Site: SLICE_X60Y146, Tile: CLBLL_L_X40Y146
+	Site: SLICE_X60Y147, Tile: CLBLL_L_X40Y147
+	Site: SLICE_X60Y148, Tile: CLBLL_L_X40Y148
+	Site: SLICE_X60Y149, Tile: CLBLL_L_X40Y149
+	Site: SLICE_X63Y144, Tile: CLBLM_R_X41Y144
+	Site: SLICE_X63Y145, Tile: CLBLM_R_X41Y145
+	Site: SLICE_X63Y146, Tile: CLBLM_R_X41Y146
+	Site: SLICE_X63Y147, Tile: CLBLM_R_X41Y147
+	Site: SLICE_X63Y148, Tile: CLBLM_R_X41Y148
+	Site: SLICE_X63Y149, Tile: CLBLM_R_X41Y149
+	Site: SLICE_X65Y144, Tile: CLBLL_L_X42Y144
+	Site: SLICE_X65Y145, Tile: CLBLL_L_X42Y145
+	Site: SLICE_X65Y146, Tile: CLBLL_L_X42Y146
+	Site: SLICE_X65Y147, Tile: CLBLL_L_X42Y147
+	Site: SLICE_X65Y148, Tile: CLBLL_L_X42Y148
+	Site: SLICE_X65Y149, Tile: CLBLL_L_X42Y149
+	Site: SLICE_X64Y144, Tile: CLBLL_L_X42Y144
+	Site: SLICE_X64Y145, Tile: CLBLL_L_X42Y145
+	Site: SLICE_X64Y146, Tile: CLBLL_L_X42Y146
+	Site: SLICE_X64Y147, Tile: CLBLL_L_X42Y147
+	Site: SLICE_X64Y148, Tile: CLBLL_L_X42Y148
+	Site: SLICE_X64Y149, Tile: CLBLL_L_X42Y149
+	Site: SLICE_X67Y144, Tile: CLBLM_R_X43Y144
+	Site: SLICE_X67Y145, Tile: CLBLM_R_X43Y145
+	Site: SLICE_X67Y146, Tile: CLBLM_R_X43Y146
+	Site: SLICE_X67Y147, Tile: CLBLM_R_X43Y147
+	Site: SLICE_X67Y148, Tile: CLBLM_R_X43Y148
+	Site: SLICE_X67Y149, Tile: CLBLM_R_X43Y149
+	Site: SLICE_X80Y144, Tile: CLBLL_R_X51Y144
+	Site: SLICE_X80Y145, Tile: CLBLL_R_X51Y145
+	Site: SLICE_X80Y146, Tile: CLBLL_R_X51Y146
+	Site: SLICE_X80Y147, Tile: CLBLL_R_X51Y147
+	Site: SLICE_X80Y148, Tile: CLBLL_R_X51Y148
+	Site: SLICE_X80Y149, Tile: CLBLL_R_X51Y149
+	Site: SLICE_X81Y144, Tile: CLBLL_R_X51Y144
+	Site: SLICE_X81Y145, Tile: CLBLL_R_X51Y145
+	Site: SLICE_X81Y146, Tile: CLBLL_R_X51Y146
+	Site: SLICE_X81Y147, Tile: CLBLL_R_X51Y147
+	Site: SLICE_X81Y148, Tile: CLBLL_R_X51Y148
+	Site: SLICE_X81Y149, Tile: CLBLL_R_X51Y149
+	Site: SLICE_X83Y144, Tile: CLBLM_L_X52Y144
+	Site: SLICE_X83Y145, Tile: CLBLM_L_X52Y145
+	Site: SLICE_X83Y146, Tile: CLBLM_L_X52Y146
+	Site: SLICE_X83Y147, Tile: CLBLM_L_X52Y147
+	Site: SLICE_X83Y148, Tile: CLBLM_L_X52Y148
+	Site: SLICE_X83Y149, Tile: CLBLM_L_X52Y149
+	Site: SLICE_X84Y144, Tile: CLBLL_R_X53Y144
+	Site: SLICE_X84Y145, Tile: CLBLL_R_X53Y145
+	Site: SLICE_X84Y146, Tile: CLBLL_R_X53Y146
+	Site: SLICE_X84Y147, Tile: CLBLL_R_X53Y147
+	Site: SLICE_X84Y148, Tile: CLBLL_R_X53Y148
+	Site: SLICE_X84Y149, Tile: CLBLL_R_X53Y149
+	Site: SLICE_X85Y144, Tile: CLBLL_R_X53Y144
+	Site: SLICE_X85Y145, Tile: CLBLL_R_X53Y145
+	Site: SLICE_X85Y146, Tile: CLBLL_R_X53Y146
+	Site: SLICE_X85Y147, Tile: CLBLL_R_X53Y147
+	Site: SLICE_X85Y148, Tile: CLBLL_R_X53Y148
+	Site: SLICE_X85Y149, Tile: CLBLL_R_X53Y149
+	Site: SLICE_X87Y144, Tile: CLBLM_L_X54Y144
+	Site: SLICE_X87Y145, Tile: CLBLM_L_X54Y145
+	Site: SLICE_X87Y146, Tile: CLBLM_L_X54Y146
+	Site: SLICE_X87Y147, Tile: CLBLM_L_X54Y147
+	Site: SLICE_X87Y148, Tile: CLBLM_L_X54Y148
+	Site: SLICE_X87Y149, Tile: CLBLM_L_X54Y149
+	Site: SLICE_X88Y144, Tile: CLBLL_R_X55Y144
+	Site: SLICE_X88Y145, Tile: CLBLL_R_X55Y145
+	Site: SLICE_X88Y146, Tile: CLBLL_R_X55Y146
+	Site: SLICE_X88Y147, Tile: CLBLL_R_X55Y147
+	Site: SLICE_X88Y148, Tile: CLBLL_R_X55Y148
+	Site: SLICE_X88Y149, Tile: CLBLL_R_X55Y149
+	Site: SLICE_X89Y144, Tile: CLBLL_R_X55Y144
+	Site: SLICE_X89Y145, Tile: CLBLL_R_X55Y145
+	Site: SLICE_X89Y146, Tile: CLBLL_R_X55Y146
+	Site: SLICE_X89Y147, Tile: CLBLL_R_X55Y147
+	Site: SLICE_X89Y148, Tile: CLBLL_R_X55Y148
+	Site: SLICE_X89Y149, Tile: CLBLL_R_X55Y149
+	Site: SLICE_X91Y144, Tile: CLBLM_R_X57Y144
+	Site: SLICE_X91Y145, Tile: CLBLM_R_X57Y145
+	Site: SLICE_X91Y146, Tile: CLBLM_R_X57Y146
+	Site: SLICE_X91Y147, Tile: CLBLM_R_X57Y147
+	Site: SLICE_X91Y148, Tile: CLBLM_R_X57Y148
+	Site: SLICE_X91Y149, Tile: CLBLM_R_X57Y149
+	Site: SLICE_X93Y144, Tile: CLBLM_L_X58Y144
+	Site: SLICE_X93Y145, Tile: CLBLM_L_X58Y145
+	Site: SLICE_X93Y146, Tile: CLBLM_L_X58Y146
+	Site: SLICE_X93Y147, Tile: CLBLM_L_X58Y147
+	Site: SLICE_X93Y148, Tile: CLBLM_L_X58Y148
+	Site: SLICE_X93Y149, Tile: CLBLM_L_X58Y149
+	Site: SLICE_X95Y144, Tile: CLBLM_L_X60Y144
+	Site: SLICE_X95Y145, Tile: CLBLM_L_X60Y145
+	Site: SLICE_X95Y146, Tile: CLBLM_L_X60Y146
+	Site: SLICE_X95Y147, Tile: CLBLM_L_X60Y147
+	Site: SLICE_X95Y148, Tile: CLBLM_L_X60Y148
+	Site: SLICE_X95Y149, Tile: CLBLM_L_X60Y149
+	Site: SLICE_X97Y144, Tile: CLBLM_R_X61Y144
+	Site: SLICE_X97Y145, Tile: CLBLM_R_X61Y145
+	Site: SLICE_X97Y146, Tile: CLBLM_R_X61Y146
+	Site: SLICE_X97Y147, Tile: CLBLM_R_X61Y147
+	Site: SLICE_X97Y148, Tile: CLBLM_R_X61Y148
+	Site: SLICE_X97Y149, Tile: CLBLM_R_X61Y149
+	Site: SLICE_X99Y144, Tile: CLBLM_L_X62Y144
+	Site: SLICE_X99Y145, Tile: CLBLM_L_X62Y145
+	Site: SLICE_X99Y146, Tile: CLBLM_L_X62Y146
+	Site: SLICE_X99Y147, Tile: CLBLM_L_X62Y147
+	Site: SLICE_X99Y148, Tile: CLBLM_L_X62Y148
+	Site: SLICE_X99Y149, Tile: CLBLM_L_X62Y149
+	Site: SLICE_X101Y144, Tile: CLBLM_R_X63Y144
+	Site: SLICE_X101Y145, Tile: CLBLM_R_X63Y145
+	Site: SLICE_X101Y146, Tile: CLBLM_R_X63Y146
+	Site: SLICE_X101Y147, Tile: CLBLM_R_X63Y147
+	Site: SLICE_X101Y148, Tile: CLBLM_R_X63Y148
+	Site: SLICE_X101Y149, Tile: CLBLM_R_X63Y149
+	Site: SLICE_X103Y144, Tile: CLBLM_R_X65Y144
+	Site: SLICE_X103Y145, Tile: CLBLM_R_X65Y145
+	Site: SLICE_X103Y146, Tile: CLBLM_R_X65Y146
+	Site: SLICE_X103Y147, Tile: CLBLM_R_X65Y147
+	Site: SLICE_X103Y148, Tile: CLBLM_R_X65Y148
+	Site: SLICE_X103Y149, Tile: CLBLM_R_X65Y149
+	Site: SLICE_X105Y144, Tile: CLBLM_L_X66Y144
+	Site: SLICE_X105Y145, Tile: CLBLM_L_X66Y145
+	Site: SLICE_X105Y146, Tile: CLBLM_L_X66Y146
+	Site: SLICE_X105Y147, Tile: CLBLM_L_X66Y147
+	Site: SLICE_X105Y148, Tile: CLBLM_L_X66Y148
+	Site: SLICE_X105Y149, Tile: CLBLM_L_X66Y149
+	Site: SLICE_X107Y144, Tile: CLBLL_L_X68Y144
+	Site: SLICE_X107Y145, Tile: CLBLL_L_X68Y145
+	Site: SLICE_X107Y146, Tile: CLBLL_L_X68Y146
+	Site: SLICE_X107Y147, Tile: CLBLL_L_X68Y147
+	Site: SLICE_X107Y148, Tile: CLBLL_L_X68Y148
+	Site: SLICE_X107Y149, Tile: CLBLL_L_X68Y149
+	Site: SLICE_X106Y144, Tile: CLBLL_L_X68Y144
+	Site: SLICE_X106Y145, Tile: CLBLL_L_X68Y145
+	Site: SLICE_X106Y146, Tile: CLBLL_L_X68Y146
+	Site: SLICE_X106Y147, Tile: CLBLL_L_X68Y147
+	Site: SLICE_X106Y148, Tile: CLBLL_L_X68Y148
+	Site: SLICE_X106Y149, Tile: CLBLL_L_X68Y149
+	Site: SLICE_X109Y149, Tile: CLBLM_R_X69Y149
+	Site: SLICE_X111Y149, Tile: CLBLL_L_X70Y149
+	Site: SLICE_X110Y149, Tile: CLBLL_L_X70Y149
+	Site: SLICE_X113Y149, Tile: CLBLM_R_X71Y149
+	Site: SLICE_X109Y148, Tile: CLBLM_R_X69Y148
+	Site: SLICE_X111Y148, Tile: CLBLL_L_X70Y148
+	Site: SLICE_X110Y148, Tile: CLBLL_L_X70Y148
+	Site: SLICE_X113Y148, Tile: CLBLM_R_X71Y148
+	Site: SLICE_X109Y147, Tile: CLBLM_R_X69Y147
+	Site: SLICE_X111Y147, Tile: CLBLL_L_X70Y147
+	Site: SLICE_X110Y147, Tile: CLBLL_L_X70Y147
+	Site: SLICE_X113Y147, Tile: CLBLM_R_X71Y147
+	Site: SLICE_X109Y146, Tile: CLBLM_R_X69Y146
+	Site: SLICE_X111Y146, Tile: CLBLL_L_X70Y146
+	Site: SLICE_X110Y146, Tile: CLBLL_L_X70Y146
+	Site: SLICE_X113Y146, Tile: CLBLM_R_X71Y146
+	Site: SLICE_X109Y145, Tile: CLBLM_R_X69Y145
+	Site: SLICE_X111Y145, Tile: CLBLL_L_X70Y145
+	Site: SLICE_X110Y145, Tile: CLBLL_L_X70Y145
+	Site: SLICE_X113Y145, Tile: CLBLM_R_X71Y145
+	Site: SLICE_X109Y144, Tile: CLBLM_R_X69Y144
+	Site: SLICE_X111Y144, Tile: CLBLL_L_X70Y144
+	Site: SLICE_X110Y144, Tile: CLBLL_L_X70Y144
+	Site: SLICE_X113Y144, Tile: CLBLM_R_X71Y144
+	Site: SLICE_X27Y143, Tile: CLBLM_R_X19Y143
+	Site: SLICE_X29Y143, Tile: CLBLL_L_X20Y143
+	Site: SLICE_X28Y143, Tile: CLBLL_L_X20Y143
+	Site: SLICE_X31Y143, Tile: CLBLM_R_X21Y143
+	Site: SLICE_X33Y143, Tile: CLBLM_R_X23Y143
+	Site: SLICE_X35Y143, Tile: CLBLM_L_X24Y143
+	Site: SLICE_X37Y143, Tile: CLBLM_L_X26Y143
+	Site: SLICE_X39Y143, Tile: CLBLM_R_X27Y143
+	Site: SLICE_X41Y143, Tile: CLBLL_L_X28Y143
+	Site: SLICE_X40Y143, Tile: CLBLL_L_X28Y143
+	Site: SLICE_X43Y143, Tile: CLBLM_R_X29Y143
+	Site: SLICE_X45Y143, Tile: CLBLL_L_X30Y143
+	Site: SLICE_X44Y143, Tile: CLBLL_L_X30Y143
+	Site: SLICE_X47Y143, Tile: CLBLM_R_X31Y143
+	Site: SLICE_X49Y143, Tile: CLBLL_L_X32Y143
+	Site: SLICE_X48Y143, Tile: CLBLL_L_X32Y143
+	Site: SLICE_X51Y143, Tile: CLBLM_L_X34Y143
+	Site: SLICE_X52Y143, Tile: CLBLL_R_X35Y143
+	Site: SLICE_X53Y143, Tile: CLBLL_R_X35Y143
+	Site: SLICE_X55Y143, Tile: CLBLM_R_X37Y143
+	Site: SLICE_X57Y143, Tile: CLBLL_L_X38Y143
+	Site: SLICE_X56Y143, Tile: CLBLL_L_X38Y143
+	Site: SLICE_X59Y143, Tile: CLBLM_R_X39Y143
+	Site: SLICE_X61Y143, Tile: CLBLL_L_X40Y143
+	Site: SLICE_X60Y143, Tile: CLBLL_L_X40Y143
+	Site: SLICE_X63Y143, Tile: CLBLM_R_X41Y143
+	Site: SLICE_X65Y143, Tile: CLBLL_L_X42Y143
+	Site: SLICE_X64Y143, Tile: CLBLL_L_X42Y143
+	Site: SLICE_X67Y143, Tile: CLBLM_R_X43Y143
+	Site: SLICE_X80Y143, Tile: CLBLL_R_X51Y143
+	Site: SLICE_X81Y143, Tile: CLBLL_R_X51Y143
+	Site: SLICE_X83Y143, Tile: CLBLM_L_X52Y143
+	Site: SLICE_X84Y143, Tile: CLBLL_R_X53Y143
+	Site: SLICE_X85Y143, Tile: CLBLL_R_X53Y143
+	Site: SLICE_X87Y143, Tile: CLBLM_L_X54Y143
+	Site: SLICE_X88Y143, Tile: CLBLL_R_X55Y143
+	Site: SLICE_X89Y143, Tile: CLBLL_R_X55Y143
+	Site: SLICE_X91Y143, Tile: CLBLM_R_X57Y143
+	Site: SLICE_X93Y143, Tile: CLBLM_L_X58Y143
+	Site: SLICE_X95Y143, Tile: CLBLM_L_X60Y143
+	Site: SLICE_X97Y143, Tile: CLBLM_R_X61Y143
+	Site: SLICE_X99Y143, Tile: CLBLM_L_X62Y143
+	Site: SLICE_X101Y143, Tile: CLBLM_R_X63Y143
+	Site: SLICE_X103Y143, Tile: CLBLM_R_X65Y143
+	Site: SLICE_X105Y143, Tile: CLBLM_L_X66Y143
+	Site: SLICE_X107Y143, Tile: CLBLL_L_X68Y143
+	Site: SLICE_X106Y143, Tile: CLBLL_L_X68Y143
+	Site: SLICE_X109Y143, Tile: CLBLM_R_X69Y143
+	Site: SLICE_X111Y143, Tile: CLBLL_L_X70Y143
+	Site: SLICE_X110Y143, Tile: CLBLL_L_X70Y143
+	Site: SLICE_X113Y143, Tile: CLBLM_R_X71Y143
+	Site: SLICE_X27Y142, Tile: CLBLM_R_X19Y142
+	Site: SLICE_X29Y142, Tile: CLBLL_L_X20Y142
+	Site: SLICE_X28Y142, Tile: CLBLL_L_X20Y142
+	Site: SLICE_X31Y142, Tile: CLBLM_R_X21Y142
+	Site: SLICE_X33Y142, Tile: CLBLM_R_X23Y142
+	Site: SLICE_X35Y142, Tile: CLBLM_L_X24Y142
+	Site: SLICE_X37Y142, Tile: CLBLM_L_X26Y142
+	Site: SLICE_X39Y142, Tile: CLBLM_R_X27Y142
+	Site: SLICE_X41Y142, Tile: CLBLL_L_X28Y142
+	Site: SLICE_X40Y142, Tile: CLBLL_L_X28Y142
+	Site: SLICE_X43Y142, Tile: CLBLM_R_X29Y142
+	Site: SLICE_X45Y142, Tile: CLBLL_L_X30Y142
+	Site: SLICE_X44Y142, Tile: CLBLL_L_X30Y142
+	Site: SLICE_X47Y142, Tile: CLBLM_R_X31Y142
+	Site: SLICE_X49Y142, Tile: CLBLL_L_X32Y142
+	Site: SLICE_X48Y142, Tile: CLBLL_L_X32Y142
+	Site: SLICE_X51Y142, Tile: CLBLM_L_X34Y142
+	Site: SLICE_X52Y142, Tile: CLBLL_R_X35Y142
+	Site: SLICE_X53Y142, Tile: CLBLL_R_X35Y142
+	Site: SLICE_X55Y142, Tile: CLBLM_R_X37Y142
+	Site: SLICE_X57Y142, Tile: CLBLL_L_X38Y142
+	Site: SLICE_X56Y142, Tile: CLBLL_L_X38Y142
+	Site: SLICE_X59Y142, Tile: CLBLM_R_X39Y142
+	Site: SLICE_X61Y142, Tile: CLBLL_L_X40Y142
+	Site: SLICE_X60Y142, Tile: CLBLL_L_X40Y142
+	Site: SLICE_X63Y142, Tile: CLBLM_R_X41Y142
+	Site: SLICE_X65Y142, Tile: CLBLL_L_X42Y142
+	Site: SLICE_X64Y142, Tile: CLBLL_L_X42Y142
+	Site: SLICE_X67Y142, Tile: CLBLM_R_X43Y142
+	Site: SLICE_X80Y142, Tile: CLBLL_R_X51Y142
+	Site: SLICE_X81Y142, Tile: CLBLL_R_X51Y142
+	Site: SLICE_X83Y142, Tile: CLBLM_L_X52Y142
+	Site: SLICE_X84Y142, Tile: CLBLL_R_X53Y142
+	Site: SLICE_X85Y142, Tile: CLBLL_R_X53Y142
+	Site: SLICE_X87Y142, Tile: CLBLM_L_X54Y142
+	Site: SLICE_X88Y142, Tile: CLBLL_R_X55Y142
+	Site: SLICE_X89Y142, Tile: CLBLL_R_X55Y142
+	Site: SLICE_X91Y142, Tile: CLBLM_R_X57Y142
+	Site: SLICE_X93Y142, Tile: CLBLM_L_X58Y142
+	Site: SLICE_X95Y142, Tile: CLBLM_L_X60Y142
+	Site: SLICE_X97Y142, Tile: CLBLM_R_X61Y142
+	Site: SLICE_X99Y142, Tile: CLBLM_L_X62Y142
+	Site: SLICE_X101Y142, Tile: CLBLM_R_X63Y142
+	Site: SLICE_X103Y142, Tile: CLBLM_R_X65Y142
+	Site: SLICE_X105Y142, Tile: CLBLM_L_X66Y142
+	Site: SLICE_X107Y142, Tile: CLBLL_L_X68Y142
+	Site: SLICE_X106Y142, Tile: CLBLL_L_X68Y142
+	Site: SLICE_X109Y142, Tile: CLBLM_R_X69Y142
+	Site: SLICE_X111Y142, Tile: CLBLL_L_X70Y142
+	Site: SLICE_X110Y142, Tile: CLBLL_L_X70Y142
+	Site: SLICE_X113Y142, Tile: CLBLM_R_X71Y142
+	Site: SLICE_X27Y141, Tile: CLBLM_R_X19Y141
+	Site: SLICE_X29Y141, Tile: CLBLL_L_X20Y141
+	Site: SLICE_X28Y141, Tile: CLBLL_L_X20Y141
+	Site: SLICE_X31Y141, Tile: CLBLM_R_X21Y141
+	Site: SLICE_X33Y141, Tile: CLBLM_R_X23Y141
+	Site: SLICE_X35Y141, Tile: CLBLM_L_X24Y141
+	Site: SLICE_X37Y141, Tile: CLBLM_L_X26Y141
+	Site: SLICE_X39Y141, Tile: CLBLM_R_X27Y141
+	Site: SLICE_X41Y141, Tile: CLBLL_L_X28Y141
+	Site: SLICE_X40Y141, Tile: CLBLL_L_X28Y141
+	Site: SLICE_X43Y141, Tile: CLBLM_R_X29Y141
+	Site: SLICE_X45Y141, Tile: CLBLL_L_X30Y141
+	Site: SLICE_X44Y141, Tile: CLBLL_L_X30Y141
+	Site: SLICE_X47Y141, Tile: CLBLM_R_X31Y141
+	Site: SLICE_X49Y141, Tile: CLBLL_L_X32Y141
+	Site: SLICE_X48Y141, Tile: CLBLL_L_X32Y141
+	Site: SLICE_X51Y141, Tile: CLBLM_L_X34Y141
+	Site: SLICE_X52Y141, Tile: CLBLL_R_X35Y141
+	Site: SLICE_X53Y141, Tile: CLBLL_R_X35Y141
+	Site: SLICE_X55Y141, Tile: CLBLM_R_X37Y141
+	Site: SLICE_X57Y141, Tile: CLBLL_L_X38Y141
+	Site: SLICE_X56Y141, Tile: CLBLL_L_X38Y141
+	Site: SLICE_X59Y141, Tile: CLBLM_R_X39Y141
+	Site: SLICE_X61Y141, Tile: CLBLL_L_X40Y141
+	Site: SLICE_X60Y141, Tile: CLBLL_L_X40Y141
+	Site: SLICE_X63Y141, Tile: CLBLM_R_X41Y141
+	Site: SLICE_X65Y141, Tile: CLBLL_L_X42Y141
+
+Printing occupied BUFMRCE sites... (0)
+
+Printing occupied MMCME2_ADV sites... (0)
+
+Printing occupied PHASER_OUT_PHY sites... (0)
+
+Printing occupied XADC sites... (0)
+
+Printing occupied PMV2_SVT sites... (0)
+
+Printing occupied BUFIO sites... (0)
+
+Printing occupied IOB33S sites... (0)
+
+Printing occupied PHY_CONTROL sites... (0)
+
+Printing occupied MTBF2 sites... (0)
+
+Printing occupied OUT_FIFO sites... (0)
+
+Printing occupied IN_FIFO sites... (0)
+
+Printing occupied PLLE2_ADV sites... (0)
+
+Printing occupied FRAME_ECC sites... (0)
+
+Printing occupied GCLK_TEST_BUF sites... (0)
+
+Printing occupied SLICEM sites... (0)
+
+Printing occupied PMVBRAM sites... (0)
+
+Printing occupied ICAP sites... (0)
+
+Printing occupied CFG_IO_ACCESS sites... (0)
+
+Printing occupied ILOGICE3 sites... (0)
+
+Printing occupied PHASER_IN_PHY sites... (0)
+
+Printing occupied PHASER_REF sites... (0)
+
+Printing occupied DNA_PORT sites... (0)
+
+Printing occupied EFUSE_USR sites... (0)
+
+Printing occupied RAMB18E1 sites... (32)
+	Site: RAMB18_X5Y59, Tile: BRAM_R_X67Y145
+	Site: RAMB18_X5Y57, Tile: BRAM_R_X67Y140
+	Site: RAMB18_X5Y55, Tile: BRAM_R_X67Y135
+	Site: RAMB18_X5Y53, Tile: BRAM_R_X67Y130
+	Site: RAMB18_X5Y51, Tile: BRAM_R_X67Y125
+	Site: RAMB18_X5Y49, Tile: BRAM_R_X67Y120
+	Site: RAMB18_X5Y47, Tile: BRAM_R_X67Y115
+	Site: RAMB18_X5Y45, Tile: BRAM_R_X67Y110
+	Site: RAMB18_X5Y43, Tile: BRAM_R_X67Y105
+	Site: RAMB18_X5Y41, Tile: BRAM_R_X67Y100
+	Site: RAMB18_X5Y39, Tile: BRAM_R_X67Y95
+	Site: RAMB18_X5Y37, Tile: BRAM_R_X67Y90
+	Site: RAMB18_X5Y35, Tile: BRAM_R_X67Y85
+	Site: RAMB18_X5Y33, Tile: BRAM_R_X67Y80
+	Site: RAMB18_X5Y31, Tile: BRAM_R_X67Y75
+	Site: RAMB18_X5Y29, Tile: BRAM_R_X67Y70
+	Site: RAMB18_X5Y27, Tile: BRAM_R_X67Y65
+	Site: RAMB18_X5Y25, Tile: BRAM_R_X67Y60
+	Site: RAMB18_X5Y23, Tile: BRAM_R_X67Y55
+	Site: RAMB18_X5Y21, Tile: BRAM_R_X67Y50
+	Site: RAMB18_X5Y19, Tile: BRAM_R_X67Y45
+	Site: RAMB18_X5Y17, Tile: BRAM_R_X67Y40
+	Site: RAMB18_X5Y15, Tile: BRAM_R_X67Y35
+	Site: RAMB18_X5Y13, Tile: BRAM_R_X67Y30
+	Site: RAMB18_X5Y11, Tile: BRAM_R_X67Y25
+	Site: RAMB18_X5Y9, Tile: BRAM_R_X67Y20
+	Site: RAMB18_X5Y7, Tile: BRAM_R_X67Y15
+	Site: RAMB18_X5Y5, Tile: BRAM_R_X67Y10
+	Site: RAMB18_X5Y3, Tile: BRAM_R_X67Y5
+	Site: RAMB18_X5Y1, Tile: BRAM_R_X67Y0
+	Site: RAMB18_X4Y59, Tile: BRAM_L_X56Y145
+	Site: RAMB18_X4Y57, Tile: BRAM_L_X56Y140
+
+Printing occupied STARTUP sites... (0)
+
+Printing occupied BSCAN sites... (0)
+
+Printing occupied PMV2 sites... (0)
+
+Printing occupied DSP48E1 sites... (64)
+	Site: DSP48_X2Y58, Tile: DSP_R_X25Y145
+	Site: DSP48_X2Y59, Tile: DSP_R_X25Y145
+	Site: DSP48_X3Y58, Tile: DSP_R_X59Y145
+	Site: DSP48_X3Y59, Tile: DSP_R_X59Y145
+	Site: DSP48_X4Y58, Tile: DSP_L_X64Y145
+	Site: DSP48_X4Y59, Tile: DSP_L_X64Y145
+	Site: DSP48_X2Y56, Tile: DSP_R_X25Y140
+	Site: DSP48_X2Y57, Tile: DSP_R_X25Y140
+	Site: DSP48_X3Y56, Tile: DSP_R_X59Y140
+	Site: DSP48_X3Y57, Tile: DSP_R_X59Y140
+	Site: DSP48_X4Y56, Tile: DSP_L_X64Y140
+	Site: DSP48_X4Y57, Tile: DSP_L_X64Y140
+	Site: DSP48_X2Y54, Tile: DSP_R_X25Y135
+	Site: DSP48_X2Y55, Tile: DSP_R_X25Y135
+	Site: DSP48_X3Y54, Tile: DSP_R_X59Y135
+	Site: DSP48_X3Y55, Tile: DSP_R_X59Y135
+	Site: DSP48_X4Y54, Tile: DSP_L_X64Y135
+	Site: DSP48_X4Y55, Tile: DSP_L_X64Y135
+	Site: DSP48_X2Y52, Tile: DSP_R_X25Y130
+	Site: DSP48_X2Y53, Tile: DSP_R_X25Y130
+	Site: DSP48_X3Y52, Tile: DSP_R_X59Y130
+	Site: DSP48_X3Y53, Tile: DSP_R_X59Y130
+	Site: DSP48_X4Y52, Tile: DSP_L_X64Y130
+	Site: DSP48_X4Y53, Tile: DSP_L_X64Y130
+	Site: DSP48_X2Y50, Tile: DSP_R_X25Y125
+	Site: DSP48_X2Y51, Tile: DSP_R_X25Y125
+	Site: DSP48_X3Y50, Tile: DSP_R_X59Y125
+	Site: DSP48_X3Y51, Tile: DSP_R_X59Y125
+	Site: DSP48_X4Y50, Tile: DSP_L_X64Y125
+	Site: DSP48_X4Y51, Tile: DSP_L_X64Y125
+	Site: DSP48_X2Y48, Tile: DSP_R_X25Y120
+	Site: DSP48_X2Y49, Tile: DSP_R_X25Y120
+	Site: DSP48_X3Y48, Tile: DSP_R_X59Y120
+	Site: DSP48_X3Y49, Tile: DSP_R_X59Y120
+	Site: DSP48_X4Y48, Tile: DSP_L_X64Y120
+	Site: DSP48_X4Y49, Tile: DSP_L_X64Y120
+	Site: DSP48_X2Y46, Tile: DSP_R_X25Y115
+	Site: DSP48_X2Y47, Tile: DSP_R_X25Y115
+	Site: DSP48_X3Y46, Tile: DSP_R_X59Y115
+	Site: DSP48_X3Y47, Tile: DSP_R_X59Y115
+	Site: DSP48_X4Y46, Tile: DSP_L_X64Y115
+	Site: DSP48_X4Y47, Tile: DSP_L_X64Y115
+	Site: DSP48_X2Y44, Tile: DSP_R_X25Y110
+	Site: DSP48_X2Y45, Tile: DSP_R_X25Y110
+	Site: DSP48_X3Y44, Tile: DSP_R_X59Y110
+	Site: DSP48_X3Y45, Tile: DSP_R_X59Y110
+	Site: DSP48_X4Y44, Tile: DSP_L_X64Y110
+	Site: DSP48_X4Y45, Tile: DSP_L_X64Y110
+	Site: DSP48_X2Y42, Tile: DSP_R_X25Y105
+	Site: DSP48_X2Y43, Tile: DSP_R_X25Y105
+	Site: DSP48_X3Y42, Tile: DSP_R_X59Y105
+	Site: DSP48_X3Y43, Tile: DSP_R_X59Y105
+	Site: DSP48_X4Y42, Tile: DSP_L_X64Y105
+	Site: DSP48_X4Y43, Tile: DSP_L_X64Y105
+	Site: DSP48_X2Y40, Tile: DSP_R_X25Y100
+	Site: DSP48_X2Y41, Tile: DSP_R_X25Y100
+	Site: DSP48_X3Y40, Tile: DSP_R_X59Y100
+	Site: DSP48_X3Y41, Tile: DSP_R_X59Y100
+	Site: DSP48_X4Y40, Tile: DSP_L_X64Y100
+	Site: DSP48_X4Y41, Tile: DSP_L_X64Y100
+	Site: DSP48_X2Y38, Tile: DSP_R_X25Y95
+	Site: DSP48_X2Y39, Tile: DSP_R_X25Y95
+	Site: DSP48_X3Y38, Tile: DSP_R_X59Y95
+	Site: DSP48_X3Y39, Tile: DSP_R_X59Y95
+
+Printing occupied IOPAD sites... (0)
+
+Printing occupied RAMBFIFO36E1 sites... (0)
+
+Printing occupied IPAD sites... (0)
+
+Printing occupied BUFHCE sites... (0)
+
+Printing occupied CAPTURE sites... (0)
+
+Printing occupied IOB33 sites... (0)
+
+Printing occupied DCIRESET sites... (0)
+
+Printing occupied BUFGCTRL sites... (1)
+	Site: BUFGCTRL_X0Y16, Tile: CLK_BUFG_TOP_R_X87Y53
+
+Printing occupied USR_ACCESS sites... (0)
+
+Printing occupied TIEOFF sites... (0)
+
+Printing occupied BUFR sites... (0)
+
+Printing occupied PMV sites... (0)
+
+Initial HPWL cost: 284557.0

@@ -74,7 +74,7 @@ public class PlacerAnnealRandom extends Placer {
         ImageMaker imPlaced = new ImageMaker(design);
         imPlaced.renderAll();
         imPlaced.exportImage(graphicsDir + "/final_placement.png");
-        exportCostHistory(rootDir + "/outputs/printout/convergence.csv");
+        exportCostHistory(printoutDir + "/cost_history.csv");
         printTimingBenchmarks();
         writer.write("\n\nTotal move iterations: " + move);
     }

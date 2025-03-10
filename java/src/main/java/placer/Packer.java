@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -57,7 +58,12 @@ public abstract class Packer {
     }
 
     public PackedDesign run(PrepackedDesign prepackedDesign) throws IOException {
-        writer = new FileWriter(rootDir + "/outputs/printout/" + packerName + ".txt");
+        String printoutDir = rootDir + "/outputs/packers";
+        File printoutFile = new File(printoutDir);
+        if (!printoutFile.exists()) {
+            printoutFile.mkdirs();
+        }
+        writer = new FileWriter(printoutDir + "/" + packerName + ".txt");
         writer.write(packerName + ".txt");
         PackedDesign packedDesign = packDesign(prepackedDesign);
         writer.close();
@@ -356,7 +362,7 @@ public abstract class Packer {
 
     public void printClockBuffers() throws IOException {
         BufferedWriter writer = new BufferedWriter(
-                new FileWriter(rootDir + "/outputs/printout/DeviceGlobalClkBuffers.txt"));
+                new FileWriter(rootDir + "/outputs/packers/DeviceGlobalClkBuffers.txt"));
 
         Site[] sites = device.getAllSites();
 
@@ -387,7 +393,7 @@ public abstract class Packer {
     }
 
     public Set<SiteTypeEnum> printUniqueSites() throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "/outputs/printout/DeviceUniqueSites.txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(rootDir + "/outputs/packers/DeviceUniqueSites.txt"));
         writer.write("\nPrinting unique sites in the device: ");
         writer.newLine();
         Site[] sites = device.getAllSites();
@@ -434,7 +440,7 @@ public abstract class Packer {
 
     public void printSitesOfType(SiteTypeEnum type) throws IOException {
         BufferedWriter writer = new BufferedWriter(
-                new FileWriter(rootDir + "/outputs/printout/AllSites_" + type + ".txt"));
+                new FileWriter(rootDir + "/outputs/packers/AllSites_" + type + ".txt"));
         Site[] sites = device.getAllSitesOfType(type);
 
         writer.write("Found sites of type " + type + "(" + sites.length + ").");

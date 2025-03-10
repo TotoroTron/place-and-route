@@ -165,7 +165,7 @@ if [ "$start_stage" == "video" ] || [ "$start_stage" == "all" ]; then
     cd $PROJ_DIR
     python3 python/plot_convergence.py
     FPS=10
-    INPUT="outputs/graphics/images"
+    INPUT="outputs/placers/PlacerAnnealRandom/graphics/images"
     INPUT_PATTERN="%08d.png"
     cd $INPUT
 
