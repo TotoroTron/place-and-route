@@ -23,6 +23,7 @@ import com.xilinx.rapidwright.design.SitePinInst;
 import com.xilinx.rapidwright.device.Device;
 import com.xilinx.rapidwright.device.Site;
 import com.xilinx.rapidwright.device.SiteTypeEnum;
+import com.xilinx.rapidwright.device.TileTypeEnum;
 
 public class ImageMaker {
 
@@ -212,6 +213,8 @@ public class ImageMaker {
             Site srcSite = src.getSite();
             if (srcSite == null)
                 continue; // sink has not been placed yet
+            if (srcSite.getTile().getTileTypeEnum() == TileTypeEnum.RIOB33)
+                continue;
             float cost = 0;
             for (SitePinInst sink : sinks) {
                 Site sinkSite = sink.getSite();

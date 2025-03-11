@@ -9,8 +9,11 @@ import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
+import java.util.stream.Collectors;
 import java.util.List;
 
+import com.xilinx.rapidwright.design.Net;
 import com.xilinx.rapidwright.design.ModuleInst;
 import com.xilinx.rapidwright.design.Module;
 import com.xilinx.rapidwright.design.Design;
@@ -18,6 +21,8 @@ import com.xilinx.rapidwright.design.SiteInst;
 
 import com.xilinx.rapidwright.device.Device;
 import com.xilinx.rapidwright.device.ClockRegion;
+import com.xilinx.rapidwright.device.Tile;
+import com.xilinx.rapidwright.device.TileTypeEnum;
 
 public class Main {
 
@@ -33,7 +38,14 @@ public class Main {
             logger.setLevel(Level.ALL); // Set logging level to record all messages
             logger.log(Level.INFO, "Begin Placer...");
 
-            drawVivadoPlacement();
+            // Design vivado_design = Design.readCheckpoint(rootDir +
+            // "/outputs/checkpoints/vivado_routed.dcp");
+            // drawPlacement(vivado_design, rootDir + "/outputs/placers/vivado_routed.png");
+
+            // Design rapidwright_design = Design
+            // .readCheckpoint(rootDir + "/outputs/checkpoints/routed.dcp");
+            // drawPlacement(rapidwright_design, rootDir +
+            // "/outputs/placers/rapidwright_routed.png");
 
             Design design = Design.readCheckpoint(synthesizedDcp);
             Device device = Device.getDevice("xc7z020clg400-1");
@@ -68,7 +80,7 @@ public class Main {
 
             for (PlacerAnnealRandom placer : SAPlacers) {
                 placer.makeOutputDirs(placer.getPlacerName());
-                placer.initCoolingSchedule(10000.0d, 0.99d, 300);
+                placer.initCoolingSchedule(10000.0d, 0.98d, 300);
                 placer.run(packedDesign);
             }
 
@@ -77,9 +89,53 @@ public class Main {
         }
     }
 
-    public static void drawVivadoPlacement() throws IOException {
-        Design design = Design.readCheckpoint(rootDir + "/outputs/checkpoints/vivado_placed.dcp");
-        Device device = Device.getDevice("xc7z020clg400-1");
+    public static void drawPlacement(Design design, String filePath) throws IOException {
+        ImageMaker im = new ImageMaker(design);
+        im.renderAll();
+        im.exportImage(filePath);
+        double cost = 0;
+        Collection<Net> nets = design.getNets();
+        System.out.println("Number of Nets: " + nets.size());
+        for (Net net : nets) {
+            Tile srcTile = net.getSourceTile();
+            if (srcTile == null) // tile is null if its' purely intrasite!
+                continue;
+            if (srcTile.getTileTypeEnum() == TileTypeEnum.RIOB33)
+                continue;
+            List<Tile> sinkTiles = net.getSinkPins().stream()
+                    .map(spi -> spi.getTile())
+                    .collect(Collectors.toList());
+            for (Tile sinkTile : sinkTiles) {
+                cost = cost + srcTile.getTileManhattanDistance(sinkTile);
+            }
+        }
+        System.out.println("Design Cost: " + cost);
+    }
+
+    public static void drawRapidWrightPlacement() throws IOException {
+
+        Design rapidwright_design = Design
+                .readCheckpoint(rootDir + "/outputs/placers/PlacerAnnealRandom/checkpoints/PlacerAnnealRandom.dcp");
+        ImageMaker rim = new ImageMaker(rapidwright_design);
+        rim.renderAll();
+        rim.exportImage(rootDir + "/outputs/placers/vivado_routed.png");
+
+        double cost = 0;
+        Collection<Net> nets = rapidwright_design.getNets();
+        System.out.println("Number of Nets: " + nets.size());
+        for (Net net : nets) {
+            Tile srcTile = net.getSourceTile();
+            if (srcTile == null) // tile is null if its' purely intrasite!
+                continue;
+            List<Tile> sinkTiles = net.getSinkPins().stream()
+                    .map(spi -> spi.getTile())
+                    .collect(Collectors.toList());
+            for (Tile sinkTile : sinkTiles) {
+                cost = cost + srcTile.getTileManhattanDistance(sinkTile);
+            }
+        }
+
+        System.out.println("Design Cost: " + cost);
 
     }
 
