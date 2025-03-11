@@ -26,4 +26,5 @@ def plot_csv(filename, output_file):
     plt.savefig(output_file, dpi=200, bbox_inches='tight')
 
 if __name__ == "__main__":
-    plot_csv("outputs/placers/PlacerAnnealRandom/printout/cost_history.csv", "outputs/placers/PlacerAnnealRandom/graphics/cost_history.png")
+    plot_csv("outputs/placers/PlacerAnnealHybrid/printout/cost_history.csv", "outputs/placers/PlacerAnnealHybrid/graphics/cost_history.png")
+    # plot_csv("outputs/placers/PlacerAnnealRandom/printout/cost_history.csv", "outputs/placers/PlacerAnnealRandom/graphics/cost_history.png")

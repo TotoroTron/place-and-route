@@ -52,8 +52,23 @@ public class PlacerAnnealMidpoint extends PlacerAnnealRandom {
     @Override
     protected Site proposeSite(SiteInst si, List<Site> connections, boolean swapEnable) {
         if (connections == null || connections.isEmpty()) {
-            return super.proposeSite(si, connections, swapEnable);
+            return proposeRandomSite(si, connections, swapEnable);
+        } else {
+            return proposeMidpointSite(si, connections, swapEnable);
         }
+    } // end proposeSite()
+
+    @Override
+    protected Site proposeAnchorSite(List<SiteInst> chain, List<Site> connections, boolean swapEnable) {
+        if (connections == null || connections.isEmpty()) {
+            return proposeRandomAnchorSite(chain, connections, swapEnable);
+        } else {
+            return proposeMidpointAnchorSite(chain, connections, swapEnable);
+        }
+
+    }
+
+    protected Site proposeMidpointSite(SiteInst si, List<Site> connections, boolean swapEnable) {
         // https://adaptivesupport.amd.com/s/question/0D52E00006hpT8KSAU/vivado-coordinate-systems?language=en_US
         SiteTypeEnum ste = si.getSiteTypeEnum();
         Pair<Integer, Integer> connsMidpt = findMidpoint(connections);
@@ -109,12 +124,12 @@ public class PlacerAnnealMidpoint extends PlacerAnnealRandom {
             break;
         }
         return selectedSite;
-    } // end proposeSite()
 
-    @Override
-    protected Site proposeAnchorSite(List<SiteInst> chain, List<Site> connections, boolean swapEnable) {
+    }
+
+    protected Site proposeMidpointAnchorSite(List<SiteInst> chain, List<Site> connections, boolean swapEnable) {
         if (connections == null || connections.isEmpty()) {
-            return super.proposeAnchorSite(chain, connections, swapEnable);
+            return proposeRandomAnchorSite(chain, connections, swapEnable);
         }
 
         boolean validAnchor = false;
@@ -132,7 +147,11 @@ public class PlacerAnnealMidpoint extends PlacerAnnealRandom {
             int dx = spiralPath.get(attempts).key();
             int dy = spiralPath.get(attempts).value();
             int curr_x = mid_x + dx;
+            if (curr_x < 0)
+                curr_x = 0;
             int curr_y = mid_y + dy;
+            if (curr_y < 0)
+                curr_y = 0;
             selectedAnchor = rpmGrid[curr_x][curr_y];
             if (selectedAnchor == null) {
                 attempts++;

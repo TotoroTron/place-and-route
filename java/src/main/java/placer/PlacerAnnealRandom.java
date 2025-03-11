@@ -49,18 +49,18 @@ public class PlacerAnnealRandom extends Placer {
             this.currentTemp = this.coolingSchedule.get(move);
 
             long t0 = System.currentTimeMillis();
-            move(packedDesign);
-            long t1 = System.currentTimeMillis();
-            moveTimes.add(t1 - t0);
-
-            t0 = System.currentTimeMillis();
             double currCost = evaluateDesign();
             if (move % 20 == 0)
-                System.out.println("Move: " + move + ", Design Cost: " + currCost);
-            t1 = System.currentTimeMillis();
+                System.out
+                        .println("Move: " + move + ", Design Cost: " + currCost + ", Temperature: " + this.currentTemp);
+            long t1 = System.currentTimeMillis();
             evalTimes.add(t1 - t0);
-
             this.costHistory.add(currCost);
+
+            t0 = System.currentTimeMillis();
+            move(packedDesign);
+            t1 = System.currentTimeMillis();
+            moveTimes.add(t1 - t0);
 
             t0 = System.currentTimeMillis();
             ImageMaker gifFrame = new ImageMaker(design);
@@ -110,6 +110,14 @@ public class PlacerAnnealRandom extends Placer {
     }
 
     protected Site proposeSite(SiteInst si, List<Site> connections, boolean swapEnable) {
+        return proposeRandomSite(si, connections, swapEnable);
+    }
+
+    protected Site proposeAnchorSite(List<SiteInst> chain, List<Site> connections, boolean swapEnable) {
+        return proposeRandomAnchorSite(chain, connections, swapEnable);
+    }
+
+    protected Site proposeRandomSite(SiteInst si, List<Site> connections, boolean swapEnable) {
         SiteTypeEnum ste = null;
         if (si.getSiteTypeEnum() == SiteTypeEnum.RAMB18E1) {
             SiteTypeEnum[] compatibleStes = { SiteTypeEnum.RAMB18E1, SiteTypeEnum.FIFO18E1 };
@@ -150,7 +158,7 @@ public class PlacerAnnealRandom extends Placer {
         return selectedSite;
     } // end proposeSite()
 
-    protected Site proposeAnchorSite(List<SiteInst> chain, List<Site> connections, boolean swapEnable) {
+    protected Site proposeRandomAnchorSite(List<SiteInst> chain, List<Site> connections, boolean swapEnable) {
         int chainSize = chain.size();
         SiteTypeEnum ste = chain.get(0).getSiteTypeEnum();
         boolean validAnchor = false;
@@ -366,7 +374,7 @@ public class PlacerAnnealRandom extends Placer {
             }
 
         } // end for loopThruChains
-    } // end randomMoveSiteChains()
+    } // end moveSiteChains()
 
     protected List<Site> findBufferZone(SiteTypeEnum siteType, Site initAnchor, Site initTail)
             throws IOException {
