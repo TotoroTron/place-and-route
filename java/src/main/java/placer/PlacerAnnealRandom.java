@@ -31,6 +31,22 @@ public class PlacerAnnealRandom extends Placer {
         this.regionConstraint = region;
     }
 
+    public String getPlacerName() {
+        return this.placerName;
+    }
+
+    public void initCoolingSchedule(double initialTemp, double alpha, int movesLimit) throws IOException {
+        this.movesLimit = movesLimit;
+        this.writer.write("\nPrinting Cooling Schedule...");
+        // geometric cooling
+        double currentTemp = initialTemp;
+        for (int i = 0; i < movesLimit; i++) {
+            this.coolingSchedule.add(currentTemp);
+            this.writer.write("\n\t" + currentTemp);
+            currentTemp *= alpha;
+        }
+    }
+
     public void placeDesign(PackedDesign packedDesign) throws IOException {
         initSites();
         initRpmGrid();
@@ -79,139 +95,12 @@ public class PlacerAnnealRandom extends Placer {
         writer.write("\n\nTotal move iterations: " + move);
     }
 
-    public String getPlacerName() {
-        return this.placerName;
-    }
-
-    public void initCoolingSchedule(double initialTemp, double alpha, int movesLimit) throws IOException {
-        this.movesLimit = movesLimit;
-        this.writer.write("\nPrinting Cooling Schedule...");
-        // geometric cooling
-        double currentTemp = initialTemp;
-        for (int i = 0; i < movesLimit; i++) {
-            this.coolingSchedule.add(currentTemp);
-            this.writer.write("\n\t" + currentTemp);
-            currentTemp *= alpha;
-        }
-    }
-
-    protected void randomInitialPlacement(PackedDesign packedDesign) throws IOException {
-        randomInitSiteChains(packedDesign.DSPSiteInstCascades);
-        randomInitSiteChains(packedDesign.CARRYSiteInstChains);
-        randomInitSingleSite(packedDesign.RAMSiteInsts);
-        randomInitSingleSite(packedDesign.CLBSiteInsts);
-    }
-
     protected void move(PackedDesign packedDesign) throws IOException {
         moveSiteChains(packedDesign.DSPSiteInstCascades);
         moveSiteChains(packedDesign.CARRYSiteInstChains);
         moveSingleSite(packedDesign.RAMSiteInsts);
         moveSingleSite(packedDesign.CLBSiteInsts);
     }
-
-    protected Site proposeSite(SiteInst si, List<Site> connections, boolean swapEnable) {
-        return proposeRandomSite(si, connections, swapEnable);
-    }
-
-    protected Site proposeAnchorSite(List<SiteInst> chain, List<Site> connections, boolean swapEnable) {
-        return proposeRandomAnchorSite(chain, connections, swapEnable);
-    }
-
-    protected Site proposeRandomSite(SiteInst si, List<Site> connections, boolean swapEnable) {
-        SiteTypeEnum ste = null;
-        if (si.getSiteTypeEnum() == SiteTypeEnum.RAMB18E1) {
-            SiteTypeEnum[] compatibleStes = { SiteTypeEnum.RAMB18E1, SiteTypeEnum.FIFO18E1 };
-            int randIndex = rand.nextInt(compatibleStes.length);
-            ste = compatibleStes[randIndex];
-            // System.out.println(ste);
-        } else {
-            ste = si.getSiteTypeEnum();
-        }
-        // SiteTypeEnum[] altStes = si.getAlternateSiteTypeEnums();
-        // if (altStes.length == 0) {
-        // ste = si.getSiteTypeEnum();
-        // } else {
-        // int randIndex = rand.nextInt(altStes.length);
-        // ste = altStes[randIndex];
-        // System.out.println(ste);
-        // }
-        Site selectedSite = null;
-        int attempts = 0;
-        while (true) {
-            if (attempts > 1000)
-                throw new IllegalStateException("ERROR: Could not propose " + ste + " site after 1000 attempts!");
-            int randIndex = rand.nextInt(allSites.get(ste).size());
-            selectedSite = allSites.get(ste).get(randIndex);
-            if (occupiedSiteChains.containsKey(ste)) { // never propose site swap with a chain
-                if (occupiedSiteChains.get(ste).containsKey(selectedSite)) {
-                    attempts++;
-                    continue;
-                }
-            } else if (!swapEnable) { // swapping with other single sites only
-                if (occupiedSites.get(ste).containsKey(selectedSite)) {
-                    attempts++;
-                    continue;
-                }
-            }
-            break;
-        }
-        return selectedSite;
-    } // end proposeSite()
-
-    protected Site proposeRandomAnchorSite(List<SiteInst> chain, List<Site> connections, boolean swapEnable) {
-        int chainSize = chain.size();
-        SiteTypeEnum ste = chain.get(0).getSiteTypeEnum();
-        boolean validAnchor = false;
-        Site selectedAnchor = null;
-        int attempts = 0;
-        while (true) {
-            int randIndex = rand.nextInt(allSites.get(ste).size());
-            selectedAnchor = allSites.get(ste).get(randIndex);
-            int x = selectedAnchor.getInstanceX();
-            int y = selectedAnchor.getInstanceY();
-            for (int i = 0; i < chainSize; i++) {
-                Site site = device.getSite(getSiteTypePrefix(ste) + "X" + x + "Y" + (y + i));
-                if (site == null) {
-                    validAnchor = false;
-                    break;
-                }
-                if (!swapEnable) {
-                    if (occupiedSites.get(ste).containsKey(site)) {
-                        validAnchor = false;
-                        break;
-                    }
-                }
-                validAnchor = true;
-            }
-            attempts++;
-            if (attempts > 1000)
-                throw new IllegalStateException(
-                        "ERROR: Could not propose " + ste + " chain anchor after 1000 attempts!");
-            if (validAnchor)
-                break;
-        }
-        return selectedAnchor;
-    }
-
-    protected void randomInitSingleSite(List<SiteInst> siteInsts) throws IOException {
-        for (SiteInst si : siteInsts) {
-            Site selectedSite = proposeSite(si, null, false);
-            placeSiteInst(si, selectedSite);
-        }
-    }
-
-    protected void randomInitSiteChains(List<List<SiteInst>> chains) throws IOException {
-        for (List<SiteInst> chain : chains) {
-            SiteTypeEnum siteType = chain.get(0).getSiteTypeEnum();
-            Site selectedAnchor = proposeAnchorSite(chain, null, false);
-            for (int i = 0; i < chain.size(); i++) {
-                Site newSite = device.getSite(getSiteTypePrefix(siteType) + "X" + selectedAnchor.getInstanceX() +
-                        "Y" + (selectedAnchor.getInstanceY() + i));
-                occupiedSiteChains.get(siteType).put(newSite, chain);
-                placeSiteInst(chain.get(i), newSite);
-            }
-        }
-    } // end randomInitSiteChains()
 
     protected void moveSingleSite(List<SiteInst> sites) throws IOException {
         for (SiteInst si : sites) {

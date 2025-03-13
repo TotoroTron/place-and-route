@@ -163,18 +163,48 @@ cd $PROJ_DIR
 # Render placement video
 if [ "$start_stage" == "video" ] || [ "$start_stage" == "all" ]; then
     cd $PROJ_DIR
-    python3 python/plot_convergence.py
     FPS=10
     # INPUT="outputs/placers/PlacerAnnealRandom/graphics/images"
-    INPUT="outputs/placers/PlacerAnnealHybrid/graphics/images"
+    PLACERS_DIR="outputs/placers"
     INPUT_PATTERN="%08d.png"
-    cd $INPUT
+
+    # Loop over all items in PLACERS_DIR
+    for placer_dir in "$PLACERS_DIR"/*; do
+        python3 python/plot_convergence.py "$placer_dir"
+        # Only proceed if it's a directory
+        if [ -d "$placer_dir" ]; then
+            images_path="$placer_dir/graphics/images"
+
+            # Check if the images directory exists and has PNG files
+            if [ -d "$images_path" ] && ls "$images_path"/*.png &>/dev/null; then
+                echo "Generating GIF for: $placer_dir"
+
+                # Go to images directory
+                cd "$images_path" || continue
+
+                # Run ffmpeg to create the GIF
+                ffmpeg -y \
+                    -framerate "$FPS" \
+                    -i "$INPUT_PATTERN" \
+                    -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" \
+                    -loop 0 \
+                    ../output.gif
+
+                # Return to previous directory
+                cd - &>/dev/null
+            else
+                echo "Skipping $placer_dir (no 'graphics/images' folder or no PNG files found)."
+            fi
+        fi
+    done
+
+    # cd $INPUT
 
     # OUTPUT="../video.mp4"
     # ffmpeg -y -framerate $FPS -i $INPUT_PATTERN -vcodec libx264 "$OUTPUT" -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2"
 
-    OUTPUT="../output.gif"
-    ffmpeg -y -framerate $FPS -i $INPUT_PATTERN -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -loop 0 "$OUTPUT"
+    # OUTPUT="../output.gif"
+    # ffmpeg -y -framerate $FPS -i $INPUT_PATTERN -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -loop 0 "$OUTPUT"
 
     # height not divisible by 2 error:
     # https://stackoverflow.com/questions/20847674/ffmpeg-libx264-height-not-divisible-by-2

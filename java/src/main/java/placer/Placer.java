@@ -100,6 +100,10 @@ public abstract class Placer {
         this.writer = new FileWriter(this.printoutDir + "/" + placerName + ".txt");
     }
 
+    public abstract String getPlacerName();
+
+    public abstract void placeDesign(PackedDesign packedDesign) throws IOException;
+
     public void run(PackedDesign packedDesign) throws IOException {
         placeDesign(packedDesign);
         writer.close();
@@ -107,22 +111,116 @@ public abstract class Placer {
         DesignTools.toCSV(printoutDir + "/" + placerName, design);
     }
 
-    public abstract String getPlacerName();
+    protected void randomInitialPlacement(PackedDesign packedDesign) throws IOException {
+        randomInitSiteChains(packedDesign.DSPSiteInstCascades);
+        randomInitSiteChains(packedDesign.CARRYSiteInstChains);
+        randomInitSingleSite(packedDesign.RAMSiteInsts);
+        randomInitSingleSite(packedDesign.CLBSiteInsts);
+    }
 
-    protected abstract void placeDesign(PackedDesign packedDesign) throws IOException;
+    protected void randomInitSingleSite(List<SiteInst> siteInsts) throws IOException {
+        for (SiteInst si : siteInsts) {
+            Site selectedSite = proposeSite(si, null, false);
+            placeSiteInst(si, selectedSite);
+        }
+    }
 
-    // protected abstract Site proposeSite(SiteTypeEnum ste, boolean swapEnable);
+    protected void randomInitSiteChains(List<List<SiteInst>> chains) throws IOException {
+        for (List<SiteInst> chain : chains) {
+            SiteTypeEnum siteType = chain.get(0).getSiteTypeEnum();
+            Site selectedAnchor = proposeAnchorSite(chain, null, false);
+            for (int i = 0; i < chain.size(); i++) {
+                Site newSite = device.getSite(getSiteTypePrefix(siteType) + "X" + selectedAnchor.getInstanceX() +
+                        "Y" + (selectedAnchor.getInstanceY() + i));
+                occupiedSiteChains.get(siteType).put(newSite, chain);
+                placeSiteInst(chain.get(i), newSite);
+            }
+        }
+    } // end randomInitSiteChains()
 
-    // protected abstract Site proposeAnchorSite(SiteTypeEnum ste, int chainSize,
-    // boolean swapEnable);
+    protected Site proposeSite(SiteInst si, List<Site> connections, boolean swapEnable) {
+        return proposeRandomSite(si, connections, swapEnable);
+    }
 
-    protected abstract void randomInitSingleSite(List<SiteInst> siteInsts) throws IOException;
+    protected Site proposeAnchorSite(List<SiteInst> chain, List<Site> connections, boolean swapEnable) {
+        return proposeRandomAnchorSite(chain, connections, swapEnable);
+    }
 
-    protected abstract void randomInitSiteChains(List<List<SiteInst>> chains) throws IOException;
+    protected Site proposeRandomSite(SiteInst si, List<Site> connections, boolean swapEnable) {
+        SiteTypeEnum ste = null;
+        if (si.getSiteTypeEnum() == SiteTypeEnum.RAMB18E1) {
+            SiteTypeEnum[] compatibleStes = { SiteTypeEnum.RAMB18E1, SiteTypeEnum.FIFO18E1 };
+            int randIndex = rand.nextInt(compatibleStes.length);
+            ste = compatibleStes[randIndex];
+            // System.out.println(ste);
+        } else {
+            ste = si.getSiteTypeEnum();
+        }
+        // SiteTypeEnum[] altStes = si.getAlternateSiteTypeEnums();
+        // if (altStes.length == 0) {
+        // ste = si.getSiteTypeEnum();
+        // } else {
+        // int randIndex = rand.nextInt(altStes.length);
+        // ste = altStes[randIndex];
+        // System.out.println(ste);
+        // }
+        Site selectedSite = null;
+        int attempts = 0;
+        while (true) {
+            if (attempts > 1000)
+                throw new IllegalStateException("ERROR: Could not propose " + ste + " site after 1000 attempts!");
+            int randIndex = rand.nextInt(allSites.get(ste).size());
+            selectedSite = allSites.get(ste).get(randIndex);
+            if (occupiedSiteChains.containsKey(ste)) { // never propose site swap with a chain
+                if (occupiedSiteChains.get(ste).containsKey(selectedSite)) {
+                    attempts++;
+                    continue;
+                }
+            } else if (!swapEnable) { // swapping with other single sites only
+                if (occupiedSites.get(ste).containsKey(selectedSite)) {
+                    attempts++;
+                    continue;
+                }
+            }
+            break;
+        }
+        return selectedSite;
+    } // end proposeSite()
 
-    protected abstract void moveSingleSite(List<SiteInst> sites) throws IOException;
-
-    protected abstract void moveSiteChains(List<List<SiteInst>> chains) throws IOException;
+    protected Site proposeRandomAnchorSite(List<SiteInst> chain, List<Site> connections, boolean swapEnable) {
+        int chainSize = chain.size();
+        SiteTypeEnum ste = chain.get(0).getSiteTypeEnum();
+        boolean validAnchor = false;
+        Site selectedAnchor = null;
+        int attempts = 0;
+        while (true) {
+            int randIndex = rand.nextInt(allSites.get(ste).size());
+            selectedAnchor = allSites.get(ste).get(randIndex);
+            int x = selectedAnchor.getInstanceX();
+            int y = selectedAnchor.getInstanceY();
+            for (int i = 0; i < chainSize; i++) {
+                Site site = device.getSite(getSiteTypePrefix(ste) + "X" + x + "Y" + (y + i));
+                if (site == null) {
+                    validAnchor = false;
+                    break;
+                }
+                if (!swapEnable) {
+                    if (occupiedSites.get(ste).containsKey(site)) {
+                        validAnchor = false;
+                        break;
+                    }
+                }
+                validAnchor = true;
+            }
+            attempts++;
+            if (attempts > 1000)
+                throw new IllegalStateException(
+                        "ERROR: Could not propose " + ste + " chain anchor after 1000 attempts!");
+            if (validAnchor)
+                break;
+        }
+        return selectedAnchor;
+    }
 
     protected void initRpmGrid() throws IOException {
         int x_high = 0;
