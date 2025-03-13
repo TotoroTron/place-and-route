@@ -22,4 +22,4 @@ A study on placement algorithms for heterogenous FPGAs.
 SA placement of a 2048th order FIR filter with 32 parallel pipelines (timeslices):
 (919 FLOP_LATCH, 1691 LUT, 282 CARRY, BMEM 32, MULT 64)
 ![gif](outputs/placers/PlacerAnnealRandom/graphics/output.gif)
-![image](outputs/placers/PlacerAnnealRandom/graphics/cost_history.png)
+![image](outputs/placers/PlacerAnnealRandom/graphics/PlacerAnnealRandom_cost_history.png)
