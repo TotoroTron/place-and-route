@@ -21,3 +21,6 @@ java/bin/
 java/.settings/*
 java/.project/
 java/.classpath
+
+
+.hdl_checker/
