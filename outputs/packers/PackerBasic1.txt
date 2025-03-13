@@ -1,54 +1,54 @@
 PackerBasic1.txt
 
 Device Site Types: 
-	SiteTypeEnum: IDELAYCTRL
-	SiteTypeEnum: PMVIOB
-	SiteTypeEnum: IDELAYE2
-	SiteTypeEnum: PS7
 	SiteTypeEnum: OLOGICE3
 	SiteTypeEnum: IOB33M
-	SiteTypeEnum: FIFO18E1
-	SiteTypeEnum: SLICEL
-	SiteTypeEnum: BUFMRCE
-	SiteTypeEnum: MMCME2_ADV
-	SiteTypeEnum: PHASER_OUT_PHY
-	SiteTypeEnum: XADC
-	SiteTypeEnum: PMV2_SVT
-	SiteTypeEnum: BUFIO
-	SiteTypeEnum: IOB33S
-	SiteTypeEnum: PHY_CONTROL
-	SiteTypeEnum: MTBF2
-	SiteTypeEnum: OUT_FIFO
-	SiteTypeEnum: IN_FIFO
-	SiteTypeEnum: PLLE2_ADV
-	SiteTypeEnum: FRAME_ECC
-	SiteTypeEnum: GCLK_TEST_BUF
-	SiteTypeEnum: SLICEM
-	SiteTypeEnum: PMVBRAM
-	SiteTypeEnum: ICAP
-	SiteTypeEnum: CFG_IO_ACCESS
-	SiteTypeEnum: ILOGICE3
-	SiteTypeEnum: PHASER_IN_PHY
-	SiteTypeEnum: PHASER_REF
-	SiteTypeEnum: DNA_PORT
-	SiteTypeEnum: EFUSE_USR
-	SiteTypeEnum: RAMB18E1
-	SiteTypeEnum: STARTUP
 	SiteTypeEnum: BSCAN
-	SiteTypeEnum: PMV2
-	SiteTypeEnum: DSP48E1
-	SiteTypeEnum: IOPAD
-	SiteTypeEnum: RAMBFIFO36E1
-	SiteTypeEnum: IPAD
-	SiteTypeEnum: BUFHCE
 	SiteTypeEnum: CAPTURE
-	SiteTypeEnum: IOB33
-	SiteTypeEnum: DCIRESET
-	SiteTypeEnum: BUFGCTRL
-	SiteTypeEnum: USR_ACCESS
-	SiteTypeEnum: TIEOFF
-	SiteTypeEnum: BUFR
 	SiteTypeEnum: PMV
+	SiteTypeEnum: IDELAYE2
+	SiteTypeEnum: PMVBRAM
+	SiteTypeEnum: IOB33S
+	SiteTypeEnum: PHASER_IN_PHY
+	SiteTypeEnum: TIEOFF
+	SiteTypeEnum: GCLK_TEST_BUF
+	SiteTypeEnum: PLLE2_ADV
+	SiteTypeEnum: BUFGCTRL
+	SiteTypeEnum: SLICEM
+	SiteTypeEnum: IPAD
+	SiteTypeEnum: DNA_PORT
+	SiteTypeEnum: IN_FIFO
+	SiteTypeEnum: DCIRESET
+	SiteTypeEnum: PHASER_OUT_PHY
+	SiteTypeEnum: FIFO18E1
+	SiteTypeEnum: PHASER_REF
+	SiteTypeEnum: FRAME_ECC
+	SiteTypeEnum: BUFHCE
+	SiteTypeEnum: USR_ACCESS
+	SiteTypeEnum: PMV2_SVT
+	SiteTypeEnum: IOB33
+	SiteTypeEnum: SLICEL
+	SiteTypeEnum: RAMB18E1
+	SiteTypeEnum: IDELAYCTRL
+	SiteTypeEnum: ILOGICE3
+	SiteTypeEnum: XADC
+	SiteTypeEnum: BUFR
+	SiteTypeEnum: EFUSE_USR
+	SiteTypeEnum: STARTUP
+	SiteTypeEnum: BUFIO
+	SiteTypeEnum: IOPAD
+	SiteTypeEnum: DSP48E1
+	SiteTypeEnum: BUFMRCE
+	SiteTypeEnum: PS7
+	SiteTypeEnum: OUT_FIFO
+	SiteTypeEnum: CFG_IO_ACCESS
+	SiteTypeEnum: PHY_CONTROL
+	SiteTypeEnum: PMVIOB
+	SiteTypeEnum: MTBF2
+	SiteTypeEnum: PMV2
+	SiteTypeEnum: MMCME2_ADV
+	SiteTypeEnum: ICAP
+	SiteTypeEnum: RAMBFIFO36E1
 
 Packing BUFGCTRL Cells... (1
 
@@ -218,17 +218,44 @@ Packing LUT Groups...
 
 ALL CELL PATTERNS HAVE BEEN ARBITRARILY PLACED...
 
-Printing occupied IDELAYCTRL sites... (0)
-
-Printing occupied PMVIOB sites... (0)
-
-Printing occupied IDELAYE2 sites... (0)
-
-Printing occupied PS7 sites... (0)
-
 Printing occupied OLOGICE3 sites... (0)
 
 Printing occupied IOB33M sites... (0)
+
+Printing occupied BSCAN sites... (0)
+
+Printing occupied CAPTURE sites... (0)
+
+Printing occupied PMV sites... (0)
+
+Printing occupied IDELAYE2 sites... (0)
+
+Printing occupied PMVBRAM sites... (0)
+
+Printing occupied IOB33S sites... (0)
+
+Printing occupied PHASER_IN_PHY sites... (0)
+
+Printing occupied TIEOFF sites... (0)
+
+Printing occupied GCLK_TEST_BUF sites... (0)
+
+Printing occupied PLLE2_ADV sites... (0)
+
+Printing occupied BUFGCTRL sites... (1)
+	Site: BUFGCTRL_X0Y16, Tile: CLK_BUFG_TOP_R_X87Y53
+
+Printing occupied SLICEM sites... (0)
+
+Printing occupied IPAD sites... (0)
+
+Printing occupied DNA_PORT sites... (0)
+
+Printing occupied IN_FIFO sites... (0)
+
+Printing occupied DCIRESET sites... (0)
+
+Printing occupied PHASER_OUT_PHY sites... (0)
 
 Printing occupied FIFO18E1 sites... (32)
 	Site: RAMB18_X5Y58, Tile: BRAM_R_X67Y145
@@ -263,6 +290,18 @@ Printing occupied FIFO18E1 sites... (32)
 	Site: RAMB18_X4Y44, Tile: BRAM_L_X56Y110
 	Site: RAMB18_X3Y44, Tile: BRAM_L_X36Y110
 	Site: RAMB18_X2Y44, Tile: BRAM_L_X22Y110
+
+Printing occupied PHASER_REF sites... (0)
+
+Printing occupied FRAME_ECC sites... (0)
+
+Printing occupied BUFHCE sites... (0)
+
+Printing occupied USR_ACCESS sites... (0)
+
+Printing occupied PMV2_SVT sites... (0)
+
+Printing occupied IOB33 sites... (0)
 
 Printing occupied SLICEL sites... (435)
 	Site: SLICE_X27Y144, Tile: CLBLM_R_X19Y144
@@ -701,52 +740,6 @@ Printing occupied SLICEL sites... (435)
 	Site: SLICE_X63Y141, Tile: CLBLM_R_X41Y141
 	Site: SLICE_X65Y141, Tile: CLBLL_L_X42Y141
 
-Printing occupied BUFMRCE sites... (0)
-
-Printing occupied MMCME2_ADV sites... (0)
-
-Printing occupied PHASER_OUT_PHY sites... (0)
-
-Printing occupied XADC sites... (0)
-
-Printing occupied PMV2_SVT sites... (0)
-
-Printing occupied BUFIO sites... (0)
-
-Printing occupied IOB33S sites... (0)
-
-Printing occupied PHY_CONTROL sites... (0)
-
-Printing occupied MTBF2 sites... (0)
-
-Printing occupied OUT_FIFO sites... (0)
-
-Printing occupied IN_FIFO sites... (0)
-
-Printing occupied PLLE2_ADV sites... (0)
-
-Printing occupied FRAME_ECC sites... (0)
-
-Printing occupied GCLK_TEST_BUF sites... (0)
-
-Printing occupied SLICEM sites... (0)
-
-Printing occupied PMVBRAM sites... (0)
-
-Printing occupied ICAP sites... (0)
-
-Printing occupied CFG_IO_ACCESS sites... (0)
-
-Printing occupied ILOGICE3 sites... (0)
-
-Printing occupied PHASER_IN_PHY sites... (0)
-
-Printing occupied PHASER_REF sites... (0)
-
-Printing occupied DNA_PORT sites... (0)
-
-Printing occupied EFUSE_USR sites... (0)
-
 Printing occupied RAMB18E1 sites... (32)
 	Site: RAMB18_X5Y59, Tile: BRAM_R_X67Y145
 	Site: RAMB18_X4Y59, Tile: BRAM_L_X56Y145
@@ -781,11 +774,21 @@ Printing occupied RAMB18E1 sites... (32)
 	Site: RAMB18_X3Y45, Tile: BRAM_L_X36Y110
 	Site: RAMB18_X2Y45, Tile: BRAM_L_X22Y110
 
+Printing occupied IDELAYCTRL sites... (0)
+
+Printing occupied ILOGICE3 sites... (0)
+
+Printing occupied XADC sites... (0)
+
+Printing occupied BUFR sites... (0)
+
+Printing occupied EFUSE_USR sites... (0)
+
 Printing occupied STARTUP sites... (0)
 
-Printing occupied BSCAN sites... (0)
+Printing occupied BUFIO sites... (0)
 
-Printing occupied PMV2 sites... (0)
+Printing occupied IOPAD sites... (0)
 
 Printing occupied DSP48E1 sites... (64)
 	Site: DSP48_X2Y58, Tile: DSP_R_X25Y145
@@ -853,29 +856,26 @@ Printing occupied DSP48E1 sites... (64)
 	Site: DSP48_X3Y38, Tile: DSP_R_X59Y95
 	Site: DSP48_X3Y39, Tile: DSP_R_X59Y95
 
-Printing occupied IOPAD sites... (0)
+Printing occupied BUFMRCE sites... (0)
+
+Printing occupied PS7 sites... (0)
+
+Printing occupied OUT_FIFO sites... (0)
+
+Printing occupied CFG_IO_ACCESS sites... (0)
+
+Printing occupied PHY_CONTROL sites... (0)
+
+Printing occupied PMVIOB sites... (0)
+
+Printing occupied MTBF2 sites... (0)
+
+Printing occupied PMV2 sites... (0)
+
+Printing occupied MMCME2_ADV sites... (0)
+
+Printing occupied ICAP sites... (0)
 
 Printing occupied RAMBFIFO36E1 sites... (0)
-
-Printing occupied IPAD sites... (0)
-
-Printing occupied BUFHCE sites... (0)
-
-Printing occupied CAPTURE sites... (0)
-
-Printing occupied IOB33 sites... (0)
-
-Printing occupied DCIRESET sites... (0)
-
-Printing occupied BUFGCTRL sites... (1)
-	Site: BUFGCTRL_X0Y16, Tile: CLK_BUFG_TOP_R_X87Y53
-
-Printing occupied USR_ACCESS sites... (0)
-
-Printing occupied TIEOFF sites... (0)
-
-Printing occupied BUFR sites... (0)
-
-Printing occupied PMV sites... (0)
 
 Initial HPWL cost: 303208.0

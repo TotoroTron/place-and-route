@@ -24,6 +24,12 @@ dependencies {
     // implementation 'com.xilinx.rapidwright.rapidwright:2023.2'
     implementation files("${System.getenv('RAPIDWRIGHT_PATH')}/bin")
     implementation fileTree(dir: "${System.getenv('RAPIDWRIGHT_PATH')}/jars", include: ['*.jar'])
+
+    // EJML
+    implementation fileTree(
+        dir: "${System.getenv('EJML_PATH')}",
+        include: ['*.jar']
+    )
 }
 
 tasks.withType(JavaCompile) {

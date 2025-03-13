@@ -14,6 +14,10 @@ export PATH="$PATH:$RAPIDWRIGHT_PATH/bin"
 export CLASSPATH=$RAPIDWRIGHT_PATH/bin:$RAPIDWRIGHT_PATH/jars/*
 export _JAVA_OPTIONS=-Xmx32736m
 
+# EJML
+export EJML_PATH=/home/bcheng/workspace/tools/ejml-v0.42-libs
+export CLASSPATH=$CLASSPATH:$EJML_PATH/*
+
 PROJ_DIR="/home/bcheng/workspace/dev/place-and-route"
 
 SYNTH_TCL="$PROJ_DIR/tcl/synth.tcl"
