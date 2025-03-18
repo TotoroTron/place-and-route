@@ -14,6 +14,7 @@ import java.util.HashSet;
 import java.util.Random;
 
 import com.xilinx.rapidwright.design.Design;
+import com.xilinx.rapidwright.design.DesignTools;
 import com.xilinx.rapidwright.design.SiteInst;
 import com.xilinx.rapidwright.design.SitePinInst;
 
@@ -38,6 +39,7 @@ public class PlacerAnalytical extends Placer {
     public void placeDesign(PackedDesign packedDesign) throws IOException {
         initSites();
         initRpmGrid();
+        DesignTools.createMissingSitePinInsts(design);
         unplaceAllSiteInsts(packedDesign);
         randomInitialPlacement(packedDesign);
         ImageMaker imInitRandom = new ImageMaker(design);

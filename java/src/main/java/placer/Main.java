@@ -16,6 +16,7 @@ import java.util.List;
 import com.xilinx.rapidwright.design.Net;
 import com.xilinx.rapidwright.design.ModuleInst;
 import com.xilinx.rapidwright.design.Module;
+import com.xilinx.rapidwright.design.ConstraintGroup;
 import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.SiteInst;
 
@@ -76,14 +77,14 @@ public class Main {
             // works entirely on the SiteInst/Site/Tile level.
             List<PlacerAnnealRandom> SAPlacers = new ArrayList<PlacerAnnealRandom>();
             SAPlacers.add(new PlacerAnnealRandom(rootDir, design, device, region));
-            SAPlacers.add(new PlacerAnnealHybrid(rootDir, design, device, region));
-            SAPlacers.add(new PlacerAnnealMidpoint(rootDir, design, device, region));
-            SAPlacers.add(new PlacerGreedyRandom(rootDir, design, device, region));
-            SAPlacers.add(new PlacerGreedyMidpoint(rootDir, design, device, region));
+            // SAPlacers.add(new PlacerAnnealHybrid(rootDir, design, device, region));
+            // SAPlacers.add(new PlacerAnnealMidpoint(rootDir, design, device, region));
+            // SAPlacers.add(new PlacerGreedyRandom(rootDir, design, device, region));
+            // SAPlacers.add(new PlacerGreedyMidpoint(rootDir, design, device, region));
 
             for (PlacerAnnealRandom placer : SAPlacers) {
                 placer.makeOutputDirs(placer.getPlacerName());
-                placer.initCoolingSchedule(10000.0d, 0.98d, 300);
+                placer.initCoolingSchedule(10000.0d, 0.95d, 100);
                 placer.run(packedDesign);
             }
 

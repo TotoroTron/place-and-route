@@ -15,6 +15,10 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
 
+import com.xilinx.rapidwright.edif.EDIFHierPortInst;
+import com.xilinx.rapidwright.edif.EDIFHierCellInst;
+import com.xilinx.rapidwright.edif.EDIFHierNet;
+
 import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.DesignTools;
 import com.xilinx.rapidwright.design.SiteInst;
@@ -437,6 +441,57 @@ public abstract class Placer {
             String site = si == null ? "Null!" : si.getName();
             writer.write("\nSiteInst: " + si.getName() + ", Site: " + site);
         }
+    }
+
+    public void addIOBuffersToNetlist() throws IOException {
+        writer.write("\n\nAdding IOBuffers to Netlist...");
+        for (Net net : design.getNets()) {
+            for (SiteInst si : net.getSiteInsts()) {
+                if (si.getSiteTypeEnum() == SiteTypeEnum.IOB33) {
+                    DesignTools.createMissingSitePinInsts(design, net);
+                    // for (SitePinInst spi : si.getSitePinInsts()) {
+                    // net.addPin(spi);
+                    // writer.write("\n\tAdded Pin: " + spi + " to net: " + net);
+                    // }
+                }
+            }
+        }
+    }
+
+    public void printNetlist() throws IOException {
+        writer.write("\n\nPrinting Netlist with SitePinInsts... ");
+        for (Net net : design.getNets()) {
+            writer.write("\n\tNet: " + net.getName());
+            for (SitePinInst spi : net.getPins()) {
+                writer.write("\n\t\tSPI: " + spi);
+            }
+        }
+
+        // writer.write("\n\nPrinting Netlist with SiteInsts...");
+        // for (Net net : design.getNets()) {
+        // writer.write("\n\tNet: " + net.getName());
+        // for (SiteInst si : net.getSiteInsts()) {
+        // writer.write("\n\t\tSiteInst: " + si);
+        // for (SitePinInst spi : si.getSitePinInsts()) {
+        // writer.write("\n\t\t\tSPI: " + spi);
+        // }
+        // }
+        // }
+
+        // writer.write("\n\nPrinting Netlist with EDIFHierCellInsts...");
+        // for (Net net : design.getNets()) {
+        // writer.write("\n\tNet: " + net.getName());
+        // EDIFHierNet edifNet = net.getLogicalHierNet();
+        // if (edifNet == null)
+        // continue;
+
+        // for (EDIFHierPortInst ehpi : net.getLogicalHierNet().getLeafHierPortInsts())
+        // {
+        // writer.write("\n\t\tEHPI: " + ehpi);
+        // EDIFHierCellInst ehci = ehpi.getHierarchicalInst();
+        // }
+        // }
+
     }
 
 } // end class Placer

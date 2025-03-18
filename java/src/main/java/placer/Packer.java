@@ -17,6 +17,7 @@ import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
 
+import com.xilinx.rapidwright.design.ConstraintGroup;
 import com.xilinx.rapidwright.design.Design;
 import com.xilinx.rapidwright.design.SiteInst;
 import com.xilinx.rapidwright.design.Net;
@@ -65,6 +66,7 @@ public abstract class Packer {
         }
         writer = new FileWriter(printoutDir + "/" + packerName + ".txt");
         writer.write(packerName + ".txt");
+        printConstraintGroups();
         PackedDesign packedDesign = packDesign(prepackedDesign);
         writer.close();
         design.writeCheckpoint(packedDcp);
@@ -111,6 +113,22 @@ public abstract class Packer {
             Set<Net> nets = si.getConnectedNets();
             for (Net net : nets) {
                 writer.write("\n\t\tNet: " + net.getName());
+            }
+        }
+    }
+
+    public void printConstraintGroups() throws IOException {
+        Map<ConstraintGroup, List<String>> constraintGroups = new HashMap<>();
+        constraintGroups.put(ConstraintGroup.BOARD, design.getXDCConstraints(ConstraintGroup.BOARD));
+        constraintGroups.put(ConstraintGroup.EARLY, design.getXDCConstraints(ConstraintGroup.EARLY));
+        constraintGroups.put(ConstraintGroup.IN_CONTEXT, design.getXDCConstraints(ConstraintGroup.IN_CONTEXT));
+        constraintGroups.put(ConstraintGroup.LATE, design.getXDCConstraints(ConstraintGroup.LATE));
+        constraintGroups.put(ConstraintGroup.NORMAL, design.getXDCConstraints(ConstraintGroup.NORMAL));
+        writer.write("\n\nPrinting Constraint Groups... ");
+        for (Map.Entry<ConstraintGroup, List<String>> entry : constraintGroups.entrySet()) {
+            writer.write("\n\tGroup: " + entry.getKey() + "... ");
+            for (String constraint : entry.getValue()) {
+                writer.write("\n\t\t" + constraint);
             }
         }
     }

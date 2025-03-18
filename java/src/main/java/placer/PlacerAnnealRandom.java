@@ -50,6 +50,8 @@ public class PlacerAnnealRandom extends Placer {
     public void placeDesign(PackedDesign packedDesign) throws IOException {
         initSites();
         initRpmGrid();
+        addIOBuffersToNetlist();
+        printNetlist();
         unplaceAllSiteInsts(packedDesign);
         randomInitialPlacement(packedDesign);
         ImageMaker imInitRandom = new ImageMaker(design);

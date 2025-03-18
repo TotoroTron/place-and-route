@@ -54,6 +54,8 @@ public class ImageMaker {
         SITE_TYPE_COLORS.put(SiteTypeEnum.RAMB36E1, Color.decode("#775555")); // Dull Red
         SITE_TYPE_COLORS.put(SiteTypeEnum.DSP48E1, Color.decode("#446644")); // Dull Green
         SITE_TYPE_COLORS.put(SiteTypeEnum.BUFGCTRL, Color.decode("#888888")); // Medium Gray
+        SITE_TYPE_COLORS.put(SiteTypeEnum.IOB33S, Color.decode("#888888")); // Medium Gray
+        SITE_TYPE_COLORS.put(SiteTypeEnum.IOB33M, Color.decode("#888888")); // Medium Gray
     }
 
     private static final Map<SiteTypeEnum, Color> PLACEMENT_COLORS = new HashMap<>();
@@ -66,6 +68,8 @@ public class ImageMaker {
         PLACEMENT_COLORS.put(SiteTypeEnum.RAMB36E1, Color.decode("#FF00FF")); // Magenta
         PLACEMENT_COLORS.put(SiteTypeEnum.DSP48E1, Color.decode("#FFFF00")); // Yellow
         PLACEMENT_COLORS.put(SiteTypeEnum.BUFGCTRL, Color.decode("#FFFFFF")); // White
+        PLACEMENT_COLORS.put(SiteTypeEnum.IOB33S, Color.decode("#FFFFFF")); // White
+        PLACEMENT_COLORS.put(SiteTypeEnum.IOB33M, Color.decode("#FFFFFF")); // White
     }
 
     public ImageMaker(Design design) throws IOException {
@@ -207,14 +211,10 @@ public class ImageMaker {
             if (src == null) { // SPI is null if the net is purely intrasite
                 continue;
             }
-            // if (src.getSiteTypeEnum().equals(SiteTypeEnum.BUFGCTRL))
-            // continue;
             List<SitePinInst> sinks = net.getSinkPins();
             Site srcSite = src.getSite();
             if (srcSite == null)
                 continue; // sink has not been placed yet
-            if (srcSite.getTile().getTileTypeEnum() == TileTypeEnum.RIOB33)
-                continue;
             float cost = 0;
             for (SitePinInst sink : sinks) {
                 Site sinkSite = sink.getSite();
