@@ -143,6 +143,7 @@ fi
 # Gradle Build Stage (replaces Java Compilation)
 if [ "$start_stage" == "compile" ] || [ "$start_stage" == "all" ]; then
     echo "Building Java project with Gradle..."
+    rm -rf "$PROJ_DIR/outputs/placers/*"
     cd $PROJ_DIR/java
     gradle build
     check_exit_status "Gradle build"

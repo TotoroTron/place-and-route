@@ -38,8 +38,8 @@ public class PlacerAnnealHybrid extends PlacerAnnealMidpoint {
             return proposeRandomSite(si, connections, swapEnable);
         }
         // for movement during general placement
-        // hybrid: 50% chance midpoint, 50% chance random
-        if (this.currentTemp < 100.0d) {
+        // hybrid: 50% chance and temp < 100
+        if (this.currentTemp < 100 && rand.nextInt(2) == 0) {
             return proposeMidpointSite(si, connections, swapEnable);
         } else {
             return proposeRandomSite(si, connections, swapEnable);
@@ -53,8 +53,8 @@ public class PlacerAnnealHybrid extends PlacerAnnealMidpoint {
             return proposeRandomAnchorSite(chain, connections, swapEnable);
         }
         // for movement during general placement
-        // hybrid: 50% chance midpoint, 50% chance random
-        if (this.currentTemp < 100.0d) {
+        // hybrid: 50% chance and temp < 100
+        if (this.currentTemp < 100 && rand.nextInt(2) == 0) {
             return proposeMidpointAnchorSite(chain, connections, swapEnable);
         } else {
             return proposeRandomAnchorSite(chain, connections, swapEnable);

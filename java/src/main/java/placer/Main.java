@@ -79,8 +79,8 @@ public class Main {
             SAPlacers.add(new PlacerAnnealRandom(rootDir, design, device, region));
             SAPlacers.add(new PlacerAnnealHybrid(rootDir, design, device, region));
             SAPlacers.add(new PlacerAnnealMidpoint(rootDir, design, device, region));
-            SAPlacers.add(new PlacerGreedyRandom(rootDir, design, device, region));
-            SAPlacers.add(new PlacerGreedyMidpoint(rootDir, design, device, region));
+            // SAPlacers.add(new PlacerGreedyRandom(rootDir, design, device, region));
+            // SAPlacers.add(new PlacerGreedyMidpoint(rootDir, design, device, region));
 
             for (PlacerAnnealRandom placer : SAPlacers) {
                 System.out.println("\n\nStarting " + placer.getPlacerName() + "... \n\n");
