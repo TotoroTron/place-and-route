@@ -1,7 +1,10 @@
 # Ignore All
 *
 
+# but dont ignore subdirs
+!*/
+
 !*.tex
 !*.pdf
-!references/
-!figures/
+!*/references/
+!*/figures/
