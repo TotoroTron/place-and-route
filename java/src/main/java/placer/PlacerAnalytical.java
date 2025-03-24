@@ -50,10 +50,10 @@ public class PlacerAnalytical extends Placer {
         int move = 0;
         while (move < 100) {
             move++;
-            //
-            //
-            //
-            //
+            // 1) create weight matrix
+            // 2) solve linear system
+            // 3) legalize
+            // 4)
         }
 
         ImageMaker imPlaced = new ImageMaker(design);
