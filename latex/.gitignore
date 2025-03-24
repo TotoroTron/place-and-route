@@ -1,0 +1,7 @@
+# Ignore All
+*
+
+!*.tex
+!*.pdf
+!references/
+!figures/
