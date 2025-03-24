@@ -1,10 +1,13 @@
-# Ignore All
+# Ignore everything
 *
 
-# but dont ignore subdirs
+# Unignore all directories so Git can traverse into them
 !*/
 
-!*.tex
-!*.pdf
-!*/references/
-!*/figures/
+# Unignore .pdf and .tex files anywhere in the repository
+!**/*.pdf
+!**/*.tex
+
+# Unignore all files within any "references" and "figures" directories (at any level)
+!**/references/**
+!**/figures/**
