@@ -80,7 +80,40 @@
     (Describe the algorithm, then in context of 7-Series arhictecture). \\
 
 \section{Analytical Placement}
-    Talk about HeAP.
+    Introduce placement with legalization methods. \\
+    Many AP approaches use a Global placement, Legalization, then Detailed placement approach. \\
+    Our SA only considers legal moves via bookkeeping structures, so it has no concept of global placement or legalization. \\
+    It is a detailed placement only approach. \\
+    \begin{itemize}
+        \item Talk about HeAP as an example.
+        \item Global Placement, Legalization, then Detailed Placement approach.
+        \item Global placement using the Bound2Bound net model from SimPL.
+        \item Legalization Step 1: \\
+            Find an area of the device that is overutilized (illegal) for twhich the blocks contained within must spread to a larger area. \\
+            To obtain this overutilized area, adjacent locations (Sites, Tiles, etc.) on the device that are occupied by more than one block (SiteInst, ModuleInst, etc.) are repeatedly clustered together, until all clusters are bordered on all sides by non-overutilized locations. \\ 
+            Then, the area (?) is expanded in both the x and y dimensions (?) until it is large enough to accommodate all blocks contained within. \\
+            Specifically, the area is expanded until its "occupance" \(O_A\) divided by its "capacity" \(C_A\) is less than a maximum "utilization factor" $\beta$, where $\beta$ is less than or equal to 1. HeAP uses 0.9.
+        \item Legalization Step 2: \\
+            Two cuts are generated: a "source cut" and a "target cut". \\
+            The source cut pertains to the blocks being placed (SiteInsts in home buffer). \\ 
+            The target cut pertains to the area into which the blocks are placed (away buffer). \\
+            The source cut splits the blocks into 2 partitions, while the target cut splits the area into 2 sub-areas, into which the blocks in each partition are spread. \\
+            Two objectives are minimized during this process: The imbalance between the number of blocks in each partition, and the difference in the utilization of each sub-area. \\
+            Utilization defined as the occupancy divided by the capacity of the sub-area. \\
+            \(U_{sub-area} = \frac{O_{sub-area}}{C_{sub-area}}\) \\
+            To generate the source cut, the cells are first sorted by their x or y location, depending on the orientation of the desired cut. \\
+            Once the cells are sorted, the source cut generation is akin to choosing a pivot in a sorted list, where all blocks to the left of the pivot are assigned to the left/bottom partition and all blocks to the right of the pivot are assigned to the right/top partition. \\
+            The target cut is an x or y cut of the area such that all blocks in each partition fit in their respective sub-areas, and such that \( | U_{sub-area_1} 
+             - U_{sub-area_2} | \) is minimized.
+
+
+
+
+    \end{itemize}
+
+
+
+
 
 
 \end{multicols}
