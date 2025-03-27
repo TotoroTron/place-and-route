@@ -50,13 +50,11 @@
     Hill climbing is permitted by occasionally accepting moves that increase cost, in hope that such swaps may later lead to a better final solution. 
     SA remains a popular approach in FPGA placement research due to its simplicity and robustness in handling the discrete architectural constraints of FPGA devices. 
     While SA yields surprisingly good results given relatively simple rules, it is ultimately a heuristic and stochastic approach that explores the vast placement space by making random moves. 
-    Most of these moves will be rejected, meaning that SA must run many iterations, usually hundreds to thousands, to arrive at a desirable solution.
+    Most of these moves will be rejected, meaning that SA must run many iterations, usually hundreds to thousands, to arrive at a desirable solution. 
 
-    In the ASIC domain, where placers must handle designs with millions of cells, the SA approach has largely been abandoned in favor of analytical techniques, owing to SA's runtime and poor scalability. Modern FPGA placers have also followed suit, as new legalization strategies allow FPGA placers to leverage traditionally ASIC placement algorithms and adapt them to the discrete constraints of FPGA architectures. 
-    While this paper does not present a working analytical placer, it will explore ways to build upon our existing infrastructure (prepacker and packer) to replace SA with AP.
-
-
-
+    In the ASIC domain, where placers must handle designs with millions of cells, the SA approach has largely been abandoned in favor of analytical techniques, owing to SA's runtime and poor scalability. 
+    Modern FPGA placers have also followed suit, as new legalization strategies allow FPGA placers to leverage traditionally ASIC placement algorithms and adapt them to the discrete constraints of FPGA architectures. 
+    While this paper does not present a working analytical placer, it will explore ways to build upon our existing infrastructure (prepacker and packer) to replace SA with AP. 
 
 
 \section{Brief History of FPGA Architecture}
@@ -70,21 +68,20 @@
     \end{figure}
 
     Before any work can be done on a placer, one must understand the objects being placed and the structure of the medium in which those objects are placed. 
-    
+
     Configurable logic devices have undergone significant evolution over the last four decades.
-    The journey began with simple devices like Programmable Logic Array (PLA), which came if the form of logic gates arranged in a "programmable-OR, programmable-AND" plane, used to implement a "sum-of-products" logic equation for each of the outputs in terms of the inputs via programmable fuses. 
+    The journey began with simple devices like Programmable Logic Array (PLA) in the early 1970s, which came if the form of logic gates arranged in a "programmable-OR, programmable-AND" plane, used to implement a "sum-of-products" logic equation for each of the outputs in terms of the inputs via programmable fuses. 
     Around the same time came the redundantly named Programmable Array Logic (PAL), which simplified the PLA by fixing the OR gates, resulting in a "fixed-OR, programmable-AND" plane, which sacrificed some flexibility to simplify its manufacture and broaden its applications.
 
     \begin{figure}
         \centering
         \includegraphics[width=7.0cm]{figures/cpld.png}
-        \caption{CPLD architecture with 4 CLBs}
+        \caption{CPLD architecture with 4 CLBs (PAL-like blocks)}
         \label{fig:cpld}
         % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/CPLD/Complex-Programmable-Logic-Device-CPLDs/
     \end{figure}
 
-
-    Then came the Complex Programmable Logic Device (CPLD), which came as an array of Configurable Logic Blocks (CLBs) stitched together by interconnection wires.
+    Later in the same decade came the Complex Programmable Logic Device (CPLD), which came as an array of Configurable Logic Blocks (CLBs).
     These CLBs usually took the form of modified PAL blocks, which contained the PAL itself and some macrocells including flip-flops, multiplexers, and tri-state buffers.
     The CPLD was essentially an array of PALs interconnected by a programmable switch matrix and could be programmed via a hardware description language (HDL) like VHDL.
 
@@ -96,12 +93,10 @@
         % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/FPGA/Field-programmable-gate-array-FPGA/
     \end{figure}
 
-
-
+    The next milestone in the mid-1980s was the advent of homogenous FPGA, which like the CPLD, took the form of a vast array of CLBs. 
+    Instead of having a central programmable switch matrix like that of a CPLD, FPGAs adopted an island style architecture, where each CLB, or "island" of logic, is surrounded on all sides by programmable routing resources, resulting in a fabric of programmable logic and routing. 
 
 \section{Xilinx 7-Series Architecture}
-
-
 
     \begin{figure*}
         \centering
@@ -111,34 +106,38 @@
     \end{figure*}
 
     Figure~\ref{fig:hierarchy} illustrates the architectural hierarchy of a Xilinx FPGA. 
-    At its most basic level, an FPGA is a vast physical array of replicated atomic components known as Basic Elements of Logic (BELs).
-    These BELs, which include programmable lookup tables (LUTs), flip flops (FFs), and programmable interconnects, form the fundamental building blocks for custom digital circuit implementations on FPGAs.
+    At its most basic level, an FPGA is a vast physical array of replicated atomic components known as Basic Elements of Logic (BELs). 
+    These BELs, which include programmable lookup tables (LUTs), flip flops (FFs), and programmable interconnects, form the fundamental building blocks for custom digital circuit implementations on FPGAs. 
 
     In modern FPGAs like the Xilinx 7-Series, additional BELs like Block RAM (BRAM) and Digital Processing Slices (DSPs) are also available, creating a more heterogeneous programmable logic fabric. 
-    These dedicated resources allow designers to implement common digital structures, such as multipliers and memories, without having to recreate them from scratch using only LUTs and flip flops.
+    These dedicated resources allow designers to implement common digital structures, such as multipliers and memories, without having to recreate them from scratch using only LUTs and flip flops. 
 
     The Xilinx architectural hierarchy organizes these BELs into increasingly abstract structures. 
     \textbf{BELs} are packaged into \textbf{Sites}, which are then embedded into \textbf{Tiles}, which are subsequently consolidated into \textbf{Clock Regions}. 
     In high-end Xilinx devices, Clock Regions may be further consolidated into \textbf{Super Logic Regions} (SLRs). 
-    However, for the scope of this paper, we focus on Xilinx devices that have only a single SLR.
+    However, for the scope of this paper, we focus on Xilinx devices that have only a single SLR. 
 
-    Take for example, the xc7z020 chip, a low-end Xilinx device from the 7-Series family of FPGAs, commonly found on hobbyist boards like the Digilent Arty-Z7.
+    Take for example, the xc7z020 chip, a low-end Xilinx device from the 7-Series family of FPGAs, commonly found on hobbyist boards like the Digilent Arty-Z7. 
 
 \section{The FPGA Design Flow and Toolchain}
-    \begin{figure}
-        \centering
-        \includegraphics[width=6.5cm]{figures/vivado_dcps.png}
-        \caption{Showing how RapidWright can take a design checkpoint at different stages of the Vivado toolchain, make customizations, then feed it back into the toolchain.}
-        \label{fig:device_carry_chain_routing}
-    \end{figure}
-    A typical FPGA design flow goes like the following:
-    Engineer design entry (Verilog, VHDL) \\
+
+    
+
+    A typical FPGA design flow goes like the following: 
+    Engineer design entry (Verilog, VHDL) \\ 
     Synthesis (Instantiation, substitution, inference, and optimization) \\ 
     Placement (Prepacking, Packing, Global Placement, Legalization, Detailed Placement)\\ 
     Routing \\ 
     Bitstream generation \\ 
 
 \section{RapidWright API}
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=6.5cm]{figures/vivado_dcps.png}
+        \caption{Showing how RapidWright can take a design checkpoint at different stages of the Vivado toolchain, make customizations, then feed it back into the toolchain.}
+        \label{fig:device_carry_chain_routing}
+    \end{figure}
 
     DO WE REALLY NEED THIS SECTION? JUST REFERENCE THE RW DOCUMENTATION.
 
@@ -147,22 +146,26 @@
     We use this API to implement a crude general placer, in our case, a simulated annealer. 
     (Show what parts of the FPGA toolchain that RapidWright already has and how our placer fits into that toolchain). 
 
-    There are three packages of objects that are most relavent to building our placer: the edif package, design package, and device package.
+    There are three packages of objects that are most relavent to building our placer: the edif package, design package, and device package. 
 
     \subsection{Device Objects}
     The \textbf{device} package contains the classes that correspond to constructs in the hardware and/or silicon devices. 
-    The most prominent class, aptly named Device, represents a specific product family member (like the xc7z020 device of the 7-series family) and provides a reference to all of the logical and routing resources available on the device.
-    There device classes can be separated into two groups: logical and routing.
-    Among the logical classes are the BEL, Site, Tile, and ClockRegion objects discussed before.
-    Among the routing classes are BELPin, SitePin, PIP (Programmable InterConnect Point), Wire, and Node.
-
+    The most prominent class, aptly named Device, represents a specific product family member (like the xc7z020 device of the 7-series family) and provides a reference to all of the logical and routing resources available on the device. 
+    There device classes can be separated into two groups: logical and routing. 
+    Among the logical classes are the BEL, Site, Tile, and ClockRegion objects discussed before. 
+    Among the routing classes are BELPin, SitePin, PIP (Programmable InterConnect Point), Wire, and Node. 
 
     \subsection{Design Package}
     The \textbf{design} package is the collection of objects used to describe how a logical netlist maps to the device netlist. 
-    The design is also referred to as the "physical netlist" or "implementation".
-    It contains all of the primitive logical cell mappings to hardware, specifically the cells to BEL placements and physical net mapping to programmable interconnect or routing.
+    The design is also referred to as the "physical netlist" or "implementation". 
+    It contains all of the primitive logical cell mappings to hardware, specifically the cells to BEL placements and physical net mapping to programmable interconnect or routing. 
 
     \subsection{EDIF Package}
+    In Vivado, all designs post synthesis have a logical netlist that can be exported in the Electronic Design Interchange Format (EDIF) netlist format.
+    The synthesis stage of the FPGA toolchain produces an EDIF file, which is a low-level file containing the technology-mapped netlist.
+    The EDIFNetlist is the top level class that contains the netlist and cell libraries. 
+    The EDIFNetlist keeps a reference to the top cell which is wrapped in the EDIFDesign class. 
+    It also maintains a top cell instance reference that is generated when the file is loaded. 
 
 
 \section{Placement Implementation}
