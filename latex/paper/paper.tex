@@ -1,11 +1,11 @@
 
-\documentclass{article}
+\documentclass[twocolumn]{article}
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{mathpazo}
-\usepackage{multicol}
+% \usepackage{multicol}
 \usepackage[a4paper,
             bindingoffset=0.2in,
             left=1in,
@@ -28,7 +28,7 @@
 \end{itemize}
 
 
-\begin{multicols}{2}
+% \begin{multicols}{2}
 \section{Abstract}
     fdsafdsafdsa.
 
@@ -56,47 +56,32 @@
     In the ASIC domain, where placers must handle designs with millions of cells, the SA approach has largely been abandoned in favor of analytical techniques, owing to SA's runtime and poor scalability. Modern FPGA placers have also followed suit, as new legalization strategies allow FPGA placers to leverage traditionally ASIC placement algorithms and adapt them to the discrete constraints of FPGA architectures. 
     While this paper does not present a working analytical placer, it will explore ways to build upon our existing infrastructure (prepacker and packer) to replace SA with AP.
 
-\end{multicols}
+% \end{multicols}
 
 
-\section{The FPGA Toolchain}
+\section{The FPGA Design Flow and Toolchain}
+    \begin{figure}
+        \centering
+        \includegraphics[width=6.5cm]{figures/vivado_dcps.png}
+        \caption{Showing how RapidWright can take a design checkpoint at different stages of the Vivado toolchain, make customizations, then feed it back into the toolchain.}
+        \label{fig:device_carry_chain_routing}
+    \end{figure}
+    A typical FPGA design flow goes like the following:
     Engineer design entry (Verilog, VHDL) \\
-    Synthesis \\ 
-    Placement \\ 
+    Synthesis (Instantiation, substitution, inference, and optimization) \\ 
+    Placement (Prepacking, Packing, Global Placement, Legalization, Detailed Placement)\\ 
     Routing \\ 
     Bitstream generation \\ 
 
-
-
-    (Square peg square hole analogy) \\
-    (Show the architecture hierarchy). \\
-
-
-    how to organize this? \\
-
-    Device hierarchical objects: \\
-        Super Logic Region, Clock Region, Tile, Site, BEL \\
-
-    Device connection objects: \\
-        Switchbox, PIP, BELPin, SitePin \\
-
-    Device object instances: \\
-        SitePinInst, SiteInst, CellPin, Cell
-
-    EDIF objects: \\
-        EDIFNet, EDIFCell, EDIFPort \\
-        EDIFHierNet, EDIFHierCell, EDIFHierPort \\
-        EDIFHierCellInst, EDIFHierPortInst \\
-
-\begin{figure}
+\begin{figure*}
     \centering
     \includegraphics[width=\textwidth]{figures/hierarchy.png}
     \caption{Architecture Hierarchy of a Xilinx FPGA}\label{fig:hierarchy}
-\end{figure}
+\end{figure*}
 
-\begin{multicols}{2}
+% \begin{multicols}{2}
 \section{Xilinx 7-Series Architecture}
-    Before any work can be done on a placer, one must understand the objects being placed and the structure of the medium in which those objects reside. 
+    Before any work can be done on a placer, one must understand the objects being placed and the structure of the medium in which those objects are placed. 
     Figure~\ref{fig:hierarchy} illustrates the architectural hierarchy of a Xilinx FPGA. 
     At its most basic level, an FPGA is a vast physical array of replicated atomic components known as Basic Elements of Logic (BELs).
     These BELs, which include programmable lookup tables (LUTs), flip flops (FFs), and programmable interconnects, form the fundamental building blocks for custom digital circuit implementations on FPGAs.
@@ -113,14 +98,30 @@
 
 
 \section{RapidWright API}
-    RapidWright represents the architecture constructs as faithfully as possible
+
+    DO WE REALLY NEED THIS SECTION? JUST REFERENCE THE RW DOCUMENTATION.
 
     The RapidWright API offers a user-friendly toolkit to take pre-implemented designs, that is, designs that have already been placed and/or routed by Vivado, and make custom optimizations to fit complex design criteria. 
     RapidWright has several "BlockPlacers", a general Router, but no general Placer. 
     We use this API to implement a crude general placer, in our case, a simulated annealer. 
     (Show what parts of the FPGA toolchain that RapidWright already has and how our placer fits into that toolchain). 
+
+    There are three packages of objects that are most relavent to building our placer: the edif package, design package, and device package.
+
     \subsection{Device Objects}
-    \subsection{Design Objects}
+    The \textbf{device} package contains the classes that correspond to constructs in the hardware and/or silicon devices. 
+    The most prominent class, aptly named Device, represents a specific product family member (like the xc7z020 device of the 7-series family) and provides a reference to all of the logical and routing resources available on the device.
+    There device classes can be separated into two groups: logical and routing.
+    Among the logical classes are the BEL, Site, Tile, and ClockRegion objects discussed before.
+    Among the routing classes are BELPin, SitePin, PIP (Programmable InterConnect Point), Wire, and Node.
+
+
+    \subsection{Design Package}
+    The \textbf{design} package is the collection of objects used to describe how a logical netlist maps to the device netlist. 
+    The design is also referred to as the "physical netlist" or "implementation".
+    It contains all of the primitive logical cell mappings to hardware, specifically the cells to BEL placements and physical net mapping to programmable interconnect or routing.
+
+    \subsection{EDIF Package}
 
 
 \section{Placement Implementation}
@@ -128,15 +129,35 @@
     \subsection{PrePacking}
         In the prepacking stage, we traverse the raw EDIF Netlist to identify recurring cell patterns. In particular, we will specifically look for CARRY chains, DSP cascades, and LUT-FF pairs.
         \subsection{CARRY Chains}
+            Each SLICE Site contains one CARRY4 BEL.
+            Each CLB Tile contains two SLICE Sites.
+            CARRY chains span vertically across multiple SLICE Sites/Tiles. (Show picture)
+            \begin{figure}
+                \centering
+                \includegraphics[width=3.0cm]{figures/carry_chain_routes.png}
+                \includegraphics[width=3.0cm]{figures/dsp_cascade_routes.png}
+                \caption{A Carry Chain of length 6 spanning 6 Tiles. On the left, the cell-only representation. On the right, cells with routing representation.}
+                \label{fig:device_carry_chain_routing}
+            \end{figure}
         \subsection{DSP Cascades}
+            Each DSP Site contains one DSP BEL.
+            Each DSP Tile contains two DSP Sites.
+            DSP chains can span vertically across multiple DSP Sites/Tiles.
+
         \subsection{LUT-FF Pairs}
             Identify unique CE-SR net pairs. All FF cells in a Site must share the same CE and SR nets.
     \subsection{Packing}
         In the packing stage, we take the identified cell clusters and pack them into SiteInst Design objects which target the Device Site objects.
         \subsection{CLB Sites}
             Can support LUT-FF pairs, loose LUTs, loose FFs, CARRY chains.
-            CARRY chains span vertically across multiple Sites.
+            Each SLICE has 8 "lanes" of LUT-FFs. 4 LUT5s and 4 LUT6s. 8 FFs.
+            For SLICEMs, LUT6s can be configured as shallow 32-bit LUTRAMs or "RAMS32".
     \subsection{Placement}
+        Create BEL "fields": CLB, DSP, CLB and DSP Chains, RAMs
+
+        \subsection{Detailed Placement}
+
+
 
 
 
@@ -178,5 +199,5 @@
 
 
 
-\end{multicols}
+% \end{multicols}
 \end{document}
