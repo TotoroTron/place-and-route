@@ -28,7 +28,6 @@
 \end{itemize}
 
 
-% \begin{multicols}{2}
 \section{Abstract}
     fdsafdsafdsa.
 
@@ -56,32 +55,61 @@
     In the ASIC domain, where placers must handle designs with millions of cells, the SA approach has largely been abandoned in favor of analytical techniques, owing to SA's runtime and poor scalability. Modern FPGA placers have also followed suit, as new legalization strategies allow FPGA placers to leverage traditionally ASIC placement algorithms and adapt them to the discrete constraints of FPGA architectures. 
     While this paper does not present a working analytical placer, it will explore ways to build upon our existing infrastructure (prepacker and packer) to replace SA with AP.
 
-% \end{multicols}
 
 
-\section{The FPGA Design Flow and Toolchain}
+
+
+\section{Brief History of FPGA Architecture}
     \begin{figure}
         \centering
-        \includegraphics[width=6.5cm]{figures/vivado_dcps.png}
-        \caption{Showing how RapidWright can take a design checkpoint at different stages of the Vivado toolchain, make customizations, then feed it back into the toolchain.}
-        \label{fig:device_carry_chain_routing}
+        \includegraphics[width=7.0cm]{figures/pal_2.png}
+        \caption{PAL architecture with 5 inputs, 8 programmable AND gates and 4 fixed OR gates}
+        \label{fig:pla}
+        % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/Programmable-Logic-Devices/Programmable-Array-Logic-PAL/
+        % https://www.naukri.com/code360/library/difference-between-pla-and-pal 
     \end{figure}
-    A typical FPGA design flow goes like the following:
-    Engineer design entry (Verilog, VHDL) \\
-    Synthesis (Instantiation, substitution, inference, and optimization) \\ 
-    Placement (Prepacking, Packing, Global Placement, Legalization, Detailed Placement)\\ 
-    Routing \\ 
-    Bitstream generation \\ 
 
-\begin{figure*}
-    \centering
-    \includegraphics[width=\textwidth]{figures/hierarchy.png}
-    \caption{Architecture Hierarchy of a Xilinx FPGA}\label{fig:hierarchy}
-\end{figure*}
-
-% \begin{multicols}{2}
-\section{Xilinx 7-Series Architecture}
     Before any work can be done on a placer, one must understand the objects being placed and the structure of the medium in which those objects are placed. 
+    
+    Configurable logic devices have undergone significant evolution over the last four decades.
+    The journey began with simple devices like Programmable Logic Array (PLA), which came if the form of logic gates arranged in a "programmable-OR, programmable-AND" plane, used to implement a "sum-of-products" logic equation for each of the outputs in terms of the inputs via programmable fuses. 
+    Around the same time came the redundantly named Programmable Array Logic (PAL), which simplified the PLA by fixing the OR gates, resulting in a "fixed-OR, programmable-AND" plane, which sacrificed some flexibility to simplify its manufacture and broaden its applications.
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=7.0cm]{figures/cpld.png}
+        \caption{CPLD architecture with 4 CLBs}
+        \label{fig:cpld}
+        % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/CPLD/Complex-Programmable-Logic-Device-CPLDs/
+    \end{figure}
+
+
+    Then came the Complex Programmable Logic Device (CPLD), which came as an array of Configurable Logic Blocks (CLBs) stitched together by interconnection wires.
+    These CLBs usually took the form of modified PAL blocks, which contained the PAL itself and some macrocells including flip-flops, multiplexers, and tri-state buffers.
+    The CPLD was essentially an array of PALs interconnected by a programmable switch matrix and could be programmed via a hardware description language (HDL) like VHDL.
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=7.0cm]{figures/fpga.png}
+        \caption{Island-style FPGA architecture with 16 CLBs}
+        \label{fig:fpga}
+        % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/FPGA/Field-programmable-gate-array-FPGA/
+    \end{figure}
+
+
+
+
+\section{Xilinx 7-Series Architecture}
+
+
+
+    \begin{figure*}
+        \centering
+        \includegraphics[width=\textwidth]{figures/hierarchy.png}
+        \caption{Architecture Hierarchy of a Xilinx FPGA}
+        \label{fig:hierarchy}
+    \end{figure*}
+
     Figure~\ref{fig:hierarchy} illustrates the architectural hierarchy of a Xilinx FPGA. 
     At its most basic level, an FPGA is a vast physical array of replicated atomic components known as Basic Elements of Logic (BELs).
     These BELs, which include programmable lookup tables (LUTs), flip flops (FFs), and programmable interconnects, form the fundamental building blocks for custom digital circuit implementations on FPGAs.
@@ -96,6 +124,19 @@
 
     Take for example, the xc7z020 chip, a low-end Xilinx device from the 7-Series family of FPGAs, commonly found on hobbyist boards like the Digilent Arty-Z7.
 
+\section{The FPGA Design Flow and Toolchain}
+    \begin{figure}
+        \centering
+        \includegraphics[width=6.5cm]{figures/vivado_dcps.png}
+        \caption{Showing how RapidWright can take a design checkpoint at different stages of the Vivado toolchain, make customizations, then feed it back into the toolchain.}
+        \label{fig:device_carry_chain_routing}
+    \end{figure}
+    A typical FPGA design flow goes like the following:
+    Engineer design entry (Verilog, VHDL) \\
+    Synthesis (Instantiation, substitution, inference, and optimization) \\ 
+    Placement (Prepacking, Packing, Global Placement, Legalization, Detailed Placement)\\ 
+    Routing \\ 
+    Bitstream generation \\ 
 
 \section{RapidWright API}
 
@@ -199,5 +240,4 @@
 
 
 
-% \end{multicols}
 \end{document}
