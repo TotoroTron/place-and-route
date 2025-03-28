@@ -33,7 +33,7 @@
 
 \section{Introduction}
 
-    Field-Programmable Gate Arrays (FPGAs) have witnessed unprecedented growth in capacity and versatility, driving significant advances in computer-aided design (CAD) and electronic design automation (EDA) methodologies. 
+    Field-Programmable Gate Arrays (FPGAs) have witnessed rapid growth in capacity and versatility, driving significant advances in computer-aided design (CAD) and electronic design automation (EDA) methodologies. 
     Since the early-to-mid 2000s, the stagnation of single-processor performance relative to the rapid increase in integrated circuit sizes has led to a design productivity gap, where the computational effort for designing complex chips continues to rise. 
     In FPGA CAD flows—which traditionally encompass logic synthesis, placement, routing, and bitstream generation—the placement stage has emerged as one of the most time-consuming processes. 
     Inefficiencies in placement not only extend design times from hours to days, thereby elevating cost and reducing engineering productivity, but also limit the broader adoption of FPGAs by software engineers who expect compile times akin to those of conventional software compilers. 
@@ -56,60 +56,76 @@
     Modern FPGA placers have also followed suit, as new legalization strategies allow FPGA placers to leverage traditionally ASIC placement algorithms and adapt them to the discrete constraints of FPGA architectures. 
     While this paper does not present a working analytical placer, it will explore ways to build upon our existing infrastructure (prepacker and packer) to replace SA with AP. 
 
+\section{A Brief History on FPGA Architecture}
 
-\section{Brief History of FPGA Architecture}
     \begin{figure}
         \centering
-        \includegraphics[width=7.0cm]{figures/pal_2.png}
+        \includegraphics[width=8.5cm]{figures/pal_2.png}
         \caption{PAL architecture with 5 inputs, 8 programmable AND gates and 4 fixed OR gates}
         \label{fig:pla}
         % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/Programmable-Logic-Devices/Programmable-Array-Logic-PAL/
         % https://www.naukri.com/code360/library/difference-between-pla-and-pal 
     \end{figure}
 
-    Before any work can be done on a placer, one must understand the objects being placed and the structure of the medium in which those objects are placed. 
+    Before any work can begin on a placer, it is necessary to understand both the objects to be placed and the medium in which they are placed.
 
-    Configurable logic devices have undergone significant evolution over the last four decades.
-    The journey began with simple devices like Programmable Logic Array (PLA) in the early 1970s, which came if the form of logic gates arranged in a "programmable-OR, programmable-AND" plane, used to implement a "sum-of-products" logic equation for each of the outputs in terms of the inputs via programmable fuses. 
-    Around the same time came the redundantly named Programmable Array Logic (PAL), which simplified the PLA by fixing the OR gates, resulting in a "fixed-OR, programmable-AND" plane, which sacrificed some flexibility to simplify its manufacture and broaden its applications.
+    Configurable logic devices have undergone significant evolution over the past four decades. 
+    The journey began with the Programmable Logic Array (PLA) in the early 1970s. 
+    The PLA implemented output logic using a programmable-OR and programmable-AND plane that formed a sum-of-products equation for each output through programmable fuses. 
+    Around the same time, the Programmable Array Logic (PAL) was introduced. 
+    The PAL simplified the PLA by fixing the OR gates, resulting in a fixed-OR, programmable-AND design, which sacrificed some logic flexibility to simplify its manufacture.
 
     \begin{figure}
         \centering
-        \includegraphics[width=7.0cm]{figures/cpld.png}
+        \includegraphics[width=7.5cm]{figures/cpld.png}
         \caption{CPLD architecture with 4 CLBs (PAL-like blocks)}
         \label{fig:cpld}
         % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/CPLD/Complex-Programmable-Logic-Device-CPLDs/
     \end{figure}
 
-    Later in the same decade came the Complex Programmable Logic Device (CPLD), which came as an array of Configurable Logic Blocks (CLBs).
-    These CLBs usually took the form of modified PAL blocks, which contained the PAL itself and some macrocells including flip-flops, multiplexers, and tri-state buffers.
-    The CPLD was essentially an array of PALs interconnected by a programmable switch matrix and could be programmed via a hardware description language (HDL) like VHDL.
+    Later in the same decade came the Complex Programmable Logic Device (CPLD), which took the form of an array of Configurable Logic Blocks (CLBs). 
+    These CLBs were typically modified PAL blocks that included the PAL itself along with macrocells such as flip-flops, multiplexers, and tri-state buffers. 
+    The CPLD functioned as an array of PALs connected by a programmable switch matrix and could be programmed using a hardware description language (HDL) like VHDL. 
 
     \begin{figure}
         \centering
         \includegraphics[width=7.0cm]{figures/fpga.png}
-        \caption{Island-style FPGA architecture with 16 CLBs}
+        \caption{Island-style FPGA architecture with 16 CLBs in a grid}
         \label{fig:fpga}
         % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/FPGA/Field-programmable-gate-array-FPGA/
     \end{figure}
 
-    The next milestone in the mid-1980s was the advent of homogenous FPGA, which like the CPLD, took the form of a vast array of CLBs. 
-    Instead of having a central programmable switch matrix like that of a CPLD, FPGAs adopted an island style architecture, where each CLB, or "island" of logic, is surrounded on all sides by programmable routing resources, resulting in a fabric of programmable logic and routing. 
+    The mid-1980s saw the introduction of the homogeneous FPGA, which was built as a grid of CLBs. 
+    Rather than using a central programmable switch matrix as in CPLDs, FPGAs adopted an island style architecture in which each CLB is surrounded on all sides by programmable routing resources. 
+    The first commercially viable FPGA, produced by Xilinx in 1984, featured 16 CLBs arranged in a 4x4 grid. 
+    As FPGA technology advanced, CLBs were redesigned to use lookup tables (LUTs) as programmable memories instead of PAL arrays. 
+    The capacity of an FPGA was often measured by how many logical elements or CLBs it offered, which grew from hundreds to thousands and now to hundreds of thousands of CLBs.
+
+    This brings us to modern day FPGA architectures. 
+    To meet increasing design complexity and performance needs, FPGA vendors introduced heterogeneous FPGAs. 
+    In addition to CLBs, heterogenous FPGAs embedded hard macros like Block RAM (BRAM) and Digital Signal Processing (DSP) slices into the programmable logic fabric, allowing for greater flexibility and scalability for complex designs.
+    This approach allows users to instantiate common subsystems like memories and multipliers directly, without having to recreate them from scratch using CLBs. 
+    Major vendors such as Xilinx and Altera now use heterogeneous island style architectures in their FPGA products 
+    FPGAs continue to become more heterogenous as they offer a wider variety of hard macros within the programmable logic fabric, with the latest now offering embedded CPUs and networking macros in the fabric. 
 
 \section{Xilinx 7-Series Architecture}
 
     \begin{figure*}
         \centering
         \includegraphics[width=\textwidth]{figures/hierarchy.png}
-        \caption{Architecture Hierarchy of a Xilinx FPGA}
+        \caption{Architecture Hierarchy of a Xilinx FPGA (Ultrascale)}
         \label{fig:hierarchy}
     \end{figure*}
 
-    Figure~\ref{fig:hierarchy} illustrates the architectural hierarchy of a Xilinx FPGA. 
+    Xilinx introduced the 7-Series architecture in 2010 as an example of a heterogeneous island-style architecture. 
+    Although the latest generation of Xilinx FPGAs is based on the Ultrascale architecture, first released in 2013, this paper focuses on the former 7-Series devices due to their greater accessibility for new users and compatibility with open source tooling.
+
+    Figure~\ref{fig:hierarchy} illustrates the architectural hierarchy of an Ultrascale Xilinx FPGA. 
+    The architecture hierarchy is the same for the 7-Series devices. 
     At its most basic level, an FPGA is a vast physical array of replicated atomic components known as Basic Elements of Logic (BELs). 
     These BELs, which include programmable lookup tables (LUTs), flip flops (FFs), and programmable interconnects, form the fundamental building blocks for custom digital circuit implementations on FPGAs. 
 
-    In modern FPGAs like the Xilinx 7-Series, additional BELs like Block RAM (BRAM) and Digital Processing Slices (DSPs) are also available, creating a more heterogeneous programmable logic fabric. 
+    In the FPGAs 7-Series FPGAs, additional BELs like Block RAM (BRAM) and Digital Processing Slices (DSPs) are also available, creating a more heterogeneous programmable logic fabric. 
     These dedicated resources allow designers to implement common digital structures, such as multipliers and memories, without having to recreate them from scratch using only LUTs and flip flops. 
 
     The Xilinx architectural hierarchy organizes these BELs into increasingly abstract structures. 
@@ -120,18 +136,32 @@
     Take for example, the xc7z020 chip, a low-end Xilinx device from the 7-Series family of FPGAs, commonly found on hobbyist boards like the Digilent Arty-Z7. 
 
 \section{The FPGA Design Flow and Toolchain}
+    The FPGA design flow converts a high-level digital design written in an HDL into a configuration that programs the physical FPGA. 
 
-    
+    The process begins with design entry, where an engineer describes the functionality of their circuit using a hardware description language (HDL) such as Verilog or VHDL. This description abstracts away details of the physical hardware while defining the logic and behavior of the design.
 
-    A typical FPGA design flow goes like the following: 
-    Engineer design entry (Verilog, VHDL) \\ 
-    Synthesis (Instantiation, substitution, inference, and optimization) \\ 
-    Placement (Prepacking, Packing, Global Placement, Legalization, Detailed Placement)\\ 
-    Routing \\ 
-    Bitstream generation \\ 
+    Next, synthesis translates the HDL code into a netlist that represents the design in terms of basic logic elements, such as lookup tables (LUTs) and flip flops. 
+    During this stage, techniques like instantiation, substitution, inference, optimization, and technology mapping are applied to map the user design to a particular FPGA architecture.
+
+    After synthesis, the placement phase assigns each logic element in the netlist a specific location within the FPGA’s fabric. 
+    This stage includes prepacking, packing, global placement, legalization, and detailed placement. 
+    The objective is to position the elements in a way that minimizes delay, satisfies design constraints, and simplify routing. 
+
+    Following placement, the routing phase connects the placed elements by assigning physical wiring resources to nets. 
+    The router determines their paths through the programmable interconnect network while attempting to meet timing and performance constraints.
+
+    The final stage is the bitstream generation, where a vendor-specific tool produces a configuration file that programs the physical FPGA device. 
+    The bitstream specifies the state of every configurable element—logic blocks, routing switches, and hard macros—ensuring the FPGA implements the user's design.
+
+    Throughout the flow, additional tools, such as constraint managers and timing analyzers, are used to enforce design rules and verify that the implementation meets required performance specifications. 
+
+    Parallel to this entire design flow are simulators for which the user can write testbenches to verify their design at different stages of implementation.
+    Xilinx's Vivado, for example, provides functional simulation, post-implementation simulation, and post-implementation timing simulation.
+
+    This integrated toolchain, whether provided by FPGA vendors or open source communities, facilitates the transformation from an abstract HDL description to a functioning hardware configuration.
+
 
 \section{RapidWright API}
-
     \begin{figure}
         \centering
         \includegraphics[width=6.5cm]{figures/vivado_dcps.png}
