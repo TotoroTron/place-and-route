@@ -90,7 +90,7 @@
     \begin{figure}
         \centering
         \includegraphics[width=7.0cm]{figures/fpga.png}
-        \caption{Island-style FPGA architecture with 16 CLBs in a grid}
+        \caption{Homogenous island-style FPGA architecture with 16 CLBs in a grid}
         \label{fig:fpga}
         % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/FPGA/Field-programmable-gate-array-FPGA/
     \end{figure}
@@ -98,15 +98,15 @@
     The mid-1980s saw the introduction of the homogeneous FPGA, which was built as a grid of CLBs. 
     Rather than using a central programmable switch matrix as in CPLDs, FPGAs adopted an island style architecture in which each CLB is surrounded on all sides by programmable routing resources. 
     The first commercially viable FPGA, produced by Xilinx in 1984, featured 16 CLBs arranged in a 4x4 grid. 
-    As FPGA technology advanced, CLBs were redesigned to use lookup tables (LUTs) as programmable memories instead of PAL arrays. 
+    As FPGA technology advanced, CLBs were redesigned to use lookup tables (LUTs) instead of PAL arrays for greater logic density. 
     The capacity of an FPGA was often measured by how many logical elements or CLBs it offered, which grew from hundreds to thousands and now to hundreds of thousands of CLBs.
 
-    This brings us to modern day FPGA architectures. 
-    To meet increasing design complexity and performance needs, FPGA vendors introduced heterogeneous FPGAs. 
-    In addition to CLBs, heterogenous FPGAs embedded hard macros like Block RAM (BRAM) and Digital Signal Processing (DSP) slices into the programmable logic fabric, allowing for greater flexibility and scalability for complex designs.
-    This approach allows users to instantiate common subsystems like memories and multipliers directly, without having to recreate them from scratch using CLBs. 
-    Major vendors such as Xilinx and Altera now use heterogeneous island style architectures in their FPGA products 
-    FPGAs continue to become more heterogenous as they offer a wider variety of hard macros within the programmable logic fabric, with the latest now offering embedded CPUs and networking macros in the fabric. 
+    This brings us to modern day FPGA architectures.
+    To meet the needs of increasingly complex designs, FPGA vendors introduced heterogeneous FPGAs. 
+    In these devices, hard macros such as Block RAM (BRAM) and Digital Signal Processing (DSP) slices are integrated into the programmable logic fabric along with CLBs. 
+    This design enables the direct instantiation of common subsystems like memories and multipliers, without having to implement them solely with CLBs. 
+    Major vendors such as Xilinx and Altera now employ heterogeneous island-style architectures in their devices. 
+    As designs become increasingly large and complex, FPGAs become increasingly heterogenous as they incorporate a wider variety of hard macros, including embedded CPUs and communications blocks, into the fabric.
 
 \section{Xilinx 7-Series Architecture}
 
@@ -117,8 +117,9 @@
         \label{fig:hierarchy}
     \end{figure*}
 
-    Xilinx introduced the 7-Series architecture in 2010 as an example of a heterogeneous island-style architecture. 
-    Although the latest generation of Xilinx FPGAs is based on the Ultrascale architecture, first released in 2013, this paper focuses on the former 7-Series devices due to their greater accessibility for new users and compatibility with open source tooling.
+    Xilinx introduced the 7-Series architecture in 2010 which followed the heterogeneous island-style architecture. 
+    Then in 2013 Xilinx unveiled the Ultrascale architecture which made several improvements on the 7-Series architecture.
+    Although the cutting edge of FPGAs follow the Ultrascale architecture, this paper focuses on the former 7-Series devices due to their greater accessibility for beginner users and compatibility with open source tooling.
 
     Figure~\ref{fig:hierarchy} illustrates the architectural hierarchy of an Ultrascale Xilinx FPGA. 
     The architecture hierarchy is the same for the 7-Series devices. 
@@ -133,24 +134,34 @@
     In high-end Xilinx devices, Clock Regions may be further consolidated into \textbf{Super Logic Regions} (SLRs). 
     However, for the scope of this paper, we focus on Xilinx devices that have only a single SLR. 
 
-    Take for example, the xc7z020 chip, a low-end Xilinx device from the 7-Series family of FPGAs, commonly found on hobbyist boards like the Digilent Arty-Z7. 
-
 \section{The FPGA Design Flow and Toolchain}
-    The FPGA design flow converts a high-level digital design written in an HDL into a configuration that programs the physical FPGA. 
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=7.0cm]{figures/design_flow.png}
+        \caption{A typical FPGA design and verification flow}
+        \label{fig:design_flow}
+    \end{figure}
 
-    The process begins with design entry, where an engineer describes the functionality of their circuit using a hardware description language (HDL) such as Verilog or VHDL. This description abstracts away details of the physical hardware while defining the logic and behavior of the design.
+    Figure \ref{fig:design_flow} shows a typical FPGA design and verification flow.
+    The FPGA design flow takes a high-level digital design written in an HDL and generates a configuration file that programs the physical FPGA. 
 
-    Next, synthesis translates the HDL code into a netlist that represents the design in terms of basic logic elements, such as lookup tables (LUTs) and flip flops. 
-    During this stage, techniques like instantiation, substitution, inference, optimization, and technology mapping are applied to map the user design to a particular FPGA architecture.
+    The process begins with \textbf{design entry}, where an engineer describes the functionality of their circuit using a hardware description language (HDL) such as Verilog or VHDL. This description abstracts away details of the physical hardware while defining the logic and behavior of the design.
 
-    After synthesis, the placement phase assigns each logic element in the netlist a specific location within the FPGA’s fabric. 
-    This stage includes prepacking, packing, global placement, legalization, and detailed placement. 
-    The objective is to position the elements in a way that minimizes delay, satisfies design constraints, and simplify routing. 
+    Next, the \textbf{synthesis} tool interprets the HDL code and generates a netlist that represents the design in terms of basic logic elements, such as lookup tables (LUTs) and flip flops. 
+    During this stage, substages like instantiation, substitution, inference, optimization, and technology mapping are applied to map the user design to a particular FPGA architecture.
 
-    Following placement, the routing phase connects the placed elements by assigning physical wiring resources to nets. 
+    After synthesis, the \textbf{placement} tool assigns each logic element in the netlist a specific location within the FPGA’s fabric. 
+    This stage can include substages of prepacking, packing, global placement, legalization, and detailed placement. 
+    The objective is to place the logical cell instances of the netlist onto physical BELs on the device in a way that minimizes delay, satisfies design constraints, and simplifies routing. 
+
+    Following placement, the \textbf{routing} tool connects the placed elements by assigning physical wiring resources to the nets in the netlist. 
     The router determines their paths through the programmable interconnect network while attempting to meet timing and performance constraints.
+    
+    Placement and routing are generally referred to together as the \textbf{implementation} stage, as both stages are interdependent and must adhere to the constraints of the same device.
+    State of the art (SOTA) tools will perform routing-aware placement for greater optimization.
 
-    The final stage is the bitstream generation, where a vendor-specific tool produces a configuration file that programs the physical FPGA device. 
+    The final stage is the \textbf{bitstream} generation, where a vendor-specific programming tool produces a configuration file or bitstream that programs the physical FPGA device. 
     The bitstream specifies the state of every configurable element—logic blocks, routing switches, and hard macros—ensuring the FPGA implements the user's design.
 
     Throughout the flow, additional tools, such as constraint managers and timing analyzers, are used to enforce design rules and verify that the implementation meets required performance specifications. 
@@ -183,7 +194,7 @@
     The most prominent class, aptly named Device, represents a specific product family member (like the xc7z020 device of the 7-series family) and provides a reference to all of the logical and routing resources available on the device. 
     There device classes can be separated into two groups: logical and routing. 
     Among the logical classes are the BEL, Site, Tile, and ClockRegion objects discussed before. 
-    Among the routing classes are BELPin, SitePin, PIP (Programmable InterConnect Point), Wire, and Node. 
+    Among the routing classes are BELPin, SitePin, PIP (programmable interconnect point), Wire, and Node. 
 
     \subsection{Design Package}
     The \textbf{design} package is the collection of objects used to describe how a logical netlist maps to the device netlist. 
@@ -191,8 +202,8 @@
     It contains all of the primitive logical cell mappings to hardware, specifically the cells to BEL placements and physical net mapping to programmable interconnect or routing. 
 
     \subsection{EDIF Package}
-    In Vivado, all designs post synthesis have a logical netlist that can be exported in the Electronic Design Interchange Format (EDIF) netlist format.
-    The synthesis stage of the FPGA toolchain produces an EDIF file, which is a low-level file containing the technology-mapped netlist.
+    In Vivado, all designs post synthesis have a logical netlist that can be exported in the Electronic Design Interchange Format (EDIF) netlist format. 
+    The synthesis stage of the FPGA toolchain produces an EDIF file, which is a low-level file containing the technology-mapped netlist. 
     The EDIFNetlist is the top level class that contains the netlist and cell libraries. 
     The EDIFNetlist keeps a reference to the top cell which is wrapped in the EDIFDesign class. 
     It also maintains a top cell instance reference that is generated when the file is loaded. 
