@@ -69,6 +69,8 @@
 
     Before any work can begin on a placer, it is necessary to understand both the objects to be placed and the medium in which they are placed.
 
+    Here we will briefly outline the evolution of configurable logic architecture as well as the FPGA design flow. 
+    However, readers who are already familiar with basic FPGA architecture and design flow may skip to the next section on Xilinx 7-Series Architecture. 
     Configurable logic devices have undergone significant evolution over the past four decades. 
     The journey began with the Programmable Logic Array (PLA) in the early 1970s. 
     The PLA implemented output logic using a programmable-OR and programmable-AND plane that formed a sum-of-products equation for each output through programmable fuses. 
@@ -106,33 +108,7 @@
     In these devices, hard macros such as Block RAM (BRAM) and Digital Signal Processing (DSP) slices are integrated into the programmable logic fabric along with CLBs. 
     This design enables the direct instantiation of common subsystems like memories and multipliers, without having to implement them solely with CLBs. 
     Major vendors such as Xilinx and Altera now employ heterogeneous island-style architectures in their devices. 
-    As designs become increasingly large and complex, FPGAs become increasingly heterogenous as they incorporate a wider variety of hard macros, including embedded CPUs and communications blocks, into the fabric.
-
-\section{Xilinx 7-Series Architecture}
-
-    \begin{figure*}
-        \centering
-        \includegraphics[width=\textwidth]{figures/hierarchy.png}
-        \caption{Architecture Hierarchy of a Xilinx FPGA (Ultrascale)}
-        \label{fig:hierarchy}
-    \end{figure*}
-
-    Xilinx introduced the 7-Series architecture in 2010 which followed the heterogeneous island-style architecture. 
-    Then in 2013 Xilinx unveiled the Ultrascale architecture which made several improvements on the 7-Series architecture.
-    Although the cutting edge of FPGAs follow the Ultrascale architecture, this paper focuses on the former 7-Series devices due to their greater accessibility for beginner users and compatibility with open source tooling.
-
-    Figure~\ref{fig:hierarchy} illustrates the architectural hierarchy of an Ultrascale Xilinx FPGA. 
-    The architecture hierarchy is the same for the 7-Series devices. 
-    At its most basic level, an FPGA is a vast physical array of replicated atomic components known as Basic Elements of Logic (BELs). 
-    These BELs, which include programmable lookup tables (LUTs), flip flops (FFs), and programmable interconnects, form the fundamental building blocks for custom digital circuit implementations on FPGAs. 
-
-    In the FPGAs 7-Series FPGAs, additional BELs like Block RAM (BRAM) and Digital Processing Slices (DSPs) are also available, creating a more heterogeneous programmable logic fabric. 
-    These dedicated resources allow designers to implement common digital structures, such as multipliers and memories, without having to recreate them from scratch using only LUTs and flip flops. 
-
-    The Xilinx architectural hierarchy organizes these BELs into increasingly abstract structures. 
-    \textbf{BELs} are packaged into \textbf{Sites}, which are then embedded into \textbf{Tiles}, which are subsequently consolidated into \textbf{Clock Regions}. 
-    In high-end Xilinx devices, Clock Regions may be further consolidated into \textbf{Super Logic Regions} (SLRs). 
-    However, for the scope of this paper, we focus on Xilinx devices that have only a single SLR. 
+    As designs become increasingly large and complex, FPGAs become increasingly heterogenous as they incorporate a wider variety of hard macros into the fabric.
 
 \section{The FPGA Design Flow and Toolchain}
     
@@ -157,19 +133,41 @@
 
     Following placement, the \textbf{routing} tool connects the placed elements by assigning physical wiring resources to the nets in the netlist. 
     The router determines their paths through the programmable interconnect network while attempting to meet timing and performance constraints.
-    
-    Placement and routing are generally referred to together as the \textbf{implementation} stage, as both stages are interdependent and must adhere to the constraints of the same device.
-    State of the art (SOTA) tools will perform routing-aware placement for greater optimization.
+
+    Placement and routing are generally referred to together as the \textbf{implementation} stage, as both stages are interdependent and must adhere to the constraints of the same device. 
+    State of the art (SOTA) tools will perform routing-aware placement for greater optimization. 
 
     The final stage is the \textbf{bitstream} generation, where a vendor-specific programming tool produces a configuration file or bitstream that programs the physical FPGA device. 
-    The bitstream specifies the state of every configurable element—logic blocks, routing switches, and hard macros—ensuring the FPGA implements the user's design.
-
-    Throughout the flow, additional tools, such as constraint managers and timing analyzers, are used to enforce design rules and verify that the implementation meets required performance specifications. 
+    The bitstream specifies the state of every configurable element—logic blocks, routing switches, and hard macros—ensuring the FPGA implements the user's design. 
 
     Parallel to this entire design flow are simulators for which the user can write testbenches to verify their design at different stages of implementation.
     Xilinx's Vivado, for example, provides functional simulation, post-implementation simulation, and post-implementation timing simulation.
 
     This integrated toolchain, whether provided by FPGA vendors or open source communities, facilitates the transformation from an abstract HDL description to a functioning hardware configuration.
+
+\section{Xilinx 7-Series Architecture}
+
+    \begin{figure*}
+        \centering
+        \includegraphics[width=\textwidth]{figures/hierarchy.png}
+        \caption{Architecture Hierarchy of a Xilinx FPGA (Ultrascale)}
+        \label{fig:hierarchy}
+    \end{figure*}
+
+    Xilinx introduced the 7-Series architecture in 2010 which followed the heterogeneous island-style architecture described previously. 
+    Then in 2013 Xilinx unveiled Ultrascale architecture which kept the same heterogenous island-style architecture but made several optimization over the 7-Series architecture.
+    Although the latest FPGAs follow the Ultrascale architecture, this paper focuses on the 7-Series FPGAs due to their greater accessibility for beginner users and compatibility with open source tooling.
+
+    Figure~\ref{fig:hierarchy} illustrates the architectural hierarchy of an Ultrascale Xilinx FPGA. 
+    The architecture hierarchy is the same for the 7-Series devices. 
+    The only difference between Ultrascale and 7-Series is simply the design of the CLBs (Sites and BELs) themselves. 
+    At its most basic level, an FPGA is a vast physical array of replicated atomic components known as Basic Elements of Logic (BELs). 
+    These BELs, which include LUTs, FFs, BRAMs, DSPs, and programmable interconnects, form the fundamental building blocks for custom digital circuit implementations on FPGAs. 
+
+    The Xilinx architectural hierarchy organizes these BELs into increasingly abstract structures. 
+    \textbf{BELs} are packaged into \textbf{Sites}, which are then embedded into \textbf{Tiles}, which are subsequently consolidated into \textbf{Clock Regions}. 
+    In high-end Xilinx devices, Clock Regions may be further consolidated into \textbf{Super Logic Regions} (SLRs). 
+    However, for the scope of this paper, we focus on Xilinx devices that have only a single SLR. 
 
 
 \section{RapidWright API}
@@ -177,42 +175,57 @@
         \centering
         \includegraphics[width=6.5cm]{figures/vivado_dcps.png}
         \caption{Showing how RapidWright can take a design checkpoint at different stages of the Vivado toolchain, make customizations, then feed it back into the toolchain.}
-        \label{fig:device_carry_chain_routing}
+        \label{fig:vivado_dcps}
     \end{figure}
 
-    DO WE REALLY NEED THIS SECTION? JUST REFERENCE THE RW DOCUMENTATION.
-
-    The RapidWright API offers a user-friendly toolkit to take pre-implemented designs, that is, designs that have already been placed and/or routed by Vivado, and make custom optimizations to fit complex design criteria. 
-    RapidWright has several "BlockPlacers", a general Router, but no general Placer. 
-    We use this API to implement a crude general placer, in our case, a simulated annealer. 
-    (Show what parts of the FPGA toolchain that RapidWright already has and how our placer fits into that toolchain). 
-
+    We use the RapidWright API to implement a custom placer for Xilinx 7-Series FPGAs.
+    RapidWright is an open source Java framework that enables netlist implementation manipulation for modern Xilinx FPGAs. 
+    Figure \ref{fig:vivado_dcps} shows how the API can take design checkpoints in the form of .dcp files generated at any stage of the design implementation, allow the user to make custom optimizations, and reintegrate it back into the design flow. 
+    This allows the user to substitute any stage in the default FPGA design flow offered by Vivado with user-defined optimizations and implementations to meet complex design requirements. 
     There are three packages of objects that are most relavent to building our placer: the edif package, design package, and device package. 
+
+    maybe just list the relevant objects?
+
+    \subsection{EDIF Objects}
+    In Vivado, all designs post synthesis have a logical netlist that can be exported as an Electronic Design Interchange Format (EDIF) file or within a .dcp checkpoint file. 
+    This is the result of the synthesis tool parsing the raw Verilog source files, inferring logical behavior, and instantiating primitive cells to emulate the desired logical behavior. 
+    The final stage is often referred to as "technology mapping", as the primitive cells are specific to the FPGA architecture and consequently the FPGA manufacturer. 
+
+    The EDIFNetlist is the top level class that contains the netlist and cell libraries. 
+    The EDIFNetlist keeps a reference to the top cell which is wrapped in the EDIFDesign class. 
+    It also maintains a top cell instance reference that is generated when the file is loaded. 
+
+    \begin{figure*}
+        \centering
+        \includegraphics[width=\textwidth]{figures/routing_objects.png}
+        \caption{Examples of routing objects in a Xilinx FPGA}
+        \label{fig:routing_objects}
+    \end{figure*}
 
     \subsection{Device Objects}
     The \textbf{device} package contains the classes that correspond to constructs in the hardware and/or silicon devices. 
     The most prominent class, aptly named Device, represents a specific product family member (like the xc7z020 device of the 7-series family) and provides a reference to all of the logical and routing resources available on the device. 
-    There device classes can be separated into two groups: logical and routing. 
-    Among the logical classes are the BEL, Site, Tile, and ClockRegion objects discussed before. 
-    Among the routing classes are BELPin, SitePin, PIP (programmable interconnect point), Wire, and Node. 
+    The device classes can be separated into two main groups: logical and routing. 
+    Among the logical classes are the BEL, Site, Tile, and ClockRegion objects as shown previously in Figure \ref{fig:hierarchy}. 
+    Shown in figure \ref{fig:routing_objects} are the routing classes including BELPin, SitePin, PIP (programmable interconnect point), Wire, and Node. 
 
     \subsection{Design Package}
     The \textbf{design} package is the collection of objects used to describe how a logical netlist maps to the device netlist. 
     The design is also referred to as the "physical netlist" or "implementation". 
     It contains all of the primitive logical cell mappings to hardware, specifically the cells to BEL placements and physical net mapping to programmable interconnect or routing. 
 
-    \subsection{EDIF Package}
-    In Vivado, all designs post synthesis have a logical netlist that can be exported in the Electronic Design Interchange Format (EDIF) netlist format. 
-    The synthesis stage of the FPGA toolchain produces an EDIF file, which is a low-level file containing the technology-mapped netlist. 
-    The EDIFNetlist is the top level class that contains the netlist and cell libraries. 
-    The EDIFNetlist keeps a reference to the top cell which is wrapped in the EDIFDesign class. 
-    It also maintains a top cell instance reference that is generated when the file is loaded. 
+    In its current state, RapidWright has several SA-based "BlockPlacers" that can take pre-implemented macros, a general Router, but no general Placer. 
+    To fill this gap, we attempt to build a general Placer that can take a raw EDIF netlist and create a placed design. 
+    As mentioned before, our placer will be divided into three substages: prepacking, packing, and placement.
+    We use this API to implement a crude general placer, in our case, a simulated annealer. 
+    (Show what parts of the FPGA toolchain that RapidWright already has and how our placer fits into that toolchain). 
 
 
 \section{Placement Implementation}
     (Describe the algorithm, then in context of 7-Series arhictecture). \\
     \subsection{PrePacking}
-        In the prepacking stage, we traverse the raw EDIF Netlist to identify recurring cell patterns. In particular, we will specifically look for CARRY chains, DSP cascades, and LUT-FF pairs.
+        In the prepacking stage, we traverse the raw EDIF Netlist to identify recurring cell patterns. 
+        In particular, we will specifically look for CARRY chains, DSP cascades, and LUT-FF pairs as these patterns are most prevalent in all FPGA designs.
         \subsection{CARRY Chains}
             Each SLICE Site contains one CARRY4 BEL.
             Each CLB Tile contains two SLICE Sites.
