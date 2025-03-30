@@ -183,38 +183,74 @@
     Figure \ref{fig:vivado_dcps} shows how the API can take design checkpoints in the form of .dcp files generated at any stage of the design implementation, allow the user to make custom optimizations, and reintegrate it back into the design flow. 
     This allows the user to substitute any stage in the default FPGA design flow offered by Vivado with user-defined optimizations and implementations to meet complex design requirements. 
     There are three packages of objects that are most relavent to building our placer: the edif package, design package, and device package. 
+    RapidWright reads in a post-synthesis design checkpoint and allows us to traverse the netlist's logical EDIFCells through various function calls. 
+    For each EDIFCell object in the netlist, we create a Cell design object, which we then place onto physical device BEL object. 
+    CellPins and Nets are automatically generated from EDIFHierPortInst and EDIFHierNet upon the Cell's creation from an EDIFHierCellInst. 
 
-    maybe just list the relevant objects?
+    These three steps correspond to our placement substages of PrePacking, Packing, and Placement, respectively.
+    Figure \ref{fig:edif_design_device} illustrates the flow between these three substages in relation to the RapidWright object classes.
 
-    \subsection{EDIF Objects}
-    In Vivado, all designs post synthesis have a logical netlist that can be exported as an Electronic Design Interchange Format (EDIF) file or within a .dcp checkpoint file. 
-    This is the result of the synthesis tool parsing the raw Verilog source files, inferring logical behavior, and instantiating primitive cells to emulate the desired logical behavior. 
-    The final stage is often referred to as "technology mapping", as the primitive cells are specific to the FPGA architecture and consequently the FPGA manufacturer. 
+    \begin{figure*}
+        \centering
+        \includegraphics[width=\textwidth]{figures/edif_design_device.png}
+        \caption{The placement flow illustrating PrePacking into Packing into Placement for a logical netlist with 3 EDIF cells. EHCI is short for EDIFHierCellInst. EHPI is short for EDIFHierPortInst.}
+        \label{edif_design_device}
+    \end{figure*}
 
-    The EDIFNetlist is the top level class that contains the netlist and cell libraries. 
-    The EDIFNetlist keeps a reference to the top cell which is wrapped in the EDIFDesign class. 
-    It also maintains a top cell instance reference that is generated when the file is loaded. 
+    For a complete understanding of the RapidWright packages, please refer to the short API Overview \url{https://www.rapidwright.io/docs/RapidWright_Overview.html}.
+    Listed below are the most relevant objects to our placer and a short description.
+
+    \begin{figure*}
+        \centering
+        \includegraphics[width=\textwidth]{figures/edif_netlist.png}
+        \caption{Examples of edif netlist objects for a Xilinx FPGA}
+        \label{fig:routing_objects}
+    \end{figure*}
 
     \begin{figure*}
         \centering
         \includegraphics[width=\textwidth]{figures/routing_objects.png}
-        \caption{Examples of routing objects in a Xilinx FPGA}
+        \caption{Examples of device routing objects in a Xilinx FPGA}
         \label{fig:routing_objects}
     \end{figure*}
 
+
+    \subsection{EDIF Objects}
+        \begin{itemize}
+            \item EDIFNetlist
+            \item EDIFHierNet
+            \item EDIFHierCellInst
+            \item EDIFHierPortInst
+        \end{itemize}
+    \subsection{Design Objects}
+        \begin{itemize}
+            \item Netlist
+            \item Net
+            \item Cell
+            \item CellPin
+            \item SiteInst
+            \item SitePinInst
+        \end{itemize}
     \subsection{Device Objects}
-    The \textbf{device} package contains the classes that correspond to constructs in the hardware and/or silicon devices. 
-    The most prominent class, aptly named Device, represents a specific product family member (like the xc7z020 device of the 7-series family) and provides a reference to all of the logical and routing resources available on the device. 
-    The device classes can be separated into two main groups: logical and routing. 
-    Among the logical classes are the BEL, Site, Tile, and ClockRegion objects as shown previously in Figure \ref{fig:hierarchy}. 
-    Shown in figure \ref{fig:routing_objects} are the routing classes including BELPin, SitePin, PIP (programmable interconnect point), Wire, and Node. 
+        \begin{itemize}
+            \item BEL
+            \item PIP (programmable interconnect point)
+            \item Site
+            \item SitePin
+            \item Tile
+            \item ClockRegion
+        \end{itemize}
 
-    \subsection{Design Package}
-    The \textbf{design} package is the collection of objects used to describe how a logical netlist maps to the device netlist. 
-    The design is also referred to as the "physical netlist" or "implementation". 
-    It contains all of the primitive logical cell mappings to hardware, specifically the cells to BEL placements and physical net mapping to programmable interconnect or routing. 
+    In Vivado, all designs post synthesis have a logical netlist that can be exported as an Electronic Design Interchange Format (EDIF) file or within a .dcp checkpoint file. 
+    This is the result of the synthesis tool parsing the raw Verilog source files, inferring logical behavior, and instantiating primitive cells to emulate the desired logical behavior. 
+    The final stage is often referred to as "technology mapping", as the primitive cells are specific to the FPGA architecture and consequently the FPGA manufacturer. 
 
-    In its current state, RapidWright has several SA-based "BlockPlacers" that can take pre-implemented macros, a general Router, but no general Placer. 
+    In its current state, RapidWright has several SA-based "BlockPlacers", a general Router, but no general Placer. 
+    The BlockPlacer takes multiple pre-implemented designs (that is, designs that have been placed and routed), and instantiates them as hard macros in the form of ModuleInsts. 
+    ModuleInsts are a collection of SiteInsts whose positional relationship to eachother are fixed. 
+    The BlockPlacer takes these hard ModuleInsts and performs simulated annealing on them to find an optimal placement. 
+    The Router takes the placed design and routes the nets onto the device wires and programmable interconnects.
+
     To fill this gap, we attempt to build a general Placer that can take a raw EDIF netlist and create a placed design. 
     As mentioned before, our placer will be divided into three substages: prepacking, packing, and placement.
     We use this API to implement a crude general placer, in our case, a simulated annealer. 
@@ -223,6 +259,7 @@
 
 \section{Placement Implementation}
     (Describe the algorithm, then in context of 7-Series arhictecture). \\
+
     \subsection{PrePacking}
         In the prepacking stage, we traverse the raw EDIF Netlist to identify recurring cell patterns. 
         In particular, we will specifically look for CARRY chains, DSP cascades, and LUT-FF pairs as these patterns are most prevalent in all FPGA designs.
