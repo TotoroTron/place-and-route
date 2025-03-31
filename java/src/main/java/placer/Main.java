@@ -85,7 +85,7 @@ public class Main {
             for (PlacerAnnealRandom placer : SAPlacers) {
                 System.out.println("\n\nStarting " + placer.getPlacerName() + "... \n\n");
                 placer.makeOutputDirs(placer.getPlacerName());
-                placer.initCoolingSchedule(10000.0d, 0.98d, 400);
+                placer.initCoolingSchedule(10000.0d, 0.98d, 300);
                 placer.run(packedDesign);
             }
 
