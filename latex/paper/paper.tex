@@ -5,24 +5,28 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{mathpazo}
+\usepackage{xcolor}
+\usepackage{float}
 \usepackage{listings}
-% \usepackage{multicol}
-\usepackage[a4paper,
-            bindingoffset=0.2in,
-            left=1in,
-            right=1in,
-            top=1in,
-            bottom=1in,
-            footskip=.25in]{geometry}
-
 \lstset{
   basicstyle=\ttfamily\small,
   breaklines=true,
   columns=fullflexible,
   frame=single,
-  backgroundcolor=\color{gray!10},
-  captionpos=b
+  showspaces=false,
+  showtabs=false,
+  keepspaces=false
 }
+
+% \usepackage{multicol}
+\usepackage[a4paper,
+            bindingoffset=0.2in,
+            left=0.5in,
+            right=0.5in,
+            top=0.5in,
+            bottom=0.5in,
+            footskip=.25in]{geometry}
+
 
 \begin{document}
 \title{MS Technical Paper: \\ Placement Algorithms for Heterogenous FPGAs}
@@ -39,17 +43,30 @@
 
 
 \section{Abstract}
-    fdsafdsafdsa.
+    fdsafdsafdsa. \\ 
+    fdsafdsafdsa. \\ 
+    fdsafdsafdsa. \\ 
+    fdsafdsafdsa. \\ 
+    fdsafdsafdsa. \\ 
+    fdsafdsafdsa. \\ 
+    fdsafdsafdsa. \\ 
+    fdsafdsafdsa. \\ 
+    fdsafdsafdsa. \\ 
+    fdsafdsafdsa. \\ 
+    fdsafdsafdsa. \\ 
+    fdsafdsafdsa. \\ 
+    fdsafdsafdsa. \\ 
 
 \section{Introduction}
 
     Field-Programmable Gate Arrays (FPGAs) have witnessed rapid growth in capacity and versatility, driving significant advances in computer-aided design (CAD) and electronic design automation (EDA) methodologies. 
     Since the early-to-mid 2000s, the stagnation of single-processor performance relative to the rapid increase in integrated circuit sizes has led to a design productivity gap, where the computational effort for designing complex chips continues to rise. 
-    In FPGA CAD flows—which traditionally encompass logic synthesis, placement, routing, and bitstream generation—the placement stage has emerged as one of the most time-consuming processes. 
-    Inefficiencies in placement not only extend design times from hours to days, thereby elevating cost and reducing engineering productivity, but also limit the broader adoption of FPGAs by software engineers who expect compile times akin to those of conventional software compilers. 
+    FPGA CAD flows mainly encompass synthesis, placement, and routing; all of which are HP-hard problems, of which placement is one of the most time-consuming processes. 
+    Inefficienct placement strategy not only extends design times from hours to days, thereby elevating cost and reducing engineering productivity, but also limits the broader adoption of FPGAs by software engineers who expect compile times akin to those of conventional software compilers like {\tt gcc}. 
 
     For these reasons, FPGA placement remains a critical research effort even today. 
-    In this paper, we study and implement established placement methods by leveraging RapidWright, which is a semi-open-source API that offers backend access to Xilinx's industry-standard FPGA environment, Vivado. 
+    In this paper, we study and implement established placement methods. 
+    To do this, we use the RapidWright API, which is a semi-open-source research effort from AMD/Xilinx that enables custom solutions to FPGA design implementations and design tools that are not offered by their industry-standard FPGA environment, Vivado. 
     We implement multiple variations of simulated annealing placers for Xilinx's 7-series FPGAs, with an emphasis on minimizing total wirelength while mitigating runtime. 
     Our implementation is organized into three consecutive substages. 
     The \textbf{prepacking} stage involves traversing a raw EDIF netlist to identify recurring cell patterns—such as CARRY chains, DSP cascades, and LUT-FF pairs—that are critical for efficient mapping and legalization. 
@@ -70,14 +87,14 @@
 
     \begin{figure}
         \centering
-        \includegraphics[width=8.5cm]{figures/pal_2.png}
+        \includegraphics[width=8.0cm]{figures/pal_2.png}
         \caption{PAL architecture with 5 inputs, 8 programmable AND gates and 4 fixed OR gates}
         \label{fig:pla}
         % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/Programmable-Logic-Devices/Programmable-Array-Logic-PAL/
         % https://www.naukri.com/code360/library/difference-between-pla-and-pal 
     \end{figure}
 
-    Before any work can begin on a placer, it is necessary to understand both the objects to be placed and the medium in which they are placed.
+    Before any work can begin on an FPGA placer, it is necessary to understand both the objects being placed and the medium in which they are placed.
 
     Here we will briefly outline the evolution of configurable logic architecture as well as the FPGA design flow. 
     However, readers who are already familiar with basic FPGA architecture and design flow may skip to the next section on Xilinx 7-Series Architecture. 
@@ -85,11 +102,12 @@
     The journey began with the Programmable Logic Array (PLA) in the early 1970s. 
     The PLA implemented output logic using a programmable-OR and programmable-AND plane that formed a sum-of-products equation for each output through programmable fuses. 
     Around the same time, the Programmable Array Logic (PAL) was introduced. 
-    The PAL simplified the PLA by fixing the OR gates, resulting in a fixed-OR, programmable-AND design, which sacrificed some logic flexibility to simplify its manufacture.
+    The PAL simplified the PLA by fixing the OR gates, resulting in a fixed-OR, programmable-AND design, which sacrificed some logic flexibility to simplify its manufacture. 
+    Figure \ref{fig:pla} shows one such PLA architecture. 
 
     \begin{figure}
         \centering
-        \includegraphics[width=7.5cm]{figures/cpld.png}
+        \includegraphics[width=8.0cm]{figures/cpld.png}
         \caption{CPLD architecture with 4 CLBs (PAL-like blocks)}
         \label{fig:cpld}
         % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/CPLD/Complex-Programmable-Logic-Device-CPLDs/
@@ -97,25 +115,32 @@
 
     Later in the same decade came the Complex Programmable Logic Device (CPLD), which took the form of an array of Configurable Logic Blocks (CLBs). 
     These CLBs were typically modified PAL blocks that included the PAL itself along with macrocells such as flip-flops, multiplexers, and tri-state buffers. 
-    The CPLD functioned as an array of PALs connected by a programmable switch matrix and could be programmed using a hardware description language (HDL) like VHDL. 
+    The CPLD functioned as an array of PALs connected by a central programmable switch matrix and could be programmed using a hardware description language (HDL) like VHDL. 
+    Figure \ref{fig:cpld} shows one such CPLD architecture. 
 
     \begin{figure}
         \centering
-        \includegraphics[width=7.0cm]{figures/fpga.png}
-        \caption{Homogenous island-style FPGA architecture with 16 CLBs in a grid}
+        \includegraphics[width=8.0cm]{figures/homogenous_fpga.png}
+        \includegraphics[width=8.0cm]{figures/heterogenous_fpga_3.jpg}
+        \caption{
+            \textbf{Top}: A homogeneous island-style FPGA architecture with 16 CLBs in a grid. 
+            \textbf{Bottom}: A heterogeneous island-style FPGA with a mix of CLBs and macrocells.
+        }
         \label{fig:fpga}
+        % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/FPGA/Field-programmable-gate-array-FPGA/
         % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/FPGA/Field-programmable-gate-array-FPGA/
     \end{figure}
 
     The mid-1980s saw the introduction of the homogeneous FPGA, which was built as a grid of CLBs. 
-    Rather than using a central programmable switch matrix as in CPLDs, FPGAs adopted an island style architecture in which each CLB is surrounded on all sides by programmable routing resources. 
+    Rather than using a central programmable switch matrix as in CPLDs, FPGAs adopted an island style architecture in which each CLB is surrounded on all sides by programmable routing resources, as shown in Figure \ref{fig:homogenous_fpga}. 
     The first commercially viable FPGA, produced by Xilinx in 1984, featured 16 CLBs arranged in a 4x4 grid. 
     As FPGA technology advanced, CLBs were redesigned to use lookup tables (LUTs) instead of PAL arrays for greater logic density. 
     The capacity of an FPGA was often measured by how many logical elements or CLBs it offered, which grew from hundreds to thousands and now to hundreds of thousands of CLBs.
 
+
     This brings us to modern day FPGA architectures.
     To meet the needs of increasingly complex designs, FPGA vendors introduced heterogeneous FPGAs. 
-    In these devices, hard macros such as Block RAM (BRAM) and Digital Signal Processing (DSP) slices are integrated into the programmable logic fabric along with CLBs. 
+    In these devices, hard macros such as Block RAM (BRAM) and Digital Signal Processing (DSP) slices are integrated into the programmable logic fabric along with CLBs, like shown in Figure \ref{fig:fpga}. 
     This design enables the direct instantiation of common subsystems like memories and multipliers, without having to recreate them from scratch using CLBs. 
     Major vendors such as Xilinx and Altera now employ heterogeneous island-style architectures in their devices. 
     As designs become increasingly large and complex, FPGAs become increasingly heterogenous by incorporating a wider variety of hard macros into the fabric.
@@ -158,23 +183,23 @@
 
     This integrated toolchain, whether provided by FPGA vendors or open source communities, facilitates the transformation from an abstract HDL description to a functioning hardware configuration.
 
+
 \section{Xilinx 7-Series Architecture}
 
-    \begin{figure*}[!hbt]
+    \begin{figure*}[t]
         \centering
-        \includegraphics[width=\textwidth]{figures/hierarchy.png}
+        \includegraphics[width=12.0cm]{figures/hierarchy.png}
         \caption{Architecture Hierarchy of a Xilinx FPGA (Ultrascale)}
         \label{fig:hierarchy}
     \end{figure*}
 
     Xilinx introduced the 7-Series architecture in 2010 which followed the heterogeneous island-style architecture described previously. 
-    Then in 2013 Xilinx unveiled Ultrascale architecture which kept the same heterogenous island-style architecture but made several optimization over the 7-Series architecture.
+    Then in 2013 Xilinx unveiled Ultrascale architecture which also followed the heterogenous island-style design but made several improvements over the 7-Series architecture.
     Although the latest FPGAs follow the Ultrascale architecture, this paper focuses on the 7-Series FPGAs due to their greater accessibility for beginner users and compatibility with open source tooling.
 
 
     Figure~\ref{fig:hierarchy} illustrates the architectural hierarchy of an Ultrascale Xilinx FPGA. 
     The architecture hierarchy is the same for the 7-Series devices. 
-    The only difference between Ultrascale and 7-Series is simply the design of the CLBs (Sites and BELs) themselves. 
     At its most basic level, an FPGA is a vast physical array of replicated atomic components known as Basic Elements of Logic (BELs). 
     These BELs, which include LUTs, FFs, BRAMs, DSPs, and programmable interconnects, form the fundamental building blocks for custom digital circuit implementations on FPGAs. 
 
@@ -185,27 +210,37 @@
 
 
 \section{RapidWright API}
-    \begin{figure}
+    We use the RapidWright API to implement a custom placer for Xilinx 7-Series FPGAs.
+    RapidWright is an open source Java framework that enables netlist implementation manipulation for modern Xilinx FPGAs. 
+
+    \begin{figure}[]
         \centering
-        \includegraphics[width=6.0cm]{figures/vivado_dcps.png}
-        \caption{Design flow showing how RapidWright can take a design checkpoint, allow user customization, and reintegrate it back into the design flow.}
+        \includegraphics[width=8.0cm]{figures/vivado_dcps.png}
+        \caption{Showing how RapidWright can take a design checkpoint from any stage of the design flow, allow user customization, and reintegrate it back into the design flow.}
         \label{fig:vivado_dcps}
     \end{figure}
 
-    \begin{figure*}[!htt]
+    \begin{figure}[]
         \centering
-        \includegraphics[width=\textwidth]{figures/edif_design_device.png}
-        \caption{The placement flow illustrating PrePacking into Packing into Placement for a logical netlist with 3 EDIF cells. EHCI is short for EDIFHierCellInst. EHPI is short for EDIFHierPortInst.}
+        \includegraphics[width=8.5cm]{figures/edif_design_device.png}
+        \caption{The placement flow illustrating PrePacking into Packing into Placement for a logical netlist with 3 EDIF cells. EHCI is short for EDIFHierCellInst.}
         \label{fig:edif_design_device}
+    \end{figure}
+
+    Figure \ref{fig:vivado_dcps} shows how the API allows us to take design checkpoints in the form of .dcp files generated at any stage of the design flow, allow the user to make custom optimizations, and reintegrate it back into the design flow. 
+    This allows the user to substitute any stage in the default FPGA design flow offered by Vivado with a custom user-defined process to meet complex design constraints. 
+    There are three packages of objects that are most relevant to building our placer: the \textbf{edif} package, \textbf{design} package, and \textbf{device} package. 
+    Figure \ref{fig:edif_objects} shows the EDIF netlist objects and device routing objects as shown in the Vivado netlist viewer and device viewer.
+    Figure \ref{fig:edif_design_device} illustrates the flow between these packages in relation to our PrePacking, Packing, and Placement flow.
+
+    \begin{figure*}[t]
+        \centering
+        \includegraphics[width=14.0cm]{figures/edif_netlist.png}
+        \includegraphics[width=14.0cm]{figures/routing_objects.png}
+        \caption{Examples of edif netlist objects (top) and routing objects (bottom) for a Xilinx FPGA}
+        \label{fig:edif_objects}
     \end{figure*}
 
-    We use the RapidWright API to implement a custom placer for Xilinx 7-Series FPGAs.
-    RapidWright is an open source Java framework that enables netlist implementation manipulation for modern Xilinx FPGAs. 
-    Figure \ref{fig:vivado_dcps} shows how the API can take design checkpoints in the form of .dcp files generated at any stage of the design implementation, allow the user to make custom optimizations, and reintegrate it back into the design flow. 
-    This allows the user to substitute any stage in the default FPGA design flow offered by Vivado with user-defined optimizations and implementations to meet complex design requirements. 
-    There are three packages of objects that are most relavent to building our placer: the \textbf{edif} package, \textbf{design} package, and \textbf{device} package. 
-    Figure \ref{fig:routing_objects} shows the device routing objects as shown in the Vivado device viewer while figure \ref{fig:edif_netlist} shows the EDIF netlist objects as shown in the Vivado netlist viewer.
-    Figure \ref{fig:edif_design_device} illustrates the flow between these packages in relation to our PrePacking, Packing, and Placement flow.
     
     RapidWright reads in a post-synthesis design checkpoint and allows us to traverse the netlist's logical EDIFCells through various function calls. 
     For each EDIFCell object in the netlist, we create a Cell design object, which we then place onto physical device BEL object. 
@@ -213,44 +248,51 @@
 
     These three steps correspond to our placement substages of PrePacking, Packing, and Placement, respectively.
 
-    For a complete understanding of the RapidWright packages, please refer to the short API Overview \url{https://www.rapidwright.io/docs/RapidWright_Overview.html}.
-
-    \begin{figure*}[!htt]
-        \centering
-        \includegraphics[width=12.0cm]{figures/edif_netlist.png}
-        \caption{Examples of edif netlist objects for a Xilinx FPGA}
-        \label{fig:edif_netlist}
-    \end{figure*}
-
-    \begin{figure*}[!htt]
-        \centering
-        \includegraphics[width=\textwidth]{figures/routing_objects.png}
-        \caption{Examples of device routing objects in a Xilinx FPGA}
-        \label{fig:routing_objects}
-    \end{figure*}
+    For a complete understanding of the RapidWright packages, please refer to the API Overview \url{https://www.rapidwright.io/docs/RapidWright_Overview.html}.
 
 
 \section{Placement Implementation}
 
-    With a basic understanding of FPGA architecture, design placement, and RapidWright, we can begin implementing our SA placer. 
+    With a basic understanding of FPGA architecture, design placement, and RapidWright, we have all the necessary pieces to implement our SA placer. 
     Here we outline in detail each substage of our implementation. 
 
+    \begin{figure*}[t]
+        \centering
+        \includegraphics[width=14.0cm]{figures/substages.png}
+        \caption{The data classes populated at each substage: PrepackedDesign, PackedDesign, and PlacedDesign.}
+        \label{fig:substages}
+    \end{figure*}
+
     \subsection{PrePacking}
-        In the prepacking stage, we traverse the raw EDIF Netlist to identify recurring Cell patterns. 
-        We do this because there are certain desirable cell configurations that should be clustered together to exploit some proximity characteristics of the FPGA architecture 
+        In the prepacking stage, we traverse the raw EDIF Netlist to identify common recurring Cell patterns. 
+        We do this because there are certain desirable cell configurations that should be clustered together to exploit some proximity characteristics of the FPGA architecture. 
         There are also some cell configurations that must necessarily be placed in certain ways in relation to each other to ensure legality within the architecture constraints. 
         First, we traverse the entire EDIF netlist and identify all unique Cell types and group them together via a {\tt HashMap<String, List<EDIFHierCellInst>>}, where String is the name cell type. 
         Cell type groups can include {\tt CARRY4}, {\tt LUT1-6}, {\tt FF}, {\tt DSP48E1}, {\tt RAMB18E1}, and others. 
-        We specifically look for CARRY chains, DSP cascades, and LUT-FF pairs as these patterns are most prevalent in all FPGA designs.
+        We specifically look for CARRY chains, DSP cascades, and LUT-FF pairs as these patterns are common to nearly all FPGA designs.
 
         \subsection{CARRY Chains}
-            To find CARRY chains, we take the CARRY4 group and follow the below pseudocode. 
-            \begin{verbatim}
-                for (EDIFHierCellInst ehci : CARRYCells) {
-                    ehci.getPorts()
-
+            \begin{figure}[]
+                \centering
+                \includegraphics[width=5.0cm]{figures/carry_cell_edif.png}
+                \includegraphics[width=3.0cm]{figures/carry_cell_device.png}
+                \caption{
+                    Left: A CARRY4 EDIFCell as seen in the Vivado netlist viewer.
+                    Right: The corresponding CARRY4 Cell as seen in the device viewer.
                 }
-            \end{verbatim}
+                \label{fig:carry_cell_edif}
+            \end{figure}
+
+            \begin{figure*}[t]
+                \centering
+                \includegraphics[width=\textwidth]{figures/carry_chain_edif.png}
+                \caption{Example of a CARRY4 chain of length 6 as seen in the Vivado netlist viewer.}
+                \label{fig:carry_chain_edif}
+            \end{figure*}
+
+            
+            To find CARRY chains, we take the CARRY4 group and follow the below pseudocode. 
+
             Each SLICE Site contains one CARRY4 BEL.
             Each CLB Tile contains two SLICE Sites.
             CARRY chains span vertically across multiple SLICE Sites/Tiles. (Show picture)
@@ -258,7 +300,7 @@
                 \centering
                 \includegraphics[width=3.0cm]{figures/carry_chain_routes.png}
                 \includegraphics[width=3.0cm]{figures/dsp_cascade_routes.png}
-                \caption{A Carry Chain of length 6 spanning 6 Tiles. On the left, the cell-only representation. On the right, cells with routing representation.}
+                \caption{Left: A Carry Chain of length 6 spanning 6 Sites across 6 Tiles. On the left, the cell-only representation. Right: A DSP cascade of length 2 spanning 2 Sites across 1 Tile.}
                 \label{fig:device_carry_chain_routing}
             \end{figure}
         \subsection{DSP Cascades}
@@ -285,37 +327,33 @@
 
 
 
-\section{Analytical Placement}
-    Introduce placement with legalization methods. \\
-    Many AP approaches use a Global placement, Legalization, then Detailed placement approach. \\
-    Our SA only considers legal moves via bookkeeping structures, so it has no concept of global placement or legalization. \\
-    It is a detailed placement only approach. \\
-    \begin{itemize}
-        \item Talk about HeAP as an example.
-        \item Global Placement, Legalization, then Detailed Placement approach.
-        \item Global placement using the Bound2Bound net model from SimPL.
-        \item Legalization Step 1: \\
-            Find an area of the device that is overutilized (illegal) for twhich the blocks contained within must spread to a larger area. \\
-            To obtain this overutilized area, adjacent locations (Sites, Tiles, etc.) on the device that are occupied by more than one block (SiteInst, ModuleInst, etc.) are repeatedly clustered together, until all clusters are bordered on all sides by non-overutilized locations. \\ 
-            Then, the area (?) is expanded in both the x and y dimensions (?) until it is large enough to accommodate all blocks contained within. \\
-            Specifically, the area is expanded until its "occupance" \(O_A\) divided by its "capacity" \(C_A\) is less than a maximum "utilization factor" $\beta$, where $\beta$ is less than or equal to 1. HeAP uses 0.9.
-        \item Legalization Step 2: \\
-            Two cuts are generated: a "source cut" and a "target cut". \\
-            The source cut pertains to the blocks being placed (SiteInsts in home buffer). \\ 
-            The target cut pertains to the area into which the blocks are placed (away buffer). \\
-            The source cut splits the blocks into 2 partitions, while the target cut splits the area into 2 sub-areas, into which the blocks in each partition are spread. \\
-            Two objectives are minimized during this process: The imbalance between the number of blocks in each partition, and the difference in the utilization of each sub-area. \\
-            Utilization defined as the occupancy divided by the capacity of the sub-area. \\
-            \(U_{sub-area} = \frac{O_{sub-area}}{C_{sub-area}}\) \\
-            To generate the source cut, the cells are first sorted by their x or y location, depending on the orientation of the desired cut. \\
-            Once the cells are sorted, the source cut generation is akin to choosing a pivot in a sorted list, where all blocks to the left of the pivot are assigned to the left/bottom partition and all blocks to the right of the pivot are assigned to the right/top partition. \\
-            The target cut is an x or y cut of the area such that all blocks in each partition fit in their respective sub-areas, and such that \( | U_{sub-area_1} 
-             - U_{sub-area_2} | \) is minimized.
-
-
-
-
-    \end{itemize}
+% \section{Analytical Placement}
+%     Introduce placement with legalization methods. \\
+%     Many AP approaches use a Global placement, Legalization, then Detailed placement approach. \\
+%     Our SA only considers legal moves via bookkeeping structures, so it has no concept of global placement or legalization. \\
+%     It is a detailed placement only approach. \\
+%     \begin{itemize}
+%         \item Talk about HeAP as an example.
+%         \item Global Placement, Legalization, then Detailed Placement approach.
+%         \item Global placement using the Bound2Bound net model from SimPL.
+%         \item Legalization Step 1: \\
+%             Find an area of the device that is overutilized (illegal) for twhich the blocks contained within must spread to a larger area. \\
+%             To obtain this overutilized area, adjacent locations (Sites, Tiles, etc.) on the device that are occupied by more than one block (SiteInst, ModuleInst, etc.) are repeatedly clustered together, until all clusters are bordered on all sides by non-overutilized locations. \\ 
+%             Then, the area (?) is expanded in both the x and y dimensions (?) until it is large enough to accommodate all blocks contained within. \\
+%             Specifically, the area is expanded until its "occupance" \(O_A\) divided by its "capacity" \(C_A\) is less than a maximum "utilization factor" $\beta$, where $\beta$ is less than or equal to 1. HeAP uses 0.9.
+%         \item Legalization Step 2: \\
+%             Two cuts are generated: a "source cut" and a "target cut". \\
+%             The source cut pertains to the blocks being placed (SiteInsts in home buffer). \\ 
+%             The target cut pertains to the area into which the blocks are placed (away buffer). \\
+%             The source cut splits the blocks into 2 partitions, while the target cut splits the area into 2 sub-areas, into which the blocks in each partition are spread. \\
+%             Two objectives are minimized during this process: The imbalance between the number of blocks in each partition, and the difference in the utilization of each sub-area. \\
+%             Utilization defined as the occupancy divided by the capacity of the sub-area. \\
+%             \(U_{sub-area} = \frac{O_{sub-area}}{C_{sub-area}}\) \\
+%             To generate the source cut, the cells are first sorted by their x or y location, depending on the orientation of the desired cut. \\
+%             Once the cells are sorted, the source cut generation is akin to choosing a pivot in a sorted list, where all blocks to the left of the pivot are assigned to the left/bottom partition and all blocks to the right of the pivot are assigned to the right/top partition. \\
+%             The target cut is an x or y cut of the area such that all blocks in each partition fit in their respective sub-areas, and such that \( | U_{sub-area_1} 
+%              - U_{sub-area_2} | \) is minimized.
+%     \end{itemize}
 
 
 

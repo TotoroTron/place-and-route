@@ -58,6 +58,30 @@ public class ImageMaker {
         SITE_TYPE_COLORS.put(SiteTypeEnum.IOB33M, Color.decode("#888888")); // Medium Gray
     }
 
+    // private static final Map<SiteTypeEnum, Color> SITE_TYPE_COLORS = new
+    // HashMap<>();
+    // static {
+    // // Dull empty colors
+    // SITE_TYPE_COLORS.put(SiteTypeEnum.SLICEL, Color.decode("#000088")); // Dull
+    // Blue
+    // SITE_TYPE_COLORS.put(SiteTypeEnum.SLICEM, Color.decode("#880000")); // Dull
+    // Green
+    // SITE_TYPE_COLORS.put(SiteTypeEnum.RAMB18E1, Color.decode("#880000")); // Dull
+    // Red
+    // SITE_TYPE_COLORS.put(SiteTypeEnum.FIFO18E1, Color.decode("#880000")); // Dull
+    // Red
+    // SITE_TYPE_COLORS.put(SiteTypeEnum.RAMB36E1, Color.decode("#880000")); // Dull
+    // Red
+    // SITE_TYPE_COLORS.put(SiteTypeEnum.DSP48E1, Color.decode("#444400")); // Dull
+    // Yellow
+    // SITE_TYPE_COLORS.put(SiteTypeEnum.BUFGCTRL, Color.decode("#888888")); //
+    // Medium Gray
+    // SITE_TYPE_COLORS.put(SiteTypeEnum.IOB33S, Color.decode("#888888")); // Medium
+    // Gray
+    // SITE_TYPE_COLORS.put(SiteTypeEnum.IOB33M, Color.decode("#888888")); // Medium
+    // Gray
+    // }
+
     private static final Map<SiteTypeEnum, Color> PLACEMENT_COLORS = new HashMap<>();
     static {
         // Bright active colors
@@ -70,6 +94,16 @@ public class ImageMaker {
         PLACEMENT_COLORS.put(SiteTypeEnum.BUFGCTRL, Color.decode("#FFFFFF")); // White
         PLACEMENT_COLORS.put(SiteTypeEnum.IOB33S, Color.decode("#FFFFFF")); // White
         PLACEMENT_COLORS.put(SiteTypeEnum.IOB33M, Color.decode("#FFFFFF")); // White
+    }
+
+    public ImageMaker(Device device) throws IOException {
+        this.design = null;
+        this.device = device;
+        this.uniqueSiteTypes = new HashSet<>();
+        this.allSites = new HashMap<>();
+        this.netlistCosts = new ArrayList<>();
+        initSites();
+        this.image = new BufferedImage(scale * width, scale * height, BufferedImage.TYPE_INT_RGB);
     }
 
     public ImageMaker(Design design) throws IOException {

@@ -53,6 +53,8 @@ public class Main {
 
             Design design = Design.readCheckpoint(synthesizedDcp);
             Device device = Device.getDevice("xc7z020clg400-1");
+            ImageMaker imdev = new ImageMaker(device);
+            imdev.exportImage(rootDir + "/outputs/device.png");
 
             // Stage 1) Prepacker:
             // works entirely on the EDIFHierCellInst level.
