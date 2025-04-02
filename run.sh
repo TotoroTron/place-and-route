@@ -115,6 +115,9 @@ EOL
         fi
     done
 
+    xvlog "$XILINX_VIVADO/data/verilog/src/glbl.v" -L xil_defaultlib -L uvm --incr --relax
+    check_exit_status "xvlog for glbl"
+
     # Read verification files and log
     verif_files=("$DESIGN_DIR"/verif/*.sv)
     for file in "${verif_files[@]}"; do
@@ -127,8 +130,9 @@ EOL
     # Elaboration
     xelab -debug typical -top "tb_$TOP_LEVEL" -snapshot "${TOP_LEVEL}_functional" \
         -timescale 1ns/1ps \
-        -L xpm \
-        $XELAB_TOP_PARAMS
+        -L xil_defaultlib -L uvm -L secureip -L xpm -L simprims_ver -L unisims_ver \
+        $XELAB_TOP_PARAMS \
+        glbl
     # -L xil_defaultlib -L uvm -L secureip -L unisims_ver -L simprims_ver
     check_exit_status "xelab"
 
@@ -158,15 +162,14 @@ if [ "$start_stage" == "place" ] || [ "$start_stage" == "all" ]; then
     gradle run
     check_exit_status "Gradle run"
     cd $PROJ_DIR
-    python3 python/plot_convergence.py
     echo "Java placement executed. Check 'logger.txt' for output."
 fi
 
 # Return to outer dir
 cd $PROJ_DIR
 
-# Render placement video
-if [ "$start_stage" == "video" ] || [ "$start_stage" == "all" ]; then
+# Render placement graphics
+if [ "$start_stage" == "graphics" ] || [ "$start_stage" == "all" ]; then
     cd $PROJ_DIR
     FPS=10
     # INPUT="outputs/placers/PlacerAnnealRandom/graphics/images"

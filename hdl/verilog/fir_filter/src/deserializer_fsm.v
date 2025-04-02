@@ -2,7 +2,7 @@
 
 module deserializer_fsm
 #(
-    parameter LENGTH = 24
+    parameter LENGTH = 16
 )(
     input wire i_clk,
     input wire i_rst,
@@ -17,7 +17,7 @@ module deserializer_fsm
 
     reg [LENGTH-1:0] shift_reg;
     localparam LENGTH_BITS = $clog2(LENGTH);
-    reg [LENGTH_BITS-1:0] counter;
+    reg [LENGTH_BITS:0] counter;
 
     parameter 
         IDLE = 3'b001,

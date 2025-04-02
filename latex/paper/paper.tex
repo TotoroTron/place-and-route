@@ -29,7 +29,7 @@
 
 
 \begin{document}
-\title{MS Technical Paper: \\ Placement Algorithms for Heterogenous FPGAs}
+\title{MS Technical Paper: \\ Placement Algorithms for Heterogeneous FPGAs}
 \author{Brian B Cheng \\ Rutgers University Department of Electrical and Computer Engineering}
 
 
@@ -132,7 +132,7 @@
     \end{figure}
 
     The mid-1980s saw the introduction of the homogeneous FPGA, which was built as a grid of CLBs. 
-    Rather than using a central programmable switch matrix as in CPLDs, FPGAs adopted an island style architecture in which each CLB is surrounded on all sides by programmable routing resources, as shown in Figure \ref{fig:homogenous_fpga}. 
+    Rather than using a central programmable switch matrix as in CPLDs, FPGAs adopted an island style architecture in which each CLB is surrounded on all sides by programmable routing resources, as shown in Figure \ref{fig:fpga}. 
     The first commercially viable FPGA, produced by Xilinx in 1984, featured 16 CLBs arranged in a 4x4 grid. 
     As FPGA technology advanced, CLBs were redesigned to use lookup tables (LUTs) instead of PAL arrays for greater logic density. 
     The capacity of an FPGA was often measured by how many logical elements or CLBs it offered, which grew from hundreds to thousands and now to hundreds of thousands of CLBs.
@@ -143,7 +143,7 @@
     In these devices, hard macros such as Block RAM (BRAM) and Digital Signal Processing (DSP) slices are integrated into the programmable logic fabric along with CLBs, like shown in Figure \ref{fig:fpga}. 
     This design enables the direct instantiation of common subsystems like memories and multipliers, without having to recreate them from scratch using CLBs. 
     Major vendors such as Xilinx and Altera now employ heterogeneous island-style architectures in their devices. 
-    As designs become increasingly large and complex, FPGAs become increasingly heterogenous by incorporating a wider variety of hard macros into the fabric.
+    As designs become increasingly large and complex, FPGAs meet the demand by becoming increasingly heterogenous by incorporating a wider variety of hard macros into the fabric.
 
 \section{The FPGA Design Flow and Toolchain}
     
@@ -194,7 +194,7 @@
     \end{figure*}
 
     Xilinx introduced the 7-Series architecture in 2010 which followed the heterogeneous island-style architecture described previously. 
-    Then in 2013 Xilinx unveiled Ultrascale architecture which also followed the heterogenous island-style design but made several improvements over the 7-Series architecture.
+    Then in 2013 Xilinx unveiled the Ultrascale architecture which also followed the heterogeneous island-style design but made several improvements over the 7-Series architecture.
     Although the latest FPGAs follow the Ultrascale architecture, this paper focuses on the 7-Series FPGAs due to their greater accessibility for beginner users and compatibility with open source tooling.
 
 
@@ -266,10 +266,11 @@
     \subsection{PrePacking}
         In the prepacking stage, we traverse the raw EDIF Netlist to identify common recurring Cell patterns. 
         We do this because there are certain desirable cell configurations that should be clustered together to exploit some proximity characteristics of the FPGA architecture. 
+        Doing so will innately improve wirelength minimization. 
         There are also some cell configurations that must necessarily be placed in certain ways in relation to each other to ensure legality within the architecture constraints. 
         First, we traverse the entire EDIF netlist and identify all unique Cell types and group them together via a {\tt HashMap<String, List<EDIFHierCellInst>>}, where String is the name cell type. 
         Cell type groups can include {\tt CARRY4}, {\tt LUT1-6}, {\tt FF}, {\tt DSP48E1}, {\tt RAMB18E1}, and others. 
-        We specifically look for CARRY chains, DSP cascades, and LUT-FF pairs as these patterns are common to nearly all FPGA designs.
+        We specifically look for CARRY chains, DSP cascades, and LUT-FF pairs as these patterns are common to nearly all FPGA designs. 
 
         \subsection{CARRY Chains}
             \begin{figure}[]
@@ -293,9 +294,9 @@
             
             To find CARRY chains, we take the CARRY4 group and follow the below pseudocode. 
 
-            Each SLICE Site contains one CARRY4 BEL.
-            Each CLB Tile contains two SLICE Sites.
-            CARRY chains span vertically across multiple SLICE Sites/Tiles. (Show picture)
+            Each SLICE Site contains one CARRY4 BEL. 
+            Each CLB Tile contains two SLICE Sites. 
+            CARRY chains span vertically across multiple SLICE Sites/Tiles. (Show picture) 
             \begin{figure}
                 \centering
                 \includegraphics[width=3.0cm]{figures/carry_chain_routes.png}
@@ -303,6 +304,7 @@
                 \caption{Left: A Carry Chain of length 6 spanning 6 Sites across 6 Tiles. On the left, the cell-only representation. Right: A DSP cascade of length 2 spanning 2 Sites across 1 Tile.}
                 \label{fig:device_carry_chain_routing}
             \end{figure}
+
         \subsection{DSP Cascades}
             Each DSP Site contains one DSP BEL.
             Each DSP Tile contains two DSP Sites.

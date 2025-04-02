@@ -290,14 +290,17 @@ public class PlacerAnnealRandom extends Placer {
             Site site = device.getSite(siteTypePrefix + "X" + instX + "Y" + i);
             sites.add(site);
         }
-        if (finalTailInstY - finalAnchorInstY > 16) {
-            System.out.println("buffer size: " + (finalTailInstY - finalAnchorInstY));
-            System.out.println("\tinitAnchor: " + initAnchor.getInstanceY() + ", initTail: " + initTail.getInstanceY());
-            System.out.println("\tfinalAnchor: " + finalAnchorInstY + ", finalTail: " + finalTailInstY);
-            for (Site site : sites) {
-                System.out.println("\t\tSiteInst: " + occupiedSites.get(site.getSiteTypeEnum()).get(site));
-            }
-        }
+        // if (finalTailInstY - finalAnchorInstY > 16) {
+        // System.out.println("buffer size: " + (finalTailInstY - finalAnchorInstY));
+        // System.out.println("\tinitAnchor: " + initAnchor.getInstanceY() + ",
+        // initTail: " + initTail.getInstanceY());
+        // System.out.println("\tfinalAnchor: " + finalAnchorInstY + ", finalTail: " +
+        // finalTailInstY);
+        // for (Site site : sites) {
+        // System.out.println("\t\tSiteInst: " +
+        // occupiedSites.get(site.getSiteTypeEnum()).get(site));
+        // }
+        // }
         return sites;
     } // end findBufferZone()
 

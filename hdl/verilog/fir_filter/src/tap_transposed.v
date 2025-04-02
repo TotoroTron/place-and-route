@@ -1,7 +1,7 @@
 
 module tap_transposed
 #(
-    parameter DATA_WIDTH = 24
+    parameter DATA_WIDTH = 8
 )(
     input wire i_clk,
     input wire i_rst,

@@ -1,8 +1,8 @@
 
 module fir_filter_direct_form_partially_pipelined
 #(
-    parameter DATA_WIDTH = 24,
-    parameter FIR_DEPTH = 16,
+    parameter DATA_WIDTH = 8,
+    parameter FIR_DEPTH = 8,
     parameter NUM_PIPELINES = 1
 )(
     input wire i_clk,
