@@ -145,6 +145,38 @@
     Major vendors such as Xilinx and Altera now employ heterogeneous island-style architectures in their devices. 
     As designs become increasingly large and complex, FPGAs meet the demand by becoming increasingly heterogenous by incorporating a wider variety of hard macros into the fabric. 
 
+\section{Xilinx 7-Series Architecture}
+
+    \begin{figure}[]
+        \centering
+        \includegraphics[width=9.0cm]{figures/hierarchy.png}
+        \caption{Architecture Hierarchy of a Xilinx FPGA (Ultrascale)}
+        \label{fig:hierarchy}
+    \end{figure}
+
+    Xilinx introduced the 7-Series architecture in 2010 which followed the heterogeneous island-style architecture described previously. 
+    Then in 2013 Xilinx unveiled the Ultrascale architecture which also followed the heterogeneous island-style design and made several improvements over the 7-Series architecture. 
+    Although the latest FPGAs follow the Ultrascale architecture, this paper focuses on the 7-Series FPGAs due to their greater accessibility for beginner users and compatibility with open source tooling. 
+
+
+    % Figure~\ref{fig:hierarchy} illustrates the architectural hierarchy of an Ultrascale Xilinx FPGA. 
+    % The architecture hierarchy is the same for the 7-Series devices. 
+    Figure \ref{fig:hierarchy_3} illustrates the architectural hierarchy of a 7-Series Xilinx FPGA. 
+    At its most basic level, an FPGA is a vast physical array of replicated atomic components known as Basic Elements of Logic (BELs). 
+    These BELs, which include LUTs, FFs, BRAMs, DSPs, and programmable interconnects, form the fundamental building blocks for custom digital circuit implementations on FPGAs. 
+
+    The Xilinx architectural hierarchy organizes these BELs into increasingly abstract structures. 
+    \textbf{BELs} are packaged into \textbf{Sites}, which are then embedded into \textbf{Tiles}, which are subsequently consolidated into \textbf{Clock Regions}. 
+    In high-end Xilinx devices, Clock Regions may be further consolidated into \textbf{Super Logic Regions} (SLRs). 
+    However, for the scope of this paper, we focus on Xilinx devices that have only a single SLR. 
+
+    \begin{figure}[]
+        \centering
+        \includegraphics[width=9.0cm]{figures/hierarchy_3.png}
+        \caption{Tiles, Sites, BELs hierarchy}
+        \label{fig:hierarchy_3}
+    \end{figure}
+
 \section{The FPGA Design Flow and Toolchain}
     
     \begin{figure}
@@ -168,7 +200,7 @@
     Our placer will only involve prepacking, packing, and detailed placement for simplicity. 
     The objective is to place the logical cell instances of the netlist onto physical BELs on the device in a way that minimizes delay, satisfies design constraints, and simplifies routing. 
 
-    Following placement, the \textbf{routing} tool connects the placed elements by assigning physical wiring resources to the nets in the netlist. 
+    Following placement, the \textbf{routing} tool connects the placed elements by assigning physical wiring resources (switchboxes, programmable interconnects) to the nets in the netlist. 
     The router determines their paths through the programmable interconnect network while attempting to meet timing and performance constraints.
 
     Placement and routing are generally referred to together as the \textbf{implementation} stage, as both stages are interdependent and must adhere to the constraints of the same device. 
@@ -182,32 +214,6 @@
     Xilinx's Vivado, for example, provides functional simulation, post-implementation simulation, and post-implementation timing simulation. 
 
     This integrated toolchain, whether provided by FPGA vendors or open source communities, facilitates the transformation from an abstract HDL description to a functioning hardware configuration. 
-
-
-\section{Xilinx 7-Series Architecture}
-
-    \begin{figure*}[t]
-        \centering
-        \includegraphics[width=12.0cm]{figures/hierarchy.png}
-        \caption{Architecture Hierarchy of a Xilinx FPGA (Ultrascale)}
-        \label{fig:hierarchy}
-    \end{figure*}
-
-    Xilinx introduced the 7-Series architecture in 2010 which followed the heterogeneous island-style architecture described previously. 
-    Then in 2013 Xilinx unveiled the Ultrascale architecture which also followed the heterogeneous island-style design but made several improvements over the 7-Series architecture. 
-    Although the latest FPGAs follow the Ultrascale architecture, this paper focuses on the 7-Series FPGAs due to their greater accessibility for beginner users and compatibility with open source tooling. 
-
-
-    Figure~\ref{fig:hierarchy} illustrates the architectural hierarchy of an Ultrascale Xilinx FPGA. 
-    The architecture hierarchy is the same for the 7-Series devices. 
-    At its most basic level, an FPGA is a vast physical array of replicated atomic components known as Basic Elements of Logic (BELs). 
-    These BELs, which include LUTs, FFs, BRAMs, DSPs, and programmable interconnects, form the fundamental building blocks for custom digital circuit implementations on FPGAs. 
-
-    The Xilinx architectural hierarchy organizes these BELs into increasingly abstract structures. 
-    \textbf{BELs} are packaged into \textbf{Sites}, which are then embedded into \textbf{Tiles}, which are subsequently consolidated into \textbf{Clock Regions}. 
-    In high-end Xilinx devices, Clock Regions may be further consolidated into \textbf{Super Logic Regions} (SLRs). 
-    However, for the scope of this paper, we focus on Xilinx devices that have only a single SLR. 
-
 
 \section{RapidWright API}
     We use the RapidWright API to implement a custom placer for Xilinx 7-Series FPGAs.
@@ -248,7 +254,7 @@
 
     These three steps correspond to our placement substages of PrePacking, Packing, and Placement, respectively.
 
-    For a complete understanding of the RapidWright packages, please refer to the API Overview \url{https://www.rapidwright.io/docs/RapidWright_Overview.html}.
+    For a complete understanding of the RapidWright packages, please refer to the API Overview \url{https://www.rapidwright.io/docs/RapidWright_Overview.html} and the API reference.
 
 
 \section{Placement Implementation}
@@ -271,10 +277,12 @@
         There are also some cell configurations that must necessarily be placed in certain ways in relation to each other to ensure legality within the architecture constraints. 
 
         Furthermore, certain cell patterns are specific to certain cell types. 
-        Therefore, we first traverse the entire EDIF netlist and identify all unique cell types and group them together via a {\tt HashMap<String, List<EDIFHierCellInst>>}, where String is the name cell type and {\tt EDIFHierCellInst} is the cell class. 
+        Therefore, we must first traverse the entire EDIF netlist and identify all unique cell types and group them together via a {\tt HashMap<String, List<EDIFHierCellInst>>}, where key String is the name cell type and value {\tt List<EDIFHierCellInst>} is the list of cells of that type. 
+        The resulting lists in the hashmap are mutually exclusive. 
 
-        Cell groups can include {\tt CARRY4}, {\tt LUT1-6}, {\tt FF}, {\tt DSP48E1}, {\tt RAMB18E1}, and others. 
+        Cell types can include {\tt CARRY4}, {\tt LUT1-6}, {\tt FF}, {\tt DSP48E1}, {\tt RAMB18E1}, and others. 
         We specifically look for CARRY4 chains, DSP48E1 cascades, and LUT-FF pairs as these patterns are common to nearly all FPGA designs. 
+        We will describe each cell pattern in detail. 
 
         \subsection{CARRY Chains}
             \begin{figure}[]
@@ -299,13 +307,14 @@
 
             As the name implies, CARRY chains are chains of CARRY cells. 
             Very often an HDL design will implement many adders, counters, subtractors, or comparators, all operations based on binary addition. 
-            They are so ubiquitous that every that in the 7-Series architecture, every CLB comes embedded with a CARRY4 BEL, a 4-bit carry-lookahead (CLA) adder that can be chained together across CLBs to implement wider adders.
-            On the Ultrascale architecture, the each CLB contains a CARRY8 BEL, an 8-bit CLA adder, allowing for even greater logic density. 
+            They are so ubiquitous that every that in the 7-Series architecture, every CLB comes embedded with a CARRY4 BEL, a 4-bit carry-lookahead (CLA) adder that can be chained together across CLBs to implement wider adders. 
+            % On the Ultrascale architecture, the each CLB contains a CARRY8 BEL, an 8-bit CLA adder, allowing for even greater logic density. 
 
             (By now Need to have introduced SLICEL / SLICEM Sites and differentiated them from "CLBs", which are referred to as CLBL or CLBM Tiles)
             (rip some figures from the 7-series CLB user guide)
 
-            These CARRY4 cells, if chained together, must be placed vertically across CLBs, as each CLB is connected vertically by Carry In (CI)
+            These CARRY4 cells, if chained together, must be placed vertically across CLBs, as each CLB is connected vertically by a Carry In (CI) to Carry Out (COUT) wire between them. 
+            The only way to route the carry net is through this wire, thus why these CLBs must be placed consecutively vertically. 
             This allows the facilitation of fast adders on the device. 
 
             The CARRY4 
@@ -387,6 +396,7 @@
     \item Support for more macros: buffer cells, FIFO, clock generators, etc..
     \item Support Ultrascale architecture. 
     \item Better packing scheme. Currently pseudorandom packing. 
+    \item Inter-Site BEL swapping. 
     \item BEL-centric placement over Site-centric placement.
     \item Analytical placement. Global placement, legalization, detailed placement. 
     \end{itemize}
