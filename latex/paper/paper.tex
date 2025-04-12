@@ -147,13 +147,6 @@
 
 \section{Xilinx 7-Series Architecture}
 
-    % \begin{figure}[]
-    %     \centering
-    %     \includegraphics[width=9.0cm]{figures/hierarchy.png}
-    %     \caption{Architecture Hierarchy of a Xilinx FPGA (Ultrascale)}
-    %     \label{fig:hierarchy}
-    % \end{figure}
-
     \begin{figure*}[]
         \centering
         \includegraphics[width=15.0cm]{figures/hierarchy_3.png}
@@ -161,10 +154,9 @@
         \label{fig:hierarchy_4}
     \end{figure*}
 
-    Xilinx introduced the 7-Series architecture in 2010 which followed the heterogeneous island-style architecture described previously. 
-    Then in 2013 Xilinx unveiled the Ultrascale architecture which also followed the heterogeneous island-style design and made several improvements over the 7-Series architecture. 
-    Although the latest FPGAs follow the Ultrascale architecture, this paper focuses on the 7-Series FPGAs due to their greater accessibility for beginner users and compatibility with open source tooling. 
-
+    In this paper we will be working with the Xilinx 7-Series devices which follows the heterogenous island-style architecture. 
+    The 7-Series architecture first released in 2010 and was superceded by the Ultrascale architecture which made several improvements over the 7-Series. 
+    Although the latest FPGAs follow the Ultrascale architecture, this paper focuses on the 7-Series FPGAs due to their greater accessibility to beginner users and compatibility with open source tooling. 
 
     % Figure~\ref{fig:hierarchy} illustrates the architectural hierarchy of an Ultrascale Xilinx FPGA. 
     % The architecture hierarchy is the same for the 7-Series devices. 
@@ -263,7 +255,7 @@
 \section{Placement Implementation}
 
     With a basic understanding of FPGA architecture, design placement, and RapidWright, we have all the necessary pieces to implement our SA placer. 
-    Here we outline in detail each substage of our implementation. 
+    Here we outline in detail each substage of our implementation: PrePacking, Packing, and Placement. 
 
     \begin{figure*}[t]
         \centering
@@ -274,16 +266,15 @@
 
     \subsection{PrePacking}
 
-        In the prepacking stage, we traverse the raw EDIF Netlist to identify common recurring Cell patterns. 
+        In the prepacking stage, we traverse the raw post-synthesis EDIF Netlist to identify common recurring Cell patterns. 
         We do this because there are certain desirable cell configurations that should be clustered together to exploit some proximity characteristics of the FPGA architecture. 
+        For example, in Figure \ref{fig:intrasite_intersite}
         Doing so will innately improve wirelength minimization. 
         There are also some cell configurations that must necessarily be placed in certain ways in relation to each other to ensure legality within the architecture constraints. 
 
         \begin{figure}
             \centering
-            \includegraphics[width=4.0cm]{figures/edif_net.png}
-            \includegraphics[width=4.0cm]{figures/intrasite_route.png}
-            \includegraphics[width=8.0cm]{figures/intersite_route.png}
+            \includegraphics[width=8.0cm]{figures/intersite_intrasite.png}
             \caption{
                 \textbf{Upper Left}: A LUT-FF cell pair in the netlist.
                 \textbf{Upper Right}: The LUT-FF pair placed within the same Site.
