@@ -147,12 +147,19 @@
 
 \section{Xilinx 7-Series Architecture}
 
-    \begin{figure}[]
+    % \begin{figure}[]
+    %     \centering
+    %     \includegraphics[width=9.0cm]{figures/hierarchy.png}
+    %     \caption{Architecture Hierarchy of a Xilinx FPGA (Ultrascale)}
+    %     \label{fig:hierarchy}
+    % \end{figure}
+
+    \begin{figure*}[]
         \centering
-        \includegraphics[width=9.0cm]{figures/hierarchy.png}
-        \caption{Architecture Hierarchy of a Xilinx FPGA (Ultrascale)}
-        \label{fig:hierarchy}
-    \end{figure}
+        \includegraphics[width=15.0cm]{figures/hierarchy_3.png}
+        \caption{Architecture Hierarchy of a Xilinx FPGA}
+        \label{fig:hierarchy_4}
+    \end{figure*}
 
     Xilinx introduced the 7-Series architecture in 2010 which followed the heterogeneous island-style architecture described previously. 
     Then in 2013 Xilinx unveiled the Ultrascale architecture which also followed the heterogeneous island-style design and made several improvements over the 7-Series architecture. 
@@ -161,7 +168,7 @@
 
     % Figure~\ref{fig:hierarchy} illustrates the architectural hierarchy of an Ultrascale Xilinx FPGA. 
     % The architecture hierarchy is the same for the 7-Series devices. 
-    Figure \ref{fig:hierarchy_3} illustrates the architectural hierarchy of a 7-Series Xilinx FPGA. 
+    Figure \ref{fig:hierarchy_4} illustrates the architectural hierarchy of a 7-Series Xilinx FPGA. 
     At its most basic level, an FPGA is a vast physical array of replicated atomic components known as Basic Elements of Logic (BELs). 
     These BELs, which include LUTs, FFs, BRAMs, DSPs, and programmable interconnects, form the fundamental building blocks for custom digital circuit implementations on FPGAs. 
 
@@ -170,30 +177,27 @@
     In high-end Xilinx devices, Clock Regions may be further consolidated into \textbf{Super Logic Regions} (SLRs). 
     However, for the scope of this paper, we focus on Xilinx devices that have only a single SLR. 
 
-    \begin{figure}[]
-        \centering
-        \includegraphics[width=9.0cm]{figures/hierarchy_3.png}
-        \caption{Tiles, Sites, BELs hierarchy}
-        \label{fig:hierarchy_3}
-    \end{figure}
+    Note that in the Xilinx architectures, "CLBs" refer to CLB Tiles, each containing two "SLICE" Sites, with each SLICE Site containing 8 LUTs, 8 Flip Flop, and 1 CARRY BEL.
+    These SLICEs facilitate the core reprogrammability of the FPGA. 
+
 
 \section{The FPGA Design Flow and Toolchain}
     
     \begin{figure}
         \centering
-        \includegraphics[width=7.0cm]{figures/design_flow.png}
+        \includegraphics[width=8.0cm]{figures/design_flow.png}
         \caption{A typical FPGA design and verification workflow}
         \label{fig:design_flow}
     \end{figure}
 
-    Figure \ref{fig:design_flow} shows a typical FPGA design and verification workflow.
-    The FPGA design flow takes a high-level digital design written in an HDL and generates a configuration file that programs the physical FPGA. 
+    Figure \ref{fig:design_flow} illustrates a typical FPGA design and verification workflow, transforming a high-level digital design into a configuration file that programs the physical FPGA.
 
-    The process begins with \textbf{design entry}, where an engineer describes the functionality of their circuit using a hardware description language (HDL) such as Verilog or VHDL. This description abstracts away details of the physical hardware while defining the logic and behavior of the design. 
+    The process begins with \textbf{design entry}, where an engineer describes the desired functionality using a hardware description language (HDL) such as Verilog or VHDL. 
+    Engineers may use various coding styles - behavioral, structural, dataflow, or a mix of all three - to capture the logic and behavior of the design while abstracting away the intricacies of the physical hardware architecture. 
 
-    Next, the \textbf{synthesis} tool interprets the HDL code and generates a netlist that represents the design in terms of primitive cells, such as lookup tables (LUTs) and flip flops. 
-    This is the result of the synthesis tool parsing the raw Verilog source files, inferring logical behavior, and instantiating primitive cells to emulate the desired logical behavior. 
-    The final stage is often referred to as "technology mapping", as the primitive cells are specific to the FPGA architecture and consequently the FPGA manufacturer. 
+    Next, the user runs the \textbf{synthesis} tool, which parses the raw HDL source files to infer logical behavior, perform optimizations, and instantiate primitive cells. 
+    The result is a detailed netlist, typically output as a low-level Verilog or Electronic Design Interchange Format (EDIF) file, where the design is represented purely in structural HDL. 
+    The final stage is often referred to as "technology mapping", as the vocabulary or library of primitive cells must be specific to the FPGA architecture and consequently the FPGA manufacturer. 
 
     After synthesis, the \textbf{placement} tool assigns each logic element in the netlist a specific location within the FPGA’s fabric. 
     Depending on the placement strategy, this stage can include substages of prepacking, packing, global placement, legalization, and detailed placement. 
@@ -203,12 +207,11 @@
     Following placement, the \textbf{routing} tool connects the placed elements by assigning physical wiring resources (switchboxes, programmable interconnects) to the nets in the netlist. 
     The router determines their paths through the programmable interconnect network while attempting to meet timing and performance constraints.
 
-    Placement and routing are generally referred to together as the \textbf{implementation} stage, as both stages are interdependent and must adhere to the constraints of the same device. 
+    Placement and routing are generally referred jointly as the \textbf{implementation} stage, as both stages are interdependent and must adhere to the constraints of the same device. 
     State of the art (SOTA) tools will perform routing-aware placement for greater optimization. 
 
     The final stage is the \textbf{bitstream} generation, where a vendor-specific programming tool produces a configuration file or bitstream that programs the physical FPGA device. 
     The bitstream specifies the state of every configurable element—logic blocks, routing switches, and hard macros—ensuring the FPGA implements the user's design. 
-
 
     Parallel to this entire design flow are simulators for which the user can write testbenches to verify their design at different stages of implementation.
     Xilinx's Vivado, for example, provides functional simulation, post-implementation simulation, and post-implementation timing simulation. 
@@ -276,6 +279,21 @@
         Doing so will innately improve wirelength minimization. 
         There are also some cell configurations that must necessarily be placed in certain ways in relation to each other to ensure legality within the architecture constraints. 
 
+        \begin{figure}
+            \centering
+            \includegraphics[width=4.0cm]{figures/edif_net.png}
+            \includegraphics[width=4.0cm]{figures/intrasite_route.png}
+            \includegraphics[width=8.0cm]{figures/intersite_route.png}
+            \caption{
+                \textbf{Upper Left}: A LUT-FF cell pair in the netlist.
+                \textbf{Upper Right}: The LUT-FF pair placed within the same Site.
+                \textbf{Bottom}: The LUT-FF pair placed across different Sites.
+            }
+            \label{fig:intrasite_intersite}
+        \end{figure}
+
+        For example, in many HDL designs, LUTs and FFs often come in pairs, as is the case in Figure \ref{fig:intrasite_intersite}
+
         Furthermore, certain cell patterns are specific to certain cell types. 
         Therefore, we must first traverse the entire EDIF netlist and identify all unique cell types and group them together via a {\tt HashMap<String, List<EDIFHierCellInst>>}, where key String is the name cell type and value {\tt List<EDIFHierCellInst>} is the list of cells of that type. 
         The resulting lists in the hashmap are mutually exclusive. 
@@ -309,6 +327,12 @@
             Very often an HDL design will implement many adders, counters, subtractors, or comparators, all operations based on binary addition. 
             They are so ubiquitous that every that in the 7-Series architecture, every CLB comes embedded with a CARRY4 BEL, a 4-bit carry-lookahead (CLA) adder that can be chained together across CLBs to implement wider adders. 
             % On the Ultrascale architecture, the each CLB contains a CARRY8 BEL, an 8-bit CLA adder, allowing for even greater logic density. 
+
+
+
+
+
+
 
             (By now Need to have introduced SLICEL / SLICEM Sites and differentiated them from "CLBs", which are referred to as CLBL or CLBM Tiles)
             (rip some figures from the 7-series CLB user guide)
