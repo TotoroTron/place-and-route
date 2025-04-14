@@ -96,7 +96,7 @@
 
     Before any work can begin on an FPGA placer, it is necessary to understand both the objects being placed and the medium in which they are placed.
 
-    Here we will briefly outline the evolution of configurable logic architecture as well as the FPGA design flow. 
+    First we will briefly outline the evolution of configurable logic architecture as well as the FPGA design flow. 
     However, readers who are already familiar with basic FPGA architecture and design flow may skip to the next section on Xilinx 7-Series Architecture. 
     Configurable logic devices have undergone significant evolution over the past four decades. 
     The journey began with the Programmable Logic Array (PLA) in the early 1970s. 
@@ -128,7 +128,6 @@
         }
         \label{fig:fpga}
         % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/FPGA/Field-programmable-gate-array-FPGA/
-        % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/FPGA/Field-programmable-gate-array-FPGA/
     \end{figure}
 
     The mid-1980s saw the introduction of homogeneous FPGAs, which were built as a grid of CLBs. 
@@ -143,7 +142,7 @@
     In these devices, hard macros such as Block RAM (BRAM) and Digital Signal Processing (DSP) slices are integrated into the programmable logic fabric along with CLBs, like shown in Figure \ref{fig:fpga}. 
     This design enables the direct instantiation of common subsystems like memories and multipliers, without having to recreate them from scratch using CLBs. 
     Major vendors such as Xilinx and Altera now employ heterogeneous island-style architectures in their devices. 
-    As designs become increasingly large and complex, FPGAs meet the demand by becoming increasingly heterogenous by incorporating a wider variety of hard macros into the fabric. 
+    As designs become increasingly large and complex, FPGAs meet the demand by becoming increasingly heterogenous, incorporating a wider variety of hard macros into the fabric. 
 
 \section{Xilinx 7-Series Architecture}
 
@@ -154,12 +153,12 @@
         \label{fig:hierarchy_4}
     \end{figure*}
 
-    In this paper we will be working with the Xilinx 7-Series devices which follows the heterogenous island-style architecture. 
-    The 7-Series architecture first released in 2010 and was superceded in 2013 by the Ultrascale architecture which made several improvements over the 7-Series. 
-    Although the latest FPGAs follow the Ultrascale architecture, this paper focuses on the 7-Series FPGAs due to their greater accessibility to beginner users and compatibility with open source tooling. 
+    In this paper we will be working with the Xilinx 7-Series architecture which follows a heterogenous island-style design. 
+    The 7-Series architecture first released in 2010 and was then superceded in 2013 by the Ultrascale architecture which offered several improvements over the 7-Series. 
+    Although the latest FPGAs follow the Ultrascale architecture, this paper focuses on the 7-Series FPGAs due to their greater accessibility to hobbyists and compatibility with open source tooling. 
 
     Figure \ref{fig:hierarchy_4} illustrates the architectural hierarchy of a 7-Series Xilinx FPGA. 
-    At its most basic level, an FPGA is a vast physical array of replicated atomic components known as Basic Elements of Logic (BELs). 
+    At its most basic level, an FPGA is a vast physical array of atomic components known as Basic Elements of Logic (BELs). 
     These BELs, which include LUTs, FFs, BRAMs, DSPs, and programmable interconnects, form the fundamental building blocks for custom digital circuit implementations on FPGAs. 
 
     The Xilinx architectural hierarchy organizes these BELs into increasingly abstract structures. 
@@ -167,11 +166,25 @@
     In high-end Xilinx devices, Clock Regions may be further consolidated into \textbf{Super Logic Regions} (SLRs). 
     However, for the scope of this paper, we focus on Xilinx devices that have only a single SLR. 
 
-    Note that in the Xilinx architectures, "CLBs" refer to CLB Tiles, each containing two "SLICE" Sites, with each SLICE Site containing 8 LUTs, 8 Flip Flop, and 1 CARRY BEL. 
-    These SLICE Sites facilitate the core programmable logic of the FPGA. 
+    Note that in the Xilinx architectures, "CLBs" refer to CLB Tiles, each containing two "SLICE" Sites, with each SLICE Site containing a collection of BELs - 8 LUTs, 8 Flip Flops, and 1 CARRY4. 
+
+
+    The LUTs and Flip Flops constitute the core of the FPGA programmable logic. 
+
+    Flip Flops (FFs) facilitate synchronous (clock-driven or event-driven) registers. 
+
+    SLICE Sites come in two flavors - SLICEL (SLICE-Logic) and SLICEM (SLICE-Memory). 
+    In the SLICEL, Lookup Tables (LUTs), as their name implies, are fast shallow read-only memories (ROMs) with 6 input pins and 1 or 2 output pins. 
+    All combinational logic - boolean functions - are mapped onto these LUTs as read-only-memories during synthesis. 
+    Larger boolean functions with more than 6 inputs will be mapped onto multiple cascaded LUTs. 
+
+    The SLICEM is similar to the SLICEL, the key difference being that their LUTs can optionally be programmed as RAMs to facilitate "Distributed RAM", an alternative to the larger dedicated Block RAM (BRAM) macro. 
+    Xilinx devices usually come a 25\% SLICEM, 75\% SLICEL split amongst all SLICE Sites, where a CLB Tile can contain either two SLICELs or one SLICEL one SLICEM. 
+
+    Each SLICE also comes with a shallow 4-bit carry-lookahead adder (CLA) BEL called "CARRY4". 
+
 
 \section{The FPGA Design Flow and Toolchain}
-    
     \begin{figure}
         \centering
         \includegraphics[width=8.0cm]{figures/design_flow.png}
@@ -179,9 +192,11 @@
         \label{fig:design_flow}
     \end{figure}
 
+    In addition to the FPGA hardware architecture, one should also understand the role that placement plays in the borader FPGA design flow and software toolchain. 
+
     Figure \ref{fig:design_flow} illustrates a typical FPGA design and verification workflow, transforming a high-level digital design into a configuration file that programs the physical FPGA.
 
-    The process begins with \textbf{design entry}, where an engineer describes the desired functionality using a hardware description language (HDL) such as Verilog or VHDL. 
+    The process begins with \textbf{design entry}, where an engineer describes the desired functionality of a digital system using a hardware description language (HDL) such as Verilog or VHDL. 
     Engineers may use various coding styles - behavioral, structural, dataflow, or a mix of all three - to capture the logic and behavior of the design while abstracting away the intricacies of the physical hardware architecture. 
 
     Next, the user runs the \textbf{synthesis} tool, which parses the raw HDL source files to infer logical behavior, perform optimizations, and instantiate primitive cells. 
@@ -264,37 +279,6 @@
         We do this because there are certain desirable cell configurations that should be clustered together to exploit the physical organization of the BELs and Sites of the architecture. 
         Doing so will innately improve wirelength minimization. 
         There are also some cell configurations that must necessarily be placed in certain ways in relation to each other to ensure legality within the architecture constraints. 
-        
-        \subsection{LUT-FF Pairs}
-            In the vast majority of HDL designs, LUTs and FFs will be synthesized in pairs, as is the case in Figure \ref{fig:lut_ff_pair}.
-            Shown in Figure \ref{fig:intrasite_intersite} are two possible placements for this cell net. 
-            On the right, the cells are placed across different Sites, thus the only way to route the net between the cells is through general inter-site routing. 
-            On the bottom left, the cells are placed within the same Site, taking advantage of the intra-site routing and avoiding costly inter-site routing. 
-
-            Identify unique CE-SR net pairs. 
-            All FF cells in a Site must share the same CE and SR nets. 
-
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=8.0cm]{figures/lut_ff_pair.png}
-            \caption{
-                Example of a LUT-FF Cell Pair as shown the Vivado netlist viewer. 
-                FDRE is a type of Flip Flop. 
-            }
-            \label{fig:lut_ff_pair}
-        \end{figure}
-
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=8.0cm]{figures/intersite_intrasite.png}
-            \caption{
-                \textbf{Upper Left}: A LUT-FF cell pair in the netlist.
-                \textbf{Upper Right}: The LUT-FF pair placed within the same Site.
-                \textbf{Bottom}: The LUT-FF pair placed across different Sites.
-            }
-            \label{fig:intrasite_intersite}
-        \end{figure}
-
 
         Furthermore, certain cell patterns are specific to certain cell types. 
         Therefore, we must first traverse the entire EDIF netlist and identify all unique cell types and group them together via a {\tt HashMap<String, List<EDIFHierCellInst>>}, where key String is the name cell type and value {\tt List<EDIFHierCellInst>} is the list of cells of that type. 
@@ -303,6 +287,53 @@
         Cell types can include {\tt CARRY4}, {\tt LUT1-6}, {\tt FF}, {\tt DSP48E1}, {\tt RAMB18E1}, and others. 
         We specifically look for CARRY4 chains, DSP48E1 cascades, and LUT-FF pairs as these patterns are common to nearly all FPGA designs. 
         We will describe each cell pattern in detail. 
+
+        \subsection{LUT-FF Pairs}
+            Very often, engineers model the behavior of a digital system as a collection of Finite State Machines (FSM) as shown in Figure \ref{fig:fsm}. 
+            An FSM at its core is a synchronous sequential circuit comprising of a combinational element and a synchronous memory element.
+            In the 7-Series architecture, combinational elements are synthesized as LUTs, where the truth table of the combinational function is mapped onto the LUT's memory. 
+
+            Combinational functions in 7-Series FPGAs are synthesized as Look-Up Tables (LUTs). 
+            The FPGA synthesizer maps the combinational element into LUTs and the memory element onto FFs. 
+
+
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=8.0cm]{figures/fsm.png}
+                \caption{A Finite State Machine (Moore)}
+                \label{fig:fsm}
+            \end{figure}
+
+            In the vast majority of HDL designs, LUTs and FFs will be synthesized in pairs, as is the case in Figure \ref{fig:lut_ff_pair}.
+            Shown in Figure \ref{fig:intrasite_intersite} are two possible placements for this cell net. 
+            On the right, the cells are placed across different Sites, thus the only way to route the net between the cells is through general inter-site routing. 
+            On the bottom left, the cells are placed within the same Site, taking advantage of the intra-site routing and avoiding costly inter-site routing. 
+
+            Identify unique CE-SR net pairs. 
+            All FF cells in a Site must share the same CE and SR nets. 
+
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=8.0cm]{figures/lut_ff_pair.png}
+                \caption{
+                    Example of a LUT-FF Cell Pair as shown the Vivado netlist viewer. 
+                    FDRE is a type of Flip Flop. 
+                }
+                \label{fig:lut_ff_pair}
+            \end{figure}
+
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=9.0cm]{figures/intersite_intrasite_2.png}
+                \caption{
+                    \textbf{Upper Left}: A LUT-FF cell pair in the netlist.
+                    \textbf{Upper Right}: The LUT-FF pair placed within the same Site.
+                    \textbf{Bottom}: The LUT-FF pair placed across different Sites.
+                }
+                \label{fig:intrasite_intersite}
+            \end{figure}
+
+
 
         \subsection{CARRY Chains}
             \begin{figure}[]
@@ -452,5 +483,18 @@
 %              - U_{sub-area_2} | \) is minimized.
 %     \end{itemize}
 
+
+
+    \begin{figure*}[b]
+        \centering
+        \includegraphics[width=\textwidth]{figures/slicem.png}
+        \caption{SLICEM Site.}
+    \end{figure}
+
+    \begin{figure*}[t]
+        \centering
+        \includegraphics[width=\textwidth]{figures/slicel.png}
+        \caption{SLICEL Site.}
+    \end{figure}
 
 \end{document}
