@@ -83,6 +83,13 @@
     Modern FPGA placers have also followed suit, as new legalization strategies allow FPGA placers to leverage traditionally ASIC placement algorithms and adapt them to the discrete constraints of FPGA architectures. 
     While this paper does not present a working analytical placer, it will explore ways to build upon our existing infrastructure (prepacker and packer) to replace SA with AP. 
 
+    The paper first begins by elaborating on general FPGA architecture and then specifically the Xilinx 7-Series architecture. 
+    Then, the paper will elaborate on the FPGA design flow, then the role that the RapidWright API plays in the design flow. 
+    We explain in detail each of these concepts for a broader audience as they provide much needed context for FPGA placement algorithms as a concept. 
+    However, readers who are already familiar with these concepts can skip directly to the RapidWright API section. 
+
+
+
 \section{A Brief History on FPGA Architecture}
 
     \begin{figure}
@@ -96,8 +103,8 @@
 
     Before any work can begin on an FPGA placer, it is necessary to understand both the objects being placed and the medium in which they are placed.
 
-    First we will briefly outline the evolution of configurable logic architecture as well as the FPGA design flow. 
-    However, readers who are already familiar with basic FPGA architecture and design flow may skip to the next section on Xilinx 7-Series Architecture. 
+    First we will briefly review the evolution of configurable logic architecture as well as general FPGA design flow. 
+    % However, readers who are already familiar with basic FPGA architecture and design flow may skip to the next section on Xilinx 7-Series Architecture. 
     Configurable logic devices have undergone significant evolution over the past four decades. 
     The journey began with the Programmable Logic Array (PLA) in the early 1970s. 
     The PLA implemented output logic using a programmable-OR and programmable-AND plane that formed a sum-of-products equation for each output through programmable fuses. 
@@ -153,7 +160,7 @@
         \label{fig:hierarchy_4}
     \end{figure*}
 
-    In this paper we will be working with the Xilinx 7-Series architecture which follows a heterogenous island-style design. 
+    In this paper we will be working with the Xilinx 7-Series devices which follows a heterogenous island-style architecture. 
     The 7-Series architecture first released in 2010 and was then superceded in 2013 by the Ultrascale architecture which offered several improvements over the 7-Series. 
     Although the latest FPGAs follow the Ultrascale architecture, this paper focuses on the 7-Series FPGAs due to their greater accessibility to hobbyists and compatibility with open source tooling. 
 
@@ -166,7 +173,9 @@
     In high-end Xilinx devices, Clock Regions may be further consolidated into \textbf{Super Logic Regions} (SLRs). 
     However, for the scope of this paper, we focus on Xilinx devices that have only a single SLR. 
 
-    Note that in the Xilinx architectures, "CLBs" refer to CLB Tiles, each containing two "SLICE" Sites, with each SLICE Site containing a collection of BELs - 8 LUTs, 8 Flip Flops, and 1 CARRY4. 
+
+
+    In the 7-Series architecture, "CLBs" refer to CLB Tiles, each containing two "SLICE" Sites, with each SLICE Site containing a collection of BELs - 8 LUTs, 8 Flip Flops, and 1 CARRY4. 
 
 
     The LUTs and Flip Flops constitute the core of the FPGA programmable logic. 
@@ -174,15 +183,17 @@
     Flip Flops (FFs) facilitate synchronous (clock-driven or event-driven) registers. 
 
     SLICE Sites come in two flavors - SLICEL (SLICE-Logic) and SLICEM (SLICE-Memory). 
-    In the SLICEL, Lookup Tables (LUTs), as their name implies, are fast shallow read-only memories (ROMs) with 6 input pins and 1 or 2 output pins. 
+    In the SLICEL, Lookup Tables (LUTs) are fast shallow read-only memories (ROMs) with 6 input pins and 1 or 2 output pins. 
     All combinational logic - boolean functions - are mapped onto these LUTs as read-only-memories during synthesis. 
     Larger boolean functions with more than 6 inputs will be mapped onto multiple cascaded LUTs. 
 
-    The SLICEM is similar to the SLICEL, the key difference being that their LUTs can optionally be programmed as RAMs to facilitate "Distributed RAM", an alternative to the larger dedicated Block RAM (BRAM) macro. 
-    Xilinx devices usually come a 25\% SLICEM, 75\% SLICEL split amongst all SLICE Sites, where a CLB Tile can contain either two SLICELs or one SLICEL one SLICEM. 
+    The SLICEM is similar to the SLICEL, with the key difference that their LUTs can optionally be programmed as RAMs to facilitate "Distributed RAM", an alternative to the larger dedicated Block RAM (BRAM) macro. 
+
+    Shown in Figure \ref{fig:slicel} and Figure \ref{fig:slicem} are a SLICEL and SLICEM respectively as seen in the Vivado device viewer. 
+
+    Xilinx devices usually come a 25\% SLICEM, 75\% SLICEL split amongst all SLICE Sites, where a CLB Tile can contain either two SLICELs or one SLICEL plus one SLICEM. 
 
     Each SLICE also comes with a shallow 4-bit carry-lookahead adder (CLA) BEL called "CARRY4". 
-
 
 \section{The FPGA Design Flow and Toolchain}
     \begin{figure}
@@ -192,7 +203,7 @@
         \label{fig:design_flow}
     \end{figure}
 
-    In addition to the FPGA hardware architecture, one should also understand the role that placement plays in the borader FPGA design flow and software toolchain. 
+    In addition ot the FPGA architecture, one should also understand the role that placement plays in the broader FPGA design flow and software toolchain. 
 
     Figure \ref{fig:design_flow} illustrates a typical FPGA design and verification workflow, transforming a high-level digital design into a configuration file that programs the physical FPGA.
 
@@ -206,15 +217,15 @@
     After synthesis, the \textbf{placement} tool assigns each logic element in the netlist a specific location within the FPGA’s fabric. 
     Depending on the placement strategy, this stage can include substages of prepacking, packing, global placement, legalization, and detailed placement. 
     Our placer will only involve prepacking, packing, and detailed placement for simplicity. 
-    The objective is to place the logical cell instances of the netlist onto physical BELs on the device in a way that minimizes delay, satisfies design constraints, and simplifies routing. 
+    The objective is to place the logical cell instances of the netlist onto physical BELs on the device in a way that minimizes wirelength, simplifies routing, and satisfies timing constraints (signal propagation delay). 
 
     Following placement, the \textbf{routing} tool connects the placed elements by assigning physical wiring resources (switchboxes, programmable interconnects) to the nets in the netlist. 
     The router determines their paths through the programmable interconnect network while attempting to meet timing and performance constraints.
 
     Placement and routing are generally referred jointly as the \textbf{implementation} stage, as both stages are interdependent and must adhere to the constraints of the same device. 
-    State of the art (SOTA) tools will perform routing-aware placement for greater optimization. 
+    State of the art (SOTA) tools will perform routing-aware placement or placement-fluid routing for greater optimization. 
 
-    The final stage is the \textbf{bitstream} generation, where a vendor-specific programming tool produces a configuration file or bitstream that programs the physical FPGA device. 
+    The final stage is the \textbf{bitstream} generation, where a vendor-specific programming tool takes the implemented design and generates a configuration file or bitstream that programs the physical FPGA device. 
     The bitstream specifies the state of every configurable element—logic blocks, routing switches, and hard macros—ensuring the FPGA implements the user's design. 
 
     Parallel to this entire design flow are simulators for which the user can write testbenches to verify their design at different stages of implementation.
@@ -222,8 +233,12 @@
 
     This integrated toolchain, whether provided by FPGA vendors or open source communities, facilitates the transformation from an abstract HDL description to a functioning hardware configuration. 
 
-\section{RapidWright API}
-    We use the RapidWright API to implement a custom placer for Xilinx 7-Series FPGAs.
+\section{Placement Implementation via RapidWright API}
+
+    %%%
+
+
+    The RapidWright API offers an additional workflow column in parallel to both the design flow and verification flow. 
     RapidWright is an open source Java framework that enables netlist implementation manipulation for modern Xilinx FPGAs. 
 
     \begin{figure}[]
@@ -263,7 +278,6 @@
     For a complete understanding of the RapidWright packages, please refer to the API Overview \url{https://www.rapidwright.io/docs/RapidWright_Overview.html} and the API reference.
 
 
-\section{Placement Implementation}
     With a basic understanding of FPGA architecture, design placement, and RapidWright, we have all the necessary pieces to implement our SA placer. 
     Here we outline in detail each substage of our implementation: PrePacking, Packing, and Placement. 
 
@@ -290,12 +304,11 @@
 
         \subsection{LUT-FF Pairs}
             Very often, engineers model the behavior of a digital system as a collection of Finite State Machines (FSM) as shown in Figure \ref{fig:fsm}. 
-            An FSM at its core is a synchronous sequential circuit comprising of a combinational element and a synchronous memory element.
+            An FSM at its core is a synchronous sequential circuit comprising of a combinational element and a synchronous memory element. 
             In the 7-Series architecture, combinational elements are synthesized as LUTs, where the truth table of the combinational function is mapped onto the LUT's memory. 
 
             Combinational functions in 7-Series FPGAs are synthesized as Look-Up Tables (LUTs). 
             The FPGA synthesizer maps the combinational element into LUTs and the memory element onto FFs. 
-
 
             \begin{figure}[H]
                 \centering
@@ -304,7 +317,7 @@
                 \label{fig:fsm}
             \end{figure}
 
-            In the vast majority of HDL designs, LUTs and FFs will be synthesized in pairs, as is the case in Figure \ref{fig:lut_ff_pair}.
+            In the vast majority of HDL designs, LUTs and FFs will be synthesized in pairs, as is the case in Figure \ref{fig:lut_ff_pair}. 
             Shown in Figure \ref{fig:intrasite_intersite} are two possible placements for this cell net. 
             On the right, the cells are placed across different Sites, thus the only way to route the net between the cells is through general inter-site routing. 
             On the bottom left, the cells are placed within the same Site, taking advantage of the intra-site routing and avoiding costly inter-site routing. 
@@ -451,9 +464,7 @@
     \end{itemize}
 
 \section{Conclusion}
-    \begin{itemize}
-        \item 
-    \end{itemize}
+    fdsfdsafdsa
 
 % \section{Analytical Placement}
 %     Introduce placement with legalization methods. \\
@@ -483,18 +494,21 @@
 %              - U_{sub-area_2} | \) is minimized.
 %     \end{itemize}
 
-
+\section{Appendix}
 
     \begin{figure*}[b]
         \centering
         \includegraphics[width=\textwidth]{figures/slicem.png}
-        \caption{SLICEM Site.}
-    \end{figure}
+        \caption{SLICEM Site}
+        \label{slicem}
+    \end{figure*}
 
     \begin{figure*}[t]
         \centering
         \includegraphics[width=\textwidth]{figures/slicel.png}
-        \caption{SLICEL Site.}
-    \end{figure}
+        \caption{SLICEL Site}
+        \label{slicel}
+    \end{figure*}
+
 
 \end{document}
