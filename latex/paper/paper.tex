@@ -185,11 +185,62 @@
     First, \textbf{BELs} are grouped into \textbf{Sites}. 
     Each Site is embedded into a \textbf{Tile}, and Tiles are further arranged into \textbf{Clock Regions}. 
     In some high-density devices, multiple Clock Regions may be consolidated into one or more \textbf{Super Logic Regions}~(SLRs). 
-    However, for the scope of this paper, we focus on Xilinx 7-Series devices with a single SLR.
+    However, for the scope of this paper, we focus on Xilinx 7-Series devices with only a single SLR.
 
     In the 7-Series architecture, the term \emph{CLB} (Configurable Logic Block) refers to a \emph{CLB Tile} that contains two \emph{SLICE} Sites. 
     Each SLICE Site has a set of BELs including eight LUTs, eight FFs, and one \emph{CARRY4} adder. 
-    These SLICEs provide the core logic and arithmetic functionality of the device.
+    The BELs in these SLICEs facilitate the bulk of the general programmability of the FPGA fabric. 
+    We will explain in detail the motivation and function of these BELs. 
+
+    \textbf{LUTs} \quad
+        Combinational logic is universal to all HDL designs. 
+        As the their name suggests, Look‑Up Tables (LUTs) facilitate combinational logic by acting as tiny asynchronously‑accessed ROMs whose contents are fixed when the FPGA is programmed.  
+        For any boolean function, the synthesizer precalculates the output to every possible input combination and stores the resulting truth table into a LUT's static memory. 
+        The inputs are then essentially treated as an address space that maps to a data value space in an asynchronous ROM. 
+        No explicit logic gates like NAND or XNOR are synthesized, contrary to what newcomers might expect from a "Field Programmable Gate Array". 
+        In the 7‑Series devices, one LUT can facilitate any 6-input boolean function, or two 5-input functions, as long as they share the same input signals.  
+        The LUT can also host two independent boolean functions of up to 3 inputs each, even when the inputs are not shared.  
+        Functions requiring more than six unique inputs are decomposed across multiple cascaded LUTs.
+        Figure \ref{fig:lut_synthesis} shows an example of where a LUT is typically synthesized in a design entry. 
+
+        \begin{figure}[]
+            \centering
+            \includegraphics[width=9.0cm]{figures/lut_synthesis.png}
+            \caption{LUT synthesis from user design}
+            \label{fig:lut_synthesis}
+        \end{figure}
+
+    \textbf{FFs} \quad
+        FFs are synthesized to facilitate synchronous event-driven signal assignment. 
+        For most FPGA users, in Verilog, this essentially means assignments wrapped in \texttt{always @(posedge clk)} statements. 
+        Figure \ref{fig:ff_synthesis} shows an example of where a flip flop (FF) is typically synthesized. 
+        The cell primitive FDRE is a type of FF and belongs to a family of D Flip Flops (DFFs) with Clock Enable (CE). 
+        \begin{itemize}
+            \item \textbf{FDCE:} DFF with CE and Asynchronous Clear
+            \item \textbf{FDPE:} DFF with CE and Asynchronous Preset
+            \item \textbf{FDSE:} DFF with CE and Synchronous Set
+            \item \textbf{FDRE:} DFF with CE and Synchronous Reset
+        \end{itemize}
+        In a typical HDL design, the vast majority of FFs will be synthesized as FDREs. 
+        A FF BEL may also be used to implement latches, however, since latches are generally known to be bad practice in FPGA design, we will not consider latch synthesis for this paper. 
+        \begin{figure}[]
+            \centering
+            \includegraphics[width=9.0cm]{figures/ff_synthesis.png}
+            \caption{FF synthesis from user design}
+            \label{fig:ff_synthesis}
+        \end{figure}
+
+
+    \textbf{LUT-FF Pairs} \quad
+
+    \textbf{CARRY} \quad
+        Very often an HDL design will implement many adders, counters, subtractors, or comparators, all of which are based on binary addition. 
+        They are so ubiquitous that every that in the 7-Series architecture, every SLICE features a \emph{CARRY4} BEL -- a 4-bit carry-lookahead (CLA) adder. 
+        These CARRY4 blocks can be chained vertically across SLICEs for implementing wide adders efficiently. 
+
+    \textbf{CARRY Chains} \quad
+
+
 
     \textbf{SLICE Types.}\quad 
     Xilinx offers two variants of SLICE Sites: \textbf{SLICEL} and \textbf{SLICEM}.  
@@ -217,18 +268,6 @@
 
     ( Explain cell patterns here )
 
-    \textbf{LUTs} \quad
-
-    \textbf{FFs} \quad
-
-    \textbf{LUT-FF Pairs} \quad
-
-    \textbf{CARRY} \quad
-        Very often an HDL design will implement many adders, counters, subtractors, or comparators, all of which are based on binary addition. 
-        They are so ubiquitous that every that in the 7-Series architecture, every SLICE features a \emph{CARRY4} BEL -- a 4-bit carry-lookahead (CLA) adder. 
-        These CARRY4 blocks can be chained vertically across SLICEs for implementing wide adders efficiently. 
-
-    \textbf{CARRY Chains} \quad
 
     \textbf{DSPs} \quad 
 
