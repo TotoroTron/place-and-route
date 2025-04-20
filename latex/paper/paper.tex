@@ -188,9 +188,20 @@
     However, for the scope of this paper, we focus on Xilinx 7-Series devices with only a single SLR.
 
     In the 7-Series architecture, the term \emph{CLB} (Configurable Logic Block) refers to a \emph{CLB Tile} that contains two \emph{SLICE} Sites. 
-    Each SLICE Site has a set of BELs including eight LUTs, eight FFs, and one \emph{CARRY4} adder. 
+    Xilinx offers two variants of SLICE Sites: \textbf{SLICEL} and \textbf{SLICEM}.
+    \begin{itemize}
+        \item Each \textbf{SLICEL} has a set of BELs including eight LUTs, eight FFs, and one   \emph{CARRY4} adder. The LUT BELs in a SLICEL can only host LUT Cells. 
+        \item The \textbf{SLICEM} includes all the features of a SLICEL but its LUT BELs can host both LUT Cells, which are asynchronous ROM elements, or RAM32M Cells, which are synchronous 32-deep RAM elements. These cells are also referred to as \emph{Distributed RAM} in the Xilinx documentation.
+        These cells can offer an alternative to the larger, more dedicated 18K-36K RAMB18E1 cells when RAM resources are highly utilized. 
+    \end{itemize}
+    In a typical 7-Series device, approximately 75\% of the SLICE Sites are SLICELs and 25\% are SLICEMs. 
+    A single CLB Tile can therefore host either two SLICELs or one SLICEL and one SLICEM.
+    For simplicity, however, we will only consider SLICELs for general logic and use the dedicated Block RAM (BRAM) Tiles to implement RAM elements. 
+
     The BELs in these SLICEs facilitate the bulk of the general programmability of the FPGA fabric. 
     We will explain in detail the motivation and function of these BELs. 
+
+    \subsection{7-Series BEL Library}
 
     \textbf{LUTs} \quad
         Combinational logic is universal to all HDL designs. 
@@ -206,35 +217,70 @@
         \begin{figure}[]
             \centering
             \includegraphics[width=9.0cm]{figures/lut_synthesis.png}
-            \caption{LUT synthesis from user design}
+            \caption{\textbf{Above:} LUT synthesis from user design}
             \label{fig:lut_synthesis}
         \end{figure}
 
     \textbf{FFs} \quad
         FFs are synthesized to facilitate synchronous event-driven signal assignment. 
-        For most FPGA users, in Verilog, this essentially means assignments wrapped in \texttt{always @(posedge clk)} statements. 
+        For most Verilog users, this generally means signal assignments wrapped in \texttt{always @(posedge clk)} statements. 
         Figure \ref{fig:ff_synthesis} shows an example of where a flip flop (FF) is typically synthesized. 
         The cell primitive FDRE is a type of FF and belongs to a family of D Flip Flops (DFFs) with Clock Enable (CE). 
         \begin{itemize}
-            \item \textbf{FDCE:} DFF with CE and Asynchronous Clear
-            \item \textbf{FDPE:} DFF with CE and Asynchronous Preset
-            \item \textbf{FDSE:} DFF with CE and Synchronous Set
-            \item \textbf{FDRE:} DFF with CE and Synchronous Reset
+            \item \emph{FDCE - DFF with CE and Asynchronous Clear}
+            \item \emph{FDPE - DFF with CE and Asynchronous Preset}
+            \item \emph{FDSE - DFF with CE and Synchronous Set}
+            \item \emph{FDRE - DFF with CE and Synchronous Reset}
         \end{itemize}
-        In a typical HDL design, the vast majority of FFs will be synthesized as FDREs. 
-        A FF BEL may also be used to implement latches, however, since latches are generally known to be bad practice in FPGA design, we will not consider latch synthesis for this paper. 
+        In a typical HDL design, the vast majority of FFs will be synthesized as FDREs with the occasional FDSE, as it is generally good practice to keep FPGA designs synchronous. 
+        A FF BEL may also host a latch cell, however, since they are generally known to be bad practice in FPGA design, we will not consider latches in this paper. 
         \begin{figure}[]
             \centering
             \includegraphics[width=9.0cm]{figures/ff_synthesis.png}
-            \caption{FF synthesis from user design}
+            \caption{\textbf{Above:} FF synthesis from user design}
             \label{fig:ff_synthesis}
         \end{figure}
 
-
     \textbf{LUT-FF Pairs} \quad
+        FPGA designs are very often modelled as a collection of Finite State Machines (FSM) like shown in Figure \ref{fig:fsm}.
+        \begin{figure}[]
+            \centering
+            \includegraphics[width=8.0cm]{figures/fsm.png}
+            \caption{\textbf{Above:} Finite state machine (Moore)}
+            \label{fig:fsm}
+        \end{figure}
+        Many times a design will also use pipelining like shown in Figure, either to model signal buffers or shift registers, or to split up large combinational logic into time slices to meet timing constraints. 
+        These common design structures result in many consecutive sections of combinational logic feeding into a vector of registers. 
+        The synthesizer naturally synthesizes these structures as consecutive pairs of LUTs feeding into FFs as shown in Figure \ref{fig:pipelining}. 
+        Figure \ref{fig:lut_ff_pair} shows an example of a synthesized LUT-FF Pair. 
+        \begin{figure}[]
+            \centering
+            \includegraphics[width=8.0cm]{figures/pipelining.png}
+            \caption{\textbf{Above:} Pipelining synthesized as consecutive LUT-FF pairs}
+            \label{fig:pipelining}
+        \end{figure}
+
+        \begin{figure}[]
+            \centering
+            \includegraphics[width=8.0cm]{figures/lut_ff_pair.png}
+            \caption{A synthesized LUT-FF Pair}
+            \label{fig:lut_ff_pair}
+        \end{figure}
+
+        Shown in Figure \ref{fig:intersite_intrasite} are two possible placements for this cell net. 
+        On the right, the cells are placed across different Sites, thus the only way to route the net between the cells is through general inter-site routing. 
+        On the bottom left, the cells are placed within the same Site, taking advantage of the intra-site routing and avoiding costly inter-site routing. 
+
+        \begin{figure}[]
+            \centering
+            \includegraphics[width=8.0cm]{figures/intersite_intrasite_2.png}
+            \caption{Intrasite vs Intersite LUT-FF Placement}
+            \label{fig:intersite_intrasite}
+        \end{figure}
+
 
     \textbf{CARRY} \quad
-        Very often an HDL design will implement many adders, counters, subtractors, or comparators, all of which are based on binary addition. 
+        An FPGA design will also typically implement many adders, counters, subtractors, or comparators, all of which are based on binary addition. 
         They are so ubiquitous that every that in the 7-Series architecture, every SLICE features a \emph{CARRY4} BEL -- a 4-bit carry-lookahead (CLA) adder. 
         These CARRY4 blocks can be chained vertically across SLICEs for implementing wide adders efficiently. 
 
@@ -435,7 +481,7 @@ o
         \centering
         \includegraphics[width=14.0cm]{figures/substages.png}
         \caption{The data classes populated at each substage: PrepackedDesign, PackedDesign, and PlacedDesign.}
-        \label{fig:substages}
+        \label{}
     \end{figure*}
 
     \subsection{PrePacking}
@@ -464,7 +510,6 @@ o
                 \centering
                 \includegraphics[width=8.0cm]{figures/fsm.png}
                 \caption{A Finite State Machine (Moore)}
-                \label{fig:fsm}
             \end{figure}
 
             In the vast majority of HDL designs, LUTs and FFs will be synthesized in pairs, as is the case in Figure \ref{fig:lut_ff_pair}. 
@@ -482,7 +527,6 @@ o
                     Example of a LUT-FF Cell Pair as shown the Vivado netlist viewer. 
                     FDRE is a type of Flip Flop. 
                 }
-                \label{fig:lut_ff_pair}
             \end{figure}
 
             \begin{figure}[H]
@@ -493,7 +537,6 @@ o
                     \textbf{Upper Right}: The LUT-FF pair placed within the same Site.
                     \textbf{Bottom}: The LUT-FF pair placed across different Sites.
                 }
-                \label{fig:intrasite_intersite}
             \end{figure}
 
 
@@ -507,14 +550,12 @@ o
                     \textbf{Left}: A CARRY4 EDIFCell as seen in the Vivado netlist viewer.
                     \textbf{Right}: The corresponding CARRY4 Cell as seen in the device viewer.
                 }
-                \label{fig:carry_cell_edif}
             \end{figure}
 
             \begin{figure*}[t]
                 \centering
                 \includegraphics[width=\textwidth]{figures/carry_chain_edif.png}
                 \caption{Example of a CARRY4 chain of length 6 as seen in the Vivado netlist viewer.}
-                \label{fig:carry_chain_edif}
             \end{figure*}
 
             Figure \ref{fig:carry_cell_edif} shows an example of a CARRY4 cell while figure \ref{fig:carry_chain_edif} shows an example of a CARRY4 chain of size 6. 
@@ -565,7 +606,6 @@ o
                 \includegraphics[width=3.0cm]{figures/carry_chain_routes.png}
                 \includegraphics[width=3.0cm]{figures/dsp_cascade_routes.png}
                 \caption{\textbf{Left}: A Carry Chain of length 6 spanning 6 Sites across 6 Tiles. \textbf{Right}: A DSP cascade of length 2 spanning 2 Sites across 1 Tile.}
-                \label{fig:device_carry_chain_routing}
             \end{figure}
 
         \subsection{DSP Cascades}
