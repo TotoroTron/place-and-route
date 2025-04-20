@@ -267,9 +267,10 @@
             \label{fig:lut_ff_pair}
         \end{figure}
 
-        Shown in Figure \ref{fig:intersite_intrasite} are two possible placements for this cell net. 
+        Shown in Figure \ref{fig:intersite_intrasite} are two possible placements for a LUT-FF Pair on the physical device. 
         On the right, the cells are placed across different Sites, thus the only way to route the net between the cells is through general inter-site routing. 
-        On the bottom left, the cells are placed within the same Site, taking advantage of the intra-site routing and avoiding costly inter-site routing. 
+        On the bottom left, the cells are placed within the same Site in the same lane, taking advantage of the intra-site routing without burdening the general router with additional inter-site routing. 
+        This is an important consideration for minimizing wirelength during placement. 
 
         \begin{figure}[]
             \centering
@@ -283,6 +284,15 @@
         An FPGA design will also typically implement many adders, counters, subtractors, or comparators, all of which are based on binary addition. 
         They are so ubiquitous that every that in the 7-Series architecture, every SLICE features a \emph{CARRY4} BEL -- a 4-bit carry-lookahead (CLA) adder. 
         These CARRY4 blocks can be chained vertically across SLICEs for implementing wide adders efficiently. 
+        These CARRY4 BELs will also be connected to LUTs and FFs, and should be placed in the same Site whenever possible to minimize wirelength. 
+        \begin{figure*}[]
+            \centering
+            \includegraphics[width=16.0cm]{figures/carry_chain_edif_3.png}
+            \caption{A carry chain of size 3 as shown in the Vivado EDIF netlist viewer}
+            \label{fig:carry_chain_edif}
+        \end{figure*}
+        
+        
 
     \textbf{CARRY Chains} \quad
 
