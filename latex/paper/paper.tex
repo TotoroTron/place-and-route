@@ -1,5 +1,5 @@
 
-\documentclass[twocolumn]{article}
+\documentclass{article}
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{graphicx}
@@ -17,8 +17,9 @@
   showtabs=false,
   keepspaces=false
 }
-
-% \usepackage{multicol}
+\usepackage[export]{adjustbox}
+\usepackage{multicol}
+\usepackage{caption}
 \usepackage[a4paper,
             bindingoffset=0.2in,
             left=0.5in,
@@ -35,6 +36,8 @@
 
 \date{}
 \maketitle
+
+\begin{multicols}{2}
 
 \section{Keywords}
 \begin{itemize}
@@ -89,17 +92,8 @@
     However, readers who are already familiar with these concepts can skip directly to the RapidWright API section \ref{sec:rapidwright_api} or to the Simulated Annealing section \ref{sec:simulated_annealing}. 
 
 
+\section{FPGA Architecture History}
 
-\section{A Brief History on FPGA Architecture}
-
-    \begin{figure}
-        \centering
-        \includegraphics[width=8.0cm]{figures/pal_2.png}
-        \caption{PAL architecture with 5 inputs, 8 programmable AND gates and 4 fixed OR gates}
-        \label{fig:pla}
-        % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/Programmable-Logic-Devices/Programmable-Array-Logic-PAL/
-        % https://www.naukri.com/code360/library/difference-between-pla-and-pal 
-    \end{figure}
 
     Before any work can begin on an FPGA placer, it is necessary to understand both the objects being placed and the medium in which they are placed.
     Configurable logic devices have undergone significant evolution over the past four decades. 
@@ -110,33 +104,25 @@
     The PLA implemented output logic using a programmable-OR and programmable-AND plane that formed a sum-of-products equation for each output through programmable fuses. 
     Around the same time, the Programmable Array Logic (PAL) was introduced. 
     The PAL simplified the PLA by fixing the OR gates, resulting in a fixed-OR, programmable-AND design, which sacrificed some logic flexibility to simplify its manufacture. 
-    Figure \ref{fig:pla} shows one such PLA architecture. 
-
-    \begin{figure}
-        \centering
-        \includegraphics[width=8.0cm]{figures/cpld.png}
-        \caption{CPLD architecture with 4 CLBs (PAL-like blocks)}
-        \label{fig:cpld}
-        % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/CPLD/Complex-Programmable-Logic-Device-CPLDs/
-    \end{figure}
+    Figure \ref{fig:pal_2} shows one such PAL architecture. 
 
     \textbf{CPLD:} \quad 
     Later in the same decade came the Complex Programmable Logic Device (CPLD), which took the form of an array of Configurable Logic Blocks (CLBs). 
     These CLBs were typically modified PAL blocks that included the PAL itself along with macrocells such as flip-flops, multiplexers, and tri-state buffers. 
     The CPLD functioned as an array of PALs connected by a central programmable switch matrix and could be programmed using a hardware description language (HDL) like VHDL. 
     Figure \ref{fig:cpld} shows one such CPLD architecture. 
+    \\
 
-    \begin{figure}
+    {
         \centering
-        \includegraphics[width=8.0cm]{figures/homogenous_fpga.png}
-        \includegraphics[width=8.0cm]{figures/heterogenous_fpga_3.jpg}
-        \caption{
-            \textbf{Top}: A homogeneous island-style FPGA architecture with 16 CLBs in a grid. 
-            \textbf{Bottom}: A heterogeneous island-style FPGA with a mix of CLBs and macrocells.
-        }
-        \label{fig:fpga}
-        % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/FPGA/Field-programmable-gate-array-FPGA/
-    \end{figure}
+        \includegraphics[width=\columnwidth]{figures/pal_2.png}
+        \captionof{figure}{PAL architecture with 5 inputs, 8 programmable AND gates and 4 fixed OR gates}
+        \label{fig:pal_2}
+        % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/Programmable-Logic-Devices/Programmable-Array-Logic-PAL/
+        % https://www.naukri.com/code360/library/difference-between-pla-and-pal 
+    }
+
+    \newcolumn
 
     \textbf{Homogeneous FPGA:} \quad 
     The mid-1980s saw the introduction of homogeneous FPGAs, which were built as a grid of CLBs. 
@@ -144,7 +130,32 @@
     The first commercially viable FPGA, produced by Xilinx in 1984, featured 16 CLBs arranged in a 4x4 grid. 
     As FPGA technology advanced, CLBs were redesigned to use lookup tables (LUTs) instead of PAL arrays for greater logic density. 
     The capacity of an FPGA was often measured by how many logical elements or CLBs it offered, which grew from hundreds to thousands and now to hundreds of thousands of CLBs.
+    \\ 
 
+    {
+        \centering
+        \includegraphics[width=0.8\columnwidth]{figures/cpld.png}
+        \captionof{figure}{CPLD architecture with 4 CLBs (PAL-like blocks)}
+        \label{fig:cpld}
+        % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/CPLD/Complex-Programmable-Logic-Device-CPLDs/
+    }
+    {
+        \centering
+        \includegraphics[width=\columnwidth]{figures/homogenous_fpga.png}
+        \captionof{figure}{A homogeneous island-style FPGA architecture with 16 CLBs in a grid.}
+        \label{fig:fpga}
+        % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/FPGA/Field-programmable-gate-array-FPGA/
+    }
+
+    \newpage
+
+    {
+        \centering
+        \includegraphics[width=\columnwidth]{figures/heterogenous_fpga_3.jpg}
+        \captionof{figure}{A heterogeneous island-style FPGA with a mix of CLBs and macrocells.}
+        \label{fig:fpga}
+        % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/FPGA/Field-programmable-gate-array-FPGA/
+    }
 
     \textbf{Heterogenous FPGA:} \quad 
     This brings us to modern day FPGA architectures. 
@@ -155,30 +166,16 @@
     As designs become increasingly large and complex, FPGAs meet the demand by becoming increasingly heterogenous, incorporating a wider variety of hard macros into the fabric. 
 
 
-    \section{Xilinx 7-Series Architecture}
+\section{Xilinx 7-Series Architecture}
     \label{sec:7_series}
-
-    \begin{figure}[]
-        \centering
-        \includegraphics[width=5.0cm]{figures/hierarchy_5.png}
-        \caption{Overview of Architecture Hierarchy of a Xilinx FPGA}
-        \label{fig:hierarchy_5}
-    \end{figure}
-
-    \begin{figure}[]
-        \centering
-        \includegraphics[width=9.0cm]{figures/hierarchy_4.png}
-        \caption{Detailed Architecture Hierarchy of a Xilinx FPGA}
-        \label{fig:hierarchy_4}
-    \end{figure}
-
     The Xilinx 7-Series devices, first introduced in 2010, follow a heterogeneous island-style architecture as discussed previously. 
     Although the 7-Series was later superseded in 2013 by the UltraScale architecture, the 7-Series remains highly relevant due to its accessibility, wide availability, and compatibility with open-source tooling. 
     Representative sub-families include Artix-7, Kintex-7, Virtex-7, and Zynq-7000, each designed with different performance and cost trade-offs but all follow the core 7-Series architecture.
 
+
     Figure~\ref{fig:hierarchy_4} illustrates a high-level view of the hierarchical organization of a 7-Series FPGA. 
-    At its lowest level, the device consists of a large array of atomic components called \emph{Basic Elements of Logic}~(BELs). 
-    These BELs encompass look-up tables (LUTs), flip-flops (FFs), block RAMs (BRAMs), DSP slices (DSPs), and the configurable interconnect fabric. 
+    At its lowest level, the device consists of a large array of atomic components called \emph{Basic Elements of Logic}~(\textbf{BELs}). 
+    These BELs encompass look-up tables (\textbf{LUTs}), flip-flops (\textbf{FFs}), block RAMs (\textbf{BRAMs}), DSP slices (\textbf{DSPs}), and the configurable interconnect fabric. 
     They constitute the fundamental building blocks for implementing digital circuits on the FPGA.
 
     To manage this complexity, Xilinx organizes these BELs into incrementally abstract structures. 
@@ -186,6 +183,18 @@
     Each Site is embedded into a \textbf{Tile}, and Tiles are further arranged into \textbf{Clock Regions}. 
     In some high-density devices, multiple Clock Regions may be consolidated into one or more \textbf{Super Logic Regions}~(SLRs). 
     However, for the scope of this paper, we focus on Xilinx 7-Series devices with only a single SLR.
+
+    \end{multicols}
+    {
+        \centering
+        \includegraphics[valign=c, width=0.3\columnwidth]{figures/hierarchy_5.png}
+        \includegraphics[valign=c, width=0.6\columnwidth]{figures/hierarchy_4.png}
+        \captionof{figure}{Architecture Hierarchy of a Xilinx FPGA}
+        \label{fig:hierarchy_4}
+    }
+    \vfill
+    \begin{multicols}{2}
+
 
     In the 7-Series architecture, the term \emph{CLB} (Configurable Logic Block) refers to a \emph{CLB Tile} that contains two \emph{SLICE} Sites. 
     Xilinx offers two variants of SLICE Sites: \textbf{SLICEL} and \textbf{SLICEM}.
@@ -196,7 +205,7 @@
     \end{itemize}
     In a typical 7-Series device, approximately 75\% of the SLICE Sites are SLICELs and 25\% are SLICEMs. 
     A single CLB Tile can therefore host either two SLICELs or one SLICEL and one SLICEM.
-    For simplicity, however, we will only consider SLICELs for general logic and use the dedicated Block RAM (BRAM) Tiles to implement RAM elements. 
+    For simplicity, however, we will only consider SLICELs for general logic and use the dedicated RAMB18E1 cells to implement RAM elements. 
 
     The BELs in these SLICEs facilitate the bulk of the general programmability of the FPGA fabric. 
     We will explain in detail the motivation and function of these BELs. 
@@ -209,17 +218,19 @@
         For any boolean function, the synthesizer precalculates the output to every possible input combination and stores the resulting truth table into a LUT's static memory. 
         The inputs are then essentially treated as an address space that maps to a data value space in an asynchronous ROM. 
         No explicit logic gates like NAND or XNOR are synthesized, contrary to what newcomers might expect from a "Field Programmable Gate Array". 
+
+        {
+            \centering
+            \includegraphics[width=\columnwidth]{figures/lut_synthesis.png}
+            \captionof{figure}{LUT synthesis from user design}
+            \label{fig:lut_synthesis}
+        }
+
         In the 7‑Series devices, one LUT can facilitate any 6-input boolean function, or two 5-input functions, as long as they share the same input signals.  
         The LUT can also host two independent boolean functions of up to 3 inputs each, even when the inputs are not shared.  
         Functions requiring more than six unique inputs are decomposed across multiple cascaded LUTs.
         Figure \ref{fig:lut_synthesis} shows an example of where a LUT is typically synthesized in a design entry. 
 
-        \begin{figure}[]
-            \centering
-            \includegraphics[width=9.0cm]{figures/lut_synthesis.png}
-            \caption{\textbf{Above:} LUT synthesis from user design}
-            \label{fig:lut_synthesis}
-        \end{figure}
 
     \textbf{FFs} \quad
         FFs are synthesized to facilitate synchronous event-driven signal assignment. 
@@ -233,96 +244,98 @@
             \item \emph{FDRE - DFF with CE and Synchronous Reset}
         \end{itemize}
         In a typical HDL design, the vast majority of FFs will be synthesized as FDREs with the occasional FDSE, as it is generally good practice to keep FPGA designs synchronous. 
-        A FF BEL may also host a latch cell, however, since they are generally known to be bad practice in FPGA design, we will not consider latches in this paper. 
-        \begin{figure}[]
+        A FF BEL may also host a latch cell, however, since they are generally bad practice in FPGA design, we will not consider latches in this paper. 
+        {
             \centering
-            \includegraphics[width=9.0cm]{figures/ff_synthesis.png}
-            \caption{\textbf{Above:} FF synthesis from user design}
+            \includegraphics[width=\columnwidth]{figures/ff_synthesis.png}
+            \captionof{figure}{FF synthesis from user design}
             \label{fig:ff_synthesis}
-        \end{figure}
+        }
 
     \textbf{LUT-FF Pairs} \quad
         FPGA designs are very often modelled as a collection of Finite State Machines (FSM) like shown in Figure \ref{fig:fsm}.
-        \begin{figure}[]
-            \centering
-            \includegraphics[width=8.0cm]{figures/fsm.png}
-            \caption{\textbf{Above:} Finite state machine (Moore)}
-            \label{fig:fsm}
-        \end{figure}
-        Many times a design will also use pipelining like shown in Figure, either to model signal buffers or shift registers, or to split up large combinational logic into time slices to meet timing constraints. 
+        Many times a design will also use pipelining, either to model signal buffers or shift registers, or to split up large combinational logic blocks into time slices to meet timing constraints. 
         These common design structures result in many consecutive sections of combinational logic feeding into a vector of registers. 
         The synthesizer naturally synthesizes these structures as consecutive pairs of LUTs feeding into FFs as shown in Figure \ref{fig:pipelining}. 
         Figure \ref{fig:lut_ff_pair} shows an example of a synthesized LUT-FF Pair. 
-        \begin{figure}[]
-            \centering
-            \includegraphics[width=8.0cm]{figures/pipelining.png}
-            \caption{\textbf{Above:} Pipelining synthesized as consecutive LUT-FF pairs}
-            \label{fig:pipelining}
-        \end{figure}
 
-        \begin{figure}[]
+        {
             \centering
-            \includegraphics[width=8.0cm]{figures/lut_ff_pair.png}
-            \caption{A synthesized LUT-FF Pair}
+            \includegraphics[width=\columnwidth]{figures/fsm.png}
+            \captionof{figure}{Finite state machine (Moore)}
+            \label{fig:fsm}
+        }
+
+        {
+            \centering
+            \includegraphics[width=0.9\columnwidth]{figures/pipelining.png}
+            \captionof{figure}{Pipelining synthesized as consecutive LUT-FF pairs}
+            \label{fig:pipelining}
+        }
+
+        {
+            \centering
+            \includegraphics[width=0.9\columnwidth]{figures/lut_ff_pair.png}
+            \captionof{figure}{A synthesized LUT-FF Pair}
             \label{fig:lut_ff_pair}
-        \end{figure}
+        }
+        \vspace{1.0cm}
 
         Shown in Figure \ref{fig:intersite_intrasite} are two possible placements for a LUT-FF Pair on the physical device. 
         On the right, the cells are placed across different Sites, thus the only way to route the net between the cells is through general inter-site routing. 
         On the bottom left, the cells are placed within the same Site in the same lane, taking advantage of the intra-site routing without burdening the general router with additional inter-site routing. 
-        This is an important consideration for minimizing wirelength during placement. 
+        This is an important consideration to make while minimizing wirelength during placement. 
 
-        \begin{figure}[]
+        \vspace{1.0cm}
+        {
             \centering
-            \includegraphics[width=8.0cm]{figures/intersite_intrasite_2.png}
-            \caption{Intrasite vs Intersite LUT-FF Placement}
+            \includegraphics[width=\columnwidth]{figures/intersite_intrasite_2.png}
+            \captionof{figure}{Intrasite vs Intersite LUT-FF Placement}
             \label{fig:intersite_intrasite}
-        \end{figure}
+        }
+        \vspace{1.0cm}
 
 
     \textbf{CARRY} \quad
         An FPGA design will also typically implement many adders, counters, subtractors, or comparators, all of which are based on binary addition. 
-        They are so ubiquitous that every that in the 7-Series architecture, every SLICE features a \emph{CARRY4} BEL -- a 4-bit carry-lookahead (CLA) adder. 
-        These CARRY4 blocks can be chained vertically across SLICEs for implementing wide adders efficiently. 
-        These CARRY4 BELs will also be connected to LUTs and FFs, and should be placed in the same Site whenever possible to minimize wirelength. 
-        \begin{figure*}[]
-            \centering
-            \includegraphics[width=16.0cm]{figures/carry_chain_edif_3.png}
-            \caption{A carry chain of size 3 as shown in the Vivado EDIF netlist viewer}
-            \label{fig:carry_chain_edif}
-        \end{figure*}
-        
-        
+        They are so ubiquitous that every that in the 7-Series architecture, every SLICE features a \emph{CARRY4} BEL -- a 4-bit carry-lookahead (CLA) adder, a much better alternative to synthesizing adders via LUTs. 
 
     \textbf{CARRY Chains} \quad
+        These CARRY4 blocks can be chained across SLICEs to implement wide adders efficiently. 
+        The CARRY4 BELs \emph{must} be chained vertically consecutively across SLICEs as the Carry-In (CI) and Carry-Out (CO) pins can only be routed this way. 
+        These CARRY4 BELs will also be connected to LUTs and FFs, and should be placed in the same Site whenever possible to minimize wirelength. 
+        Shown in figure \ref{fig:carry_cell_group} shows how a CARRY4 chain and associated LUTs and FFs can be placed across SLICEs. 
 
 
+        \end{multicols}
+        % \vfill
+        {
+            \centering
+            \includegraphics[valign=c, width=3.0cm]{figures/adder_synthesis.png}
+            \includegraphics[valign=c, width=14.0cm]{figures/carry_chain_edif_3.png}
+            \captionof{figure}{A synthesized carry chain of size 3 as shown in the Vivado netlist viewer}
+            \label{fig:carry_chain_edif}
+        }
+        \newpage
+        \begin{multicols}{2}
 
-    \textbf{SLICE Types.}\quad 
-    Xilinx offers two variants of SLICE Sites: \textbf{SLICEL} and \textbf{SLICEM}.  
-    \begin{itemize}
-        \item \emph{SLICEL (SLICE-Logic):} Each LUT in a SLICEL can implement a 6-input Boolean function (with up to two outputs under certain input-sharing conditions). During logic synthesis, larger Boolean expressions exceeding six inputs are automatically split across multiple LUTs.
-        \item \emph{SLICEM (SLICE-Memory):} The SLICEM include all the features of a SLICEL but its LUTs can also be configured as small distributed RAM (known as \emph{Distributed RAM}) or as shift registers. This local memory capability supplements the larger Block RAM (BRAM) cells and is beneficial for designs requiring numerous small RAM blocks.
-    \end{itemize}
+        {
+            \centering
+            \includegraphics[width=\columnwidth]{figures/carry_cell_group.png}
+            \captionof{figure}{A SLICEL with a CARRY4 cell, 4 LUT cells, and 4 FF cells placed inside as shown in the Vivado device viewer}
+            \label{fig:carry_cell_group}
+        }
 
-    \begin{figure}[h]
-        \centering
-        \includegraphics[width=7.5cm]{figures/slicel.png}
-        \caption{A SLICEL Site in the Vivado device viewer}
-        \label{fig:slicel}
-    \end{figure}
-
-    \begin{figure}[h]
-        \centering
-        \includegraphics[width=7.5cm]{figures/slicem.png}
-        \caption{A SLICEM Site in the Vivado device viewer}
-        \label{fig:slicem}
-    \end{figure}
-
-    In a typical 7-Series device, approximately 75\% of the SLICE Sites are SLICELs and 25\% are SLICEMs. 
-    A single CLB Tile can therefore host either two SLICELs or one SLICEL and one SLICEM.
-
-    ( Explain cell patterns here )
+        {
+            \centering
+            \includegraphics[width=4.0cm]{figures/carry_chain_placement.png}
+            \includegraphics[width=4.0cm]{figures/carry_chain_routes_3.png}
+            \captionof{figure}{
+                A CARRY4 chain of size 3 placed across 3 SLICEs.
+                \textbf{Left:} Simplified view, \textbf{Right:} As shown in the Vivado device viewer.
+            }
+            \label{fig:carry_cell_group}
+        }
 
 
     \textbf{DSPs} \quad 
@@ -345,18 +358,19 @@
     This architectural context provides the necessary background for understanding how a placement algorithm should account for resource constraints and optimize performance in modern FPGA designs.
 
 
+\newpage
 \section{FPGA Design Flow and Toolchain}
     \label{sec:fpga_flow_toolchain}
 
     Modern FPGA designs require a sophisticated toolchain to bridge the gap between high-level hardware descriptions and the final bitstream used to configure the FPGA. 
     Figure~\ref{fig:design_flow} illustrates a representative process that converts an abstract Hardware Description Language (HDL) design into a verified configuration file for a target device.
 
-    \begin{figure}[]
-    \centering
-    \includegraphics[width=7.5cm]{figures/design_flow.png}
-    \caption{Typical FPGA design and verification workflow.}
-    \label{fig:design_flow}
-    \end{figure}
+    {
+        \centering
+        \includegraphics[width=0.9\columnwidth]{figures/design_flow.png}
+        \captionof{figure}{A typical FPGA design and verification workflow.}
+        \label{fig:design_flow}
+    }
 
     \begin{enumerate}
         \item \textbf{Design Entry:} 
@@ -414,12 +428,12 @@
         This level of control over backend resources is necessary for research in custom placement, advanced packing techniques, or experimental routing algorithms.
     \end{itemize}
 
-    \begin{figure}[]
+    {
         \centering
-        \includegraphics[width=7.5cm]{figures/vivado_dcps.png}
-        \caption{RapidWright workflow integrating into the default Vivado design flow.}
+        \includegraphics[width=0.8\columnwidth]{figures/vivado_dcps.png}
+        \captionof{figure}{RapidWright workflow integrating into the default Vivado design flow.}
         \label{fig:vivado_dcps}
-    \end{figure}
+    }
 
     By exposing these low-level internals, RapidWright allows fine-grained design transformations that go beyond the standard Vivado IDE’s capabilities. 
     Researchers can prototype new EDA strategies without needing to re-implement an entire FPGA backend from scratch, thus accelerating innovation in placement and routing methodologies.
@@ -428,20 +442,23 @@
     \label{sec:simulated_annealing}
     With a basic understanding of FPGA architecture, design placement, and RapidWright, we have all the necessary pieces to implement our SA placer. 
     Here we outline in detail each substage of our implementation: PrePacking, Packing, and Placement. 
-    Shown in Figure 
+    Shown in Figure ....
 
-    \begin{figure}[]
+    {
         \centering
-        \includegraphics[width=8.0cm]{figures/edif_design_device.png}
-        \caption{}
-    \end{figure}
+        \includegraphics[width=0.9\columnwidth]{figures/edif_design_device.png}
+        \captionof{figure}{Our placement workflow}
+        \label{fig:edif_design_device}
+    }
 
-    \begin{figure*}[]
+    \end{multicols}
+    {
         \centering
-        \includegraphics[width=14.0cm]{figures/substages.png}
-        \caption{The data classes populated at each substage: PrepackedDesign, PackedDesign, and PlacedDesign.}
+        \includegraphics[width=0.8\columnwidth]{figures/substages.png}
+        \captionof{figure}{The data classes populated at each substage: PrepackedDesign, PackedDesign, and PlacedDesign.}
         \label{fig:substages}
-    \end{figure*}
+    }
+    \begin{multicols}{2}
 
     \subsection{Prepacking}
         \label{subsec:prepacking}
@@ -487,12 +504,6 @@ o
     With a basic understanding of FPGA architecture, design placement, and RapidWright, we have all the necessary pieces to implement our SA placer. 
     Here we outline in detail each substage of our implementation: PrePacking, Packing, and Placement. 
 
-    \begin{figure*}[t]
-        \centering
-        \includegraphics[width=14.0cm]{figures/substages.png}
-        \caption{The data classes populated at each substage: PrepackedDesign, PackedDesign, and PlacedDesign.}
-        \label{}
-    \end{figure*}
 
     \subsection{PrePacking}
         In the prepacking stage, we traverse the raw post-synthesis EDIF Netlist to identify common recurring Cell patterns. 
@@ -516,11 +527,6 @@ o
             Combinational functions in 7-Series FPGAs are synthesized as Look-Up Tables (LUTs). 
             The FPGA synthesizer maps the combinational element into LUTs and the memory element onto FFs. 
 
-            \begin{figure}[H]
-                \centering
-                \includegraphics[width=8.0cm]{figures/fsm.png}
-                \caption{A Finite State Machine (Moore)}
-            \end{figure}
 
             In the vast majority of HDL designs, LUTs and FFs will be synthesized in pairs, as is the case in Figure \ref{fig:lut_ff_pair}. 
             Shown in Figure \ref{fig:intrasite_intersite} are two possible placements for this cell net. 
@@ -530,43 +536,9 @@ o
             Identify unique CE-SR net pairs. 
             All FF cells in a Site must share the same CE and SR nets. 
 
-            \begin{figure}[H]
-                \centering
-                \includegraphics[width=8.0cm]{figures/lut_ff_pair.png}
-                \caption{
-                    Example of a LUT-FF Cell Pair as shown the Vivado netlist viewer. 
-                    FDRE is a type of Flip Flop. 
-                }
-            \end{figure}
-
-            \begin{figure}[H]
-                \centering
-                \includegraphics[width=9.0cm]{figures/intersite_intrasite_2.png}
-                \caption{
-                    \textbf{Upper Left}: A LUT-FF cell pair in the netlist.
-                    \textbf{Upper Right}: The LUT-FF pair placed within the same Site.
-                    \textbf{Bottom}: The LUT-FF pair placed across different Sites.
-                }
-            \end{figure}
-
-
 
         \subsection{CARRY Chains}
-            \begin{figure}[]
-                \centering
-                \includegraphics[width=5.0cm]{figures/carry_cell_edif.png}
-                \includegraphics[width=3.0cm]{figures/carry_cell_device.png}
-                \caption{
-                    \textbf{Left}: A CARRY4 EDIFCell as seen in the Vivado netlist viewer.
-                    \textbf{Right}: The corresponding CARRY4 Cell as seen in the device viewer.
-                }
-            \end{figure}
 
-            \begin{figure*}[t]
-                \centering
-                \includegraphics[width=\textwidth]{figures/carry_chain_edif.png}
-                \caption{Example of a CARRY4 chain of length 6 as seen in the Vivado netlist viewer.}
-            \end{figure*}
 
             Figure \ref{fig:carry_cell_edif} shows an example of a CARRY4 cell while figure \ref{fig:carry_chain_edif} shows an example of a CARRY4 chain of size 6. 
 
@@ -611,12 +583,6 @@ o
             Each CLB Tile contains two SLICE Sites. 
             CARRY chains span vertically across multiple SLICE Sites/Tiles. (Show picture) 
 
-            \begin{figure}
-                \centering
-                \includegraphics[width=3.0cm]{figures/carry_chain_routes.png}
-                \includegraphics[width=3.0cm]{figures/dsp_cascade_routes.png}
-                \caption{\textbf{Left}: A Carry Chain of length 6 spanning 6 Sites across 6 Tiles. \textbf{Right}: A DSP cascade of length 2 spanning 2 Sites across 1 Tile.}
-            \end{figure}
 
         \subsection{DSP Cascades}
             Each DSP Site contains one DSP BEL. 
@@ -708,5 +674,6 @@ o
         \label{fig:slicel}
     \end{figure*}
 
+\end{multicols}
 
 \end{document}
