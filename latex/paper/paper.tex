@@ -195,6 +195,8 @@
     \vfill
     \begin{multicols}{2}
 
+    \newpage
+    \subsection{CLB SLICEs}
 
     In the 7-Series architecture, the term \emph{CLB} (Configurable Logic Block) refers to a \emph{CLB Tile} that contains two \emph{SLICE} Sites. 
     Xilinx offers two variants of SLICE Sites: \textbf{SLICEL} and \textbf{SLICEM}.
@@ -210,7 +212,6 @@
     The BELs in these SLICEs facilitate the bulk of the general programmability of the FPGA fabric. 
     We will explain in detail the motivation and function of these BELs. 
 
-    \subsection{7-Series BEL Library}
 
     \textbf{LUTs} \quad
         Combinational logic is universal to all HDL designs. 
@@ -225,6 +226,7 @@
             \captionof{figure}{LUT synthesis from user design}
             \label{fig:lut_synthesis}
         }
+        \vspace{1.0cm}
 
         In the 7‑Series devices, one LUT can facilitate any 6-input boolean function, or two 5-input functions, as long as they share the same input signals.  
         The LUT can also host two independent boolean functions of up to 3 inputs each, even when the inputs are not shared.  
@@ -336,6 +338,8 @@
             \label{fig:carry_cell_group}
         }
 
+    \newpage
+    \subsection{DSP Slices}
 
     \textbf{DSPs} \quad 
         FPGAs are often used as low latency Digital Signal Processing (DSP) accelerators. 
@@ -350,6 +354,7 @@
             }
             \label{dsp_diagram}
         }
+        \vspace{0.5cm}
 
     \textbf{DSP Cascades} \quad 
         Higher level DSP functions are supported by cascading DSP48E1 slices in a DSP48E1 column.
@@ -358,16 +363,31 @@
         These signal busses run directly between the vertical DSP48E1 slices without burdening the general routing resources. 
         The ability to cascade this way provides a high-performance and low-power implementation of DSP filter functions. 
 
+        \vspace{1.0cm}
         {
             \centering
-            \includegraphics[valign=c, width=3.0cm]{figures/dsp_cascade_placement.png}
-            \includegraphics[valign=c, width=4.0cm]{figures/dsp_cascade_routed.png}
+            \includegraphics[valign=c, width=2.5cm]{figures/dsp_cascade_placement.png}
+            \includegraphics[valign=c, width=3.0cm]{figures/dsp_cascade_routed.png}
             \captionof{figure}{
                 A DSP48E1 cascade of size 2 placed across 2 DSP48E1 Sites.
                 \textbf{Left:} Simplified view, \textbf{Right:} As shown in the Vivado device viewer.
             }
         }
 
+        \end{multicols}
+        {
+            \centering
+            \includegraphics[valign=c, width=4.0cm]{figures/mult_synthesis.png}
+            \includegraphics[valign=c, width=13.0cm]{figures/dsp_synthesis.png}
+            \captionof{figure}{
+                Simple multiplier synthesis from user design.
+            }
+            \label{mult_synthesis}
+        }
+        \begin{multicols}{2}
+
+
+    \newpage
 
     \textbf{BRAMs} \quad 
 
