@@ -303,9 +303,8 @@
     \textbf{CARRY Chains} \quad
         These CARRY4 blocks can be chained across SLICEs to implement wide adders efficiently. 
         The CARRY4 BELs \emph{must} be chained vertically consecutively across SLICEs as the Carry-In (CI) and Carry-Out (CO) pins can only be routed this way. 
-        These CARRY4 BELs will also be connected to LUTs and FFs, and should be placed in the same Site whenever possible to minimize wirelength. 
+        These CARRY4 BELs may also be directly connected to LUTs and FFs, and should be placed in the same Site whenever possible to minimize wirelength. 
         Shown in figure \ref{fig:carry_cell_group} shows how a CARRY4 chain and associated LUTs and FFs can be placed across SLICEs. 
-
 
         \end{multicols}
         % \vfill
@@ -328,8 +327,8 @@
 
         {
             \centering
-            \includegraphics[width=4.0cm]{figures/carry_chain_placement.png}
-            \includegraphics[width=4.0cm]{figures/carry_chain_routes_3.png}
+            \includegraphics[valign=c, width=4.0cm]{figures/carry_chain_placement.png}
+            \includegraphics[valign=c, width=4.0cm]{figures/carry_chain_routes_3.png}
             \captionof{figure}{
                 A CARRY4 chain of size 3 placed across 3 SLICEs.
                 \textbf{Left:} Simplified view, \textbf{Right:} As shown in the Vivado device viewer.
@@ -339,8 +338,36 @@
 
 
     \textbf{DSPs} \quad 
+        FPGAs are often used as low latency Digital Signal Processing (DSP) accelerators. 
+        Common DSP subsystems like Finite Impulse Response (FIR) filters, Fast Fourier Transform (FFTs), and convolutional neural nets (CNNs) demand fast large scale multiply-accumulate (MAC) capabilities. 
+        The 7-Series arhictecture integrates DSP BELs into the logic fabric called DSP48E1 that can facilitate MAC efficiently. 
+
+        {
+            \centering
+            \includegraphics[width=\columnwidth]{figures/dsp_diagram.png}
+            \captionof{figure}{
+                Basic DSP48E1 Slice Functionality
+            }
+            \label{dsp_diagram}
+        }
 
     \textbf{DSP Cascades} \quad 
+        Higher level DSP functions are supported by cascading DSP48E1 slices in a DSP48E1 column.
+        Much like CARRY4 chains, DSP48E1 cascades must necessarily be placed vertically consecutively across DSP48E1 Sites. 
+        They are connected by three 48-bit signal busses: ACOUT to ACIN, BCOUT to BCIN, PCOUT to PCIN.
+        These signal busses run directly between the vertical DSP48E1 slices without burdening the general routing resources. 
+        The ability to cascade this way provides a high-performance and low-power implementation of DSP filter functions. 
+
+        {
+            \centering
+            \includegraphics[valign=c, width=3.0cm]{figures/dsp_cascade_placement.png}
+            \includegraphics[valign=c, width=4.0cm]{figures/dsp_cascade_routed.png}
+            \captionof{figure}{
+                A DSP48E1 cascade of size 2 placed across 2 DSP48E1 Sites.
+                \textbf{Left:} Simplified view, \textbf{Right:} As shown in the Vivado device viewer.
+            }
+        }
+
 
     \textbf{BRAMs} \quad 
 
