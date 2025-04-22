@@ -64,7 +64,7 @@
 
     Field-Programmable Gate Arrays (FPGAs) have witnessed rapid growth in capacity and versatility, driving significant advances in computer-aided design (CAD) and electronic design automation (EDA) methodologies. 
     Since the early-to-mid 2000s, the stagnation of single-processor performance relative to the rapid increase in integrated circuit sizes has led to a design productivity gap, where the computational effort for designing complex chips continues to rise. 
-    FPGA CAD flows mainly encompass synthesis, placement, and routing; all of which are HP-hard problems, of which placement is one of the most time-consuming processes. 
+    FPGA CAD flows mainly encompass synthesis, placement, and routing; all of which are NP-hard problems, of which placement is one of the most time-consuming processes. 
     Inefficienct placement strategy not only extends design times from hours to days, thereby elevating cost and reducing engineering productivity, but also limits the broader adoption of FPGAs by software engineers who expect compile times akin to those of conventional software compilers like {\tt gcc}. 
 
     For these reasons, FPGA placement remains a critical research effort even today. 
@@ -246,7 +246,8 @@
             \item \emph{FDRE - DFF with CE and Synchronous Reset}
         \end{itemize}
         In a typical HDL design, the vast majority of FFs will be synthesized as FDREs with the occasional FDSE, as it is generally good practice to keep FPGA designs synchronous. 
-        A FF BEL may also host a latch cell, however, since they are generally bad practice in FPGA design, we will not consider latches in this paper. 
+        A FF BEL may also host a LATCH Cell, however, since they are generally bad practice in FPGA design, we will not consider latches in this paper. 
+
         {
             \centering
             \includegraphics[width=\columnwidth]{figures/ff_synthesis.png}
@@ -305,7 +306,7 @@
     \textbf{CARRY Chains} \quad
         These CARRY4 blocks can be chained across SLICEs to implement wide adders efficiently. 
         The CARRY4 BELs \emph{must} be chained vertically consecutively across SLICEs as the Carry-In (CI) and Carry-Out (CO) pins can only be routed this way. 
-        These CARRY4 BELs may also be directly connected to LUTs and FFs, and should be placed in the same Site whenever possible to minimize wirelength. 
+        A CARRY4 cell may also directly connect to LUTs and FFs, and should be placed in the same Site whenever possible to minimize wirelength. 
         Shown in figure \ref{fig:carry_cell_group} shows how a CARRY4 chain and associated LUTs and FFs can be placed across SLICEs. 
 
         \end{multicols}
