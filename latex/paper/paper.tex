@@ -156,6 +156,7 @@
         \label{fig:fpga}
         % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/FPGA/Field-programmable-gate-array-FPGA/
     }
+    \vspace{0.5cm}
 
     \textbf{Heterogenous FPGA:} \quad 
     This brings us to modern day FPGA architectures. 
@@ -177,6 +178,7 @@
     At its lowest level, the device consists of a large array of atomic components called \emph{Basic Elements of Logic}~(\textbf{BELs}). 
     These BELs encompass look-up tables (\textbf{LUTs}), flip-flops (\textbf{FFs}), block RAMs (\textbf{BRAMs}), DSP slices (\textbf{DSPs}), and the configurable interconnect fabric. 
     They constitute the fundamental building blocks for implementing digital circuits on the FPGA.
+    Note how the Tile arrangement is columnar, where each column will have only one Tile type. 
 
     To manage this complexity, Xilinx organizes these BELs into incrementally abstract structures. 
     First, \textbf{BELs} are grouped into \textbf{Sites}. 
@@ -238,12 +240,12 @@
         FFs are synthesized to facilitate synchronous event-driven signal assignment. 
         For most Verilog users, this generally means signal assignments wrapped in \texttt{always @(posedge clk)} statements. 
         Figure \ref{fig:ff_synthesis} shows an example of where a flip flop (FF) is typically synthesized. 
-        The cell primitive FDRE is a type of FF and belongs to a family of D Flip Flops (DFFs) with Clock Enable (CE). 
+        The cell primitive \textbf{FDRE} is a type of FF and belongs to a family of D Flip Flops (DFFs) with Clock Enable (CE). 
         \begin{itemize}
-            \item \emph{FDCE - DFF with CE and Asynchronous Clear}
-            \item \emph{FDPE - DFF with CE and Asynchronous Preset}
-            \item \emph{FDSE - DFF with CE and Synchronous Set}
-            \item \emph{FDRE - DFF with CE and Synchronous Reset}
+            \item FDCE - DFF with CE and Asynchronous Clear
+            \item FDPE - DFF with CE and Asynchronous Preset
+            \item FDSE - DFF with CE and Synchronous Set
+            \item \textbf{FDRE} - DFF with CE and Synchronous Reset
         \end{itemize}
         In a typical HDL design, the vast majority of FFs will be synthesized as FDREs with the occasional FDSE, as it is generally good practice to keep FPGA designs synchronous. 
         A FF BEL may also host a LATCH Cell, however, since they are generally bad practice in FPGA design, we will not consider latches in this paper. 
@@ -346,6 +348,8 @@
         FPGAs are often used as low latency Digital Signal Processing (DSP) accelerators. 
         Common DSP subsystems like Finite Impulse Response (FIR) filters, Fast Fourier Transform (FFTs), and convolutional neural nets (CNNs) demand fast large scale multiply-accumulate (MAC) capabilities. 
         The 7-Series arhictecture integrates DSP BELs into the logic fabric called DSP48E1 that can facilitate MAC efficiently. 
+        The architecture hierarchy for DSPs is simple compared to CLBs and SLICEs. 
+        A DSP48E1 Tile contains two DSP48E1 Sites, each containing one DSP48E1 BEL, which can host a DSP48E1 Cell. 
 
         {
             \centering
@@ -390,10 +394,44 @@
 
     \newpage
 
-    \textbf{BRAMs} \quad 
+    \subsection{Block RAM}
+        In addition to SLICEs and DSPs, the 7-Series also offers dedicated Block Random Access Memory (BRAM) BELs. 
+        These BRAMs come in two variants: \textbf{RAMB18E1} and \textbf{RAMB36E1}. 
+        \begin{itemize}
+            \item \textbf{RAMB18E1} - 
+            Has a capacity of 18 Kilobits. 
+            It can be configured as single port RAM with dimensions ranging between (1-bit wide by 16K deep) to (18-bit wide by 1024 deep). 
+            It can also be configured as a (36-bit wide by 512 deep) true simple dual port RAM. 
+            \item \textbf{RAMB36E1} - 
+            Has a capacity of 36 Kilobits. 
+            It can be configured as single port RAM with dimensions ranging between (1-bit wide by 32K deep) to (36-bit wide by 1024 deep). 
+            It can also be configured as a (72-bit wide by 512 deep) simple dual port RAM. 
+        \end{itemize}
 
-    \textbf{Loose Single Cells} \quad
+        For readability, we will abbreviate RAMB18E1 as \textbf{RAM18} and RAMB36E1 as \textbf{RAM36}.
+        One BRAM Tile contains one RAM36 Site and two RAM18 Sites. 
+        The RAM36 Site contains one RAM36 BEL while the RAM18 Site contains one RAM18 BEL.
+        The RAM18 BEL can host one RAM18 Cell, while the RAM36 BEL can host either one RAM36 Cell or two RAM18 Cells. 
 
+        Like DSP cascades, BRAMs may also be cascaded together in a column to implement large memories efficiently, with some intermediate signals between them routed intra-Tile without burdening the general routing. 
+        However, unlike DSPs, large memories decomposed amongst multiple BRAMs can also be routed together through general routing. 
+        Furthermore, in most design scenarios, large memories will not utilize the intra-Tile signals. 
+        
+        For simplicity we will not constrain large BRAMs to be cascaded together in consecutive vertical Tiles. 
+        We can essentially treat RAMB18E1 and RAMB36E1 Cells as loose, minimally constrained single cells, in contrast to the highly constrained DSP cascades and CARRY chains.
+
+        {
+            \centering
+            \includegraphics[valign=c, width=3.0cm]{figures/bram.png}
+            \includegraphics[valign=c, width=2.0cm]{figures/bram_tile.png}
+            \captionof{figure}{
+                A BRAM Tile containing two RAMB18E1 Sites and one RAMB36E1 Site.
+                \textbf{Left:} simplified view. \textbf{Right:} as seen in the device viewer, BELs highlighted in white. 
+            }
+            \label{fig:bram}
+        }
+
+    \subsection{Further Documentation}
 
     For more in-depth details about 7-Series FPGAs, refer to the official Xilinx user guides such as:
     \begin{itemize}
