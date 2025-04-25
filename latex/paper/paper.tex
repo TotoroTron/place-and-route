@@ -256,7 +256,14 @@
             \captionof{figure}{FF synthesis from user design}
             \label{fig:ff_synthesis}
         }
+        \vspace{1.0cm}
 
+        Up to eight (8) FFs can be placed within the same SLICE, but only if they all share a common Clock-Enable (CE) net and a common Set-Reset (SR) net.
+        This is because the SLICE has only one CE pin and one SR pin to interface with general routing. 
+        The CE and SR signals from these pins are broadcast intra-Site to all FFs within. 
+
+
+    \newpage
     \textbf{LUT-FF Pairs} \quad
         FPGA designs are very often modelled as a collection of Finite State Machines (FSM) like shown in Figure \ref{fig:fsm}.
         Many times a design will also use pipelining, either to model signal buffers or shift registers, or to split up large combinational logic blocks into time slices to meet timing constraints. 
@@ -264,12 +271,20 @@
         The synthesizer naturally synthesizes these structures as consecutive pairs of LUTs feeding into FFs as shown in Figure \ref{fig:pipelining}. 
         Figure \ref{fig:lut_ff_pair} shows an example of a synthesized LUT-FF Pair. 
 
+        Shown in Figure \ref{fig:intersite_intrasite} are two possible placements for a LUT-FF Pair on the physical device. 
+        On the right, the cells are placed across different Sites, thus the only way to route the net between the cells is through general inter-site routing. 
+        On the bottom left, the cells are placed within the same Site in the same lane, taking advantage of the intra-site routing without burdening the general router with additional inter-site routing. 
+        This is an important consideration to make while minimizing wirelength during placement. 
+
+
+        \vspace{1.0cm}
         {
             \centering
             \includegraphics[width=\columnwidth]{figures/fsm.png}
             \captionof{figure}{Finite state machine (Moore)}
             \label{fig:fsm}
         }
+        \vspace{1.0cm}
 
         {
             \centering
@@ -277,6 +292,10 @@
             \captionof{figure}{Pipelining synthesized as consecutive LUT-FF pairs}
             \label{fig:pipelining}
         }
+
+        \vfill
+        .
+        \newcolumn
 
         {
             \centering
@@ -286,21 +305,15 @@
         }
         \vspace{1.0cm}
 
-        Shown in Figure \ref{fig:intersite_intrasite} are two possible placements for a LUT-FF Pair on the physical device. 
-        On the right, the cells are placed across different Sites, thus the only way to route the net between the cells is through general inter-site routing. 
-        On the bottom left, the cells are placed within the same Site in the same lane, taking advantage of the intra-site routing without burdening the general router with additional inter-site routing. 
-        This is an important consideration to make while minimizing wirelength during placement. 
-
-        \vspace{1.0cm}
         {
             \centering
             \includegraphics[width=\columnwidth]{figures/intersite_intrasite_2.png}
             \captionof{figure}{Intrasite vs Intersite LUT-FF Placement}
             \label{fig:intersite_intrasite}
         }
-        \vspace{1.0cm}
 
 
+    \newpage
     \textbf{CARRY} \quad
         An FPGA design will also typically implement many adders, counters, subtractors, or comparators, all of which are based on binary addition. 
         They are so ubiquitous that every that in the 7-Series architecture, every SLICE features a \emph{CARRY4} BEL -- a 4-bit carry-lookahead (CLA) adder, a much better alternative to synthesizing adders via LUTs. 
@@ -311,17 +324,6 @@
         A CARRY4 cell may also directly connect to LUTs and FFs, and should be placed in the same Site whenever possible to minimize wirelength. 
         Shown in figure \ref{fig:carry_cell_group} shows how a CARRY4 chain and associated LUTs and FFs can be placed across SLICEs. 
 
-        \end{multicols}
-        % \vfill
-        {
-            \centering
-            \includegraphics[valign=c, width=3.0cm]{figures/adder_synthesis.png}
-            \includegraphics[valign=c, width=14.0cm]{figures/carry_chain_edif_3.png}
-            \captionof{figure}{A synthesized carry chain of size 3 as shown in the Vivado netlist viewer}
-            \label{fig:carry_chain_edif}
-        }
-        \newpage
-        \begin{multicols}{2}
 
         {
             \centering
@@ -340,6 +342,19 @@
             }
             \label{fig:carry_cell_group}
         }
+
+        \end{multicols}
+        % \vfill
+        {
+            \centering
+            \includegraphics[valign=c, width=3.0cm]{figures/adder_synthesis.png}
+            \includegraphics[valign=c, width=14.0cm]{figures/carry_chain_edif_3.png}
+            \captionof{figure}{A synthesized carry chain of size 3 as shown in the Vivado netlist viewer}
+            \label{fig:carry_chain_edif}
+        }
+        \begin{multicols}{2}
+        \vspace{1.0cm}
+        .
 
     \newpage
     \subsection{DSP Slices}
@@ -489,15 +504,15 @@
 
         \item \textbf{Verification:} 
             In parallel to the design flow, simulations and testbenches validate correctness of the user's design at multiple abstraction levels. 
-            Engineers may begin with functional or behavioral simulations, then progress to post-synthesis simulations, and finally to post-implementation simulations that incorporate real routing delays. 
+            Engineers may begin with behavioral simulations, then progress to post-synthesis simulations, and finally to post-implementation simulations that incorporate estimated routing delays. 
             With each higher level of fidelity, computational requirements grow significantly due to increasing complexity and the need to analyze more variables over time. 
-            Ensuring correct functionality and meeting timing closure at the post-implementation stage is crucial before deploying the design to hardware. Given the importance of thorough verification, many established companies dedicate one verification engineer for every design engineer.
+            Ensuring correct functionality and meeting timing closure at the post-implementation stage is crucial before deploying the design to hardware. 
+            Given the importance of thorough verification, many established companies dedicate one verification engineer for every design engineer.
 
     \end{enumerate}
 
     This workflow underscores the critical role of \textbf{placement} in bridging the netlist to a physical realization. 
     An efficient placement algorithm can drastically reduce compile times and improve design performance, enabling broader adoption of FPGAs in application spaces that require fast design iteration.
-
 
 
 \section{RapidWright API}
@@ -538,7 +553,7 @@
     \label{sec:simulated_annealing}
     With a basic understanding of FPGA architecture, design placement, and RapidWright, we have all the necessary pieces to implement our SA placer. 
     Here we outline in detail each substage of our implementation: PrePacking, Packing, and Placement. 
-    Shown in Figure ....
+    Shown in Figure \ref{fig:edif_design_device} shows an overview of the placement workflow. 
 
     {
         \centering
@@ -559,8 +574,39 @@
     \subsection{Prepacking}
         \label{subsec:prepacking}
 
+        \end{multicols}
+        {
+            \centering
+            \includegraphics[width=\columnwidth]{figures/raw_edif.png}
+            \captionof{figure}{A raw EDIF Netlist with uncountably many cells}
+            \label{fig:raw_edif}
+        }
+        \begin{multicols}{2}
+
+        The first step in our placement flow is \textbf{prepacking}. 
+        Recall from the 7-Series architecture that there are certain cell groups that must adhere to certain placements constraints to ensure legality, and by design, to minimize wirelength. 
+        CARRY4 chains must necessarily be placed vertically and consecutively across a column of SLICEs in ascending order. 
+        Likewise, DSP48E1 cascades must necessarily be placed vertically and consecutively across a column of DSP48E1 Sites in ascending order. 
+        A LUT-FF may be placed freely, but should be placed within the same SLICE within the same lane to minimize wirelength.
+        A group of LUT-FF pairs may be placed in the same SLICE, with the constraint that the FFs must share the same Clock-Enable (CE) and Set-Reset (SR) nets.
+        Clustering LUT-FF pairs like this can reduce the redundancy of having to route the same CE and SR nets to many SLICEs by routing the nets to fewer SLICEs and connecting them to the individual FFs within via intra-Site routing, and at the same time, packing greater logic density over a smaller area of the device. 
+
+        The job of the prepacker is to consolidate functionally related cells from the raw post-synthesis netlist into clusters or groups of clusters that correspond naturally to the physical FPGA architecture. 
+        We traverse the netlist to detect and identify LUT-FF pairs, CARRY4 chains, and DSP48E1 cascades. 
+        
+
+        LUT-FF pairs, CARRY4 chains, and DSP cascades.
+        In this stage, we work solely at the \texttt{edif} level.
+
         In the context of implementing a custom \emph{Simulated Annealing} (SA) placer, \textbf{prepacking} is the first step in consolidating functionally related cells from the raw post-synthesis netlist into logical clusters that correspond more naturally to the physical FPGA structures. 
-        We traverse the raw post-synthesis netlist via RapidWright’s \texttt{edif} packages to identify LUT-FF Pairs, CARRY4 Chains, and DSP Cascades.
+        We take a synthesized design checkpoint and open it via RapidWright. 
+        We traverse the raw post-synthesis netlist via RapidWright’s \texttt{edif} package to identify LUT-FF Pairs, CARRY4 Chains, DSP Cascades, and remaining single cells.
+        We cluster these detected cell structures into their respective \texttt{List}s.
+
+
+        First, we build the vocabulary of primitive cells by identifying the set of all unique cell types in the EDIF Netlist. 
+        We build a \texttt{HashMap}, where the keys are the cell type and the values are \texttt{List}s.
+
 
         \textbf{LUT-FF pairs:} \quad
             Most synchronous designs implement finite-state machines or pipelined datapaths, mapping their combinational logic into LUTs directly feeding FFs. 
@@ -622,7 +668,6 @@ o
 
             Combinational functions in 7-Series FPGAs are synthesized as Look-Up Tables (LUTs). 
             The FPGA synthesizer maps the combinational element into LUTs and the memory element onto FFs. 
-
 
             In the vast majority of HDL designs, LUTs and FFs will be synthesized in pairs, as is the case in Figure \ref{fig:lut_ff_pair}. 
             Shown in Figure \ref{fig:intrasite_intersite} are two possible placements for this cell net. 
