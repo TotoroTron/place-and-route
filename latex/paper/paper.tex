@@ -584,50 +584,42 @@
         \begin{multicols}{2}
 
         The first step in our placement flow is \textbf{prepacking}. 
-        Recall from the 7-Series architecture that there are certain cell groups that must adhere to certain placements constraints to ensure legality, and by design, to minimize wirelength. 
+        Recall from the 7-Series architecture that there are certain cell structures that must adhere to certain placements constraints to ensure legality, and by design, to minimize wirelength. 
+        The job of the prepacker is to consolidate the cells in the EDIF Netlist into clusters or groups of clusters that naturally reflect these placement constraints. 
+
         CARRY4 chains must necessarily be placed vertically and consecutively across a column of SLICEs in ascending order. 
         Likewise, DSP48E1 cascades must necessarily be placed vertically and consecutively across a column of DSP48E1 Sites in ascending order. 
-        A LUT-FF may be placed freely, but should be placed within the same SLICE within the same lane to minimize wirelength.
+        A LUT-FF pair may be placed freely, but should be placed in the same lane within the same SLICE to minimize wirelength.
+
+        The raw post-synthesis netlist only tells us the instantiated cells and the nets between them. 
+        It does not report the presence of any cell structures (CARRY4 chains, etc.). 
+        Thus, we must traverse the netlist to detect these cell structures and store that structure information in a class we will call \texttt{PrepackedDesign}.
+
         A group of LUT-FF pairs may be placed in the same SLICE, with the constraint that the FFs must share the same Clock-Enable (CE) and Set-Reset (SR) nets.
         Clustering LUT-FF pairs like this can reduce the redundancy of having to route the same CE and SR nets to many SLICEs by routing the nets to fewer SLICEs and connecting them to the individual FFs within via intra-Site routing, and at the same time, packing greater logic density over a smaller area of the device. 
+        Recall that up to eight FFs may be placed in the same SLICE, thus theoretically, up to eight LUT-FF pairs can be placed in the same SLICE. 
 
-        The job of the prepacker is to consolidate functionally related cells from the raw post-synthesis netlist into clusters or groups of clusters that correspond naturally to the physical FPGA architecture. 
-        We traverse the netlist to detect and identify LUT-FF pairs, CARRY4 chains, and DSP48E1 cascades. 
+
+        {
+            \centering
+            \includegraphics[width=\columnwidth]{figures/slicel.png}
+            \captionof{figure}{A SLICEL Site}
+            \label{fig:slicel}
+        }
+
+
+        Utilizing all 8 LUT-FF lanes in a SLICE can help reduce device area utilization and minimize wirelength, but \emph{too much} logic density in an area can contribute to general routing congestion. 
+        Furthermore, attempting to fill all 8 lanes in a SLICE requires some careful consideration of LUT BEL constraints. 
+        The LUT BELs in a SLICE, as shown in Figure \ref{fig:slicel}, the LUTs appear to be interleaved. 
+
+
+        Show a block diagram of a LUT6 comprising of two LUT5s.
+
+
+        Recall that a LUT can accommodate one 6-input boolean function or two 5-input boolean functions sharing the same inputs or any two 3-input or less boolean functions regardless of shared inputs. 
+        A LUT6 Cell (a LUT with 6-inputs) will actually occupy two lanes in a SLICEL, rendering one of the FF BELs in either lane ineligible for another LUT-FF pair. 
+        The LUT BELs
         
-
-        LUT-FF pairs, CARRY4 chains, and DSP cascades.
-        In this stage, we work solely at the \texttt{edif} level.
-
-        In the context of implementing a custom \emph{Simulated Annealing} (SA) placer, \textbf{prepacking} is the first step in consolidating functionally related cells from the raw post-synthesis netlist into logical clusters that correspond more naturally to the physical FPGA structures. 
-        We take a synthesized design checkpoint and open it via RapidWright. 
-        We traverse the raw post-synthesis netlist via RapidWright’s \texttt{edif} package to identify LUT-FF Pairs, CARRY4 Chains, DSP Cascades, and remaining single cells.
-        We cluster these detected cell structures into their respective \texttt{List}s.
-
-
-        First, we build the vocabulary of primitive cells by identifying the set of all unique cell types in the EDIF Netlist. 
-        We build a \texttt{HashMap}, where the keys are the cell type and the values are \texttt{List}s.
-
-
-        \textbf{LUT-FF pairs:} \quad
-            Most synchronous designs implement finite-state machines or pipelined datapaths, mapping their combinational logic into LUTs directly feeding FFs. 
-            Clustering each LUT-FF pair under a single “prepacked object” facilitates usage of dedicated intra-SLICE connections, thereby reducing routing overhead.
-
-        \textbf{CARRY4 chains:} \quad
-            Arithmetic operations (adders, counters, comparators) often chain multiple \emph{CARRY4} cells vertically. 
-            During prepacking, it is crucial to detect these chains so they remain grouped and placed in physically consecutive and vertical SLICEs for placement legality and optimal performance.
-
-        \textbf{DSP cascades:} \quad
-            In designs with large multiply-accumulate structures, DSP48E1 blocks can be used and cascaded along dedicated paths. 
-            Identifying such cascades early helps the placer keep them localized, minimizing high-speed interconnect usage.
-            Like carry chains, each DSP in a DSP cascades must be placed vertically, in physically consecutive and vertical DSP48E1 Sites.
-
-        \textbf{Loose or Single Cells} \quad
-            The remaining cells 
-            Various design-specific macros (e.g., BRAM-based FIFOs, shift-register logic) also benefit from being clustered, though these may be addressed in subsequent or more advanced stages.
-
-        This strategy not only reduces the complexity of the placement search space but also helps ensure legality (e.g., shared control signals, shared carry nets). 
-        The subsequent \emph{packing} and \emph{placement} steps can then operate on these higher-level groupings with improved efficiency. 
-
     \subsection{Packing}
         \label{subsec:packing}
 
@@ -636,113 +628,6 @@
         Up until now we have only organized the logical \texttt{Cells} into \texttt{SiteInsts}. 
         This is where simulated annealing actually begins. 
 
-
-\newpage
-o
-\newpage
-%%% OLD
-
-\section{OLD: Simulated Annealing}
-    With a basic understanding of FPGA architecture, design placement, and RapidWright, we have all the necessary pieces to implement our SA placer. 
-    Here we outline in detail each substage of our implementation: PrePacking, Packing, and Placement. 
-
-
-    \subsection{PrePacking}
-        In the prepacking stage, we traverse the raw post-synthesis EDIF Netlist to identify common recurring Cell patterns. 
-        We do this because there are certain desirable cell configurations that should be clustered together to exploit the physical organization of the BELs and Sites of the architecture. 
-        Doing so will innately improve wirelength minimization. 
-        There are also some cell configurations that must necessarily be placed in certain ways in relation to each other to ensure legality within the architecture constraints. 
-
-        Furthermore, certain cell patterns are specific to certain cell types. 
-        Therefore, we must first traverse the entire EDIF netlist and identify all unique cell types and group them together via a {\tt HashMap<String, List<EDIFHierCellInst>>}, where key String is the name cell type and value {\tt List<EDIFHierCellInst>} is the list of cells of that type. 
-        The resulting lists in the hashmap are mutually exclusive. 
-
-        Cell types can include {\tt CARRY4}, {\tt LUT1-6}, {\tt FF}, {\tt DSP48E1}, {\tt RAMB18E1}, and others. 
-        We specifically look for CARRY4 chains, DSP48E1 cascades, and LUT-FF pairs as these patterns are common to nearly all FPGA designs. 
-        We will describe each cell pattern in detail. 
-
-        \subsection{LUT-FF Pairs}
-            Very often, engineers model the behavior of a digital system as a collection of Finite State Machines (FSM) as shown in Figure \ref{fig:fsm}. 
-            An FSM at its core is a synchronous sequential circuit comprising of a combinational element and a synchronous memory element. 
-            In the 7-Series architecture, combinational elements are synthesized as LUTs, where the truth table of the combinational function is mapped onto the LUT's memory. 
-
-            Combinational functions in 7-Series FPGAs are synthesized as Look-Up Tables (LUTs). 
-            The FPGA synthesizer maps the combinational element into LUTs and the memory element onto FFs. 
-
-            In the vast majority of HDL designs, LUTs and FFs will be synthesized in pairs, as is the case in Figure \ref{fig:lut_ff_pair}. 
-            Shown in Figure \ref{fig:intrasite_intersite} are two possible placements for this cell net. 
-            On the right, the cells are placed across different Sites, thus the only way to route the net between the cells is through general inter-site routing. 
-            On the bottom left, the cells are placed within the same Site, taking advantage of the intra-site routing and avoiding costly inter-site routing. 
-
-            Identify unique CE-SR net pairs. 
-            All FF cells in a Site must share the same CE and SR nets. 
-
-
-        \subsection{CARRY Chains}
-
-
-            Figure \ref{fig:carry_cell_edif} shows an example of a CARRY4 cell while figure \ref{fig:carry_chain_edif} shows an example of a CARRY4 chain of size 6. 
-
-            As the name implies, CARRY chains are chains of CARRY cells. 
-            % On the Ultrascale architecture, the each CLB contains a CARRY8 BEL, an 8-bit CLA adder, allowing for even greater logic density. 
-
-
-            (By now Need to have introduced SLICEL / SLICEM Sites and differentiated them from "CLBs", which are referred to as CLBL or CLBM Tiles)
-            (rip some figures from the 7-series CLB user guide)
-
-            These CARRY4 cells, if chained together, must be placed vertically across CLBs, as each CLB is connected vertically by a Carry In (CI) to Carry Out (COUT) wire between them. 
-            The only way to route the carry net is through this wire, thus why these CLBs must be placed consecutively vertically. 
-            This allows the facilitation of fast adders on the device. 
-
-            The CARRY4 
-            We identify CARRY4 chains by taking the CARRY4 entry of the HashMap. 
-            We follow the below pseudocode 
-
-
-
-
-            Carry chain cells are primitive elements that are provided with a group of LUTs to enable more efficient programmable arithmetic. 
-            Primarily it provides dedicated paths for the carry logic of simple arithmetic operations (add, subtract, comparisons, equals, etc). Implementing these arithmetic operations with raw LUTs would results in an inefficient use of resources and performance would suffer. 
-            In this way, the CARRY4 cell is like a macrocell. 
-
-            On the device, they must necessarily be arranged consecutively vertically, from bottom to top. 
-            Figure \ref{fig:carry_chain_edif} shows an example of a CARRY4 EDIFCell chain in an EDIFNetlist. 
-            Notice how there are many different types of cells connected to the CARRY4 Cells. 
-            The raw netlist does not tell us the presence of any carry chains or other cell clusterings. 
-            We must manually traverse the netlist to identify all of the carry chains by accessing each carry cell, accessing its Ports, accessing the net on the port, accessing all of the other ports on the net, and checking if those ports belong to another carry cell. 
-            We continue to traverse the carry chain until the final carry cell is not connected to another carry cell. 
-            We must traverse in both directions. 
-            After we reach the tail of the current chain, we traverse in the opposite direction (CIN vs COUT) to find the carry chain anchor. 
-            We then remove all the cells in this chain from the set of all carry cells. 
-            We select the next carry cell in the set of all carry cells and repeat the process, until there are no more remaining carry cells in the set of all carry cells. 
-
-
-            Shown in figure \ref{fig:carry_cell_edif} 
-
-            To find CARRY chains, we take the CARRY4 group and follow the below pseudocode. 
-            Each SLICE Site contains one CARRY4 BEL. 
-            Each CLB Tile contains two SLICE Sites. 
-            CARRY chains span vertically across multiple SLICE Sites/Tiles. (Show picture) 
-
-
-        \subsection{DSP Cascades}
-            Each DSP Site contains one DSP BEL. 
-            Each DSP Tile contains two DSP Sites. 
-            DSP chains can span vertically across multiple DSP Sites/Tiles. 
-
-
-    \subsection{Packing}
-        In the packing stage, we take the identified cell clusters and package them into SiteInst Design objects which target the Device Site objects. 
-        \subsection{CLB Sites}
-            Can support LUT-FF pairs, loose LUTs, loose FFs, CARRY chains. 
-            Each SLICE has 8 "lanes" of LUT-FFs. 4 LUT5s and 4 LUT6s. 8 FFs. 
-            For SLICEMs, LUT6s can be configured as shallow 32-bit LUTRAMs or "RAMS32". 
-
-    \subsection{Placement: Simulated Annealing} 
-        Bookkeeping: keep track of Sites occupied by single SiteInsts and Sites occupied by SiteInst chains. 
-        Create BEL "fields": CLB, DSP, CLB and DSP Chains, RAMs. 
-
-        \subsection{Detailed Placement}
 
 
 \section{Placement Results}
