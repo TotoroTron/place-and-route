@@ -203,22 +203,23 @@
     In the 7-Series architecture, the term \emph{CLB} (Configurable Logic Block) refers to a \emph{CLB Tile} that contains two \emph{SLICE} Sites. 
     Xilinx offers two variants of SLICE Sites: \textbf{SLICEL} and \textbf{SLICEM}.
     \begin{itemize}
-        \item Each \textbf{SLICEL} has a set of BELs including eight LUTs, eight FFs, and one   \emph{CARRY4} adder. The LUT BELs in a SLICEL can only host LUT Cells. 
-        \item The \textbf{SLICEM} includes all the features of a SLICEL but its LUT BELs can host both LUT Cells, which are asynchronous ROM elements, or RAM32M Cells, which are synchronous 32-deep RAM elements. These cells are also referred to as \emph{Distributed RAM} in the Xilinx documentation.
-        These cells can offer an alternative to the larger, more dedicated 18K-36K RAMB18E1 cells when RAM resources are highly utilized. 
+        \item Each \texttt{SLICEL} has a set of BELs including eight \texttt{LUT}s, eight \texttt{FF}s, and one \texttt{CARRY4} adder. The \texttt{LUT} BELs in a \texttt{SLICEL} can only host \texttt{LUT} Cells. 
+        \item The \texttt{SLICEM} includes all the features of a \texttt{SLICEL} but its \texttt{LUT} BELs can host both \texttt{LUT} Cells, which are asynchronous ROM elements, or \texttt{RAM32M} Cells, which are synchronous 32-deep RAM elements. These cells are also referred to as \emph{Distributed RAM} in the Xilinx documentation.
+            These cells can offer an alternative to the larger, more dedicated 18K-36K \texttt{RAMB18E1} cells when RAM resources are highly utilized. 
     \end{itemize}
-    In a typical 7-Series device, approximately 75\% of the SLICE Sites are SLICELs and 25\% are SLICEMs. 
-    A single CLB Tile can therefore host either two SLICELs or one SLICEL and one SLICEM.
-    For simplicity, however, we will only consider SLICELs for general logic and use the dedicated RAMB18E1 cells to implement RAM elements. 
+    In a typical 7-Series device, approximately 75\% of the SLICE Sites are \texttt{SLICEL}s and 25\% are \texttt{SLICEM}s. 
+    A single CLB Tile can therefore host either two \texttt{SLICEL}s or one \texttt{SLICEL} and one \texttt{SLICEM}.
+    To simplify the problem space, however, we will only consider \texttt{SLICEL}s for general logic and use the dedicated \texttt{RAMB18E1} cells to implement RAM elements. 
 
     The BELs in these SLICEs facilitate the bulk of the general programmability of the FPGA fabric. 
-    We will explain in detail the motivation and function of these BELs. 
+    We will explain in detail the function and motivation behind these BELs. 
 
 
     \textbf{LUTs} \quad
         Combinational logic is universal to all HDL designs. 
-        As the their name suggests, Look‑Up Tables (LUTs) facilitate combinational logic by acting as tiny asynchronously‑accessed ROMs whose contents are fixed when the FPGA is programmed.  
-        For any boolean function, the synthesizer precalculates the output to every possible input combination and stores the resulting truth table into a LUT's static memory. 
+        As the their name suggests, a Look‑Up Table (LUT) map an input value to an output value. 
+        LUTs facilitate combinational logic by acting as tiny asynchronously‑accessed ROMs whose contents are fixed when the FPGA is programmed.  
+        For any boolean function, the synthesizer precalculates the boolean output to every possible input combination and stores the resulting truth table into a LUT's static memory. 
         The inputs are then essentially treated as an address space that maps to a data value space in an asynchronous ROM. 
         No explicit logic gates like NAND or XNOR are synthesized, contrary to what newcomers might expect from a "Field Programmable Gate Array". 
 
@@ -239,13 +240,13 @@
     \textbf{FFs} \quad
         FFs are synthesized to facilitate synchronous event-driven signal assignment. 
         For most Verilog users, this generally means signal assignments wrapped in \texttt{always @(posedge clk)} statements. 
-        Figure \ref{fig:ff_synthesis} shows an example of where a flip flop (FF) is typically synthesized. 
-        The cell primitive \textbf{FDRE} is a type of FF and belongs to a family of D Flip Flops (DFFs) with Clock Enable (CE). 
+        Figure \ref{fig:ff_synthesis} shows an example of where a FF is typically synthesized. 
+        The cell primitive \textbf{FDRE} is a type of FF and belongs to a family of D Flip Flops (DFFs) with Clock Enable (\texttt{CE}). 
         \begin{itemize}
-            \item FDCE - DFF with CE and Asynchronous Clear
-            \item FDPE - DFF with CE and Asynchronous Preset
-            \item FDSE - DFF with CE and Synchronous Set
-            \item \textbf{FDRE} - DFF with CE and Synchronous Reset
+            \item \texttt{FDCE} - DFF with CE and Asynchronous Clear
+            \item \texttt{FDPE} - DFF with CE and Asynchronous Preset
+            \item \texttt{FDSE} - DFF with CE and Synchronous Set
+            \item \texttt{FDRE} - DFF with CE and Synchronous Reset
         \end{itemize}
         In a typical HDL design, the vast majority of FFs will be synthesized as FDREs with the occasional FDSE, as it is generally good practice to keep FPGA designs synchronous. 
         A FF BEL may also host a LATCH Cell, however, since they are generally bad practice in FPGA design, we will not consider latches in this paper. 
@@ -316,19 +317,19 @@
     \newpage
     \textbf{CARRY} \quad
         An FPGA design will also typically implement many adders, counters, subtractors, or comparators, all of which are based on binary addition. 
-        They are so ubiquitous that every that in the 7-Series architecture, every SLICE features a \emph{CARRY4} BEL -- a 4-bit carry-lookahead (CLA) adder, a much better alternative to synthesizing adders via LUTs. 
+        They are so ubiquitous that every that in the 7-Series architecture, every SLICE features a \texttt{CARRY4} BEL -- a 4-bit carry-lookahead (CLA) adder, a much better alternative to synthesizing adders via LUTs. 
 
     \textbf{CARRY Chains} \quad
-        These CARRY4 blocks can be chained across SLICEs to implement wide adders efficiently. 
-        The CARRY4 BELs \emph{must} be chained vertically consecutively across SLICEs as the Carry-In (CI) and Carry-Out (CO) pins can only be routed this way. 
-        A CARRY4 cell may also directly connect to LUTs and FFs, and should be placed in the same Site whenever possible to minimize wirelength. 
-        Shown in figure \ref{fig:carry_cell_group} shows how a CARRY4 chain and associated LUTs and FFs can be placed across SLICEs. 
+        These \texttt{CARRY4} blocks can be chained across SLICEs to implement wide adders efficiently. 
+        The \texttt{CARRY4} BELs \emph{must} be chained vertically consecutively across SLICEs as the Carry-In (\texttt{CI}) and Carry-Out (\texttt{CO}) pins can only be routed this way. 
+        A \texttt{CARRY4} cell may also directly connect to LUTs and FFs, and should be placed in the same Site whenever possible to minimize wirelength. 
+        Shown in figure \ref{fig:carry_cell_group} shows how a \texttt{CARRY4} chain and associated LUTs and FFs can be placed across SLICEs. 
 
 
         {
             \centering
             \includegraphics[width=\columnwidth]{figures/carry_cell_group.png}
-            \captionof{figure}{A SLICEL with a CARRY4 cell, 4 LUT cells, and 4 FF cells placed inside as shown in the Vivado device viewer}
+            \captionof{figure}{A \texttt{SLICEL} with a \texttt{CARRY4} cell, 4 LUT cells, and 4 FF cells placed inside as shown in the Vivado device viewer}
             \label{fig:carry_cell_group}
         }
 
@@ -337,7 +338,7 @@
             \includegraphics[valign=c, width=4.0cm]{figures/carry_chain_placement.png}
             \includegraphics[valign=c, width=4.0cm]{figures/carry_chain_routes_3.png}
             \captionof{figure}{
-                A CARRY4 chain of size 3 placed across 3 SLICEs.
+                A \texttt{CARRY4} chain of size 3 placed across 3 SLICEs.
                 \textbf{Left:} Simplified view, \textbf{Right:} As shown in the Vivado device viewer.
             }
             \label{fig:carry_cell_group}
@@ -349,7 +350,7 @@
             \centering
             \includegraphics[valign=c, width=3.0cm]{figures/adder_synthesis.png}
             \includegraphics[valign=c, width=14.0cm]{figures/carry_chain_edif_3.png}
-            \captionof{figure}{A synthesized carry chain of size 3 as shown in the Vivado netlist viewer}
+            \captionof{figure}{A \texttt{CARRY4} chain of size 3 as shown in the Vivado netlist viewer}
             \label{fig:carry_chain_edif}
         }
         \begin{multicols}{2}
@@ -364,24 +365,24 @@
         Common DSP subsystems like Finite Impulse Response (FIR) filters, Fast Fourier Transform (FFTs), and convolutional neural nets (CNNs) demand fast large scale multiply-accumulate (MAC) capabilities. 
         The 7-Series arhictecture integrates DSP BELs into the logic fabric called DSP48E1 that can facilitate MAC efficiently. 
         The architecture hierarchy for DSPs is simple compared to CLBs and SLICEs. 
-        A DSP48E1 Tile contains two DSP48E1 Sites, each containing one DSP48E1 BEL, which can host a DSP48E1 Cell. 
+        A \texttt{DSP48E1} Tile contains two \texttt{DSP48E1} Sites, each containing one \texttt{DSP48E1} BEL, which can host a \texttt{DSP48E1} Cell. 
 
         {
             \centering
             \includegraphics[width=\columnwidth]{figures/dsp_diagram.png}
             \captionof{figure}{
-                Basic DSP48E1 Slice Functionality
+                Basic \texttt{DSP48E1} Slice Functionality
             }
             \label{dsp_diagram}
         }
         \vspace{0.5cm}
 
     \textbf{DSP Cascades} \quad 
-        Higher level DSP functions are supported by cascading DSP48E1 slices in a DSP48E1 column.
-        Much like CARRY4 chains, DSP48E1 cascades must necessarily be placed vertically consecutively across DSP48E1 Sites. 
-        They are connected by three busses: ACOUT to ACIN, BCOUT to BCIN, PCOUT to PCIN.
-        These signal busses run directly between the vertical DSP48E1 slices without burdening the general routing resources. 
-        The ability to cascade this way provides a high-performance and low-power implementation of DSP filter functions. 
+        Higher level DSP functions are supported by cascading \texttt{DSP48E1} slices in a \texttt{DSP48E1} column.
+        Much like \texttt{CARRY4} chains, \texttt{DSP48E1} cascades must necessarily be placed vertically consecutively across \texttt{DSP48E1} Sites. 
+        They are connected by three busses: \texttt{ACOUT} to \texttt{ACIN}, \texttt{BCOUT} to \texttt{BCIN}, \texttt{PCOUT} to \texttt{PCIN}.
+        These signal busses run directly between the vertical \texttt{DSP48E1} slices without burdening the general routing resources. 
+        The ability to cascade this way provides a high-performance and low-power implementation of digital signal processing systems. 
 
         \vspace{1.0cm}
         {
@@ -389,7 +390,7 @@
             \includegraphics[valign=c, width=2.5cm]{figures/dsp_cascade_placement.png}
             \includegraphics[valign=c, width=3.0cm]{figures/dsp_cascade_routed.png}
             \captionof{figure}{
-                A DSP48E1 cascade of size 2 placed across 2 DSP48E1 Sites.
+                A \texttt{DSP48E1} cascade of size 2 placed across 2 \texttt{DSP48E1} Sites.
                 \textbf{Left:} Simplified view, \textbf{Right:} As shown in the Vivado device viewer.
             }
         }
@@ -413,34 +414,33 @@
         In addition to SLICEs and DSPs, the 7-Series also offers dedicated Block Random Access Memory (BRAM) BELs. 
         These BRAMs come in two variants: \textbf{RAMB18E1} and \textbf{RAMB36E1}. 
         \begin{itemize}
-            \item \textbf{RAMB18E1} - 
+            \item \texttt{RAMB18E1} - 
             Has a capacity of 18 Kilobits. 
             It can be configured as single port RAM with dimensions ranging between (1-bit wide by 16K deep) to (18-bit wide by 1024 deep). 
             It can also be configured as a (36-bit wide by 512 deep) true simple dual port RAM. 
-            \item \textbf{RAMB36E1} - 
+            \item \texttt{RAMB36E1} - 
             Has a capacity of 36 Kilobits. 
             It can be configured as single port RAM with dimensions ranging between (1-bit wide by 32K deep) to (36-bit wide by 1024 deep). 
             It can also be configured as a (72-bit wide by 512 deep) simple dual port RAM. 
         \end{itemize}
 
-        For readability, we will abbreviate RAMB18E1 as \textbf{RAM18} and RAMB36E1 as \textbf{RAM36}.
-        One BRAM Tile contains one RAM36 Site and two RAM18 Sites. 
-        The RAM36 Site contains one RAM36 BEL while the RAM18 Site contains one RAM18 BEL.
-        The RAM18 BEL can host one RAM18 Cell, while the RAM36 BEL can host either one RAM36 Cell or two RAM18 Cells. 
+        One BRAM Tile contains one \texttt{RAMB36E1} Site and two \texttt{RAMB18E1} Sites. 
+        The \texttt{RAMB36E1} Site contains one \texttt{RAMB36E1} BEL, which can host one \texttt{RAMB36E1} Cell. 
+        Likewise, the \texttt{RAMB18E1} Site contains one \texttt{RAMB18E1} BEL, which can host one \texttt{RAMB18E1} Cell. 
 
         Like DSP cascades, BRAMs may also be cascaded together in a column to implement large memories efficiently, with some intermediate signals between them routed intra-Tile without burdening the general routing. 
         However, unlike DSPs, large memories decomposed amongst multiple BRAMs can also be routed together through general routing. 
         Furthermore, in most design scenarios, large memories will not utilize the intra-Tile signals. 
         
-        For simplicity we will not constrain large BRAMs to be cascaded together in consecutive vertical Tiles. 
-        We can essentially treat RAMB18E1 and RAMB36E1 Cells as loose, minimally constrained single cells, in contrast to the highly constrained DSP cascades and CARRY chains.
+        To simplify the problem space, we will not constrain large BRAMs to be cascaded together in consecutive vertical Tiles. 
+        We can essentially treat \texttt{RAMB18E1} and \texttt{RAMB36E1} Cells as loose, minimally constrained single cells, in contrast to the highly constrained \texttt{DSP48E1} cascades and \texttt{CARRY4} chains.
 
         {
             \centering
             \includegraphics[valign=c, width=3.0cm]{figures/bram.png}
             \includegraphics[valign=c, width=2.0cm]{figures/bram_tile.png}
             \captionof{figure}{
-                A BRAM Tile containing two RAMB18E1 Sites and one RAMB36E1 Site.
+                A BRAM Tile containing two \texttt{RAMB18E1} Sites and one \texttt{RAMB36E1} Site.
                 \textbf{Left:} simplified view. \textbf{Right:} as seen in the device viewer, BELs highlighted in white. 
             }
             \label{fig:bram_tile}
@@ -511,8 +511,8 @@
 
     \end{enumerate}
 
-    This workflow underscores the critical role of \textbf{placement} in bridging the netlist to a physical realization. 
-    An efficient placement algorithm can drastically reduce compile times and improve design performance, enabling broader adoption of FPGAs in application spaces that require fast design iteration.
+    % This workflow underscores the critical role of \textbf{placement} in bridging the netlist to a physical realization. 
+    % An efficient placement algorithm can drastically reduce compile times and improve design performance, enabling broader adoption of FPGAs in application spaces that require fast design iteration.
 
 \newpage
 \section{RapidWright API}
@@ -553,14 +553,14 @@
 \section{What is a Netlist?}
     \label{sec:netlist}
     In its simplest form, a netlist consists of a list of every component in an electronic design and a list of nets they connect to. 
-    Here, a net, or network, denotes any group of two or more interconnected elements - whether they be transistors, logic gates, or higher-level macrocells. 
+    Generally, a net, or network, denotes any group of two or more interconnected elements - whether they be transistors, logic gates, or in our case, logical cells. 
     More precisely, nets attach to component pins, and those pins reside on cells, each of which exposing multiple ports. 
     In this way, a netlist makes explicit both the individual building blocks of a circuit and the precise wiring that links them. 
 
     In Vivado, a Netlist can be synthesized as a Hierarchical or a Flattened netlist. 
     Figure ~\ref{fig:hierarchical_design} shows the Verilog code for a simple HDL design using module instance hierarchy. 
     Figure ~\ref{fig:hier_netlist} shows the design synthesized into a hierarchical netlist, while Figure ~\ref{fig:flat_netlist} shows the same design synthesized into a flat netlist. 
-    In a synthesized Netlist, the leaf cells (lowest-level cells) are necessarily primitive cells from the vendor primitives library such as LUT6, FDRE, CARRY4, DSP48E1, etc.. 
+    In a synthesized Netlist, the leaf cells (lowest-level cells) are necessarily primitive cells from the vendor primitives library such as \texttt{LUT6}, \texttt{FDRE}, \texttt{CARRY4}, \texttt{DSP48E1}, etc.. 
 
     \end{multicols}
     {
@@ -643,10 +643,10 @@
 
         The first step in our placement flow is \textbf{prepacking}. 
         Recall from the 7-Series architecture that there are certain cell structures that must adhere to certain placements constraints to ensure legality, and by design, to minimize wirelength. 
-        The job of the prepacker is to consolidate the cells in the EDIF Netlist into clusters or groups of clusters that naturally reflect these placement constraints. 
+        The job of the prepacker is to traverse the raw EDIF netlist, detect these cell structures, and consolidate these cells into clusters or groups of clusters that naturally reflect these placement constraints. 
 
-        CARRY4 chains must necessarily be placed vertically and consecutively across a column of SLICEs in ascending order. 
-        Likewise, DSP48E1 cascades must necessarily be placed vertically and consecutively across a column of DSP48E1 Sites in ascending order. 
+        Recall that CARRY4 chains must necessarily be placed vertically and consecutively across a column of SLICEs in ascending order. 
+        Likewise, \textttt{DSP48E1} cascades must necessarily be placed vertically and consecutively across a column of DSP48E1 Sites in ascending order. 
         A LUT-FF pair may be placed freely, but should be placed in the same lane within the same SLICE to minimize wirelength.
 
         The raw post-synthesis netlist only tells us the list of nets and the cell ports that they connect to. 
