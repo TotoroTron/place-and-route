@@ -490,7 +490,7 @@
 
         \item \textbf{Synthesis:} 
             The synthesis tool parses the HDL source, performs logical optimizations, and maps the design onto primitive cells that suit the target FPGA technology. 
-            The output is typically a \emph{structural} netlist (e.g., EDIF or structural Verilog) which details how the design’s logic is broken down into LUTs, FFs, and other vendor-specific cells.
+            The output is typically a structural \texttt{netlist} (e.g., EDIF or structural Verilog) which details how the design’s logic is broken down into LUTs, FFs, and other vendor-specific cells.
 
         \item \textbf{Placement and Routing (Implementation):} 
             In \emph{placement}, each logical cell from the synthesized netlist is assigned to a physical location on the FPGA fabric. 
@@ -514,7 +514,7 @@
     This workflow underscores the critical role of \textbf{placement} in bridging the netlist to a physical realization. 
     An efficient placement algorithm can drastically reduce compile times and improve design performance, enabling broader adoption of FPGAs in application spaces that require fast design iteration.
 
-
+\newpage
 \section{RapidWright API}
     \label{sec:rapidwright_api}
 
@@ -549,6 +549,72 @@
     By exposing these low-level internals, RapidWright allows fine-grained design transformations that go beyond the standard Vivado IDE’s capabilities. 
     Researchers can prototype new EDA strategies without needing to re-implement an entire FPGA backend from scratch, thus accelerating innovation in placement and routing methodologies.
 
+\newpage
+\section{What is a Netlist?}
+    \label{sec:netlist}
+    In its simplest form, a netlist consists of a list of every component in an electronic design and a list of nets they connect to. 
+    Here, a net, or network, denotes any group of two or more interconnected elements - whether they be transistors, logic gates, or higher-level macrocells. 
+    More precisely, nets attach to component pins, and those pins reside on cells, each of which exposing multiple ports. 
+    In this way, a netlist makes explicit both the individual building blocks of a circuit and the precise wiring that links them. 
+
+    In Vivado, a Netlist can be synthesized as a Hierarchical or a Flattened netlist. 
+    Figure ~\ref{fig:hierarchical_design} shows the Verilog code for a simple HDL design using module instance hierarchy. 
+    Figure ~\ref{fig:hier_netlist} shows the design synthesized into a hierarchical netlist, while Figure ~\ref{fig:flat_netlist} shows the same design synthesized into a flat netlist. 
+    In a synthesized Netlist, the leaf cells (lowest-level cells) are necessarily primitive cells from the vendor primitives library such as LUT6, FDRE, CARRY4, DSP48E1, etc.. 
+
+    \end{multicols}
+    {
+        \raggedright
+        \includegraphics[valign=t, scale=0.3]{figures/netlist_synth/top_level.png}
+        \includegraphics[valign=t, scale=0.3]{figures/netlist_synth/module_0.png}
+        \includegraphics[valign=t, scale=0.3]{figures/netlist_synth/module_1.png}
+        \includegraphics[valign=t, scale=0.3]{figures/netlist_synth/module_2.png}
+        \includegraphics[valign=t, scale=0.3]{figures/netlist_synth/module_3.png}
+        \captionof{figure}{A simple HDL design with module hierarchy.}
+        \label{fig:hierarchical_design}
+    }
+    {
+        \centering
+        \includegraphics[valign=c, width=11.5cm]{figures/netlist_synth/hier_netlist.png}
+        \includegraphics[valign=c, width=6cm]{figures/netlist_synth/hier_graph.png}
+        \captionof{figure}{
+            \textbf{Left:} A hierarchical netlist consisting of LUTs and FFs.
+            \textbf{Right:} The cell hierarchy graph.
+        }
+        \label{fig:hier_netlist}
+    }
+    \vspace{0.5cm}
+    {
+        \centering
+        \includegraphics[valign=c, width=10cm]{figures/netlist_synth/flat_netlist.png}
+        \includegraphics[valign=c, width=4cm]{figures/netlist_synth/flat_graph.png}
+        \captionof{figure}{
+            \textbf{Left:} A flattened netlist consisting of LUTs and FFs.
+            \textbf{Right:} The flattened cell hierarchy graph.
+        }
+        \label{fig:flat_netlist}
+    }
+    \begin{multicols}{2}
+
+
+
+    RapidWright offers an easy way to access, read, or manipulate this netlist for a given HDL design. 
+    Shown in Figure~\ref{fig:netlist_syn}
+
+    Verilog \texttt{module}s are represented simply as
+
+    \end{multicols}
+    {
+        \centering
+        \includegraphics[width=\columnwidth]{figures/raw_edif.png}
+        \captionof{figure}{A raw EDIF Netlist with uncountably many cells}
+        \label{fig:raw_edif}
+    }
+    \begin{multicols}{2}
+
+    .
+
+\newpage
 \section{Simulated Annealing}
     \label{sec:simulated_annealing}
     With a basic understanding of FPGA architecture, design placement, and RapidWright, we have all the necessary pieces to implement our SA placer. 
@@ -574,14 +640,6 @@
     \subsection{Prepacking}
         \label{subsec:prepacking}
 
-        \end{multicols}
-        {
-            \centering
-            \includegraphics[width=\columnwidth]{figures/raw_edif.png}
-            \captionof{figure}{A raw EDIF Netlist with uncountably many cells}
-            \label{fig:raw_edif}
-        }
-        \begin{multicols}{2}
 
         The first step in our placement flow is \textbf{prepacking}. 
         Recall from the 7-Series architecture that there are certain cell structures that must adhere to certain placements constraints to ensure legality, and by design, to minimize wirelength. 
@@ -591,8 +649,8 @@
         Likewise, DSP48E1 cascades must necessarily be placed vertically and consecutively across a column of DSP48E1 Sites in ascending order. 
         A LUT-FF pair may be placed freely, but should be placed in the same lane within the same SLICE to minimize wirelength.
 
-        The raw post-synthesis netlist only tells us the instantiated cells and the nets between them. 
-        It does not report the presence of any cell structures (CARRY4 chains, etc.). 
+        The raw post-synthesis netlist only tells us the list of nets and the cell ports that they connect to. 
+        It does not report the presence of any macro cell structures (CARRY4 chains, etc.). 
         Thus, we must traverse the netlist to detect these cell structures and store that structure information in a class we will call \texttt{PrepackedDesign}.
 
         A group of LUT-FF pairs may be placed in the same SLICE, with the constraint that the FFs must share the same Clock-Enable (CE) and Set-Reset (SR) nets.
