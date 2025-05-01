@@ -552,15 +552,17 @@
 \newpage
 \section{What is a Netlist?}
     \label{sec:netlist}
-    In its simplest form, a netlist consists of a list of every component in an electronic design and a list of nets they connect to. 
+    In its simplest form, a netlist is a list of every component in an electronic design and a list of nets they connect to. 
     Generally, a net, or network, denotes any group of two or more interconnected elements - whether they be transistors, logic gates, or in our case, logical cells. 
     More precisely, nets attach to component pins, and those pins reside on cells, each of which exposing multiple ports. 
     In this way, a netlist makes explicit both the individual building blocks of a circuit and the precise wiring that links them. 
 
     In Vivado, a Netlist can be synthesized as a Hierarchical or a Flattened netlist. 
     Figure ~\ref{fig:hierarchical_design} shows the Verilog code for a simple HDL design using module instance hierarchy. 
-    Figure ~\ref{fig:hier_netlist} shows the design synthesized into a hierarchical netlist, while Figure ~\ref{fig:flat_netlist} shows the same design synthesized into a flat netlist. 
-    In a synthesized Netlist, the leaf cells (lowest-level cells) are necessarily primitive cells from the vendor primitives library such as \texttt{LUT6}, \texttt{FDRE}, \texttt{CARRY4}, \texttt{DSP48E1}, etc.. 
+    Figure ~\ref{fig:hier_netlist} shows the design synthesized into a hierarchical netlist. 
+    The synthesizer attempts to construct the module hierarchy as close to the module instantiation hierarchy as defined by the raw user design entry. 
+    Figure ~\ref{fig:flat_netlist} shows the same design synthesized into a flat netlist. 
+    In a synthesized Netlist, the leaf cells (lowest-level cells) are necessarily primitive cells from the architecture primitives library which includes \texttt{LUT6}, \texttt{FDRE}, \texttt{CARRY4}, \texttt{DSP48E1}, etc.. 
 
     \end{multicols}
     {
@@ -596,12 +598,16 @@
     }
     \begin{multicols}{2}
 
+    \subsection{Netlist Manipulation in RapidWright}
+
+    One of RapidWright's most powerful features is netlist manipulation via its \texttt{edif} package. 
+    A netlist can first be extracted from a \texttt{.dcp} design checkpoint like the following: 
+
+    SHOULD I INCLUDE A RAPIDWRIGHT HELLO WORLD EXAMPLE JUST TO GIVE AN IMPRESSION?
+
+    OR CAN I JUST DIRECT THE READER TO THE RAPIDWRIGHT DOCUMENTATION?
 
 
-    RapidWright offers an easy way to access, read, or manipulate this netlist for a given HDL design. 
-    Shown in Figure~\ref{fig:netlist_syn}
-
-    Verilog \texttt{module}s are represented simply as
 
     \end{multicols}
     {
@@ -646,7 +652,7 @@
         The job of the prepacker is to traverse the raw EDIF netlist, detect these cell structures, and consolidate these cells into clusters or groups of clusters that naturally reflect these placement constraints. 
 
         Recall that CARRY4 chains must necessarily be placed vertically and consecutively across a column of SLICEs in ascending order. 
-        Likewise, \textttt{DSP48E1} cascades must necessarily be placed vertically and consecutively across a column of DSP48E1 Sites in ascending order. 
+        Likewise, \texttt{DSP48E1} cascades must necessarily be placed vertically and consecutively across a column of DSP48E1 Sites in ascending order. 
         A LUT-FF pair may be placed freely, but should be placed in the same lane within the same SLICE to minimize wirelength.
 
         The raw post-synthesis netlist only tells us the list of nets and the cell ports that they connect to. 
