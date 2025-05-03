@@ -1,0 +1,67 @@
+
+\section{What is a Netlist?}
+\label{sec:netlist}
+In its most general form, a netlist is a list of every component in an electronic design paired with a list of nets they connect to. 
+Depending on the working abstraction level, these components can be transistors, logic gates, macrocells, or increasingly higher-level modules. 
+Generally, a net denotes any group of two or more interconnected components.
+In an electronics context, a net can be though of as a wire connecting multiple pins between multiple components, with each wire having one voltage source and one or more voltage sinks. 
+Thus, if one were to express the netlist as a graph, the graph would consist of nodes (components) connected by hyperedges (wires). 
+More precisely, these hyperedges connect the pins between the components, not the components themselves, with each component exposing multiple pins or ports. 
+
+In FPGA context, the components are logical cells (\texttt{LUTs}, \texttt{CARRY4s}, etc.) or hierarchical cells (Verilog module instances) with pins connected together by wires. 
+In Vivado, a Netlist can be synthesized as a Hierarchical or a Flattened netlist. 
+Figure ~\ref{fig:hierarchical_design} shows an example a Verilog design using module instance hierarchy, while figure ~\ref{fig:hier_netlist} shows the same design synthesized into a flattened netlist. 
+The synthesizer attempts to construct the module hierarchy as close to the module instantiation hierarchy as defined by the raw user design entry. 
+Figure ~\ref{fig:flat_netlist} shows the same design but synthesized into a flat netlist. 
+In either synthesized Netlist, the leaf cells, (deepest level cells), must necessarily consist only of primitive cells from the architecture primitives library (\texttt{LUT6}, \texttt{FDRE}, \texttt{CARRY4}, \texttt{DSP48E1}, etc.). 
+The netlist can be compiled and exported as a purely structural low-level Verilog file, or an Electrinic Design Interchange Format (EDIF) file, both describing the netlist explicitly as a list of logical cells connected by a list of wires. 
+
+\end{multicols}
+{
+    \raggedright
+    \includegraphics[valign=t, scale=0.3]{figures/netlist_synth/top_level.png}
+    \includegraphics[valign=t, scale=0.3]{figures/netlist_synth/module_0.png}
+    \includegraphics[valign=t, scale=0.3]{figures/netlist_synth/module_1.png}
+    \includegraphics[valign=t, scale=0.3]{figures/netlist_synth/module_2.png}
+    \includegraphics[valign=t, scale=0.3]{figures/netlist_synth/module_3.png}
+    \captionof{figure}{A simple HDL design with module hierarchy.}
+    \label{fig:hierarchical_design}
+}
+{
+    \centering
+    \includegraphics[valign=c, width=11.5cm]{figures/netlist_synth/hier_netlist.png}
+    \includegraphics[valign=c, width=6cm]{figures/netlist_synth/hier_graph.png}
+    \captionof{figure}{
+        \textbf{Left:} A hierarchical netlist consisting of LUTs and FFs.
+        \textbf{Right:} The cell hierarchy graph.
+    }
+    \label{fig:hier_netlist}
+}
+\vspace{0.5cm}
+{
+    \centering
+    \includegraphics[valign=c, width=10cm]{figures/netlist_synth/flat_netlist.png}
+    \includegraphics[valign=c, width=4cm]{figures/netlist_synth/flat_graph.png}
+    \captionof{figure}{
+        \textbf{Left:} A flattened netlist consisting of LUTs and FFs.
+        \textbf{Right:} The flattened cell hierarchy graph.
+    }
+    \label{fig:flat_netlist}
+}
+\begin{multicols}{2}
+
+\subsection{Netlist Traversal and Manipulation in RapidWright}
+
+One of RapidWright's most powerful features is netlist manipulation via the \texttt{edif} package of classes. A netlist can be easily extracted from a \texttt{.dcp} design checkpoint and traversed like the following: 
+
+\begin{lstlisting}[language=Java, caption={Netlist extraction}, label={lst:netlist_extract}]
+Design design = Design.readCheckpoint("synth.dcp")
+EDIFNetlist = design.getNetlist();
+\end{lstlisting}
+
+The \texttt{Netlist} class in RapidWright stores hierarchical information about the \texttt{Design} and can be accessed and manipulated
+
+SHOULD I INCLUDE A RAPIDWRIGHT HELLO WORLD EXAMPLE JUST TO GIVE AN IMPRESSION?
+
+OR CAN I JUST DIRECT THE READER TO THE RAPIDWRIGHT DOCUMENTATION?
+

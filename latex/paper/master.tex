@@ -1,0 +1,54 @@
+
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{mathpazo}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  columns=fullflexible,
+  frame=single,
+  showspaces=false,
+  showtabs=false,
+  keepspaces=false
+}
+\usepackage[export]{adjustbox}
+\usepackage{multicol}
+\usepackage{caption}
+\usepackage[a4paper,
+            bindingoffset=0.2in,
+            left=0.5in,
+            right=0.5in,
+            top=0.5in,
+            bottom=0.5in,
+            footskip=.25in]{geometry}
+
+
+\begin{document}
+\title{MS Technical Paper: \\ Placement Algorithms for Heterogeneous FPGAs}
+\author{Brian B Cheng \\ Rutgers University Department of Electrical and Computer Engineering}
+
+
+\date{}
+\maketitle
+
+
+\begin{multicols}{2}
+
+\include{sections/01-keywords}
+\include{sections/02-abstract}
+\include{sections/03-introduction}
+\include{sections/04-architecture_history}
+\include{sections/05-7series_architecture}
+\include{sections/06-designflow_toolchain}
+\include{sections/07-rapidwright_api}
+\include{sections/08-netlist}
+\include{sections/09-simulated_annealing}
+
+\end{multicols}
+\end{document}
