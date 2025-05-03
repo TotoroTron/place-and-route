@@ -8,15 +8,48 @@
 \usepackage{xcolor}
 \usepackage{float}
 \usepackage{listings}
-\lstset{
-  basicstyle=\ttfamily\small,
-  breaklines=true,
-  columns=fullflexible,
-  frame=single,
-  showspaces=false,
-  showtabs=false,
-  keepspaces=false
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{style_compact}{
+    backgroundcolor=\color{backcolour},         % keep same background
+    commentstyle=\color{codegreen},             % reuse your colors
+    keywordstyle=\color{magenta},
+    stringstyle=\color{codepurple},
+    numberstyle=\scriptsize\color{codegray},    % smaller line‐number font
+    basicstyle=\ttfamily\scriptsize,            % very small code font
+    columns=fullflexible,                       % no extra space for monospaced
+    keepspaces=true,
+    breaklines=true,
+    breakatwhitespace=true,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    numbers=left,
+    stepnumber=1,
+    numbersep=3pt,                              % tighter gap to numbers
+    xleftmargin=8pt,                            % slight indent
+    xrightmargin=8pt,
+    aboveskip=2pt,                              % minimal vertical space
+    belowskip=2pt,
+    lineskip=-0.5pt,                            % pull lines closer
+    frame=single,                               % optional frame
 }
+\lstdefinestyle{style2}{
+   basicstyle=\ttfamily\small,
+   breaklines=true,
+   columns=fullflexible,
+   frame=single,
+   showspaces=false,
+   showtabs=false,
+   keepspaces=false
+}
+\lstset{style=style_compact}
+
 \usepackage[export]{adjustbox}
 \usepackage{multicol}
 \usepackage{caption}
@@ -40,11 +73,11 @@
 
 \begin{multicols}{2}
 
-\include{sections/01-keywords}
-\include{sections/02-abstract}
-\include{sections/03-introduction}
-\include{sections/04-architecture_history}
-\include{sections/05-7series_architecture}
+\input{sections/01-keywords}
+\input{sections/02-abstract}
+\input{sections/03-introduction}
+\input{sections/04-architecture_history}
+\input{sections/05-7series_architecture}
 \include{sections/06-designflow_toolchain}
 \include{sections/07-rapidwright_api}
 \include{sections/08-netlist}

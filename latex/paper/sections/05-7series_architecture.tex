@@ -1,4 +1,3 @@
-
 \section{Xilinx 7-Series Architecture}
 \label{sec:7_series}
 The Xilinx 7-Series devices, first introduced in 2010, follow a heterogeneous island-style architecture as discussed previously. 
@@ -210,7 +209,7 @@ A \texttt{DSP48E1} Tile contains two \texttt{DSP48E1} Sites, each containing one
 \vspace{0.5cm}
 
 \textbf{DSP Cascades} \quad 
-Higher level DSP functions are supported by cascading \texttt{DSP48E1} slices in a \texttt{DSP48E1} column.
+Wider DSP functions are supported by cascading \texttt{DSP48E1} slices in a \texttt{DSP48E1} column.
 Much like \texttt{CARRY4} chains, \texttt{DSP48E1} cascades must necessarily be placed vertically consecutively across \texttt{DSP48E1} Sites. 
 They are connected by three busses: \texttt{ACOUT} to \texttt{ACIN}, \texttt{BCOUT} to \texttt{BCIN}, \texttt{PCOUT} to \texttt{PCIN}.
 These signal busses run directly between the vertical \texttt{DSP48E1} slices without burdening the general routing resources. 

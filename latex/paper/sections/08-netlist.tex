@@ -1,4 +1,3 @@
-
 \section{What is a Netlist?}
 \label{sec:netlist}
 In its most general form, a netlist is a list of every component in an electronic design paired with a list of nets they connect to. 
@@ -10,10 +9,11 @@ More precisely, these hyperedges connect the pins between the components, not th
 
 In FPGA context, the components are logical cells (\texttt{LUTs}, \texttt{CARRY4s}, etc.) or hierarchical cells (Verilog module instances) with pins connected together by wires. 
 In Vivado, a Netlist can be synthesized as a Hierarchical or a Flattened netlist. 
-Figure ~\ref{fig:hierarchical_design} shows an example a Verilog design using module instance hierarchy, while figure ~\ref{fig:hier_netlist} shows the same design synthesized into a flattened netlist. 
-The synthesizer attempts to construct the module hierarchy as close to the module instantiation hierarchy as defined by the raw user design entry. 
-Figure ~\ref{fig:flat_netlist} shows the same design but synthesized into a flat netlist. 
-In either synthesized Netlist, the leaf cells, (deepest level cells), must necessarily consist only of primitive cells from the architecture primitives library (\texttt{LUT6}, \texttt{FDRE}, \texttt{CARRY4}, \texttt{DSP48E1}, etc.). 
+Figure ~\ref{fig:hierarchical_design} shows an example a Verilog design using module instance hierarchy, while figure ~\ref{fig:hier_netlist} shows the design synthesized into a hierarchical netlist with \textbf{hierarchical cells} and \textbf{leaf cells}. 
+The synthesizer attempts to construct the module hierarchy as close to the module instantiation hierarchy defined by the user design entry. 
+Figure ~\ref{fig:flat_netlist} shows the same design but synthesized into a flattened netlist. 
+
+In either synthesized netlist, the \textbf{leaf cells}, (deepest level cells), must necessarily consist only of \textbf{primitive cells} from the architecture's primitive cell library (\texttt{LUT6}, \texttt{FDRE}, \texttt{CARRY4}, \texttt{DSP48E1}, etc.). 
 The netlist can be compiled and exported as a purely structural low-level Verilog file, or an Electrinic Design Interchange Format (EDIF) file, both describing the netlist explicitly as a list of logical cells connected by a list of wires. 
 
 \end{multicols}
@@ -54,14 +54,49 @@ The netlist can be compiled and exported as a purely structural low-level Verilo
 
 One of RapidWright's most powerful features is netlist manipulation via the \texttt{edif} package of classes. A netlist can be easily extracted from a \texttt{.dcp} design checkpoint and traversed like the following: 
 
-\begin{lstlisting}[language=Java, caption={Netlist extraction}, label={lst:netlist_extract}]
+\begin{lstlisting}[language=Java, caption={Netlist extraction and traversal}, label={lst:netlist_extract}]
 Design design = Design.readCheckpoint("synth.dcp")
 EDIFNetlist = design.getNetlist();
+
+// Example task:
+// Extract the set of all nets from the design.
+
+// Initialize a new Set:
+Set<EDIFHierNet> netSet = new HashSet<>();
+
+// Access every cell:
+List<EDIFHierCellInst> ehcis = EDIFNetlist.getAllLeafHierCellInstances();
+
+// Traverse cell list:
+for (EDIFHierCellInst ehci : ehcis) {
+    // Access every port on this cell:
+    List<EDIFHierPortInst> ehpis = ehci.getHierPortInsts();
+    for (EDIFHierPortInst ehpi : ehpis) {
+        // Access the net on this port:
+        EDIFHierNet ehn = ehpi.getHierarchicalNet();
+        netSet.add(ehn);
+    }
+}
+
+// Example downstream task:
+// For each net, access the source cells and sink cells.
+for (EDIFHierNet ehn : netSet) {
+    // Access the source ports (there should only be one)
+    List<EDIFHierPortInst> sourcePorts = ehn.getLeafHierPortInsts(true, false);
+    // Access the source cell
+    EDIFHierCellInst sourceCell = sourcePorts.get(0).getHierarchicalInsts();
+
+    // Access the sink ports
+    List<EDIFHierPortInst> sinkPorts = ehn.getLeafHierPortInsts(false, true);
+    // Access the sink cells
+    List<EDIFHierCellInst> sinkCells = new ArrayList<>();
+    for (EDIFHierPortInst ehpi : sinkPorts) {
+        sinkCells.add(ehpi.getHierarchicalInst());
+    }
+}
+
 \end{lstlisting}
 
 The \texttt{Netlist} class in RapidWright stores hierarchical information about the \texttt{Design} and can be accessed and manipulated
 
-SHOULD I INCLUDE A RAPIDWRIGHT HELLO WORLD EXAMPLE JUST TO GIVE AN IMPRESSION?
-
-OR CAN I JUST DIRECT THE READER TO THE RAPIDWRIGHT DOCUMENTATION?
 
