@@ -4,7 +4,7 @@ In its most general form, a netlist is a list of every component in an electroni
 Depending on the working abstraction level, these components can be transistors, logic gates, macrocells, or increasingly higher-level modules. 
 Generally, a net denotes any group of two or more interconnected components.
 In an electronics context, a net can be though of as a wire connecting multiple pins between multiple components, with each wire having one voltage source and one or more voltage sinks. 
-Thus, if one were to express the netlist as a graph, the graph would consist of nodes (components) connected by hyperedges (wires). 
+Thus, one could express the netlist as a hypergraph, nodes representing component ports, hyperedges representing wires connecting two or more component ports. 
 More precisely, these hyperedges connect the pins between the components, not the components themselves, with each component exposing multiple pins or ports. 
 
 In FPGA context, the components are logical cells (\texttt{LUTs}, \texttt{CARRY4s}, etc.) or hierarchical cells (Verilog module instances) with pins connected together by wires. 
@@ -40,7 +40,7 @@ The netlist can be compiled and exported as a purely structural low-level Verilo
 \vspace{0.5cm}
 {
     \centering
-    \includegraphics[valign=c, width=10cm]{figures/netlist_synth/flat_netlist.png}
+    \includegraphics[valign=c, width=13cm]{figures/netlist_synth/flat_netlist.png}
     \includegraphics[valign=c, width=4cm]{figures/netlist_synth/flat_graph.png}
     \captionof{figure}{
         \textbf{Left:} A flattened netlist consisting of LUTs and FFs.
@@ -52,51 +52,69 @@ The netlist can be compiled and exported as a purely structural low-level Verilo
 
 \subsection{Netlist Traversal and Manipulation in RapidWright}
 
-One of RapidWright's most powerful features is netlist manipulation via the \texttt{edif} package of classes. A netlist can be easily extracted from a \texttt{.dcp} design checkpoint and traversed like the following: 
+\begin{itemize}
+\item
 
-\begin{lstlisting}[language=Java, caption={Netlist extraction and traversal}, label={lst:netlist_extract}]
+
+\end{itemize}
+
+One of RapidWright's most powerful features is netlist traversal and manipulation via the \texttt{edif} classes. A netlist can be easily extracted from a \texttt{.dcp} design checkpoint and traversed like the following: 
+
+\begin{lstlisting}[language=java, caption={Netlist extraction and traversal}, label={lst:netlist_extract}]
 Design design = Design.readCheckpoint("synth.dcp")
 EDIFNetlist = design.getNetlist();
 
 // Example task:
-// Extract the set of all nets from the design.
+// Extract the set of all unique nets from the design.
 
 // Initialize a new Set:
-Set<EDIFHierNet> netSet = new HashSet<>();
+Set<EDIFNet> netSet = new HashSet<>();
 
-// Access every cell:
-List<EDIFHierCellInst> ehcis = EDIFNetlist.getAllLeafHierCellInstances();
+// Access all leaf cells
+List<EDIFCellInst> ecis = netlist.getAllLeafCellInstances();
 
-// Traverse cell list:
-for (EDIFHierCellInst ehci : ehcis) {
-    // Access every port on this cell:
-    List<EDIFHierPortInst> ehpis = ehci.getHierPortInsts();
-    for (EDIFHierPortInst ehpi : ehpis) {
-        // Access the net on this port:
-        EDIFHierNet ehn = ehpi.getHierarchicalNet();
-        netSet.add(ehn);
+// Traverse the cell list
+for (EDIFCellInst eci : ecis) {
+    // Access the ports on this cell
+    Collection<EDIFPortInst> epis = eci.getPortInsts();
+    for (EDIFPortInst epi : epis) {
+        // Access the net on this port
+        EDIFNet net = epi.getNet();
+        netSet.add(net);
     }
 }
 
-// Example downstream task:
-// For each net, access the source cells and sink cells.
-for (EDIFHierNet ehn : netSet) {
-    // Access the source ports (there should only be one)
-    List<EDIFHierPortInst> sourcePorts = ehn.getLeafHierPortInsts(true, false);
-    // Access the source cell
-    EDIFHierCellInst sourceCell = sourcePorts.get(0).getHierarchicalInsts();
+// Downstream task:
+// For each unique net, print out the connected cells.
 
-    // Access the sink ports
-    List<EDIFHierPortInst> sinkPorts = ehn.getLeafHierPortInsts(false, true);
-    // Access the sink cells
-    List<EDIFHierCellInst> sinkCells = new ArrayList<>();
-    for (EDIFHierPortInst ehpi : sinkPorts) {
-        sinkCells.add(ehpi.getHierarchicalInst());
+// Traverse the set of nets
+for (EDIFNet net : netSet) {
+    System.out.println("Net: " + net.getName());
+    // Access the ports connected to this net
+    Collection<EDIFPortInst> epis = net.getPortInsts();
+    for (EDIFPortInst epi : epis) {
+        // Access the cell that this port belongs to
+        EDIFCellInst eci = epi.getCellInst();
+        if (eci == null) {
+            // (top_level ports have no associated cell)
+            continue;
+        } else {
+            System.out.println(
+                "\tCell: " + eci.getName() + 
+                ",\tCellType: " + eci.getCellName()
+            );
+        }
     }
 }
 
 \end{lstlisting}
 
-The \texttt{Netlist} class in RapidWright stores hierarchical information about the \texttt{Design} and can be accessed and manipulated
+
+{
+    \centering
+    \includegraphics[valign=c, width=\columnwidth]{figures/traversal.png}
+    \captionof{figure}{\textttt{Netlist} traversal via \texttt{EDIFHierCellInst}, \texttt{EDIFHierPortInst}, and \texttt{EDIFHierNet} objects}
+    \label{fig:traversal}
+}
 
 

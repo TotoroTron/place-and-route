@@ -9,17 +9,19 @@
 \usepackage{float}
 \usepackage{listings}
 
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
 \lstdefinestyle{style_compact}{
+    language=Java,
     backgroundcolor=\color{backcolour},         % keep same background
-    commentstyle=\color{codegreen},             % reuse your colors
-    keywordstyle=\color{magenta},
-    stringstyle=\color{codepurple},
-    numberstyle=\scriptsize\color{codegray},    % smaller line‐number font
+    commentstyle=\color{pgreen},                % reuse your colors
+    keywordstyle=\color{pblue},
+    stringstyle=\color{pred},
+    numberstyle=\scriptsize\color{pgrey},       % smaller line‐number font
     basicstyle=\ttfamily\scriptsize,            % very small code font
     columns=fullflexible,                       % no extra space for monospaced
     keepspaces=true,
@@ -38,15 +40,6 @@
     belowskip=2pt,
     lineskip=-0.5pt,                            % pull lines closer
     frame=single,                               % optional frame
-}
-\lstdefinestyle{style2}{
-   basicstyle=\ttfamily\small,
-   breaklines=true,
-   columns=fullflexible,
-   frame=single,
-   showspaces=false,
-   showtabs=false,
-   keepspaces=false
 }
 \lstset{style=style_compact}
 
