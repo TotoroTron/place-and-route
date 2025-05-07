@@ -1,20 +1,36 @@
-\section{What is a Netlist?}
-\label{sec:netlist}
+\subsection{What is a Netlist?}
+\label{subsec:netlist}
 In its most general form, a netlist is a list of every component in an electronic design paired with a list of nets they connect to. 
-Depending on the working abstraction level, these components can be transistors, logic gates, macrocells, or increasingly higher-level modules. 
+Depending on the abstraction level at hand, these components can be transistors, logic gates, macrocells, or increasingly higher-level modules. 
 Generally, a net denotes any group of two or more interconnected components.
 In an electronics context, a net can be though of as a wire connecting multiple pins between multiple components, with each wire having one voltage source and one or more voltage sinks. 
-Thus, one could express the netlist as a hypergraph, nodes representing component ports, hyperedges representing wires connecting two or more component ports. 
-More precisely, these hyperedges connect the pins between the components, not the components themselves, with each component exposing multiple pins or ports. 
+Thus, one could express the netlist as a hypergraph, nodes representing components, hyperedges representing wires connecting two or more component. 
+More precisely, these hyperedges connect the ports between the components, not the components themselves, with each component exposing multiple ports. 
 
 In FPGA context, the components are logical cells (\texttt{LUTs}, \texttt{CARRY4s}, etc.) or hierarchical cells (Verilog module instances) with pins connected together by wires. 
 In Vivado, a Netlist can be synthesized as a Hierarchical or a Flattened netlist. 
-Figure ~\ref{fig:hierarchical_design} shows an example a Verilog design using module instance hierarchy, while figure ~\ref{fig:hier_netlist} shows the design synthesized into a hierarchical netlist with \textbf{hierarchical cells} and \textbf{leaf cells}. 
+Figure ~\ref{fig:hierarchical_design} shows an example a Verilog design with modules instantiated in a hierarchy. 
+Figure ~\ref{fig:hier_netlist} shows the design synthesized into a hierarchical netlist with \textbf{hierarchical cells} and \textbf{leaf cells}. 
 The synthesizer attempts to construct the module hierarchy as close to the module instantiation hierarchy defined by the user design entry. 
 Figure ~\ref{fig:flat_netlist} shows the same design but synthesized into a flattened netlist. 
 
 In either synthesized netlist, the \textbf{leaf cells}, (deepest level cells), must necessarily consist only of \textbf{primitive cells} from the architecture's primitive cell library (\texttt{LUT6}, \texttt{FDRE}, \texttt{CARRY4}, \texttt{DSP48E1}, etc.). 
 The netlist can be compiled and exported as a purely structural low-level Verilog file, or an Electrinic Design Interchange Format (EDIF) file, both describing the netlist explicitly as a list of logical cells connected by a list of wires. 
+
+RapidWright represents the logical netlist objects via the \texttt{edif} classes:
+\begin{itemize}
+    \item \texttt{EDIFNetlist}: The full logical netlist of a \texttt{Design}. 
+    \item \texttt{EDIFNet}: Represents a logical net within an \texttt{EDIFNetlist}.
+    \item \texttt{EDIFHierNet}: Combines an \texttt{EDIFNet} with a full hierarchical instance name to uniquely identify a net in a netlist.
+    \item \texttt{EDIFCell}: Represents a logical cell in an \texttt{EDIFNetlist}. 
+    \item \texttt{EDIFCellInst}: Represents an instance of an \texttt{EDIFCell}. 
+    \item \texttt{EDIFHierCellInst}: An \texttt{EDIFCellInst} with its hierarchy, described by all the \texttt{EDIFCellInst}s that sit above it within the netlist.
+    \item \texttt{EDIFPort}: Represents a port on an \texttt{EDIFCell}. 
+    \item \texttt{EDIFPortInst}: Represents an instance of a port on an \texttt{EDIFCellInst}. 
+    \item \texttt{EDIFHierPortInst}: Combines an \texttt{EDIFHierPortInst} with a full hierarchical instance name to uniquely identify a port instance in a netlist. 
+\end{itemize}
+
+\newpage
 
 \end{multicols}
 {
@@ -27,6 +43,7 @@ The netlist can be compiled and exported as a purely structural low-level Verilo
     \captionof{figure}{A simple HDL design with module hierarchy.}
     \label{fig:hierarchical_design}
 }
+\vspace{0.5cm}
 {
     \centering
     \includegraphics[valign=c, width=11.5cm]{figures/netlist_synth/hier_netlist.png}
@@ -48,15 +65,19 @@ The netlist can be compiled and exported as a purely structural low-level Verilo
     }
     \label{fig:flat_netlist}
 }
+\newpage
 \begin{multicols}{2}
 
 \subsection{Netlist Traversal and Manipulation in RapidWright}
 
-\begin{itemize}
-\item
+{
+    \centering
+    \includegraphics[valign=c, width=\columnwidth]{figures/traversal.png}
+    \captionof{figure}{\texttt{Netlist} traversal via \texttt{EDIFHierCellInst}, \texttt{EDIFHierPortInst}, and \texttt{EDIFHierNet} objects}
+    \label{fig:traversal}
+}
+\vspace{0.5cm}
 
-
-\end{itemize}
 
 One of RapidWright's most powerful features is netlist traversal and manipulation via the \texttt{edif} classes. A netlist can be easily extracted from a \texttt{.dcp} design checkpoint and traversed like the following: 
 
@@ -106,15 +127,10 @@ for (EDIFNet net : netSet) {
         }
     }
 }
-
 \end{lstlisting}
 
 
-{
-    \centering
-    \includegraphics[valign=c, width=\columnwidth]{figures/traversal.png}
-    \captionof{figure}{\textttt{Netlist} traversal via \texttt{EDIFHierCellInst}, \texttt{EDIFHierPortInst}, and \texttt{EDIFHierNet} objects}
-    \label{fig:traversal}
-}
+\newcolumn
+
 
 
