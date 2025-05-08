@@ -17,21 +17,7 @@ Figure ~\ref{fig:flat_netlist} shows the same design but synthesized into a flat
 In either synthesized netlist, the \textbf{leaf cells}, (deepest level cells), must necessarily consist only of \textbf{primitive cells} from the architecture's primitive cell library (\texttt{LUT6}, \texttt{FDRE}, \texttt{CARRY4}, \texttt{DSP48E1}, etc.). 
 The netlist can be compiled and exported as a purely structural low-level Verilog file, or an Electrinic Design Interchange Format (EDIF) file, both describing the netlist explicitly as a list of logical cells connected by a list of wires. 
 
-RapidWright represents the logical netlist objects via the \texttt{edif} classes:
-\begin{itemize}
-    \item \texttt{EDIFNetlist}: The full logical netlist of a \texttt{Design}. 
-    \item \texttt{EDIFNet}: Represents a logical net within an \texttt{EDIFNetlist}.
-    \item \texttt{EDIFHierNet}: Combines an \texttt{EDIFNet} with a full hierarchical instance name to uniquely identify a net in a netlist.
-    \item \texttt{EDIFCell}: Represents a logical cell in an \texttt{EDIFNetlist}. 
-    \item \texttt{EDIFCellInst}: Represents an instance of an \texttt{EDIFCell}. 
-    \item \texttt{EDIFHierCellInst}: An \texttt{EDIFCellInst} with its hierarchy, described by all the \texttt{EDIFCellInst}s that sit above it within the netlist.
-    \item \texttt{EDIFPort}: Represents a port on an \texttt{EDIFCell}. 
-    \item \texttt{EDIFPortInst}: Represents an instance of a port on an \texttt{EDIFCellInst}. 
-    \item \texttt{EDIFHierPortInst}: Combines an \texttt{EDIFHierPortInst} with a full hierarchical instance name to uniquely identify a port instance in a netlist. 
-\end{itemize}
-
 \newpage
-
 \end{multicols}
 {
     \raggedright
@@ -50,18 +36,18 @@ RapidWright represents the logical netlist objects via the \texttt{edif} classes
     \includegraphics[valign=c, width=6cm]{figures/netlist_synth/hier_graph.png}
     \captionof{figure}{
         \textbf{Left:} A hierarchical netlist consisting of LUTs and FFs.
-        \textbf{Right:} The cell hierarchy graph.
+        \textbf{Right:} The cell hierarchy tree.
     }
     \label{fig:hier_netlist}
 }
 \vspace{0.5cm}
 {
     \centering
-    \includegraphics[valign=c, width=13cm]{figures/netlist_synth/flat_netlist.png}
+    \includegraphics[valign=c, width=11.5cm]{figures/netlist_synth/flat_netlist.png}
     \includegraphics[valign=c, width=4cm]{figures/netlist_synth/flat_graph.png}
     \captionof{figure}{
         \textbf{Left:} A flattened netlist consisting of LUTs and FFs.
-        \textbf{Right:} The flattened cell hierarchy graph.
+        \textbf{Right:} The flattened cell hierarchy tree.
     }
     \label{fig:flat_netlist}
 }
@@ -70,20 +56,25 @@ RapidWright represents the logical netlist objects via the \texttt{edif} classes
 
 \subsection{Netlist Traversal and Manipulation in RapidWright}
 
-{
-    \centering
-    \includegraphics[valign=c, width=\columnwidth]{figures/traversal.png}
-    \captionof{figure}{\texttt{Netlist} traversal via \texttt{EDIFHierCellInst}, \texttt{EDIFHierPortInst}, and \texttt{EDIFHierNet} objects}
-    \label{fig:traversal}
-}
-\vspace{0.5cm}
+RapidWright represents the logical netlist objects via the \texttt{edif} classes:
+\begin{itemize}
+    \item \texttt{EDIFNetlist}: The full logical netlist of a \texttt{Design}. 
+    \item \texttt{EDIFNet}: Represents a logical net within an \texttt{EDIFNetlist}.
+    \item \texttt{EDIFHierNet}: Combines an \texttt{EDIFNet} with a full hierarchical instance name to uniquely identify a net in a netlist.
+    \item \texttt{EDIFCell}: Represents a logical cell in an \texttt{EDIFNetlist}. 
+    \item \texttt{EDIFCellInst}: Represents an instance of an \texttt{EDIFCell}. 
+    \item \texttt{EDIFHierCellInst}: An \texttt{EDIFCellInst} with its hierarchy, described by all the \texttt{EDIFCellInst}s that sit above it within the netlist.
+    \item \texttt{EDIFPort}: Represents a port on an \texttt{EDIFCell}. 
+    \item \texttt{EDIFPortInst}: Represents an instance of a port on an \texttt{EDIFCellInst}. 
+    \item \texttt{EDIFHierPortInst}: Combines an \texttt{EDIFHierPortInst} with a full hierarchical instance name to uniquely identify a port instance in a netlist. 
+\end{itemize}
 
 
 One of RapidWright's most powerful features is netlist traversal and manipulation via the \texttt{edif} classes. A netlist can be easily extracted from a \texttt{.dcp} design checkpoint and traversed like the following: 
 
 \begin{lstlisting}[language=java, caption={Netlist extraction and traversal}, label={lst:netlist_extract}]
 Design design = Design.readCheckpoint("synth.dcp")
-EDIFNetlist = design.getNetlist();
+EDIFNetlist netlist = design.getNetlist();
 
 // Example task:
 // Extract the set of all unique nets from the design.
@@ -129,8 +120,81 @@ for (EDIFNet net : netSet) {
 }
 \end{lstlisting}
 
+{
+    \centering
+    \includegraphics[valign=c, width=\columnwidth]{figures/traversal.png}
+    \captionof{figure}{\texttt{Netlist} traversal via \texttt{EDIFHierCellInst}, \texttt{EDIFHierPortInst}, and \texttt{EDIFHierNet} objects}
+    \label{fig:traversal}
+}
+\vspace{0.5cm}
 
-\newcolumn
+\begin{lstlisting}[caption={Code Printout}]
+Net: dout[0]
+	Port: I0, Cell: dout_i_1, CellType: LUT4
+	Port: Q, Cell: m0/dout_reg, CellType: FDRE
+Net: q_1
+	Port: I2, Cell: dout_i_1, CellType: LUT4
+	Port: Q, Cell: m0/q_1_reg, CellType: FDRE
+	Port: I5, Cell: q_1_i_1, CellType: LUT6
+Net: ce
+	Port: I1, Cell: dout_i_1, CellType: LUT4
+	Port: I1, Cell: dout_i_1__0, CellType: LUT6
+	Port: I1, Cell: dout_i_1__1, CellType: LUT6
+	Port: I3, Cell: q_1_i_1, CellType: LUT6
+Net: dout[1]
+	Port: I0, Cell: dout_i_1__0, CellType: LUT6
+	Port: Q, Cell: m1/m2/dout_reg, CellType: FDRE
+Net: dout_i_1__1_n_0
+	Port: O, Cell: dout_i_1__1, CellType: LUT6
+	Port: D, Cell: m1/m3/dout_reg, CellType: FDRE
+Net: clk
+	Port: C, Cell: m0/dout_reg, CellType: FDRE
+	Port: C, Cell: m0/q_1_reg, CellType: FDRE
+	Port: C, Cell: m1/m2/dout_reg, CellType: FDRE
+	Port: C, Cell: m1/m3/dout_reg, CellType: FDRE
+Net: dout[2]
+	Port: I0, Cell: dout_i_1__1, CellType: LUT6
+	Port: Q, Cell: m1/m3/dout_reg, CellType: FDRE
+Net: <const0>
+	Port: G, Cell: GND, CellType: GND
+	Port: R, Cell: m0/dout_reg, CellType: FDRE
+	Port: R, Cell: m0/q_1_reg, CellType: FDRE
+	Port: R, Cell: m1/m2/dout_reg, CellType: FDRE
+	Port: R, Cell: m1/m3/dout_reg, CellType: FDRE
+Net: <const1>
+	Port: P, Cell: VCC, CellType: VCC
+	Port: CE, Cell: m0/dout_reg, CellType: FDRE
+	Port: CE, Cell: m0/q_1_reg, CellType: FDRE
+	Port: CE, Cell: m1/m2/dout_reg, CellType: FDRE
+	Port: CE, Cell: m1/m3/dout_reg, CellType: FDRE
+Net: dout_i_1__0_n_0
+	Port: O, Cell: dout_i_1__0, CellType: LUT6
+	Port: D, Cell: m1/m2/dout_reg, CellType: FDRE
+Net: rst
+	Port: I3, Cell: dout_i_1, CellType: LUT4
+	Port: I5, Cell: dout_i_1__0, CellType: LUT6
+	Port: I5, Cell: dout_i_1__1, CellType: LUT6
+	Port: I4, Cell: q_1_i_1, CellType: LUT6
+Net: dinc
+	Port: I2, Cell: dout_i_1__0, CellType: LUT6
+	Port: I2, Cell: dout_i_1__1, CellType: LUT6
+	Port: I2, Cell: q_1_i_1, CellType: LUT6
+Net: dinb
+	Port: I3, Cell: dout_i_1__0, CellType: LUT6
+	Port: I4, Cell: dout_i_1__1, CellType: LUT6
+	Port: I0, Cell: q_1_i_1, CellType: LUT6
+Net: dina
+	Port: I4, Cell: dout_i_1__0, CellType: LUT6
+	Port: I3, Cell: dout_i_1__1, CellType: LUT6
+	Port: I1, Cell: q_1_i_1, CellType: LUT6
+Net: q_1_i_1_n_0
+	Port: D, Cell: m0/q_1_reg, CellType: FDRE
+	Port: O, Cell: q_1_i_1, CellType: LUT6
+Net: dout_i_1_n_0
+	Port: O, Cell: dout_i_1, CellType: LUT4
+	Port: D, Cell: m0/dout_reg, CellType: FDRE
+\end{lstlisting}
+
 
 
 
