@@ -108,44 +108,56 @@ On the right, the cells are placed across different Sites, thus the only way to 
 On the bottom left, the cells are placed within the same Site in the same lane, taking advantage of the intra-site routing without burdening the general router with additional inter-site routing. 
 This is an important consideration to make while minimizing wirelength during placement. 
 
-
-\vspace{1.0cm}
 {
     \centering
     \includegraphics[width=\columnwidth]{figures/fsm.png}
     \captionof{figure}{Finite state machine (Moore)}
     \label{fig:fsm}
 }
-\vspace{1.0cm}
-
 {
     \centering
     \includegraphics[width=0.9\columnwidth]{figures/pipelining.png}
     \captionof{figure}{Pipelining synthesized as consecutive LUT-FF pairs}
     \label{fig:pipelining}
 }
-
-\vfill
-.
-\newcolumn
-
 {
     \centering
     \includegraphics[width=0.9\columnwidth]{figures/lut_ff_pair.png}
     \captionof{figure}{A synthesized LUT-FF Pair}
     \label{fig:lut_ff_pair}
 }
-\vspace{1.0cm}
-
 {
     \centering
     \includegraphics[width=\columnwidth]{figures/intersite_intrasite_2.png}
     \captionof{figure}{Intrasite vs Intersite LUT-FF Placement}
     \label{fig:intersite_intrasite}
 }
+{
+    \centering
+    \includegraphics[width=\columnwidth]{figures/slicel.png}
+    \captionof{figure}{A SLICEL Site}
+    \label{fig:slicel}
+}
+{
+    \centering
+    \includegraphics[width=0.5\columnwidth]{figures/lut6.png}
+    \captionof{figure}{A \texttt{LUT6} Cell is hosted using two \texttt{LUT5} BELs.}
+    \label{fig:lut6}
+}
+
+A group of LUT-FF pairs may be placed in the same SLICE, with the constraint that the FFs must share the same Clock-Enable (\texttt{CE}) and Set-Reset (\texttt{SR}) nets.
+Clustering LUT-FF pairs like this can reduce the redundancy of having to route the same CE and SR nets to many SLICEs by routing the nets to fewer SLICEs and connecting them to the individual FFs within via intra-Site routing, and at the same time, packing greater logic density over a smaller area of the device. 
+Recall that up to eight FFs may be placed in the same SLICE, thus theoretically, up to eight LUT-FF pairs can be placed in the same SLICE. 
+
+Utilizing all 8 LUT-FF lanes in a SLICE can help reduce device area utilization and minimize wirelength, but \emph{too much} logic density in an area can contribute to general routing congestion. 
+Furthermore, attempting to fill all 8 lanes in a SLICE requires meticulous adherence to conditional LUT constraints. 
+Recall that a LUT can accommodate one 6-input boolean function or two 5-input boolean functions sharing the same inputs or any two 3-input or less boolean functions regardless of shared inputs. 
+A \texttt{LUT6} Cell (a LUT with 6-inputs) will actually occupy two LUT-FF lanes in a SLICE, rendering one of the FF BELs in either lane ineligible for another LUT-FF pair. 
+Figure \ref{fig:slicel} hints at this by depicting pairs of LUTs stacked ontop of one another. 
+The LUTs individually can host up to a \texttt{LUT5}, but combined together can host one \texttt{LUT6}, like shown in Figure \ref{fig:lut6}.
+To simplify the problem space, we will only fill up to four LUT-FF lanes in any given SLICE. 
 
 
-\newpage
 \textbf{CARRY} \quad
 An FPGA design will also typically implement many adders, counters, subtractors, or comparators, all of which are based on binary addition. 
 They are so ubiquitous that every that in the 7-Series architecture, every SLICE features a \texttt{CARRY4} BEL -- a 4-bit carry-lookahead (CLA) adder, a much better alternative to synthesizing adders via LUTs. 
@@ -185,10 +197,7 @@ Shown in figure \ref{fig:carry_cell_group} shows how a \texttt{CARRY4} chain and
     \label{fig:carry_chain_edif}
 }
 \begin{multicols}{2}
-\vspace{1.0cm}
-.
 
-\newpage
 \subsection{DSP Slices}
 
 \textbf{DSPs} \quad 

@@ -43,7 +43,7 @@ The netlist can be compiled and exported as a purely structural low-level Verilo
 \vspace{0.5cm}
 {
     \centering
-    \includegraphics[valign=c, width=11.5cm]{figures/netlist_synth/flat_netlist.png}
+    \includegraphics[valign=c, width=13.0cm]{figures/netlist_synth/flat_netlist.png}
     \includegraphics[valign=c, width=4cm]{figures/netlist_synth/flat_graph.png}
     \captionof{figure}{
         \textbf{Left:} A flattened netlist consisting of LUTs and FFs.
@@ -66,11 +66,12 @@ RapidWright represents the logical netlist objects via the \texttt{edif} classes
     \item \texttt{EDIFHierCellInst}: An \texttt{EDIFCellInst} with its hierarchy, described by all the \texttt{EDIFCellInst}s that sit above it within the netlist.
     \item \texttt{EDIFPort}: Represents a port on an \texttt{EDIFCell}. 
     \item \texttt{EDIFPortInst}: Represents an instance of a port on an \texttt{EDIFCellInst}. 
-    \item \texttt{EDIFHierPortInst}: Combines an \texttt{EDIFHierPortInst} with a full hierarchical instance name to uniquely identify a port instance in a netlist. 
+    \item \texttt{EDIFHierPortInst}: Combines an \texttt{EDIFPortInst} with a full hierarchical instance name to uniquely identify a port instance in a netlist. 
 \end{itemize}
 
 
-One of RapidWright's most powerful features is netlist traversal and manipulation via the \texttt{edif} classes. A netlist can be easily extracted from a \texttt{.dcp} design checkpoint and traversed like the following: 
+Using these classes and their associated methods, we can traverse the logical netlist (\texttt{EDIFNetlist}) and analyze or manipulate it as we see fit. 
+A netlist can be easily extracted from a \texttt{.dcp} design checkpoint file and traversed like the following example:
 
 \begin{lstlisting}[language=java, caption={Netlist extraction and traversal}, label={lst:netlist_extract}]
 Design design = Design.readCheckpoint("synth.dcp")
@@ -123,7 +124,7 @@ for (EDIFNet net : netSet) {
 {
     \centering
     \includegraphics[valign=c, width=\columnwidth]{figures/traversal.png}
-    \captionof{figure}{\texttt{Netlist} traversal via \texttt{EDIFHierCellInst}, \texttt{EDIFHierPortInst}, and \texttt{EDIFHierNet} objects}
+    \captionof{figure}{\texttt{Netlist} traversal via the \texttt{EDIFCellInst}, \texttt{EDIFPortInst}, and \texttt{EDIFNet} classes}
     \label{fig:traversal}
 }
 \vspace{0.5cm}
@@ -194,6 +195,7 @@ Net: dout_i_1_n_0
 	Port: O, Cell: dout_i_1, CellType: LUT4
 	Port: D, Cell: m0/dout_reg, CellType: FDRE
 \end{lstlisting}
+
 
 
 
