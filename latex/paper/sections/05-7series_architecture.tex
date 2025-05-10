@@ -9,7 +9,7 @@ Figure~\ref{fig:hierarchy_4} illustrates a high-level view of the hierarchical o
 At its lowest level, the device consists of a large array of atomic components called \emph{Basic Elements of Logic}~(\textbf{BELs}). 
 These BELs encompass look-up tables (\textbf{LUTs}), flip-flops (\textbf{FFs}), block RAMs (\textbf{BRAMs}), DSP slices (\textbf{DSPs}), and the configurable interconnect fabric. 
 They constitute the fundamental building blocks for implementing digital circuits on the FPGA.
-Note how the Tile arrangement is columnar, where each column will have only one Tile type. 
+Note how the Tile arrangement is columnar such that column consists of only one Tile type. 
 
 To manage this complexity, Xilinx organizes these BELs into incrementally abstract structures. 
 First, \textbf{BELs} are grouped into \textbf{Sites}. 
@@ -79,8 +79,8 @@ The cell primitive \textbf{FDRE} is a type of FF and belongs to a family of D Fl
 \item \texttt{FDSE} - DFF with CE and Synchronous Set
 \item \texttt{FDRE} - DFF with CE and Synchronous Reset
 \end{itemize}
-In a typical HDL design, the vast majority of FFs will be synthesized as FDREs with the occasional FDSE, as it is generally good practice to keep FPGA designs synchronous. 
-A FF BEL may also host a LATCH Cell, however, since they are generally bad practice in FPGA design, we will not consider latches in this paper. 
+In a typical HDL design, the vast majority of FFs will be synthesized as \texttt{FDRE}s with the occasional \texttt{FDSE}, as it is generally good practice to keep FPGA designs synchronous. 
+A FF BEL may also host a \texttt{LATCH} Cell, however, since they are generally bad practice in FPGA design, we will not consider latches in this paper. 
 
 {
     \centering
@@ -306,6 +306,6 @@ For more in-depth details about 7-Series FPGAs, refer to the official Xilinx use
 \item \emph{7 Series DSP48E1 Slice} (UG479)
 \end{itemize}
 
-This architectural context provides the necessary background for understanding how a placement algorithm should account for resource constraints and optimize performance in modern FPGA designs.
+This architectural context provides the necessary background for understanding how a placement algorithm should account for resource and placement constraints and optimize wirelength in modern FPGA architectures.
 
 

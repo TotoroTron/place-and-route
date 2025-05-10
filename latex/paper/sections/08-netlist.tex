@@ -59,19 +59,20 @@ The netlist can be compiled and exported as a purely structural low-level Verilo
 RapidWright represents the logical netlist objects via the \texttt{edif} classes:
 \begin{itemize}
     \item \texttt{EDIFNetlist}: The full logical netlist of a \texttt{Design}. 
-    \item \texttt{EDIFNet}: Represents a logical net within an \texttt{EDIFNetlist}.
+    \item \texttt{EDIFNet}: A logical net within an \texttt{EDIFNetlist}.
     \item \texttt{EDIFHierNet}: Combines an \texttt{EDIFNet} with a full hierarchical instance name to uniquely identify a net in a netlist.
-    \item \texttt{EDIFCell}: Represents a logical cell in an \texttt{EDIFNetlist}. 
-    \item \texttt{EDIFCellInst}: Represents an instance of an \texttt{EDIFCell}. 
+    \item \texttt{EDIFCell}: A logical cell in an \texttt{EDIFNetlist}. 
+    \item \texttt{EDIFCellInst}: An instance of an \texttt{EDIFCell}. 
     \item \texttt{EDIFHierCellInst}: An \texttt{EDIFCellInst} with its hierarchy, described by all the \texttt{EDIFCellInst}s that sit above it within the netlist.
-    \item \texttt{EDIFPort}: Represents a port on an \texttt{EDIFCell}. 
-    \item \texttt{EDIFPortInst}: Represents an instance of a port on an \texttt{EDIFCellInst}. 
+    \item \texttt{EDIFPort}: A port on an \texttt{EDIFCell}. 
+    \item \texttt{EDIFPortInst}: An instance of a port on an \texttt{EDIFCellInst}. 
     \item \texttt{EDIFHierPortInst}: Combines an \texttt{EDIFPortInst} with a full hierarchical instance name to uniquely identify a port instance in a netlist. 
 \end{itemize}
 
 
 Using these classes and their associated methods, we can traverse the logical netlist (\texttt{EDIFNetlist}) and analyze or manipulate it as we see fit. 
-A netlist can be easily extracted from a \texttt{.dcp} design checkpoint file and traversed like the following example:
+A netlist can be easily extracted from a \texttt{.dcp} design checkpoint file and traversed like shown in Listing \ref{lst:netlist_extract}. 
+This is performed on the same design shown in figure \ref{fig:flat_netlist}.
 
 \begin{lstlisting}[language=java, caption={Netlist extraction and traversal}, label={lst:netlist_extract}]
 Design design = Design.readCheckpoint("synth.dcp")
