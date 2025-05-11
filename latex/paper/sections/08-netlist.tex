@@ -5,7 +5,7 @@ Depending on the abstraction level at hand, these components can be transistors,
 Generally, a net denotes any group of two or more interconnected components.
 In an electronics context, a net can be though of as a wire connecting multiple pins between multiple components, with each wire having one voltage source and one or more voltage sinks. 
 Thus, one could express the netlist as a hypergraph, nodes representing components, hyperedges representing wires connecting two or more component. 
-More precisely, these hyperedges connect the ports between the components, not the components themselves, with each component exposing multiple ports. 
+More precisely, these hyperedges connect the ports on the components, not the components themselves, with each component exposing multiple ports. 
 
 In FPGA context, the components are logical cells (\texttt{LUTs}, \texttt{CARRY4s}, etc.) or hierarchical cells (Verilog module instances) with pins connected together by wires. 
 In Vivado, a Netlist can be synthesized as a Hierarchical or a Flattened netlist. 
@@ -99,7 +99,7 @@ for (EDIFCellInst eci : ecis) {
 }
 
 // Downstream task:
-// For each unique net, print out the connected cells.
+// For each unique net, print out the incident cells.
 
 // Traverse the set of nets
 for (EDIFNet net : netSet) {
