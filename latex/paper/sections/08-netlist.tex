@@ -15,7 +15,7 @@ The synthesizer attempts to construct the module hierarchy as close to the modul
 Figure ~\ref{fig:flat_netlist} shows the same design but synthesized into a flattened netlist. 
 
 In either synthesized netlist, the \textbf{leaf cells}, (deepest level cells), must necessarily consist only of \textbf{primitive cells} from the architecture's primitive cell library (\texttt{LUT6}, \texttt{FDRE}, \texttt{CARRY4}, \texttt{DSP48E1}, etc.). 
-The netlist can be compiled and exported as a purely structural low-level Verilog file, or an Electrinic Design Interchange Format (EDIF) file, both describing the netlist explicitly as a list of logical cells connected by a list of wires. 
+The netlist can be compiled and exported as a purely structural low-level Verilog file, or an Electrinic Design Interchange Format (EDIF) file, both describing the netlist explicitly as a list of logical cell instances connected by a list of wires. 
 
 \newpage
 \end{multicols}
@@ -74,7 +74,7 @@ Using these classes and their associated methods, we can traverse the logical ne
 A netlist can be easily extracted from a \texttt{.dcp} design checkpoint file and traversed like shown in Listing \ref{lst:netlist_extract}. 
 This is performed on the same design shown in figure \ref{fig:flat_netlist}.
 
-\begin{lstlisting}[language=java, caption={Netlist extraction and traversal}, label={lst:netlist_extract}]
+\begin{lstlisting}[language=java, caption={Basic netlist extraction and traversal}, label={lst:netlist_extract}]
 Design design = Design.readCheckpoint("synth.dcp")
 EDIFNetlist netlist = design.getNetlist();
 

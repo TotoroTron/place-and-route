@@ -9,11 +9,11 @@ Figure~\ref{fig:hierarchy_4} illustrates a high-level view of the hierarchical o
 At its lowest level, the device consists of a large array of atomic components called \emph{Basic Elements of Logic}~(\textbf{BELs}). 
 These BELs encompass look-up tables (\textbf{LUTs}), flip-flops (\textbf{FFs}), block RAMs (\textbf{BRAMs}), DSP slices (\textbf{DSPs}), and the configurable interconnect fabric. 
 They constitute the fundamental building blocks for implementing digital circuits on the FPGA.
-Note how the Tile arrangement is columnar such that column consists of only one Tile type. 
 
 To manage this complexity, Xilinx organizes these BELs into incrementally abstract structures. 
 First, \textbf{BELs} are grouped into \textbf{Sites}. 
 Each Site is embedded into a \textbf{Tile}, and Tiles are further arranged into \textbf{Clock Regions}. 
+Note how the Tile arrangement is columnar such that column consists of only one Tile type. 
 In some high-density devices, multiple Clock Regions may be consolidated into one or more \textbf{Super Logic Regions}~(SLRs). 
 However, for the scope of this paper, we focus on Xilinx 7-Series devices with only a single SLR.
 
@@ -36,7 +36,7 @@ Xilinx offers two variants of SLICE Sites: \textbf{SLICEL} and \textbf{SLICEM}.
 \begin{itemize}
 \item Each \texttt{SLICEL} has a set of BELs including eight \texttt{LUT}s, eight \texttt{FF}s, and one \texttt{CARRY4} adder. The \texttt{LUT} BELs in a \texttt{SLICEL} can only host \texttt{LUT} Cells. 
 \item The \texttt{SLICEM} includes all the features of a \texttt{SLICEL} but its \texttt{LUT} BELs can host both \texttt{LUT} Cells, which are asynchronous ROM elements, or \texttt{RAM32M} Cells, which are synchronous 32-deep RAM elements. These cells are also referred to as \emph{Distributed RAM} in the Xilinx documentation.
-    These cells can offer an alternative to the larger, more dedicated 18K-36K \texttt{RAMB18E1} cells when RAM resources are highly utilized. 
+    These cells can offer an alternative to the larger, more dedicated 18K-36K \texttt{RAMB18E1} cells when RAM resources are highly utilized or when the design inheritly demands homogeneously distributed local memory. 
 \end{itemize}
 In a typical 7-Series device, approximately 75\% of the SLICE Sites are \texttt{SLICEL}s and 25\% are \texttt{SLICEM}s. 
 A single CLB Tile can therefore host either two \texttt{SLICEL}s or one \texttt{SLICEL} and one \texttt{SLICEM}.
@@ -172,10 +172,11 @@ Shown in figure \ref{fig:carry_cell_group} shows how a \texttt{CARRY4} chain and
 {
     \centering
     \includegraphics[width=\columnwidth]{figures/carry_cell_group.png}
-    \captionof{figure}{A \texttt{SLICEL} with a \texttt{CARRY4} cell, 4 LUT cells, and 4 FF cells placed inside as shown in the Vivado device viewer}
+    \captionof{figure}{A \texttt{SLICEL} populated by a \texttt{CARRY4} cell, 4 LUT cells, and 4 FF cells}
     \label{fig:carry_cell_group}
 }
 
+\newcolumn
 {
     \centering
     \includegraphics[valign=c, width=4.0cm]{figures/carry_chain_placement.png}
