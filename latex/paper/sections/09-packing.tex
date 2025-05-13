@@ -180,23 +180,27 @@ Below are some of the most relevant classes from the \texttt{design} package for
     \item \texttt{SitePIP}: A Programmable Interconnect Point (PIP) in a \texttt{Site}. Represents the fuses in intra-Site routing \texttt{BEL}s. 
     \item \texttt{SitePinInst}: An instance of a \texttt{SitePin} on a \texttt{Site}. These objects serve as the interface between intra-Site routing and general inter-Site routing. 
 \end{itemize}
-\columnbreak
 
-
-A new \texttt{SiteInst} is created by populating its BELs with existing \texttt{EDIFHierCellInst} objects from the \texttt{EDIFNetlist}, and is immediately placed on a specific \texttt{Site}. 
+A \texttt{SiteInst} object can be created and its \texttt{BEL}s populated with existing \texttt{EDIFHierCellInst} objects from the \texttt{EDIFNetlist}. 
+A \texttt{SiteInst} is placed on a specific \texttt{device} \texttt{Site} upon its creation using the constructor in Listing \ref{lst:siteinst}. 
 The packer therefore assigns an initial placement to every \texttt{SiteInst} before the simulated‐annealing stage randomizes their positions. 
-During this packing phase, we simply pseudorandomly map \texttt{design} \texttt{SiteInst}s onto \texttt{device} \texttt{Site}s in coordinate order as they are generated (e.g., the first \texttt{SiteInst} onto \texttt{SLICEL\_X0Y0}, the second onto \texttt{SLICEL\_X0Y1}, and so on). 
+During this packing phase, we simply map \texttt{design} \texttt{SiteInst}s onto \texttt{device} \texttt{Site}s in coordinate order as they are generated (e.g., the first \texttt{SiteInst} onto \texttt{SLICEL\_X0Y0}, the second onto \texttt{SLICEL\_X0Y1}, and so on). 
 
 One can think of a \texttt{design} \texttt{SiteInst} as a movable square peg and the corresponding \texttt{device} \texttt{Site} as a fixed square hole. 
 Both \texttt{SiteInst}s and \texttt{Site}s come in various shapes or types (\texttt{SLICEL}, \texttt{SLICEM}, \texttt{DSP48E1}, etc.) and placement is only allowed between compatible pairs. 
 For example, a \texttt{RAMB48E1} \texttt{SiteInst} can only be placed on a \texttt{RAMB48E1} \texttt{Site}.
 A \texttt{DSP48E1} \texttt{SiteInst} can only be placed on a \texttt{DSP48E1} \texttt{Site}.
 A \texttt{SLICEL} \texttt{SiteInst} may occupy either a \texttt{SLICEL} or a \texttt{SLICEM} \texttt{Site}, whereas a \texttt{SLICEM} \texttt{SiteInst} can only be placed on a \texttt{SLICEM} \texttt{Site}.
-These constraints must be followed as the \texttt{SiteInst}s move across the device throughout the placement stage to ensure legality. 
+These constraints must always be followed as the \texttt{SiteInst}s move across the device throughout the placement stage to ensure legality. 
+
+Listing \ref{lst:siteinst} shows how to use the \texttt{SiteInst} object and how it ties together \texttt{Site}s, \texttt{Cell}s, \texttt{BEL}s, and intra-Site \texttt{Net}s. 
+The super-specifics of the packing process via RapidWright is too involved for the scope of this paper, but just to give an impression of how the \texttt{design} classes are used, Listing \ref{lst:single_carry_chains}, \ref{lst:carry_chains}, \ref{lst:carry_nets}, and \ref{lst:ff_nets} together show how \texttt{CarryCellGroup}s are packed into \texttt{SLICEL} \texttt{Sites} in our working code. 
+Packing \texttt{DSP48E1} cascades, \texttt{RAMB48E1} Sites, and non-\texttt{CARRY4} \texttt{SLICEL} Sites follow a similar process in instantiating \texttt{SiteInst}s and populating their \texttt{BEL}s with \texttt{Cell}s using existing \texttt{EDIFHierCellInst}s extracted from the \texttt{EDIFNetlist}.
+
 
 
 \end{multicols}
-\begin{lstlisting}[caption=\texttt{SiteInst} constructor and methods.]
+\begin{lstlisting}[caption={\texttt{SiteInst} constructor and methods.}, label={lst:siteinst}]
 SiteInst Constructor: 
     SiteInst(String name, Design design, SiteTypeEnum type, Site site)
 
@@ -219,12 +223,13 @@ Example:
 \end{lstlisting}
 
 
-\begin{lstlisting}[language=java, caption={Packing an individual \texttt{CarryCellGroup} into one \texttt{SLICEL} \texttt{SiteInst}s.}, label={lst:single_carry_chains}]
+\begin{lstlisting}[language=java, caption={Packing one \texttt{CarryCellGroup} into one \texttt{SLICEL} \texttt{SiteInst}.}, label={lst:single_carry_chains}]
+// Names of the BELs in the 4 LUT-FF lanes:
 protected String[] FF_BELS = new String[] { "AFF", "BFF", "CFF", "DFF" };
 protected String[] LUT6_BELS = new String[] { "A6LUT", "B6LUT", "C6LUT", "D6LUT" };
-
+// Pack one CarryCellGroup 
 private void packCarrySite(CarryCellGroup carryCellGroup, SiteInst si) {
-    // potential bug: what guarantees that all of the FFs connected to the CARRY4 all share the same CE and Reset?
+    // Iterate through 4 LUT-FF Lanes
     for (int i = 0; i < 4; i++) {
         EDIFHierCellInst ff = carryCellGroup.ffs().get(i);
         if (ff != null)
@@ -238,8 +243,7 @@ private void packCarrySite(CarryCellGroup carryCellGroup, SiteInst si) {
     si.createCell(carryCellGroup.carry(), si.getBEL("CARRY4"));
     // default intrasite routing
     si.routeSite();
-    // sometimes the default routeSite() is insufficient, so some manual
-    // intervention is required
+    // sometimes the default routeSite() is insufficient, so some manual intervention is required
     rerouteCarryNets(si);
     rerouteFFClkSrCeNets(si);
 } // end placeCarrySite()
@@ -247,6 +251,7 @@ private void packCarrySite(CarryCellGroup carryCellGroup, SiteInst si) {
 
 \newpage
 \begin{lstlisting}[language=java, caption={Packing \texttt{CarryCellGroup}s into \texttt{SLICEL} \texttt{SiteInst}s.}, label={lst:carry_chains}]
+// Pack all CarryCellGroup chains
 private List<List<SiteInst>> packCarryChains(List<List<CarryCellGroup>> EDIFCarryChains)
         throws IOException {
     List<List<SiteInst>> siteInstChains = new ArrayList<>();
@@ -277,11 +282,10 @@ private List<List<SiteInst>> packCarryChains(List<List<CarryCellGroup>> EDIFCarr
     } // end for (List<EDIFCellInst> chain : EDIFCarryChains)
     return siteInstChains;
 } // end packCarryChains()
-
 \end{lstlisting}
 
 
-\begin{lstlisting}[language=java, caption={Manually rerouting intra-Site nets in a \texttt{SLICEL} containing \texttt{CARRY4}}]
+\begin{lstlisting}[language=java, caption={Manually rerouting intra-Site nets in a \texttt{SLICEL} containing a \texttt{CARRY4} \texttt{Cell}}, label={lst:carry_nets}]
     protected String[] FF_BELS = new String[] { "AFF", "BFF", "CFF", "DFF" };
     private void rerouteCarryNets(SiteInst si) {
         // activate PIPs for CARRY4/COUT
@@ -311,7 +315,46 @@ private List<List<SiteInst>> packCarryChains(List<List<CarryCellGroup>> EDIFCarr
                 si.addSitePIP(si.getSitePIP(FF.charAt(0) + "OUTMUX", "XOR"));
     } // end rerouteCarryNets()
 \end{lstlisting}
+
+\begin{lstlisting}[language=java, caption={Manually reroute intra-Site nets in a \texttt{SLICEL} containing FF \texttt{Cells}}, label={lst:ff_nets}]
+private void rerouteFFClkSrCeNets(SiteInst si) {
+    si.addSitePIP("CLKINV", "CLK");
+    // activate PIPs for SR and CE pins
+    Net SRNet = si.getNetFromSiteWire("SRUSEDMUX_OUT");
+    Net CENet = si.getNetFromSiteWire("CEUSEDMUX_OUT");
+    // if routeSite() default PIPs are incorrect, deactivate them then activate correct PIP
+    if (SRNet != null) {
+        if (SRNet.isGNDNet()) {
+            if (si.getSitePIPStatus(si.getSitePIP("SRUSEDMUX", "IN")) == SitePIPStatus.ON)
+                for (String FF : FF_BELS)
+                    si.unrouteIntraSiteNet(si.getSitePinInst("SR").getBELPin(), si.getBELPin(FF, "SR"));
+            si.addSitePIP(si.getSitePIP("SRUSEDMUX", "0"));
+        } else {
+            if (si.getSitePIPStatus(si.getSitePIP("SRUSEDMUX", "0")) == SitePIPStatus.ON)
+                for (String FF : FF_BELS)
+                    si.unrouteIntraSiteNet(si.getBELPin("SRUSEDGND", "0"), si.getBELPin(FF, "SR"));
+            si.addSitePIP(si.getSitePIP("SRUSEDMUX", "IN"));
+        }
+    }
+    if (CENet != null) {
+        if (CENet.isVCCNet()) {
+            if (si.getSitePIPStatus(si.getSitePIP("CEUSEDMUX", "IN")) == SitePIPStatus.ON)
+                for (String FF : FF_BELS)
+                    si.unrouteIntraSiteNet(si.getSitePinInst("CE").getBELPin(), si.getBELPin(FF, "CE"));
+            si.addSitePIP(si.getSitePIP("CEUSEDMUX", "1"));
+        } else {
+            if (si.getSitePIPStatus(si.getSitePIP("CEUSEDMUX", "1")) == SitePIPStatus.ON)
+                for (String FF : FF_BELS)
+                    si.unrouteIntraSiteNet(si.getBELPin("CEUSEDGND", "1"), si.getBELPin(FF, "CE"));
+            si.addSitePIP(si.getSitePIP("CEUSEDMUX", "IN"));
+        }
+    }
+} // end rerouteFFSrCeNets()
+\end{lstlisting}
+
+
 \begin{multicols}{2}
+
 
 
 

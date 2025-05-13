@@ -10,12 +10,12 @@ More precisely, these hyperedges connect the ports on the components, not the co
 In FPGA context, the components are logical cells (\texttt{LUTs}, \texttt{CARRY4s}, etc.) or hierarchical cells (Verilog module instances) with pins connected together by wires. 
 In Vivado, a Netlist can be synthesized as a Hierarchical or a Flattened netlist. 
 Figure ~\ref{fig:hierarchical_design} shows an example a Verilog design with modules instantiated in a hierarchy. 
-Figure ~\ref{fig:hier_netlist} shows the design synthesized into a hierarchical netlist with \textbf{hierarchical cells} and \textbf{leaf cells}. 
+Figure ~\ref{fig:hier_netlist} shows the design synthesized into a \textbf{hierarchical netlist} with \textbf{hierarchical cells} and \textbf{leaf cells}. 
 The synthesizer attempts to construct the module hierarchy as close to the module instantiation hierarchy defined by the user design entry. 
-Figure ~\ref{fig:flat_netlist} shows the same design but synthesized into a flattened netlist. 
+Figure ~\ref{fig:flat_netlist} shows the same design but synthesized into a \textbf{flattened netlist} containing \textbf{only leaf cells}. 
 
 In either synthesized netlist, the \textbf{leaf cells}, (deepest level cells), must necessarily consist only of \textbf{primitive cells} from the architecture's primitive cell library (\texttt{LUT6}, \texttt{FDRE}, \texttt{CARRY4}, \texttt{DSP48E1}, etc.). 
-The netlist can be compiled and exported as a purely structural low-level Verilog file, or an Electrinic Design Interchange Format (EDIF) file, both describing the netlist explicitly as a list of logical cell instances connected by a list of wires. 
+The netlist can be compiled and exported as a purely structural low-level Verilog file, or an Electrinic Design Interchange Format (EDIF) file, both describing the netlist explicitly as a list of cell instances connected by a list of wires. 
 
 \newpage
 \end{multicols}
