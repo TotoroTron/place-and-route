@@ -1,3 +1,38 @@
+
+\section{RapidWright API}
+\label{sec:rapidwright_api}
+
+\textbf{RapidWright} is an open-source Java framework from AMD/Xilinx that provides direct access to the netlist and device databases used by vendor tools. 
+This framework positions itself as an additional workflow column, allowing users to intercept or replace stages of the standard design flow with custom optimization stages (see Figure~\ref{fig:vivado_dcps}).
+
+\begin{itemize}
+\item \textbf{Design Checkpoints:} 
+    RapidWright leverages \texttt{.dcp} files (design checkpoints) generated at various stages of a Vivado flow. 
+    By importing a checkpoint, engineers can manipulate the netlist, placement, or routing externally, then re-export a modified checkpoint for further processing in the Vivado workflow column.
+
+\item \textbf{Key Packages:} 
+    RapidWright revolves around three primary data model packages:
+    \begin{enumerate}
+    \item \texttt{edif} -- Represents the logical netlist in an abstracted EDIF-like structure.
+    \item \texttt{design} -- Contains data structures for the physical implementation (Cells, Nets, Sites, BELs, etc.).
+    \item \texttt{device} -- Provides a database of the target FPGA architecture (e.g., Site coordinates, Tile definitions, routing resources).
+    \end{enumerate}
+
+\item \textbf{Interfacing with the Netlist and Device:} 
+    An engineer can query the netlist to find specific resources (LUTs, FFs, DSPs, etc.) and then map or move them onto device sites. 
+    This level of control over backend resources is necessary for research in custom placement, advanced packing techniques, or experimental routing algorithms.
+\end{itemize}
+
+{
+    \centering
+    \includegraphics[width=0.8\columnwidth]{figures/vivado_dcps.png}
+    \captionof{figure}{RapidWright workflow integrating into the default Vivado design flow.}
+    \label{fig:vivado_dcps}
+}
+
+By exposing these low-level internals, RapidWright allows fine-grained design transformations that go beyond the standard Vivado IDE’s capabilities. 
+Researchers can prototype new EDA strategies without needing to re-implement an entire FPGA backend from scratch, thus accelerating innovation in placement and routing methodologies.
+
 \subsection{What is a Netlist?}
 \label{subsec:netlist}
 In its most general form, a netlist is a list of every component in an electronic design paired with a list of nets they connect to. 
@@ -54,7 +89,7 @@ The netlist can be compiled and exported as a purely structural low-level Verilo
 \newpage
 \begin{multicols}{2}
 
-\subsection{Netlist Traversal and Manipulation in RapidWright}
+\subsection{Netlist Traversal and Manipulation via RapidWright}
 
 RapidWright represents the logical netlist objects via the \texttt{edif} classes:
 \begin{itemize}
@@ -130,6 +165,9 @@ for (EDIFNet net : netSet) {
 }
 \vspace{0.5cm}
 
+In this method, we get the list of all \texttt{EDIFCellInst} from the \texttt{EDIFNetlist} and traverse the list of cells and access their connected nets. 
+Alternatively, we could have also extracted the list of all \texttt{EDIFNet}s directly from the \texttt{design} and traversed the nets to access their connected cells. 
+
 \begin{lstlisting}[caption={Code Printout}]
 Net: dout[0]
 	Port: I0, Cell: dout_i_1, CellType: LUT4
@@ -198,6 +236,28 @@ Net: dout_i_1_n_0
 \end{lstlisting}
 
 
+\subsection{Placement Flow via RapidWright}
+\label{subsec:placement}
+\end{multicols}
+{
+    \centering
+    \includegraphics[width=0.8\columnwidth]{figures/substages.png}
+    \captionof{figure}{The data classes populated at each substage: \texttt{PrepackedDesign}, \texttt{PackedDesign}, and \texttt{PlacedDesign}.}
+    \label{fig:substages}
+}
+\begin{multicols}{2}
+\label{sec:simulated_annealing}
+With a basic understanding of FPGA architecture, design placement, and RapidWright, we have all the necessary pieces to implement our SA placer. 
+Here we outline in detail each substage of our implementation: PrePacking, Packing, and Placement. 
+Shown in Figure \ref{fig:edif_design_device} is an overview of the placement workflow. 
+Figure \ref{fig:substages} shows the data structures of RapidWright objects that are populated at each stage: \texttt{PrepackedDesign}, which is a group of data structures around \texttt{EDIFHierCellInst}s, \texttt{PackedDesign}, which is a group fo data structures around \texttt{SiteInst}s, and finally, \texttt{PlacedDesign}, which is simply captured by the final RapidWright \texttt{Design} object. 
 
+\vspace{0.5cm}
+{
+    \centering
+    \includegraphics[width=0.9\columnwidth]{figures/edif_design_device.png}
+    \captionof{figure}{Our placement workflow}
+    \label{fig:edif_design_device}
+}
 
 

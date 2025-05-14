@@ -54,6 +54,11 @@ For any boolean function, the synthesizer precalculates the boolean output to ev
 The inputs are then essentially treated as an address space that maps to a data value space in an asynchronous ROM. 
 No explicit logic gates like NAND or XNOR are synthesized, contrary to what newcomers might expect from a "Field Programmable Gate Array". 
 
+In the 7‑Series devices, one LUT can facilitate any 6-input boolean function, or two 5-input functions, as long as they share the same input signals.  
+The LUT can also host two independent boolean functions of up to 3 inputs each, even when the inputs are not shared.  
+Functions requiring more than six unique inputs are decomposed across multiple cascaded LUTs.
+Figure \ref{fig:lut_synthesis} shows an example of where a LUT is typically synthesized in a design entry. 
+
 {
     \centering
     \includegraphics[width=\columnwidth]{figures/lut_synthesis.png}
@@ -61,11 +66,6 @@ No explicit logic gates like NAND or XNOR are synthesized, contrary to what newc
     \label{fig:lut_synthesis}
 }
 \vspace{1.0cm}
-
-In the 7‑Series devices, one LUT can facilitate any 6-input boolean function, or two 5-input functions, as long as they share the same input signals.  
-The LUT can also host two independent boolean functions of up to 3 inputs each, even when the inputs are not shared.  
-Functions requiring more than six unique inputs are decomposed across multiple cascaded LUTs.
-Figure \ref{fig:lut_synthesis} shows an example of where a LUT is typically synthesized in a design entry. 
 
 
 \textbf{FFs} \quad
