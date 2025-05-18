@@ -3,9 +3,9 @@
 
 module tb_top_level
 #(
-    parameter DATA_WIDTH = 24,
-    parameter FIR_DEPTH = 256,
-    parameter NUM_PIPELINES = 8
+    parameter DATA_WIDTH = 32,
+    parameter FIR_DEPTH = 2048,
+    parameter NUM_PIPELINES = 32
 )();
 
     logic tb_clk;
@@ -75,7 +75,7 @@ module tb_top_level
         tb_rst = 0;
         tb_en  = 1;
 
-        repeat (4) begin
+        repeat (8) begin
             for (int t = 0; t < SAMPLES_PER_SIGNAL_PERIOD; t++) begin
                 tb_addr    = t;
                 tb_word_in = sine_signal[tb_addr];
