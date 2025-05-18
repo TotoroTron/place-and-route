@@ -2,8 +2,8 @@
 module top_level
 #(
     parameter DATA_WIDTH = 24,
-    parameter FIR_DEPTH = 2048,
-    parameter NUM_PIPELINES = 32 
+    parameter FIR_DEPTH = 256,
+    parameter NUM_PIPELINES = 8 
 )(
     input wire i_clk,
     input wire i_rst,
