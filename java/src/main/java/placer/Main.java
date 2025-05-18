@@ -78,7 +78,7 @@ public class Main {
             // Sites via simulated annealing, analytical, electrostatic placement, etc.
             // works entirely on the SiteInst/Site/Tile level.
             List<PlacerAnnealRandom> SAPlacers = new ArrayList<PlacerAnnealRandom>();
-            // SAPlacers.add(new PlacerAnnealRandom(rootDir, design, device, region));
+            SAPlacers.add(new PlacerAnnealRandom(rootDir, design, device, region));
             SAPlacers.add(new PlacerAnnealHybrid(rootDir, design, device, region));
             // SAPlacers.add(new PlacerAnnealMidpoint(rootDir, design, device, region));
             // SAPlacers.add(new PlacerGreedyRandom(rootDir, design, device, region));

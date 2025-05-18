@@ -3,7 +3,7 @@
 
 module tb_deserializer;
 
-    localparam LENGTH = 24;
+    localparam LENGTH = 32;
     reg tb_clk;
     reg tb_rst;
     reg tb_en;

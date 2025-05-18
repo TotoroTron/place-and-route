@@ -1,5 +1,22 @@
 
 \section{Placement}
-    \label{sec:placement}
-    Up until now we have only organized the logical \texttt{EDIFHierCellInst}s into \texttt{SiteInst}s. 
-    This is where simulated annealing actually begins where we actually place the \texttt{SiteInst}s onto physical \texttt{Site}s on the \texttt{device} level. 
+\label{sec:placement}
+Up until now, we have only dealt with technology problems where we consider the problem space and adress the constraints of the hardware architecture. 
+For every constraint, we devise a solution or a simplification that sacrifices some optimization to reduce the complexity of the problem space. 
+
+Now that we have dealt with the bulk of the Cell-BEL level constraints and squared them away into self-contained \texttt{SiteInst}s, we can now apply some well-known optimization algorithms to finally address our optimization objective, which is to place these \texttt{SiteInst}s onto the device in a way that minimizes wirelength. 
+
+In this paper we implement and present a Simulating Annealing (SA) placer that operates at the \texttt{SiteInst} level. 
+
+\subsection{Simulated Annealing}
+\label{subsec:simulated_annealing}
+
+\begin{lstlisting}[language=java, caption={Simulated Annealing pseudocode}, label={lst:sa_pseudocode}]
+
+\end{lstlisting}
+
+
+
+
+
+

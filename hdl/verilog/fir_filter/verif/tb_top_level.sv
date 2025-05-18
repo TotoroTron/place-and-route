@@ -3,9 +3,9 @@
 
 module tb_top_level
 #(
-    parameter DATA_WIDTH = 16,
-    parameter FIR_DEPTH = 16,
-    parameter NUM_PIPELINES = 1 
+    parameter DATA_WIDTH = 24,
+    parameter FIR_DEPTH = 2048,
+    parameter NUM_PIPELINES = 32
 )();
 
     logic tb_clk;

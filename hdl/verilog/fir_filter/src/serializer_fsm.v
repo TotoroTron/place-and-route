@@ -2,7 +2,7 @@
 
 module serializer_fsm
 #(
-    parameter LENGTH = 8
+    parameter LENGTH = 32
 )(
     input wire i_clk,
     input wire i_rst,

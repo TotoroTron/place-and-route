@@ -1,7 +1,7 @@
 
 module tap
 #(
-    parameter DATA_WIDTH = 8
+    parameter DATA_WIDTH = 32
 )(
     input wire i_clk,
     input wire i_rst,
