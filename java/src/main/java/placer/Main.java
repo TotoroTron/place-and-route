@@ -25,6 +25,8 @@ import com.xilinx.rapidwright.device.ClockRegion;
 import com.xilinx.rapidwright.device.Tile;
 import com.xilinx.rapidwright.device.TileTypeEnum;
 
+import com.xilinx.rapidwright.design.DesignTools;
+
 import org.ejml.data.DMatrixRMaj;
 import org.ejml.dense.row.CommonOps_DDRM;
 
@@ -87,7 +89,7 @@ public class Main {
             for (PlacerAnnealRandom placer : SAPlacers) {
                 System.out.println("\n\nStarting " + placer.getPlacerName() + "... \n\n");
                 placer.makeOutputDirs(placer.getPlacerName());
-                placer.initCoolingSchedule(10000.0d, 0.98d, 300);
+                placer.initCoolingSchedule(10000.0d, 0.98d, 50);
                 placer.run(packedDesign);
             }
 

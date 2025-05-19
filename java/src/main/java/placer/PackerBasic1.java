@@ -199,6 +199,10 @@ public class PackerBasic1 extends Packer {
                 si.createCell(cascade.get(i), si.getBEL("DSP48E1"));
                 occupiedSites.get(siteType).add(site);
                 availableSites.get(siteType).remove(site);
+                for (int j = 0; j < 48; j++) {
+                    SitePinInst pspi = new SitePinInst(true, "P" + j, si);
+                    si.addPin(pspi);
+                }
                 si.routeSite();
                 siteInstCascade.add(si);
             }
@@ -438,6 +442,36 @@ public class PackerBasic1 extends Packer {
         for (String FF : FF_BELS)
             if (si.getCell(FF) == null)
                 si.addSitePIP(si.getSitePIP(FF.charAt(0) + "OUTMUX", "XOR"));
+        // if CARRY S0-S3 nets pass-through LUT
+        String[] letters = new String[] { "A", "B", "C", "D" };
+        for (String LUT : LUT6_BELS) {
+            String letter = String.valueOf(LUT.charAt(0));
+
+        }
+        for (int i = 0; i < 4; i++) {
+            if (si.getNetFromSiteWire(letters[i] + "6LUT_O6").isGNDNet()) {
+
+            }
+
+            // might need to add another conditional to check if pin/wire is even used
+            if (si.getCell(LUT6_BELS[0]) == null) {
+
+                // Map<String, Net> nets = si.getSiteWireToNetMap();
+                // for (Map.Entry<String, Net> net : nets.entrySet()) {
+                // System.out.println("SiteWire: " + net.getKey() + ", Net: " +
+                // net.getValue().getName());
+                // }
+
+                SitePinInst spi = new SitePinInst(false, letters[i] + "6", si);
+                si.addPin(spi);
+                si.routeIntraSiteNet(
+                        si.getNetFromSiteWire(letters[i] + "6LUT_O6"), // BEL
+                        si.getSitePinInst(letters[i] + "6").getBELPin(),
+                        si.getBELPin("CARRY4", "S" + i));
+            } else {
+                // System.out.println(si.getCell(LUT).getName());
+            }
+        }
     } // end rerouteCarryNets()
 
     private void rerouteFFClkSrCeNets(SiteInst si) {
