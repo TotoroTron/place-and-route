@@ -3,7 +3,7 @@
 
 module tb_top_level
 #(
-    parameter DATA_WIDTH = 32,
+    parameter DATA_WIDTH = 24,
     parameter FIR_DEPTH = 2048,
     parameter NUM_PIPELINES = 32
 )();

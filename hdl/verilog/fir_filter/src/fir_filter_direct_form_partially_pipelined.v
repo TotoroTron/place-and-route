@@ -1,7 +1,7 @@
 
 module fir_filter_direct_form_partially_pipelined
 #(
-    parameter DATA_WIDTH = 32,
+    parameter DATA_WIDTH = 24,
     parameter FIR_DEPTH = 2048,
     parameter NUM_PIPELINES = 32
 )(

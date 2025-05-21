@@ -2,7 +2,7 @@
 
 module deserializer_fsm
 #(
-    parameter LENGTH = 32
+    parameter LENGTH = 24
 )(
     input wire i_clk,
     input wire i_rst,

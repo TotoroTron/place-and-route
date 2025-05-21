@@ -27,8 +27,8 @@ import com.xilinx.rapidwright.device.TileTypeEnum;
 
 import com.xilinx.rapidwright.design.DesignTools;
 
-import org.ejml.data.DMatrixRMaj;
-import org.ejml.dense.row.CommonOps_DDRM;
+// import org.ejml.data.DMatrixRMaj;
+// import org.ejml.dense.row.CommonOps_DDRM;
 
 public class Main {
 
@@ -89,7 +89,7 @@ public class Main {
             for (PlacerAnnealRandom placer : SAPlacers) {
                 System.out.println("\n\nStarting " + placer.getPlacerName() + "... \n\n");
                 placer.makeOutputDirs(placer.getPlacerName());
-                placer.initCoolingSchedule(10000.0d, 0.98d, 50);
+                placer.initCoolingSchedule(10000.0d, 0.98d, 300);
                 placer.run(packedDesign);
             }
 
@@ -121,48 +121,48 @@ public class Main {
         System.out.println("Design Cost: " + cost);
     }
 
-    public static void helloEJML() {
-        // 1. Create two 2x2 matrices A and B
-        DMatrixRMaj A = new DMatrixRMaj(new double[][] {
-                { 1, 2 },
-                { 3, 4 }
-        });
-        DMatrixRMaj B = new DMatrixRMaj(new double[][] {
-                { 5, 6 },
-                { 7, 8 }
-        });
-
-        // 2. Matrix addition C = A + B
-        DMatrixRMaj C = new DMatrixRMaj(A.numRows, A.numCols);
-        CommonOps_DDRM.add(A, B, C);
-
-        // 3. Matrix multiplication D = A * B
-        DMatrixRMaj D = new DMatrixRMaj(A.numRows, B.numCols);
-        CommonOps_DDRM.mult(A, B, D);
-
-        // 4. Matrix inversion invA = A^-1
-        DMatrixRMaj invA = new DMatrixRMaj(A.numRows, A.numCols);
-        CommonOps_DDRM.invert(A, invA);
-
-        // 5. Solve Ax = b (for x)
-        // Here, b is a 2x1 column vector
-        DMatrixRMaj b = new DMatrixRMaj(new double[][] { { 1 }, { 2 } });
-        DMatrixRMaj x = new DMatrixRMaj(A.numRows, b.numCols);
-        CommonOps_DDRM.solve(A, b, x);
-
-        // Print results
-        System.out.println("Matrix A:");
-        A.print();
-        System.out.println("Matrix B:");
-        B.print();
-        System.out.println("C = A + B:");
-        C.print();
-        System.out.println("D = A * B:");
-        D.print();
-        System.out.println("invA = A^-1:");
-        invA.print();
-        System.out.println("Solution x for Ax = b:");
-        x.print();
-    }
-
+    // public static void helloEJML() {
+    // // 1. Create two 2x2 matrices A and B
+    // DMatrixRMaj A = new DMatrixRMaj(new double[][] {
+    // { 1, 2 },
+    // { 3, 4 }
+    // });
+    // DMatrixRMaj B = new DMatrixRMaj(new double[][] {
+    // { 5, 6 },
+    // { 7, 8 }
+    // });
+    //
+    // // 2. Matrix addition C = A + B
+    // DMatrixRMaj C = new DMatrixRMaj(A.numRows, A.numCols);
+    // CommonOps_DDRM.add(A, B, C);
+    //
+    // // 3. Matrix multiplication D = A * B
+    // DMatrixRMaj D = new DMatrixRMaj(A.numRows, B.numCols);
+    // CommonOps_DDRM.mult(A, B, D);
+    //
+    // // 4. Matrix inversion invA = A^-1
+    // DMatrixRMaj invA = new DMatrixRMaj(A.numRows, A.numCols);
+    // CommonOps_DDRM.invert(A, invA);
+    //
+    // // 5. Solve Ax = b (for x)
+    // // Here, b is a 2x1 column vector
+    // DMatrixRMaj b = new DMatrixRMaj(new double[][] { { 1 }, { 2 } });
+    // DMatrixRMaj x = new DMatrixRMaj(A.numRows, b.numCols);
+    // CommonOps_DDRM.solve(A, b, x);
+    //
+    // // Print results
+    // System.out.println("Matrix A:");
+    // A.print();
+    // System.out.println("Matrix B:");
+    // B.print();
+    // System.out.println("C = A + B:");
+    // C.print();
+    // System.out.println("D = A * B:");
+    // D.print();
+    // System.out.println("invA = A^-1:");
+    // invA.print();
+    // System.out.println("Solution x for Ax = b:");
+    // x.print();
+    // }
+    //
 }
