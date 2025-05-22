@@ -121,34 +121,34 @@ private List<List<SiteInst>> packCarryChains(List<List<CarryCellGroup>> EDIFCarr
 
 
 \begin{lstlisting}[language=java, caption={Manually rerouting intra-Site nets in a \texttt{SLICEL} containing a \texttt{CARRY4} \texttt{Cell}}, label={lst:carry_nets}]
-    protected String[] FF_BELS = new String[] { "AFF", "BFF", "CFF", "DFF" };
-    private void rerouteCarryNets(SiteInst si) {
-        // activate PIPs for CARRY4/COUT
-        si.addSitePIP(si.getSitePIP("COUTUSED", "0"));
-        // undo default CARRY4/DI nets
-        SitePinInst AX = si.getSitePinInst("AX");
-        if (AX != null)
-            si.unrouteIntraSiteNet(AX.getBELPin(), si.getBELPin("ACY0", "AX"));
-        SitePinInst DX = si.getSitePinInst("DX");
-        if (DX != null)
-            si.unrouteIntraSiteNet(DX.getBELPin(), si.getBELPin("DCY0", "DX"));
-        // activate PIPs for CARRY4/DI pins
-        si.addSitePIP(si.getSitePIP("DCY0", "DX"));
-        si.addSitePIP(si.getSitePIP("CCY0", "CX"));
-        si.addSitePIP(si.getSitePIP("BCY0", "BX"));
-        si.addSitePIP(si.getSitePIP("ACY0", "AX"));
-        // remove stray CARRY4/CO nets
-        if (si.getNetFromSiteWire("CARRY4_CO2") != null)
-            design.removeNet(si.getNetFromSiteWire("CARRY4_CO2"));
-        if (si.getNetFromSiteWire("CARRY4_CO1") != null)
-            design.removeNet(si.getNetFromSiteWire("CARRY4_CO1"));
-        if (si.getNetFromSiteWire("CARRY4_CO0") != null)
-            design.removeNet(si.getNetFromSiteWire("CARRY4_CO0"));
-        // add default XOR PIPs for unused FFs
-        for (String FF : FF_BELS)
-            if (si.getCell(FF) == null)
-                si.addSitePIP(si.getSitePIP(FF.charAt(0) + "OUTMUX", "XOR"));
-    } // end rerouteCarryNets()
+protected String[] FF_BELS = new String[] { "AFF", "BFF", "CFF", "DFF" };
+private void rerouteCarryNets(SiteInst si) {
+    // activate PIPs for CARRY4/COUT
+    si.addSitePIP(si.getSitePIP("COUTUSED", "0"));
+    // undo default CARRY4/DI nets
+    SitePinInst AX = si.getSitePinInst("AX");
+    if (AX != null)
+        si.unrouteIntraSiteNet(AX.getBELPin(), si.getBELPin("ACY0", "AX"));
+    SitePinInst DX = si.getSitePinInst("DX");
+    if (DX != null)
+        si.unrouteIntraSiteNet(DX.getBELPin(), si.getBELPin("DCY0", "DX"));
+    // activate PIPs for CARRY4/DI pins
+    si.addSitePIP(si.getSitePIP("DCY0", "DX"));
+    si.addSitePIP(si.getSitePIP("CCY0", "CX"));
+    si.addSitePIP(si.getSitePIP("BCY0", "BX"));
+    si.addSitePIP(si.getSitePIP("ACY0", "AX"));
+    // remove stray CARRY4/CO nets
+    if (si.getNetFromSiteWire("CARRY4_CO2") != null)
+        design.removeNet(si.getNetFromSiteWire("CARRY4_CO2"));
+    if (si.getNetFromSiteWire("CARRY4_CO1") != null)
+        design.removeNet(si.getNetFromSiteWire("CARRY4_CO1"));
+    if (si.getNetFromSiteWire("CARRY4_CO0") != null)
+        design.removeNet(si.getNetFromSiteWire("CARRY4_CO0"));
+    // add default XOR PIPs for unused FFs
+    for (String FF : FF_BELS)
+        if (si.getCell(FF) == null)
+            si.addSitePIP(si.getSitePIP(FF.charAt(0) + "OUTMUX", "XOR"));
+} // end rerouteCarryNets()
 \end{lstlisting}
 
 \begin{lstlisting}[language=java, caption={Manually reroute intra-Site nets in a \texttt{SLICEL} containing FF \texttt{Cells}}, label={lst:ff_nets}]
@@ -186,8 +186,6 @@ private void rerouteFFClkSrCeNets(SiteInst si) {
     }
 } // end rerouteFFSrCeNets()
 \end{lstlisting}
-
-
 \begin{multicols}{2}
 
 
