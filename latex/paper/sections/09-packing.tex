@@ -27,18 +27,18 @@ Listing \ref{lst:siteinst} shows how to use the \texttt{SiteInst} object and how
 The super-specifics of the packing process via RapidWright is too involved for the scope of this paper, but just to give an impression of how the \texttt{design} classes are used, Listing \ref{lst:single_carry_chains}, \ref{lst:carry_chains}, \ref{lst:carry_nets}, and \ref{lst:ff_nets} together show how \texttt{CarryCellGroup}s are packed into \texttt{SLICEL} \texttt{Sites} in our working code. 
 
 Packing the other \texttt{Cell} structures into \texttt{Site}s follow a similar process. 
-For each cell cluster, we create a \texttt{SiteInst} and populate its \texttt{BEL}s with the corresponding \texttt{Cell}s in the cluster, assign it a physical \texttt{Site} on the \texttt{device}.
+For each cell cluster, we create a \texttt{SiteInst} and populate its \texttt{BEL}s with the corresponding \texttt{Cell}s in the cluster and assign it a physical \texttt{Site} on the \texttt{device}.
 We further consolidate these \texttt{SiteInst}s into clusters or lists of \texttt{SiteInst}s for multi-Site structures like \texttt{CarryCellGroup} chains and DSP cascades. 
 For each \texttt{SiteInst}, we assign it a physical \texttt{Site} on the \texttt{device} and route its internal intra-Site nets. 
 The end result is a \texttt{PackedDesign} object which is a group of data structures solely around \texttt{SiteInst}s like shown in figure \ref{fig:substages}.
 At this point we no longer need to worry about individual \texttt{BEL}s, \texttt{Cell}s, or intra-Site \texttt{Nets} as they have now been packaged and taped-off into their respective \texttt{SiteInst}s. 
 These \texttt{SiteInst} become the new atomic level components in the following Placement stage. 
+This process is analogous to the containerization of loose goods in ocean freight forwarding. 
 
 \end{multicols}
 \begin{lstlisting}[caption={\texttt{SiteInst} constructor and methods.}, label={lst:siteinst}]
 SiteInst Constructor: 
     SiteInst(String name, Design design, SiteTypeEnum type, Site site)
-
 Most relevant SiteInst Methods:
     createCell(EDIFHierCellInst inst, BEL bel) // Populating the SiteInst BELs with Cells
     unplace() // Unplacing the SiteInst from its current Site

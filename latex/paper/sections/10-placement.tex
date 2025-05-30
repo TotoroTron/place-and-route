@@ -83,12 +83,41 @@ protected void moveSingleSite(List<SiteInst> sites) {
 } // end randomMoveSingleSite()
 \end{lstlisting}
 
+
 {
     \centering
     \includegraphics[width=\columnwidth]{figures/placement/swapSingleSite.png}
     \captionof{figure}{Single Site Swap Proposal}
     \label{fig:swapSingleSite}
 }
+
+\begin{lstlisting}[language=java, caption={Chain Swapping}, label={lst:chain_swap_pseudocode}]
+protected void moveSiteChains(List<List<SiteInst>> chains) {
+for (List<SiteInst> current_chain : chains) {
+    int ch_size = current_chain.size();
+    /*
+
+    1) Draw a vertical window of equal size to the current chain. We will refer to this window as the "home window". 
+    2) Select a new candidate anchor for this chain.
+    2) Project the home window onto the candidate anchor with anchors coinciding. We will refer to this projected window as the "away window".
+    3) Check if there are any resident SiteInsts or SiteInst chains present in the away window. Check if the away window breaks any resident SiteInst chains. 
+    4)  IF (the away window breaks any chains): 
+            extend the window in either direction to 
+            fully accommodate all resident chains. 
+        ELSE: GOTO evaluateMove(). 
+    5) Project the extended away window back onto the original region with the tail of the window coinciding with the tail of the current chain. This projected window becomes the new home window. 
+    7) WHILE (the home window breaks any resident chains):
+        shift the window upwards by one Site. 
+        IF (number of shifts > home window size - ch_size):
+            reject the candidate swap.
+            CONTINUE onto next chain
+    8) evaluateMove(): HPWL Cost evaluation 
+    9) evaluateMoveAcceptance(): hill-climb acceptance with global temperature
+
+    */
+}
+}
+\end{lstlisting}
 
 \newpage
 \end{multicols}
