@@ -6,24 +6,34 @@ For every constraint, we devise a solution or a simplification to reduce the com
 
 Now that we have dealt with the bulk of these constraints and squared them away into self-contained \texttt{SiteInst}s, we can now apply some general optimization algorithms to finally address our optimization objective, which is to place these \texttt{SiteInst}s onto the device while minimizing wirelength. 
 
-In this paper we implement and present a Simulating Annealing (SA) placer that operates at the \texttt{SiteInst} level. 
+In this paper we implement and present a basic Simulating Annealing (SA) placer that operates at the \texttt{SiteInst} level. 
+Shown in Listing \ref{lst:sa_outer} is the simplified pseudocode for the outer-most loop of the algorithm. 
+First, we unplace all of the SiteInsts and then randomly place them across the device.
+Then, we enter the outer-most loop which terminates when the number of passes exceeds a maximum amount, in this case, 300 passes. 
+In each pass, we move() the design, then update the global temperature. 
+
+In each move(), we iterate through every \texttt{SiteInst}, propose a move to a new \texttt{Site} placement. 
+If the proposed \texttt{Site} is already occupied by a resident \texttt{SiteInst}, we evaluate a swap. 
+Each move or swap is evaluated by calculating the HPWL cost before and after the movement.
+If the move reduces the HPWL cost, then the movement is accepted outright.
+If the move increases cost, then it can be accepted by chance depending on if the global temperature is high enough to permit the hill-climb.
 
 
 
 \subsection{Simulated Annealing}
 \label{subsec:simulated_annealing}
 
-\begin{lstlisting}[language=java, caption={Simulated Annealing pseudocode}, label={lst:sa_pseudocode}]
+\begin{lstlisting}[language=java, caption={SA pseudocode: outer loop}, label={lst:sa_outer}]
 public void placeDesign(PackedDesign packedDesign) {
     // unplace the pseudorandom packed placement
     unplaceAllSiteInsts(packedDesign);
     // place randomly
     randomInitialPlacement(packedDesign);
-    int moves = 0;
-    while (moves < 300) {
+    int passes = 0;
+    while (passes < 300) {
         move(packedDesign)
         updateTemperature();
-        moves++;
+        passes++;
     }
 }
 
@@ -33,54 +43,54 @@ private void move(PackedDesign packedDesign) {
     moveSingleSite(packedDesign.RAMSiteInsts);
     moveSingleSite(packedDesign.CLBSiteInsts);
 }
+\end{lstlisting}
 
+\begin{lstlisting}[language=java, caption={Single Site Movement}, label={lst:sa_move_single}]
 protected void moveSingleSite(List<SiteInst> sites) {
-    for (SiteInst si : sites) {
-        // We refer to the current Site si as the "home site"
-        // We refer to the proposed Site as the "away site"
-
-        // Find the list of Sites connected to the home site
-        List<Site> homeConns = findConnectedSites(si);
-
-        Site homeSite = si.getSite();
-        // Select an away site (random selection, midpoint, centroid, etc.)
-        Site awaySite = proposeSite();
-
+for (SiteInst si : sites) {
+    SiteTypeEnum ste = si.getSiteTypeEnum();
+    List<Site> homeConns = findConnectedSites(si, null);
+    Site homeSite = si.getSite();
+    Site awaySite = proposeSite(si, homeConns, true);
+    SiteInst awaySi = occupiedSites.get(ste).get(awaySite);
+    double oldCost = 0;
+    double newCost = 0;
+    if (awaySi != null) {
+        List<Site> awayConns = findConnectedSites(awaySi, null);
+        oldCost += evaluateSite(homeConns, homeSite);
+        oldCost += evaluateSite(awayConns, awaySite);
+        newCost += evaluateSite(homeConns, awaySite);
+        newCost += evaluateSite(awayConns, homeSite);
+    } else {
+        oldCost += evaluateSite(homeConns, homeSite);
+        newCost += evaluateSite(homeConns, awaySite);
+    }
+    if (evaluateMoveAcceptance(oldCost, newCost)) {
+        if (awaySi != null) {
+            unplaceSiteInst(si);
+            unplaceSiteInst(awaySi);
+            placeSiteInst(si, awaySite);
+            placeSiteInst(awaySi, homeSite);
+        } else {
+            unplaceSiteInst(si);
+            placeSiteInst(si, awaySite);
+        }
     }
 }
-
-protected void moveSingleSite(List<SiteInst> sites) {
-    for (SiteInst si : sites) {
-        SiteTypeEnum ste = si.getSiteTypeEnum();
-        List<Site> homeConns = findConnectedSites(si, null);
-        Site homeSite = si.getSite();
-        Site awaySite = proposeSite(si, homeConns, true);
-        SiteInst awaySi = occupiedSites.get(ste).get(awaySite);
-        double oldCost = 0;
-        double newCost = 0;
-        if (awaySi != null) {
-            List<Site> awayConns = findConnectedSites(awaySi, null);
-            oldCost += evaluateSite(homeConns, homeSite);
-            oldCost += evaluateSite(awayConns, awaySite);
-            newCost += evaluateSite(homeConns, awaySite);
-            newCost += evaluateSite(awayConns, homeSite);
-        } else {
-            oldCost += evaluateSite(homeConns, homeSite);
-            newCost += evaluateSite(homeConns, awaySite);
-        }
-        if (evaluateMoveAcceptance(oldCost, newCost)) {
-            if (awaySi != null) {
-                unplaceSiteInst(si);
-                unplaceSiteInst(awaySi);
-                placeSiteInst(si, awaySite);
-                placeSiteInst(awaySi, homeSite);
-            } else {
-                unplaceSiteInst(si);
-                placeSiteInst(si, awaySite);
-            }
-        }
-    }
 } // end randomMoveSingleSite()
+\end{lstlisting}
+
+\begin{lstlisting}[language=java, caption={Move Acceptance with Temperature}, label={lst:sa_acceptance}]
+protected boolean evaluateMoveAcceptance(double oldCost, double newCost) {
+    // if the new cost is lower, accept it outright
+    if (newCost < oldCost)
+        return true;
+    // otherwise, evaluate probability to accept higher cost
+    double delta = newCost - oldCost;
+    double acceptanceProbability = 
+        Math.exp(-delta / this.currentTemp);
+    return Math.random() < acceptanceProbability;
+}
 \end{lstlisting}
 
 
@@ -94,25 +104,27 @@ protected void moveSingleSite(List<SiteInst> sites) {
 \begin{lstlisting}[language=java, caption={Chain Swapping}, label={lst:chain_swap_pseudocode}]
 protected void moveSiteChains(List<List<SiteInst>> chains) {
 for (List<SiteInst> current_chain : chains) {
-    int ch_size = current_chain.size();
     /*
 
     1) Draw a vertical window of equal size to the current chain. We will refer to this window as the "home window". 
     2) Select a new candidate anchor for this chain.
-    2) Project the home window onto the candidate anchor with anchors coinciding. We will refer to this projected window as the "away window".
-    3) Check if there are any resident SiteInsts or SiteInst chains present in the away window. Check if the away window breaks any resident SiteInst chains. 
-    4)  IF (the away window breaks any chains): 
+    3) Project the home window onto the candidate anchor with anchors coinciding. We will refer to this projected window as the "away window".
+    4) Check if there are any resident SiteInsts or SiteInst chains present in the away window. Check if the away window breaks any resident SiteInst chains. 
+    5)  IF (the away window breaks any chains): 
             extend the window in either direction to 
             fully accommodate all resident chains. 
         ELSE: GOTO evaluateMove(). 
-    5) Project the extended away window back onto the original region with the tail of the window coinciding with the tail of the current chain. This projected window becomes the new home window. 
+    6) Project the extended away window back onto the original region with the tail of the window coinciding with the tail of the current chain. This projected window becomes the new home window. 
     7) WHILE (the home window breaks any resident chains):
         shift the window upwards by one Site. 
-        IF (number of shifts > home window size - ch_size):
+        IF (num_shifts > home_win_size - current_chain.size()):
             reject the candidate swap.
             CONTINUE onto next chain
-    8) evaluateMove(): HPWL Cost evaluation 
-    9) evaluateMoveAcceptance(): hill-climb acceptance with global temperature
+    8) int oldCost = evaluateCost(original placement) 
+    9) int newCost = evaluateCost(proposed placement) 
+    10) evaluateMoveAcceptance(oldCost, newCost, temperature) 
+    11) IF (move accepted):
+            element-wise swap SiteInsts in both windows
 
     */
 }
