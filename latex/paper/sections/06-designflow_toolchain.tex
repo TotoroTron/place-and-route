@@ -15,7 +15,7 @@ Figure~\ref{fig:design_flow} illustrates a representative process that converts 
 \begin{enumerate}
 \item \textbf{Design Entry:} 
     An engineer describes the intended functionality of the digital system using a hardware description language (HDL) such as Verilog or VHDL. 
-    During this phase, the coding style can vary (behavioral, structural, dataflow, etc.), but it always aims to capture high-level behavior rather than device-specific details.
+    During this phase, the coding style can vary (behavioral, structural, dataflow, etc.), but it generally aims to capture high-level behavior rather than device-specific details.
 
 \item \textbf{Synthesis:} 
     The synthesis tool parses the HDL source, performs logical optimizations, and maps the design onto primitive cells that suit the target FPGA technology. 
@@ -37,7 +37,6 @@ Figure~\ref{fig:design_flow} illustrates a representative process that converts 
     With each higher level of fidelity, computational requirements grow significantly due to increasing complexity and the need to analyze more variables over time. 
     Ensuring correct functionality and meeting timing closure at the post-implementation stage is crucial before deploying the design to hardware. 
     Given the importance of thorough verification, many established companies dedicate one verification engineer for every design engineer.
-
 \end{enumerate}
 
 % This workflow underscores the critical role of \textbf{placement} in bridging the netlist to a physical realization. 
