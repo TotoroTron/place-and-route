@@ -15,39 +15,36 @@ Its name is borrowed from metallurgy and is inspired by the physical process of 
 SA does not guarantee a globally optimal solution, but provides solutions that are often "good enough", especially when an approximate global optimum is more important than finding a precise local optimum in a fixed amount of time. 
 SA is typically employed in discrete combinatorial optimization problems like the travelling salesman problem or job-shop scheduling. 
 
-The state \texttt{s} of the system and the function \texttt{E(s)} to be minimized is analogous to the internal energy of the system. 
+The state \(s\) of the system and the function \(E(s)\) to be minimized is analogous to the internal energy of the system. 
 The goal of SA is to bring the system from some initial state to a state with the minimum possible energy until an energy budget met or until a computational budget is exceeded.
-At each step or iteration, the SA heuristic considers some neighboring state \(s^*\). 
+At each step or iteration, the algorithm considers some neighboring state \(s^*\). 
 If \(s^*\) has a lower energy than \(s\), then the state transition from \(s\) to \(s^*\) is accepted outright.
 If \(s^*\) has a higher energy, then it can be probabilistically accepted depending on the current global temperature.
-The global temperature starts at some positive amount then gradually decreases to zero according to a cooling schedule, which can be linear, geometric, logarithmic, or some piecewise combination. 
+The global temperature starts at some positive amount then gradually decreases to zero according to a cooling schedule
 The higher the temperature, the higher the likelihood of accepting an energy-increasing move. 
-The selection of cooling schedule parameters is usually fine tuned after empirical experimentation. 
+This cooling schedule can be linear, geometric, logarithmic, or some piecewise combination. 
+The parameters of the cooling schedule are fine tuned through empirical experimentation. 
 
-%
-%
-%
-%
-
-In the context of our placer, we use SA to minimize wirelength between \texttt{SiteInst}s when placed over the discrete \texttt{Site}s of the FPGA \texttt{device}.
-The state \texttt{s}
-In each iteration of the SA algorithm, a new 
-
-%
-%
-%
-%
+In the context of our placer, we use SA to minimize wirelength between \texttt{SiteInst}s as we place them over the discrete \texttt{Site}s of the FPGA \texttt{device}.
+The state \texttt{s} represents the current placement of all \texttt{SiteInst}s on the \texttt{device}, while the system energy \(E(s)\) represents the total HPWL of all nets of the placement. 
 
 Shown in Listing \ref{lst:sa_outer} is a simplified pseudocode for the outer-most loop of the SA algorithm. 
 First, we unplace all of the SiteInsts and then randomly place them across the device.
-Then, we enter the outer-most loop which terminates when the number of passes exceeds a maximum amount, in this case, 300 passes. 
+Then, we enter the outer-most loop which terminates when the number of passes exceeds a computational budget, in this case, 300 passes. 
 In each pass, we move() the design, then update the global temperature. 
 
-In each or move() or "pass", we iterate through every single \texttt{SiteInst} and \texttt{SiteInst} chain, propose a move to a new placement. 
-If the proposed \texttt{Site} is already occupied by a resident \texttt{SiteInst}, we evaluate a swap. 
-Each move or swap is evaluated by calculating the HPWL cost before and after the movement.
+In each move(), we iterate through four groups of placement objects: \texttt{DSPSiteInstCascades} , \texttt{CARRYSiteInstChains}, \texttt{RAMSiteInst}s, and \texttt{CLBSiteInst}s (single SLICEs that do not belong to CARRY chains).
+For each placement object, we propose a move to a new placement on the device. 
+If the design has for example, 1000 single \texttt{SiteInst}s and 500 multi-\texttt{SiteInst} chains (all mutually exclusive groups), and we set a budget of 300 passes, then the algorithm will consider up to \(300 * (1000 + 500) = 450000\) state transitions.
+The proposed \texttt{Site} or \texttt{Site} chain is conventionally selected randomly, but can also be selected by finding the midpoint or centroid of \texttt{SiteInst}s that share a net with the current object, or even a hybrid of both. 
+
+If the proposed \texttt{Site} is already occupied by a resident or existing \texttt{SiteInst}, we evaluate a swap in their placements. 
+Each move or swap is evaluated by calculating the HPWL cost of the placement before and after the movement.
 If the move reduces the HPWL cost, then the movement is accepted outright.
 If the move increases cost, then it can be accepted by chance depending on if the global temperature is high enough to permit the hill-climb.
+
+The temperature decreases with each pass until reaching zero, at which point, the algorithm makes exclusively energy-reducing moves, effectively becoming a greedy algorithm. 
+The hope is that by this point, the placement will crystallize into a global optimum of minimum total HPWL. 
 
 \begin{lstlisting}[language=java, caption={SA pseudocode: outer loop}, label={lst:sa_outer}]
 public void placeDesign(PackedDesign packedDesign) {
@@ -63,7 +60,7 @@ public void placeDesign(PackedDesign packedDesign) {
     }
 }
 
-private void move(PackedDesign packedDesign) {
+private void moveAll(PackedDesign packedDesign) {
     moveSiteChains(packedDesign.DSPSiteInstCascades);
     moveSiteChains(packedDesign.CARRYSiteInstChains);
     moveSingleSite(packedDesign.RAMSiteInsts);
@@ -121,12 +118,6 @@ protected boolean evaluateMoveAcceptance(double oldCost, double newCost) {
 \end{lstlisting}
 
 
-{
-    \centering
-    \includegraphics[width=\columnwidth]{figures/placement/swapSingleSite.png}
-    \captionof{figure}{Single Site Swap Proposal}
-    \label{fig:swapSingleSite}
-}
 
 % \begin{lstlisting}[language=java, caption={Chain Swapping}, label={lst:chain_swap_pseudocode}]
 % protected void moveSiteChains(List<List<SiteInst>> chains) {
@@ -157,6 +148,13 @@ protected boolean evaluateMoveAcceptance(double oldCost, double newCost) {
 % }
 % }
 % \end{lstlisting}
+
+{
+    \centering
+    \includegraphics[width=\columnwidth]{figures/placement/swapSingleSite.png}
+    \captionof{figure}{Single Site Swap Proposal}
+    \label{fig:swapSingleSite}
+}
 
 \newcolumn
 \begin{lstlisting}[language=Java, caption={Chain Swapping Pseudocode}, label={lst:chain_swap_pseudocode}]
@@ -214,6 +212,7 @@ for (List<SiteInst> currentChain : chains) {
 }
 }
 \end{lstlisting}
+
 
 \newpage
 \end{multicols}
