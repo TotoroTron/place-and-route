@@ -1,10 +1,10 @@
 
 \section{Placement}
 \label{sec:placement}
-So far we have only dealt with the technology where we consider the problem space and adress the constraints of the hardware architecture. 
+So far we have only dealt with technology problems where we consider the problem space and adress the constraints of the hardware architecture. 
 For every constraint, we devise a solution to fully address it or a simplification that sacrifices some optimization but reduces the complexity of the problem space. 
 
-Now that we have dealt with the bulk of these constraints and squared them away into self-contained \texttt{SiteInst}s, we can now apply some general optimization algorithms to finally address our optimization objective, which is to place these \texttt{SiteInst} objects onto the device while minimizing wirelength. 
+Now that we have dealt with the bulk of these constraints and squared them away into self-contained \texttt{SiteInst}s, we can now more easily apply some general optimization algorithms to finally address our optimization objective, which is to place these \texttt{SiteInst} objects onto the device while minimizing wirelength. 
 
 \subsection{Simulated Annealing}
 \label{subsec:simulated_annealing}
@@ -13,7 +13,7 @@ In this paper we implement and present a basic Simulated Annealing (SA) placer.
 As mentioned in the Introduction, SA is a metaheuristic that approximates a global optimum in a large optimization search space. 
 SA does not guarantee a globally optimal solution, but provides solutions that are often "good enough", especially when finding an approximate global optimum is more important than finding a precise local optimum in a fixed amount of time. 
 SA is typically employed in discrete combinatorial optimization problems like the travelling salesman problem or job-shop scheduling. 
-It is directly inspired by Annealing in metallurgy, which is the physical process of heating a metal above its crystallization temperature, allowing its atoms to migrate through the crystal lattice, and slowly cooling it to allow its atoms to recrystallize into a more desirable structure, such as one that minimizes structural defects 
+It is directly inspired by Annealing in metallurgy, which is the physical process of heating a metal above its crystallization temperature, allowing its atoms to migrate through the crystal lattice, and slowly cooling it to allow its atoms to recrystallize into a more desirable structure, such as one that minimizes structural defects. 
 
 The state \(s\) of the system and the function \(E(s)\) to be minimized is analogous to the internal energy of the system. 
 In metallurgic Annealing, the state \(s\) represents the position of every atom in the metal object at any given snapshot in time, while \(E(s)\) represents the defectiveness in the metal's structure however that may be quantified. 
@@ -30,35 +30,44 @@ Its parameters can be fine tuned through empirical experimentation.
 
 Shown in Listing \ref{lst:sa_outer} is a simplified pseudocode for the outer-most loop of our placer's SA algorithm. 
 First, we randomly place all \texttt{SiteInst}s across the \texttt{device}.
-Then, we initialize a geometric cooling schedule with our parameters: an initial temperature, an alpha value, and a maximum number of passes. 
-Then, we enter the outer-most loop which terminates when the number of passes exceeds a computational budget, in this case, 300 passes. 
-In each pass, we move the design, then update the global temperature. 
+Then, we initialize a simple geometric cooling schedule: 
+\begin{equation}
+    \label{coolingSchedule}
+    T_{n+1} = \alpha T_n
+\end{equation}
+with initial temperature \(T_0=10000\), cooling rate \(\alpha=0.98\), and \(n = \{0, 1, 2, ..., 300\}\) passes.
 
-In each move, we iterate through four mutually exclusive groups of placement objects: \texttt{DSPSiteInstCascades}, \texttt{CARRYSiteInstChains}, \texttt{RAMSiteInst}s, and \texttt{CLBSiteInst}s (single SLICEs that do not belong to CARRY chains).
+
+Then, we enter the outer-most loop which terminates when the number of passes exceeds our computational budget, in this case, 300 passes. 
+In each pass, we \texttt{moveAll()} the design, then update the global temperature. 
+
+In each \texttt{moveAll()}, we iterate through four mutually exclusive groups of placement objects: \texttt{DSPSiteInstCascades}, \texttt{CARRYSiteInstChains}, \texttt{RAMSiteInst}s, and \texttt{CLBSiteInst}s (single SLICEs that do not belong to CARRY chains).
 For each placement object in the pass, we propose a move to a new placement on the device. 
 If the proposed \texttt{Site} is already occupied by a resident or existing \texttt{SiteInst}, we evaluate a swap in their placements. 
 Each move or swap is evaluated by calculating the HPWL cost of the placement before and after the proposed movement.
 If the design has for example, 50 \texttt{DSPSiteInstCascades}, 100 \texttt{CARRYSiteInstChains}, 75 \texttt{RAMSiteInst}s, and 250 \texttt{CLBSiteInst}s, and we set a budget of 300 passses, then the algorithm will consider up to \(300 * (50 + 100 + 75 + 250) = 142500\) state transitions. 
 
-Figure \ref{fig:swapSingleSite} shows how a swap proposal between two \texttt{CLBSiteInst}s or two \texttt{RAMSiteInst}s is evaluated, while Listing \ref{lst:sa_move_single} shows the corresponding Java code.
-The movement of \texttt{SiteInst} chains is considerably more complex because there are more placement constraints to consider, especially when swapping the positions between multiple chains.
-Figure \ref{fig:swapSiteChain} shows an example of how two \texttt{DSPSiteInstCascades} or two \texttt{CARRYSiteInstChains} can be swapped while Listing \ref{lst:chain_swap_pseudocode} shows the corresponding pseudocode. 
+In SA, proposed movements are selected randomly, then accepted or rejected based on legality and cost. 
+Figure \ref{fig:swapSingleSite} shows how a swap proposal between singular \texttt{CLBSiteInst}s or between \texttt{RAMSiteInst}s is evaluated, while Listing \ref{lst:sa_move_single} shows the corresponding Java code.
+On the other hand, the movement of \texttt{SiteInst} chains is considerably more complex because there are more placement constraints to consider, especially when swapping the positions between multiple chains.
+Figure \ref{fig:swapSiteChain} shows a demonstration of how two \texttt{DSPSiteInstCascades} or two \texttt{CARRYSiteInstChains} can be swapped while Listing \ref{lst:chain_swap_pseudocode} shows the corresponding pseudocode. 
 
+In more sophisticated placers, the proposed movement can also be selected by finding the centroid between \texttt{SiteInst}s that share a net with the current object, or even a hybrid of random and centroid selection. 
+Moves that actively attempt to predict a better placement are often referred to as "directed" moves in literature. 
+Movement approaches that take inspiration from physical interactions like gravity or electrostatics are often referred to as "force directed" moves. 
 
-The proposed \texttt{Site} or \texttt{Site} chain is usually selected randomly, but can also be selected by finding the midpoint or centroid between \texttt{SiteInst}s that share a net with the current object, or even a hybrid of both. 
 
 If the move reduces the HPWL cost, then the movement is accepted outright.
 If the move increases cost, then it can be accepted by chance if the global temperature is high enough to permit the hill-climb.
 The temperature decreases with each pass until reaching zero, at which point, the algorithm makes exclusively energy-decreasing moves, effectively reducing into a greedy algorithm. 
 The hope is that by this point, the placement will crystallize into a global optimum of minimum total HPWL. 
 
+\newcolumn
 \begin{lstlisting}[language=java, caption={SA pseudocode: outer loop}, label={lst:sa_outer}]
 public void placeDesign(PackedDesign packedDesign) {
-    // unplace the pseudorandom packed placement
-    unplaceAllSiteInsts(packedDesign);
-    // place randomly
     randomInitialPlacement(packedDesign);
-    initCoolingSchedule(10000, 0.95, 300)
+    // init_temp=10000, alpha=0.98, max_passes=300
+    initCoolingSchedule(10000, 0.98, 300)
     int passes = 0;
     while (passes < 300) {
         updateTemperature(passes);
@@ -75,13 +84,6 @@ private void moveAll(PackedDesign packedDesign) {
 }
 \end{lstlisting}
 
-\newcolumn
-{
-    \centering
-    \includegraphics[width=\columnwidth]{figures/placement/swapSingleSite.png}
-    \captionof{figure}{Single Site Swap Proposal}
-    \label{fig:swapSingleSite}
-}
 
 \begin{lstlisting}[language=java, caption={Single Site Movement}, label={lst:sa_move_single}]
 protected void moveSingleSite(List<SiteInst> sites) {
@@ -118,15 +120,21 @@ for (SiteInst si : sites) {
 } // end randomMoveSingleSite()
 \end{lstlisting}
 
-\newcolumn
+{
+    \centering
+    \includegraphics[width=\columnwidth]{figures/placement/swapSingleSite.png}
+    \captionof{figure}{Single Site Swap Proposal}
+    \label{fig:swapSingleSite}
+}
+\vfill
+
 \begin{lstlisting}[language=java, caption={Cooling Schedule and Move Acceptance with Temperature}, label={lst:sa_acceptance}]
 protected List<Double> coolingSchedule;
 public void initCoolingSchedule(double initialTemp, double alpha, int movesLimit) {
-    // geometric cooling
     double currentTemp = initialTemp;
     for (int i = 0; i < movesLimit; i++) {
         this.coolingSchedule.add(currentTemp);
-        currentTemp *= alpha;
+        currentTemp *= alpha; // geometric cooling
     }
 }
 
@@ -161,13 +169,12 @@ for (List<SiteInst> currentChain : chains) {
     List<List<SiteInst>> residentChainsInAway = 
         collectChainsInWindow(siteType, awayWindow);
 
-    // Step 5: If any resident chains overlap, extend the away window to include them
+    // Step 5: If any resident chains overlap with the away window, extend the away window to fully accomodate them 
     if (!residentChainsInAway.isEmpty()) {
         awayWindow = extendWindowToIncludeChains(awayWindow, residentChainsInAway);
     }
 
-    // Step 6: Map the (possibly extended) away window back onto the original region 
-    //         so that the tail of that window coincides with the tail of the current chain
+    // Step 6: Map the (possibly extended) away window back onto the original region so that the tail of that window coincides with the tail of the current chain
     List<Site> candidateHomeWindow = mapAwayToHomeWindow(
         homeAnchor, awayWindow, chainSize);
 
@@ -177,7 +184,8 @@ for (List<SiteInst> currentChain : chains) {
         candidateHomeWindow = shiftWindowUp(candidateHomeWindow);
         shifts++;
         if (shifts > (homeWindow.size() - chainSize)) {
-            // Reject this swap attempt and move on to the next chain
+            // Reject this swap attempt.
+            // Move on to the next chain.
             continue;
         }
     }

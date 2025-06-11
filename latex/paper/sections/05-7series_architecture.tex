@@ -52,7 +52,7 @@ As the their name suggests, a Look‑Up Table (LUT) map an input value to an out
 LUTs facilitate combinational logic by acting as tiny asynchronously‑accessed ROMs whose contents are fixed when the FPGA is programmed.  
 For any boolean function, the synthesizer precalculates the boolean output to every possible input combination and stores the resulting truth table into a LUT's static memory. 
 The inputs are then essentially treated as an address space that maps to a data value space in an asynchronous ROM. 
-No explicit logic gates like NAND or XNOR are synthesized, contrary to what newcomers might expect from a "Field Programmable Gate Array". 
+No explicit logic gates like NAND or XNOR are synthesized, contrary to what the name \emph{Field Programmable Gate Array} might suggest. 
 
 In the 7‑Series devices, one LUT can facilitate any 6-input boolean function, or two 5-input functions, as long as they share the same input signals.  
 The LUT can also host two independent boolean functions of up to 3 inputs each, even when the inputs are not shared.  
