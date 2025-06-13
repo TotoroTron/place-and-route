@@ -62,40 +62,39 @@ def main():
     df_merged.to_csv(output_csv, index=False)
     print(f"Combined dataset saved to {output_csv}")
 
-    # 1) Linear-scale plot
+    # get placer columns (everything except "Iter") in alphabetical order
+    placer_cols = sorted([c for c in df_merged.columns if c != "Iter"])
+
+    # 1) Linear‐scale plot
     plt.figure(figsize=(12,8))
-    for col in df_merged.columns:
-        if col == "Iter":
-            continue
+    for col in placer_cols:
         plt.plot(df_merged["Iter"], df_merged[col], label=col)
     plt.xlabel('Iteration')
     plt.ylabel('Cost')
     plt.title('Cost History Across Placers (Linear Scale)')
     plt.grid(True, linestyle='--', linewidth=0.5)
-    plt.legend()
+    plt.legend()  # entries are already alphabetical
     plt.tight_layout()
     plot_linear = root_dir / "outputs" / "combined_cost_history_linear.png"
     plt.savefig(plot_linear)
-    print(f"Linear-scale plot saved to {plot_linear}")
+    print(f"Linear‐scale plot saved to {plot_linear}")
 
-    # 2) Log-scale plot
+    # 2) Log‐scale plot
     plt.figure(figsize=(12,8))
-    for col in df_merged.columns:
-        if col == "Iter":
-            continue
+    for col in placer_cols:
         plt.plot(df_merged["Iter"], df_merged[col], label=col)
     plt.yscale('log')
-    # ensure y runs from 1 to the max cost
-    max_cost = df_merged.drop(columns="Iter").max().max()
-    plt.ylim(300000, max_cost)
+    max_cost = df_merged[placer_cols].max().max()
+    plt.ylim(1, max_cost)
     plt.xlabel('Iteration')
     plt.ylabel('Cost (log scale)')
     plt.title('Cost History Across Placers (Log Scale)')
     plt.grid(True, which='both', linestyle='--', linewidth=0.5)
-    plt.legend()
+    plt.legend()  # still alphabetical
     plt.tight_layout()
     plot_log = root_dir / "outputs" / "combined_cost_history_log.png"
     plt.savefig(plot_log)
+    print(f"Log‐scale plot saved to {plot_log}")
 
 if __name__ == "__main__":
     main()
