@@ -12,6 +12,39 @@ Note that midpoint simply means centroid.
     \item \texttt{PlacerAnnealHybrid}: 50\% random - 50\% centroid moves with annealing acceptance
 \end{itemize}
 
+We will need an HDL design that utilizes a good mixture of LUTs, FFs, BRAMs, and DSPs at scale to demonstrate the robustness and performance of our placers. 
+Any DSP subsystem can serve as a good candidate for such a demonstration. 
+Here, we will perform placement on a 2048th-order FIR Filter which was conveniently created as coursework for a VLSI course. 
+After passing synthesis, the FIR Filter design calls for the following primitive cells:
+\begin{itemize}
+    \item 1693 \texttt{LUT} (1-6)
+    \item 920 \texttt{FDRE} + \texttt{FDSE}
+    \item 282 \texttt{CARRY4}
+    \item 32 \texttt{RAMB48E1}
+    \item 64 \texttt{DSP48E1}
+\end{itemize}
+
+We will perform placement of this design on a \texttt{xc7z020} FPGA, which is a mid-ranged Xilinx device containing the following relevant BELs:
+\begin{itemize}
+    \item 53200 \texttt{LUT} (counting \texttt{LUT5}-\texttt{LUT6} pairs as one \texttt{LUT})
+    \item 106400 \texttt{FF}
+    \item 13300 \texttt{CARRY4}
+    \item 171 \texttt{RAMB18E1}
+    \item 220 \texttt{DSP48E1}
+\end{itemize}
+
+Our expected overall utilization for the FIR Filter on this device will be:
+\begin{itemize}
+    \item LUTs: 3\%
+    \item Registers: 1\%
+    \item Carry: 2\%
+    \item BRAMs: 23\%
+    \item DSPs: 29\%
+\end{itemize}
+
+Shown in figure \ref{fig:placers_overlay} are the HPWL curves over number of passes for each of the five placer variants. 
+The Midpoint-exclusive placers \texttt{PlacerGreedyMidpoint} and \texttt{PlacerAnnealMidpoint} appear 
+
 {
     \centering
     \includegraphics[width=\columnwidth]{figures/results/combined_cost_history_linear.png}
@@ -19,7 +52,7 @@ Note that midpoint simply means centroid.
     \label{fig:placers_overlay}
 }
 
-\newcolumn
+
 {
     \centering
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerGreedyRandom/random_placement.png}
@@ -30,7 +63,7 @@ Note that midpoint simply means centroid.
     \label{fig:PGRSnapshots}
 }
 
-\newcolumn
+\columnbreak
 {
     \centering
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerGreedyMidpoint/random_placement.png}
@@ -40,7 +73,7 @@ Note that midpoint simply means centroid.
     \captionof{figure}{PlacerGreedyMidpoint}
     \label{fig:PGMSnapshots}
 }
-
+\vfill
 {
     \centering
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerAnnealRandom/random_placement.png}
@@ -51,7 +84,8 @@ Note that midpoint simply means centroid.
     \label{fig:PARSnapshots}
 }
 
-\newcolumn
+
+\columnbreak
 {
     \centering
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerAnnealMidpoint/random_placement.png}
@@ -61,7 +95,7 @@ Note that midpoint simply means centroid.
     \captionof{figure}{PlacerAnnealMidpoint}
     \label{fig:PAMSnapshots}
 }
-
+\vfill
 {
     \centering
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerAnnealHybrid/random_placement.png}
@@ -71,13 +105,5 @@ Note that midpoint simply means centroid.
     \captionof{figure}{PlacerAnnealHybrid}
     \label{fig:PAHSnapshots}
 }
-% {
-%     \centering
-%     \includegraphics[width=0.7\columnwidth]{figures/results/PlacerAnnealHybrid/PlacerAnnealHybrid_cost_history.png}
-%     \captionof{figure}{Total HPWL Cost vs number of passes. Final cost: 322933.}
-%     \label{fig:PAHCurve}
-% }
 
 
-
-\begin{multicols}{2}
