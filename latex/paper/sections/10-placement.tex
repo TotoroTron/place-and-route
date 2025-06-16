@@ -42,10 +42,10 @@ Then, we enter the outer-most loop which terminates when the number of passes ex
 In each pass, we \texttt{moveAll()} the design, then update the global temperature. 
 
 In each \texttt{moveAll()}, we iterate through four mutually exclusive groups of placement objects: \texttt{DSPSiteInstCascades}, \texttt{CARRYSiteInstChains}, \texttt{RAMSiteInst}s, and \texttt{CLBSiteInst}s (single SLICEs that do not belong to CARRY chains).
-For each placement object in the pass, we propose a move to a new placement on the device. 
-If the proposed \texttt{Site} is already occupied by a resident or existing \texttt{SiteInst}, we evaluate a swap in their placements. 
-Each move or swap is evaluated by calculating the HPWL cost of the placement before and after the proposed movement.
+For each placement object in the pass, we propose a new placement for that object on the device. 
+Each proposed movement represents a proposed state transition of system. 
 If the design has for example, 50 \texttt{DSPSiteInstCascades}, 100 \texttt{CARRYSiteInstChains}, 75 \texttt{RAMSiteInst}s, and 250 \texttt{CLBSiteInst}s, and we set a budget of 300 passses, then the algorithm will consider up to \(300 * (50 + 100 + 75 + 250) = 142500\) state transitions. 
+If the proposed \texttt{Site} is already occupied by a resident or existing \texttt{SiteInst}, we evaluate a swap in their placements. 
 
 In SA, proposed movements are selected randomly, then accepted or rejected based on legality and cost. 
 Figure \ref{fig:swapSingleSite} shows how a swap proposal between singular \texttt{CLBSiteInst}s or between \texttt{RAMSiteInst}s is evaluated, while Listing \ref{lst:sa_move_single} shows the corresponding Java code.
@@ -56,11 +56,11 @@ In more sophisticated placers, the proposed movement can also be selected by fin
 Moves that actively attempt to predict a better placement are often referred to as "directed" moves in literature. 
 Movement approaches that take inspiration from physical interactions like gravity or electrostatics are often referred to as "force directed" moves. 
 
-
 If the move reduces the HPWL cost, then the movement is accepted outright.
 If the move increases cost, then it can be accepted by chance if the global temperature is high enough to permit the hill-climb.
 The temperature decreases with each pass until reaching zero, at which point, the algorithm makes exclusively energy-decreasing moves, effectively reducing into a greedy algorithm. 
-The hope is that by this point, the placement will crystallize into a global optimum of minimum total HPWL. 
+The hope is that by this point, the placement has already crystallized into an approximate global optimum and the greediness of the algorithm will help the system settle deeper into the energy well faster. 
+We can also switch from random selection to centroid selection when the temperature approaches near zero to speed up the convergence further. 
 
 \newcolumn
 \begin{lstlisting}[language=java, caption={SA pseudocode: outer loop}, label={lst:sa_outer}]
@@ -71,7 +71,7 @@ public void placeDesign(PackedDesign packedDesign) {
     int passes = 0;
     while (passes < 300) {
         updateTemperature(passes);
-        move(packedDesign)
+        moveAll(packedDesign)
         passes++;
     }
 }

@@ -66,10 +66,10 @@ def main():
     placer_cols = sorted([c for c in df_merged.columns if c != "Iter"])
 
     # 1) Linear‐scale plot
-    plt.figure(figsize=(12,8))
+    plt.figure(figsize=(6,4))
     for col in placer_cols:
         plt.plot(df_merged["Iter"], df_merged[col], label=col)
-    plt.xlabel('Iteration')
+    plt.xlabel('Passes')
     plt.ylabel('Cost')
     plt.title('Cost History Across Placers (Linear Scale)')
     plt.grid(True, linestyle='--', linewidth=0.5)
@@ -80,13 +80,13 @@ def main():
     print(f"Linear‐scale plot saved to {plot_linear}")
 
     # 2) Log‐scale plot
-    plt.figure(figsize=(12,8))
+    plt.figure(figsize=(6,4))
     for col in placer_cols:
         plt.plot(df_merged["Iter"], df_merged[col], label=col)
     plt.yscale('log')
     max_cost = df_merged[placer_cols].max().max()
     plt.ylim(1, max_cost)
-    plt.xlabel('Iteration')
+    plt.xlabel('Passes')
     plt.ylabel('Cost (log scale)')
     plt.title('Cost History Across Placers (Log Scale)')
     plt.grid(True, which='both', linestyle='--', linewidth=0.5)
