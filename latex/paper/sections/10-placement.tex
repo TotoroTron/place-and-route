@@ -36,6 +36,16 @@ Then, we initialize a simple geometric cooling schedule:
     T_{n+1} = \alpha T_n
 \end{equation}
 with initial temperature \(T_0=10000\), cooling rate \(\alpha=0.98\), and \(n = \{0, 1, 2, ..., 300\}\) passes.
+Hill-climbing moves can be accepted via the probability function \(P()\): 
+\begin{equation}
+    \label{moveAcceptance}
+    P(s, s^*, T_n) = exp(\frac{E(s) - E(s^*)}{T_n})
+\end{equation}
+where \(E(s^*)\) is the energy of the proposed state, \(E(s)\) is the energy of the current state, and \(T_n\) is the current global temperature at \(n\) passes. 
+If \(P(s, s^*, T_n) < random(0, 1)\), then \(s \leftarrow s^*\).
+Recall that this probability is only evaluated for hill-climbing moves, thus cost difference \(E(s) - E(s^*)\) is always negative.
+In summary, the higher the cost difference and temperature, the higher the probabilty of hill-climb acceptance.
+On the other hand, all hill-descending moves are simply accepted outright. 
 
 
 Then, we enter the outer-most loop which terminates when the number of passes exceeds our computational budget, in this case, 300 passes. 
@@ -54,7 +64,7 @@ Figure \ref{fig:swapSiteChain} shows a demonstration of how two \texttt{DSPSiteI
 
 In more sophisticated placers, the proposed movement can also be selected by finding the centroid between \texttt{SiteInst}s that share a net with the current object, or even a hybrid of random and centroid selection. 
 Moves that actively attempt to predict a better placement are often referred to as "directed" moves in literature. 
-Movement approaches that take inspiration from physical interactions like gravity or electrostatics are often referred to as "force directed" moves. 
+Placers that take inspiration from physical interactions like gravity or electrostatics are often referred to as "force directed" moves and are akin to physics simulators modelling interactions between atoms and molecules. 
 
 If the move reduces the HPWL cost, then the movement is accepted outright.
 If the move increases cost, then it can be accepted by chance if the global temperature is high enough to permit the hill-climb.
