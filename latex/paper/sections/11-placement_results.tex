@@ -45,14 +45,18 @@ Note that midpoint simply means centroid.
 
 ((Talk about the initial cost.))
 
-Shown in figure \ref{fig:placers_overlay} are the HPWL curves over number of passes for each of the five variants. 
-\texttt{PlacerGreedyMidpoint} (in red) appears to perform the worst by a considerable margin with a final HPWL cost of 590578.
+Shown in figure \ref{fig:placers_overlay} are the total HPWL curves over number of passes for each of the five placers. 
+\texttt{PlacerGreedyMidpoint} (in red) appears to perform the worst by a considerable margin with a final HPWL cost of 590K.
 This is likely due to the lack of randomness in moves resulting in a lack of diversity in movement proposals combined with the greediness of the movement acceptance that prevents the system from escaping local minima.
-This is supported by its HPWL curve (in red) showing a sharp drop in cost that quickly asymptotes just below the 600000 mark, suggesting that the system crystallized very quickly into a local minimum and was unable to climb out of it.
+This is supported by its HPWL curve (in red) showing a sharp drop in cost that quickly asymptotes just below the 600K mark, suggesting that the system crystallized very quickly into a local minimum and was unable to climb out of it.
 
-Next is \texttt{PlacerAnnealMidpoint} with a final cost of 466855, which like the previous placer, lacks the diversity of random moves and contributes to faster crystallization into local minima.
-However, this placer likely performed better than the previous as there is still some randomness in the move acceptance evaluation, which gives way to occasional hill-climbing. 
-Keep in mind that centroid moves do not necessarily decrease system cost, as the centroid move will decrease the HPWL cost of the nets on connected to the current \texttt{SiteInst}, but potentially increase the cost of another group of nets should a swap be evaluated, which can potentially result in a total increase in system cost.
+Next is \texttt{PlacerAnnealMidpoint} with a final cost of 466K.
+Like the previous placer, \texttt{PlacerAnnealMidpoint} lacks the diversity of random moves which contributes to faster crystallization into local minima.
+However, this placer likely performed better than the previous as there is still some randomness in the move acceptance evaluation which gives way to occasional hill-climbing. 
+Keep in mind that centroid moves do not necessarily decrease system cost, as the centroid move will decrease the HPWL cost of the nets on connected to the current \texttt{SiteInst}, but can potentially increase the cost of another group of nets should a swap be evaluated, which can potentially result in a total increase in system cost.
+
+The next three placers performed significantly better than the previous two placers.
+\texttt{PlacerAnnealRandom} and \texttt{PlacerAnnealHybrid} performed quite similarly with final costs of 346K and 322K respectively. 
 
 {
     \centering
