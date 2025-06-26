@@ -47,16 +47,20 @@ Note that midpoint simply means centroid.
 
 Shown in figure \ref{fig:placers_overlay} are the total HPWL curves over number of passes for each of the five placers. 
 \texttt{PlacerGreedyMidpoint} (in red) appears to perform the worst by a considerable margin with a final HPWL cost of 590K.
-This is likely due to the lack of randomness in moves resulting in a lack of diversity in movement proposals combined with the greediness of the movement acceptance that prevents the system from escaping local minima.
-This is supported by its HPWL curve (in red) showing a sharp drop in cost that quickly asymptotes just below the 600K mark, suggesting that the system crystallized very quickly into a local minimum and was unable to climb out of it.
+This is likely due to the lack of randomness or lack of diversity in move proposals combined with the persistent greediness of the movement acceptance that prevents the system from escaping local minima.
+This conclusion is supported by its HPWL curve (in red) showing a sharp drop in cost that quickly asymptotes just below the 600K mark, suggesting that the system crystallized very quickly into a local minimum and was unable to climb out of it.
 
 Next is \texttt{PlacerAnnealMidpoint} with a final cost of 466K.
 Like the previous placer, \texttt{PlacerAnnealMidpoint} lacks the diversity of random moves which contributes to faster crystallization into local minima.
 However, this placer likely performed better than the previous as there is still some randomness in the move acceptance evaluation which gives way to occasional hill-climbing. 
-Keep in mind that centroid moves do not necessarily decrease system cost, as the centroid move will decrease the HPWL cost of the nets on connected to the current \texttt{SiteInst}, but can potentially increase the cost of another group of nets should a swap be evaluated, which can potentially result in a total increase in system cost.
+Keep in mind that centroid moves do not necessarily decrease system cost. 
+The centroid move can decrease the HPWL cost of the nets on connected to the current \texttt{SiteInst}, but can potentially increase the cost of another group of nets in the event of a swap, which can potentially result in an increase in total system cost.
 
 The next three placers performed significantly better than the previous two placers.
 \texttt{PlacerAnnealRandom} and \texttt{PlacerAnnealHybrid} performed quite similarly with final costs of 346K and 322K respectively. 
+
+In between \texttt{AnnealRandom} and \texttt{AnnealHybrid} comes \texttt{PlacerGreedyRandom} with a final cost of 333K.
+
 
 {
     \centering

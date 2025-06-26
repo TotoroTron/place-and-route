@@ -46,7 +46,7 @@ Hill-climbing moves can be accepted via the probability function \(P()\):
 where \(E(s^*)\) is the energy of the proposed state \(s^*\), \(E(s)\) is the energy of the current state \(s\), and \(T_n\) is the current global temperature at \(n\) passes. 
 If \(P(s, s^*, T_n) < random(0, 1)\), then \(s \leftarrow s^*\).
 Recall that this probability is only evaluated for hill-climbing moves, thus the cost difference \(E(s) - E(s^*)\) is always negative.
-In summary, a lower the cost difference and a higher the temperature contributes to a higher the probabilty of hill-climbing acceptance.
+In summary, a lower cost difference and a higher temperature contributes to a higher probabilty of hill-climbing acceptance.
 All hill-descending moves on the other hand are simply accepted outright. 
 
 Then, we enter the outer-most loop which terminates when the number of passes exceeds our computational budget, in this case, 300 passes. 
@@ -74,7 +74,11 @@ Even when it does, the centroid \texttt{Site} may be incompatible with the \text
 In such cases, we must do a neighborhood search around the centroid up to a certain radius to find a \texttt{Site} that satisfies all the constraints of the \texttt{SiteInst} at hand. 
 We will take some inspiration from ray-marching in graphics and do a diamond-shaped spiral search around the centroid where we check the legality of each \texttt{Site} as we step through the spiral and select the first \texttt{Site} that meets all of the placement constraints. 
 
-In force directed moves, there is a concept of global placement versus detailed placement, where global placement is driven by forces and detailed placement attempts to legalize the global placement by discretizing it onto the grid of \texttt{Site}s on the device.
+In force directed moves, there is a concept of global placement and detailed placement, where global placement is driven by forces and detailed placement attempts to legalize the global placement by discretizing it onto the grid of \texttt{Site}s on the device.
+In such placers, objects are first placed freely on an analog field in global placement, even allowing objects to overlap with one another. 
+Then, in detailed placement, the object positions are discretized amongst the grid of resources and overlapping objects spread out until there are no overlaps.
+In literature, detailed placement is also referred to as legalization.
+
 There also exists other strategies to mix packing, placement, and legalization in different ways. (CITE THAT ONE PAPER).
 In this context, our placer follows a straightforward pack-legalize-place strategy. 
 
