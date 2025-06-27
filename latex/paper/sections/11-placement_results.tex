@@ -6,9 +6,12 @@ We will need an HDL design that utilizes a good mixture of LUTs, FFs, BRAMs, and
 Any DSP subsystem can serve as a good candidate for such a demonstration. 
 Here, we will perform placement on a 2048th-order FIR Filter which was conveniently created as coursework for a VLSI course. 
 After passing synthesis, the FIR Filter design calls for the following primitive cells:
+
+
+
 \begin{itemize}
-    \item 1693 \texttt{LUT} (1-6)
-    \item 920 \texttt{FDRE} + \texttt{FDSE}
+    \item 1693 \texttt{LUT}
+    \item 920 \texttt{FF}
     \item 282 \texttt{CARRY4}
     \item 32 \texttt{RAMB48E1}
     \item 64 \texttt{DSP48E1}
@@ -25,8 +28,8 @@ We will perform placement of this design on a \texttt{xc7z020} FPGA, which is a 
 
 Our expected overall utilization for the FIR Filter on this device will be:
 \begin{itemize}
-    \item LUTs: 3\%
-    \item Registers: 1\%
+    \item Lookup Tables: 3\%
+    \item Flip Flops: 1\%
     \item Carry: 2\%
     \item BRAMs: 23\%
     \item DSPs: 29\%
@@ -57,9 +60,17 @@ Keep in mind that centroid moves do not necessarily decrease system cost.
 The centroid move can decrease the HPWL cost of the nets on connected to the current \texttt{SiteInst}, but can potentially increase the cost of another group of nets in the event of a swap, which can potentially result in an increase in total system cost.
 
 The next three placers performed significantly better than the previous two placers.
-\texttt{PlacerAnnealRandom} and \texttt{PlacerAnnealHybrid} performed quite similarly with final costs of 346K and 322K respectively. 
+Our vanilla SA placer, \texttt{PlacerAnnealRandom} is represented by the green curve.
+We can observe that the cost decreases more steadily than the previous two placers, with noticeable spikes in total system cost due to hill-climbing, until settling at the 346K mark as the global temperature cools to zero.
 
-In between \texttt{AnnealRandom} and \texttt{AnnealHybrid} comes \texttt{PlacerGreedyRandom} with a final cost of 333K.
+Next is \texttt{PlacerGreedyRandom} which is represented by the purple curve.
+We can observe a much steeper initial drop in system cost than the vanilla SA placer due to greedy movement acceptance.
+Interestingly, this placer also settled at a lower final system cost of 333K, which is a slight 4\% improvement over vanilla SA.
+We originally expected the greediness to be a detriment to finding the global minimum, but due to the inherent randomness of the algorithm, these expectations are never certain 
+Broader trends will require many more test trials to observe reliably.
+
+The best performing placer was \texttt{PlacerAnnealHybrid}, represented by the blue curve.
+We can observe that \texttt{AnnealHybrid} settles at a similar rate with the vanilla \texttt{AnnealRandom}, but eventually settles at a lower minimum at 322K, outperforming even \texttt{GreedyRandom}. 
 
 
 {

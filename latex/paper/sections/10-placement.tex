@@ -65,7 +65,7 @@ Figure \ref{fig:swapSiteChain} shows a demonstration of how two \texttt{DSPSiteI
 
 In more sophisticated placers, the proposed movement can also be selected by finding the centroid between \texttt{SiteInst}s that share a net with the current object, or even a hybrid of random and centroid selection. 
 Moves that actively attempt to predict a better placement are often referred to as "directed" moves in literature. 
-Placers that take inspiration from physical interactions like gravity or electrostatics are often referred to as "force directed" moves and are akin to physics simulators. 
+Placers that take inspiration from physical interactions like gravity or electrostatics are often referred to as "force directed" placers and are akin to physics simulators. 
 
 Directed moves as opposed to undirected moves give rise to the concept of legalization. 
 When using undirected moves as in SA, we can simply keep track of a \texttt{List} or \texttt{HashMap} of occupied \texttt{Site}s and available \texttt{Site}s and select from that data structure via random selection. 
@@ -74,10 +74,12 @@ Even when it does, the centroid \texttt{Site} may be incompatible with the \text
 In such cases, we must do a neighborhood search around the centroid up to a certain radius to find a \texttt{Site} that satisfies all the constraints of the \texttt{SiteInst} at hand. 
 We will take some inspiration from ray-marching in graphics and do a diamond-shaped spiral search around the centroid where we check the legality of each \texttt{Site} as we step through the spiral and select the first \texttt{Site} that meets all of the placement constraints. 
 
-In force directed moves, there is a concept of global placement and detailed placement, where global placement is driven by forces and detailed placement attempts to legalize the global placement by discretizing it onto the grid of \texttt{Site}s on the device.
-In such placers, objects are first placed freely on an analog field in global placement, even allowing objects to overlap with one another. 
-Then, in detailed placement, the object positions are discretized amongst the grid of resources and overlapping objects spread out until there are no overlaps.
-In literature, detailed placement is also referred to as legalization.
+In force directed placers, there is a concept of global placement followed by detailed placement
+Global placement places objects freely on an analog plane and is driven by directed movement or analytical solution.
+In global placement, objects do not have to adhere to any hardware constraints and can even overlap with one another.
+Detailed placement takes the global placement and attempts to fit it within the constraints of the hardware. 
+Detailed placement "legalize" the global placement by discretizing the analog positions of the objects onto the discrete grid of resources of the \texttt{device}.
+Overlapping objects are spread out until every \texttt{SiteInst}-\texttt{Cell} is assigned its own unique \texttt{Site}-\texttt{BEL}.
 
 There also exists other strategies to mix packing, placement, and legalization in different ways. (CITE THAT ONE PAPER).
 In this context, our placer follows a straightforward pack-legalize-place strategy. 
@@ -86,7 +88,7 @@ If the move reduces the HPWL cost, then the movement is accepted outright.
 If the move increases cost, then it can be accepted by chance if the global temperature is high enough to permit the hill-climb.
 The temperature decreases with each pass until reaching zero, at which point, the algorithm makes exclusively energy-decreasing moves, effectively reducing into a greedy algorithm. 
 The hope is that by this point, the placement has already crystallized into an approximate global optimum and the greediness of the algorithm will help the system settle deeper into the energy well faster. 
-We can also switch from random selection to centroid selection when the temperature approaches near zero to speed up the convergence further. 
+We can also switch from random selection to centroid selection when the temperature approaches near zero to speed up the settlement further. 
 
 
 
