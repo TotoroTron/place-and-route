@@ -5,35 +5,19 @@
 We will need an HDL design that utilizes a good mixture of LUTs, FFs, BRAMs, and DSPs at scale to demonstrate the robustness and performance of our placers. 
 Any DSP subsystem can serve as a good candidate for such a demonstration. 
 Here, we will perform placement on a 2048th-order FIR Filter which was conveniently created as coursework for a VLSI course. 
-After passing synthesis, the FIR Filter design calls for the following primitive cells:
+After passing synthesis, the FIR Filter design calls for the primitive cells shown in the second column of table \ref{fig:utilization}.
+We will perform placement of this design on a \texttt{xc7z020} FPGA, which is a mid-ranged Xilinx device containing the available BELs shown in the first column of table \ref{fig:utilization}.
+Note that \texttt{LUT5-LUT6} pairs are counted as a single \texttt{LUT}.
+% Also note that the number of \texttt{CARRY4} BELs is equal to the total number of \texttt{SLICEL} and \texttt{SLICEM} Sites combined and that the number of \texttt{LUT}s is equal to four times that amount while the number of \texttt{FF}s is equal to eight times that amount.
 
-
-
-\begin{itemize}
-    \item 1693 \texttt{LUT}
-    \item 920 \texttt{FF}
-    \item 282 \texttt{CARRY4}
-    \item 32 \texttt{RAMB48E1}
-    \item 64 \texttt{DSP48E1}
-\end{itemize}
-
-We will perform placement of this design on a \texttt{xc7z020} FPGA, which is a mid-ranged Xilinx device containing the following relevant BELs:
-\begin{itemize}
-    \item 53200 \texttt{LUT} (counting \texttt{LUT5}-\texttt{LUT6} pairs as one \texttt{LUT})
-    \item 106400 \texttt{FF}
-    \item 13300 \texttt{CARRY4}
-    \item 171 \texttt{RAMB18E1}
-    \item 220 \texttt{DSP48E1}
-\end{itemize}
-
-Our expected overall utilization for the FIR Filter on this device will be:
-\begin{itemize}
-    \item Lookup Tables: 3\%
-    \item Flip Flops: 1\%
-    \item Carry: 2\%
-    \item BRAMs: 23\%
-    \item DSPs: 29\%
-\end{itemize}
+\vspace{0.5cm}
+{
+    \centering
+    \includegraphics[width=0.8\columnwidth]{figures/results/utilization.png}
+    \captionof{figure}{Utilization of BELs on a \texttt{xc7z020} FPGA for a FIR filter design}
+    \label{fig:utilization}
+}
+\vspace{0.5cm}
 
 Now, we present test results for a basic SA placer as well as test results for four simple variations as listed below. 
 Note that midpoint simply means centroid.
@@ -66,12 +50,8 @@ We can observe that the cost decreases more steadily than the previous two place
 Next is \texttt{PlacerGreedyRandom} which is represented by the purple curve.
 We can observe a much steeper initial drop in system cost than the vanilla SA placer due to greedy movement acceptance.
 Interestingly, this placer also settled at a lower final system cost of 333K, which is a slight 4\% improvement over vanilla SA.
-We originally expected the greediness to be a detriment to finding the global minimum, but due to the inherent randomness of the algorithm, these expectations are never certain 
+We originally expected the greediness to be a detriment to finding the global minimum, but due to the inherent randomness of the algorithm, these expectations are never certain.
 Broader trends will require many more test trials to observe reliably.
-
-The best performing placer was \texttt{PlacerAnnealHybrid}, represented by the blue curve.
-We can observe that \texttt{AnnealHybrid} settles at a similar rate with the vanilla \texttt{AnnealRandom}, but eventually settles at a lower minimum at 322K, outperforming even \texttt{GreedyRandom}. 
-
 
 {
     \centering
@@ -80,58 +60,68 @@ We can observe that \texttt{AnnealHybrid} settles at a similar rate with the van
     \label{fig:placers_overlay}
 }
 
+The best performing placer was \texttt{PlacerAnnealHybrid}, represented by the blue curve.
+We can observe that \texttt{AnnealHybrid} settles at a similar rate with the vanilla \texttt{AnnealRandom}, but eventually settles at a lower minimum at 322K, outperforming even \texttt{GreedyRandom}. 
 
+{
+    \centering
+    \includegraphics[width=0.7\columnwidth]{figures/placement/cooling_schedule_10000_98.png}
+    \captionof{figure}{Cooling Schedule: \(T_0=10000\), \(\alpha=0.98\)}
+    \label{fig:cooling_schedule_10000_98}
+}
+
+\end{multicols}
 {
     \centering
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerGreedyRandom/random_placement.png}
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerGreedyRandom/00000010.png}
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerGreedyRandom/00000100.png}
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerGreedyRandom/00000299.png}
-    \captionof{figure}{PlacerGreedyRandom}
+    \captionof{figure}{\texttt{PlacerGreedyRandom}}
     \label{fig:PGRSnapshots}
 }
 
-\columnbreak
 {
     \centering
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerGreedyMidpoint/random_placement.png}
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerGreedyMidpoint/00000010.png}
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerGreedyMidpoint/00000100.png}
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerGreedyMidpoint/00000299.png}
-    \captionof{figure}{PlacerGreedyMidpoint}
+    \captionof{figure}{\texttt{PlacerGreedyMidpoint}}
     \label{fig:PGMSnapshots}
 }
-\vfill
+
+\newcolumn
 {
     \centering
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerAnnealRandom/random_placement.png}
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerAnnealRandom/00000010.png}
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerAnnealRandom/00000100.png}
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerAnnealRandom/00000299.png}
-    \captionof{figure}{PlacerAnnealRandom}
+    \captionof{figure}{\texttt{PlacerAnnealRandom}}
     \label{fig:PARSnapshots}
 }
 
-
-\columnbreak
 {
     \centering
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerAnnealMidpoint/random_placement.png}
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerAnnealMidpoint/00000010.png}
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerAnnealMidpoint/00000100.png}
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerAnnealMidpoint/00000299.png}
-    \captionof{figure}{PlacerAnnealMidpoint}
+    \captionof{figure}{\texttt{PlacerAnnealMidpoint}}
     \label{fig:PAMSnapshots}
 }
-\vfill
+
 {
     \centering
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerAnnealHybrid/random_placement.png}
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerAnnealHybrid/00000010.png}
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerAnnealHybrid/00000100.png}
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerAnnealHybrid/00000299.png}
-    \captionof{figure}{PlacerAnnealHybrid}
+    \captionof{figure}{\texttt{PlacerAnnealHybrid}}
     \label{fig:PAHSnapshots}
 }
+
+\begin{multicols}{2}
 
 

@@ -32,15 +32,15 @@ Its parameters can be fine tuned through empirical experimentation.
 
 Shown in Listing \ref{lst:sa_outer} is a simplified pseudocode for the outer-most loop of our placer's SA algorithm. 
 First, we randomly place all \texttt{SiteInst}s across the \texttt{device}.
-Then, we initialize a simple geometric cooling schedule: 
+Then, we initialize a simple geometric cooling schedule \ref{equ:coolingSchedule}: 
 \begin{equation}
-    \label{coolingSchedule}
+    \label{equ:coolingSchedule}
     T_{n+1} = \alpha T_n
 \end{equation}
 with initial temperature \(T_0=10000\), cooling rate \(\alpha=0.98\), and \(n = \{0, 1, 2, ..., 300\}\) passes.
-Hill-climbing moves can be accepted via the probability function \(P()\): 
+Hill-climbing moves can be accepted via the probability function in \ref{equ:moveAcceptance}: 
 \begin{equation}
-    \label{moveAcceptance}
+    \label{equ:moveAcceptance}
     P(s, s^*, T_n) = exp(\frac{E(s) - E(s^*)}{T_n})
 \end{equation}
 where \(E(s^*)\) is the energy of the proposed state \(s^*\), \(E(s)\) is the energy of the current state \(s\), and \(T_n\) is the current global temperature at \(n\) passes. 
@@ -80,6 +80,8 @@ In global placement, objects do not have to adhere to any hardware constraints a
 Detailed placement takes the global placement and attempts to fit it within the constraints of the hardware. 
 Detailed placement "legalize" the global placement by discretizing the analog positions of the objects onto the discrete grid of resources of the \texttt{device}.
 Overlapping objects are spread out until every \texttt{SiteInst}-\texttt{Cell} is assigned its own unique \texttt{Site}-\texttt{BEL}.
+The process of spreading objects somewhat resembles primitive fluid dynamics simulators or thermal diffusion simulators, where packets of energy are spread around an object until each voxel or pixel meets a maximum threshold of energy. 
+
 
 There also exists other strategies to mix packing, placement, and legalization in different ways. (CITE THAT ONE PAPER).
 In this context, our placer follows a straightforward pack-legalize-place strategy. 
