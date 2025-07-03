@@ -31,9 +31,9 @@ For each cell cluster, we create a \texttt{SiteInst} and populate its \texttt{BE
 We further consolidate these \texttt{SiteInst}s into clusters or lists of \texttt{SiteInst}s for multi-Site structures like \texttt{CarryCellGroup} chains and DSP cascades. 
 For each \texttt{SiteInst}, we assign it a physical \texttt{Site} on the \texttt{device} and route its internal intra-Site nets. 
 The end result is a \texttt{PackedDesign} object which is a group of data structures solely around \texttt{SiteInst}s like shown in figure \ref{fig:substages}.
+The process is analogous to containerization of loose goods in ocean freight forwarding. 
 At this point we no longer need to worry about individual \texttt{BEL}s, \texttt{Cell}s, or intra-Site \texttt{Nets} as they have now been packaged and taped-off into their respective \texttt{SiteInst}s. 
 These \texttt{SiteInst} become the new atomic level components in the following Placement stage. 
-This process is analogous to the containerization of loose goods in ocean freight forwarding. 
 
 \end{multicols}
 \begin{lstlisting}[caption={\texttt{SiteInst} constructor and methods.}, label={lst:siteinst}]

@@ -4,7 +4,7 @@
 
 We will need an HDL design that utilizes a good mixture of LUTs, FFs, BRAMs, and DSPs at scale to demonstrate the robustness and performance of our placers. 
 Any DSP subsystem can serve as a good candidate for such a demonstration. 
-Here, we will perform placement on a 2048th-order FIR Filter which was conveniently created as coursework for a VLSI course. 
+Here, we will perform placement on a 2048-order FIR Filter which was conveniently created as coursework for a VLSI course. 
 After passing synthesis, the FIR Filter design calls for the primitive cells shown in the second column of table \ref{fig:utilization}.
 We will perform placement of this design on a \texttt{xc7z020} FPGA, which is a mid-ranged Xilinx device containing the available BELs shown in the first column of table \ref{fig:utilization}.
 Note that \texttt{LUT5-LUT6} pairs are counted as a single \texttt{LUT}.
@@ -23,14 +23,12 @@ Now, we present test results for a basic SA placer as well as test results for f
 Note that midpoint simply means centroid.
 
 \begin{itemize}
-    \item \texttt{PlacerGreedyRandom}: all undirected random moves with greedy acceptance (always zero temperature)
-    \item \texttt{PlacerGreedyMidpoint}: all directed centroid moves with greedy acceptance (always zero temperature)
+    \item \texttt{PlacerGreedyRandom}: all undirected random moves with greedy acceptance
+    \item \texttt{PlacerGreedyMidpoint}: all directed centroid moves with greedy acceptance
     \item \texttt{PlacerAnnealRandom}: all undirected random moves with annealing acceptance \textbf{(the basic SA algorithm)}
     \item \texttt{PlacerAnnealMidpoint}: all directed centroid moves with annealing acceptance
     \item \texttt{PlacerAnnealHybrid}: \textbf{Initial:} 50\% random - 50\% centroid moves with annealing acceptance. \textbf{At Near-Zero Temperature:} 100\% centroid moves with annealing acceptance.
 \end{itemize}
-
-((Talk about the initial cost.))
 
 Shown in figure \ref{fig:placers_overlay} are the total HPWL curves over number of passes for each of the five placers. 
 \texttt{PlacerGreedyMidpoint} (in red) appears to perform the worst by a considerable margin with a final HPWL cost of 590K.
@@ -43,8 +41,8 @@ However, this placer likely performed better than the previous as there is still
 Keep in mind that centroid moves do not necessarily decrease system cost. 
 The centroid move can decrease the HPWL cost of the nets on connected to the current \texttt{SiteInst}, but can potentially increase the cost of another group of nets in the event of a swap, which can potentially result in an increase in total system cost.
 
-The next three placers performed significantly better than the previous two placers.
-Our vanilla SA placer, \texttt{PlacerAnnealRandom} is represented by the green curve.
+The next three placers performed better than the previous two placers by decent margin.
+The vanilla SA placer, \texttt{PlacerAnnealRandom}, is represented by the green curve.
 We can observe that the cost decreases more steadily than the previous two placers, with noticeable spikes in total system cost due to hill-climbing, until settling at the 346K mark as the global temperature cools to zero.
 
 Next is \texttt{PlacerGreedyRandom} which is represented by the purple curve.
@@ -55,13 +53,16 @@ Broader trends will require many more test trials to observe reliably.
 
 {
     \centering
-    \includegraphics[width=\columnwidth]{figures/results/combined_cost_history_linear.png}
+    \includegraphics[width=0.9\columnwidth]{figures/results/combined_cost_history_linear.png}
     \captionof{figure}{All placers overlaid}
     \label{fig:placers_overlay}
 }
 
 The best performing placer was \texttt{PlacerAnnealHybrid}, represented by the blue curve.
-We can observe that \texttt{AnnealHybrid} settles at a similar rate with the vanilla \texttt{AnnealRandom}, but eventually settles at a lower minimum at 322K, outperforming even \texttt{GreedyRandom}. 
+Starting at zero passes, the placer randomly selects between random selection and centroid selection, allowing the placer to make on average more cost-reducing moves, while still maintaining some diversity of moves for hill-climbing. 
+Then, at near-zero temperature, the placer makes exclusively centroid moves with annealing acceptance to speed up the final crystallization into the local minimum. 
+With centroid moves and annealing acceptance, hill-climbing can only be achieved via swaps.
+We can observe that \texttt{AnnealHybrid} settles at a similar rate with the vanilla \texttt{AnnealRandom}, but eventually settles at a lower minimum at 322K, slightly outperforming \texttt{GreedyRandom}. 
 
 {
     \centering
@@ -91,7 +92,6 @@ We can observe that \texttt{AnnealHybrid} settles at a similar rate with the van
     \label{fig:PGMSnapshots}
 }
 
-\newcolumn
 {
     \centering
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerAnnealRandom/random_placement.png}

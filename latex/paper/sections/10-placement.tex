@@ -63,29 +63,6 @@ Figure \ref{fig:swapSingleSite} shows how a swap proposal between singular \text
 On the other hand, the movement of \texttt{SiteInst} chains is considerably more complex because there are more placement constraints to consider, especially when swapping the positions between multiple chains.
 Figure \ref{fig:swapSiteChain} shows a demonstration of how two \texttt{DSPSiteInstCascades} or two \texttt{CARRYSiteInstChains} can be swapped while Listing \ref{lst:chain_swap_pseudocode} shows the corresponding pseudocode. 
 
-In more sophisticated placers, the proposed movement can also be selected by finding the centroid between \texttt{SiteInst}s that share a net with the current object, or even a hybrid of random and centroid selection. 
-Moves that actively attempt to predict a better placement are often referred to as "directed" moves in literature. 
-Placers that take inspiration from physical interactions like gravity or electrostatics are often referred to as "force directed" placers and are akin to physics simulators. 
-
-Directed moves as opposed to undirected moves give rise to the concept of legalization. 
-When using undirected moves as in SA, we can simply keep track of a \texttt{List} or \texttt{HashMap} of occupied \texttt{Site}s and available \texttt{Site}s and select from that data structure via random selection. 
-However, for directed moves like centroid selection, the centroid between \texttt{Site}s may not necessarily fall directly on another discrete \texttt{Site} on the \texttt{device}. 
-Even when it does, the centroid \texttt{Site} may be incompatible with the \texttt{SiteInst} or may fail to meet some other placement constraint. 
-In such cases, we must do a neighborhood search around the centroid up to a certain radius to find a \texttt{Site} that satisfies all the constraints of the \texttt{SiteInst} at hand. 
-We will take some inspiration from ray-marching in graphics and do a diamond-shaped spiral search around the centroid where we check the legality of each \texttt{Site} as we step through the spiral and select the first \texttt{Site} that meets all of the placement constraints. 
-
-In force directed placers, there is a concept of global placement followed by detailed placement
-Global placement places objects freely on an analog plane and is driven by directed movement or analytical solution.
-In global placement, objects do not have to adhere to any hardware constraints and can even overlap with one another.
-Detailed placement takes the global placement and attempts to fit it within the constraints of the hardware. 
-Detailed placement "legalize" the global placement by discretizing the analog positions of the objects onto the discrete grid of resources of the \texttt{device}.
-Overlapping objects are spread out until every \texttt{SiteInst}-\texttt{Cell} is assigned its own unique \texttt{Site}-\texttt{BEL}.
-The process of spreading objects somewhat resembles primitive fluid dynamics simulators or thermal diffusion simulators, where packets of energy are spread around an object until each voxel or pixel meets a maximum threshold of energy. 
-
-
-There also exists other strategies to mix packing, placement, and legalization in different ways. (CITE THAT ONE PAPER).
-In this context, our placer follows a straightforward pack-legalize-place strategy. 
-
 If the move reduces the HPWL cost, then the movement is accepted outright.
 If the move increases cost, then it can be accepted by chance if the global temperature is high enough to permit the hill-climb.
 The temperature decreases with each pass until reaching zero, at which point, the algorithm makes exclusively energy-decreasing moves, effectively reducing into a greedy algorithm. 
@@ -93,8 +70,6 @@ The hope is that by this point, the placement has already crystallized into an a
 We can also switch from random selection to centroid selection when the temperature approaches near zero to speed up the settlement further. 
 
 
-
-\newcolumn
 \begin{lstlisting}[language=java, caption={SA pseudocode: outer loop}, label={lst:sa_outer}]
 public void placeDesign(PackedDesign packedDesign) {
     randomInitialPlacement(packedDesign);
@@ -154,13 +129,12 @@ for (SiteInst si : sites) {
 
 {
     \centering
-    \includegraphics[width=\columnwidth]{figures/placement/swapSingleSite.png}
+    \includegraphics[width=0.9\columnwidth]{figures/placement/swapSingleSite.png}
     \captionof{figure}{Single Site Swap Proposal}
     \label{fig:swapSingleSite}
 }
-\vfill
 
-\begin{lstlisting}[language=java, caption={Cooling Schedule and Move Acceptance with Temperature}, label={lst:sa_acceptance}]
+\begin{lstlisting}[language=java, caption={Cooling Schedule and Move Acceptance}, label={lst:sa_acceptance}]
 protected List<Double> coolingSchedule;
 public void initCoolingSchedule(double initialTemp, double alpha, int movesLimit) {
     double currentTemp = initialTemp;
@@ -248,5 +222,30 @@ for (List<SiteInst> currentChain : chains) {
     \label{fig:swapSiteChain}
 }
 \begin{multicols}{2}
+
+\subsection{Variations}
+\label{subsec:variations}
+
+In more sophisticated placers, the proposed movement can also be selected by finding the centroid between \texttt{SiteInst}s that share a net with the current object, or even a hybrid of random and centroid selection. 
+We will implement variations on the vanilla SA algorithm that use centroid selection. 
+Moves that actively attempt to predict a better placement are often referred to as "directed" moves in literature. 
+Placers that take inspiration from physical interactions like gravity or electrostatics are often referred to as "force directed" placers and are akin to physics simulators. 
+
+Directed moves as opposed to undirected moves give rise to the concept of legalization. 
+When using undirected moves as in SA, we can simply keep track of a \texttt{List} or \texttt{HashMap} of occupied \texttt{Site}s and available \texttt{Site}s and select from that data structure via random selection. 
+However, for directed moves like centroid selection, the centroid between \texttt{Site}s may not necessarily fall directly on another discrete \texttt{Site} on the \texttt{device}. 
+Even when it does, the centroid \texttt{Site} may be incompatible with the \texttt{SiteInst} or may fail to meet some other placement constraint. 
+In such cases, we must do a neighborhood search around the centroid up to a certain radius to find a \texttt{Site} that satisfies all the constraints of the \texttt{SiteInst} at hand. 
+We will take some inspiration from ray-marching in graphics and do a diamond-shaped spiral search around the centroid where we check the legality of each \texttt{Site} as we step through the spiral and select the first \texttt{Site} that meets all of the placement constraints. 
+
+In force directed placers, there is a concept of global placement followed by detailed placement.
+Global placement places objects freely on an analog plane and is driven purely by directed movement and analytical solution.
+In global placement stage, only non-hardware related objectives are considered. 
+Objects do not have to adhere to any hardware constraints and can even overlap with one another.
+Afterwards, detailed placement "legalizes" the global placement by discretizing the analog positions of the objects onto the discrete grid of resources of the \texttt{device}.
+Overlapping objects are iteratively spread out until every \texttt{SiteInst}-\texttt{Cell} is assigned its own unique \texttt{Site}-\texttt{BEL}.
+The spreading process somewhat resembles primitive fluid dynamics simulators or thermal diffusion simulators, where packets of energy are spread through a medium until each voxel or pixel of the medium falls below a maximum threshold of energy. 
+There also exists other strategies to mix packing, placement, and legalization in different orders. 
+In this context, our placer follows a very straightforward pack-legalize-place strategy with SA. 
 
 
