@@ -239,11 +239,11 @@ In such cases, we must do a neighborhood search around the centroid up to a cert
 We will take some inspiration from ray-marching in graphics and do a diamond-shaped spiral search around the centroid where we check the legality of each \texttt{Site} as we step through the spiral and select the first \texttt{Site} that meets all of the placement constraints. 
 
 In force directed placers, there is a concept of global placement followed by detailed placement.
-Global placement places objects freely on an analog plane and is driven purely by directed movement and analytical solution.
+Global placement places object instances freely on an analog plane and is driven purely by directed movement and analytical solution.
 In global placement stage, only non-hardware related objectives are considered. 
-Objects do not have to adhere to any hardware constraints and can even overlap with one another.
-Afterwards, detailed placement "legalizes" the global placement by discretizing the analog positions of the objects onto the discrete grid of resources of the \texttt{device}.
-Overlapping objects are iteratively spread out until every \texttt{SiteInst}-\texttt{Cell} is assigned its own unique \texttt{Site}-\texttt{BEL}.
+Object instance placements do not have to adhere to any hardware constraints and can even overlap with one another.
+Afterwards, detailed placement "legalizes" the global placement by discretizing the analog positions of the instances onto the discrete grid of resources of the \texttt{device}.
+Overlapping instances are iteratively spread out until every \texttt{SiteInst}-\texttt{Cell} is assigned its own unique \texttt{Site}-\texttt{BEL}.
 The spreading process somewhat resembles primitive fluid dynamics simulators or thermal diffusion simulators, where packets of energy are spread through a medium until each voxel or pixel of the medium falls below a maximum threshold of energy. 
 There also exists other strategies to mix packing, placement, and legalization in different orders. 
 In this context, our placer follows a very straightforward pack-legalize-place strategy with SA. 

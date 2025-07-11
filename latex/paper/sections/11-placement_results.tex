@@ -48,8 +48,7 @@ We can observe that the cost decreases more steadily than the previous two place
 Next is \texttt{PlacerGreedyRandom} which is represented by the purple curve.
 We can observe a much steeper initial drop in system cost than the vanilla SA placer due to greedy movement acceptance.
 Interestingly, this placer also settled at a lower final system cost of 333K, which is a slight 4\% improvement over vanilla SA.
-We originally expected the greediness to be a detriment to finding the global minimum, but due to the inherent randomness of the algorithm, these expectations are never certain.
-Broader trends will require many more test trials to observe reliably.
+We originally expected the greediness to be a detriment to finding the global minimum, but due to the inherent randomness of the algorithm, these broader trends will require many more test trials to reliably observe.
 
 {
     \centering
@@ -123,5 +122,34 @@ We can observe that \texttt{AnnealHybrid} settles at a similar rate with the van
 }
 
 \begin{multicols}{2}
+
+    Figures \ref{fig:PGRSnapshots}, \ref{fig:PGMSnapshots}, \ref{fig:PARSnapshots}, \ref{fig:PAMSnapshots}, and \ref{fig:PAHSnapshots} show snapshots of the placement progress on the physical \texttt{device} after 0, 10, 100, and 300 passes for each placer variant.
+
+    Please zoom into the document to render the figures in greater detail.
+    All black areas represent purely routing \texttt{Site}s that contain no logic resources. 
+    All gray or dull-colored boxes represent \texttt{Site}s that are unoccupied by \texttt{SiteInst}s, while brightly filled boxes represent \texttt{Site}s that are occupied by the supported library of \texttt{SiteInst}s.
+    Cyan boxes represent occupied \texttt{SLICEL}s, magenta boxes represent occupied \texttt{RAMB18E1}s, and yellow boxes represent occupied \texttt{DSP48E1}s.
+
+    The tangle of red lines represent the nets between the \texttt{Site}s, which are yet to be routed at this stage. 
+    Brighter red lines represent nets of higher total HPWL, while duller red lines represent nets of lower total HPWL.
+
+    Notice there are two brightly red nets in every figure that have a particularly high fan-out:
+    one sourced from the near-center, and another sourced from the top right of the device. 
+
+    The singular white box in the near-center of all of the figures represents an occupied \texttt{BUFGCTRL} \texttt{Site}, which is a clock buffer used to route clock trees. 
+    Since clock nets tend to have very high fanout, they can use up a significant portion of the routing resource if they are routed through general routing.
+    Modern FPGAs like the 7-Series have dedicated clock routes which can efficiently distribute clock signals to all logical \texttt{Site}s without burdening the general routing resources.
+    These special clock routes are accessed by routing the off-chip crystal oscillator clock to one of these clock buffers which connects to the clock tree network.
+    It is always best practice to use them to improve the routability of the design, and simultaneously, to reduce clock skew and improve timing. 
+    Our simple FIR Filter design only operates on a single clock domain, so only one clock buffer \texttt{Site} is used. 
+    An HDL design operating on many clock domains will use more clock buffers \texttt{Site}s or a dedicated clock generator such as a phase locked loop (PLL) \texttt{Site} or mixed-mode clock manager (MCMM) \texttt{Site}.
+
+    The right and left edges of the FPGA device is where most of the general purpose IO (GPIO) is located. 
+    In the top right of the device is where we source our reset signal. 
+    Like the clock net, the reset net also has high fanout and is supplied to all synchronous resources.
+    Unlike clock signals, reset signals are not subject to sensitive timing constraints as they are not active on most clock cycles and can tolerate higher skew.
+    Thus, they are simply routed via general routing.
+
+    Observe how \texttt{PlacerGreedyMidpoint} \ref{fig:PGMSnapshots} and \texttt{PlacerAnnealMidpoint} \ref{fig:PAMSnapshots} both show almost not shrinkage in profile after the first 10 iterations, likely owing to the inability to hill-climb.  
 
 
