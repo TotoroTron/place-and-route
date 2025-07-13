@@ -245,7 +245,7 @@ Object instance placements do not have to adhere to any hardware constraints and
 Afterwards, detailed placement "legalizes" the global placement by discretizing the analog positions of the instances onto the discrete grid of resources of the \texttt{device}.
 Overlapping instances are iteratively spread out until every \texttt{SiteInst}-\texttt{Cell} is assigned its own unique \texttt{Site}-\texttt{BEL}.
 The spreading process somewhat resembles primitive fluid dynamics simulators or thermal diffusion simulators, where packets of energy are spread through a medium until each voxel or pixel of the medium falls below a maximum threshold of energy. 
-There also exists other strategies to mix packing, placement, and legalization in different orders. 
+There also exists other strategies to mix packing, placement, and legalization in different orders, such as those studied in \cite{ExplicitPacking}. 
 In this context, our placer follows a very straightforward pack-legalize-place strategy with SA. 
 
 

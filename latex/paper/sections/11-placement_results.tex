@@ -10,14 +10,14 @@ We will perform placement of this design on a \texttt{xc7z020} FPGA, which is a 
 Note that \texttt{LUT5-LUT6} pairs are counted as a single \texttt{LUT}.
 % Also note that the number of \texttt{CARRY4} BELs is equal to the total number of \texttt{SLICEL} and \texttt{SLICEM} Sites combined and that the number of \texttt{LUT}s is equal to four times that amount while the number of \texttt{FF}s is equal to eight times that amount.
 
-\vspace{0.5cm}
+\vspace{0.25cm}
 {
     \centering
     \includegraphics[width=0.8\columnwidth]{figures/results/utilization.png}
     \captionof{figure}{Utilization of BELs on a \texttt{xc7z020} FPGA for a FIR filter design}
     \label{fig:utilization}
 }
-\vspace{0.5cm}
+\vspace{0.25cm}
 
 Now, we present test results for a basic SA placer as well as test results for four simple variations as listed below. 
 Note that midpoint simply means centroid.
@@ -52,7 +52,7 @@ We originally expected the greediness to be a detriment to finding the global mi
 
 {
     \centering
-    \includegraphics[width=0.9\columnwidth]{figures/results/combined_cost_history_linear.png}
+    \includegraphics[width=\columnwidth]{figures/results/combined_cost_history_linear.png}
     \captionof{figure}{All placers overlaid}
     \label{fig:placers_overlay}
 }
@@ -65,11 +65,44 @@ We can observe that \texttt{AnnealHybrid} settles at a similar rate with the van
 
 {
     \centering
-    \includegraphics[width=0.7\columnwidth]{figures/placement/cooling_schedule_10000_98.png}
+    \includegraphics[width=0.6\columnwidth]{figures/placement/cooling_schedule_10000_98.png}
     \captionof{figure}{Cooling Schedule: \(T_0=10000\), \(\alpha=0.98\)}
     \label{fig:cooling_schedule_10000_98}
 }
 
+\newpage
+Figures \ref{fig:PGRSnapshots}, \ref{fig:PGMSnapshots}, \ref{fig:PARSnapshots}, \ref{fig:PAMSnapshots}, and \ref{fig:PAHSnapshots} show snapshots of the placement progress on the physical \texttt{device} after 0, 10, 100, and 300 passes for each placer variant.
+
+Please zoom into the document to render the figures in greater detail.
+All black areas represent purely routing \texttt{Site}s that contain no logic resources. 
+All gray or dull-colored boxes represent \texttt{Site}s that are unoccupied by \texttt{SiteInst}s, while brightly filled boxes represent \texttt{Site}s that are occupied by the supported library of \texttt{SiteInst}s.
+Cyan boxes represent occupied \texttt{SLICEL}s, magenta boxes represent occupied \texttt{RAMB18E1}s, and yellow boxes represent occupied \texttt{DSP48E1}s.
+
+The tangle of red lines represent the nets between the \texttt{Site}s, which are yet to be routed at this stage. 
+Brighter red lines represent nets of higher total HPWL, while duller red lines represent nets of lower total HPWL.
+
+Notice there are two brightly red nets in every figure that have a particularly high fan-out:
+one sourced from the near-center, and another sourced from the top right of the device. 
+
+The singular white box in the near-center of all of the figures represents an occupied \texttt{BUFGCTRL} \texttt{Site}, which is a clock buffer used to route clock trees. 
+Since clock nets tend to have very high fanout, they can use up a significant portion of the routing resources if they are routed through general routing.
+Modern FPGAs like the 7-Series have dedicated clock routes which can efficiently distribute clock signals to all logical \texttt{Site}s without burdening the general routing resources.
+These special clock routes are accessed by routing the raw clock signal from the crystal oscillator IO port to one these on-chip clock buffers which connects to the on-chip clock tree network.
+It is always best practice to use them to improve the routability of the design, and simultaneously, to reduce clock skew and improve timing. 
+Our simple FIR Filter design only operates on a single clock domain, so only one clock buffer \texttt{Site} is used. 
+An HDL design operating on many clock domains will use more clock buffers or a dedicated clock generator such as a phase locked loop (PLL) or mixed-mode clock manager (MCMM).
+
+The right and left edges of the FPGA device is where most of the general purpose I/O (GPIO) is located. 
+In the top right of the device is where we source our reset signal. 
+Like the clock net, the reset net also has high fanout and is supplied to all synchronous elements.
+Unlike clock signals, reset signals are not subject to sensitive timing constraints as they are not active on most clock cycles and can tolerate higher skew.
+Thus, they are simply routed via general routing.
+
+Observe how \texttt{PlacerGreedyMidpoint} \ref{fig:PGMSnapshots} and \texttt{PlacerAnnealMidpoint} \ref{fig:PAMSnapshots} both show almost not shrinkage in profile after the first 10 iterations, likely owing to the inability to hill-climb, while the other three placers show incremental shrinkage.
+
+Also note the sparsity of the \texttt{DSP48E1} (yellow) and \texttt{RAMB18E1} (magenta) \texttt{Site} columns compared to the large grid of \texttt{SLICEL}s (cyan).
+
+\newpage
 \end{multicols}
 {
     \centering
@@ -122,34 +155,5 @@ We can observe that \texttt{AnnealHybrid} settles at a similar rate with the van
 }
 
 \begin{multicols}{2}
-
-    Figures \ref{fig:PGRSnapshots}, \ref{fig:PGMSnapshots}, \ref{fig:PARSnapshots}, \ref{fig:PAMSnapshots}, and \ref{fig:PAHSnapshots} show snapshots of the placement progress on the physical \texttt{device} after 0, 10, 100, and 300 passes for each placer variant.
-
-    Please zoom into the document to render the figures in greater detail.
-    All black areas represent purely routing \texttt{Site}s that contain no logic resources. 
-    All gray or dull-colored boxes represent \texttt{Site}s that are unoccupied by \texttt{SiteInst}s, while brightly filled boxes represent \texttt{Site}s that are occupied by the supported library of \texttt{SiteInst}s.
-    Cyan boxes represent occupied \texttt{SLICEL}s, magenta boxes represent occupied \texttt{RAMB18E1}s, and yellow boxes represent occupied \texttt{DSP48E1}s.
-
-    The tangle of red lines represent the nets between the \texttt{Site}s, which are yet to be routed at this stage. 
-    Brighter red lines represent nets of higher total HPWL, while duller red lines represent nets of lower total HPWL.
-
-    Notice there are two brightly red nets in every figure that have a particularly high fan-out:
-    one sourced from the near-center, and another sourced from the top right of the device. 
-
-    The singular white box in the near-center of all of the figures represents an occupied \texttt{BUFGCTRL} \texttt{Site}, which is a clock buffer used to route clock trees. 
-    Since clock nets tend to have very high fanout, they can use up a significant portion of the routing resource if they are routed through general routing.
-    Modern FPGAs like the 7-Series have dedicated clock routes which can efficiently distribute clock signals to all logical \texttt{Site}s without burdening the general routing resources.
-    These special clock routes are accessed by routing the off-chip crystal oscillator clock to one of these clock buffers which connects to the clock tree network.
-    It is always best practice to use them to improve the routability of the design, and simultaneously, to reduce clock skew and improve timing. 
-    Our simple FIR Filter design only operates on a single clock domain, so only one clock buffer \texttt{Site} is used. 
-    An HDL design operating on many clock domains will use more clock buffers \texttt{Site}s or a dedicated clock generator such as a phase locked loop (PLL) \texttt{Site} or mixed-mode clock manager (MCMM) \texttt{Site}.
-
-    The right and left edges of the FPGA device is where most of the general purpose IO (GPIO) is located. 
-    In the top right of the device is where we source our reset signal. 
-    Like the clock net, the reset net also has high fanout and is supplied to all synchronous resources.
-    Unlike clock signals, reset signals are not subject to sensitive timing constraints as they are not active on most clock cycles and can tolerate higher skew.
-    Thus, they are simply routed via general routing.
-
-    Observe how \texttt{PlacerGreedyMidpoint} \ref{fig:PGMSnapshots} and \texttt{PlacerAnnealMidpoint} \ref{fig:PAMSnapshots} both show almost not shrinkage in profile after the first 10 iterations, likely owing to the inability to hill-climb.  
 
 
