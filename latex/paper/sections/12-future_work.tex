@@ -11,6 +11,15 @@ In its current state, the prepacker and packer struggle with data busses larger 
 
 \subsection{Improvements to Packing}
 There is also no rule saying we must pack \texttt{Cells} into \texttt{SiteInst}s before placement or that we follow a strict prepacking-packing-placement flow. 
+
+{
+    \centering
+    \includegraphics[width=\columnwidth]{figures/future_work/legalization.png}
+    \captionof{figure}{Representative FPGA placement and packing flows. Figure taken from Wuxi et al. (2019), page 1 \cite{ExplicitPacking}}
+}
+\vspace{0.25cm}
+
+
 The latest editions of Vivado performs BEL-centric placement without necessarily locking \texttt{Cell}s into \texttt{Site}s, allowing a higher granularity of movement of \texttt{Cell}s during placement. 
 
 \subsection{Improvements to SA}
