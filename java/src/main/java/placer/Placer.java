@@ -413,11 +413,19 @@ public abstract class Placer {
     public void exportCostHistory(String fileName) throws IOException {
         FileWriter csv = new FileWriter(fileName);
         csv.write("Iter, Cost");
-        for (int i = 0; i < costHistory.size(); i++) {
-            csv.write("\n" + i + ", " + costHistory.get(i));
+        for (int i = 0; i < this.costHistory.size(); i++) {
+            csv.write("\n" + i + ", " + this.costHistory.get(i));
         }
         if (csv != null)
             csv.close();
+    }
+
+    public List<Double> getCostHistory() {
+        return this.costHistory;
+    }
+
+    public List<Double> getCoolingSchedule() {
+        return this.getCoolingSchedule();
     }
 
     public void printSiteInstPlacements(PackedDesign packedDesign) throws IOException {

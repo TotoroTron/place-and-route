@@ -21,5 +21,5 @@ A study on placement algorithms for heterogenous FPGAs.
 ## Simulated Annealing
 SA placement of a 2048th order FIR filter with 32 parallel pipelines (timeslices):
 (919 FLOP_LATCH, 1691 LUT, 282 CARRY, BMEM 32, MULT 64)
-![gif](outputs/placers/PlacerAnnealHybrid/graphics/output.gif)
+![gif](outputs/placers/PlacerAnnealRandom_10000_96/graphics/output.gif)
 ![image](outputs/placers/PlacerAnnealHybrid/graphics/PlacerAnnealHybrid_cost_history.png)

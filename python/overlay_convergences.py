@@ -1,100 +1,97 @@
-"""
-Script to combine cost_history.csv files from each placer into a single CSV
-and plot the combined cost histories on a logarithmic y-scale.
-
-Place this script in the `python` subdirectory of your project (e.g.,
-`~/workspace/dev/place-and-route/python`).
-It will look under `outputs/placers/*/printout/cost_history.csv`, merge them on the Iter column,
-save the merged CSV to `combined_cost_history.csv` in the project root,
-and save a log-scale plot to `combined_cost_history.png` in the project root.
-"""
-import sys
-from pathlib import Path
 import pandas as pd
+from pathlib import Path
 import matplotlib.pyplot as plt
+import re
+
+
+def parse_label(label):
+    match = re.match(r'PlacerAnnealRandom_(\d+)_(\d+)', label)
+    if match:
+        temp = int(match.group(1))
+        rate = int(match.group(2))
+        return temp, rate
+    return None, None
+
+
+def cooling_to_brightness(cooling_rate, min_rate=90, max_rate=98):
+    return (cooling_rate - min_rate) / (max_rate - min_rate)
+
+
+def plot_group(temp_group, temp_to_color, df, output_path, title_suffix=""):
+    plt.figure(figsize=(12, 8))
+    for label in temp_group:
+        temp, rate = parse_label(label)
+        base_rgb = temp_to_color[temp]
+        alpha = 0.4 + 0.6 * (1 - cooling_to_brightness(rate))
+        y = pd.to_numeric(df[label], errors='coerce').dropna().values
+        x = range(len(y))
+        plt.plot(x, y, color=base_rgb, label=label, alpha=alpha, linewidth=1.5)
+
+    plt.xlabel("Iteration")
+    plt.ylabel("Cost")
+    plt.title(f"Cost History of SA Placers {title_suffix}")
+    plt.legend(fontsize="small", bbox_to_anchor=(1.05, 1), loc="upper left")
+    plt.grid(True)
+    plt.tight_layout()
+    plt.savefig(output_path)
+    plt.close()
+
 
 def main():
-    # Determine directories
-    script_dir = Path(__file__).resolve().parent  # .../project_root/python
-    root_dir = script_dir.parent                  # .../project_root
-    placers_dir = root_dir / "outputs" / "placers"
+    script_dir = Path(__file__).resolve().parent
+    root_dir = script_dir.parent
 
-    if not placers_dir.is_dir():
-        print(f"Error: placers directory not found at {placers_dir}", file=sys.stderr)
-        sys.exit(1)
+    csv_path = root_dir / "outputs" / "combined_cost_history.csv"
+    df = pd.read_csv(csv_path)
 
-    # Find all cost_history.csv files under each placer's printout directory
-    csv_files = placers_dir.glob("*/printout/cost_history.csv")
-    dfs = []
+    labels = df.columns.tolist()
+    base_colors = plt.colormaps.get_cmap("tab10")
 
-    for csv_file in csv_files:
-        placer_name = csv_file.parents[1].name  # two levels up: placers/<PlacerName>/printout
-        try:
-            df = pd.read_csv(csv_file)
-        except Exception as e:
-            print(f"Warning: failed to read {csv_file}: {e}", file=sys.stderr)
+    temp_to_color = {}
+    used_temps = []
+    temp_to_labels = {}
+
+    # --- Combined plot ---
+    plt.figure(figsize=(12, 8))
+
+    for label in labels:
+        if label.strip().lower() in ("iteration", "unnamed: 0"):
             continue
 
-        # Strip whitespace from column names
-        df.columns = df.columns.str.strip()
-
-        if "Iter" not in df.columns or "Cost" not in df.columns:
-            print(f"Warning: unexpected columns in {csv_file} (found: {list(df.columns)})", file=sys.stderr)
+        temp, rate = parse_label(label)
+        if temp is None:
+            print(f"Skipping label: {label}")
             continue
 
-        # Keep only Iter and rename Cost column to the placer name
-        df = df[["Iter", "Cost"]].rename(columns={"Cost": placer_name})
-        dfs.append(df)
+        print(f"Plotting: {label} (temp={temp}, rate={rate})")
 
-    if not dfs:
-        print("No valid cost_history.csv files found.", file=sys.stderr)
-        sys.exit(1)
+        if temp not in temp_to_color:
+            temp_to_color[temp] = base_colors(len(used_temps) % 10)
+            used_temps.append(temp)
 
-    # Merge all DataFrames on Iter
-    df_merged = dfs[0]
-    for df in dfs[1:]:
-        df_merged = df_merged.merge(df, on="Iter", how="outer")
+        temp_to_labels.setdefault(temp, []).append(label)
 
-    df_merged = df_merged.sort_values("Iter").reset_index(drop=True)
+        base_rgb = temp_to_color[temp]
+        alpha = 0.4 + 0.6 * (1 - cooling_to_brightness(rate))
+        y = pd.to_numeric(df[label], errors='coerce').dropna().values
+        x = range(len(y))
+        plt.plot(x, y, color=base_rgb, label=label, alpha=alpha, linewidth=1.5)
 
-    # Save combined CSV to project root
-    output_csv = root_dir / "outputs" / "combined_cost_history.csv"
-    df_merged.to_csv(output_csv, index=False)
-    print(f"Combined dataset saved to {output_csv}")
-
-    # get placer columns (everything except "Iter") in alphabetical order
-    placer_cols = sorted([c for c in df_merged.columns if c != "Iter"])
-
-    # 1) Linear‐scale plot
-    plt.figure(figsize=(6,4))
-    for col in placer_cols:
-        plt.plot(df_merged["Iter"], df_merged[col], label=col)
-    plt.xlabel('Passes')
-    plt.ylabel('Cost')
-    plt.title('Cost History Across Placers (Linear Scale)')
-    plt.grid(True, linestyle='--', linewidth=0.5)
-    plt.legend()  # entries are already alphabetical
+    plt.xlabel("Iteration")
+    plt.ylabel("Cost")
+    plt.title("Cost History of SA Placers")
+    plt.legend(fontsize="small", bbox_to_anchor=(1.05, 1), loc="upper left")
+    plt.grid(True)
     plt.tight_layout()
-    plot_linear = root_dir / "outputs" / "combined_cost_history_linear.png"
-    plt.savefig(plot_linear)
-    print(f"Linear‐scale plot saved to {plot_linear}")
+    plt.savefig(root_dir / "outputs" / "combined_cost_history_plot.png")
+    plt.close()
 
-    # 2) Log‐scale plot
-    plt.figure(figsize=(6,4))
-    for col in placer_cols:
-        plt.plot(df_merged["Iter"], df_merged[col], label=col)
-    plt.yscale('log')
-    max_cost = df_merged[placer_cols].max().max()
-    plt.ylim(1, max_cost)
-    plt.xlabel('Passes')
-    plt.ylabel('Cost (log scale)')
-    plt.title('Cost History Across Placers (Log Scale)')
-    plt.grid(True, which='both', linestyle='--', linewidth=0.5)
-    plt.legend()  # still alphabetical
-    plt.tight_layout()
-    plot_log = root_dir / "outputs" / "combined_cost_history_log.png"
-    plt.savefig(plot_log)
-    print(f"Log‐scale plot saved to {plot_log}")
+    # --- Per-temp plots ---
+    for temp, group_labels in temp_to_labels.items():
+        output_path = root_dir / "outputs" / f"cost_history_{temp}.png"
+        print(f"Creating plot: {output_path}")
+        plot_group(group_labels, temp_to_color, df, output_path, title_suffix=f"(Initial Temp {temp})")
+
 
 if __name__ == "__main__":
     main()

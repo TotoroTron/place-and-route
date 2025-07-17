@@ -5,6 +5,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.SimpleFormatter;
 import java.util.logging.Level;
 
+import java.io.FileWriter;
 import java.io.IOException;
 
 import java.util.ArrayList;
@@ -79,90 +80,82 @@ public class Main {
             // takes the packedDesign and figures out an optimal mapping of SiteInsts onto
             // Sites via simulated annealing, analytical, electrostatic placement, etc.
             // works entirely on the SiteInst/Site/Tile level.
-            List<PlacerAnnealRandom> SAPlacers = new ArrayList<PlacerAnnealRandom>();
-            SAPlacers.add(new PlacerAnnealRandom(rootDir, design, device, region));
-            SAPlacers.add(new PlacerAnnealMidpoint(rootDir, design, device, region));
-            SAPlacers.add(new PlacerAnnealHybrid(rootDir, design, device, region));
-            SAPlacers.add(new PlacerGreedyRandom(rootDir, design, device, region));
-            SAPlacers.add(new PlacerGreedyMidpoint(rootDir, design, device, region));
+            // List<PlacerAnnealRandom> SAPlacers = new ArrayList<PlacerAnnealRandom>();
+            // SAPlacers.add(new PlacerAnnealRandom(rootDir, design, device, region));
+            // SAPlacers.add(new PlacerAnnealMidpoint(rootDir, design, device, region));
+            // SAPlacers.add(new PlacerAnnealHybrid(rootDir, design, device, region));
+            // SAPlacers.add(new PlacerGreedyRandom(rootDir, design, device, region));
+            // SAPlacers.add(new PlacerGreedyMidpoint(rootDir, design, device, region));
 
-            for (PlacerAnnealRandom placer : SAPlacers) {
-                System.out.println("\n\nStarting " + placer.getPlacerName() + "... \n\n");
-                placer.makeOutputDirs(placer.getPlacerName());
-                placer.initCoolingSchedule(10000.0d, 0.98d, 300);
-                placer.run(packedDesign);
+            // for (PlacerAnnealRandom placer : SAPlacers) {
+            // System.out.println("\n\nStarting " + placer.getPlacerName() + "... \n\n");
+            // placer.makeOutputDirs(placer.getPlacerName());
+            // placer.initCoolingSchedule(10000.0d, 0.98d, 300);
+            // placer.run(packedDesign);
+            // }
+
+            List<String> placerNames = new ArrayList<>();
+            List<List<Double>> combinedCostHistory = new ArrayList<>();
+
+            List<PlacerAnnealRandom> SAPlacers = new ArrayList<PlacerAnnealRandom>();
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 4; j++) {
+                    int initialTemp = 5000 + (i * 5000);
+                    Double coolingRate = 0.92 + (j * 0.02);
+                    PlacerAnnealRandom placer = new PlacerAnnealRandom(rootDir, design, device, region);
+                    SAPlacers.add(placer);
+                    String fullName = placer.getPlacerName() + "_" + initialTemp + "_"
+                            + (int) Math.round(coolingRate * 100);
+                    System.out.println("========================================");
+                    System.out.println("STARTING: " + fullName + " ... ");
+                    System.out.println("========================================");
+                    placer.makeOutputDirs(fullName);
+                    placer.initCoolingSchedule(initialTemp, coolingRate, 300);
+                    placer.run(packedDesign);
+
+                    placerNames.add(fullName);
+                    combinedCostHistory.add(placer.getCostHistory());
+                }
             }
+
+            writeCostHistoryCSV(placerNames, combinedCostHistory, rootDir + "/outputs/combined_cost_history.csv");
 
         } catch (IOException e) {
             logger.log(Level.SEVERE, "An IOException occurred while configuring the logger.", e);
         }
     }
 
-    public static void drawPlacement(Design design, String filePath) throws IOException {
-        ImageMaker im = new ImageMaker(design);
-        im.renderAll();
-        im.exportImage(filePath);
-        double cost = 0;
-        Collection<Net> nets = design.getNets();
-        System.out.println("Number of Nets: " + nets.size());
-        for (Net net : nets) {
-            Tile srcTile = net.getSourceTile();
-            if (srcTile == null) // tile is null if its' purely intrasite!
-                continue;
-            if (srcTile.getTileTypeEnum() == TileTypeEnum.RIOB33)
-                continue;
-            List<Tile> sinkTiles = net.getSinkPins().stream()
-                    .map(spi -> spi.getTile())
-                    .collect(Collectors.toList());
-            for (Tile sinkTile : sinkTiles) {
-                cost = cost + srcTile.getTileManhattanDistance(sinkTile);
+    public static void writeCostHistoryCSV(List<String> labels, List<List<Double>> columns, String filePath)
+            throws IOException {
+
+        int numRows = columns.stream().mapToInt(List::size).max().orElse(0);
+        int numCols = columns.size();
+
+        try (FileWriter writer = new FileWriter(filePath)) {
+
+            for (int col = 0; col < numCols; col++) {
+                writer.write(labels.get(col));
+                if (col < numCols - 1) {
+                    writer.write(",");
+                }
+            }
+            writer.write("\n");
+
+            for (int row = 0; row < numRows; row++) {
+                StringBuilder line = new StringBuilder();
+                for (int col = 0; col < numCols; col++) {
+                    List<Double> column = columns.get(col);
+                    if (row < column.size()) {
+                        line.append(column.get(row));
+                    }
+                    if (col < numCols - 1) {
+                        line.append(",");
+                    }
+                }
+                writer.write(line.toString());
+                writer.write("\n");
             }
         }
-        System.out.println("Design Cost: " + cost);
     }
 
-    // public static void helloEJML() {
-    // // 1. Create two 2x2 matrices A and B
-    // DMatrixRMaj A = new DMatrixRMaj(new double[][] {
-    // { 1, 2 },
-    // { 3, 4 }
-    // });
-    // DMatrixRMaj B = new DMatrixRMaj(new double[][] {
-    // { 5, 6 },
-    // { 7, 8 }
-    // });
-    //
-    // // 2. Matrix addition C = A + B
-    // DMatrixRMaj C = new DMatrixRMaj(A.numRows, A.numCols);
-    // CommonOps_DDRM.add(A, B, C);
-    //
-    // // 3. Matrix multiplication D = A * B
-    // DMatrixRMaj D = new DMatrixRMaj(A.numRows, B.numCols);
-    // CommonOps_DDRM.mult(A, B, D);
-    //
-    // // 4. Matrix inversion invA = A^-1
-    // DMatrixRMaj invA = new DMatrixRMaj(A.numRows, A.numCols);
-    // CommonOps_DDRM.invert(A, invA);
-    //
-    // // 5. Solve Ax = b (for x)
-    // // Here, b is a 2x1 column vector
-    // DMatrixRMaj b = new DMatrixRMaj(new double[][] { { 1 }, { 2 } });
-    // DMatrixRMaj x = new DMatrixRMaj(A.numRows, b.numCols);
-    // CommonOps_DDRM.solve(A, b, x);
-    //
-    // // Print results
-    // System.out.println("Matrix A:");
-    // A.print();
-    // System.out.println("Matrix B:");
-    // B.print();
-    // System.out.println("C = A + B:");
-    // C.print();
-    // System.out.println("D = A * B:");
-    // D.print();
-    // System.out.println("invA = A^-1:");
-    // invA.print();
-    // System.out.println("Solution x for Ax = b:");
-    // x.print();
-    // }
-    //
 }
