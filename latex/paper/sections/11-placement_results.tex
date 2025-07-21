@@ -69,8 +69,8 @@ We can observe that \texttt{AnnealHybrid} settles at a similar rate with the van
     \captionof{figure}{Cooling Schedule: \(T_0=10000\), \(\alpha=0.98\)}
     \label{fig:cooling_schedule_10000_98}
 }
+\vspace{1.0cm}
 
-\newpage
 Figures \ref{fig:PGRSnapshots}, \ref{fig:PGMSnapshots}, \ref{fig:PARSnapshots}, \ref{fig:PAMSnapshots}, and \ref{fig:PAHSnapshots} show snapshots of the placement progress on the physical \texttt{device} after 0, 10, 100, and 300 passes for each placer variant.
 
 Please zoom into the document to render the figures in greater detail.
@@ -80,13 +80,12 @@ Cyan boxes represent occupied \texttt{SLICEL}s, magenta boxes represent occupied
 
 The tangle of red lines represent the nets between the \texttt{Site}s, which are yet to be routed at this stage. 
 Brighter red lines represent nets of higher total HPWL, while duller red lines represent nets of lower total HPWL.
-
-Notice there are two brightly red nets in every figure that have a particularly high fan-out:
+Notice there are two brightly red nets in every figure that have a particularly high fanout:
 one sourced from the near-center, and another sourced from the top right of the device. 
 
-The singular white box in the near-center of all of the figures represents an occupied \texttt{BUFGCTRL} \texttt{Site}, which is a clock buffer used to route clock trees. 
-Since clock nets tend to have very high fanout, they can use up a significant portion of the routing resources if they are routed through general routing.
-Modern FPGAs like the 7-Series have dedicated clock routes which can efficiently distribute clock signals to all logical \texttt{Site}s without burdening the general routing resources.
+The singular white box in the near-center of all of the figures represents an occupied \texttt{BUFGCTRL} \texttt{Site}, which is a clock buffer used to route clock nets. 
+Since clock nets tend to have very high fanout, they can use up an unnecessarily large portion of routing resources if they are routed through general routing.
+Modern FPGAs like the 7-Series have dedicated clock tree routes which can evenly distribute clock signals to all logical \texttt{Site}s without burdening the general routing resources.
 These special clock routes are accessed by routing the raw clock signal from the crystal oscillator IO port to one these on-chip clock buffers which connects to the on-chip clock tree network.
 It is always best practice to use them to improve the routability of the design, and simultaneously, to reduce clock skew and improve timing. 
 Our simple FIR Filter design only operates on a single clock domain, so only one clock buffer \texttt{Site} is used. 
@@ -100,7 +99,8 @@ Thus, they are simply routed via general routing.
 
 Observe how \texttt{PlacerGreedyMidpoint} \ref{fig:PGMSnapshots} and \texttt{PlacerAnnealMidpoint} \ref{fig:PAMSnapshots} both show almost not shrinkage in profile after the first 10 iterations, likely owing to the inability to hill-climb, while the other three placers show incremental shrinkage.
 
-Also note the sparsity of the \texttt{DSP48E1} (yellow) and \texttt{RAMB18E1} (magenta) \texttt{Site} columns compared to the more uniform grid of \texttt{SLICEL}s (cyan).
+Also note the sparsity of the \texttt{DSP48E1} (yellow) and \texttt{RAMB18E1} (magenta) \texttt{Site} columns compared to the more uniform grid of \texttt{SLICEL}s (cyan), which poses a computational challenge for the legalization process in directed placement.
+
 
 \newpage
 \end{multicols}
@@ -152,6 +152,22 @@ Also note the sparsity of the \texttt{DSP48E1} (yellow) and \texttt{RAMB18E1} (m
     \includegraphics[valign=t, scale=0.13]{figures/results/PlacerAnnealHybrid/00000299.png}
     \captionof{figure}{\texttt{PlacerAnnealHybrid}}
     \label{fig:PAHSnapshots}
+}
+
+\begin{multicols}{2}
+    In addition to variations on the basic SA algorithm, we also test various cooling schedules on the basic SA algorithm.
+    Shown in figure \ref{fig:VaryCoolingSchedules} are the cost histories for various cooling schedules, grouped three different initial temperatures \texttt{(5000, 10000, and 15000)}. 
+    For each initial temperature group, we test four different cooling rates \texttt{(0.92, 0.94, 0.96, and 0.98)}, with the darkness of each curve corresponding with a slower cooling rate.
+\end{multicols}
+
+{
+    \centering
+    \includegraphics[valign=t, scale=0.55]{figures/results/cost_history_5000.png}
+    \includegraphics[valign=t, scale=0.55]{figures/results/cost_history_10000.png}
+    \includegraphics[valign=t, scale=0.55]{figures/results/cost_history_15000.png}
+    \includegraphics[valign=t, scale=0.55]{figures/results/combined_cost_history_cooling.png}
+    \captionof{figure}{\texttt{PlacerAnnealRandom} with various cooling schedules.}
+    \label{fig:VaryCoolingSchedules}
 }
 
 \begin{multicols}{2}

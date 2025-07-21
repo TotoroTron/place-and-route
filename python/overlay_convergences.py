@@ -18,7 +18,7 @@ def cooling_to_brightness(cooling_rate, min_rate=90, max_rate=98):
 
 
 def plot_group(temp_group, temp_to_color, df, output_path, title_suffix=""):
-    plt.figure(figsize=(12, 8))
+    plt.figure(figsize=(6, 4))
     for label in temp_group:
         temp, rate = parse_label(label)
         base_rgb = temp_to_color[temp]
@@ -29,8 +29,9 @@ def plot_group(temp_group, temp_to_color, df, output_path, title_suffix=""):
 
     plt.xlabel("Iteration")
     plt.ylabel("Cost")
+    plt.ylim(300000, 1000000)
     plt.title(f"Cost History of SA Placers {title_suffix}")
-    plt.legend(fontsize="small", bbox_to_anchor=(1.05, 1), loc="upper left")
+    plt.legend(fontsize="small")
     plt.grid(True)
     plt.tight_layout()
     plt.savefig(output_path)
@@ -52,7 +53,7 @@ def main():
     temp_to_labels = {}
 
     # --- Combined plot ---
-    plt.figure(figsize=(12, 8))
+    plt.figure(figsize=(6, 4))
 
     for label in labels:
         if label.strip().lower() in ("iteration", "unnamed: 0"):
@@ -79,8 +80,8 @@ def main():
 
     plt.xlabel("Iteration")
     plt.ylabel("Cost")
-    plt.title("Cost History of SA Placers")
-    plt.legend(fontsize="small", bbox_to_anchor=(1.05, 1), loc="upper left")
+    plt.title("Combined Cost History of all SA Placers")
+    plt.legend(fontsize="small")
     plt.grid(True)
     plt.tight_layout()
     plt.savefig(root_dir / "outputs" / "combined_cost_history_plot.png")
