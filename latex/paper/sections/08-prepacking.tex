@@ -17,7 +17,7 @@ The raw EDIF netlist only tells us the list of nets and the cell ports that they
 It does not report the presence of any multi-cell structures (\texttt{CARRY4} chains, etc.). 
 Thus, we must traverse the netlist to detect these multi-cell structures and store that structure information in a class we will call \texttt{PrepackedDesign}.
 
-The code snippet in \ref{lst:carry_chains} shows how one can detect and collect these \texttt{CARRY4} chains using RapidWright. 
+The code snippet in \ref{lst:carry_chains} shows how one can detect and collect these \texttt{CARRY4} chains in Figure \ref{fig:carry_chain_traversal} using RapidWright. 
 We first collect the cells in the design that are of type \texttt{CARRY4}, then iteratively traverse their Carry-Out (\texttt{CO}) to Carry-In (\texttt{CI}) nets to find incident \texttt{CARRY4} cells.
 Each \texttt{CARRY4} chain has an anchor cell and a tail cell where the chain terminates.
 The anchor is found when the \texttt{CI} net connects to Ground (\texttt{GND}), while the tail is found when the \texttt{CO} port is null. 

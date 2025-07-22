@@ -156,8 +156,10 @@ Also note the sparsity of the \texttt{DSP48E1} (yellow) and \texttt{RAMB18E1} (m
 
 \begin{multicols}{2}
     In addition to variations on the basic SA algorithm, we also test various cooling schedules on the basic SA algorithm.
-    Shown in figure \ref{fig:VaryCoolingSchedules} are the cost histories for various cooling schedules, grouped three different initial temperatures \texttt{(5000, 10000, and 15000)}. 
-    For each initial temperature group, we test four different cooling rates \texttt{(0.92, 0.94, 0.96, and 0.98)}, with the darkness of each curve corresponding with a slower cooling rate.
+    Shown in figure \ref{fig:VaryCoolingSchedules} are the cost histories for various cooling schedules, grouped into three different initial temperatures \texttt{(5000, 10000, and 15000)}. 
+    For each initial temperature group, we test five different cooling rates \texttt{(0.79, 0.84, 0.89, 0.94, and 0.99)}, with the darkness of each curve corresponding with a faster cooling rate.
+    The curves suggest that a lower initial temperature and faster cooling rate both contribute to a faster convergence to the global minimum, with generally small differences of less than 10\% in final HPWL cost. 
+
 \end{multicols}
 
 {

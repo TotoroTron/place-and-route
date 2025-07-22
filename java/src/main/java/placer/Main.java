@@ -99,9 +99,9 @@ public class Main {
 
             List<PlacerAnnealRandom> SAPlacers = new ArrayList<PlacerAnnealRandom>();
             for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 4; j++) {
+                for (int j = 0; j < 5; j++) {
                     int initialTemp = 5000 + (i * 5000);
-                    Double coolingRate = 0.92 + (j * 0.02);
+                    Double coolingRate = 0.79 + (j * 0.05);
                     PlacerAnnealRandom placer = new PlacerAnnealRandom(rootDir, design, device, region);
                     SAPlacers.add(placer);
                     String fullName = placer.getPlacerName() + "_" + initialTemp + "_"

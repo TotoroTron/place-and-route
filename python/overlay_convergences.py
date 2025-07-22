@@ -18,18 +18,19 @@ def cooling_to_brightness(cooling_rate, min_rate=90, max_rate=98):
 
 
 def plot_group(temp_group, temp_to_color, df, output_path, title_suffix=""):
-    plt.figure(figsize=(6, 4))
+    plt.figure(figsize=(6, 5))
     for label in temp_group:
         temp, rate = parse_label(label)
         base_rgb = temp_to_color[temp]
-        alpha = 0.4 + 0.6 * (1 - cooling_to_brightness(rate))
+        alpha = 0.2 + 0.3 * (1 - cooling_to_brightness(rate))
         y = pd.to_numeric(df[label], errors='coerce').dropna().values
         x = range(len(y))
         plt.plot(x, y, color=base_rgb, label=label, alpha=alpha, linewidth=1.5)
 
-    plt.xlabel("Iteration")
+    plt.xlabel("Passes")
     plt.ylabel("Cost")
-    plt.ylim(300000, 1000000)
+    # plt.yscale("log")
+    plt.ylim(3e5, 1e6)
     plt.title(f"Cost History of SA Placers {title_suffix}")
     plt.legend(fontsize="small")
     plt.grid(True)
@@ -53,10 +54,12 @@ def main():
     temp_to_labels = {}
 
     # --- Combined plot ---
-    plt.figure(figsize=(6, 4))
+    plt.figure(figsize=(6, 5))
+    # plt.yscale("log")
+    plt.ylim(3e5, 1e6)
 
     for label in labels:
-        if label.strip().lower() in ("iteration", "unnamed: 0"):
+        if label.strip().lower() in ("passes", "unnamed: 0"):
             continue
 
         temp, rate = parse_label(label)
@@ -73,18 +76,18 @@ def main():
         temp_to_labels.setdefault(temp, []).append(label)
 
         base_rgb = temp_to_color[temp]
-        alpha = 0.4 + 0.6 * (1 - cooling_to_brightness(rate))
+        alpha = 0.2 + 0.3 * (1 - cooling_to_brightness(rate))
         y = pd.to_numeric(df[label], errors='coerce').dropna().values
         x = range(len(y))
         plt.plot(x, y, color=base_rgb, label=label, alpha=alpha, linewidth=1.5)
 
-    plt.xlabel("Iteration")
+    plt.xlabel("Passes")
     plt.ylabel("Cost")
     plt.title("Combined Cost History of all SA Placers")
-    plt.legend(fontsize="small")
+    # plt.legend(fontsize="small")
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig(root_dir / "outputs" / "combined_cost_history_plot.png")
+    plt.savefig(root_dir / "outputs" / "combined_cost_history_cooling.png")
     plt.close()
 
     # --- Per-temp plots ---
