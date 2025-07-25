@@ -97,13 +97,34 @@ public class Main {
             List<String> placerNames = new ArrayList<>();
             List<List<Double>> combinedCostHistory = new ArrayList<>();
 
-            List<PlacerAnnealRandom> SAPlacers = new ArrayList<PlacerAnnealRandom>();
-            for (int i = 0; i < 3; i++) {
+            List<PlacerAnnealRandom> PARPlacers = new ArrayList<PlacerAnnealRandom>();
+            for (int i = 0; i < 2; i++) {
                 for (int j = 0; j < 5; j++) {
-                    int initialTemp = 5000 + (i * 5000);
-                    Double coolingRate = 0.79 + (j * 0.05);
+                    int initialTemp = 10000 + (i * 10000);
+                    Double coolingRate = 0.84 + (j * 0.03);
                     PlacerAnnealRandom placer = new PlacerAnnealRandom(rootDir, design, device, region);
-                    SAPlacers.add(placer);
+                    PARPlacers.add(placer);
+                    String fullName = placer.getPlacerName() + "_" + initialTemp + "_"
+                            + (int) Math.round(coolingRate * 100);
+                    System.out.println("========================================");
+                    System.out.println("STARTING: " + fullName + " ... ");
+                    System.out.println("========================================");
+                    placer.makeOutputDirs(fullName);
+                    placer.initCoolingSchedule(initialTemp, coolingRate, 300);
+                    placer.run(packedDesign);
+
+                    placerNames.add(fullName);
+                    combinedCostHistory.add(placer.getCostHistory());
+                }
+            }
+
+            List<PlacerAnnealHybrid> PAHPlacers = new ArrayList<PlacerAnnealHybrid>();
+            for (int i = 0; i < 2; i++) {
+                for (int j = 0; j < 5; j++) {
+                    int initialTemp = 10000 + (i * 10000);
+                    Double coolingRate = 0.84 + (j * 0.03);
+                    PlacerAnnealHybrid placer = new PlacerAnnealHybrid(rootDir, design, device, region);
+                    PAHPlacers.add(placer);
                     String fullName = placer.getPlacerName() + "_" + initialTemp + "_"
                             + (int) Math.round(coolingRate * 100);
                     System.out.println("========================================");

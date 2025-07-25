@@ -5,7 +5,8 @@ import re
 
 
 def parse_label(label):
-    match = re.match(r'PlacerAnnealRandom_(\d+)_(\d+)', label)
+    # match either "PlacerAnnealHybrid" or "PlacerAnnealRandom" followed by numbers
+    match = re.match(r'PlacerAnneal(?:Hybrid|Random)_(\d+)_(\d+)', label)
     if match:
         temp = int(match.group(1))
         rate = int(match.group(2))
@@ -13,7 +14,7 @@ def parse_label(label):
     return None, None
 
 
-def cooling_to_brightness(cooling_rate, min_rate=90, max_rate=98):
+def cooling_to_brightness(cooling_rate, min_rate=84, max_rate=99):
     return (cooling_rate - min_rate) / (max_rate - min_rate)
 
 
@@ -22,7 +23,7 @@ def plot_group(temp_group, temp_to_color, df, output_path, title_suffix=""):
     for label in temp_group:
         temp, rate = parse_label(label)
         base_rgb = temp_to_color[temp]
-        alpha = 0.2 + 0.3 * (1 - cooling_to_brightness(rate))
+        alpha = 0.2 + 0.6 * (1 - cooling_to_brightness(rate))
         y = pd.to_numeric(df[label], errors='coerce').dropna().values
         x = range(len(y))
         plt.plot(x, y, color=base_rgb, label=label, alpha=alpha, linewidth=1.5)
@@ -30,7 +31,7 @@ def plot_group(temp_group, temp_to_color, df, output_path, title_suffix=""):
     plt.xlabel("Passes")
     plt.ylabel("Cost")
     # plt.yscale("log")
-    plt.ylim(3e5, 1e6)
+    plt.ylim(2.5e5, 1e6)
     plt.title(f"Cost History of SA Placers {title_suffix}")
     plt.legend(fontsize="small")
     plt.grid(True)
@@ -56,7 +57,7 @@ def main():
     # --- Combined plot ---
     plt.figure(figsize=(6, 5))
     # plt.yscale("log")
-    plt.ylim(3e5, 1e6)
+    plt.ylim(2.5e5, 1e6)
 
     for label in labels:
         if label.strip().lower() in ("passes", "unnamed: 0"):
@@ -76,7 +77,7 @@ def main():
         temp_to_labels.setdefault(temp, []).append(label)
 
         base_rgb = temp_to_color[temp]
-        alpha = 0.2 + 0.3 * (1 - cooling_to_brightness(rate))
+        alpha = 0.2 + 0.6 * (1 - cooling_to_brightness(rate))
         y = pd.to_numeric(df[label], errors='coerce').dropna().values
         x = range(len(y))
         plt.plot(x, y, color=base_rgb, label=label, alpha=alpha, linewidth=1.5)
@@ -87,12 +88,12 @@ def main():
     # plt.legend(fontsize="small")
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig(root_dir / "outputs" / "combined_cost_history_cooling.png")
+    plt.savefig(root_dir / "outputs" / "placers" / "combined_cost_history_cooling.png")
     plt.close()
 
     # --- Per-temp plots ---
     for temp, group_labels in temp_to_labels.items():
-        output_path = root_dir / "outputs" / f"cost_history_{temp}.png"
+        output_path = root_dir / "outputs" / "placers" / f"cost_history_{temp}.png"
         print(f"Creating plot: {output_path}")
         plot_group(group_labels, temp_to_color, df, output_path, title_suffix=f"(Initial Temp {temp})")
 

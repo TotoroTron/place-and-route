@@ -178,7 +178,7 @@ if [ "$start_stage" == "graphics" ] || [ "$start_stage" == "all" ]; then
 
     # Loop over all items in PLACERS_DIR
     for placer_dir in "$PLACERS_DIR"/*; do
-        python3 python/plot_convergence.py "$placer_dir"
+        # python3 python/plot_convergence.py "$placer_dir"
         # Only proceed if it's a directory
         if [ -d "$placer_dir" ]; then
             images_path="$placer_dir/graphics/images"
