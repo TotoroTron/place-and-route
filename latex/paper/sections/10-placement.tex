@@ -20,7 +20,7 @@ In metallurgic Annealing, the state \(s\) represents the position of every atom 
 In the context of our SA placer, the state \(s\) represents the placement of every \texttt{SiteInst} on the \texttt{device} at any given iteration, while \(E(s)\) represents the total wirelength of \texttt{Net}s between all \texttt{SiteInst}s of the current placement.
 We will be measuring wirelength using the manhattan distance between the 2-dimensional coordinates of the \texttt{SiteInst}s on the \texttt{device}.
 We will refer to these distances as half perimeter wirelength (HPWL).
-The goal of SA is to bring the system from some initial state to a state with lower energy until some stopping criterion is met, whether that be when a computational budget is exceeded, an energy budget is met, or until the energy's rate of change approaches zero. 
+The purpose of SA is to bring the system from some initial state to a state with lower energy until some stopping criterion is met, whether that be when a computational budget is exceeded, an energy budget is met, or until the energy's rate of change approaches zero. 
 
 At each step or iteration, the algorithm considers some neighboring state \(s^*\). 
 If \(s^*\) has a lower energy than \(s\), then the state transition from \(s\) to \(s^*\) is accepted outright.
@@ -134,6 +134,7 @@ for (SiteInst si : sites) {
     \label{fig:swapSingleSite}
 }
 
+\newcolumn
 \begin{lstlisting}[language=java, caption={Cooling Schedule and Move Acceptance}, label={lst:sa_acceptance}]
 protected List<Double> coolingSchedule;
 public void initCoolingSchedule(double initialTemp, double alpha, int movesLimit) {

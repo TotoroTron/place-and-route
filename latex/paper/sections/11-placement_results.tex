@@ -30,7 +30,7 @@ Note that midpoint simply means centroid.
     \item \texttt{PlacerAnnealHybrid}: \textbf{Initial:} 50\% random - 50\% centroid moves with annealing acceptance. \textbf{At Near-Zero Temperature:} 100\% centroid moves with annealing acceptance.
 \end{itemize}
 
-Shown in figure \ref{fig:placers_overlay} are the total HPWL curves over number of passes for each of the five placers. 
+Shown in figure \ref{fig:placers_overlay} are the HPWL curves for each of the five placers. 
 \texttt{PlacerGreedyMidpoint} (in red) appears to perform the worst by a considerable margin with a final HPWL cost of 590K.
 This is likely due to the lack of randomness or lack of diversity in move proposals combined with the persistent greediness of the movement acceptance that prevents the system from escaping local minima.
 This conclusion is supported by its HPWL curve (in red) showing a sharp drop in cost that quickly asymptotes just below the 600K mark, suggesting that the system crystallized very quickly into a local minimum and was unable to climb out of it.

@@ -1,4 +1,4 @@
-@misc{mai2023multielectrostaticfpgaplacementconsidering,
+@misc{MultiElectrostatic,
       title={Multi-Electrostatic FPGA Placement Considering SLICEL-SLICEM Heterogeneity, Clock Feasibility, and Timing Optimization}, 
       author={Jing Mai and Jiarui Wang and Zhixiong Di and Yibo Lin},
       year={2023},
@@ -6,6 +6,18 @@
       archivePrefix={arXiv},
       primaryClass={cs.AR},
       url={https://arxiv.org/abs/2303.09305}, 
+}
+
+@INPROCEEDINGS{OpenPARF,
+    author={Mai, Jing and Wang, Jiarui and Chen, Yifan and Guo, Zizheng and Jiang, Xun and Liang, Yun and Lin, Yibo},
+    booktitle={2024 2nd International Symposium of Electronics Design Automation (ISEDA)}, 
+    title={OpenPARF 3.0: Robust Multi-Electrostatics Based FPGA Macro Placement Considering Cascaded Macros Groups and Fence Regions}, 
+    year={2024},
+    volume={},
+    number={},
+    pages={374-379},
+    keywords={Design automation;Design methodology;Graphics processing units;Benchmark testing;Dynamic scheduling;Robustness;Entropy;FPGA;Placement;Macro Placement;Cascaded Macro;Fence Region},
+    doi={10.1109/ISEDA62518.2024.10617535}
 }
 
 @ARTICLE{ExplicitPacking,
@@ -150,4 +162,23 @@
     pages={45-52},
     keywords={Field programmable gate arrays;Video recording;Design automation;Hardware design languages;Routing;Table lookup;Digital signal processing;VPR;XDL;Bitstream;Power;Temperature},
     doi={10.1109/FCCM.2013.40}
+}
+
+@article{SimPL,
+    author = {Kim, Myung-Chul and Lee, Dong-Jin and Markov, Igor L.},
+    title = {SimPL: an algorithm for placing VLSI circuits},
+    year = {2013},
+    issue_date = {June 2013},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    volume = {56},
+    number = {6},
+    issn = {0001-0782},
+    url = {https://doi.org/10.1145/2461256.2461279},
+    doi = {10.1145/2461256.2461279},
+    abstract = {VLSI placement optimizes locations of circuit components so as to reduce interconnect. Formulated in terms of (hyper) graphs, it is NP-hard, and yet must be solved for challenging million-node instances within several hours. We propose an algorithm for large-scale placement that outperforms prior art both in runtime and solution quality on standard benchmarks. The algorithm is more straightforward than existing placers and easier to integrate into timing-closure flows. Our C++ implementation is compact, self-contained and exploits instruction-level and thread-level parallelism. Due to its simplicity and superior performance, the algorithm has been adopted in the industry and was extended by several university groups to multi-objective optimization.},
+    journal = {Commun. ACM},
+    month = jun,
+    pages = {105–113},
+    numpages = {9}
 }
