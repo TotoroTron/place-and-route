@@ -24,7 +24,7 @@ During this packing phase, we simply map \texttt{design} \texttt{SiteInst}s onto
 % % These constraints must always be followed as the \texttt{SiteInst}s move across the device throughout the placement stage to ensure legality. 
 
 Listing \ref{lst:siteinst} shows how to use the \texttt{SiteInst} object and how it ties \texttt{Site}s, \texttt{Cell}s, \texttt{BEL}s, and intra-Site \texttt{Net}s together. 
-The super-specifics of the packing process via RapidWright is too involved for the scope of this paper, but just to give an impression of how the \texttt{design} classes are used, Listing \ref{lst:single_carry_chains}, \ref{lst:carry_chains}, \ref{lst:carry_nets}, and \ref{lst:ff_nets} together show how \texttt{CarryCellGroup}s are packed into \texttt{SLICEL} \texttt{Sites} in our working code. 
+The super-specifics of the packing process via RapidWright is too involved for the scope of this paper, but just to give an impression of how the \texttt{design} classes are used, Listing \ref{lst:single_carry_chains}, \ref{lst:carry_cell_group_chains}, \ref{lst:carry_nets}, and \ref{lst:ff_nets} together show how \texttt{CarryCellGroup}s are packed into \texttt{SLICEL} \texttt{Sites} in our working code. 
 
 Packing the other \texttt{Cell} structures into \texttt{Site}s follow a similar process. 
 For each cell cluster, we create a \texttt{SiteInst} and populate its \texttt{BEL}s with the corresponding \texttt{Cell}s in the cluster and assign it a physical \texttt{Site} on the \texttt{device}.
@@ -85,7 +85,7 @@ private void packCarrySite(CarryCellGroup carryCellGroup, SiteInst si) {
 \end{lstlisting}
 
 \newpage
-\begin{lstlisting}[language=java, caption={Packing \texttt{CarryCellGroup}s into \texttt{SLICEL} \texttt{SiteInst}s.}, label={lst:carry_chains}]
+\begin{lstlisting}[language=java, caption={Packing \texttt{CarryCellGroup}s into \texttt{SLICEL} \texttt{SiteInst}s.}, label={lst:carry_cell_group_chains}]
 // Pack all CarryCellGroup chains
 private List<List<SiteInst>> packCarryChains(List<List<CarryCellGroup>> EDIFCarryChains)
         throws IOException {

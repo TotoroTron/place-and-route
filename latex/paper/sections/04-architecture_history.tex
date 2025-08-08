@@ -30,7 +30,7 @@ Figure \ref{fig:cpld} shows one such CPLD architecture.
 
 \textbf{Homogeneous FPGA:} \quad 
 The mid-1980s saw the introduction of homogeneous FPGAs, which were built as a grid of CLBs. 
-Rather than using a central programmable switch matrix as in CPLDs, FPGAs adopted an island style architecture in which each CLB is surrounded on all sides by programmable routing resources, as shown in Figure \ref{fig:fpga}. 
+Rather than using a central programmable switch matrix as in CPLDs, FPGAs adopted an island style architecture in which each CLB is surrounded on all sides by programmable routing resources, as shown in Figure \ref{fig:homogen_fpga}. 
 The first commercially viable FPGA, produced by Xilinx in 1984, featured 16 CLBs arranged in a 4x4 grid. 
 As FPGA technology advanced, CLBs were redesigned to use lookup tables (LUTs) instead of PAL arrays for greater logic density. 
 The capacity of an FPGA was often measured by how many logical elements or CLBs it offered, which grew from hundreds to thousands and now to hundreds of thousands of CLBs.
@@ -47,7 +47,7 @@ The capacity of an FPGA was often measured by how many logical elements or CLBs 
     \centering
     \includegraphics[width=\columnwidth]{figures/homogenous_fpga.png}
     \captionof{figure}{A homogeneous island-style FPGA architecture with 16 CLBs in a grid.}
-    \label{fig:heterogen_fpga}
+    \label{fig:homogen_fpga}
     % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/FPGA/Field-programmable-gate-array-FPGA/
 }
 
@@ -57,7 +57,7 @@ The capacity of an FPGA was often measured by how many logical elements or CLBs 
     \centering
     \includegraphics[width=\columnwidth]{figures/heterogenous_fpga_3.jpg}
     \captionof{figure}{A heterogeneous island-style FPGA with a mix of CLBs and macrocells.}
-    \label{fig:homogen_fpga}
+    \label{fig:heterogen_fpga}
     % https://www.electronics-tutorial.net/Programmable-Logic-Device-Architectures/FPGA/Field-programmable-gate-array-FPGA/
 }
 \vspace{0.25cm}
@@ -65,7 +65,7 @@ The capacity of an FPGA was often measured by how many logical elements or CLBs 
 \textbf{Heterogenous FPGA:} \quad 
 This brings us to modern day FPGA architectures. 
 To meet the needs of increasingly complex designs, FPGA vendors introduced heterogeneous FPGAs. 
-In these devices, hard macros such as Block RAM (BRAM) and Digital Signal Processing (DSP) slices are integrated into the programmable logic fabric along with CLBs, like shown in Figure \ref{fig:fpga}. 
+In these devices, hard macros such as Block RAM (BRAM) and Digital Signal Processing (DSP) slices are integrated into the programmable logic fabric along with CLBs, like shown in Figure \ref{fig:heterogen_fpga}. 
 This design enables the direct instantiation of common subsystems like memories and multipliers, without having to recreate them from scratch using CLBs. 
 Major vendors such as Xilinx (AMD) and Altera (Intel) now employ heterogeneous island-style architectures in their devices. 
 As designs become increasingly large and complex, FPGAs meet the demand by becoming increasingly heterogenous, incorporating a wider variety of hard macros into the fabric. 
