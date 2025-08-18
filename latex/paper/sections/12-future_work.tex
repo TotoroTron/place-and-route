@@ -23,11 +23,12 @@ Here, \texttt{SiteInst}s remain the atomic placement objects, and analytical sol
 
 The following works provide a foundation for understanding AP, ranging from early formulations to modern SOTA methods:
 \begin{itemize}
-    \item \emph{Analytical minimization of half-perimeter wirelength} — \textbf{Kennings and Markov (2000)} \cite{AP_2000}.
-    \item \emph{Analytical placement for heterogeneous FPGAs} — \textbf{Gort et al. (2012)} \cite{AP_2012}.
-    \item \emph{SimPL: An algorithm for placing VLSI circuits} — \textbf{Kim et al. (2013)} \cite{SimPL}.
-    \item \emph{Multi-Electrostatic FPGA Placement Considering SLICEL–SLICEM Heterogeneity, Clock Feasibility, and Timing Optimization} — \textbf{Jing et al. (2023)} \cite{MultiElectrostatic}.
-    \item \emph{OpenPARF 3.0: Robust Multi-Electrostatics Based FPGA Macro Placement Considering Cascaded Macro Groups and Fence Regions} — \textbf{Jing et al. (2024)} \cite{OpenPARF}.
+    \item \emph{Analytical minimization of half-perimeter wirelength} - \textbf{Kennings and Markov (2000)} \cite{AP_2000}.
+    \item \emph{Kraftwerk2—A Fast Force-Directed Quadratic Placement Approach Using an Accurate Net Model} - \textbf{Spindler et al. (2008)} \cite{kraftwerk2}
+    \item \emph{Analytical placement for heterogeneous FPGAs} - \textbf{Gort et al. (2012)} \cite{AP_2012}.
+    \item \emph{SimPL: An algorithm for placing VLSI circuits} - \textbf{Kim et al. (2013)} \cite{SimPL}.
+    \item \emph{Multi-Electrostatic FPGA Placement Considering SLICEL–SLICEM Heterogeneity, Clock Feasibility, and Timing Optimization} - \textbf{Jing et al. (2023)} \cite{MultiElectrostatic}.
+    \item \emph{OpenPARF 3.0: Robust Multi-Electrostatics Based FPGA Macro Placement Considering Cascaded Macro Groups and Fence Regions} - \textbf{Jing et al. (2024)} \cite{OpenPARF}.
 \end{itemize}
 
 As noted in Section~\ref{sec:placement}, replacing SA with AP requires splitting the placement stage into two substages:  
@@ -35,28 +36,63 @@ As noted in Section~\ref{sec:placement}, replacing SA with AP requires splitting
 (2) \emph{detailed placement} (legalization), which snaps objects to valid \texttt{Site}s while adhering to hardware constraints.  
 Global placement can be performed using any number of off-the-shelf (OTS) analytical solvers.
 
-Unlike SA, which relies primarily on heuristics and probabilistic moves, AP begins with a formal mathematical formulation that is compatible with analytic optimization. 
-As introduced in Section~\ref{subsec:netlist}, a circuit netlist can be naturally modeled as a \emph{hypergraph}
-\[
-    G_{H} = (V_{H}, E_{H}),
-\]
+Unlike SA, which primarily relies on heuristics and probabilistic moves, AP begins by contextualizing the problem as a collection of math expressions that are compatible with OTS solvers.
+As briefly introduced in Section~\ref{subsec:netlist}, a circuit netlist can be naturally modeled as a weighted hypergraph
+\begin{equation}
+    G_{H} = (V_{H}, E_{H})
+    \label{equ:hypergraph}
+\end{equation}
 where \(V_{H}\) is the set of vertices and \(E_{H}\) is the set of hyperedges, each of which may connect more than two vertices. 
-In the FPGA context, \(V_{H}\) corresponds to the set of \texttt{SiteInst}s placed on the \texttt{device}, while \(E_{H}\) corresponds to the set of \texttt{Net}s interconnecting them.
+In FPGA context, \(V_{H}\) corresponds to the set of \texttt{SiteInst}s placed on the \texttt{device}, while \(E_{H}\) corresponds to the set of \texttt{Net}s connecting them.
+Each hyperedge is incident to one voltage source and one or many voltage sinks, defining the directionality of each hyperedge.
+We can then reduce this hypergraph into a graph using one of various net models - star net model, clique net model, Bound2Bound net model, among others.
 
-We can then reduce this hypergraph into a graph by converting all multi-pin hyperedges into a set of 2-pin edges.
+The star model transforms the hyperedge into a set of 2-pin edges connecting the incident sink pins to the source pin.
+The clique net model transforms the hyperdedge into a local fully connected network of 2-pin edges.
+We could preserve the directionality of the edges for possible future optimizations, but since HPWL minimization is not directly affected by the directionality of nets, we can just reduce the directed hypergraph into an undirected graph.
+Figure \ref{fig:net_model} shows an example of a hyperedge reduction using the star model and clique model.
 
-Most AP approaches then minimize the weighted sum of half perimeter wirelengths (HPWL) of these 2-pin edges, with some approaches using the sum of linear distances \ref{equ:Manhattan} and others using the sum of squared distances \ref{equ:Euclidian}.
+\vspace{1.0cm}
+{
+    \centering
+    \includegraphics[width=\columnwidth]{figures/future_work/net_model.png}
+    \captionof{figure}{Hypergraph reduction via Star and Clique net models.}
+    \label{fig:net_model}
+}
 
+
+After the hypergraph reduction, most AP approaches then minimize a HPWL cost function using either the sum of linear distances \ref{equ:Manhattan} or the sum of squared distances \ref{equ:Euclidian}.
 
 \begin{equation}
-    \boldsymbol{\Phi} (\vec{x}, \vec{y}) = \sum_{i,j} w_{i,j} \left( |x_i - x_j| + |y_i - y_j| \right)
+    \boldsymbol{\Phi} (\boldsymbol{x}, \boldsymbol{y}) = \sum_{i,j} w_{i,j} \left( |x_i - x_j| + |y_i - y_j| \right)
     \label{equ:Manhattan}
 \end{equation}
 
 \begin{equation}
-    \boldsymbol{\Phi} (\vec{x}, \vec{y}) = \sum_{i,j} w_{i,j} \left[ (x_i - x_j)^2 + (y_i - y_j)^2 \right]
+    \boldsymbol{\Phi} (\boldsymbol{x}, \boldsymbol{y}) = \sum_{i,j} w_{i,j} \left[ (x_i - x_j)^2 + (y_i - y_j)^2 \right]
     \label{equ:Euclidian}
 \end{equation}
+
+Here, module placements in the \(x\) and \(y\) directions are captured by the placement vectors \( \boldsymbol{x} = (x_1, x_2, ..., x_n) \) and \( \boldsymbol{y} = (y_1, y_2, ..., y_n) \).
+Each 2-pin edge has a weight \( w_{i,j} \) and is calculated depending on the net model used.
+
+\begin{equation}
+    w_{i,j} = \frac{1}{|x_i - x_j|}
+    \label{equ:weight}
+\end{equation}
+
+\begin{equation}
+    w_{i,j} = \frac{1}{(p-1) |x_i - x_j|}
+    \label{equ:weight_linearized}
+\end{equation}
+
+\begin{equation}
+    \boldsymbol{\Phi} (\boldsymbol{x}) = \frac{1}{2} \boldsymbol{x^T} \boldsymbol{Q_x} \boldsymbol{x} + \boldsymbol{c_x^T} \boldsymbol{x} + const.
+    \label{equ:quadratic}
+\end{equation}
+
+
+
 
 % use these formulations
 % HPWL_AP_2000
@@ -68,7 +104,7 @@ Most AP approaches then minimize the weighted sum of half perimeter wirelengths 
 
 
 \subsection{Variations on Packing}
-Our current placer follows a \textbf{Site-centric} approach that resembles that of the old Xilinx ISE - the predecessor to Vivado used in the 90s and 2000s.
+Our current placer follows a \textbf{Site-centric} approach that resembles that of the old Xilinx ISE - the predecessor to Vivado used in the 2000s.
 These days, Vivado performs \textbf{BEL-centric} placement without necessarily locking \texttt{Cell}s into \texttt{Site}s, allowing for a higher granularity of movement of \texttt{Cell}s. 
 Enabling BEL-centric moveme
 nt as opposed to Site-centric movement can improve HPWL minimization, but will add much more complexity to the packing and placement process to ensure robustness with respect to hardware constraints.
