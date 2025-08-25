@@ -58,8 +58,14 @@ Since HPWL is direction-agnostic, directionality of FPGA nets (source/sinks) is 
 {
     \centering
     \includegraphics[width=\columnwidth]{figures/future_work/net_model.png}
-    \captionof{figure}{Hypergraph reduction via Star and Clique net models.}
+    \captionof{figure}{Hyperedge reduction via Star and Clique net models.}
     \label{fig:net_model}
+}
+{
+    \centering
+    \includegraphics[width=\columnwidth]{figures/future_work/bound2bound.png}
+    \captionof{figure}{Hyperedge reduction via Bound2Bound net model.}
+    \label{fig:bound2bound}
 }
 
 After reduction, AP minimizes a wirelength objective, typically either a linear HPWL formulation \eqref{equ:Manhattan} or a surrogate quadratic formulation \eqref{equ:Euclidian}:
