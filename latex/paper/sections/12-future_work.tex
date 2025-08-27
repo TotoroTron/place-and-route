@@ -15,7 +15,7 @@ In its current state, the prepacker and packer struggle to handle signals larger
 In such designs, the Vivado synthesizer may synthesize long \texttt{CARRY4} chains with particular \texttt{EDIFHierPortInst} configurations which are currently not handled by our packer and lead to failures in the subsequent routing stage.
 Further work is required to resolve these constraints in the packer.
 
-\subsection{Force-Directed and Analytical Placement}
+\subsection{Analytical Placement}
 As discussed earlier, simulated annealing (SA) has largely been phased out in state-of-the-art (SOTA) placers due to poor scalability and long runtimes. 
 Our current placer follows a straightforward \emph{prepack–pack–place} flow, with the final placement stage driven by SA. 
 In future work, this stage can be retrofitted to use analytical placement (AP) while reusing the prepacker and packer. 
@@ -45,14 +45,15 @@ As briefly introduced in Section~\ref{subsec:netlist}, a circuit netlist can be 
 where \(V_{H}\) is the set of vertices and \(E_{H}\) is the set of hyperedges, each of which may connect more than two vertices. 
 In FPGA context, \(V_{H}\) corresponds to the set of \texttt{SiteInst}s placed on the \texttt{device}, while \(E_{H}\) corresponds to the set of \texttt{Net}s connecting them.
 
-This hypergraph is reduced into a graph using one of several net models:
+This hypergraph can be reduced into a graph using one of several net models:
 \begin{itemize}
     \item \textbf{Star model:} classically, introduce a virtual star node and connect it to all pins of the net. However, in electronics, we can simply use the voltage source node as the star node and avoid adding virtual nodes.
     \item \textbf{Clique model:} connect all pins of the net to each other (quadratic growth in edges). 
     \item \textbf{Bound2Bound (B2B) model:} connect only the pins at the geometric boundary (min/max in $x$ or $y$) to each other, and connect boundary pins to all interior pins. With inverse-distance weights, this model matches HPWL exactly at the point of weight calculation.
 \end{itemize}
 
-Since HPWL is direction-agnostic, directionality of FPGA nets (source/sinks) is typically ignored in reduction. Figure \ref{fig:net_model} shows an example of hyperedge reduction using the star and clique models.
+Since HPWL is direction-agnostic, directionality of FPGA nets (source/sinks) is typically ignored in reduction. 
+Figure \ref{fig:net_model} shows an example of hyperedge reduction using the star and clique models.
 
 \vspace{1.0cm}
 {
@@ -81,35 +82,41 @@ After reduction, AP minimizes a wirelength objective, typically either a linear 
 \end{equation}
 
 
-Here, module placements in the $x$ and $y$ directions are captured by the placement vectors \( \boldsymbol{x} = (x_1, x_2, ..., x_n) \) and \( \boldsymbol{y} = (y_1, y_2, ..., y_n) \).
+Here, module placements in the $x$ and $y$ directions are captured by the placement vectors \( \boldsymbol{x} = (x_1, x_2, ..., x_n) \) and \( \boldsymbol{y} = (y_1, y_2, ..., y_n) \), where $x_n$ and $y_n$ correspond to the coordinates of the $n$th module instance.
 In both formulations, the objective function is separable with $x$ and $y$.
-The weights \(w_{i,j}\) depend on both the net model and the objective:
+The weight \(w_{i,j}\) is the weight of the 2-pin edge connecting nodes $i$ and $j$. 
+Its value depends on both the net model and the objective:
 
 \begin{itemize}
-    \item \textbf{Star/Clique models + Quadratic objective:}  
-    Assign constant weights proportional to $1$ or $1/(p-1)$ (where $p$ is the pin count) to prevent overemphasis of high-fanout nets.
-    
-    \item \textbf{Star/Clique models + Linear HPWL:}  
-    Require iterative reweighting (e.g., $w_{i,j}=1/|x_i-x_j|$) so that the quadratic surrogate approximates the absolute value.
-    
-    \item \textbf{Bound2Bound + Linear HPWL:}  
-    Assign weights as inverse distances, e.g.
+    \item \textbf{Star/Clique models with a quadratic (squared-distance) objective:}  
+    Use constant edge weights. In the star model, each reduced 2-pin edge is given unit weight $w_{ij}=1$.  
+    In the clique model, each pin–pin edge is given weight $w_{ij}=1/(p-1)$, where $p$ is the pin count of the original hyperedge from which this edge was produced.  
+    This scaling prevents large-fanout nets from dominating the cost and makes star and clique models equivalent in the quadratic formulation.
+
+    \item \textbf{Star/Clique models with a linear HPWL objective (via quadratic surrogate):}  
+    Use iterative reweighting. With the star model, each edge weight is updated as $w_{ij}=1/|x_i-x_j|$. With the clique model, the weight is $1/((p-1)|x_i-x_j|)$.  
+    This reweighting makes the quadratic form act as a surrogate for $|x_i-x_j|$, approximating the true HPWL.
+
+    \item \textbf{Bound2Bound model with a linear HPWL objective:}  
+    Connect only boundary–boundary and boundary–interior pin pairs, and assign weights as inverse distances:  
     \begin{equation}
-        w_{i,j} = \frac{1}{(p-1)\,|x_i - x_j|}
+        w_{i,j} = \frac{2}{(p-1)\,|x_i - x_j|}.
         \label{equ:weight_linearized}
     \end{equation}
-    This makes the quadratic surrogate equal the HPWL for each net at the evaluation point.
+    With this assignment, the quadratic cost of a net equals its HPWL (in each dimension) at the evaluation point, making the Bound2Bound model HPWL-accurate.
 \end{itemize}
 
 The squared wirelength objective yields a unique minimizer and requires a single linear solve per iteration. 
 However, it tends to over-emphasize long wires relative to short ones and tends to worsen routing demand compared to linear metrics \cite{AP_2000}. 
 The linear wirelength objective more closely reflects how HPWL is measured and better correlates with routability. 
-However, it is non-differentiable, so analytical placers typically handle it by iterated quadratic approximations (e.g., GORDIAN-L reweights edge coefficients each iteration) or by smooth regularizations that enable Newton-type solvers. 
+However, it is non-differentiable, so analytical placers typically handle it by iterated quadratic approximations (e.g., GORDIAN-L reweights edge coefficients each iteration) or by smooth regularizations that enable Newton-type solvers \cite{AP_2000}. 
 
-For ease of implementation, it would be best to first use the squared objective before exploring the linear objective.
-We can use HeAP \cite{AP_2012}, which uses the squared objective along with the B2B net model, as an instructive reference.
 
-We can cast the squared formulation into quadratic form, which can be written compactly as
+
+For ease of implementation, it would be best to first implement the squared objective before exploring the linear objective.
+We can use the FPGA placer HeAP (2012) \cite{AP_2012}, which uses the squared objective along with the B2B net model, as an instructive reference.
+We can cast the squared formulation into quadratic form. 
+In the x-direction this can be written conveniently as
 \begin{equation}
     \boldsymbol{\Phi} (\boldsymbol{x}) 
     = \tfrac{1}{2}\,\boldsymbol{x}^T \boldsymbol{Q_x}\,\boldsymbol{x} + \boldsymbol{c_x}^T \boldsymbol{x} + \text{const},
@@ -117,6 +124,7 @@ We can cast the squared formulation into quadratic form, which can be written co
 \end{equation}
 where $\boldsymbol{Q_x}$ encodes 2-pin connections between movable cells and $\boldsymbol{c_x}$ accounts for fixed terminals.  
 Solving $\boldsymbol{Q_x}\boldsymbol{x} = -\boldsymbol{c_x}$ yields the optimal continuous $x$ coordinates, and the same applies independently for $y$.
+This quadratic form lends itself nicely to some OTS quadratic solvers.
 
 
 
@@ -141,7 +149,5 @@ fdsa
 
 \subsection{Parallelization}
 fdsa
-
-
 
 
