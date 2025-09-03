@@ -34,7 +34,8 @@ The following works provide a foundation for understanding AP, ranging from earl
 As noted in Section~\ref{sec:placement}, replacing SA with AP requires splitting the placement stage into two substages:  
 \emph{global placement}, which determines continuous target positions using analytical optimization, and  
 \emph{detailed placement} (legalization), which snaps objects to valid \texttt{site}s while adhering to hardware constraints.  
-Global placement can be performed using any number of off-the-shelf (OTS) analytical solvers.
+Global placement can be performed using any number of off-the-shelf (OTS) analytical solvers, but detailed placement requires custom implementation tailored to the hardware.
+We repeatedly loop through global placement into detailed placement until HPWL minimization slows to a stop.
 
 Unlike SA, which primarily relies on heuristics and probabilistic moves, AP begins by contextualizing the problem as a collection of mathematical expressions compatible with convex optimization solvers.
 As briefly introduced in Section~\ref{subsec:netlist}, a circuit netlist can be naturally modeled as a hypergraph
