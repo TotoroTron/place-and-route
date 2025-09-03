@@ -11,8 +11,8 @@ Enabling \texttt{SLICEL}-\texttt{SLICEM} heterogeneity can lead do greater logic
 We can also add packing support for other Xilinx primitives such as the shift-register primitive \texttt{SRLx}, distributed RAM primitives \texttt{RAMSx}, or even \texttt{LATCH} primitives as discussed in \ref{sec:7_series}.
 Adding support for additional primitives and macros will allow our placer to handle a wider range of HDL designs and will require deeper consideration of hardware constraints to ensure robustness.
 
-In its current state, the prepacker and packer struggle to handle signals larger than 24-bits, especially when involved in DSP functions like addition and multiplication. 
-In such designs, the Vivado synthesizer may synthesize long \texttt{CARRY4} chains with particular \texttt{EDIFHierPortInst} configurations which are currently not handled by our packer and lead to failures in the subsequent routing stage.
+In its current state, the prepacker and packer encounter problems when handling signals larger than 24-bits, especially when involved in DSP functions like addition and multiplication. 
+In such designs, the Vivado synthesizer may synthesize long \texttt{CARRY4} chains with specific \texttt{EDIFHierPortInst} configurations which are currently not handled by our packer and lead to failures in the subsequent routing stage.
 Further work is required to resolve these constraints in the packer.
 
 \subsection{Analytical Placement}
@@ -49,31 +49,19 @@ The distinction is usually only important in VLSI context, when the area of a mo
 However, in the context of FPGAs where \texttt{Site}s are relatively uniform size and whose areas are small compared to the area of the \texttt{device}, all \texttt{SitePinInst}s belonging to the same \texttt{SiteInst} can share the same location coordinates.
 
 
-(SHOW THE NOTATION)
-
-Modules 
-$m \in M$
-
-Pins
-$p \in P$
-
-Nets (hyperedges)
-$n \in N$
-
-$e \in {\mathcal{E}}_n$
-
-$e = (p, q)$
-
-
-
-
-
 This hypergraph can be reduced into a graph using one of several net models:
 \begin{itemize}
-    \item \textbf{Star model:} classically, introduce a virtual star node and connect it to all pins of the net. However, in electronics, we can simply use the voltage source node as the star pipipinnnnode and avoid adding virtual nodes.
+    \item \textbf{Star model:} classically, introduce a virtual star node and connect it to all pins of the net. However, in electronics, we can simply use the voltage source node as the star node and avoid adding virtual nodes.
     \item \textbf{Clique model:} connect all pins of the net to each other (quadratic growth in edges). 
     \item \textbf{Bound2Bound (B2B) model:} connect only the pins at the geometric boundary (min/max in $x$ or $y$) to each other, and connect boundary pins to all interior pins. With inverse-distance weights, this model matches HPWL exactly at the point of weight calculation.
 \end{itemize}
+
+% The VLSI placer Kraftwerk2 (2008) \cite{kraftwerk2} uses the following notation.
+% Integrated circuits consist of a set of modules (set $M$), the modules have pins (set $P$), and the pins are connected by nets (set $N$).
+% The nets are modeled by 2-pin connections 
+% After hypergraph reduction using one of the net models, this results in the representation of each net $n \in N$ by a set $\mathcal{E}_n$ of 2-pin connections. 
+% A single 2-pin connection $e = (p, q)$ connects pins $p$ and $q$.
+% Each pin, $p$ for example, is located at coordinates $(x_p, y_p)$.
 
 Since HPWL is direction-agnostic, directionality of FPGA nets (source/sinks) is typically ignored in reduction. 
 Figure \ref{fig:net_model} shows an example of hyperedge reduction using the star and clique models while \ref{fig:bound2bound} shows the B2B reduction.
@@ -92,7 +80,8 @@ Figure \ref{fig:net_model} shows an example of hyperedge reduction using the sta
     \label{fig:bound2bound}
 }
 
-After reduction, AP minimizes a wirelength objective, typically either a linear HPWL formulation \eqref{equ:Manhattan} or a surrogate quadratic formulation \eqref{equ:Euclidian}:
+After reduction comes global placement, where AP minimizes a wirelength objective, typically either a linear HPWL formulation \eqref{equ:Manhattan} or a quadratic approximation \eqref{equ:Euclidian}:
+
 
 \begin{equation}
     \boldsymbol{\Phi} (\boldsymbol{x}, \boldsymbol{y}) = \sum_{i,j} w_{ij} \left( |x_i - x_j| + |y_i - y_j| \right)
@@ -104,70 +93,133 @@ After reduction, AP minimizes a wirelength objective, typically either a linear 
     \label{equ:Euclidian}
 \end{equation}
 
+with $i, j \in \{1, 2, ..., M\}$, where $M$ is the total number of modules in the design.
+Module placements in the $x$ and $y$ directions are captured by the placement vectors \( \boldsymbol{x} = (x_1, x_2, ..., x_n) \) and \( \boldsymbol{y} = (y_1, y_2, ..., y_n) \), where $x_n$ and $y_n$ correspond to the coordinates of the $n$th module instance.
+Edges connecting pins $i$ and $j$ have weights $w_{ij}$ and are assigned values depending on the selected net model and objective.
 
-Here, module placements in the $x$ and $y$ directions are captured by the placement vectors \( \boldsymbol{x} = (x_1, x_2, ..., x_n) \) and \( \boldsymbol{y} = (y_1, y_2, ..., y_n) \), where $x_n$ and $y_n$ correspond to the coordinates of the $n$th module instance.
 In both formulations, the objective function is separable with $x$ and $y$.
-The weight \(w_{ij}\) is the weight of the edge connecting pins $i$ and $j$. 
-Its value depends on both the selected net model and objective:
-
-\begin{itemize}
-    \item \textbf{Star/Clique models with a quadratic (squared-distance) objective:}  
-    Use constant edge weights. In the star model, each pin-pin edge is given unit weight $w_{ij}=1$.  
-    In the clique model, each pin–pin edge is given weight $w_{ij}=1/(p-1)$, where $p$ is the pin count of the original hyperedge from which this edge was produced.  
-    This scaling prevents large-fanout nets from dominating the cost and makes star and clique models equivalent in the quadratic formulation.
-
-    \item \textbf{Star/Clique models with a linear HPWL objective (via quadratic surrogate):}  
-    Use iterative reweighting. With the star model, each edge weight is updated as $w_{ij}=1/|x_i-x_j|$. With the clique model, the weight is $1/((p-1)|x_i-x_j|)$.  
-    This reweighting makes the quadratic form act as a surrogate for $|x_i-x_j|$, approximating the true HPWL.
-
-    \item \textbf{Bound2Bound model with a linear HPWL objective:}  
-    Connect only boundary–boundary and boundary–interior pin pairs, and assign weights as inverse distances:  
-    \begin{equation}
-        w_{ij} = \frac{2}{(p-1)\,|x_i - x_j|}.
-        \label{equ:weight_linearized}
-    \end{equation}
-    With this assignment, the quadratic cost of a net equals its HPWL (in each dimension) at the evaluation point, making the Bound2Bound model HPWL-accurate.
-\end{itemize}
-
-The squared wirelength objective yields a unique minimizer and requires a single linear solve per iteration. 
+The squared objective is strongly convex and yields a unique minimizer while requiring a single linear solve per iteration. 
 However, it tends to over-emphasize long wires relative to short ones and tends to worsen routing demand compared to linear metrics \cite{AP_2000}. 
 The linear wirelength objective more closely reflects how HPWL is measured and better correlates with routability. 
-However, it is non-differentiable, so analytical placers typically handle it by iterated quadratic approximations (e.g., GORDIAN-L reweights edge coefficients each iteration) or by smooth regularizations that enable Newton-type solvers \cite{AP_2000}. 
-
-
-
+However, it is non-differentiable, so analytical placers typically handle it by iterated quadratic approximations or by smooth regularizations that enable Newton-type solvers \cite{AP_2000}. 
 For ease of implementation, it would be best to first implement the squared objective before exploring the linear objective.
+
 We can use the FPGA placer HeAP (2012) \cite{AP_2012}, which uses the squared objective along with the B2B net model, as an instructive reference.
+In HeAP, edges are weighted inversely with the distances between between pins and the number of pins on the original hyperedge from which the edge was produced.
 
-We can cast the squared formulation (\ref{equ:Euclidian}) into standard quadratic form. 
-The derivation is shown in Kraftwerk2 (2008) \cite{kraftwerk2}.
-Take the original squared objective in the $x$ direction (\ref{equ:sq_obj_x}) and expand each term (\ref{equ:w_expand}).
 \begin{equation}
-    {\boldsymbol{\Phi}}_x (\boldsymbol{x}) = \sum_{i, j} w_{ij} \left( x_i - x_j \right)^2
-    \label{equ:sq_obj_x}
+    w_{ij} = \frac{2}{(p-1)\,|x_i - x_j|}.
+    \label{equ:weight_linearized}
 \end{equation}
 
 
-
-\begin{equation}
-    w_{ij}(x_i - x_j)^2 = w_{ij} \left(x_i^2 - 2 x_i x_j + x_j^2 \right)
-    \label{equ:w_expand}
-\end{equation}
-
-
-
-
-
-
-In the x-direction this can be written as
+The squared objective \ref{equ:Euclidian} can be recast into matrix-vector form.
+In the x-direction this can be written as:
 \begin{equation}
     \boldsymbol{\Phi} (\boldsymbol{x}) 
     = \tfrac{1}{2}\,\boldsymbol{x}^T \boldsymbol{Q}_x\,\boldsymbol{x} + \boldsymbol{c}_x^T \boldsymbol{x} + \text{const},
     \label{equ:quadratic}
 \end{equation}
-where $\boldsymbol{Q_x}$ encodes 2-pin connections between movable cells and $\boldsymbol{c_x}$ accounts for fixed terminals.  
-Solving $\boldsymbol{Q_x}\boldsymbol{x} = -\boldsymbol{c_x}$ yields the optimal continuous $x$ coordinates, and the same applies independently for $y$.
-This quadratic form lends itself nicely to some OTS quadratic solvers.
+
+The connectivity matrix $\boldsymbol{Q_x}$ encodes 2-pin connections between movable instances while $\boldsymbol{c_x}$ encodes 2-pin connections between movable instances and fixed instances   
+Movable instances are for example \texttt{SLICEL}s, DSP, and RAM, while fixed instances can be IO pads and clock buffers.
+We distinguish fixed instances because their placement cannot be optimized and can be thought of as constraints encoded into the objective.
+For a design with $M$ pins belonging to movable instances and $F$ pins belonging to fixed instances, $\boldsymbol{Q}_x \in {\mathbb{R}}^{M \times M}$ and $\boldsymbol{c}_x \in {\mathbb{R}}^F$.
+
+Since the objective is strongly convex, we can solve for the global minimum cost by setting the partial derivatives to zero.
+
+\begin{equation}
+    \frac{\partial}{\partial x} \boldsymbol{\Phi} (\boldsymbol{x}) = 0 \Longleftrightarrow \boldsymbol{Q}_x \boldsymbol{x} = - \boldsymbol{c}_x
+\end{equation}
+
+Solving this linear system yields the optimal $x$ coordinate placements, and the same applies independently for $y$.
+We can use any number of OTS solver frameworks for this step, potentially \texttt{cvxpy} in Python or a Java-native package like \texttt{EMJ}.
+Note that this is only global placement, which is not legal and contains many constraint violations and placement overlaps.
+
+Following global placement is detailed placement (legalization) which is where the real challenge begins.
+Most placers have a custom method for doing so, tailored to specific optimizations or cost objectives.
+We can continue using HeAP as a reference, which performs recursive partitioning to transform the solution provided by the solver into a legal overlap-free placement.
+The discrete nature of the arrangement of \texttt{Site}s on the \texttt{device} and all of the other hardware constraints will make implementation very difficult.
+Just like in our SA placer, the most challenging parts to implement were the prepacker and packer where we deal with placement constraints, not the placer itself.
+
+% The first step of legalization is to identify areas or \texttt{Site}s on the \texttt{device} that are overutilized.
+% If we take the global placement containing the ($x$, $y$) coordinates of all instances, overlay it onto the grid of resources of the \texttt{device}, and snap each instance to the closest legal \texttt{Site}, any \texttt{Site} occupied by more than one instance can be considered overutilized.
+% Overutilized \texttt{Site}s that are adjacent to one another are repeatedly clustered together until all clusters are bordered on all sides by non-overutilized \texttt{Site}s, giving us so-called "overutilized areas".
+% Next, each area is expanded in both $x$ and $y$ dimensions until it is large enough to accomodate all instances within.
+% 
+% In the second step, we generate two cuts: source cut and a target cut.
+% The source cut pertains to the instances being placed and the target cut pertains to the area of \texttt{Site}s into which the instances are placed.
+% This is a similar to our SA placer when making random moves and swaps, where we have an original "home" \texttt{Site} and a proposed "away" \texttt{Site} that we accept or reject based on cost and temperature, except now we are dealing with clusters of \texttt{Site}s which are non-uniform in shape.
+% The source cut splits the instances into two partitions, while the target cut splits the area into two sub-areas, into which the instances in each partition are spread.
+% The target cut is a horizontal $x$ or vertical $y$ cut of the area such that all blocks in each partition fit in their respective sub-areas.
+% 
+% Next, the instances in sub-areas are spread to distribute them evenly.
+% The discrete nature of FPGA \texttt{Site} locations will make this process difficult.
+
+
+
+
+
+
+
+% We know the squared objective function \ref{equ:Euclidian} to be strongly convex and quadratic, so it would be beneficial to be able to re-express it in matrix-vector form to easily access gradient and Hessian information about the system and to make it compatible with OTS solvers.
+% With some algebraic manipulation, we can cast sum of squares formulation (\ref{equ:Euclidian}) into quadratic matrix form.
+% Take the original objective in the x-direction:
+% 
+% \begin{equation}
+%     {\boldsymbol{\Phi}}_x (\boldsymbol{x}) = \sum_{i, j} w_{ij} \left( x_i - x_j \right)^2
+%     \label{equ:sq_obj_x}
+% \end{equation}
+% 
+% Expanding the summation:
+% 
+% \begin{equation}
+%     {\boldsymbol{\Phi}}_x (\boldsymbol{x}) = \sum_{i, j} w_{ij} x_i^2 + \sum_{i, j} w_{ij} x_j^2 - 2 \sum_{i, j} w_{ij} x_i x_j
+%     \label{equ:w_expand}
+% \end{equation}
+% 
+% A net connecting node $i$ with $j$ is the same as connecting node $j$ with $i$, so $w_{ij} = w_{ji}$.
+% This means the weight matrix $W$ with elements $w_{ij}$ is symmetric.
+% Using this symmetry, we can group the first two terms in \ref{equ:w_expand}:
+% \begin{equation}
+%     {\boldsymbol{\Phi}}_x (\boldsymbol{x}) = 2 \sum_{i, j} w_{ij} x_i^2  - 2 \sum_{i, j} w_{ij} x_i x_j
+%     \label{equ:w_grouped} 
+% \end{equation}
+
+
+
+% by constructing the \emph{graph Laplacian matrix} out of the undirected weighted graph $G = (V, E)$ after hypergraph reduction. 
+% 
+% The Laplacian matrix \(L\) can be constructed with:
+% 
+% \begin{equation}
+%     L = BWB^T
+% \end{equation}
+% 
+% where $B$ is the \emph{incidence matrix} and $W$ is the diagonal \emph{weight matrix}.
+% The $|v| \times |e|$ incidence matrix $B$ of graph $G$ has elements $b_{ve}$, where $v$ denotes the vertex index and $e$ denotes the edge index.
+% Each edge $e$ connects a head vertex and a tail vertex, denoted as $e = (v_{head}, v_{tail})$.
+% 
+% \begin{equation}
+%     b_{ve} = 
+%     \begin{cases}
+%         +1, & \text{if } v \text{ is the head (source) of edge e} \\
+%         -1, & \text{if } v \text{ is the tail (sink) of edge e} \\ 
+%         0, & \text{otherwise}.
+%     \end{cases}
+% \end{equation}
+% 
+% The assignment of which vertex is the head and which is the tail is arbitrary and does not correlate with any directionality of the edges.
+% But for consistent bookkeeping purposes, we can assign the lower-indexed vertex as the head and the higher-indexed vertex as the tail like so: 
+% 
+% \begin{equation}
+%     b_{ve} = 
+%     \begin{cases}
+%         +1, & \text{if } v = v_i, \\
+%         -1, & \text{if } v = v_j, \\ 
+%         0, & \text{otherwise}.
+%     \end{cases}
+% \end{equation}
 
 
 
@@ -188,9 +240,11 @@ After implementing a force-directed or analytical placer, we can begin to explor
 \vspace{0.25cm}
 
 \subsection{Add Hard Macro Support}
-fdsa
+As mentioned before, our SA placer is Site-centric.
+An interesting direction of study would be to expand our placer to support Module-Site-centric mixed placement, where Modules are hard macros comprising multiple Sites.
+This of course would also add complexity to the prepacker and packer, as now we are dealing with non-uniform mixed-size placement objects.
+The RapidWright repository has two implementations of purely Module-centric placers, called \texttt{BlockPlacer} and \texttt{BlockPlacer2}, though it currently lacks a purely Site-centric placer or a mixed Module-Site-centric placer.
+The corresponding paper by Lavin et. al. (2010) \cite{HardBlock} can serve as a useful reference for this direction.
 
-\subsection{Parallelization}
-fdsa
 
 
