@@ -126,6 +126,10 @@ The connectivity matrix $\boldsymbol{Q_x}$ encodes 2-pin connections between mov
 Movable instances are for example \texttt{SLICEL}s, DSP, and RAM, while fixed instances can be IO pads and clock buffers.
 We distinguish fixed instances because their placement cannot be optimized and can be thought of as constraints encoded into the objective.
 For a design with $M$ pins belonging to movable instances and $F$ pins belonging to fixed instances, $\boldsymbol{Q}_x \in {\mathbb{R}}^{M \times M}$ and $\boldsymbol{c}_x \in {\mathbb{R}}^F$.
+We can construct $\boldsymbol{Q}_x$ and $\boldsymbol{c}_x$ formally by taking the graph Laplacian matrix $L_x$ of our netlist reduced into a graph and partitioning the matrix to separate M-M from M-F weights to form $\boldsymbol{Q}_x$ and $\boldsymbol{c}_x$.
+However, we can simply follow a shortcut outlined in SimPL \cite{SimPL}.
+If we take our netlist reduced into a graph
+
 
 Since the objective is strongly convex, we can solve for the global minimum cost by setting the partial derivatives to zero.
 

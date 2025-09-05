@@ -11,8 +11,8 @@ To do this, we use the RapidWright API, which is a semi-open-source research eff
 We implement multiple variations of simulated annealing placers for Xilinx's 7-series FPGAs, with an emphasis on minimizing total wirelength while mitigating runtime. 
 Our implementation is organized into three consecutive substages. 
 The \textbf{prepacking} stage involves traversing a raw EDIF netlist to identify recurring cell patterns—such as CARRY chains, DSP cascades, and LUT-FF pairs—that are critical for efficient mapping and legalization. 
-In the subsequent \textbf{packing} stage, these identified patterns, along with any remaining loose cells, are consolidated into SiteInst objects that encapsulate the FPGA’s discrete resource constraints and architectural nuances. 
-Finally, the \textbf{placement} stage employs a simulated annealing (SA) algorithm to optimally assign SiteInst objects to physical sites, aiming to minimize total wirelength while adhering to the constraints of the 7-series architecture. 
+In the subsequent \textbf{packing} stage, these identified patterns, along with any remaining loose cells, are consolidated into \texttt{SiteInst} objects that encapsulate the FPGA’s discrete resource constraints and architectural nuances. 
+Finally, the \textbf{placement} stage employs a simulated annealing (SA) algorithm to optimally assign \texttt{SiteInst} objects to physical \texttt{Sites}, aiming to minimize total wirelength while respecting the constraints of the 7-series architecture. 
 
 Simulated annealing iteratively swaps placement objects guided by a cost function that decides which swaps should be accepted or rejected. 
 Hill climbing is permitted by occasionally accepting moves that increase cost, in hope that such swaps may later lead to a better final solution. 

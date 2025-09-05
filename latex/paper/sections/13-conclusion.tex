@@ -1,0 +1,7 @@
+\section{Conclusion}
+
+This work has demonstrated a complete placement flow for heterogeneous FPGAs built upon the RapidWright framework, culminating in a functional simulated annealing placer. 
+By systematically prepacking multi-cell structures, packing them into SiteInst containers, and applying an SA-driven optimization, we produce placements that respect the discrete architectural constraints of Xilinx 7-Series devices while reducing wirelength. 
+Although SA is computationally expensive compared to modern analytical placers, its simplicity, flexibility, and robustness make it an excellent foundation for research and education. 
+The infrastructure we have developed can be extended in several directions: integrating timing-driven cost functions, incorporating legalization-aware directed moves, and experimenting with analytical or hybrid placement algorithms. 
+Future work will focus on replacing or augmenting the SA stage with an analytical solver to combine the quality of wirelength minimization with the scalability and runtime performance needed for larger industrial designs.
