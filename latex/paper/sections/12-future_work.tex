@@ -94,7 +94,7 @@ After reduction comes global placement, where AP minimizes a wirelength objectiv
     \label{equ:Euclidian}
 \end{equation}
 
-with $i, j \in \{1, 2, ..., M\}$, where $M$ is the total number of modules in the design.
+with $i, j \in \{1, 2, ..., N\}$, where $N$ is the total number of modules in the design.
 Module placements in the $x$ and $y$ directions are captured by the placement vectors \( \boldsymbol{x} = (x_1, x_2, ..., x_n) \) and \( \boldsymbol{y} = (y_1, y_2, ..., y_n) \), where $x_n$ and $y_n$ correspond to the coordinates of the $n$th module instance.
 Edges connecting pins $i$ and $j$ have weights $w_{ij}$ and are assigned values depending on the selected net model and objective.
 
@@ -126,10 +126,11 @@ The connectivity matrix $\boldsymbol{Q_x}$ encodes 2-pin connections between mov
 Movable instances are for example \texttt{SLICEL}s, DSP, and RAM, while fixed instances can be IO pads and clock buffers.
 We distinguish fixed instances because their placement cannot be optimized and can be thought of as constraints encoded into the objective.
 For a design with $M$ pins belonging to movable instances and $F$ pins belonging to fixed instances, $\boldsymbol{Q}_x \in {\mathbb{R}}^{M \times M}$ and $\boldsymbol{c}_x \in {\mathbb{R}}^F$.
-We can construct $\boldsymbol{Q}_x$ and $\boldsymbol{c}_x$ formally by taking the graph Laplacian matrix $L_x$ of our netlist reduced into a graph and partitioning the matrix to separate M-M from M-F weights to form $\boldsymbol{Q}_x$ and $\boldsymbol{c}_x$.
-However, we can simply follow a shortcut outlined in SimPL \cite{SimPL}.
-If we take our netlist reduced into a graph
-
+We can construct $\boldsymbol{Q}_x$ and $\boldsymbol{c}_x$ formally by taking the graph Laplacian matrix of our undirected weighted graph (with M-M and M-F connections included), then partitioning the matrix to separate M-M from M-F weights to form $\boldsymbol{Q}_x$ and $\boldsymbol{c}_x$.
+Alternatively, we can simply follow a shortcut outlined in SimPL \cite{SimPL}, where we construct $Q_x$ by setting the diagonal elements $w_{ii}$ as the sum of net weights of all connections to movable module pin $i$.
+The off-diagonal elements $w_{ij}$ are the negative sum of net weights of connections between movable module pins $i$ and $j$, resulting in a symmetric matrix.
+The vector $\boldsymbol{c}_x$ has entry $-c_i$ in the $i$th row, where $c_i$ is the weight of the connection between fixed pin $i$ and and movable pin $i$, most of which will be zero.
+The SimPL paper offers a small example of this construction for a toy netlist \cite{SimPL}.
 
 Since the objective is strongly convex, we can solve for the global minimum cost by setting the partial derivatives to zero.
 

@@ -3,7 +3,7 @@
 Field-Programmable Gate Arrays (FPGAs) have witnessed rapid growth in capacity and versatility, driving significant advances in computer-aided design (CAD) and electronic design automation (EDA) methodologies. 
 Since the early-to-mid 2000s, the stagnation of single-processor performance relative to the rapid increase in integrated circuit sizes has led to a design productivity gap, where the computational effort for designing complex chips continues to rise. 
 FPGA CAD flows mainly encompass synthesis, placement, and routing; all of which are NP-hard problems, of which placement is one of the most time-consuming processes. 
-Inefficienct placement strategy not only extends design times from hours to days, thereby elevating cost and reducing engineering productivity, but also limits the broader adoption of FPGAs by software engineers who expect compile times akin to those of software compilers like {\tt gcc}. 
+Inefficient placement strategy not only extends design times from hours to days, thereby elevating cost and reducing engineering productivity, but also limits the broader adoption of FPGAs by software engineers who expect compile times akin to those of software compilers like {\tt gcc}. 
 
 For these reasons, FPGA placement remains a critical research effort even today. 
 In this paper, we study and implement established placement methods. 
@@ -12,7 +12,7 @@ We implement multiple variations of simulated annealing placers for Xilinx's 7-s
 Our implementation is organized into three consecutive substages. 
 The \textbf{prepacking} stage involves traversing a raw EDIF netlist to identify recurring cell patterns—such as CARRY chains, DSP cascades, and LUT-FF pairs—that are critical for efficient mapping and legalization. 
 In the subsequent \textbf{packing} stage, these identified patterns, along with any remaining loose cells, are consolidated into \texttt{SiteInst} objects that encapsulate the FPGA’s discrete resource constraints and architectural nuances. 
-Finally, the \textbf{placement} stage employs a simulated annealing (SA) algorithm to optimally assign \texttt{SiteInst} objects to physical \texttt{Sites}, aiming to minimize total wirelength while respecting the constraints of the 7-series architecture. 
+Finally, the \textbf{placement} stage employs a simulated annealing (SA) algorithm to optimally assign \texttt{SiteInst} objects to physical \texttt{Sites}, aiming to minimize total wirelength while the constraints of the 7-series architecture. 
 
 Simulated annealing iteratively swaps placement objects guided by a cost function that decides which swaps should be accepted or rejected. 
 Hill climbing is permitted by occasionally accepting moves that increase cost, in hope that such swaps may later lead to a better final solution. 
