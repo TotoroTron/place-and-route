@@ -139,7 +139,7 @@ Since the objective is strongly convex, we can solve for the global minimum cost
 \end{equation}
 
 Solving this linear system yields the optimal $x$ coordinate placements, and the same applies independently for $y$.
-We can use any number of OTS solver frameworks for this step, potentially \texttt{cvxpy} in Python or a Java-native package like \texttt{EMJ}.
+We can use any number of OTS solver frameworks for this step, potentially \texttt{cvxpy} in Python or a Java-native package like \texttt{EJML}.
 Note that this is only global placement, which is not legal and contains many constraint violations and placement overlaps.
 
 Following global placement is detailed placement (legalization) which is where the real challenge begins.

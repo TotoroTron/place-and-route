@@ -3,10 +3,10 @@
 DESIGN="fir_filter"
 TOP_LEVEL="top_level"
 
-export XILINX_VIVADO=/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2
+export XILINX_VIVADO=/home/bcheng/workspace/tools/Xilinx/2025.1.1/Vivado
 export PATH="$PATH:$XILINX_VIVADO/bin"
 
-export JAVA_HOME=/home/bcheng/workspace/tools/Xilinx/Vivado/2023.2/tps/lnx64/jre17.0.7_7
+export JAVA_HOME=/home/bcheng/workspace/tools/Xilinx/2025.1.1/Vivado/tps/lnx64/jre21.0.1_12
 export PATH="$JAVA_HOME/bin:$PATH"
 
 export RAPIDWRIGHT_PATH=/home/bcheng/workspace/tools/RapidWright

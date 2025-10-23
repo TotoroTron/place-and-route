@@ -1,7 +1,7 @@
 \section{Abstract}
 Placement remains one of the most computationally demanding stages of FPGA computer-aided design (CAD) flows, directly influencing routability, timing, and design productivity. 
 This paper presents a modular placement framework targeting Xilinx 7-Series devices, implemented using the RapidWright API. 
-The flow first clusters multi-cell structures—such as CARRY4 chains, DSP48E1 cascades, and LUT–FF pairs—into prepacked groups, then maps them to physical sites before applying a simulated annealing (SA) placer. 
+The flow first clusters multi-cell structures (such as CARRY4 chains, DSP48E1 cascades, and LUT–FF pairs) into prepacked groups, then maps them to physical sites before applying a simulated annealing (SA) placer. 
 The SA engine minimizes half-perimeter wirelength (HPWL) using a geometric cooling schedule, with support for both random and directed moves. 
 The result is a legal, wirelength-optimized placement that forms a foundation for experimenting with alternative cost functions and analytical or hybrid placement strategies.
 
